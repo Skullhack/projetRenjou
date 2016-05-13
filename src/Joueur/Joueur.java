@@ -5,10 +5,23 @@
  */
 package Joueur;
 
+import Enum.TypeJoueur;
+
 /**
  *
  * @author michauad
  */
-public interface Joueur {
+public class Joueur implements InterfaceJoueur {
+    TypeJoueur type;
+    int nbPion;
+    
+    Joueur(TypeJoueur type) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+	@Override
+	public void update() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
     
 }
