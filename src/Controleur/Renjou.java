@@ -32,6 +32,7 @@ public class Renjou implements InterfaceRenjou {
 
 		this.tabouJeu = new ArrayList<Tabou>(); // ligne qui sera à modifier.
 												// pour le moment, mis en dur
+		this.joueurCourant = 0;
 
 	}
 
@@ -47,7 +48,7 @@ public class Renjou implements InterfaceRenjou {
 
 	@Override
 	public int getJoueurCourant() {
-		return this.joueurCourant + 1;
+		return this.joueurCourant;
 	}
 
 	@Override

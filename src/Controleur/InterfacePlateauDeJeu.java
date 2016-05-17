@@ -21,9 +21,10 @@ public interface InterfacePlateauDeJeu {
 	public void setPlateau(TypeCase[][] plateau);
 
 	// Methodes
-	public void ajouter(Coordonnees c);
+	void ajouter(Coordonnees c, TypeCase typeCase);
 
 	public void enlever(Coordonnees c);
 
 	public PlateauDeJeu clone();
+
 }

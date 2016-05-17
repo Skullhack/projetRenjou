@@ -7,6 +7,7 @@ package Controleur;
 
 import Enum.TypeCase;
 import Enum.TypeJoueur;
+import Joueur.Humain;
 import Joueur.Joueur;
 
 import java.awt.Point;
@@ -22,10 +23,11 @@ public class Moteur implements InterfaceMoteur {
 	// Constructeur
 	public Moteur(int nbJoueurs) {
 		Joueur[] tableauJoueurs = new Joueur[nbJoueurs];
+		tableauJoueurs[0] = new Humain();
+		tableauJoueurs[1] = new Humain();
 		// tabJ[0] = new Humain(this, 1000);
 		// tabJ[1] = new IAMoyen(this,1000);
 		// System.out.println("this: " + this);
-
 		this.renjou = new Renjou(tableauJoueurs);
 
 	}
@@ -68,54 +70,46 @@ public class Moteur implements InterfaceMoteur {
 	}
 
 	@Override
-	public boolean coupTabou(Renjou renjou, Coordonnees c) {
-
-		// se baser sur la methode estValide qui existe dans la classe Renjou.
-		// On part du principe que ça fonctionne
-		boolean coupValide = true;
-		// if
-		// (renjou.getPlateauDeJeu().getPlateau()[c.getLigne()][c.getColonne()]
-		// != TypeCase.CaseJouable) {
-		// coupValide = false;
-		// } else {
-		// ArrayList<Tabou> tabousJeu = renjou.getTabouJeu();
-		// for (Tabou tabous : tabousJeu) {
-		// if (!tabous.estValide(renjou, c)) {
-		// coupValide = false;
-		// break;
-		// }
-		// }
-		//
-		// }
-		return coupValide;
-
-	}
-
-	@Override
 	public void operationJouer(Coordonnees c, TypeJoueur j) {
 
 		if (j == renjou.getJoueurs()[renjou.getJoueurCourant()].getType()) {
 			if (caseJouable(renjou, c)) {
+
 				// mettre à jour le plateau
 				// mettre à jour la liste annuler
-				// maj des cases tabous avec prise en compte du cas des 60 pions
-				//maj du joueur suivant
+				TypeCase typeCase = null;
+				if (renjou.getJoueurCourant() == 0) {
+					typeCase = TypeCase.CasePionNoir;
+
+					System.out.println("PION NOIR !!");
+
+				} else if (renjou.getJoueurCourant() == 1) {
+					typeCase = TypeCase.CasePionBlanc;
+
+					System.out.println("PION BLANC !!");
+				}
+				renjou.getPlateauDeJeu().ajouter(c, typeCase);
+				renjou.getListeAnnuler().add(renjou.getPlateauDeJeu());
+
+				joueurSuivant();
+				majCasesTabous(renjou);
+
 			} else if (caseTabou(renjou, c)) {
-				// perdu;
+				System.out.println("PERDU !! C'est une case tabou !!");
 			}
 
 			if (partieFinie(renjou)) {
-				// afficher joueur victorieux
+				// System.out.println("PARTIE FINIE");
 			}
 		}
 
 	}
 
-	public boolean caseJouable(Renjou renjou, Coordonnees c) {
+	private boolean caseJouable(Renjou renjou, Coordonnees c) {
 		return (renjou.getPlateauDeJeu().getPlateau()[c.getLigne()][c.getColonne()] == TypeCase.CaseJouable);
 	}
 
-	public boolean caseTabou(Renjou renjou, Coordonnees c) {
+	private boolean caseTabou(Renjou renjou, Coordonnees c) {
 		return (renjou.getPlateauDeJeu().getPlateau()[c.getLigne()][c.getColonne()] == TypeCase.CaseTabou);
 	}
 
@@ -147,17 +141,33 @@ public class Moteur implements InterfaceMoteur {
 
 		// si 5 pions sont alignes
 		// si le joueur courant n 'a plus de pions
+		return true;
+	}
 
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+	public void majCasesTabous(Renjou renjou) {
+
+		if (renjou.getJoueurCourant() == 0) {
+			// mettre les cases tabous en fonction de la liste
+		}
+
+		else if (renjou.getJoueurCourant() == 1) { // et nbPions == 60
+
+			Coordonnees c = new Coordonnees();
+			int milieuLignes = renjou.getPlateauDeJeu().getLignes() / 2;
+			int milieuColonnes = renjou.getPlateauDeJeu().getColonnes() / 2;
+			for (int i = -1; i <= 1; i++) {
+				for (int j = -1; j <= 1; j++) {
+					if (i != 0 || j != 0) {
+						c.setLigne(milieuLignes + i);
+						c.setColonne(milieuColonnes + j);
+						renjou.getPlateauDeJeu().ajouter(c, TypeCase.CaseJouable);
+					}
+				}
+			}
+		} else if (renjou.getJoueurCourant() == 1) {
+			// faire sauter toutes les cases tabous. Le joueur blanc n'en a pas
+		}
+
 	}
 
 	// fonction perso de vue
