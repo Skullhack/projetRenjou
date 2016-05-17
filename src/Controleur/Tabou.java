@@ -12,8 +12,8 @@ import java.awt.Point;
  * @author michauad
  */
 public class Tabou implements InterfaceTabou{
-    String nom;
-    boolean[][] configuration;
+    private String nom;
+    private boolean[][] configuration;
     
     //Constructeur
     public Tabou(boolean[][] conf, String nom) {
