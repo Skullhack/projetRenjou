@@ -8,6 +8,7 @@ package IHM;
 import java.awt.BorderLayout;
 import java.awt.MenuBar;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -26,16 +27,19 @@ public class FenetreJeu extends JFrame{
     JMenuBar barreMenu;
 	JMenu[] menus;
 	JMenuItem[][] menuItem;
+	JButton[] boutons;
 	
 	public FenetreJeu(Moteur m) {
 		//Variables
 		this.m = m;
-		//0:PanelPrincipal 1:PanelMenu 2:PanelBouton 3:Grille 4:PanelJ1 5:PanelBoutonBouton 6:PanelJ2
+		//0:PanelPrincipal 1:PanelBouton 2:Grille 3:PanelSud 4:PanelJ1 5:PanelBoutonDansBouton 6:PanelJ2
 		panels = new JPanel[7];
 		for (int i=0;i<panels.length;i++)
 			panels[i] = new JPanel(); 
-		String[] nomMenus = {"Partie","Aide"};
-		String[][] nomSousMenu = {{"Recommencer","Nouveau","Sauvegarder","Charger","Quitter"},{"Règles","A propos de"}};
+		String[] nomMenus = {"Partie","Configuration","Aide"};
+		String[][] nomSousMenu = {{"Créer partie","Sauvegarder","Charger","Quitter"},{"Thème","Paramètres","Tabous"},{"Règles","Tutoriel","A propos de"}};
+		String[] nomBoutons={"Annuler","Refaire"};
+		
 		
 		//Initialisation menus
 		barreMenu = new JMenuBar();
@@ -51,13 +55,12 @@ public class FenetreJeu extends JFrame{
 				menus[i].add(menuItem[i][j]);
 			}
 		}
-		panels[1].add(barreMenu, BorderLayout.WEST);
 		
-		//Initialisation Bouton
-		
+		//Initialisation Bouton Dans Bouton
+		boutons = new JButton[nomBoutons.length];
 		
 		//Fin
-		panels[0].add(panels[1], BorderLayout.NORTH);
+		this.setJMenuBar(barreMenu);
 		this.add(panels[0]);
 	}
 }

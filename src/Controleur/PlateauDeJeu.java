@@ -62,7 +62,7 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 	}
 
 	@Override
-	public void ajouter(Point p) {
+	public void ajouter(Coordonnees c) {
 
 		throw new UnsupportedOperationException("Not supported yet."); // To
 		// change
@@ -78,7 +78,7 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 	}
 
 	@Override
-	public void enlever(Point p) {
+	public void enlever(Coordonnees c) {
 		throw new UnsupportedOperationException("Not supported yet."); // To
 																		// change
 																		// body
@@ -101,6 +101,10 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 		}
 		return plateauDeJeuClone;
 
+	}
+	
+	public TypeCase getTypeCaseTableau(Coordonnees c) {
+		return this.plateau[c.getLigne()][c.getColonne()];
 	}
 
 	public static TypeCase charToTypeCase(char c){

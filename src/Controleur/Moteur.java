@@ -68,22 +68,29 @@ public class Moteur implements InterfaceMoteur {
 	}
 
 	@Override
-	public boolean coupValide(Renjou renjou, Point p) {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+	public boolean coupValide(Renjou renjou, Coordonnees c) {
+
+		// se baser sur la methode estValide qui existe dans la classe Renjou.
+		// On part du principe que ça fonctionne
+		boolean coupValide = true;
+		if (renjou.getPlateauDeJeu().getPlateau()[c.getLigne()][c.getColonne()] != TypeCase.CaseJouable) {
+			coupValide = false;
+		} else {
+			ArrayList<Tabou> tabousJeu = renjou.getTabouJeu();
+			for (Tabou tabous : tabousJeu) {
+				if (!tabous.estValide(renjou, c)) {
+					coupValide = false;
+					break;
+				}
+			}
+
+		}
+		return coupValide;
+
 	}
 
-
 	@Override
-	public void operationJouer(Point p, Joueur j) {
+	public void operationJouer(Coordonnees c, Joueur j) {
 		throw new UnsupportedOperationException("Not supported yet."); // To
 																		// change
 																		// body
@@ -112,16 +119,11 @@ public class Moteur implements InterfaceMoteur {
 
 	@Override
 	public void joueurSuivant() {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+		int joueurSuivant = this.renjou.getJoueurCourant() + 1;
+		this.renjou.setJoueurCourant(joueurSuivant);
+		if (this.renjou.getJoueurCourant() >= this.renjou.getNbJoueurs()) {
+			this.renjou.setJoueurCourant(0);
+		}
 	}
 
 	@Override
@@ -147,14 +149,13 @@ public class Moteur implements InterfaceMoteur {
 				} else if (renjou.getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CaseJouable) {
 					System.out.print("O");
 				} else if (renjou.getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CasePionBlanc) {
-					System.out.print("2");
+					System.out.print("B");
 				} else if (renjou.getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CasePionNoir) {
-					System.out.print("1");
+					System.out.print("N");
 				}
 			}
 			System.out.println("");
 		}
 	}
-
 
 }

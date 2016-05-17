@@ -27,7 +27,7 @@ public class IHM implements Runnable {
 
 		int nbJoueurs = 2;
 		Moteur donneesJeu = new Moteur(nbJoueurs);
-		
+		donneesJeu.afficherPlateauJeu();
 		// Un clic sur le bouton de fermeture clos l'application
 		frames[0].setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// On fixe la taille et on demarre
