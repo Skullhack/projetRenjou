@@ -6,6 +6,7 @@
 package Controleur;
 
 import java.awt.Point;
+import java.io.*;
 
 import Enum.TypeCase;
 
@@ -102,4 +103,72 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 
 	}
 
+	public static TypeCase charToTypeCase(char c){
+		switch(c){
+			case 'N':
+				return TypeCase.CasePionNoir;
+			case 'B':
+				return TypeCase.CasePionBlanc;
+			case 'X':
+				return TypeCase.CaseInjouable;
+			case 'O':
+				return TypeCase.CaseJouable;
+			default:
+				return TypeCase.CaseInjouable;
+		}
+	}
+	
+	
+	public static String TypeCasetoString(TypeCase tc){
+		switch(tc){
+			case CasePionNoir:
+				return "N";
+			case CasePionBlanc:
+				return "B";
+			case CaseInjouable:
+				return "X";
+			case CaseJouable:
+				return "O";
+			default:
+				return "X";
+		}
+	}
+	
+	public PlateauDeJeu charger(String nomFichier){
+		PlateauDeJeu pdj = new PlateauDeJeu();
+
+		try{
+			InputStream flux=new FileInputStream(nomFichier); 
+			InputStreamReader lecture=new InputStreamReader(flux);
+			BufferedReader buff=new BufferedReader(lecture);
+			String ligne;
+			int j=0;
+			while ((ligne=buff.readLine())!=null){
+				for(int i=0; i< ligne.length();i++)
+					pdj.plateau[i][j] = charToTypeCase(ligne.charAt(i));
+				j++;
+			}
+			buff.close(); 
+			}		
+			catch (Exception e){
+				System.out.println(e.toString());
+			}
+		
+		
+		return pdj;
+		
+	}
+	
+	public String toString(){
+		
+		String buff = new String();
+		for(int i=0;i<this.getLignes();i++){
+			for(int j=0;j<this.getColonnes();j++){
+				buff += TypeCasetoString(this.getPlateau()[i][j]);
+			}
+			
+			buff += "\n";
+		}
+		return buff;
+	}
 }
