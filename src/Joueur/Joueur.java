@@ -5,11 +5,14 @@
  */
 package Joueur;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import Controleur.*;
 import Enum.*;
 
 
-public class Joueur implements InterfaceJoueur {
+public class Joueur implements Observer {
     public TypeJoueur type;
     public int nbPion;
     public Moteur m;
@@ -22,10 +25,14 @@ public class Joueur implements InterfaceJoueur {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    
 	@Override
-	public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		 throw new UnsupportedOperationException("Not supported yet.");
+		
 	}
+
 
 	public TypeJoueur getType() {
 		return type;
@@ -50,6 +57,7 @@ public class Joueur implements InterfaceJoueur {
 	public void setMoteur(Moteur m) {
 		this.m = m;
 	}
+
     
 	
 }
