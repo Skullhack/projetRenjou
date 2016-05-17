@@ -5,10 +5,30 @@
  */
 package Joueur;
 
+import java.util.GregorianCalendar;
+import java.util.Random;
+
+import Enum.TypeJoueur;
+
 /**
  *
  * @author michauad
  */
-public interface IAFacile {
+public class IAFacile extends IA {
+	
+	Random r;
+	
+	public IAFacile(TypeJoueur type, int nbPion){
+		super();
+		this.type = type;
+		this.nbPion = nbPion;
+		
+	}
+	
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

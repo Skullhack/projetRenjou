@@ -9,6 +9,6 @@ package Joueur;
  *
  * @author michauad
  */
-public interface IAMoyenne {
+public class IAMoyenne extends IA {
     
 }

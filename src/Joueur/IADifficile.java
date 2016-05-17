@@ -9,6 +9,6 @@ package Joueur;
  *
  * @author michauad
  */
-public interface IADifficile {
+public class IADifficile extends IA  {
     
 }

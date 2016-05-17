@@ -14,14 +14,34 @@ import Enum.TypeJoueur;
 public class Joueur implements InterfaceJoueur {
     TypeJoueur type;
     int nbPion;
+     
+    public Joueur(){
+    	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
-    Joueur(TypeJoueur type) {
+    public Joueur(TypeJoueur type, int nbPion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 	@Override
 	public void update() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public TypeJoueur getType() {
+		return type;
+	}
+
+	public void setType(TypeJoueur type) {
+		this.type = type;
+	}
+
+	public int getNbPion() {
+		return nbPion;
+	}
+
+	public void setNbPion(int nbPion) {
+		this.nbPion = nbPion;
 	}
     
 	
