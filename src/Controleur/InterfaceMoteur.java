@@ -27,8 +27,6 @@ public interface InterfaceMoteur {
 
 	public void charger(String nomFichier);
 
-	public boolean coupTabou(Renjou renjou, Coordonnees c);
-
 	public void operationJouer(Coordonnees c, TypeJoueur j);
 
 	public void nouvellePartie(TypeJoueur[] tabTypeJoueurs);
