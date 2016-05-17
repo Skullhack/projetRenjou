@@ -35,14 +35,10 @@ public class IAFacile extends IA {
 	public Coordonnees jouer() {
 		Coordonnees c = estCoupGagnant();
 		if(c.getLigne() == -1){
-			ArrayList<Coordonnees> listePoint = new ArrayList<Coordonnees>();
-			for(int i=0; i<nbLigne; i++){
-				for(int j=0; j<nbColonne; j++){
-					
-				}
+			c = empecheCoupGagnant();
+			if(c.getLigne() == -1){
+				c = pointRandom();
 			}
-			
-			initHeuristique();
 		}
 		
 		return c;
@@ -118,10 +114,25 @@ public class IAFacile extends IA {
 		return c;
 	}
 	
-	public Coordonnees estCoupPerdant(){
+	public Coordonnees empecheCoupGagnant(){
 		Coordonnees c = new Coordonnees(-1,-1);
 		
 		return c;		
 	}
 	
+	public Coordonnees pointRandom(){
+		initHeuristique();
+		ArrayList<Coordonnees> listePoint = new ArrayList<Coordonnees>();
+		for(int i=0; i<nbLigne; i++){
+			for(int j=0; j<nbColonne; j++){
+				int nbHeristique = tabHeuristique[i][j];
+				for(int k=0; k <nbHeristique; k++){
+					listePoint.add(new Coordonnees(i,j));
+				}
+			}
+		}
+		
+		int indiceRandom = r.nextInt(listePoint.size());
+		return listePoint.get(indiceRandom);
+	}
 }
