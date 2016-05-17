@@ -131,6 +131,7 @@ public class IAFacile extends IA {
 				}
 			}
 		}
+		
 		int indiceRandom = r.nextInt(listePoint.size());
 		return listePoint.get(indiceRandom);
 	}
