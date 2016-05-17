@@ -43,7 +43,6 @@ public class IHM implements Runnable {
 
 		frames[1].setSize(1366,768);
 		frames[1].setLocationRelativeTo(null);
-		frames[1].setVisible(true);
 		frames[1].setSize(500, 200);
 		frames[1].setVisible(false);
 }
