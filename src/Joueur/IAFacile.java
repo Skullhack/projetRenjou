@@ -33,28 +33,69 @@ public class IAFacile extends IA {
 	}
 
 	public Coordonees jouer() {
-
-		return null;
+		Coordonees c = estCoupGagnant();
+		if(c.getLigne() == -1){
+			ArrayList<Coordonees> listePoint = new ArrayList<Coordonees>();
+			for(int i=0; i<nbLigne; i++){
+				for(int j=0; j<nbColonne; j++){
+					
+				}
+			}
+			
+			initHeuristique();
+		}
+		
+		return c;
 	}
 
 	public boolean caseJouable(Coordonees p) {
-		boolean retour = (m.getRenjou().getPlateauDeJeu().getPlateau()[p.getLigne()][p.getColonne()] == TypeCase.CasePionBlanc);
-		retour = retour && (m.getRenjou().getPlateauDeJeu().getPlateau()[p.getLigne()][p.getColonne()] == TypeCase.CasePionNoir);
-		retour = retour && (m.getRenjou().getPlateauDeJeu().getPlateau()[p.getLigne()][p.getColonne()] == TypeCase.CaseInjouable);
-		return retour;
+		return (m.getRenjou().getPlateauDeJeu().getPlateau()[p.getLigne()][p.getColonne()] == TypeCase.CaseJouable);
+
 	}
 
 	public void modifierHeristique(Coordonees p) {
 		int i = p.getLigne();
 		int j = p.getColonne();
 		if (i > 0) {
-			if(j >0){
-				tabHeuristique[i][j] ++;
-			}else{
-				
+			if(caseJouable(new Coordonees(i-1,j))){
+				tabHeuristique[i-1][j] ++;
 			}
-		}else{
-			
+			if(j >0){
+				if(caseJouable(new Coordonees(i-1,j-1))){
+					tabHeuristique[i-1][j-1] ++;
+				}
+			}
+			if(j < nbColonne){
+				if(caseJouable(new Coordonees(i-1,j+1))){
+					tabHeuristique[i-1][j+1] ++;
+				}
+			}
+		}
+		if(i < nbLigne){
+			if(caseJouable(new Coordonees(i+1,j))){
+				tabHeuristique[i+1][j] ++;
+			}
+			if(j >0){
+				if(caseJouable(new Coordonees(i+1,j-1))){
+					tabHeuristique[i+1][j-1] ++;
+				}
+			}
+			if(j < nbColonne){
+				if(caseJouable(new Coordonees(i+1,j+1))){
+					tabHeuristique[i+1][j+1] ++;
+				}
+			}
+		}
+		
+		if(j >0){
+			if(caseJouable(new Coordonees(i,j-1))){
+				tabHeuristique[i][j-1] ++;
+			}
+		}
+		if(j < nbColonne){
+			if(caseJouable(new Coordonees(i,j+1))){
+				tabHeuristique[i][j+1] ++;
+			}
 		}
 	}
 
@@ -64,11 +105,23 @@ public class IAFacile extends IA {
 			for (int j = 0; j < nbColonne; j++) {
 				Coordonees p = new Coordonees(i, j);
 				if (caseJouable(p)) {
-
+					modifierHeristique(p);
 				}
 			}
 		}
 
 	}
 
+	public Coordonees estCoupGagnant(){
+		Coordonees c = new Coordonees(-1,-1);
+		
+		return c;
+	}
+	
+	public Coordonees estCoupPerdant(){
+		Coordonees c = new Coordonees(-1,-1);
+		
+		return c;		
+	}
+	
 }
