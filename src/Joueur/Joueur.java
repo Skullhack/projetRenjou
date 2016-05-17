@@ -13,9 +13,10 @@ import Enum.*;
 
 
 public class Joueur implements Observer {
-    public TypeJoueur type;
-    public int nbPion;
-    public Moteur m;
+    TypeJoueur type;
+    int nbPion;
+    Moteur m;
+    TypeCouleur couleur;
      
     public Joueur(){
     	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -25,7 +26,6 @@ public class Joueur implements Observer {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
@@ -33,7 +33,8 @@ public class Joueur implements Observer {
 		
 	}
 
-
+	
+	//Getter et setter
 	public TypeJoueur getType() {
 		return type;
 	}
@@ -56,6 +57,16 @@ public class Joueur implements Observer {
 	
 	public void setMoteur(Moteur m) {
 		this.m = m;
+	}
+
+	
+	public TypeCouleur getCouleur() {
+		return couleur;
+	}
+
+	
+	public void setCouleur(TypeCouleur c) {
+		this.couleur = c;
 	}
 
     
