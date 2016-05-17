@@ -39,7 +39,7 @@ public class Tabou implements InterfaceTabou{
     }
 
     @Override
-    public boolean estValide(Point p, Renjou r) {
+    public boolean estValide(Coordonees c, Renjou r) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

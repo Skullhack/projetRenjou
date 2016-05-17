@@ -17,5 +17,5 @@ public interface InterfaceTabou {
     public boolean[][] getConfiguration();
      
     //Methodes
-    public boolean estValide(Point p, Renjou r);
+    public boolean estValide(Coordonees c, Renjou r);
 }

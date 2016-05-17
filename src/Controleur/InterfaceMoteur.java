@@ -27,9 +27,9 @@ public interface InterfaceMoteur {
 
 	public void charger(String nomFichier);
 
-	public boolean coupValide(Renjou renjou, Point p);
+	public boolean coupValide(Renjou renjou, Coordonees c);
 
-	public void operationJouer(Point p, Joueur j);
+	public void operationJouer(Coordonees c, Joueur j);
 
 	public void nouvellePartie(TypeJoueur[] tabTypeJoueurs);
 
