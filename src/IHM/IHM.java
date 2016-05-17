@@ -21,6 +21,7 @@ public class IHM implements Runnable {
  	
 	public void run() {		
 		// Creation d'une fenetre
+
 		frames = new JFrame[2];
 		frames[0] = new FenetreJeu(m);
 
@@ -39,6 +40,7 @@ public class IHM implements Runnable {
 		// Un clic sur le bouton de fermeture clos l'application
 		frames[1].setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// On fixe la taille et on demarre
+
 		frames[1].setSize(1366,768);
 		frames[1].setLocationRelativeTo(null);
 		frames[1].setVisible(true);
