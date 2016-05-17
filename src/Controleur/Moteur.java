@@ -68,39 +68,55 @@ public class Moteur implements InterfaceMoteur {
 	}
 
 	@Override
-	public boolean coupValide(Renjou renjou, Coordonnees c) {
+	public boolean coupTabou(Renjou renjou, Coordonnees c) {
 
 		// se baser sur la methode estValide qui existe dans la classe Renjou.
 		// On part du principe que ça fonctionne
 		boolean coupValide = true;
-		if (renjou.getPlateauDeJeu().getPlateau()[c.getLigne()][c.getColonne()] != TypeCase.CaseJouable) {
-			coupValide = false;
-		} else {
-			ArrayList<Tabou> tabousJeu = renjou.getTabouJeu();
-			for (Tabou tabous : tabousJeu) {
-				if (!tabous.estValide(renjou, c)) {
-					coupValide = false;
-					break;
-				}
-			}
-
-		}
+		// if
+		// (renjou.getPlateauDeJeu().getPlateau()[c.getLigne()][c.getColonne()]
+		// != TypeCase.CaseJouable) {
+		// coupValide = false;
+		// } else {
+		// ArrayList<Tabou> tabousJeu = renjou.getTabouJeu();
+		// for (Tabou tabous : tabousJeu) {
+		// if (!tabous.estValide(renjou, c)) {
+		// coupValide = false;
+		// break;
+		// }
+		// }
+		//
+		// }
 		return coupValide;
 
 	}
 
 	@Override
-	public void operationJouer(Coordonnees c, Joueur j) {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+	public void operationJouer(Coordonnees c, TypeJoueur j) {
+
+		if (j == renjou.getJoueurs()[renjou.getJoueurCourant()].getType()) {
+			if (caseJouable(renjou, c)) {
+				// mettre à jour le plateau
+				// mettre à jour la liste annuler
+				// maj des cases tabous avec prise en compte du cas des 60 pions
+				//maj du joueur suivant
+			} else if (caseTabou(renjou, c)) {
+				// perdu;
+			}
+
+			if (partieFinie(renjou)) {
+				// afficher joueur victorieux
+			}
+		}
+
+	}
+
+	public boolean caseJouable(Renjou renjou, Coordonnees c) {
+		return (renjou.getPlateauDeJeu().getPlateau()[c.getLigne()][c.getColonne()] == TypeCase.CaseJouable);
+	}
+
+	public boolean caseTabou(Renjou renjou, Coordonnees c) {
+		return (renjou.getPlateauDeJeu().getPlateau()[c.getLigne()][c.getColonne()] == TypeCase.CaseTabou);
 	}
 
 	@Override
@@ -128,6 +144,10 @@ public class Moteur implements InterfaceMoteur {
 
 	@Override
 	public boolean partieFinie(Renjou renjou) {
+
+		// si 5 pions sont alignes
+		// si le joueur courant n 'a plus de pions
+
 		throw new UnsupportedOperationException("Not supported yet."); // To
 																		// change
 																		// body
@@ -144,7 +164,7 @@ public class Moteur implements InterfaceMoteur {
 	public void afficherPlateauJeu() {
 		for (int i = 0; i < renjou.getPlateauDeJeu().getLignes(); i++) {
 			for (int j = 0; j < renjou.getPlateauDeJeu().getColonnes(); j++) {
-				if (renjou.getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CaseInjouable) {
+				if (renjou.getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CaseTabou) {
 					System.out.print("X");
 				} else if (renjou.getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CaseJouable) {
 					System.out.print("O");

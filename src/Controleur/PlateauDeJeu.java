@@ -36,7 +36,7 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 					// on se trouve au milieu de la grille;
 					this.plateau[i][j] = TypeCase.CaseJouable;
 				} else {
-					this.plateau[i][j] = TypeCase.CaseInjouable;
+					this.plateau[i][j] = TypeCase.CaseTabou;
 				}
 			}
 		}
