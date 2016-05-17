@@ -36,7 +36,6 @@ public class FenetreMenu extends JFrame {
     	tabbedPane = new JTabbedPane();
     	tabbedPane.addTab("Joueurs", null, panels[1],"Configuration de la partie");
     	tabbedPane.addTab("Tabous", null, panels[2],"Configuration des tabous");
-
     	
     	
     	//Panel0

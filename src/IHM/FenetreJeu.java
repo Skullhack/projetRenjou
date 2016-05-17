@@ -110,7 +110,6 @@ public class FenetreJeu extends JFrame{
         panels[1].setBackground(Color.BLUE);
         panels[0].add(panels[1],BorderLayout.LINE_START);
         panels[0].add(p, BorderLayout.AFTER_LINE_ENDS);
-		this.add(panels[0]);
-		
+		this.add(panels[0]);	
 	}
 }
