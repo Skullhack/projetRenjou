@@ -18,7 +18,7 @@ public class IHM implements Runnable {
 
 	public void run() {
 		// Creation d'une fenetre
-		JFrame frame = new JFrame("Projet Renjou");
+		JFrame frame = new JFrame("Renjou");
 
 		int nbJoueurs = 2;
 		Moteur donneesJeu = new Moteur(nbJoueurs);
@@ -29,7 +29,8 @@ public class IHM implements Runnable {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// On fixe la taille et on demarre
-		frame.setSize(500, 200);
+		frame.setSize(1366, 768);
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 
 	}
