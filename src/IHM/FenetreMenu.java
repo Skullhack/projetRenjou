@@ -5,10 +5,18 @@
  */
 package IHM;
 
+import javax.swing.JFrame;
+
+import Controleur.Moteur;
+
 /**
  *
  * @author michauad
  */
-public interface FenetreMenu {
-    
+public class FenetreMenu extends JFrame {
+	private Moteur m;
+	
+    public FenetreMenu(Moteur m) {
+    	this.m=m;
+    }
 }
