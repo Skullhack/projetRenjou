@@ -13,17 +13,27 @@ import java.util.ArrayList;
  *
  * @author michauad
  */
-public interface InterfaceMoteur {   
-    //Getter
-    public InterfaceRenjou getRenjou();
-    
-    //Methodes
-    public void sauvegarder(String nomfichier);
-    public void charger(String nomfichier);
-    public boolean coupValide(Renjou renjou, Case c);
-    public ArrayList<Case> listeCoupValide(Renjou renjou);
-    public void operationJouer(Case c, Joueur j);
-    public void nouvellePartie(TypeJoueur[] tjoueurs);
-    public void joueurSuivant();
-    public boolean partieFinie(Renjou renjou);
+public interface InterfaceMoteur {
+	// Getter
+	public InterfaceRenjou getRenjou();
+
+	// Setter
+	public void setRenjou(Renjou renjou);
+
+	// Methodes
+	public void sauvegarder(String nomfichier);
+
+	public void charger(String nomfichier);
+
+	public boolean coupValide(Renjou renjou, Case c);
+
+	public ArrayList<Case> listeCoupValide(Renjou renjou);
+
+	public void operationJouer(Case c, Joueur j);
+
+	public void nouvellePartie(TypeJoueur[] tjoueurs);
+
+	public void joueurSuivant();
+
+	public boolean partieFinie(Renjou renjou);
 }

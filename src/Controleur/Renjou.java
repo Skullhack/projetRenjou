@@ -13,137 +13,77 @@ import java.util.ArrayList;
  * @author michauad
  */
 public class Renjou implements InterfaceRenjou {
-	PlateauDeJeu plateau;
-	Joueur[] tabJoueurs;
-	int joueurCourant;
-	ArrayList<PlateauDeJeu> listeAnnuler;
-	ArrayList<PlateauDeJeu> listeRefaire;
-	boolean partieFinie;
-	ArrayList<Tabous> tabouJeu;
-	Tabous tabous;
+	private PlateauDeJeu plateau;
+	private Joueur[] tabJoueurs;
+	private int joueurCourant;
+	private ArrayList<PlateauDeJeu> listeAnnuler;
+	private ArrayList<PlateauDeJeu> listeRefaire;
+	private boolean partieFinie;
+	private ArrayList<Tabous> tabouJeu;
+	private Tabous tabous;
 
 	// Constructeur
-	public Renjou() {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+	public Renjou(Joueur[] tabJoueurs) {
+		this.plateau = new PlateauDeJeu();
+		this.tabJoueurs = tabJoueurs;
+		this.listeAnnuler = new ArrayList<PlateauDeJeu>();
+		this.listeRefaire = new ArrayList<PlateauDeJeu>();
+		partieFinie = false;
+
 	}
 
 	@Override
 	public PlateauDeJeu getPlateauDeJeu() {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+		return this.plateau;
 	}
 
 	@Override
 	public Joueur[] getJoueurs() {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+		return this.tabJoueurs;
 	}
 
 	@Override
 	public int getJoueurCourant() {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+		return this.joueurCourant;
 	}
 
 	@Override
 	public ArrayList<PlateauDeJeu> getListeAnnuler() {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+		return this.listeAnnuler;
 	}
 
 	@Override
 	public ArrayList<PlateauDeJeu> getListeRefaire() {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+		return this.listeRefaire;
 	}
 
 	@Override
 	public boolean getPartieFinie() {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+		return this.partieFinie;
 	}
 
-	private void setPlateauDeJeu(PlateauDeJeu plateau) {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+	public void setPlateauDeJeu(PlateauDeJeu plateau) {
+		this.plateau = plateau;
 	}
 
-	private void setJoueurs(Joueur[] joueurs) {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+	public void setJoueurs(Joueur[] tabJoueurs) {
+		this.tabJoueurs = tabJoueurs;
+	}
+
+	public void setJoueurCourant(int joueurCourant) {
+		this.joueurCourant = joueurCourant;
+	}
+
+	public void setListeAnnuler(ArrayList<PlateauDeJeu> listeAnnuler) {
+		this.listeAnnuler = listeAnnuler;
+	}
+
+	public void setListeRefaire(ArrayList<PlateauDeJeu> listeRefaire) {
+		this.listeRefaire = listeRefaire;
+	}
+
+	public void setPartieFinie(boolean partieFinie) {
+		this.partieFinie = partieFinie;
 	}
 
 	@Override

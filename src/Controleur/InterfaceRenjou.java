@@ -22,6 +22,15 @@ public interface InterfaceRenjou {
     public ArrayList<PlateauDeJeu> getListeRefaire();
     public boolean getPartieFinie();
     
+    //Setter
+    public void setPlateauDeJeu(PlateauDeJeu plateau);
+    public void setJoueurs(Joueur[] tabJoueurs);
+    public void setJoueurCourant(int joueurCourant);
+    public void setListeAnnuler(ArrayList<PlateauDeJeu> listeAnnuler);
+    public void setListeRefaire(ArrayList<PlateauDeJeu> listeRefaire);
+    public void setPartieFinie(boolean partieFinie);
+    
+    
     //Methodes
     public Renjou annuler(Renjou renjou);
     public Renjou annulerDemiCoup(Renjou renjou);

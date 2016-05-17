@@ -9,36 +9,65 @@ package Controleur;
  *
  * @author michauad
  */
-public class PlateauDeJeu implements InterfacePlateauDeJeu{
-    Case[][] plateau;
-    
-    //Constructeur
-    public PlateauDeJeu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+public class PlateauDeJeu implements InterfacePlateauDeJeu {
+	Case[][] plateau;
+	int lignes = 15;
+	int colonnes = 15;
 
-    @Override
-    public Case[][] getPlateau() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	// Constructeur
+	public PlateauDeJeu() {
+		this.plateau = new Case[lignes][colonnes];
+	}
 
-    public void setPlateau(Case[][] plateau) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public Case[][] getPlateau() {
+		return this.plateau;
+	}
 
-    @Override
-    public void ajouter(Case c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	public void setPlateau(Case[][] plateau) {
+		this.plateau = plateau;
+	}
 
-    @Override
-    public void enlever(Case c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    @Override
-    public PlateauDeJeu clone() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+	@Override
+	public void ajouter(Case c) {
+
+		throw new UnsupportedOperationException("Not supported yet."); // To
+		// change
+		// body
+		// of
+		// generated
+		// methods,
+		// choose
+		// Tools
+		// |
+		// Templates.
+
+	}
+
+	@Override
+	public void enlever(Case c) {
+		throw new UnsupportedOperationException("Not supported yet."); // To
+																		// change
+																		// body
+																		// of
+																		// generated
+																		// methods,
+																		// choose
+																		// Tools
+																		// |
+																		// Templates.
+	}
+
+	@Override
+	public PlateauDeJeu clone() {
+		PlateauDeJeu plateauDeJeuClone = new PlateauDeJeu();
+		for (int i = 0; i < this.lignes; i++) {
+			for (int j = 0; j < this.colonnes; j++) {
+				plateauDeJeuClone.plateau[i][j] = this.plateau[i][j];
+			}
+		}
+		return plateauDeJeuClone;
+
+	}
+
 }

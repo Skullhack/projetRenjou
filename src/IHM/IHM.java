@@ -9,6 +9,8 @@ package IHM;
 import java.awt.*;
 import javax.swing.*;
 
+import Controleur.Moteur;
+
 /**
  *
  * @author givaudav
@@ -19,12 +21,18 @@ public class IHM implements Runnable {
 		// Creation d'une fenetre
 		JFrame frame = new JFrame("Projet Renjou");
 
+		int nbJoueurs = 2;
+		Moteur donneesJeu = new Moteur(nbJoueurs);
+		
 		// Un clic sur le bouton de fermeture clos l'application
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// On fixe la taille et on demarre
 		frame.setSize(500, 200);
 		frame.setVisible(true);
+		
+		
+		
 	}
 
 	public static void main(String[] args) {
