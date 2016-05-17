@@ -5,16 +5,23 @@
  */
 package Controleur;
 
+import Enum.*;
+
 /**
  *
  * @author michauad
  */
-public interface InterfacePlateauDeJeu {   
-    //Getter
-    public Case[][] getPlateau();
-    
-    //Methodes
-    public void ajouter(Case c);
-    public void enlever(Case c);
-    public PlateauDeJeu clone();
+public interface InterfacePlateauDeJeu {
+	// Getter
+	public TypeCase[][] getPlateau();
+
+	// Setter
+	public void setPlateau(TypeCase[][] plateau);
+
+	// Methodes
+	public void ajouter(Case c);
+
+	public void enlever(Case c);
+
+	public PlateauDeJeu clone();
 }

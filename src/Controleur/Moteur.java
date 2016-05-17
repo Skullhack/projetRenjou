@@ -5,6 +5,7 @@
  */
 package Controleur;
 
+import Enum.TypeCase;
 import Enum.TypeJoueur;
 import Joueur.Joueur;
 
@@ -148,4 +149,23 @@ public class Moteur implements InterfaceMoteur {
 																		// |
 																		// Templates.
 	}
+
+	// fonction perso de vue
+	public void afficherPlateauJeu() {
+		for (int i = 0; i < renjou.getPlateauDeJeu().lignes; i++) {
+			for (int j = 0; j < renjou.getPlateauDeJeu().colonnes; j++) {
+				if (renjou.getPlateauDeJeu().plateau[i][j] == TypeCase.CaseInjouable) {
+					System.out.print("X");
+				} else if (renjou.getPlateauDeJeu().plateau[i][j] == TypeCase.CaseJouable) {
+					System.out.print("O");
+				} else if (renjou.getPlateauDeJeu().plateau[i][j] == TypeCase.CasePionBlanc) {
+					System.out.print("2");
+				} else if (renjou.getPlateauDeJeu().plateau[i][j] == TypeCase.CasePionNoir) {
+					System.out.print("1");
+				}
+			}
+			System.out.println("");
+		}
+	}
+
 }

@@ -5,7 +5,6 @@
  */
 package IHM;
 
-
 import java.awt.*;
 import javax.swing.*;
 
@@ -23,16 +22,16 @@ public class IHM implements Runnable {
 
 		int nbJoueurs = 2;
 		Moteur donneesJeu = new Moteur(nbJoueurs);
-		
+
+		donneesJeu.afficherPlateauJeu();
+
 		// Un clic sur le bouton de fermeture clos l'application
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// On fixe la taille et on demarre
 		frame.setSize(500, 200);
 		frame.setVisible(true);
-		
-		
-		
+
 	}
 
 	public static void main(String[] args) {
