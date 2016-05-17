@@ -140,15 +140,15 @@ public class Moteur implements InterfaceMoteur {
 
 	// fonction perso de vue
 	public void afficherPlateauJeu() {
-		for (int i = 0; i < renjou.getPlateauDeJeu().lignes; i++) {
-			for (int j = 0; j < renjou.getPlateauDeJeu().colonnes; j++) {
-				if (renjou.getPlateauDeJeu().plateau[i][j] == TypeCase.CaseInjouable) {
+		for (int i = 0; i < renjou.getPlateauDeJeu().getLignes(); i++) {
+			for (int j = 0; j < renjou.getPlateauDeJeu().getColonnes(); j++) {
+				if (renjou.getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CaseInjouable) {
 					System.out.print("X");
-				} else if (renjou.getPlateauDeJeu().plateau[i][j] == TypeCase.CaseJouable) {
+				} else if (renjou.getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CaseJouable) {
 					System.out.print("O");
-				} else if (renjou.getPlateauDeJeu().plateau[i][j] == TypeCase.CasePionBlanc) {
+				} else if (renjou.getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CasePionBlanc) {
 					System.out.print("2");
-				} else if (renjou.getPlateauDeJeu().plateau[i][j] == TypeCase.CasePionNoir) {
+				} else if (renjou.getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CasePionNoir) {
 					System.out.print("1");
 				}
 			}

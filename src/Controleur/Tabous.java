@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author michauad
  */
 public class Tabous implements InterfaceTabous {
-    ArrayList<Tabou> listeTabous;
+    private ArrayList<Tabou> listeTabous;
     
     //Constructeur
     public Tabous(){

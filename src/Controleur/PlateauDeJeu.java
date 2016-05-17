@@ -14,9 +14,9 @@ import Enum.TypeCase;
  * @author michauad
  */
 public class PlateauDeJeu implements InterfacePlateauDeJeu {
-	TypeCase[][] plateau;
-	int lignes = 15;
-	int colonnes = 15;
+	private TypeCase[][] plateau;
+	private final int lignes = 15;
+	private final int colonnes = 15;
 
 	// Constructeur
 	public PlateauDeJeu() {
@@ -50,6 +50,14 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 
 	public void setPlateau(TypeCase[][] plateau) {
 		this.plateau = plateau;
+	}
+
+	public int getColonnes() {
+		return colonnes;
+	}
+
+	public int getLignes() {
+		return lignes;
 	}
 
 	@Override
