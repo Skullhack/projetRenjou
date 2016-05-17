@@ -10,9 +10,9 @@ import Enum.*;
 
 
 public class Joueur implements InterfaceJoueur {
-    TypeJoueur type;
-    int nbPion;
-    Moteur m;
+    private TypeJoueur type;
+    private int nbPion;
+    private Moteur m;
      
     public Joueur(){
     	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -41,6 +41,14 @@ public class Joueur implements InterfaceJoueur {
 
 	public void setNbPion(int nbPion) {
 		this.nbPion = nbPion;
+	}
+	
+	public Moteur getMoteur() {
+		return m;
+	}
+	
+	public void setMoteur(Moteur m) {
+		this.m = m;
 	}
     
 	
