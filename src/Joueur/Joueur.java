@@ -17,15 +17,18 @@ public class Joueur implements Observer {
     int nbPion;
     Moteur m;
     TypeCouleur couleur;
+    int nbPionsBase;
      
     public Joueur(){
     	//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public Joueur(TypeJoueur type, int nbPion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	this.type = type;
+    	this.nbPion = nbPion;
+    	nbPionsBase = nbPion;
     }
-
+    
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
@@ -49,6 +52,14 @@ public class Joueur implements Observer {
 
 	public void setNbPion(int nbPion) {
 		this.nbPion = nbPion;
+	}
+	
+	public int getNbPionsBase() {
+		return nbPionsBase;
+	}
+
+	public void setNbPionsBase(int nbPionsBase) {
+		this.nbPionsBase = nbPionsBase;
 	}
 	
 	public Moteur getMoteur() {

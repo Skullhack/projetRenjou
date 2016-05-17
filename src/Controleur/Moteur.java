@@ -6,6 +6,7 @@
 package Controleur;
 
 import Enum.TypeCase;
+import Enum.TypeCouleur;
 import Enum.TypeJoueur;
 import Joueur.Humain;
 import Joueur.Joueur;
@@ -23,8 +24,8 @@ public class Moteur implements InterfaceMoteur {
 	// Constructeur
 	public Moteur(int nbJoueurs) {
 		Joueur[] tableauJoueurs = new Joueur[nbJoueurs];
-		tableauJoueurs[0] = new Humain();
-		tableauJoueurs[1] = new Humain();
+		tableauJoueurs[0] = new Humain(TypeJoueur.Humain, 60);
+		tableauJoueurs[1] = new Humain(TypeJoueur.Humain, 60);
 		// tabJ[0] = new Humain(this, 1000);
 		// tabJ[1] = new IAMoyen(this,1000);
 		// System.out.println("this: " + this);
@@ -89,10 +90,11 @@ public class Moteur implements InterfaceMoteur {
 					System.out.println("PION BLANC !!");
 				}
 				renjou.getPlateauDeJeu().ajouter(c, typeCase);
-				renjou.getListeAnnuler().add(renjou.getPlateauDeJeu());
-
+				renjou.getJoueurs()[renjou.getJoueurCourant()]
+						.setNbPion(renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion() - 1);
 				joueurSuivant();
 				majCasesTabous(renjou);
+				renjou.getListeAnnuler().add(renjou.getPlateauDeJeu());
 
 			} else if (caseTabou(renjou, c)) {
 				System.out.println("PERDU !! C'est une case tabou !!");
@@ -146,12 +148,19 @@ public class Moteur implements InterfaceMoteur {
 
 	public void majCasesTabous(Renjou renjou) {
 
-		if (renjou.getJoueurCourant() == 0) {
+		int nbPionsBase = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPionsBase();
+		int nbPionsEnCours = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
+
+		if (renjou.getJoueurCourant() == 0 && nbPionsEnCours == nbPionsBase - 1) {
+			renjou.getPlateauDeJeu().supprimerCasesTabous();
+		}
+
+		else if (renjou.getJoueurCourant() == 0) {
 			// mettre les cases tabous en fonction de la liste
 		}
 
-		else if (renjou.getJoueurCourant() == 1) { // et nbPions == 60
-
+		else if (renjou.getJoueurCourant() == 1 && nbPionsBase == nbPionsEnCours) {
+			// le tabou du joueur Blanc : les 8 cases adjacentes du premier coup
 			Coordonnees c = new Coordonnees();
 			int milieuLignes = renjou.getPlateauDeJeu().getLignes() / 2;
 			int milieuColonnes = renjou.getPlateauDeJeu().getColonnes() / 2;
@@ -166,6 +175,8 @@ public class Moteur implements InterfaceMoteur {
 			}
 		} else if (renjou.getJoueurCourant() == 1) {
 			// faire sauter toutes les cases tabous. Le joueur blanc n'en a pas
+
+			renjou.getPlateauDeJeu().supprimerCasesTabous();
 		}
 
 	}

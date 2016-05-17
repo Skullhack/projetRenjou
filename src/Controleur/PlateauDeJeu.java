@@ -80,6 +80,16 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 																		// Templates.
 	}
 
+	public void supprimerCasesTabous() {
+		for (int i = 0; i < this.lignes; i++) {
+			for (int j = 0; j < this.colonnes; j++) {
+				if(this.plateau[i][j] == TypeCase.CaseTabou) {
+					this.plateau[i][j] = TypeCase.CaseJouable;
+				}
+			}
+		}
+	}
+
 	@Override
 	public PlateauDeJeu clone() {
 		PlateauDeJeu plateauDeJeuClone = new PlateauDeJeu();
