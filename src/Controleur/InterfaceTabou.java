@@ -11,11 +11,12 @@ import java.awt.Point;
  *
  * @author michauad
  */
-public interface InterfaceTabou {   
-    //Getter
-    public String getNom();
-    public boolean[][] getConfiguration();
-     
-    //Methodes
-    public boolean estValide(Coordonees c, Renjou r);
+public interface InterfaceTabou {
+	// Getter
+	public String getNom();
+
+	public boolean[][] getConfiguration();
+
+	// Methodes
+	public boolean estValide(Renjou r, Coordonees c);
 }
