@@ -45,6 +45,7 @@ public class IHM implements Runnable {
 		frames[1].setLocationRelativeTo(null);
 		frames[1].setSize(500, 200);
 		frames[1].setVisible(false);
+		
 }
 
 	public static void main(String[] args) {

@@ -45,5 +45,6 @@ public class FenetreMenu extends JFrame {
     	panels[0].add(tabbedPane, BorderLayout.CENTER);
     	this.add(panels[0]);
     	
+    	
     }
 }

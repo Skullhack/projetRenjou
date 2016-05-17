@@ -19,7 +19,6 @@ public class Plateau extends JPanel {
         try {
     		imagePlateau = ImageIO.read(new File("./Images/Grille 15x15 grande.png"));
     	} catch (IOException e) {
-    		
     	}
     }
 
