@@ -5,6 +5,8 @@
  */
 package Controleur;
 
+import java.awt.Point;
+
 import Enum.TypeCase;
 
 /**
@@ -51,7 +53,7 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 	}
 
 	@Override
-	public void ajouter(Case c) {
+	public void ajouter(Point p) {
 
 		throw new UnsupportedOperationException("Not supported yet."); // To
 		// change
@@ -67,7 +69,7 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 	}
 
 	@Override
-	public void enlever(Case c) {
+	public void enlever(Point p) {
 		throw new UnsupportedOperationException("Not supported yet."); // To
 																		// change
 																		// body

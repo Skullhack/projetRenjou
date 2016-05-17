@@ -5,6 +5,8 @@
  */
 package Controleur;
 
+import java.awt.Point;
+
 /**
  *
  * @author michauad
@@ -37,7 +39,7 @@ public class Tabou implements InterfaceTabou{
     }
 
     @Override
-    public boolean estValide(Case c, Renjou r) {
+    public boolean estValide(Point p, Renjou r) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

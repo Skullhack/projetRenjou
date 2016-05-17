@@ -5,10 +5,6 @@
  */
 package Joueur;
 
-/**
- *
- * @author michauad
- */
 public class Humain extends Joueur {
     
 }

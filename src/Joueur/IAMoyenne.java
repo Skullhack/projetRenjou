@@ -5,10 +5,15 @@
  */
 package Joueur;
 
-/**
- *
- * @author michauad
- */
+import Enum.TypeJoueur;
+
 public class IAMoyenne extends IA {
     
+	public IAMoyenne(TypeJoueur type, int nbPion){
+		super();
+		this.type = type;
+		this.nbPion = nbPion;
+		
+	}
+	
 }

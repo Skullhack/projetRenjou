@@ -7,6 +7,8 @@ package Controleur;
 
 import Enum.TypeJoueur;
 import Joueur.Joueur;
+
+import java.awt.Point;
 import java.util.ArrayList;
 
 /**
@@ -25,11 +27,9 @@ public interface InterfaceMoteur {
 
 	public void charger(String nomFichier);
 
-	public boolean coupValide(Renjou renjou, Case c);
+	public boolean coupValide(Renjou renjou, Point p);
 
-	public ArrayList<Case> listeCoupValide(Renjou renjou);
-
-	public void operationJouer(Case c, Joueur j);
+	public void operationJouer(Point p, Joueur j);
 
 	public void nouvellePartie(TypeJoueur[] tabTypeJoueurs);
 

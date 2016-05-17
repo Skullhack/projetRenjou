@@ -5,6 +5,8 @@
  */
 package Controleur;
 
+import java.awt.Point;
+
 /**
  *
  * @author michauad
@@ -15,5 +17,5 @@ public interface InterfaceTabou {
     public boolean[][] getConfiguration();
      
     //Methodes
-    public boolean estValide(Case c, Renjou r);
+    public boolean estValide(Point p, Renjou r);
 }

@@ -9,6 +9,7 @@ import Enum.TypeCase;
 import Enum.TypeJoueur;
 import Joueur.Joueur;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
 /**
@@ -67,7 +68,7 @@ public class Moteur implements InterfaceMoteur {
 	}
 
 	@Override
-	public boolean coupValide(Renjou renjou, Case c) {
+	public boolean coupValide(Renjou renjou, Point p) {
 		throw new UnsupportedOperationException("Not supported yet."); // To
 																		// change
 																		// body
@@ -80,22 +81,9 @@ public class Moteur implements InterfaceMoteur {
 																		// Templates.
 	}
 
-	@Override
-	public ArrayList<Case> listeCoupValide(Renjou renjou) {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
-	}
 
 	@Override
-	public void operationJouer(Case c, Joueur j) {
+	public void operationJouer(Point p, Joueur j) {
 		throw new UnsupportedOperationException("Not supported yet."); // To
 																		// change
 																		// body
@@ -167,5 +155,6 @@ public class Moteur implements InterfaceMoteur {
 			System.out.println("");
 		}
 	}
+
 
 }

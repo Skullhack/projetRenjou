@@ -5,10 +5,15 @@
  */
 package Joueur;
 
-/**
- *
- * @author michauad
- */
+import Enum.TypeJoueur;
+
 public class IADifficile extends IA  {
     
+	public IADifficile(TypeJoueur type, int nbPion){
+		super();
+		this.type = type;
+		this.nbPion = nbPion;
+		
+	}
+	
 }

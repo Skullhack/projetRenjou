@@ -5,6 +5,8 @@
  */
 package Controleur;
 
+import java.awt.Point;
+
 import Enum.*;
 
 /**
@@ -19,9 +21,9 @@ public interface InterfacePlateauDeJeu {
 	public void setPlateau(TypeCase[][] plateau);
 
 	// Methodes
-	public void ajouter(Case c);
+	public void ajouter(Point p);
 
-	public void enlever(Case c);
+	public void enlever(Point p);
 
 	public PlateauDeJeu clone();
 }

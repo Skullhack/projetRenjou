@@ -5,15 +5,14 @@
  */
 package Joueur;
 
-import Enum.TypeJoueur;
+import Controleur.*;
+import Enum.*;
 
-/**
- *
- * @author michauad
- */
+
 public class Joueur implements InterfaceJoueur {
     TypeJoueur type;
     int nbPion;
+    Moteur m;
      
     public Joueur(){
     	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
