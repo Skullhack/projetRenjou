@@ -44,7 +44,7 @@ public class Renjou implements InterfaceRenjou {
 
 	@Override
 	public int getJoueurCourant() {
-		return this.joueurCourant;
+		return this.joueurCourant + 1;
 	}
 
 	@Override
@@ -60,6 +60,10 @@ public class Renjou implements InterfaceRenjou {
 	@Override
 	public boolean getPartieFinie() {
 		return this.partieFinie;
+	}
+
+	public int getNbJoueurs() {
+		return tabJoueurs.length;
 	}
 
 	public void setPlateauDeJeu(PlateauDeJeu plateau) {

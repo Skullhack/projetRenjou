@@ -69,6 +69,15 @@ public class Moteur implements InterfaceMoteur {
 
 	@Override
 	public boolean coupValide(Renjou renjou, Point p) {
+
+		// se baser sur la methode estValide qui existe dans la classe Renjou.
+		// On part du principe que ça fonctionne
+
+		// if(renjou.getPlateauDeJeu().getPlateau()[i][j] == ) {
+		//
+		// }
+		
+		
 		throw new UnsupportedOperationException("Not supported yet."); // To
 																		// change
 																		// body
@@ -80,7 +89,6 @@ public class Moteur implements InterfaceMoteur {
 																		// |
 																		// Templates.
 	}
-
 
 	@Override
 	public void operationJouer(Point p, Joueur j) {
@@ -112,16 +120,11 @@ public class Moteur implements InterfaceMoteur {
 
 	@Override
 	public void joueurSuivant() {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+		int joueurSuivant = this.renjou.getJoueurCourant() + 1;
+		this.renjou.setJoueurCourant(joueurSuivant);
+		if (this.renjou.getJoueurCourant() >= this.renjou.getNbJoueurs()) {
+			this.renjou.setJoueurCourant(0);
+		}
 	}
 
 	@Override
@@ -155,6 +158,5 @@ public class Moteur implements InterfaceMoteur {
 			System.out.println("");
 		}
 	}
-
 
 }
