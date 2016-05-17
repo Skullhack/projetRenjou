@@ -68,30 +68,29 @@ public class Moteur implements InterfaceMoteur {
 	}
 
 	@Override
-	public boolean coupValide(Renjou renjou, Coordonees c) {
+	public boolean coupValide(Renjou renjou, Coordonnees c) {
 
 		// se baser sur la methode estValide qui existe dans la classe Renjou.
 		// On part du principe que ça fonctionne
+		boolean coupValide = true;
+		if (renjou.getPlateauDeJeu().getPlateau()[c.getLigne()][c.getColonne()] != TypeCase.CaseJouable) {
+			coupValide = false;
+		} else {
+			ArrayList<Tabou> tabousJeu = renjou.getTabouJeu();
+			for (Tabou tabous : tabousJeu) {
+				if (!tabous.estValide(renjou, c)) {
+					coupValide = false;
+					break;
+				}
+			}
 
-		// if(renjou.getPlateauDeJeu().getPlateau()[i][j] == ) {
-		//
-		// }
-		
-		
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+		}
+		return coupValide;
+
 	}
 
 	@Override
-	public void operationJouer(Coordonees c, Joueur j) {
+	public void operationJouer(Coordonnees c, Joueur j) {
 		throw new UnsupportedOperationException("Not supported yet."); // To
 																		// change
 																		// body
@@ -150,9 +149,9 @@ public class Moteur implements InterfaceMoteur {
 				} else if (renjou.getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CaseJouable) {
 					System.out.print("O");
 				} else if (renjou.getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CasePionBlanc) {
-					System.out.print("2");
+					System.out.print("B");
 				} else if (renjou.getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CasePionNoir) {
-					System.out.print("1");
+					System.out.print("N");
 				}
 			}
 			System.out.println("");

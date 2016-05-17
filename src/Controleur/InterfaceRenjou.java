@@ -21,6 +21,8 @@ public interface InterfaceRenjou {
     public ArrayList<PlateauDeJeu> getListeAnnuler();
     public ArrayList<PlateauDeJeu> getListeRefaire();
     public boolean getPartieFinie();
+    public ArrayList<Tabou> getTabouJeu();
+	public Tabous getTabous();
     
     //Setter
     public void setPlateauDeJeu(PlateauDeJeu plateau);
@@ -29,7 +31,8 @@ public interface InterfaceRenjou {
     public void setListeAnnuler(ArrayList<PlateauDeJeu> listeAnnuler);
     public void setListeRefaire(ArrayList<PlateauDeJeu> listeRefaire);
     public void setPartieFinie(boolean partieFinie);
-    
+	public void setTabouJeu(ArrayList<Tabou> tabouJeu);
+	public void setTabous(Tabous tabous);
     
     //Methodes
     public Renjou annuler(Renjou renjou);

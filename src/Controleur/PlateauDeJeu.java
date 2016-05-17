@@ -61,7 +61,7 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 	}
 
 	@Override
-	public void ajouter(Coordonees c) {
+	public void ajouter(Coordonnees c) {
 
 		throw new UnsupportedOperationException("Not supported yet."); // To
 		// change
@@ -77,7 +77,7 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 	}
 
 	@Override
-	public void enlever(Coordonees c) {
+	public void enlever(Coordonnees c) {
 		throw new UnsupportedOperationException("Not supported yet."); // To
 																		// change
 																		// body

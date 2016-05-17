@@ -2,22 +2,22 @@ package Controleur;
 
 import java.awt.Point;
 
-public class Coordonees {
+public class Coordonnees {
 
 	private int colonne;
 	private int ligne;
 	
-	public Coordonees(){
+	public Coordonnees(){
 		colonne = 0;
 		ligne = 0;
 	}
 	
-	public Coordonees(int ligne, int colonne){
+	public Coordonnees(int ligne, int colonne){
 		this.colonne = colonne;
 		this.ligne = ligne;
 	}
 	
-	public Coordonees(Point p) {
+	public Coordonnees(Point p) {
 		this.ligne = p.y;
 		this.colonne = p.x;
 	}

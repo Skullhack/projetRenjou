@@ -19,7 +19,7 @@ public class Renjou implements InterfaceRenjou {
 	private ArrayList<PlateauDeJeu> listeAnnuler;
 	private ArrayList<PlateauDeJeu> listeRefaire;
 	private boolean partieFinie;
-	private ArrayList<Tabous> tabouJeu;
+	private ArrayList<Tabou> tabouJeu;
 	private Tabous tabous;
 
 	// Constructeur
@@ -29,6 +29,9 @@ public class Renjou implements InterfaceRenjou {
 		this.listeAnnuler = new ArrayList<PlateauDeJeu>();
 		this.listeRefaire = new ArrayList<PlateauDeJeu>();
 		partieFinie = false;
+
+		this.tabouJeu = new ArrayList<Tabou>(); // ligne qui sera à modifier.
+												// pour le moment, mis en dur
 
 	}
 
@@ -62,8 +65,12 @@ public class Renjou implements InterfaceRenjou {
 		return this.partieFinie;
 	}
 
-	public int getNbJoueurs() {
-		return tabJoueurs.length;
+	public ArrayList<Tabou> getTabouJeu() {
+		return tabouJeu;
+	}
+
+	public Tabous getTabous() {
+		return tabous;
 	}
 
 	public void setPlateauDeJeu(PlateauDeJeu plateau) {
@@ -88,6 +95,18 @@ public class Renjou implements InterfaceRenjou {
 
 	public void setPartieFinie(boolean partieFinie) {
 		this.partieFinie = partieFinie;
+	}
+
+	public void setTabouJeu(ArrayList<Tabou> tabouJeu) {
+		this.tabouJeu = tabouJeu;
+	}
+
+	public void setTabous(Tabous tabous) {
+		this.tabous = tabous;
+	}
+
+	public int getNbJoueurs() {
+		return tabJoueurs.length;
 	}
 
 	@Override

@@ -27,13 +27,13 @@ public class IAFacile extends IA {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-		Coordonees p = jouer();
+		Coordonnees p = jouer();
 		// m.operationJouer(p, type);
 
 	}
 
-	public Coordonees jouer() {
-		Coordonees c = estCoupGagnant();
+	public Coordonnees jouer() {
+		Coordonnees c = estCoupGagnant();
 		if(c.getLigne() == -1){
 			c = empecheCoupGagnant();
 			if(c.getLigne() == -1){
@@ -44,52 +44,52 @@ public class IAFacile extends IA {
 		return c;
 	}
 
-	public boolean caseJouable(Coordonees p) {
+	public boolean caseJouable(Coordonnees p) {
 		return (m.getRenjou().getPlateauDeJeu().getPlateau()[p.getLigne()][p.getColonne()] == TypeCase.CaseJouable);
 
 	}
 
-	public void modifierHeristique(Coordonees p) {
+	public void modifierHeristique(Coordonnees p) {
 		int i = p.getLigne();
 		int j = p.getColonne();
 		if (i > 0) {
-			if(caseJouable(new Coordonees(i-1,j))){
+			if(caseJouable(new Coordonnees(i-1,j))){
 				tabHeuristique[i-1][j] ++;
 			}
 			if(j >0){
-				if(caseJouable(new Coordonees(i-1,j-1))){
+				if(caseJouable(new Coordonnees(i-1,j-1))){
 					tabHeuristique[i-1][j-1] ++;
 				}
 			}
 			if(j < nbColonne){
-				if(caseJouable(new Coordonees(i-1,j+1))){
+				if(caseJouable(new Coordonnees(i-1,j+1))){
 					tabHeuristique[i-1][j+1] ++;
 				}
 			}
 		}
 		if(i < nbLigne){
-			if(caseJouable(new Coordonees(i+1,j))){
+			if(caseJouable(new Coordonnees(i+1,j))){
 				tabHeuristique[i+1][j] ++;
 			}
 			if(j >0){
-				if(caseJouable(new Coordonees(i+1,j-1))){
+				if(caseJouable(new Coordonnees(i+1,j-1))){
 					tabHeuristique[i+1][j-1] ++;
 				}
 			}
 			if(j < nbColonne){
-				if(caseJouable(new Coordonees(i+1,j+1))){
+				if(caseJouable(new Coordonnees(i+1,j+1))){
 					tabHeuristique[i+1][j+1] ++;
 				}
 			}
 		}
 		
 		if(j >0){
-			if(caseJouable(new Coordonees(i,j-1))){
+			if(caseJouable(new Coordonnees(i,j-1))){
 				tabHeuristique[i][j-1] ++;
 			}
 		}
 		if(j < nbColonne){
-			if(caseJouable(new Coordonees(i,j+1))){
+			if(caseJouable(new Coordonnees(i,j+1))){
 				tabHeuristique[i][j+1] ++;
 			}
 		}
@@ -99,7 +99,7 @@ public class IAFacile extends IA {
 
 		for (int i = 0; i < nbLigne; i++) {
 			for (int j = 0; j < nbColonne; j++) {
-				Coordonees p = new Coordonees(i, j);
+				Coordonnees p = new Coordonnees(i, j);
 				if (caseJouable(p)) {
 					modifierHeristique(p);
 				}
@@ -108,26 +108,26 @@ public class IAFacile extends IA {
 
 	}
 
-	public Coordonees estCoupGagnant(){
-		Coordonees c = new Coordonees(-1,-1);
+	public Coordonnees estCoupGagnant(){
+		Coordonnees c = new Coordonnees(-1,-1);
 		
 		return c;
 	}
 	
-	public Coordonees empecheCoupGagnant(){
-		Coordonees c = new Coordonees(-1,-1);
+	public Coordonnees empecheCoupGagnant(){
+		Coordonnees c = new Coordonnees(-1,-1);
 		
 		return c;		
 	}
 	
-	public Coordonees pointRandom(){
+	public Coordonnees pointRandom(){
 		initHeuristique();
-		ArrayList<Coordonees> listePoint = new ArrayList<Coordonees>();
+		ArrayList<Coordonnees> listePoint = new ArrayList<Coordonnees>();
 		for(int i=0; i<nbLigne; i++){
 			for(int j=0; j<nbColonne; j++){
 				int nbHeristique = tabHeuristique[i][j];
 				for(int k=0; k <nbHeristique; k++){
-					listePoint.add(new Coordonees(i,j));
+					listePoint.add(new Coordonnees(i,j));
 				}
 			}
 		}
