@@ -40,6 +40,7 @@ public class FenetreJeu extends JFrame{
 		String[][] nomSousMenu = {{"Créer partie","Sauvegarder","Charger","Quitter"},{"Thème","Paramètres","Tabous"},{"Règles","Tutoriel","A propos de"}};
 		String[] nomBoutons={"Annuler","Refaire"};
 		
+		
 		//Initialisation menus
 		barreMenu = new JMenuBar();
 		menus = new JMenu[nomMenus.length];
