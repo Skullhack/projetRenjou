@@ -35,4 +35,7 @@ public interface InterfaceRenjou {
     public Renjou annuler(Renjou renjou);
     public Renjou annulerDemiCoup(Renjou renjou);
     public Renjou refaire(Renjou renjou);
+    
+    public Renjou clone(Renjou renjou);
+    
 }

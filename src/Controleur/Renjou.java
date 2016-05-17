@@ -127,4 +127,15 @@ public class Renjou implements InterfaceRenjou {
 																		// |
 																		// Templates.
 	}
+
+	public Renjou clone(Renjou renjou) {
+		try {
+			Object renjouClone = this.clone();
+			return (Renjou) renjouClone;
+		} catch (CloneNotSupportedException e) {
+			System.out.println("le clone n'a pas pu être effectué. Trace : " + e);
+		}
+		return null;
+	}
+
 }
