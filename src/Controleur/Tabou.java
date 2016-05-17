@@ -84,7 +84,7 @@ public class Tabou implements InterfaceTabou {
 	}
 
 	@Override
-	public boolean estValide(Renjou r, Coordonees c) {
+	public boolean estValide(Renjou r, Coordonnees c) {
 		return true;
 	}
 

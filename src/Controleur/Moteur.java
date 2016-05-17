@@ -68,7 +68,7 @@ public class Moteur implements InterfaceMoteur {
 	}
 
 	@Override
-	public boolean coupValide(Renjou renjou, Coordonees c) {
+	public boolean coupValide(Renjou renjou, Coordonnees c) {
 
 		// se baser sur la methode estValide qui existe dans la classe Renjou.
 		// On part du principe que ça fonctionne
@@ -90,7 +90,7 @@ public class Moteur implements InterfaceMoteur {
 	}
 
 	@Override
-	public void operationJouer(Coordonees c, Joueur j) {
+	public void operationJouer(Coordonnees c, Joueur j) {
 		throw new UnsupportedOperationException("Not supported yet."); // To
 																		// change
 																		// body
