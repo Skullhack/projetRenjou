@@ -38,7 +38,7 @@ public class Moteur implements InterfaceMoteur {
 	}
 
 	@Override
-	public void sauvegarder(String nomfichier) {
+	public void sauvegarder(String nomFichier) {
 		throw new UnsupportedOperationException("Not supported yet."); // To
 																		// change
 																		// body
@@ -52,7 +52,7 @@ public class Moteur implements InterfaceMoteur {
 	}
 
 	@Override
-	public void charger(String nomfichier) {
+	public void charger(String nomFichier) {
 		throw new UnsupportedOperationException("Not supported yet."); // To
 																		// change
 																		// body
@@ -108,7 +108,7 @@ public class Moteur implements InterfaceMoteur {
 	}
 
 	@Override
-	public void nouvellePartie(TypeJoueur[] tjoueurs) {
+	public void nouvellePartie(TypeJoueur[] tabTypeJoueurs) {
 		throw new UnsupportedOperationException("Not supported yet."); // To
 																		// change
 																		// body

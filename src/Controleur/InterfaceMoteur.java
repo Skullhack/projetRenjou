@@ -21,9 +21,9 @@ public interface InterfaceMoteur {
 	public void setRenjou(Renjou renjou);
 
 	// Methodes
-	public void sauvegarder(String nomfichier);
+	public void sauvegarder(String nomFichier);
 
-	public void charger(String nomfichier);
+	public void charger(String nomFichier);
 
 	public boolean coupValide(Renjou renjou, Case c);
 
@@ -31,7 +31,7 @@ public interface InterfaceMoteur {
 
 	public void operationJouer(Case c, Joueur j);
 
-	public void nouvellePartie(TypeJoueur[] tjoueurs);
+	public void nouvellePartie(TypeJoueur[] tabTypeJoueurs);
 
 	public void joueurSuivant();
 
