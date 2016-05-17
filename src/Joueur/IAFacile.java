@@ -8,6 +8,8 @@ package Joueur;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import org.omg.PortableServer.ServantLocatorPackage.CookieHolder;
+
 import Controleur.*;
 import Enum.*;
 
@@ -108,8 +110,25 @@ public class IAFacile extends IA {
 	}
 
 	public Coordonnees estCoupGagnant(){
-		Coordonnees c = new Coordonnees(-1,-1);
+		// en 3 boucles pour horizont, vert, diago à optimiser
+		Coordonnees c = coupGagnantHorizontal();
+		if(c.getLigne() == -1){
+			c = coupGagnantVertical();
+			if(c.getLigne() == -1){
+				c = coupGagnantDiagonal();
+			}
+		}
+
 		
+		return c;
+	}
+	
+	private Coordonnees coupGagnantDiagonal() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private Coordonnees coupGagnantHorizontal(){
 		TypeCase typeCase =  TypeCase.CasePionBlanc;
 		switch(couleur){
 			case Blanc :
@@ -122,22 +141,59 @@ public class IAFacile extends IA {
 				break;
 		}
 		
-		// en 3 boucles pour horizont, vert, diago à optimiser
-		
-		//Horizont
 		for(int i=0; i<nbLigne; i++){
 			for(int j=0; j<nbColonne; j++){
 				int compteur = 0 ; //compteur pour aller jusqua 5 point alignés 
-				while((i<nbLigne) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase)){
+				while((j<nbColonne) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase)){
 					compteur++;
-					i++;
+					j++;
+				}
+				if(compteur == 4){
+					if((j < nbColonne) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CaseJouable)){
+						return (new Coordonnees(i,j));
+					}else if((j-5 < 0) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CaseJouable)){
+						return (new Coordonnees(i,j-5));
+					}
 				}
 				
 			}
 		}
 		
+		return (new Coordonnees(-1,-1));
+	}
+	
+	// a implémenter
+	private Coordonnees coupGagnantVertical(){
+		TypeCase typeCase =  TypeCase.CasePionBlanc;
+		switch(couleur){
+			case Blanc :
+				typeCase = TypeCase.CasePionBlanc;
+				break;
+			case Noir :
+				typeCase = TypeCase.CasePionNoir;
+				break;
+			default :
+				break;
+		}
 		
-		return c;
+		for(int j=0; j<nbColonne; j++){
+			for(int i=0; j<nbLigne; i++){
+				int compteur = 0 ; //compteur pour aller jusqua 5 point alignés 
+				while((i<nbLigne) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase)){
+					compteur++;
+					i++;
+				}
+				if(compteur == 4){
+					if((i < nbLigne) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CaseJouable)){
+						return (new Coordonnees(i,j));
+					}else if((i-5 < 0) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CaseJouable)){
+						return (new Coordonnees(i,j-5));
+					}
+				}
+				
+			}
+		}
+		return (new Coordonnees(-1,-1));
 	}
 	
 	public Coordonnees empecherCoupGagnant(){
