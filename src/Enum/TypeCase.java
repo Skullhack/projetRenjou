@@ -13,5 +13,5 @@ public enum TypeCase {
     CaseJouable,
     CasePionBlanc,
     CasePionNoir,
-    CaseInjouable
+    CaseTabou
 }

@@ -26,16 +26,15 @@ public class IAFacile extends IA {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
 		Coordonnees p = jouer();
-		// m.operationJouer(p, type);
+		//m.operationJouer(p, type);
 
 	}
 
 	public Coordonnees jouer() {
 		Coordonnees c = estCoupGagnant();
 		if(c.getLigne() == -1){
-			c = empecheCoupGagnant();
+			c = empecherCoupGagnant();
 			if(c.getLigne() == -1){
 				c = pointRandom();
 			}
@@ -111,10 +110,37 @@ public class IAFacile extends IA {
 	public Coordonnees estCoupGagnant(){
 		Coordonnees c = new Coordonnees(-1,-1);
 		
+		TypeCase typeCase =  TypeCase.CasePionBlanc;
+		switch(couleur){
+			case Blanc :
+				typeCase = TypeCase.CasePionBlanc;
+				break;
+			case Noir :
+				typeCase = TypeCase.CasePionNoir;
+				break;
+			default :
+				break;
+		}
+		
+		// en 3 boucles pour horizont, vert, diago à optimiser
+		
+		//Horizont
+		for(int i=0; i<nbLigne; i++){
+			for(int j=0; j<nbColonne; j++){
+				int compteur = 0 ; //compteur pour aller jusqua 5 point alignés 
+				while((i<nbLigne) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase)){
+					compteur++;
+					i++;
+				}
+				
+			}
+		}
+		
+		
 		return c;
 	}
 	
-	public Coordonnees empecheCoupGagnant(){
+	public Coordonnees empecherCoupGagnant(){
 		Coordonnees c = new Coordonnees(-1,-1);
 		
 		return c;		

@@ -6,6 +6,7 @@
 package Controleur;
 
 import java.awt.Point;
+import java.io.*;
 
 import Enum.TypeCase;
 
@@ -36,7 +37,7 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 					// on se trouve au milieu de la grille;
 					this.plateau[i][j] = TypeCase.CaseJouable;
 				} else {
-					this.plateau[i][j] = TypeCase.CaseInjouable;
+					this.plateau[i][j] = TypeCase.CaseTabou;
 				}
 			}
 		}
@@ -101,9 +102,77 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 		return plateauDeJeuClone;
 
 	}
-
+	
 	public TypeCase getTypeCaseTableau(Coordonnees c) {
 		return this.plateau[c.getLigne()][c.getColonne()];
 	}
 
+	public static TypeCase charToTypeCase(char c){
+		switch(c){
+			case 'N':
+				return TypeCase.CasePionNoir;
+			case 'B':
+				return TypeCase.CasePionBlanc;
+			case 'X':
+				return TypeCase.CaseTabou;
+			case 'O':
+				return TypeCase.CaseJouable;
+			default:
+				return TypeCase.CaseTabou;
+		}
+	}
+	
+	
+	public static String TypeCasetoString(TypeCase tc){
+		switch(tc){
+			case CasePionNoir:
+				return "N";
+			case CasePionBlanc:
+				return "B";
+			case CaseTabou:
+				return "X";
+			case CaseJouable:
+				return "O";
+			default:
+				return "X";
+		}
+	}
+	
+	public PlateauDeJeu charger(String nomFichier){
+		PlateauDeJeu pdj = new PlateauDeJeu();
+
+		try{
+			InputStream flux=new FileInputStream(nomFichier); 
+			InputStreamReader lecture=new InputStreamReader(flux);
+			BufferedReader buff=new BufferedReader(lecture);
+			String ligne;
+			int j=0;
+			while ((ligne=buff.readLine())!=null){
+				for(int i=0; i< ligne.length();i++)
+					pdj.plateau[i][j] = charToTypeCase(ligne.charAt(i));
+				j++;
+			}
+			buff.close(); 
+			}		
+			catch (Exception e){
+				System.out.println(e.toString());
+			}
+		
+		
+		return pdj;
+		
+	}
+	
+	public String toString(){
+		
+		String buff = new String();
+		for(int i=0;i<this.getLignes();i++){
+			for(int j=0;j<this.getColonnes();j++){
+				buff += TypeCasetoString(this.getPlateau()[i][j]);
+			}
+			
+			buff += "\n";
+		}
+		return buff;
+	}
 }
