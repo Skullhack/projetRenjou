@@ -102,4 +102,8 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 
 	}
 
+	public TypeCase getTypeCaseTableau(Coordonnees c) {
+		return this.plateau[c.getLigne()][c.getColonne()];
+	}
+
 }
