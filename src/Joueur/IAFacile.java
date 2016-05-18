@@ -46,7 +46,7 @@ public class IAFacile extends IA {
 	}
 
 	public boolean caseJouable(Coordonnees p) {
-		return (m.getRenjou().getPlateauDeJeu().getPlateau()[p.getLigne()][p.getColonne()] == TypeCase.CaseJouable);
+		return (m.getRenjou().getPlateauDeJeu().getPlateau()[p.getLigne()][p.getColonne()] == TypeCase.Jouable);
 
 	}
 
@@ -129,13 +129,13 @@ public class IAFacile extends IA {
 	}
 
 	private Coordonnees coupGagnantHorizontal(){
-		TypeCase typeCase =  TypeCase.CasePionBlanc;
+		TypeCase typeCase =  TypeCase.PionBlanc;
 		switch(couleur){
 			case Blanc :
-				typeCase = TypeCase.CasePionBlanc;
+				typeCase = TypeCase.PionBlanc;
 				break;
 			case Noir :
-				typeCase = TypeCase.CasePionNoir;
+				typeCase = TypeCase.PionNoir;
 				break;
 			default :
 				break;
@@ -149,9 +149,9 @@ public class IAFacile extends IA {
 					j++;
 				}
 				if(compteur == 4){
-					if((j < nbColonne) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CaseJouable)){
+					if((j < nbColonne) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == TypeCase.Jouable)){
 						return (new Coordonnees(i,j));
-					}else if((j-5 < 0) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CaseJouable)){
+					}else if((j-5 < 0) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == TypeCase.Jouable)){
 						return (new Coordonnees(i,j-5));
 					}
 				}
@@ -164,13 +164,13 @@ public class IAFacile extends IA {
 	
 	// a implémenter
 	private Coordonnees coupGagnantVertical(){
-		TypeCase typeCase =  TypeCase.CasePionBlanc;
+		TypeCase typeCase =  TypeCase.PionBlanc;
 		switch(couleur){
 			case Blanc :
-				typeCase = TypeCase.CasePionBlanc;
+				typeCase = TypeCase.PionBlanc;
 				break;
 			case Noir :
-				typeCase = TypeCase.CasePionNoir;
+				typeCase = TypeCase.PionNoir;
 				break;
 			default :
 				break;
@@ -184,9 +184,9 @@ public class IAFacile extends IA {
 					i++;
 				}
 				if(compteur == 4){
-					if((i < nbLigne) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CaseJouable)){
+					if((i < nbLigne) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == TypeCase.Jouable)){
 						return (new Coordonnees(i,j));
-					}else if((i-5 < 0) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CaseJouable)){
+					}else if((i-5 < 0) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == TypeCase.Jouable)){
 						return (new Coordonnees(i,j-5));
 					}
 				}

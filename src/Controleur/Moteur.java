@@ -80,24 +80,24 @@ public class Moteur implements InterfaceMoteur {
 				// mettre à jour la liste annuler
 				TypeCase typeCase = null;
 				if (renjou.getJoueurCourant() == 0) {
-					typeCase = TypeCase.CasePionNoir;
+					typeCase = TypeCase.PionNoir;
 
-					System.out.println("PION NOIR !!");
+					// System.out.println("PION NOIR !!");
 
 				} else if (renjou.getJoueurCourant() == 1) {
-					typeCase = TypeCase.CasePionBlanc;
+					typeCase = TypeCase.PionBlanc;
 
-					System.out.println("PION BLANC !!");
+					// System.out.println("PION BLANC !!");
 				}
 				renjou.getPlateauDeJeu().ajouter(c, typeCase);
-				renjou.getJoueurs()[renjou.getJoueurCourant()]
-						.setNbPion(renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion() - 1);
+				decrementerPionsJoueurCourant();
 				joueurSuivant();
+				majCasesInjouables(renjou);
 				majCasesTabous(renjou);
 				renjou.getListeAnnuler().add(renjou.getPlateauDeJeu());
 
 			} else if (caseTabou(renjou, c)) {
-				System.out.println("PERDU !! C'est une case tabou !!");
+				// System.out.println("PERDU !! C'est une case tabou !!");
 			}
 
 			if (partieFinie(renjou)) {
@@ -108,11 +108,16 @@ public class Moteur implements InterfaceMoteur {
 	}
 
 	private boolean caseJouable(Renjou renjou, Coordonnees c) {
-		return (renjou.getPlateauDeJeu().getPlateau()[c.getLigne()][c.getColonne()] == TypeCase.CaseJouable);
+		return (renjou.getPlateauDeJeu().getPlateau()[c.getLigne()][c.getColonne()] == TypeCase.Jouable);
 	}
 
 	private boolean caseTabou(Renjou renjou, Coordonnees c) {
-		return (renjou.getPlateauDeJeu().getPlateau()[c.getLigne()][c.getColonne()] == TypeCase.CaseTabou);
+		return (renjou.getPlateauDeJeu().getPlateau()[c.getLigne()][c.getColonne()] == TypeCase.Tabou);
+	}
+
+	private void decrementerPionsJoueurCourant() {
+		renjou.getJoueurs()[renjou.getJoueurCourant()]
+				.setNbPion(renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion() - 1);
 	}
 
 	@Override
@@ -151,15 +156,24 @@ public class Moteur implements InterfaceMoteur {
 		int nbPionsBase = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPionsBase();
 		int nbPionsEnCours = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
 
-		if (renjou.getJoueurCourant() == 0 && nbPionsEnCours == nbPionsBase - 1) {
+		if (renjou.getJoueurCourant() == 0) {
+			// mettre les cases tabous en fonction de la liste
+		} else if (renjou.getJoueurCourant() == 1) {
+			// faire sauter toutes les cases tabous. Le joueur blanc n'en a pas
+
 			renjou.getPlateauDeJeu().supprimerCasesTabous();
 		}
 
-		else if (renjou.getJoueurCourant() == 0) {
-			// mettre les cases tabous en fonction de la liste
-		}
+	}
 
-		else if (renjou.getJoueurCourant() == 1 && nbPionsBase == nbPionsEnCours) {
+	public void majCasesInjouables(Renjou renjou) {
+
+		int nbPionsBase = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPionsBase();
+		int nbPionsEnCours = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
+
+		if (renjou.getJoueurCourant() == 0 && nbPionsEnCours == nbPionsBase - 1) {
+			renjou.getPlateauDeJeu().supprimerCasesInjouables();
+		} else if (renjou.getJoueurCourant() == 1 && nbPionsBase == nbPionsEnCours) {
 			// le tabou du joueur Blanc : les 8 cases adjacentes du premier coup
 			Coordonnees c = new Coordonnees();
 			int milieuLignes = renjou.getPlateauDeJeu().getLignes() / 2;
@@ -169,33 +183,10 @@ public class Moteur implements InterfaceMoteur {
 					if (i != 0 || j != 0) {
 						c.setLigne(milieuLignes + i);
 						c.setColonne(milieuColonnes + j);
-						renjou.getPlateauDeJeu().ajouter(c, TypeCase.CaseJouable);
+						renjou.getPlateauDeJeu().ajouter(c, TypeCase.Jouable);
 					}
 				}
 			}
-		} else if (renjou.getJoueurCourant() == 1) {
-			// faire sauter toutes les cases tabous. Le joueur blanc n'en a pas
-
-			renjou.getPlateauDeJeu().supprimerCasesTabous();
-		}
-
-	}
-
-	// fonction perso de vue
-	public void afficherPlateauJeu() {
-		for (int i = 0; i < renjou.getPlateauDeJeu().getLignes(); i++) {
-			for (int j = 0; j < renjou.getPlateauDeJeu().getColonnes(); j++) {
-				if (renjou.getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CaseTabou) {
-					System.out.print("X");
-				} else if (renjou.getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CaseJouable) {
-					System.out.print("O");
-				} else if (renjou.getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CasePionBlanc) {
-					System.out.print("B");
-				} else if (renjou.getPlateauDeJeu().getPlateau()[i][j] == TypeCase.CasePionNoir) {
-					System.out.print("N");
-				}
-			}
-			System.out.println("");
 		}
 	}
 
