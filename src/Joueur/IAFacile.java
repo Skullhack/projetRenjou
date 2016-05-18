@@ -14,12 +14,8 @@ import Enum.*;
 public class IAFacile extends IA {
 
 
-	public IAFacile(TypeJoueur type, int nbPion, Moteur m, TypeCouleur c) {
-		super();
-		this.m = m;
-		this.type = type;
-		this.nbPion = nbPion;
-		this.couleur = c;
+	public IAFacile(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
+		super(moteur, type, nbPion, couleurJoueur);
 		nbLigne = m.getRenjou().getPlateauDeJeu().getLignes();
 		nbColonne = m.getRenjou().getPlateauDeJeu().getColonnes();
 	}
@@ -34,11 +30,10 @@ public class IAFacile extends IA {
 
 	}
 
-	public Coordonnees jouer(PlateauDeJeu plateau) {
-		
-		Coordonnees c = estCoupGagnant(plateau);
+	public Coordonnees jouer(PlateauDeJeu p) {
+		Coordonnees c = estCoupGagnant(p);
 		if(c.getLigne() == -1){
-			c = empecherCoupGagnant(plateau);
+			c = empecherCoupGagnant(p);
 			if(c.getLigne() == -1){
 				c = pointRandom();
 			}

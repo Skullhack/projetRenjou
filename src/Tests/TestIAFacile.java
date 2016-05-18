@@ -32,7 +32,7 @@ public class TestIAFacile {
 		IAFacile iaFacile;
 
 		m = new Moteur(nbJoueur);
-		iaFacile = new IAFacile(TypeJoueur.IAFacile, 60, m, TypeCouleur.Noir);
+		iaFacile = new IAFacile(m,TypeJoueur.IAFacile, 60, TypeCouleur.Noir);
 		
 		PlateauDeJeu plateau= iaFacile.getMoteur().getRenjou().getPlateauDeJeu().charger(chemin + "PlateauProchainCoupGagnantHorizontalNoir");
 		System.out.println(plateau);
