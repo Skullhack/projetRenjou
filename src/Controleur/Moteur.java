@@ -5,8 +5,10 @@
  */
 package Controleur;
 
+import Enum.EtatPartie;
 import Enum.TypeCase;
 import Enum.TypeCouleur;
+import Enum.TypeDecalage;
 import Enum.TypeJoueur;
 import Joueur.Humain;
 import Joueur.Joueur;
@@ -76,35 +78,40 @@ public class Moteur implements InterfaceMoteur {
 		if (j == renjou.getJoueurs()[renjou.getJoueurCourant()].getType()) {
 			if (caseJouable(renjou, c)) {
 
-				// mettre à jour le plateau
-				// mettre à jour la liste annuler
-				TypeCase typeCase = null;
-				if (renjou.getJoueurCourant() == 0) {
-					typeCase = TypeCase.PionNoir;
-
-					// System.out.println("PION NOIR !!");
-
-				} else if (renjou.getJoueurCourant() == 1) {
-					typeCase = TypeCase.PionBlanc;
-
-					// System.out.println("PION BLANC !!");
-				}
-				renjou.getPlateauDeJeu().ajouter(c, typeCase);
-				decrementerPionsJoueurCourant();
-				joueurSuivant();
-				majCasesInjouables(renjou);
-				majCasesTabous(renjou);
-				renjou.getListeAnnuler().add(renjou.getPlateauDeJeu());
+				jouer(renjou, c);
 
 			} else if (caseTabou(renjou, c)) {
-				// System.out.println("PERDU !! C'est une case tabou !!");
+				// il n'y a que le joueur noir qui est impliqué par des tabous.
+				// Si c'est une case tabou, forcément le joueur blanc gagne
+				setPartieFinieJoueurBlanc(renjou);
 			}
 
-			if (partieFinie(renjou)) {
-				// System.out.println("PARTIE FINIE");
-			}
+			// notify avec etat de la partie
+
 		}
 
+	}
+
+	public void jouer(Renjou renjou, Coordonnees c) {
+
+		try {
+			TypeCase typeCaseJoueurCourant = getTypeCaseJoueurCourant(renjou);
+			renjou.getPlateauDeJeu().ajouter(c, typeCaseJoueurCourant);
+			decrementerPionsJoueurCourant();
+		} catch (Exception e) {
+			System.out.print(e);
+		}
+
+		if (partieFinie(renjou, c)) {
+			setPartieFinie(renjou);
+		} else if (partieNulle(renjou)) {
+			setPartieNulle(renjou);
+		} else {
+			joueurSuivant();
+			majCasesInjouables(renjou);
+			majCasesTabous(renjou);
+			renjou.getListeAnnuler().add(renjou.getPlateauDeJeu());
+		}
 	}
 
 	private boolean caseJouable(Renjou renjou, Coordonnees c) {
@@ -118,6 +125,16 @@ public class Moteur implements InterfaceMoteur {
 	private void decrementerPionsJoueurCourant() {
 		renjou.getJoueurs()[renjou.getJoueurCourant()]
 				.setNbPion(renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion() - 1);
+	}
+
+	public TypeCase getTypeCaseJoueurCourant(Renjou renjou) throws Exception {
+		if (renjou.getJoueurCourant() == 0) {
+			return TypeCase.PionNoir;
+		} else if (renjou.getJoueurCourant() == 1) {
+			return TypeCase.PionBlanc;
+		} else {
+			throw new Exception("Erreur. Il n'y a pas de correspondance de joueur et de couleur de pion");
+		}
 	}
 
 	@Override
@@ -144,23 +161,191 @@ public class Moteur implements InterfaceMoteur {
 	}
 
 	@Override
-	public boolean partieFinie(Renjou renjou) {
+	public boolean partieFinie(Renjou renjou, Coordonnees c) {
 
 		// si 5 pions sont alignes
-		// si le joueur courant n 'a plus de pions
-		return true;
+		Coordonnees cDecale = coordonneesDecalage(renjou, c, TypeDecalage.Gauche);
+		if (cinqPointsAlignes(renjou, cDecale, TypeDecalage.Gauche)) {
+			return true;
+		}
+
+		cDecale = coordonneesDecalage(renjou, c, TypeDecalage.Haut);
+		if (cinqPointsAlignes(renjou, cDecale, TypeDecalage.Haut)) {
+			return true;
+		}
+
+		cDecale = coordonneesDecalage(renjou, c, TypeDecalage.DiagonaleHautDroite);
+		if (cinqPointsAlignes(renjou, cDecale, TypeDecalage.DiagonaleHautDroite)) {
+			return true;
+		}
+
+		cDecale = coordonneesDecalage(renjou, c, TypeDecalage.DiagonaleHautGauche);
+		if (cinqPointsAlignes(renjou, cDecale, TypeDecalage.DiagonaleHautGauche)) {
+			return true;
+		}
+		return false;
+
+	}
+
+	public Coordonnees coordonneesDecalage(Renjou renjou, Coordonnees c, TypeDecalage typeDecalage) {
+
+		int ligneCourante = c.getLigne();
+		int colonneCourante = c.getColonne();
+		TypeCase typeCaseJoueurCourant = null;
+
+		int nbLignesPlateau = renjou.getPlateauDeJeu().getLignes();
+		int nbColonnesPlateau = renjou.getPlateauDeJeu().getColonnes();
+
+		try {
+			typeCaseJoueurCourant = getTypeCaseJoueurCourant(renjou);
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		switch (typeDecalage) {
+
+		case Gauche:
+			// parcours colonne -1
+			while (colonneCourante >= 0 && (typeCaseJoueurCourant == renjou.getPlateauDeJeu()
+					.getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
+				colonneCourante--;
+			}
+			break;
+		case DiagonaleHautGauche:
+			// parcours diagonale ligne -1 colonne -1
+			while (ligneCourante >= 0 && colonneCourante >= 0 && (typeCaseJoueurCourant == renjou.getPlateauDeJeu()
+					.getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
+				ligneCourante--;
+				colonneCourante--;
+			}
+			break;
+
+		case DiagonaleHautDroite:
+			// parcours diagonale ligne -1 colonne + 1
+			while (ligneCourante >= 0 && colonneCourante < nbColonnesPlateau && (typeCaseJoueurCourant == renjou
+					.getPlateauDeJeu().getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
+				ligneCourante--;
+				colonneCourante++;
+			}
+			break;
+
+		case Haut:
+			// parcours ligne -1
+			while (ligneCourante >= 0 && (typeCaseJoueurCourant == renjou.getPlateauDeJeu()
+					.getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
+				ligneCourante--;
+			}
+			break;
+		default:
+			break;
+
+		}
+		return new Coordonnees(ligneCourante, colonneCourante);
+	}
+
+	public boolean cinqPointsAlignes(Renjou renjou, Coordonnees c, TypeDecalage typeDecalage) {
+
+		int nbPionsAlignes = 0;
+		int colonneCourante = c.getColonne();
+		int ligneCourante = c.getLigne();
+		TypeCase typeCaseJoueurCourant = null;
+
+		int nbLignesPlateau = renjou.getPlateauDeJeu().getLignes();
+		int nbColonnesPlateau = renjou.getPlateauDeJeu().getColonnes();
+
+		try {
+			typeCaseJoueurCourant = getTypeCaseJoueurCourant(renjou);
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		switch (typeDecalage) {
+		case Gauche:
+			// parcours colonne +1
+
+			while (colonneCourante < nbColonnesPlateau && (typeCaseJoueurCourant == renjou.getPlateauDeJeu()
+					.getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
+				colonneCourante++;
+				nbPionsAlignes++;
+			}
+			break;
+
+		case DiagonaleHautGauche:
+			// parcours ligne +1 colonne +1
+			while (ligneCourante < nbLignesPlateau && colonneCourante < nbColonnesPlateau
+					&& (typeCaseJoueurCourant == renjou.getPlateauDeJeu()
+							.getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
+				ligneCourante++;
+				colonneCourante++;
+				nbPionsAlignes++;
+			}
+			break;
+
+		case DiagonaleHautDroite:
+			// parcours diagonale ligne +1 colonne -1
+			while (ligneCourante < nbLignesPlateau && colonneCourante >= 0 && (typeCaseJoueurCourant == renjou
+					.getPlateauDeJeu().getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
+				ligneCourante--;
+				colonneCourante++;
+				nbPionsAlignes++;
+			}
+
+			break;
+
+		case Haut:
+			// parcours ligne +1
+			while (ligneCourante < nbLignesPlateau && (typeCaseJoueurCourant == renjou.getPlateauDeJeu()
+					.getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
+				ligneCourante++;
+				nbPionsAlignes++;
+			}
+			break;
+
+		default:
+			break;
+		}
+
+		return (nbPionsAlignes >= 5);
+	}
+
+	public boolean partieNulle(Renjou renjou) {
+
+		// si les 2 joueurs ont un nombre de pions vide
+		int nbPionsEnCoursJoueurNoir = renjou.getJoueurs()[0].getNbPion();
+		int nbPionsEnCoursJoueurBlanc = renjou.getJoueurs()[1].getNbPion();
+
+		return (nbPionsEnCoursJoueurNoir == 0 && nbPionsEnCoursJoueurBlanc == 0);
+	}
+
+	public void setPartieFinie(Renjou renjou) {
+		if (renjou.getJoueurCourant() == 0) {
+			renjou.setEtatPartie(EtatPartie.NoirGagne);
+		} else if (renjou.getJoueurCourant() == 1) {
+			renjou.setEtatPartie(EtatPartie.BlancGagne);
+		}
+	}
+
+	public void setPartieNulle(Renjou renjou) {
+		renjou.setEtatPartie(EtatPartie.PartieNulle);
+	}
+
+	public void setPartieFinieJoueurBlanc(Renjou renjou) {
+		renjou.setEtatPartie(EtatPartie.BlancGagne);
 	}
 
 	public void majCasesTabous(Renjou renjou) {
 
-		int nbPionsBase = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPionsBase();
-		int nbPionsEnCours = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
+		// int nbPionsBase =
+		// renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPionsBase();
+		// int nbPionsEnCours =
+		// renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
 
 		if (renjou.getJoueurCourant() == 0) {
 			// mettre les cases tabous en fonction de la liste
 		} else if (renjou.getJoueurCourant() == 1) {
 			// faire sauter toutes les cases tabous. Le joueur blanc n'en a pas
-
 			renjou.getPlateauDeJeu().supprimerCasesTabous();
 		}
 

@@ -9,6 +9,8 @@ import Joueur.Joueur;
 import java.awt.List;
 import java.util.ArrayList;
 
+import Enum.EtatPartie;
+
 /**
  *
  * @author michauad
@@ -20,7 +22,7 @@ public interface InterfaceRenjou {
     public int getJoueurCourant();
     public ArrayList<PlateauDeJeu> getListeAnnuler();
     public ArrayList<PlateauDeJeu> getListeRefaire();
-    public boolean getPartieFinie();
+    public EtatPartie getEtatPartie();
     public ArrayList<Tabou> getTabouJeu();
 	public Tabous getTabous();
     
@@ -30,7 +32,7 @@ public interface InterfaceRenjou {
     public void setJoueurCourant(int joueurCourant);
     public void setListeAnnuler(ArrayList<PlateauDeJeu> listeAnnuler);
     public void setListeRefaire(ArrayList<PlateauDeJeu> listeRefaire);
-    public void setPartieFinie(boolean partieFinie);
+    public void setEtatPartie(EtatPartie etatPartie);
 	public void setTabouJeu(ArrayList<Tabou> tabouJeu);
 	public void setTabous(Tabous tabous);
     

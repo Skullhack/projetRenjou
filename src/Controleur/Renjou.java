@@ -7,6 +7,7 @@ package Controleur;
 
 import Joueur.Joueur;
 import java.util.ArrayList;
+import Enum.*;
 
 /**
  *
@@ -18,7 +19,7 @@ public class Renjou implements InterfaceRenjou {
 	private int joueurCourant;
 	private ArrayList<PlateauDeJeu> listeAnnuler;
 	private ArrayList<PlateauDeJeu> listeRefaire;
-	private boolean partieFinie;
+	private EtatPartie etatPartie;
 	private ArrayList<Tabou> tabouJeu;
 	private Tabous tabous;
 
@@ -28,7 +29,7 @@ public class Renjou implements InterfaceRenjou {
 		this.tabJoueurs = tabJoueurs;
 		this.listeAnnuler = new ArrayList<PlateauDeJeu>();
 		this.listeRefaire = new ArrayList<PlateauDeJeu>();
-		partieFinie = false;
+		etatPartie = EtatPartie.EnCours;
 
 		this.tabouJeu = new ArrayList<Tabou>(); // ligne qui sera à modifier.
 												// pour le moment, mis en dur
@@ -61,9 +62,8 @@ public class Renjou implements InterfaceRenjou {
 		return this.listeRefaire;
 	}
 
-	@Override
-	public boolean getPartieFinie() {
-		return this.partieFinie;
+	public EtatPartie getEtatPartie() {
+		return etatPartie;
 	}
 
 	public ArrayList<Tabou> getTabouJeu() {
@@ -94,8 +94,8 @@ public class Renjou implements InterfaceRenjou {
 		this.listeRefaire = listeRefaire;
 	}
 
-	public void setPartieFinie(boolean partieFinie) {
-		this.partieFinie = partieFinie;
+	public void setEtatPartie(EtatPartie etatPartie) {
+		this.etatPartie = etatPartie;
 	}
 
 	public void setTabouJeu(ArrayList<Tabou> tabouJeu) {

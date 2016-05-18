@@ -115,6 +115,10 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 	public TypeCase getTypeCaseTableau(Coordonnees c) {
 		return this.plateau[c.getLigne()][c.getColonne()];
 	}
+	
+	public TypeCase getTypeCaseTableauParLigneColonne(int lignes, int colonnes) {
+		return this.plateau[lignes][colonnes];
+	}
 
 	public static TypeCase charToTypeCase(char c) {
 		switch (c) {

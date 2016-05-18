@@ -33,5 +33,5 @@ public interface InterfaceMoteur {
 
 	public void joueurSuivant();
 
-	public boolean partieFinie(Renjou renjou);
+	public boolean partieFinie(Renjou renjou, Coordonnees c);
 }
