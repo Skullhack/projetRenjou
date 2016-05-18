@@ -22,9 +22,10 @@ import java.util.ArrayList;
  */
 public class Moteur implements InterfaceMoteur {
 	private Renjou renjou;
-
+	private Log trace;
 	// Constructeur
 	public Moteur(int nbJoueurs) {
+		trace = new Log();
 		Joueur[] tableauJoueurs = new Joueur[nbJoueurs];
 		tableauJoueurs[0] = new Humain(TypeJoueur.Humain, 60);
 		tableauJoueurs[1] = new Humain(TypeJoueur.Humain, 60);
@@ -44,6 +45,16 @@ public class Moteur implements InterfaceMoteur {
 		this.renjou = renjou;
 	}
 
+	public void setNiveauTrace(int niveau){
+		trace.setNiveau(niveau);
+	}
+	
+	public void printTrace(int niveau, String msg){
+		trace.print(niveau, msg);
+	}
+	
+	
+	
 	@Override
 	public void sauvegarder(String nomFichier) {
 		throw new UnsupportedOperationException("Not supported yet."); // To
@@ -74,7 +85,8 @@ public class Moteur implements InterfaceMoteur {
 
 	@Override
 	public void operationJouer(Coordonnees c, TypeJoueur j) {
-
+		this.setNiveauTrace(10);
+		this.printTrace(1, "dans operation jouer");
 		if (j == renjou.getJoueurs()[renjou.getJoueurCourant()].getType()) {
 			if (caseJouable(renjou, c)) {
 

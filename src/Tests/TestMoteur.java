@@ -14,9 +14,9 @@ public class TestMoteur {
 		int nbJoueurs = 2;
 		Moteur donneesJeu = new Moteur(nbJoueurs);
 		System.out.println(donneesJeu.getRenjou().getPlateauDeJeu());
-
+		
 		Coordonnees c = new Coordonnees(7, 7);
-
+		
 		donneesJeu.operationJouer(c, donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
 		System.out.println(donneesJeu.getRenjou().getPlateauDeJeu());
 
