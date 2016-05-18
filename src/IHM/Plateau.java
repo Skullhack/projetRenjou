@@ -1,5 +1,7 @@
 package IHM;
 
+import java.awt.Dimension;
+import Controleur.Coordonnees;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
@@ -34,13 +36,19 @@ public class Plateau extends JPanel {
     		
     	}
     }
-    
-    public void traiterClic(Point p) {
-    	
-    }
-    
+
     public void afficherPion(int i, int j, TypeCase c, Graphics g) {
+    	Dimension pan = this.getSize();
     	
+    	int width = (pan.width)/16;
+    	int height = (pan.height)/16;
+    	int x = (i*width+4)+(width/2);
+        int y = (j*height+4)+(height/2);
+        
+        if (c == TypeCase.PionBlanc)
+        	g.drawImage(imagePionBlanc, x, y, width, height, null);
+        else
+        	g.drawImage(imagePionNoir, x, y, width, height, null);
     }
 
     @Override
