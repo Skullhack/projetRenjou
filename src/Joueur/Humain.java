@@ -10,6 +10,6 @@ import Enum.*;
 
 public class Humain extends Joueur {
 	public Humain(TypeJoueur type, int nbPion) {
-		super();
+		super(type, nbPion);
 	}
 }

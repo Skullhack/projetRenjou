@@ -128,7 +128,7 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 			return TypeCase.PionBlanc;
 		case 'X':
 			return TypeCase.Tabou;
-		case 'O':
+		case '.':
 			return TypeCase.Jouable;
 		case 'I':
 			return TypeCase.Injouable;
@@ -146,7 +146,7 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 		case Tabou:
 			return "X";
 		case Jouable:
-			return "O";
+			return ".";
 		case Injouable:
 			return "I";
 		default:

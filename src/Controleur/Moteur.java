@@ -75,20 +75,27 @@ public class Moteur implements InterfaceMoteur {
 	@Override
 	public void operationJouer(Coordonnees c, TypeJoueur j) {
 
-		if (j == renjou.getJoueurs()[renjou.getJoueurCourant()].getType()) {
-			if (caseJouable(renjou, c)) {
+		if (renjou.getEtatPartie() != EtatPartie.EnCours) {
+			System.out.println("LA PARTIE N EST PAS EN COURS !!!");
+			return;
+		}
 
-				jouer(renjou, c);
-
-			} else if (caseTabou(renjou, c)) {
-				// il n'y a que le joueur noir qui est impliqué par des tabous.
-				// Si c'est une case tabou, forcément le joueur blanc gagne
-				setPartieFinieJoueurBlanc(renjou);
-			}
-
-			// notify avec etat de la partie
+		if (j != renjou.getJoueurs()[renjou.getJoueurCourant()].getType()) {
+			System.out.println("LES TYPES NE CORRESPONDENT PAS  !!!");
+			return;
 
 		}
+
+		if (caseJouable(renjou, c)) {
+			System.out.println("ON RENTRE DANS LA FONCTION JOUER");
+			jouer(renjou, c);
+		} else if (caseTabou(renjou, c)) {
+			// il n'y a que le joueur noir qui est impliqué par des tabous.
+			// Si c'est une case tabou, forcément le joueur blanc gagne
+			setPartieFinieJoueurBlanc(renjou);
+		}
+
+		// notify avec etat de la partie
 
 	}
 
@@ -98,15 +105,24 @@ public class Moteur implements InterfaceMoteur {
 			TypeCase typeCaseJoueurCourant = getTypeCaseJoueurCourant(renjou);
 			renjou.getPlateauDeJeu().ajouter(c, typeCaseJoueurCourant);
 			decrementerPionsJoueurCourant();
+
+			int nbPionsRestant = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
+			System.out.println(
+					"Le nombre de pions du joueur courant " + renjou.getJoueurCourant() + " est : " + nbPionsRestant);
 		} catch (Exception e) {
 			System.out.print(e);
 		}
 
 		if (partieFinie(renjou, c)) {
 			setPartieFinie(renjou);
+			System.out.println("LE JEU EST FINI !!");
 		} else if (partieNulle(renjou)) {
 			setPartieNulle(renjou);
+			System.out.println("LE JEU EST NUL !!");
 		} else {
+
+			System.out.println("ON PASSE LA MAIN AU JOUEUR SUIVANT !!");
+
 			joueurSuivant();
 			majCasesInjouables(renjou);
 			majCasesTabous(renjou);
@@ -269,6 +285,7 @@ public class Moteur implements InterfaceMoteur {
 					.getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
 				colonneCourante++;
 				nbPionsAlignes++;
+				System.out.println("NB PIONS ALIGNES : " + nbPionsAlignes);
 			}
 			break;
 
@@ -280,6 +297,7 @@ public class Moteur implements InterfaceMoteur {
 				ligneCourante++;
 				colonneCourante++;
 				nbPionsAlignes++;
+				System.out.println("NB PIONS ALIGNES : " + nbPionsAlignes);
 			}
 			break;
 
@@ -290,6 +308,7 @@ public class Moteur implements InterfaceMoteur {
 				ligneCourante--;
 				colonneCourante++;
 				nbPionsAlignes++;
+				System.out.println("NB PIONS ALIGNES : " + nbPionsAlignes);
 			}
 
 			break;
@@ -300,6 +319,7 @@ public class Moteur implements InterfaceMoteur {
 					.getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
 				ligneCourante++;
 				nbPionsAlignes++;
+				System.out.println("NB PIONS ALIGNES : " + nbPionsAlignes);
 			}
 			break;
 
