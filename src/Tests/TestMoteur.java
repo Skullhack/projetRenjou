@@ -82,7 +82,7 @@ public class TestMoteur {
 		donneesJeu.operationJouer(c,
 				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
 		System.out.println(donneesJeu.getRenjou().getPlateauDeJeu());
-
+		
 		for (int i = 0; i < donneesJeu.getRenjou().getPlateauDeJeu().getLignes(); i++) {
 			for (int j = 0; j < donneesJeu.getRenjou().getPlateauDeJeu().getColonnes(); j++) {
 				donneesJeu.operationJouer(new Coordonnees(i, j),

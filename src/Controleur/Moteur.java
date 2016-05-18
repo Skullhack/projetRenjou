@@ -22,9 +22,11 @@ import java.util.ArrayList;
  */
 public class Moteur implements InterfaceMoteur {
 	private Renjou renjou;
+	private Log trace;
 
 	// Constructeur
 	public Moteur(int nbJoueurs) {
+		trace = new Log();
 		Joueur[] tableauJoueurs = new Joueur[nbJoueurs];
 		tableauJoueurs[0] = new Humain(TypeJoueur.Humain, 60);
 		tableauJoueurs[1] = new Humain(TypeJoueur.Humain, 60);
@@ -42,6 +44,14 @@ public class Moteur implements InterfaceMoteur {
 
 	public void setRenjou(Renjou renjou) {
 		this.renjou = renjou;
+	}
+
+	public void setNiveauTrace(int niveau) {
+		trace.setNiveau(niveau);
+	}
+
+	public void printTrace(int niveau, String msg) {
+		trace.print(niveau, msg);
 	}
 
 	@Override
@@ -75,10 +85,8 @@ public class Moteur implements InterfaceMoteur {
 	@Override
 	public void operationJouer(Coordonnees c, TypeJoueur j) {
 
-		if (renjou.getEtatPartie() != EtatPartie.EnCours) {
-			System.out.println("LA PARTIE N EST PAS EN COURS !!!");
-			return;
-		}
+		this.setNiveauTrace(10);
+		this.printTrace(1, "dans operation jouer");
 
 		if (j != renjou.getJoueurs()[renjou.getJoueurCourant()].getType()) {
 			System.out.println("LES TYPES NE CORRESPONDENT PAS  !!!");
