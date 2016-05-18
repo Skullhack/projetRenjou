@@ -22,6 +22,10 @@ public class Coordonnees {
 		this.colonne = p.x;
 	}
 
+	public String toString(){
+		return("ligne : " + ligne + " colonne " + colonne);
+	}
+	
 	public int getColonne() {
 		return colonne;
 	}
