@@ -6,14 +6,19 @@
 package IHM;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.MenuBar;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,7 +33,7 @@ import Controleur.Moteur;
  *
  * @author michauad
  */
-public class FenetreJeu extends JFrame{
+public class FenetreJeu extends JFrame implements Observer{
     private Moteur m;
     private JPanel[] panels;
     private JMenuBar barreMenu;
@@ -84,7 +89,8 @@ public class FenetreJeu extends JFrame{
 		noir.setFont(new Font("Time New Roman",Font.BOLD,20));
 		nbPieces = new JLabel[2];
 		nbPieces[0] = new JLabel("60");
-		//ICONE POUR NBPIECE[0]
+		ImageIcon pionNoir = new ImageIcon(new ImageIcon("./Images/Pion noir.png").getImage().getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH));
+		nbPieces[0].setIcon(pionNoir);
 		aide = new JButton[2];
 		aide[0] = new JButton("Aide Coup");
 		//ICONE POUR AIDE
@@ -101,8 +107,10 @@ public class FenetreJeu extends JFrame{
 		JLabel blanc = new JLabel("Blanc");
 		blanc.setFont(new Font("Time New Roman",Font.BOLD,20));
 		nbPieces[1] = new JLabel("60");
-		//nbPieces[1].setIcon(icon);
+		ImageIcon pionBlanc = new ImageIcon(new ImageIcon("./Images/Pion blanc.png").getImage().getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH));
+		nbPieces[1].setIcon(pionBlanc);
 		aide[1] = new JButton("Aide Coup");
+		
 		tempsRestant[1] = new JLabel("Temps restant : 30");
 		panels[5].add(blanc);
 		panels[5].add(nbPieces[1]);
@@ -147,5 +155,20 @@ public class FenetreJeu extends JFrame{
         panels[0].add(p, BorderLayout.CENTER);
         panels[0].add(panels[2], BorderLayout.PAGE_END);
 		this.add(panels[0]);	
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		p.repaint();
+		nbPieces[0].setText(Integer.toString(m.getRenjou().getJoueurs()[0].getNbPion()));
+		nbPieces[1].setText(Integer.toString(m.getRenjou().getJoueurs()[1].getNbPion()));
+		if (m.getRenjou().getListeAnnuler().isEmpty()) 
+			boutons[0].setEnabled(false);
+		else
+			boutons[0].setEnabled(true);
+		if (m.getRenjou().getListeRefaire().isEmpty()) 
+			boutons[1].setEnabled(false);
+		else
+			boutons[1].setEnabled(true);
 	}
 }

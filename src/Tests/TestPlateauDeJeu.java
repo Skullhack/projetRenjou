@@ -8,7 +8,7 @@ import Controleur.PlateauDeJeu;
 
 public class TestPlateauDeJeu {
 
-	private static String chemin = "src/Tests/PlateauDeJeu/";
+	private static String chemin = "TestsPlateauDeJeu/";
 	@Test
 	public void test() {
 		

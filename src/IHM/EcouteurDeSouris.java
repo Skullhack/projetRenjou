@@ -30,7 +30,6 @@ class EcouteurDeSouris implements MouseListener {
     	int colonne = (e.getX() - width/2) /width %15; 
     	Coordonnees c = new Coordonnees(colonne,ligne);
     	m.operationJouer(c, TypeJoueur.Humain);
-        p.repaint();
     }
     
     public void mouseReleased(MouseEvent e) {}
