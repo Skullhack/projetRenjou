@@ -38,11 +38,13 @@ public class FenetreJeu extends JFrame{
 	private JLabel[] nbPieces;
 	private JButton[] aide;
 	private Plateau p;
+	private EcouteurDeSouris eds;
 	
 	public FenetreJeu(Moteur m) {
 		//Variables
 		this.m = m;
 		p = new Plateau(m.getRenjou().getPlateauDeJeu());
+		eds = new EcouteurDeSouris(m,p);
 		//0:PanelPrincipal 1:PanelBouton 2:PanelSud 3:PanelNoir 4:PanelBoutonDansBouton 5:PanelBlanc
 		panels = new JPanel[6];
 		for (int i=0;i<panels.length;i++)
@@ -51,6 +53,7 @@ public class FenetreJeu extends JFrame{
 		String[][] nomSousMenu = {{"Créer partie","Sauvegarder","Charger","Quitter"},{"Thème","Paramètres","Tabous"},{"Règles","Tutoriel","A propos de"}};
 		String[] nomBoutons={"Annuler","Refaire"};
 		JLabel[] tempsRestant;
+		JButton recommencer;
 		
 		
 		//Initialisation menus
@@ -78,7 +81,7 @@ public class FenetreJeu extends JFrame{
 		//Initialisation Noir
 		panels[3].setLayout(new BoxLayout(panels[3], BoxLayout.PAGE_AXIS));
 		JLabel noir = new JLabel("Noir");
-		noir.setFont(new Font("Time New Roman",Font.BOLD,15));
+		noir.setFont(new Font("Time New Roman",Font.BOLD,20));
 		nbPieces = new JLabel[2];
 		nbPieces[0] = new JLabel("60");
 		//ICONE POUR NBPIECE[0]
@@ -96,7 +99,7 @@ public class FenetreJeu extends JFrame{
 		//Initialisation Blanc
 		panels[5].setLayout(new BoxLayout(panels[5], BoxLayout.PAGE_AXIS));
 		JLabel blanc = new JLabel("Blanc");
-		blanc.setFont(new Font("Time New Roman",Font.BOLD,15));
+		blanc.setFont(new Font("Time New Roman",Font.BOLD,20));
 		nbPieces[1] = new JLabel("60");
 		//nbPieces[1].setIcon(icon);
 		aide[1] = new JButton("Aide Coup");
@@ -131,6 +134,9 @@ public class FenetreJeu extends JFrame{
 	    gbc.fill = GridBagConstraints.VERTICAL;
 	    panels[1].add(panels[5],gbc);
 	    
+	    //Panel Sud
+	    recommencer = new JButton("Recommencer");
+	    panels[2].add(recommencer);
 		
 		//Fin
 		p.setPreferredSize(new Dimension(600,600));
@@ -139,6 +145,7 @@ public class FenetreJeu extends JFrame{
         panels[1].setBackground(Color.BLUE);
         panels[0].add(panels[1],BorderLayout.LINE_START);
         panels[0].add(p, BorderLayout.CENTER);
+        panels[0].add(panels[2], BorderLayout.PAGE_END);
 		this.add(panels[0]);	
 	}
 }
