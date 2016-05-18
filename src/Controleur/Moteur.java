@@ -23,6 +23,7 @@ import java.util.ArrayList;
 public class Moteur implements InterfaceMoteur {
 	private Renjou renjou;
 	private Log trace;
+
 	// Constructeur
 	public Moteur(int nbJoueurs) {
 		trace = new Log();
@@ -47,16 +48,14 @@ public class Moteur implements InterfaceMoteur {
 		this.renjou = renjou;
 	}
 
-	public void setNiveauTrace(int niveau){
+	public void setNiveauTrace(int niveau) {
 		trace.setNiveau(niveau);
 	}
-	
-	public void printTrace(int niveau, String msg){
+
+	public void printTrace(int niveau, String msg) {
 		trace.print(niveau, msg);
 	}
-	
-	
-	
+
 	@Override
 	public void sauvegarder(String nomFichier) {
 		throw new UnsupportedOperationException("Not supported yet."); // To
@@ -87,22 +86,30 @@ public class Moteur implements InterfaceMoteur {
 
 	@Override
 	public void operationJouer(Coordonnees c, TypeJoueur j) {
-		this.setNiveauTrace(10);
-		this.printTrace(1, "dans operation jouer");
-		if (j == renjou.getJoueurs()[renjou.getJoueurCourant()].getType()) {
-			if (caseJouable(renjou, c)) {
 
-				jouer(renjou, c);
+		this.printTrace(1, "Je rentre dans operation jouer");
 
-			} else if (caseTabou(renjou, c)) {
-				// il n'y a que le joueur noir qui est impliqué par des tabous.
-				// Si c'est une case tabou, forcément le joueur blanc gagne
-				setPartieFinieJoueurBlanc(renjou);
-			}
-
-			// notify avec etat de la partie
+		if (j != renjou.getJoueurs()[renjou.getJoueurCourant()].getType()) {
+			this.printTrace(1, "Les types ne correspondent pas");
+			return;
 
 		}
+
+		if (renjou.getEtatPartie() != EtatPartie.EnCours) {
+			this.printTrace(1, "La partie n'est plus en cours mais elle est : " + renjou.getEtatPartie());
+			return;
+		}
+
+		if (caseJouable(renjou, c)) {
+			this.printTrace(1, "Je rentre dans la fonction jouer avec le point " + c.getLigne() + "," + c.getColonne());
+			jouer(renjou, c);
+		} else if (caseTabou(renjou, c)) {
+			// il n'y a que le joueur noir qui est impliqué par des tabous.
+			// Si c'est une case tabou, forcément le joueur blanc gagne
+			setPartieFinieJoueurBlanc(renjou);
+		}
+
+		// notify avec etat de la partie
 
 	}
 
@@ -112,15 +119,25 @@ public class Moteur implements InterfaceMoteur {
 			TypeCase typeCaseJoueurCourant = getTypeCaseJoueurCourant(renjou);
 			renjou.getPlateauDeJeu().ajouter(c, typeCaseJoueurCourant);
 			decrementerPionsJoueurCourant();
+
+			int nbPionsRestant = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
+			this.printTrace(1,
+					"Le nombre de pions du joueur courant " + renjou.getJoueurCourant() + " est : " + nbPionsRestant);
+
 		} catch (Exception e) {
 			System.out.print(e);
 		}
 
 		if (partieFinie(renjou, c)) {
 			setPartieFinie(renjou);
+			this.printTrace(1, "JEU FINI !!!");
 		} else if (partieNulle(renjou)) {
 			setPartieNulle(renjou);
+			this.printTrace(1, "PARTIE NULLE !!");
 		} else {
+
+			this.printTrace(1, "ON PASSE LA MAIN AU JOUEUR SUIVANT");
+
 			joueurSuivant();
 			majCasesInjouables(renjou);
 			majCasesTabous(renjou);
@@ -225,6 +242,7 @@ public class Moteur implements InterfaceMoteur {
 					.getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
 				colonneCourante--;
 			}
+			colonneCourante++;
 			break;
 		case DiagonaleHautGauche:
 			// parcours diagonale ligne -1 colonne -1
@@ -233,6 +251,8 @@ public class Moteur implements InterfaceMoteur {
 				ligneCourante--;
 				colonneCourante--;
 			}
+			ligneCourante++;
+			colonneCourante++;
 			break;
 
 		case DiagonaleHautDroite:
@@ -242,6 +262,8 @@ public class Moteur implements InterfaceMoteur {
 				ligneCourante--;
 				colonneCourante++;
 			}
+			ligneCourante++;
+			colonneCourante--;
 			break;
 
 		case Haut:
@@ -250,6 +272,7 @@ public class Moteur implements InterfaceMoteur {
 					.getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
 				ligneCourante--;
 			}
+			ligneCourante++;
 			break;
 		default:
 			break;
@@ -301,8 +324,8 @@ public class Moteur implements InterfaceMoteur {
 			// parcours diagonale ligne +1 colonne -1
 			while (ligneCourante < nbLignesPlateau && colonneCourante >= 0 && (typeCaseJoueurCourant == renjou
 					.getPlateauDeJeu().getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
-				ligneCourante--;
-				colonneCourante++;
+				ligneCourante++;
+				colonneCourante--;
 				nbPionsAlignes++;
 			}
 

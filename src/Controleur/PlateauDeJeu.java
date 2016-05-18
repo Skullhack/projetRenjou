@@ -128,7 +128,7 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 			return TypeCase.PionBlanc;
 		case 'X':
 			return TypeCase.Tabou;
-		case 'O':
+		case '.':
 			return TypeCase.Jouable;
 		case 'I':
 			return TypeCase.Injouable;
@@ -146,7 +146,7 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 		case Tabou:
 			return "X";
 		case Jouable:
-			return "O";
+			return ".";
 		case Injouable:
 			return "I";
 		default:
@@ -162,11 +162,11 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 			InputStreamReader lecture = new InputStreamReader(flux);
 			BufferedReader buff = new BufferedReader(lecture);
 			String ligne;
-			int j = 0;
+			int i = 0;
 			while ((ligne = buff.readLine()) != null) {
-				for (int i = 0; i < ligne.length(); i++)
-					pdj.plateau[i][j] = charToTypeCase(ligne.charAt(i));
-				j++;
+				for (int j = 0; j < ligne.length(); j++)
+					pdj.plateau[i][j] = charToTypeCase(ligne.charAt(j));
+				i++;
 			}
 			buff.close();
 		} catch (Exception e) {
