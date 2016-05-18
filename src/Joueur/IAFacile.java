@@ -8,15 +8,13 @@ package Joueur;
 import java.util.ArrayList;
 import java.util.Observable;
 
-import org.omg.PortableServer.ServantLocatorPackage.CookieHolder;
-
 import Controleur.*;
 import Enum.*;
 
 public class IAFacile extends IA {
 
-	int nbLigne = 13;
-	int nbColonne = 13;
+	protected int nbLigne = 13;
+	protected int nbColonne = 13;
 
 	public IAFacile(TypeJoueur type, int nbPion, Moteur m) {
 		super();
@@ -28,8 +26,11 @@ public class IAFacile extends IA {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		Coordonnees p = jouer();
-		//m.operationJouer(p, type);
+		if(m.getRenjou().getJoueurs()[m.getRenjou().getJoueurCourant()] == this){
+			Coordonnees p = jouer();
+			//m.operationJouer(p, type);
+	
+		}
 
 	}
 
@@ -110,25 +111,7 @@ public class IAFacile extends IA {
 	}
 
 	public Coordonnees estCoupGagnant(){
-		// en 3 boucles pour horizont, vert, diago à optimiser
-		Coordonnees c = coupGagnantHorizontal();
-		if(c.getLigne() == -1){
-			c = coupGagnantVertical();
-			if(c.getLigne() == -1){
-				c = coupGagnantDiagonal();
-			}
-		}
-
 		
-		return c;
-	}
-	
-	private Coordonnees coupGagnantDiagonal() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private Coordonnees coupGagnantHorizontal(){
 		TypeCase typeCase =  TypeCase.CasePionBlanc;
 		switch(couleur){
 			case Blanc :
@@ -140,6 +123,27 @@ public class IAFacile extends IA {
 			default :
 				break;
 		}
+		
+		// en 3 boucles pour horizont, vert, diago à optimiser
+		Coordonnees c = coupGagnantHorizontal(typeCase);
+		if(c.getLigne() == -1){
+			c = coupGagnantVertical(typeCase);
+			if(c.getLigne() == -1){
+				c = coupGagnantDiagonal(typeCase);
+			}
+		}
+
+		
+		return c;
+	}
+	
+	// a implémenter
+	private Coordonnees coupGagnantDiagonal(TypeCase typeCase) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private Coordonnees coupGagnantHorizontal(TypeCase typeCase){
 		
 		for(int i=0; i<nbLigne; i++){
 			for(int j=0; j<nbColonne; j++){
@@ -161,20 +165,8 @@ public class IAFacile extends IA {
 		
 		return (new Coordonnees(-1,-1));
 	}
-	
-	// a implémenter
-	private Coordonnees coupGagnantVertical(){
-		TypeCase typeCase =  TypeCase.CasePionBlanc;
-		switch(couleur){
-			case Blanc :
-				typeCase = TypeCase.CasePionBlanc;
-				break;
-			case Noir :
-				typeCase = TypeCase.CasePionNoir;
-				break;
-			default :
-				break;
-		}
+
+	private Coordonnees coupGagnantVertical(TypeCase typeCase){
 		
 		for(int j=0; j<nbColonne; j++){
 			for(int i=0; j<nbLigne; i++){
@@ -196,6 +188,7 @@ public class IAFacile extends IA {
 		return (new Coordonnees(-1,-1));
 	}
 	
+	// a implémenter
 	public Coordonnees empecherCoupGagnant(){
 		Coordonnees c = new Coordonnees(-1,-1);
 		

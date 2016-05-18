@@ -6,8 +6,8 @@ import java.util.Random;
 
 public class IA extends Joueur{
 	
-	Random r;
-	int[][] tabHeuristique;
+	protected Random r;
+	protected int[][] tabHeuristique;
 	
 	public IA(){
 		super();
