@@ -7,12 +7,14 @@ import org.junit.Test;
 import Controleur.Coordonnees;
 import Controleur.Moteur;
 
+
+
 public class TestMoteur {
 
 	@Test
 	public void test() {
 
-		System.out.println("TEST : d'activation/désactivation des cases injouables");
+		System.out.println("TEST : d'activation/désactivation des cases injouables BLOB");
 		int nbJoueurs = 2;
 		Moteur donneesJeu = new Moteur(nbJoueurs);
 		System.out.println(donneesJeu.getRenjou().getPlateauDeJeu());
