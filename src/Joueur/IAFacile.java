@@ -13,28 +13,27 @@ import Enum.*;
 
 public class IAFacile extends IA {
 
-	protected int nbLigne = 13;
-	protected int nbColonne = 13;
 
 	public IAFacile(TypeJoueur type, int nbPion, Moteur m) {
 		super();
 		this.m = m;
 		this.type = type;
 		this.nbPion = nbPion;
-
+		nbLigne = m.getRenjou().getPlateauDeJeu().getLignes();
+		nbColonne = m.getRenjou().getPlateauDeJeu().getColonnes();
 	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		if(m.getRenjou().getJoueurs()[m.getRenjou().getJoueurCourant()] == this){
 			Coordonnees p = jouer();
-			//m.operationJouer(p, type);
+			m.operationJouer(p, type);
 	
 		}
 
 	}
 
-	public Coordonnees jouer() {
+	private Coordonnees jouer() {
 		Coordonnees c = estCoupGagnant();
 		if(c.getLigne() == -1){
 			c = empecherCoupGagnant();
@@ -46,71 +45,9 @@ public class IAFacile extends IA {
 		return c;
 	}
 
-	public boolean caseJouable(Coordonnees p) {
-		return (m.getRenjou().getPlateauDeJeu().getPlateau()[p.getLigne()][p.getColonne()] == TypeCase.Jouable);
 
-	}
 
-	public void modifierHeristique(Coordonnees p) {
-		int i = p.getLigne();
-		int j = p.getColonne();
-		if (i > 0) {
-			if(caseJouable(new Coordonnees(i-1,j))){
-				tabHeuristique[i-1][j] ++;
-			}
-			if(j >0){
-				if(caseJouable(new Coordonnees(i-1,j-1))){
-					tabHeuristique[i-1][j-1] ++;
-				}
-			}
-			if(j < nbColonne){
-				if(caseJouable(new Coordonnees(i-1,j+1))){
-					tabHeuristique[i-1][j+1] ++;
-				}
-			}
-		}
-		if(i < nbLigne){
-			if(caseJouable(new Coordonnees(i+1,j))){
-				tabHeuristique[i+1][j] ++;
-			}
-			if(j >0){
-				if(caseJouable(new Coordonnees(i+1,j-1))){
-					tabHeuristique[i+1][j-1] ++;
-				}
-			}
-			if(j < nbColonne){
-				if(caseJouable(new Coordonnees(i+1,j+1))){
-					tabHeuristique[i+1][j+1] ++;
-				}
-			}
-		}
-		
-		if(j >0){
-			if(caseJouable(new Coordonnees(i,j-1))){
-				tabHeuristique[i][j-1] ++;
-			}
-		}
-		if(j < nbColonne){
-			if(caseJouable(new Coordonnees(i,j+1))){
-				tabHeuristique[i][j+1] ++;
-			}
-		}
-	}
-
-	public void initHeuristique() {
-
-		for (int i = 0; i < nbLigne; i++) {
-			for (int j = 0; j < nbColonne; j++) {
-				Coordonnees p = new Coordonnees(i, j);
-				if (caseJouable(p)) {
-					modifierHeristique(p);
-				}
-			}
-		}
-
-	}
-
-	public Coordonnees estCoupGagnant(){
+	private Coordonnees estCoupGagnant(){
 		
 		TypeCase typeCase =  TypeCase.PionBlanc;
 		switch(couleur){
@@ -123,79 +60,251 @@ public class IAFacile extends IA {
 			default :
 				break;
 		}
-		
-		// en 3 boucles pour horizont, vert, diago à optimiser
-		Coordonnees c = coupGagnantHorizontal(typeCase);
-		if(c.getLigne() == -1){
-			c = coupGagnantVertical(typeCase);
-			if(c.getLigne() == -1){
-				c = coupGagnantDiagonal(typeCase);
+		Coordonnees c = new Coordonnees(-1,-1);
+		// parcour du tableau 
+		for(int i=0; i<nbLigne; i++){
+			for(int j=0; j<nbColonne; j++){
+				c = quatresAlignes(typeCase, new Coordonnees(i,j));
+				if(c.getLigne() != -1){
+					break;
+				}
 			}
+			
 		}
-
 		
 		return c;
 	}
 	
-	// a implémenter
-	private Coordonnees coupGagnantDiagonal(TypeCase typeCase) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private Coordonnees coupGagnantHorizontal(TypeCase typeCase){
+	
+	//a faire
+	private Coordonnees quatresAlignes(TypeCase typeCase, Coordonnees p){
 		
-		for(int i=0; i<nbLigne; i++){
-			for(int j=0; j<nbColonne; j++){
-				int compteur = 0 ; //compteur pour aller jusqua 5 point alignés 
-				while((j<nbColonne) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase)){
-					compteur++;
-					j++;
-				}
-				if(compteur == 4){
-					if((j < nbColonne) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == TypeCase.Jouable)){
-						return (new Coordonnees(i,j));
-					}else if((j-5 < 0) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == TypeCase.Jouable)){
-						return (new Coordonnees(i,j-5));
-					}
-				}
-				
-			}
-		}
+		Coordonnees c = null;
 		
-		return (new Coordonnees(-1,-1));
-	}
-
-	private Coordonnees coupGagnantVertical(TypeCase typeCase){
-		
-		for(int j=0; j<nbColonne; j++){
-			for(int i=0; j<nbLigne; i++){
-				int compteur = 0 ; //compteur pour aller jusqua 5 point alignés 
-				while((i<nbLigne) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase)){
-					compteur++;
-					i++;
-				}
-				if(compteur == 4){
-					if((i < nbLigne) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == TypeCase.Jouable)){
-						return (new Coordonnees(i,j));
-					}else if((i-5 < 0) && (m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == TypeCase.Jouable)){
-						return (new Coordonnees(i,j-5));
-					}
-				}
-				
-			}
-		}
-		return (new Coordonnees(-1,-1));
+		return c;
 	}
 	
-	// a implémenter
-	public Coordonnees empecherCoupGagnant(){
+
+	private Coordonnees troisAlignes(TypeCase typeCase, Coordonnees p){
+		
+		Coordonnees c = new Coordonnees(-1,-1);
+				
+		if(troisAlignesDiagonalBasDroite(typeCase, p)){
+			c = coordonneesDunAlignementATroisPoints(p, TypeDirection.DiagonaleBasDroite);
+		}
+		
+		if(troisAlignesDiagonalBasGauche(typeCase, p)){
+			c = coordonneesDunAlignementATroisPoints(p, TypeDirection.DiagonaleBasGauche);
+		}
+		
+		if(troisAlignesHorizontal(typeCase, p)){
+			c = coordonneesDunAlignementATroisPoints(p, TypeDirection.Droite);
+		}
+		
+		if(troisAlignesVertical(typeCase, p)){
+			c = coordonneesDunAlignementATroisPoints(p, TypeDirection.Bas);						
+		}
+		return c;
+	}
+	
+	
+	//     -
+	//   -
+	// -
+	private boolean troisAlignesDiagonalBasGauche(TypeCase typeCase, Coordonnees p) {
+		// TODO Auto-generated method stub
+		
+		int i = p.getLigne();
+		int j = p.getColonne();
+		
+		i++;
+		j--;
+		if((i<nbLigne)&&(j<0)){
+			if(m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase){
+				i++;
+				j--;
+				if((i<nbLigne)&&(j<0)){
+					if(m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase){
+						return true;
+					}
+				}
+				
+			}
+		}
+		
+		return false;
+	}
+	
+	// -
+	//   -
+	//     -
+	private boolean troisAlignesDiagonalBasDroite(TypeCase typeCase, Coordonnees p) {
+		// TODO Auto-generated method stub
+		
+		int i = p.getLigne();
+		int j = p.getColonne();
+		
+		i++;
+		j++;
+		if((i<nbLigne)&&(j<nbColonne)){
+			if(m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase){
+				i++;
+				j++;
+				if((i<nbLigne)&&(j<nbColonne)){
+					if(m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase){
+						return true;
+					}
+				}
+				
+			}
+		}
+		
+		return false;
+	}
+
+	
+	// - - -
+	private boolean troisAlignesHorizontal(TypeCase typeCase, Coordonnees p){
+		
+		int i = p.getLigne();
+		int j = p.getColonne();
+
+		j++;
+		if(j<nbColonne){
+			if(m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase){
+				j++;
+				if(j<nbColonne){
+					if(m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase){
+						return true;
+					}
+				}
+				
+			}
+		}
+		
+		return false;
+	}
+
+	
+	// -
+	// -
+	// -
+	private boolean troisAlignesVertical(TypeCase typeCase, Coordonnees p){
+		
+		int i = p.getLigne();
+		int j = p.getColonne();
+
+		i++;
+		if(i<nbLigne){
+			if(m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase){
+				i++;
+				if(j<nbLigne){
+					if(m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase){
+						return true;
+					}
+				}
+				
+			}
+		}
+		
+		return false;
+	}
+	
+	private Coordonnees coordonneesDunAlignementATroisPoints(Coordonnees p, TypeDirection typeDirection){
 		Coordonnees c = new Coordonnees(-1,-1);
 		
+		switch(typeDirection){
+			case Bas:
+				
+				//on test le point en haut
+				if((p.getLigne() - 1 < 0) && caseJouable(new Coordonnees(p.getLigne()-1, p.getColonne()))){
+					return (new Coordonnees(p.getLigne()-1,p.getColonne()));
+				}
+				//on test le point en bas
+				else if(( p.getLigne() + 3 < nbLigne) &&(caseJouable(new Coordonnees(p.getLigne()+3, p.getColonne())))){
+					return (new Coordonnees(p.getLigne()+3, p.getColonne()));
+				}
+				
+				break;
+				
+			case Droite:
+				
+				//on test le point a gauche
+				if((p.getColonne() - 1 < 0) && (caseJouable(new Coordonnees(p.getLigne(), p.getColonne()-1)))){
+					return (new Coordonnees(p.getLigne(),p.getColonne() - 1));
+				}
+				//on test le point a droite
+				else if(( p.getColonne() + 3 < nbColonne) &&(caseJouable(new Coordonnees(p.getLigne(), p.getColonne()+3)))){
+					return (new Coordonnees(p.getLigne(), p.getColonne() + 3));
+				}
+				
+				break;
+				
+			case DiagonaleBasDroite:
+				
+				//on test le point en haut a gauche
+				if((p.getLigne() - 1 > 0) && (p.getColonne() -1 < 0) && (caseJouable(new Coordonnees(p.getLigne()-1, p.getColonne()-1)))){
+					return (new Coordonnees(p.getLigne() - 1,p.getColonne() - 1));
+				}
+				//on test le point en bas a droite
+				else if(( p.getLigne() + 3 < nbLigne) && ( p.getColonne() + 3 < nbColonne) &&(caseJouable(new Coordonnees(p.getLigne()+3, p.getColonne()+3)))){
+					return (new Coordonnees(p.getLigne() + 3,p.getColonne() + 3));
+				}
+				
+				break;
+				
+			case DiagonaleBasGauche :
+				
+				//on test le point en haut a droite
+				if((p.getLigne() - 1 > 0) && (p.getColonne() + 1 < nbColonne) && (caseJouable(new Coordonnees(p.getLigne()-1, p.getColonne()+1)))){
+					return (new Coordonnees(p.getLigne() - 1,p.getColonne() + 1));
+				}
+				//on test le point en bas a gauche
+				else if(( p.getLigne() + 3 < nbLigne) && ( p.getColonne() - 3 < 0) &&(caseJouable(new Coordonnees(p.getLigne()+3, p.getColonne()-3)))){
+					return (new Coordonnees(p.getLigne() + 3,p.getColonne() - 3));
+				}
+				
+				break;
+				
+			default :
+				break;
+				
+		}
+			
+		
+		return null;
+	}
+	
+	
+	private Coordonnees empecherCoupGagnant(){
+		
+		TypeCase typeCase =  TypeCase.PionBlanc;
+		switch(couleur){
+			case Blanc :
+				typeCase = TypeCase.PionNoir;
+				break;
+			case Noir :
+				typeCase = TypeCase.PionBlanc;
+				break;
+			default :
+				break;
+		}
+		Coordonnees c = new Coordonnees(-1,-1);
+		// parcour du tableau 
+		for(int i=0; i<nbLigne; i++){
+			for(int j=0; j<nbColonne; j++){
+				c = troisAlignes(typeCase, new Coordonnees(i,j));
+				if(c.getLigne() != -1){
+					break;
+				}
+			}
+			
+		}
+
 		return c;		
 	}
 	
-	public Coordonnees pointRandom(){
+	private Coordonnees pointRandom(){
 		initHeuristique();
 		ArrayList<Coordonnees> listePoint = new ArrayList<Coordonnees>();
 		for(int i=0; i<nbLigne; i++){

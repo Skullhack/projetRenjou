@@ -3,11 +3,16 @@ package Joueur;
 import java.util.GregorianCalendar;
 import java.util.Random;
 
+import Controleur.Coordonnees;
+import Enum.TypeCase;
+
 
 public class IA extends Joueur{
 	
 	protected Random r;
 	protected int[][] tabHeuristique;
+	protected int nbLigne;
+	protected int nbColonne;
 	
 	public IA(){
 		super();
@@ -19,4 +24,69 @@ public class IA extends Joueur{
 				tabHeuristique[i][j] = 0;
 		}
 	}
+	
+	public boolean caseJouable(Coordonnees p) {
+		return (m.getRenjou().getPlateauDeJeu().getPlateau()[p.getLigne()][p.getColonne()] == TypeCase.Jouable);
+
+	}
+
+	public void modifierHeristique(Coordonnees p) {
+		int i = p.getLigne();
+		int j = p.getColonne();
+		if (i > 0) {
+			if(caseJouable(new Coordonnees(i-1,j))){
+				tabHeuristique[i-1][j] ++;
+			}
+			if(j >0){
+				if(caseJouable(new Coordonnees(i-1,j-1))){
+					tabHeuristique[i-1][j-1] ++;
+				}
+			}
+			if(j < nbColonne){
+				if(caseJouable(new Coordonnees(i-1,j+1))){
+					tabHeuristique[i-1][j+1] ++;
+				}
+			}
+		}
+		if(i < nbLigne){
+			if(caseJouable(new Coordonnees(i+1,j))){
+				tabHeuristique[i+1][j] ++;
+			}
+			if(j >0){
+				if(caseJouable(new Coordonnees(i+1,j-1))){
+					tabHeuristique[i+1][j-1] ++;
+				}
+			}
+			if(j < nbColonne){
+				if(caseJouable(new Coordonnees(i+1,j+1))){
+					tabHeuristique[i+1][j+1] ++;
+				}
+			}
+		}
+		
+		if(j >0){
+			if(caseJouable(new Coordonnees(i,j-1))){
+				tabHeuristique[i][j-1] ++;
+			}
+		}
+		if(j < nbColonne){
+			if(caseJouable(new Coordonnees(i,j+1))){
+				tabHeuristique[i][j+1] ++;
+			}
+		}
+	}
+	
+	public void initHeuristique() {
+
+		for (int i = 0; i < nbLigne; i++) {
+			for (int j = 0; j < nbColonne; j++) {
+				Coordonnees p = new Coordonnees(i, j);
+				if (caseJouable(p)) {
+					modifierHeristique(p);
+				}
+			}
+		}
+
+	}
+
 }
