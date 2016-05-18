@@ -28,8 +28,9 @@ public class Moteur implements InterfaceMoteur {
 	public Moteur(int nbJoueurs) {
 		trace = new Log();
 		Joueur[] tableauJoueurs = new Joueur[nbJoueurs];
-		tableauJoueurs[0] = new Humain(TypeJoueur.Humain, 60);
-		tableauJoueurs[1] = new Humain(TypeJoueur.Humain, 60);
+		
+		tableauJoueurs[0] = new Humain(this, TypeJoueur.Humain, 60, TypeCouleur.Noir);
+		tableauJoueurs[1] = new Humain(this, TypeJoueur.Humain, 60, TypeCouleur.Blanc);
 		// tabJ[0] = new Humain(this, 1000);
 		// tabJ[1] = new IAMoyen(this,1000);
 		// System.out.println("this: " + this);
@@ -37,6 +38,7 @@ public class Moteur implements InterfaceMoteur {
 
 	}
 
+	
 	@Override
 	public Renjou getRenjou() {
 		return this.renjou;

@@ -14,11 +14,8 @@ import Enum.*;
 public class IAFacile extends IA {
 
 
-	public IAFacile(TypeJoueur type, int nbPion, Moteur m) {
-		super();
-		this.m = m;
-		this.type = type;
-		this.nbPion = nbPion;
+	public IAFacile(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
+		super(moteur, type, nbPion, couleurJoueur);
 		nbLigne = m.getRenjou().getPlateauDeJeu().getLignes();
 		nbColonne = m.getRenjou().getPlateauDeJeu().getColonnes();
 	}
@@ -26,17 +23,17 @@ public class IAFacile extends IA {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		if(m.getRenjou().getJoueurs()[m.getRenjou().getJoueurCourant()] == this){
-			Coordonnees p = jouer();
+			Coordonnees p = jouer(m.getRenjou().getPlateauDeJeu());
 			m.operationJouer(p, type);
 	
 		}
 
 	}
 
-	private Coordonnees jouer() {
-		Coordonnees c = estCoupGagnant();
+	public Coordonnees jouer(PlateauDeJeu p) {
+		Coordonnees c = estCoupGagnant(p);
 		if(c.getLigne() == -1){
-			c = empecherCoupGagnant();
+			c = empecherCoupGagnant(p);
 			if(c.getLigne() == -1){
 				c = pointRandom();
 			}
@@ -45,7 +42,7 @@ public class IAFacile extends IA {
 		return c;
 	}
 
-	private Coordonnees estCoupGagnant(){
+	private Coordonnees estCoupGagnant(PlateauDeJeu plateau){
 		
 		TypeCase typeCase =  TypeCase.PionBlanc;
 		switch(couleur){
@@ -58,11 +55,12 @@ public class IAFacile extends IA {
 			default :
 				break;
 		}
+		
 		Coordonnees c = new Coordonnees(-1,-1);
 		// parcour du tableau 
 		for(int i=0; i<nbLigne; i++){
 			for(int j=0; j<nbColonne; j++){
-				c = quatresAlignes(typeCase, new Coordonnees(i,j));
+				c = quatresAlignes(typeCase, new Coordonnees(i,j), plateau);
 				if(c.getLigne() != -1){
 					break;
 				}
@@ -73,7 +71,7 @@ public class IAFacile extends IA {
 		return c;
 	}
 	
-	private Coordonnees empecherCoupGagnant(){
+	private Coordonnees empecherCoupGagnant(PlateauDeJeu plateau){
 		
 		TypeCase typeCase =  TypeCase.PionBlanc;
 		switch(couleur){
@@ -90,7 +88,7 @@ public class IAFacile extends IA {
 		// parcour du tableau 
 		for(int i=0; i<nbLigne; i++){
 			for(int j=0; j<nbColonne; j++){
-				c = troisAlignes(typeCase, new Coordonnees(i,j));
+				c = troisAlignes(typeCase, new Coordonnees(i,j), plateau);
 				if(c.getLigne() != -1){
 					break;
 				}
@@ -102,13 +100,13 @@ public class IAFacile extends IA {
 	}
 	
 	//a reprendre
-	private Coordonnees quatresAlignes(TypeCase typeCase, Coordonnees p){
+	private Coordonnees quatresAlignes(TypeCase typeCase, Coordonnees p, PlateauDeJeu plateau){
 		
-		Coordonnees c = null;
+		Coordonnees c = new Coordonnees(-1,-1);
 		
-		if(troisAlignesDiagonalBasDroite(typeCase, p)){
+		if(troisAlignesDiagonalBasDroite(typeCase, p, plateau)){
 			Coordonnees pPrime = new Coordonnees(p.getLigne()+1, p.getColonne()+1);
-			if(troisAlignesDiagonalBasDroite(typeCase, pPrime)){
+			if(troisAlignesDiagonalBasDroite(typeCase, pPrime, plateau)){
 				c = coordonneesDunAlignementATroisPoints(p, TypeDirection.DiagonaleBasDroite);
 				if(c.getColonne() == -1){
 					c = coordonneesDunAlignementATroisPoints(p, TypeDirection.DiagonaleBasDroite);
@@ -118,9 +116,13 @@ public class IAFacile extends IA {
 				}
 			}
 		}
-		if(troisAlignesDiagonalBasGauche(typeCase, p)){
+
+		
+		
+		if(troisAlignesDiagonalBasGauche(typeCase, p, plateau)){
 			Coordonnees pPrime = new Coordonnees(p.getLigne()+1, p.getColonne()-1);
-			if(troisAlignesDiagonalBasDroite(typeCase, pPrime)){
+			if(troisAlignesDiagonalBasDroite(typeCase, pPrime, plateau)){
+				
 				c = coordonneesDunAlignementATroisPoints(p, TypeDirection.DiagonaleBasGauche);
 				if(c.getColonne() == -1){
 					c = coordonneesDunAlignementATroisPoints(p, TypeDirection.DiagonaleBasGauche);
@@ -131,9 +133,11 @@ public class IAFacile extends IA {
 			}
 		}
 		
-		if(troisAlignesHorizontal(typeCase, p)){
+		
+		
+		if(troisAlignesHorizontal(typeCase, p, plateau)){
 			Coordonnees pPrime = new Coordonnees(p.getLigne(), p.getColonne()+1);
-			if(troisAlignesDiagonalBasDroite(typeCase, pPrime)){
+			if(troisAlignesDiagonalBasDroite(typeCase, pPrime, plateau)){
 				c = coordonneesDunAlignementATroisPoints(p, TypeDirection.Droite);
 				if(c.getColonne() == -1){
 					c = coordonneesDunAlignementATroisPoints(p, TypeDirection.Droite);
@@ -144,9 +148,9 @@ public class IAFacile extends IA {
 			}
 		}
 		
-		if(troisAlignesVertical(typeCase, p)){
+		if(troisAlignesVertical(typeCase, p, plateau)){
 			Coordonnees pPrime = new Coordonnees(p.getLigne()+1, p.getColonne());
-			if(troisAlignesDiagonalBasDroite(typeCase, pPrime)){
+			if(troisAlignesDiagonalBasDroite(typeCase, pPrime, plateau)){
 				c = coordonneesDunAlignementATroisPoints(p, TypeDirection.Bas);
 				if(c.getColonne() == -1){
 					c = coordonneesDunAlignementATroisPoints(p, TypeDirection.Bas);
@@ -161,32 +165,32 @@ public class IAFacile extends IA {
 		return c;
 	}
 	
-	private Coordonnees troisAlignes(TypeCase typeCase, Coordonnees p){
+	private Coordonnees troisAlignes(TypeCase typeCase, Coordonnees p, PlateauDeJeu plateau){
 		
 		Coordonnees c = new Coordonnees(-1,-1);
 				
-		if(troisAlignesDiagonalBasDroite(typeCase, p)){
+		if(troisAlignesDiagonalBasDroite(typeCase, p, plateau)){
 			c = coordonneesDunAlignementATroisPoints(p, TypeDirection.DiagonaleBasDroite);
 			if(c.getLigne() != -1){
 				return c;
 			}
 		}
 		
-		if(troisAlignesDiagonalBasGauche(typeCase, p)){
+		if(troisAlignesDiagonalBasGauche(typeCase, p, plateau)){
 			c = coordonneesDunAlignementATroisPoints(p, TypeDirection.DiagonaleBasGauche);
 			if(c.getLigne() != -1){
 				return c;
 			}
 		}
 		
-		if(troisAlignesHorizontal(typeCase, p)){
+		if(troisAlignesHorizontal(typeCase, p, plateau)){
 			c = coordonneesDunAlignementATroisPoints(p, TypeDirection.Droite);
 			if(c.getLigne() != -1){
 				return c;
 			}
 		}
 		
-		if(troisAlignesVertical(typeCase, p)){
+		if(troisAlignesVertical(typeCase, p, plateau)){
 			c = coordonneesDunAlignementATroisPoints(p, TypeDirection.Bas);	
 			if(c.getLigne() != -1){
 				return c;
@@ -199,7 +203,7 @@ public class IAFacile extends IA {
 	//     -
 	//   -
 	// -
-	private boolean troisAlignesDiagonalBasGauche(TypeCase typeCase, Coordonnees p) {
+	private boolean troisAlignesDiagonalBasGauche(TypeCase typeCase, Coordonnees p, PlateauDeJeu plateau ) {
 		// TODO Auto-generated method stub
 		
 		int i = p.getLigne();
@@ -207,12 +211,15 @@ public class IAFacile extends IA {
 		
 		i++;
 		j--;
-		if((i<nbLigne)&&(j<0)){
-			if(m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase){
+		if((i<nbLigne)&&(j>0)){
+
+			if(plateau.getPlateau()[i][j] == typeCase){
+
 				i++;
 				j--;
-				if((i<nbLigne)&&(j<0)){
-					if(m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase){
+				if((i<nbLigne)&&(j>0)){
+					
+					if(plateau.getPlateau()[i][j] == typeCase){
 						return true;
 					}
 				}
@@ -226,7 +233,7 @@ public class IAFacile extends IA {
 	// -
 	//   -
 	//     -
-	private boolean troisAlignesDiagonalBasDroite(TypeCase typeCase, Coordonnees p) {
+	private boolean troisAlignesDiagonalBasDroite(TypeCase typeCase, Coordonnees p, PlateauDeJeu plateau) {
 		// TODO Auto-generated method stub
 		
 		int i = p.getLigne();
@@ -235,11 +242,11 @@ public class IAFacile extends IA {
 		i++;
 		j++;
 		if((i<nbLigne)&&(j<nbColonne)){
-			if(m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase){
+			if(plateau.getPlateau()[i][j] == typeCase){
 				i++;
 				j++;
 				if((i<nbLigne)&&(j<nbColonne)){
-					if(m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase){
+					if(plateau.getPlateau()[i][j] == typeCase){
 						return true;
 					}
 				}
@@ -251,17 +258,17 @@ public class IAFacile extends IA {
 	}
 
 	// - - -
-	private boolean troisAlignesHorizontal(TypeCase typeCase, Coordonnees p){
+	private boolean troisAlignesHorizontal(TypeCase typeCase, Coordonnees p, PlateauDeJeu plateau){
 		
 		int i = p.getLigne();
 		int j = p.getColonne();
 
 		j++;
 		if(j<nbColonne){
-			if(m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase){
+			if(plateau.getPlateau()[i][j] == typeCase){
 				j++;
 				if(j<nbColonne){
-					if(m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase){
+					if(plateau.getPlateau()[i][j] == typeCase){
 						return true;
 					}
 				}
@@ -275,17 +282,17 @@ public class IAFacile extends IA {
 	// -
 	// -
 	// -
-	private boolean troisAlignesVertical(TypeCase typeCase, Coordonnees p){
+	private boolean troisAlignesVertical(TypeCase typeCase, Coordonnees p, PlateauDeJeu plateau){
 		
 		int i = p.getLigne();
 		int j = p.getColonne();
 
 		i++;
 		if(i<nbLigne){
-			if(m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase){
+			if(plateau.getPlateau()[i][j] == typeCase){
 				i++;
 				if(j<nbLigne){
-					if(m.getRenjou().getPlateauDeJeu().getPlateau()[i][j] == typeCase){
+					if(plateau.getPlateau()[i][j] == typeCase){
 						return true;
 					}
 				}
@@ -303,7 +310,7 @@ public class IAFacile extends IA {
 			case Bas:
 				
 				//on test le point en haut
-				if((p.getLigne() - 1 < 0) && caseJouable(new Coordonnees(p.getLigne()-1, p.getColonne()))){
+				if((p.getLigne() - 1 > 0) && caseJouable(new Coordonnees(p.getLigne()-1, p.getColonne()))){
 					return (new Coordonnees(p.getLigne()-1,p.getColonne()));
 				}
 				//on test le point en bas
@@ -316,7 +323,7 @@ public class IAFacile extends IA {
 			case Droite:
 				
 				//on test le point a gauche
-				if((p.getColonne() - 1 < 0) && (caseJouable(new Coordonnees(p.getLigne(), p.getColonne()-1)))){
+				if((p.getColonne() - 1 > 0) && (caseJouable(new Coordonnees(p.getLigne(), p.getColonne()-1)))){
 					return (new Coordonnees(p.getLigne(),p.getColonne() - 1));
 				}
 				//on test le point a droite
@@ -329,7 +336,7 @@ public class IAFacile extends IA {
 			case DiagonaleBasDroite:
 				
 				//on test le point en haut a gauche
-				if((p.getLigne() - 1 > 0) && (p.getColonne() -1 < 0) && (caseJouable(new Coordonnees(p.getLigne()-1, p.getColonne()-1)))){
+				if((p.getLigne() - 1 > 0) && (p.getColonne() -1 > 0) && (caseJouable(new Coordonnees(p.getLigne()-1, p.getColonne()-1)))){
 					return (new Coordonnees(p.getLigne() - 1,p.getColonne() - 1));
 				}
 				//on test le point en bas a droite
@@ -346,7 +353,7 @@ public class IAFacile extends IA {
 					return (new Coordonnees(p.getLigne() - 1,p.getColonne() + 1));
 				}
 				//on test le point en bas a gauche
-				else if(( p.getLigne() + 3 < nbLigne) && ( p.getColonne() - 3 < 0) &&(caseJouable(new Coordonnees(p.getLigne()+3, p.getColonne()-3)))){
+				else if(( p.getLigne() + 3 < nbLigne) && ( p.getColonne() - 3 > 0) &&(caseJouable(new Coordonnees(p.getLigne()+3, p.getColonne()-3)))){
 					return (new Coordonnees(p.getLigne() + 3,p.getColonne() - 3));
 				}
 				

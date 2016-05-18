@@ -40,7 +40,7 @@ public class TestMoteur {
 		int nbJoueurs = 2;
 		Moteur donneesJeu = new Moteur(nbJoueurs);
 
-		donneesJeu.setNiveauTrace(0);
+		donneesJeu.setNiveauTrace(10);
 
 		donneesJeu.printTrace(1, "TEST d'une partie nulle");
 		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
@@ -56,8 +56,8 @@ public class TestMoteur {
 				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
 		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
-		for (int i = 1; i < 14; i++) {
-			for (int j = 1; j < 14; j++) {
+		for (int i = 0; i < 15; i++) {
+			for (int j = 0; j < 15; j++) {
 				donneesJeu.operationJouer(new Coordonnees(i, j),
 						donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
 				donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
