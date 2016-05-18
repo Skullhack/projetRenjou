@@ -10,18 +10,20 @@ import java.awt.*;
 import javax.swing.*;
 
 import Controleur.Moteur;
+import Controleur.MoteurObserveur;
+import Enum.TypeJoueur;
 
 /**
  *
  * @author givaudav
  */
-public class IHM implements Runnable {
+public class IHM implements Runnable, MoteurObserveur {
 	JFrame[] frames;
 	Moteur m;
  	
 	public void run() {
-		m = new Moteur(2);
-		
+		m = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile );
+		m.enregistrerObserveur(this);
 		// Creation d'une fenetre
 		frames = new JFrame[2];
 		frames[0] = new FenetreJeu(m);
@@ -47,5 +49,12 @@ public class IHM implements Runnable {
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new IHM());
+	}
+
+	@Override
+	public void actualiser() {
+		// TODO Auto-generated method stub
+		//doit lancer repaint
+		m.printTrace(3, "IHM notifiée");
 	}
 }

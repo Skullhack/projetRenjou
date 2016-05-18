@@ -5,12 +5,13 @@ import java.util.Random;
 
 import Controleur.Coordonnees;
 import Controleur.Moteur;
+import Controleur.MoteurObserveur;
 import Enum.TypeCase;
 import Enum.TypeCouleur;
 import Enum.TypeJoueur;
 
 
-public class IA extends Joueur{
+public class IA extends Joueur implements MoteurObserveur{
 	
 	protected Random r;
 	protected int[][] tabHeuristique;
@@ -19,6 +20,7 @@ public class IA extends Joueur{
 	
     public IA(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
         super(moteur, type, nbPion, couleurJoueur);
+        moteur.enregistrerObserveur(this);
 		java.util.GregorianCalendar calendar = new GregorianCalendar();
 		r = new Random(calendar.getTimeInMillis());
 		nbLigne = m.getRenjou().getPlateauDeJeu().getLignes();
@@ -33,7 +35,6 @@ public class IA extends Joueur{
 	
 	public boolean caseJouable(Coordonnees p) {
 		return (m.getRenjou().getPlateauDeJeu().getPlateau()[p.getLigne()][p.getColonne()] == TypeCase.Jouable);
-
 	}
 
 	public void modifierHeristique(Coordonnees p) {
@@ -102,6 +103,14 @@ public class IA extends Joueur{
 				}
 			}
 		}
+
+	}
+
+	@Override
+	public void actualiser() {
+		// TODO Auto-generated method stub
+		//doit lancer jouer()
+		m.printTrace(3, "IA notifiée");
 
 	}
 

@@ -5,16 +5,12 @@
  */
 package Controleur;
 
-import Enum.EtatPartie;
-import Enum.TypeCase;
-import Enum.TypeCouleur;
-import Enum.TypeDecalage;
-import Enum.TypeJoueur;
-import Joueur.Humain;
-import Joueur.Joueur;
+import Enum.*;
+import Joueur.*;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -23,57 +19,71 @@ import java.util.ArrayList;
 public class Moteur implements InterfaceMoteur {
 	private Renjou renjou;
 	private Log trace;
+    private final List<MoteurObserveur> observeurs;
 
 	// Constructeur
 	public Moteur(int nbJoueurs) {
 		trace = new Log();
+		
 		int nbPionsBase = 60;
+	    this.observeurs = new ArrayList<>();
 		Joueur[] tableauJoueurs = new Joueur[nbJoueurs];
-
+		
 		tableauJoueurs[0] = new Humain(this, TypeJoueur.Humain, nbPionsBase, TypeCouleur.Noir);
 		tableauJoueurs[1] = new Humain(this, TypeJoueur.Humain, nbPionsBase, TypeCouleur.Blanc);
-
+		
 		this.renjou = new Renjou(tableauJoueurs);
 
 	}
 
-	public Moteur(int nbJoueurs, TypeJoueur typeJoueur1, TypeJoueur typeJoueur2) {
+	public Moteur(TypeJoueur typeJoueur1, TypeJoueur typeJoueur2) {
 		trace = new Log();
+		trace.setNiveau(10);
 		int nbPionsBase = 60;
-		Joueur[] tableauJoueurs = new Joueur[nbJoueurs];
-
+		this.observeurs = new ArrayList<>();
+		Joueur[] tableauJoueurs = new Joueur[2];
+		this.renjou = new Renjou(tableauJoueurs);
 		switch (typeJoueur1) {
 		case Humain:
-			tableauJoueurs[0] = new Joueur(this, TypeJoueur.Humain, nbPionsBase, TypeCouleur.Noir);
+			tableauJoueurs[0] = new Humain(this, TypeJoueur.Humain, nbPionsBase, TypeCouleur.Noir);
 			break;
 		case IAFacile:
-			tableauJoueurs[0] = new Joueur(this, TypeJoueur.IAFacile, nbPionsBase, TypeCouleur.Noir);
+			tableauJoueurs[0] = new IAFacile(this, TypeJoueur.IAFacile, nbPionsBase, TypeCouleur.Noir);
 			break;
 		case IAMoyenne:
-			tableauJoueurs[0] = new Joueur(this, TypeJoueur.IAMoyenne, nbPionsBase, TypeCouleur.Noir);
+			tableauJoueurs[0] = new IAMoyenne(this, TypeJoueur.IAMoyenne, nbPionsBase, TypeCouleur.Noir);
 			break;
 		case IADifficile:
-			tableauJoueurs[0] = new Joueur(this, TypeJoueur.IADifficile, nbPionsBase, TypeCouleur.Noir);
+			tableauJoueurs[0] = new IADifficile(this, TypeJoueur.IADifficile, nbPionsBase, TypeCouleur.Noir);
 			break;
 		}
 
 		switch (typeJoueur2) {
 		case Humain:
-			tableauJoueurs[1] = new Joueur(this, TypeJoueur.Humain, nbPionsBase, TypeCouleur.Noir);
+			tableauJoueurs[1] = new Humain(this, TypeJoueur.Humain, nbPionsBase, TypeCouleur.Noir);
 			break;
 		case IAFacile:
-			tableauJoueurs[1] = new Joueur(this, TypeJoueur.IAFacile, nbPionsBase, TypeCouleur.Noir);
+			tableauJoueurs[1] = new IAFacile(this, TypeJoueur.IAFacile, nbPionsBase, TypeCouleur.Noir);
 			break;
 		case IAMoyenne:
-			tableauJoueurs[1] = new Joueur(this, TypeJoueur.IAMoyenne, nbPionsBase, TypeCouleur.Noir);
+			tableauJoueurs[1] = new IAMoyenne(this, TypeJoueur.IAMoyenne, nbPionsBase, TypeCouleur.Noir);
 			break;
 		case IADifficile:
-			tableauJoueurs[1] = new Joueur(this, TypeJoueur.IADifficile, nbPionsBase, TypeCouleur.Noir);
+			tableauJoueurs[1] = new IADifficile(this, TypeJoueur.IADifficile, nbPionsBase, TypeCouleur.Noir);
 			break;
 		}
-		this.renjou = new Renjou(tableauJoueurs);
+		
 	}
 
+	
+	private void notifierObserveurs() {
+        observeurs.forEach(MoteurObserveur::actualiser);
+   }
+	
+	public void enregistrerObserveur(MoteurObserveur observer) {
+        observeurs.add(observer);
+    }
+	
 	@Override
 	public Renjou getRenjou() {
 		return this.renjou;
@@ -146,6 +156,7 @@ public class Moteur implements InterfaceMoteur {
 		}
 
 		// notify avec etat de la partie
+		notifierObserveurs();
 
 	}
 
