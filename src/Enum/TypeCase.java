@@ -10,8 +10,9 @@ package Enum;
  * @author michauad
  */
 public enum TypeCase {
-    CaseJouable,
-    CasePionBlanc,
-    CasePionNoir,
-    CaseTabou
+    Jouable,
+    PionBlanc,
+    PionNoir,
+    Tabou,
+    Injouable
 }

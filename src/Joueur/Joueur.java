@@ -13,11 +13,11 @@ import Enum.*;
 
 
 public class Joueur implements Observer {
-    TypeJoueur type;
-    int nbPion;
-    Moteur m;
-    TypeCouleur couleur;
-    int nbPionsBase;
+    protected TypeJoueur type;
+    protected int nbPion;
+    protected Moteur m;
+    protected TypeCouleur couleur;
+    protected int nbPionsBase;
      
     public Joueur(){
     	//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
