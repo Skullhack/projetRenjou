@@ -27,15 +27,59 @@ public class Moteur implements InterfaceMoteur {
 	// Constructeur
 	public Moteur(int nbJoueurs) {
 		trace = new Log();
+		int nbPionsBase = 60;
 		Joueur[] tableauJoueurs = new Joueur[nbJoueurs];
-		tableauJoueurs[0] = new Humain(TypeJoueur.Humain, 60);
-		tableauJoueurs[1] = new Humain(TypeJoueur.Humain, 60);
-		// tabJ[0] = new Humain(this, 1000);
-		// tabJ[1] = new IAMoyen(this,1000);
-		// System.out.println("this: " + this);
+		tableauJoueurs[0] = new Humain(TypeJoueur.Humain, nbPionsBase);
+		tableauJoueurs[1] = new Humain(TypeJoueur.Humain, nbPionsBase);
 		this.renjou = new Renjou(tableauJoueurs);
 
 	}
+
+	// public Moteur(int nbJoueurs, TypeJoueur typeJoueur1, TypeJoueur
+	// typeJoueur2) {
+	// trace = new Log();
+	// int nbPionsBase = 60;
+	// Joueur[] tableauJoueurs = new Joueur[nbJoueurs];
+	//
+	// switch (typeJoueur1) {
+	// case Humain:
+	// tableauJoueurs[0] = new Joueur(this, TypeJoueur.Humain, nbPionsBase,
+	// TypeCouleur.Noir);
+	// break;
+	// case IAFacile:
+	// tableauJoueurs[0] = new Joueur(this, TypeJoueur.IAFacile, nbPionsBase,
+	// TypeCouleur.Noir);
+	// break;
+	// case IAMoyenne:
+	// tableauJoueurs[0] = new Joueur(this, TypeJoueur.IAMoyenne, nbPionsBase,
+	// TypeCouleur.Noir);
+	// break;
+	// case IADifficile:
+	// tableauJoueurs[0] = new Joueur(this, TypeJoueur.IADifficile, nbPionsBase,
+	// TypeCouleur.Noir);
+	// break;
+	// }
+	//
+	// switch (typeJoueur2) {
+	// case Humain:
+	// tableauJoueurs[1] = new Joueur(this, TypeJoueur.Humain, nbPionsBase,
+	// TypeCouleur.Noir);
+	// break;
+	// case IAFacile:
+	// tableauJoueurs[1] = new Joueur(this, TypeJoueur.IAFacile, nbPionsBase,
+	// TypeCouleur.Noir);
+	// break;
+	// case IAMoyenne:
+	// tableauJoueurs[1] = new Joueur(this, TypeJoueur.IAMoyenne, nbPionsBase,
+	// TypeCouleur.Noir);
+	// break;
+	// case IADifficile:
+	// tableauJoueurs[1] = new Joueur(this, TypeJoueur.IADifficile, nbPionsBase,
+	// TypeCouleur.Noir);
+	// break;
+	// }
+	// this.renjou = new Renjou(tableauJoueurs);
+	// }
 
 	@Override
 	public Renjou getRenjou() {

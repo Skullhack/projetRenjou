@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import Controleur.Coordonnees;
 import Controleur.Moteur;
+import Enum.TypeCase;
 
 public class TestMoteur {
 
@@ -40,7 +41,7 @@ public class TestMoteur {
 		int nbJoueurs = 2;
 		Moteur donneesJeu = new Moteur(nbJoueurs);
 
-		donneesJeu.setNiveauTrace(10);
+		donneesJeu.setNiveauTrace(0);
 
 		donneesJeu.printTrace(1, "TEST d'une partie nulle");
 		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
@@ -217,6 +218,40 @@ public class TestMoteur {
 		}
 
 		donneesJeu.printTrace(1, "FIN TEST d'une partie finie par le joueur noir (DiagonaleHautDroiteBasGauche)");
+
+	}
+
+	@Test
+	public void majCaseTabouAvecPartiePerduPourNoir() {
+
+		int nbJoueurs = 2;
+		Moteur donneesJeu = new Moteur(nbJoueurs);
+
+		donneesJeu.setNiveauTrace(10);
+		donneesJeu.printTrace(1, "TEST d'une case tabou pour faire perdre joueur noir");
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		Coordonnees[] tabCoord = new Coordonnees[4];
+		tabCoord[0] = new Coordonnees(7, 7); // noir
+		tabCoord[1] = new Coordonnees(6, 6); // blanc qui joue
+		tabCoord[2] = new Coordonnees(10, 10); // noir va jouer sur une case
+												// tabou
+		tabCoord[3] = new Coordonnees(13, 13);
+
+		for (int i = 0; i < tabCoord.length; i++) {
+
+			if (i == 2) {
+				// on va mettre la case tabou pour pieger le joueur noir
+				donneesJeu.getRenjou().getPlateauDeJeu().ajouter(new Coordonnees(10, 10), TypeCase.Tabou);
+			}
+
+			donneesJeu.operationJouer(tabCoord[i],
+					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
+			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		}
+
+		donneesJeu.printTrace(1, "FIN TEST d'une case tabou pour faire perdre joueur noir");
 
 	}
 
