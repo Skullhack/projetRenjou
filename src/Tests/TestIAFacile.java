@@ -32,12 +32,12 @@ public class TestIAFacile {
 		IAFacile iaFacile;
 
 		m = new Moteur(nbJoueur);
-		iaFacile = new IAFacile(TypeJoueur.IAFacile, 60, m, TypeCouleur.Noir);
+		iaFacile = new IAFacile(m,TypeJoueur.IAFacile, 60, TypeCouleur.Noir);
 		
 		PlateauDeJeu plateau= iaFacile.getMoteur().getRenjou().getPlateauDeJeu().charger(chemin + "PlateauProchainCoupGagnantHorizontalNoir");
 		System.out.println(plateau);
 		Coordonnees c = iaFacile.jouer(plateau);
-		//assertTrue(((c.getLigne()==7)&&(c.getColonne()==4))||((c.getLigne()==7)&&(c.getColonne()==9)));
+		assertTrue(((c.getLigne()==7)&&(c.getColonne()==4))||((c.getLigne()==7)&&(c.getColonne()==9)));
 		
 		
 		fail("Not yet implemented");

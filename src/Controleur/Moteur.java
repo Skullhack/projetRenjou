@@ -29,57 +29,50 @@ public class Moteur implements InterfaceMoteur {
 		trace = new Log();
 		int nbPionsBase = 60;
 		Joueur[] tableauJoueurs = new Joueur[nbJoueurs];
-		tableauJoueurs[0] = new Humain(TypeJoueur.Humain, nbPionsBase);
-		tableauJoueurs[1] = new Humain(TypeJoueur.Humain, nbPionsBase);
+
+		tableauJoueurs[0] = new Humain(this, TypeJoueur.Humain, nbPionsBase, TypeCouleur.Noir);
+		tableauJoueurs[1] = new Humain(this, TypeJoueur.Humain, nbPionsBase, TypeCouleur.Blanc);
+
 		this.renjou = new Renjou(tableauJoueurs);
 
 	}
 
-	// public Moteur(int nbJoueurs, TypeJoueur typeJoueur1, TypeJoueur
-	// typeJoueur2) {
-	// trace = new Log();
-	// int nbPionsBase = 60;
-	// Joueur[] tableauJoueurs = new Joueur[nbJoueurs];
-	//
-	// switch (typeJoueur1) {
-	// case Humain:
-	// tableauJoueurs[0] = new Joueur(this, TypeJoueur.Humain, nbPionsBase,
-	// TypeCouleur.Noir);
-	// break;
-	// case IAFacile:
-	// tableauJoueurs[0] = new Joueur(this, TypeJoueur.IAFacile, nbPionsBase,
-	// TypeCouleur.Noir);
-	// break;
-	// case IAMoyenne:
-	// tableauJoueurs[0] = new Joueur(this, TypeJoueur.IAMoyenne, nbPionsBase,
-	// TypeCouleur.Noir);
-	// break;
-	// case IADifficile:
-	// tableauJoueurs[0] = new Joueur(this, TypeJoueur.IADifficile, nbPionsBase,
-	// TypeCouleur.Noir);
-	// break;
-	// }
-	//
-	// switch (typeJoueur2) {
-	// case Humain:
-	// tableauJoueurs[1] = new Joueur(this, TypeJoueur.Humain, nbPionsBase,
-	// TypeCouleur.Noir);
-	// break;
-	// case IAFacile:
-	// tableauJoueurs[1] = new Joueur(this, TypeJoueur.IAFacile, nbPionsBase,
-	// TypeCouleur.Noir);
-	// break;
-	// case IAMoyenne:
-	// tableauJoueurs[1] = new Joueur(this, TypeJoueur.IAMoyenne, nbPionsBase,
-	// TypeCouleur.Noir);
-	// break;
-	// case IADifficile:
-	// tableauJoueurs[1] = new Joueur(this, TypeJoueur.IADifficile, nbPionsBase,
-	// TypeCouleur.Noir);
-	// break;
-	// }
-	// this.renjou = new Renjou(tableauJoueurs);
-	// }
+	public Moteur(int nbJoueurs, TypeJoueur typeJoueur1, TypeJoueur typeJoueur2) {
+		trace = new Log();
+		int nbPionsBase = 60;
+		Joueur[] tableauJoueurs = new Joueur[nbJoueurs];
+
+		switch (typeJoueur1) {
+		case Humain:
+			tableauJoueurs[0] = new Joueur(this, TypeJoueur.Humain, nbPionsBase, TypeCouleur.Noir);
+			break;
+		case IAFacile:
+			tableauJoueurs[0] = new Joueur(this, TypeJoueur.IAFacile, nbPionsBase, TypeCouleur.Noir);
+			break;
+		case IAMoyenne:
+			tableauJoueurs[0] = new Joueur(this, TypeJoueur.IAMoyenne, nbPionsBase, TypeCouleur.Noir);
+			break;
+		case IADifficile:
+			tableauJoueurs[0] = new Joueur(this, TypeJoueur.IADifficile, nbPionsBase, TypeCouleur.Noir);
+			break;
+		}
+
+		switch (typeJoueur2) {
+		case Humain:
+			tableauJoueurs[1] = new Joueur(this, TypeJoueur.Humain, nbPionsBase, TypeCouleur.Noir);
+			break;
+		case IAFacile:
+			tableauJoueurs[1] = new Joueur(this, TypeJoueur.IAFacile, nbPionsBase, TypeCouleur.Noir);
+			break;
+		case IAMoyenne:
+			tableauJoueurs[1] = new Joueur(this, TypeJoueur.IAMoyenne, nbPionsBase, TypeCouleur.Noir);
+			break;
+		case IADifficile:
+			tableauJoueurs[1] = new Joueur(this, TypeJoueur.IADifficile, nbPionsBase, TypeCouleur.Noir);
+			break;
+		}
+		this.renjou = new Renjou(tableauJoueurs);
+	}
 
 	@Override
 	public Renjou getRenjou() {
@@ -149,6 +142,7 @@ public class Moteur implements InterfaceMoteur {
 			// il n'y a que le joueur noir qui est impliqué par des tabous.
 			// Si c'est une case tabou, forcément le joueur blanc gagne
 			setPartieFinieJoueurBlanc(renjou);
+			this.printTrace(1, "PARTIE GAGNE PAR BLANC AVEC TABOU !!");
 		}
 
 		// notify avec etat de la partie

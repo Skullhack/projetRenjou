@@ -14,12 +14,8 @@ import Enum.*;
 public class IAFacile extends IA {
 
 
-	public IAFacile(TypeJoueur type, int nbPion, Moteur m, TypeCouleur c) {
-		super();
-		this.m = m;
-		this.type = type;
-		this.nbPion = nbPion;
-		this.couleur = c;
+	public IAFacile(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
+		super(moteur, type, nbPion, couleurJoueur);
 		nbLigne = m.getRenjou().getPlateauDeJeu().getLignes();
 		nbColonne = m.getRenjou().getPlateauDeJeu().getColonnes();
 	}
@@ -34,11 +30,10 @@ public class IAFacile extends IA {
 
 	}
 
-	public Coordonnees jouer(PlateauDeJeu plateau) {
-		
-		Coordonnees c = estCoupGagnant(plateau);
+	public Coordonnees jouer(PlateauDeJeu p) {
+		Coordonnees c = estCoupGagnant(p);
 		if(c.getLigne() == -1){
-			c = empecherCoupGagnant(plateau);
+			c = empecherCoupGagnant(p);
 			if(c.getLigne() == -1){
 				c = pointRandom();
 			}
@@ -60,6 +55,7 @@ public class IAFacile extends IA {
 			default :
 				break;
 		}
+		
 		Coordonnees c = new Coordonnees(-1,-1);
 		// parcour du tableau 
 		for(int i=0; i<nbLigne; i++){
@@ -106,7 +102,7 @@ public class IAFacile extends IA {
 	//a reprendre
 	private Coordonnees quatresAlignes(TypeCase typeCase, Coordonnees p, PlateauDeJeu plateau){
 		
-		Coordonnees c = null;
+		Coordonnees c = new Coordonnees(-1,-1);
 		
 		if(troisAlignesDiagonalBasDroite(typeCase, p, plateau)){
 			Coordonnees pPrime = new Coordonnees(p.getLigne()+1, p.getColonne()+1);
@@ -120,9 +116,13 @@ public class IAFacile extends IA {
 				}
 			}
 		}
+
+		
+		
 		if(troisAlignesDiagonalBasGauche(typeCase, p, plateau)){
 			Coordonnees pPrime = new Coordonnees(p.getLigne()+1, p.getColonne()-1);
 			if(troisAlignesDiagonalBasDroite(typeCase, pPrime, plateau)){
+				
 				c = coordonneesDunAlignementATroisPoints(p, TypeDirection.DiagonaleBasGauche);
 				if(c.getColonne() == -1){
 					c = coordonneesDunAlignementATroisPoints(p, TypeDirection.DiagonaleBasGauche);
@@ -132,6 +132,8 @@ public class IAFacile extends IA {
 				}
 			}
 		}
+		
+		
 		
 		if(troisAlignesHorizontal(typeCase, p, plateau)){
 			Coordonnees pPrime = new Coordonnees(p.getLigne(), p.getColonne()+1);
@@ -209,11 +211,14 @@ public class IAFacile extends IA {
 		
 		i++;
 		j--;
-		if((i<nbLigne)&&(j<0)){
+		if((i<nbLigne)&&(j>0)){
+
 			if(plateau.getPlateau()[i][j] == typeCase){
+
 				i++;
 				j--;
-				if((i<nbLigne)&&(j<0)){
+				if((i<nbLigne)&&(j>0)){
+					
 					if(plateau.getPlateau()[i][j] == typeCase){
 						return true;
 					}
@@ -305,7 +310,7 @@ public class IAFacile extends IA {
 			case Bas:
 				
 				//on test le point en haut
-				if((p.getLigne() - 1 < 0) && caseJouable(new Coordonnees(p.getLigne()-1, p.getColonne()))){
+				if((p.getLigne() - 1 > 0) && caseJouable(new Coordonnees(p.getLigne()-1, p.getColonne()))){
 					return (new Coordonnees(p.getLigne()-1,p.getColonne()));
 				}
 				//on test le point en bas
@@ -318,7 +323,7 @@ public class IAFacile extends IA {
 			case Droite:
 				
 				//on test le point a gauche
-				if((p.getColonne() - 1 < 0) && (caseJouable(new Coordonnees(p.getLigne(), p.getColonne()-1)))){
+				if((p.getColonne() - 1 > 0) && (caseJouable(new Coordonnees(p.getLigne(), p.getColonne()-1)))){
 					return (new Coordonnees(p.getLigne(),p.getColonne() - 1));
 				}
 				//on test le point a droite
@@ -331,7 +336,7 @@ public class IAFacile extends IA {
 			case DiagonaleBasDroite:
 				
 				//on test le point en haut a gauche
-				if((p.getLigne() - 1 > 0) && (p.getColonne() -1 < 0) && (caseJouable(new Coordonnees(p.getLigne()-1, p.getColonne()-1)))){
+				if((p.getLigne() - 1 > 0) && (p.getColonne() -1 > 0) && (caseJouable(new Coordonnees(p.getLigne()-1, p.getColonne()-1)))){
 					return (new Coordonnees(p.getLigne() - 1,p.getColonne() - 1));
 				}
 				//on test le point en bas a droite
@@ -348,7 +353,7 @@ public class IAFacile extends IA {
 					return (new Coordonnees(p.getLigne() - 1,p.getColonne() + 1));
 				}
 				//on test le point en bas a gauche
-				else if(( p.getLigne() + 3 < nbLigne) && ( p.getColonne() - 3 < 0) &&(caseJouable(new Coordonnees(p.getLigne()+3, p.getColonne()-3)))){
+				else if(( p.getLigne() + 3 < nbLigne) && ( p.getColonne() - 3 > 0) &&(caseJouable(new Coordonnees(p.getLigne()+3, p.getColonne()-3)))){
 					return (new Coordonnees(p.getLigne() + 3,p.getColonne() - 3));
 				}
 				

@@ -5,15 +5,15 @@
  */
 package Joueur;
 
+import Controleur.Moteur;
+import Enum.TypeCouleur;
 import Enum.TypeJoueur;
 
 public class IADifficile extends IA  {
     
-	public IADifficile(TypeJoueur type, int nbPion){
-		super();
-		this.type = type;
-		this.nbPion = nbPion;
-		
+	public IADifficile(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur){
+		super(moteur,type,nbPion,couleurJoueur);
+	
 	}
 	
 }
