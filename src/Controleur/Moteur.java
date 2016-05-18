@@ -85,8 +85,7 @@ public class Moteur implements InterfaceMoteur {
 	@Override
 	public void operationJouer(Coordonnees c, TypeJoueur j) {
 
-		this.setNiveauTrace(0);
-		this.printTrace(1, "Je rentre dans operaiton jouer");
+		this.printTrace(1, "Je rentre dans operation jouer");
 
 		if (j != renjou.getJoueurs()[renjou.getJoueurCourant()].getType()) {
 			this.printTrace(1, "Les types ne correspondent pas");
@@ -100,7 +99,7 @@ public class Moteur implements InterfaceMoteur {
 		}
 
 		if (caseJouable(renjou, c)) {
-			this.printTrace(1, "Je rentre dans la fonction jouer");
+			this.printTrace(1, "Je rentre dans la fonction jouer avec le point " + c.getLigne() + "," + c.getColonne());
 			jouer(renjou, c);
 		} else if (caseTabou(renjou, c)) {
 			// il n'y a que le joueur noir qui est impliqué par des tabous.
@@ -241,6 +240,7 @@ public class Moteur implements InterfaceMoteur {
 					.getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
 				colonneCourante--;
 			}
+			colonneCourante++;
 			break;
 		case DiagonaleHautGauche:
 			// parcours diagonale ligne -1 colonne -1
@@ -249,6 +249,8 @@ public class Moteur implements InterfaceMoteur {
 				ligneCourante--;
 				colonneCourante--;
 			}
+			ligneCourante++;
+			colonneCourante++;
 			break;
 
 		case DiagonaleHautDroite:
@@ -258,6 +260,8 @@ public class Moteur implements InterfaceMoteur {
 				ligneCourante--;
 				colonneCourante++;
 			}
+			ligneCourante++;
+			colonneCourante--;
 			break;
 
 		case Haut:
@@ -266,6 +270,7 @@ public class Moteur implements InterfaceMoteur {
 					.getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
 				ligneCourante--;
 			}
+			ligneCourante++;
 			break;
 		default:
 			break;
@@ -299,7 +304,6 @@ public class Moteur implements InterfaceMoteur {
 					.getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
 				colonneCourante++;
 				nbPionsAlignes++;
-				System.out.println("NB PIONS ALIGNES : " + nbPionsAlignes);
 			}
 			break;
 
@@ -311,7 +315,6 @@ public class Moteur implements InterfaceMoteur {
 				ligneCourante++;
 				colonneCourante++;
 				nbPionsAlignes++;
-				System.out.println("NB PIONS ALIGNES : " + nbPionsAlignes);
 			}
 			break;
 
@@ -319,10 +322,9 @@ public class Moteur implements InterfaceMoteur {
 			// parcours diagonale ligne +1 colonne -1
 			while (ligneCourante < nbLignesPlateau && colonneCourante >= 0 && (typeCaseJoueurCourant == renjou
 					.getPlateauDeJeu().getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
-				ligneCourante--;
-				colonneCourante++;
+				ligneCourante++;
+				colonneCourante--;
 				nbPionsAlignes++;
-				System.out.println("NB PIONS ALIGNES : " + nbPionsAlignes);
 			}
 
 			break;
@@ -333,7 +335,6 @@ public class Moteur implements InterfaceMoteur {
 					.getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
 				ligneCourante++;
 				nbPionsAlignes++;
-				System.out.println("NB PIONS ALIGNES : " + nbPionsAlignes);
 			}
 			break;
 
