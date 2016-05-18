@@ -17,7 +17,7 @@ import Joueur.Joueur;
 public class TestIAFacile {
 
 
-	private static String chemin = "src/Tests/PlateauDeJeu/";
+	private static String chemin = "TestsPlateauDeJeu/TestsIA/";
 	
 	@Before
 	public void init() {
@@ -34,14 +34,12 @@ public class TestIAFacile {
 		m = new Moteur(nbJoueur);
 		iaFacile = new IAFacile(m,TypeJoueur.IAFacile, 60, TypeCouleur.Noir);
 		
-		PlateauDeJeu plateau= iaFacile.getMoteur().getRenjou().getPlateauDeJeu().charger(chemin + "PlateauProchainCoupGagnantHorizontalNoir");
+		PlateauDeJeu plateau= iaFacile.getMoteur().getRenjou().getPlateauDeJeu().charger(chemin + "ProchainCoupGagnantNoirHorizonNaif");
 		System.out.println(plateau);
 		Coordonnees c = iaFacile.jouer(plateau);
 		System.out.println(c);
 		assertTrue(((c.getLigne()==7)&&(c.getColonne()==4))||((c.getLigne()==7)&&(c.getColonne()==9)));
 		
-		
-		fail("Not yet implemented");
 	}
 
 }
