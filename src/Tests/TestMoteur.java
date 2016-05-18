@@ -7,8 +7,6 @@ import org.junit.Test;
 import Controleur.Coordonnees;
 import Controleur.Moteur;
 
-
-
 public class TestMoteur {
 
 	@Test
@@ -54,7 +52,7 @@ public class TestMoteur {
 		tabCoord[8] = new Coordonnees(1, 2); // blanc
 		tabCoord[9] = new Coordonnees(3, 7); // noir
 		tabCoord[10] = new Coordonnees(1, 4); // blanc
-		tabCoord[11] = new Coordonnees(14, 14); // blanc
+		tabCoord[11] = new Coordonnees(12, 12); // blanc
 
 		for (int i = 0; i < tabCoord.length; i++) {
 			donneesJeu.operationJouer(tabCoord[i],
@@ -84,14 +82,12 @@ public class TestMoteur {
 		donneesJeu.operationJouer(c,
 				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
 		System.out.println(donneesJeu.getRenjou().getPlateauDeJeu());
-		
-		for (int i = 0; i < donneesJeu.getRenjou().getPlateauDeJeu().getLignes(); i++) {
-			for (int j = 0; j < donneesJeu.getRenjou().getPlateauDeJeu().getColonnes(); j++) {
+
+		for (int i = 1; i < 14; i++) {
+			for (int j = 1; j < 14; j++) {
 				donneesJeu.operationJouer(new Coordonnees(i, j),
 						donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
 				System.out.println(donneesJeu.getRenjou().getPlateauDeJeu());
-				System.out.println("ACTUELLEMENT LA PARTI EST : " + donneesJeu.getRenjou().getEtatPartie());
-
 			}
 
 		}

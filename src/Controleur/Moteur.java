@@ -85,17 +85,22 @@ public class Moteur implements InterfaceMoteur {
 	@Override
 	public void operationJouer(Coordonnees c, TypeJoueur j) {
 
-		this.setNiveauTrace(10);
-		this.printTrace(1, "dans operation jouer");
+		this.setNiveauTrace(0);
+		this.printTrace(1, "Je rentre dans operaiton jouer");
 
 		if (j != renjou.getJoueurs()[renjou.getJoueurCourant()].getType()) {
-			System.out.println("LES TYPES NE CORRESPONDENT PAS  !!!");
+			this.printTrace(1, "Les types ne correspondent pas");
 			return;
 
 		}
 
+		if (renjou.getEtatPartie() != EtatPartie.EnCours) {
+			this.printTrace(1, "La partie n'est plus en cours mais elle est : " + renjou.getEtatPartie());
+			return;
+		}
+
 		if (caseJouable(renjou, c)) {
-			System.out.println("ON RENTRE DANS LA FONCTION JOUER");
+			this.printTrace(1, "Je rentre dans la fonction jouer");
 			jouer(renjou, c);
 		} else if (caseTabou(renjou, c)) {
 			// il n'y a que le joueur noir qui est impliqué par des tabous.
@@ -115,21 +120,22 @@ public class Moteur implements InterfaceMoteur {
 			decrementerPionsJoueurCourant();
 
 			int nbPionsRestant = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
-			System.out.println(
+			this.printTrace(1,
 					"Le nombre de pions du joueur courant " + renjou.getJoueurCourant() + " est : " + nbPionsRestant);
+
 		} catch (Exception e) {
 			System.out.print(e);
 		}
 
 		if (partieFinie(renjou, c)) {
 			setPartieFinie(renjou);
-			System.out.println("LE JEU EST FINI !!");
+			this.printTrace(1, "JEU FINI !!!");
 		} else if (partieNulle(renjou)) {
 			setPartieNulle(renjou);
-			System.out.println("LE JEU EST NUL !!");
+			this.printTrace(1, "PARTIE NULLE !!");
 		} else {
 
-			System.out.println("ON PASSE LA MAIN AU JOUEUR SUIVANT !!");
+			this.printTrace(1, "ON PASSE LA MAIN AU JOUEUR SUIVANT");
 
 			joueurSuivant();
 			majCasesInjouables(renjou);
