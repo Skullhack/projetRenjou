@@ -130,6 +130,7 @@ public class FenetreJeu extends JFrame{
 	    gbc.gridheight = 3;
 	    gbc.fill = GridBagConstraints.VERTICAL;
 	    panels[1].add(panels[5],gbc);
+	    
 		
 		//Fin
 		p.setPreferredSize(new Dimension(600,600));
