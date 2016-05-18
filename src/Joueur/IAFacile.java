@@ -45,8 +45,6 @@ public class IAFacile extends IA {
 		return c;
 	}
 
-
-
 	private Coordonnees estCoupGagnant(){
 		
 		TypeCase typeCase =  TypeCase.PionBlanc;
@@ -75,34 +73,124 @@ public class IAFacile extends IA {
 		return c;
 	}
 	
+	private Coordonnees empecherCoupGagnant(){
+		
+		TypeCase typeCase =  TypeCase.PionBlanc;
+		switch(couleur){
+			case Blanc :
+				typeCase = TypeCase.PionNoir;
+				break;
+			case Noir :
+				typeCase = TypeCase.PionBlanc;
+				break;
+			default :
+				break;
+		}
+		Coordonnees c = new Coordonnees(-1,-1);
+		// parcour du tableau 
+		for(int i=0; i<nbLigne; i++){
+			for(int j=0; j<nbColonne; j++){
+				c = troisAlignes(typeCase, new Coordonnees(i,j));
+				if(c.getLigne() != -1){
+					break;
+				}
+			}
+			
+		}
+
+		return c;		
+	}
 	
-	//a faire
+	//a reprendre
 	private Coordonnees quatresAlignes(TypeCase typeCase, Coordonnees p){
 		
 		Coordonnees c = null;
 		
+		if(troisAlignesDiagonalBasDroite(typeCase, p)){
+			Coordonnees pPrime = new Coordonnees(p.getLigne()+1, p.getColonne()+1);
+			if(troisAlignesDiagonalBasDroite(typeCase, pPrime)){
+				c = coordonneesDunAlignementATroisPoints(p, TypeDirection.DiagonaleBasDroite);
+				if(c.getColonne() == -1){
+					c = coordonneesDunAlignementATroisPoints(p, TypeDirection.DiagonaleBasDroite);
+					if(c.getLigne() != -1){
+						return c;
+					}
+				}
+			}
+		}
+		if(troisAlignesDiagonalBasGauche(typeCase, p)){
+			Coordonnees pPrime = new Coordonnees(p.getLigne()+1, p.getColonne()-1);
+			if(troisAlignesDiagonalBasDroite(typeCase, pPrime)){
+				c = coordonneesDunAlignementATroisPoints(p, TypeDirection.DiagonaleBasGauche);
+				if(c.getColonne() == -1){
+					c = coordonneesDunAlignementATroisPoints(p, TypeDirection.DiagonaleBasGauche);
+					if(c.getLigne() != -1){
+						return c;
+					}
+				}
+			}
+		}
+		
+		if(troisAlignesHorizontal(typeCase, p)){
+			Coordonnees pPrime = new Coordonnees(p.getLigne(), p.getColonne()+1);
+			if(troisAlignesDiagonalBasDroite(typeCase, pPrime)){
+				c = coordonneesDunAlignementATroisPoints(p, TypeDirection.Droite);
+				if(c.getColonne() == -1){
+					c = coordonneesDunAlignementATroisPoints(p, TypeDirection.Droite);
+					if(c.getLigne() != -1){
+						return c;
+					}
+				}
+			}
+		}
+		
+		if(troisAlignesVertical(typeCase, p)){
+			Coordonnees pPrime = new Coordonnees(p.getLigne()+1, p.getColonne());
+			if(troisAlignesDiagonalBasDroite(typeCase, pPrime)){
+				c = coordonneesDunAlignementATroisPoints(p, TypeDirection.Bas);
+				if(c.getColonne() == -1){
+					c = coordonneesDunAlignementATroisPoints(p, TypeDirection.Bas);
+					if(c.getLigne() != -1){
+						return c;
+					}
+				}
+			}
+		}
+		
+		
 		return c;
 	}
 	
-
 	private Coordonnees troisAlignes(TypeCase typeCase, Coordonnees p){
 		
 		Coordonnees c = new Coordonnees(-1,-1);
 				
 		if(troisAlignesDiagonalBasDroite(typeCase, p)){
 			c = coordonneesDunAlignementATroisPoints(p, TypeDirection.DiagonaleBasDroite);
+			if(c.getLigne() != -1){
+				return c;
+			}
 		}
 		
 		if(troisAlignesDiagonalBasGauche(typeCase, p)){
 			c = coordonneesDunAlignementATroisPoints(p, TypeDirection.DiagonaleBasGauche);
+			if(c.getLigne() != -1){
+				return c;
+			}
 		}
 		
 		if(troisAlignesHorizontal(typeCase, p)){
 			c = coordonneesDunAlignementATroisPoints(p, TypeDirection.Droite);
+			if(c.getLigne() != -1){
+				return c;
+			}
 		}
 		
 		if(troisAlignesVertical(typeCase, p)){
-			c = coordonneesDunAlignementATroisPoints(p, TypeDirection.Bas);						
+			c = coordonneesDunAlignementATroisPoints(p, TypeDirection.Bas);	
+			if(c.getLigne() != -1){
+				return c;
+			}
 		}
 		return c;
 	}
@@ -162,7 +250,6 @@ public class IAFacile extends IA {
 		return false;
 	}
 
-	
 	// - - -
 	private boolean troisAlignesHorizontal(TypeCase typeCase, Coordonnees p){
 		
@@ -185,7 +272,6 @@ public class IAFacile extends IA {
 		return false;
 	}
 
-	
 	// -
 	// -
 	// -
@@ -273,35 +359,6 @@ public class IAFacile extends IA {
 			
 		
 		return null;
-	}
-	
-	
-	private Coordonnees empecherCoupGagnant(){
-		
-		TypeCase typeCase =  TypeCase.PionBlanc;
-		switch(couleur){
-			case Blanc :
-				typeCase = TypeCase.PionNoir;
-				break;
-			case Noir :
-				typeCase = TypeCase.PionBlanc;
-				break;
-			default :
-				break;
-		}
-		Coordonnees c = new Coordonnees(-1,-1);
-		// parcour du tableau 
-		for(int i=0; i<nbLigne; i++){
-			for(int j=0; j<nbColonne; j++){
-				c = troisAlignes(typeCase, new Coordonnees(i,j));
-				if(c.getLigne() != -1){
-					break;
-				}
-			}
-			
-		}
-
-		return c;		
 	}
 	
 	private Coordonnees pointRandom(){
