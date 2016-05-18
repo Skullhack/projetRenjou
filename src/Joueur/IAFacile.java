@@ -14,13 +14,8 @@ import Enum.*;
 public class IAFacile extends IA {
 
 
-	public IAFacile(TypeJoueur type, int nbPion, Moteur m) {
-		super();
-		this.m = m;
-		this.type = type;
-		this.nbPion = nbPion;
-		nbLigne = m.getRenjou().getPlateauDeJeu().getLignes();
-		nbColonne = m.getRenjou().getPlateauDeJeu().getColonnes();
+	public IAFacile(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
+		super(moteur, type, nbPion, couleurJoueur);
 	}
 
 	@Override

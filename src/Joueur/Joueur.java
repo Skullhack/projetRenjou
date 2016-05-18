@@ -19,14 +19,13 @@ public class Joueur implements Observer {
     protected TypeCouleur couleur;
     protected int nbPionsBase;
      
-    public Joueur(){
-    	//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
-    public Joueur(TypeJoueur type, int nbPion) {
+    public Joueur(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
     	this.type = type;
     	this.nbPion = nbPion;
     	nbPionsBase = nbPion;
+    	couleur = couleurJoueur;
+    	m = moteur;
     }
     
 	@Override
