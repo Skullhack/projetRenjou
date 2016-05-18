@@ -1,5 +1,6 @@
 package IHM;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -25,7 +26,7 @@ public class Plateau extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-        g.drawImage(imagePlateau, 0, 0, null);
+        g.drawImage(imagePlateau, 0, 0,this.getWidth(), this.getHeight(), null);
         super.paintComponents(g);
     }
 }

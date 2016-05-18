@@ -33,7 +33,7 @@ public class FenetreJeu extends JFrame{
 	private JMenuItem[][] menuItem;
 	private JButton[] boutons;
 	private JButton[] nbPieces;
-	private JButton aide;
+	private JButton[] aide;
 	private Plateau p;
 	
 	public FenetreJeu(Moteur m) {
@@ -77,11 +77,14 @@ public class FenetreJeu extends JFrame{
 		JLabel noir = new JLabel("Noir");
 		nbPieces = new JButton[2];
 		nbPieces[0] = new JButton("60");
-		aide = new JButton("Aide Coup");
+		//ICONE POUR NBPIECE[0]
+		aide = new JButton[2];
+		aide[0] = new JButton("Aide Coup");
+		//ICONE POUR AIDE
 		tempsRestant = new JLabel("Temps restant : 30");
 		panels[3].add(noir);
 		panels[3].add(nbPieces[0]);
-		panels[3].add(aide);
+		panels[3].add(aide[0]);
 		panels[3].add(tempsRestant);
 		panels[3].setBackground(Color.BLACK);
 		
@@ -90,9 +93,10 @@ public class FenetreJeu extends JFrame{
 		JLabel blanc = new JLabel("Blanc");
 		nbPieces = new JButton[2];
 		nbPieces[1] = new JButton("60");
+		aide[1] = new JButton("Aide Coup");
 		panels[5].add(blanc);
 		panels[5].add(nbPieces[1]);
-		panels[5].add(aide);
+		panels[5].add(aide[1]);
 		panels[5].add(tempsRestant);
 		panels[5].setBackground(Color.WHITE);
 		
@@ -101,7 +105,6 @@ public class FenetreJeu extends JFrame{
 		panels[1].add(panels[3]);
 		panels[1].add(panels[4]);
 		panels[1].add(panels[5]);
-
 		
 		//Fin
 		p.setPreferredSize(new Dimension(600,600));
