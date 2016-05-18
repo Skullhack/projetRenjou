@@ -37,6 +37,7 @@ public class TestIAFacile {
 		PlateauDeJeu plateau= iaFacile.getMoteur().getRenjou().getPlateauDeJeu().charger(chemin + "PlateauProchainCoupGagnantHorizontalNoir");
 		System.out.println(plateau);
 		Coordonnees c = iaFacile.jouer(plateau);
+		System.out.println(c);
 		assertTrue(((c.getLigne()==7)&&(c.getColonne()==4))||((c.getLigne()==7)&&(c.getColonne()==9)));
 		
 		
