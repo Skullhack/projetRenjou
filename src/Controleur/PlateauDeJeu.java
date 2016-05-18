@@ -35,9 +35,9 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 
 				if (i == milieuLignes && j == milieuColonnes) {
 					// on se trouve au milieu de la grille;
-					this.plateau[i][j] = TypeCase.CaseJouable;
+					this.plateau[i][j] = TypeCase.Jouable;
 				} else {
-					this.plateau[i][j] = TypeCase.CaseTabou;
+					this.plateau[i][j] = TypeCase.Injouable;
 				}
 			}
 		}
@@ -83,8 +83,18 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 	public void supprimerCasesTabous() {
 		for (int i = 0; i < this.lignes; i++) {
 			for (int j = 0; j < this.colonnes; j++) {
-				if(this.plateau[i][j] == TypeCase.CaseTabou) {
-					this.plateau[i][j] = TypeCase.CaseJouable;
+				if (this.plateau[i][j] == TypeCase.Tabou) {
+					this.plateau[i][j] = TypeCase.Jouable;
+				}
+			}
+		}
+	}
+
+	public void supprimerCasesInjouables() {
+		for (int i = 0; i < this.lignes; i++) {
+			for (int j = 0; j < this.colonnes; j++) {
+				if (this.plateau[i][j] == TypeCase.Injouable) {
+					this.plateau[i][j] = TypeCase.Jouable;
 				}
 			}
 		}
@@ -109,28 +119,32 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 	public static TypeCase charToTypeCase(char c) {
 		switch (c) {
 		case 'N':
-			return TypeCase.CasePionNoir;
+			return TypeCase.PionNoir;
 		case 'B':
-			return TypeCase.CasePionBlanc;
+			return TypeCase.PionBlanc;
 		case 'X':
-			return TypeCase.CaseTabou;
+			return TypeCase.Tabou;
 		case 'O':
-			return TypeCase.CaseJouable;
+			return TypeCase.Jouable;
+		case 'I':
+			return TypeCase.Injouable;
 		default:
-			return TypeCase.CaseTabou;
+			return TypeCase.Tabou;
 		}
 	}
 
 	public static String TypeCasetoString(TypeCase tc) {
 		switch (tc) {
-		case CasePionNoir:
+		case PionNoir:
 			return "N";
-		case CasePionBlanc:
+		case PionBlanc:
 			return "B";
-		case CaseTabou:
+		case Tabou:
 			return "X";
-		case CaseJouable:
+		case Jouable:
 			return "O";
+		case Injouable:
+			return "I";
 		default:
 			return "X";
 		}
