@@ -55,7 +55,7 @@ public class FenetreJeu extends JFrame {
 		for (int i=0;i<panels.length;i++)
 			panels[i] = new JPanel(); 
 		String[] nomMenus = {"Partie","Configuration","Aide"};
-		String[][] nomSousMenu = {{"Creer partie","Sauvegarder","Charger","Quitter"},{"Thème","Paramètres","Tabous"},{"Règles","Tutoriel","A propos de"}};
+		String[][] nomSousMenu = {{"Creer partie","Sauvegarder","Charger","Quitter"},{"Theme","Parametres","Tabous"},{"Regles","Tutoriel","A propos de"}};
 		String[] nomBoutons={"Annuler","Refaire"};
 		JLabel[] tempsRestant;
 		JButton recommencer;
@@ -71,7 +71,7 @@ public class FenetreJeu extends JFrame {
 			menus[i] = new JMenu(nomMenus[i]);
 			barreMenu.add(menus[i]);
 			for (int j=0; j<menuItem[i].length;j++) {
-				menuItem[i][j]=new JMenuItem();
+				menuItem[i][j]=new JMenuItem(nomSousMenu[i][j]);
 				menuItem[i][j].setActionCommand(nomSousMenu[i][j]);
 				menus[i].add(menuItem[i][j]);
 				menuItem[i][j].addActionListener(efj);
@@ -172,41 +172,40 @@ public class FenetreJeu extends JFrame {
 	}
 	
 	public void creerLayout() {
-				//Layout Panel Noir
-				panels[3].setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-				panels[3].setMinimumSize(new Dimension(panels[1].getWidth(),0));
-				noir.setAlignmentY(CENTER_ALIGNMENT);
-				noir.setFont(new Font("Time New Roman",Font.BOLD,30));
-				ImageIcon pionNoir = new ImageIcon(new ImageIcon("./Images/"+theme+"/Pion noir.png").getImage().getScaledInstance(80,80,  java.awt.Image.SCALE_SMOOTH));
-				nbPieces[0].setIcon(pionNoir);
-				System.out.println(this.getWidth());
-				nbPieces[0].setHorizontalTextPosition(JLabel.CENTER);
-				nbPieces[0].setFont(new Font("Time New Roman",Font.BOLD,40));
-				nbPieces[0].setForeground(Color.WHITE);
-				panels[3].setBackground(Color.WHITE);
-				panels[5].setBackground(Color.WHITE);
-				panels[4].setBackground(Color.WHITE);
-				
-				//Boutons annuler et refaire
-				ImageIcon annuler = new ImageIcon(new ImageIcon("./Images/"+theme+"/Annuler.png").getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH));
-				ImageIcon annulerEclaire = new ImageIcon(new ImageIcon("./Images/"+theme+"/AnnulerEclaire.png").getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH));
-				setIcone(boutons[0],new Color(0,0,0,0),annuler,annulerEclaire);
-				//boutons[0].addActionListener();
-				ImageIcon refaire = new ImageIcon(new ImageIcon("./Images/"+theme+"/Refaire.png").getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH));
-				ImageIcon refaireEclaire = new ImageIcon(new ImageIcon("./Images/"+theme+"/RefaireEclaire.png").getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH));
-				setIcone(boutons[1],new Color(0,0,0,0),refaire,refaireEclaire);
-				ImageIcon aide = new ImageIcon(new ImageIcon("./Images/"+theme+"/AmpouleGrisee.png").getImage().getScaledInstance(90, 90,  java.awt.Image.SCALE_SMOOTH));
-				ImageIcon aideEclaire = new ImageIcon(new ImageIcon("./Images/"+theme+"/AmpouleAlumee.png").getImage().getScaledInstance(90, 90,  java.awt.Image.SCALE_SMOOTH));
-				setIcone(aides[0],new Color(0,0,0,0),aide,aideEclaire);
-				setIcone(aides[1],new Color(0,0,0,0),aide,aideEclaire);
-				
-				//Layout Panel Blanc
-				blanc.setFont(new Font("Time New Roman",Font.BOLD,30));
-				ImageIcon pionBlanc = new ImageIcon(new ImageIcon("./Images/"+theme+"/Pion blanc.png").getImage().getScaledInstance(80, 80,  java.awt.Image.SCALE_SMOOTH));
-				nbPieces[1].setIcon(pionBlanc);
-				nbPieces[1].setHorizontalTextPosition(JLabel.CENTER);
-				nbPieces[1].setFont(new Font("Time New Roman",Font.BOLD,40));
-				nbPieces[1].setForeground(Color.BLACK);
+			//Layout Panel Noir
+			panels[3].setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+			panels[3].setMinimumSize(new Dimension(panels[1].getWidth(),0));
+			noir.setAlignmentY(CENTER_ALIGNMENT);
+			noir.setFont(new Font("Time New Roman",Font.BOLD,30));
+			ImageIcon pionNoir = new ImageIcon(new ImageIcon("./Images/"+theme+"/Pion noir.png").getImage().getScaledInstance(80,80,  java.awt.Image.SCALE_SMOOTH));
+			nbPieces[0].setIcon(pionNoir);
+			nbPieces[0].setHorizontalTextPosition(JLabel.CENTER);
+			nbPieces[0].setFont(new Font("Time New Roman",Font.BOLD,40));
+			nbPieces[0].setForeground(Color.WHITE);
+			panels[3].setBackground(Color.WHITE);
+			panels[5].setBackground(Color.WHITE);
+			panels[4].setBackground(Color.WHITE);
+			
+			//Boutons annuler et refaire
+			ImageIcon annuler = new ImageIcon(new ImageIcon("./Images/"+theme+"/Annuler.png").getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH));
+			ImageIcon annulerEclaire = new ImageIcon(new ImageIcon("./Images/"+theme+"/AnnulerEclaire.png").getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH));
+			setIcone(boutons[0],new Color(0,0,0,0),annuler,annulerEclaire);
+			//boutons[0].addActionListener();
+			ImageIcon refaire = new ImageIcon(new ImageIcon("./Images/"+theme+"/Refaire.png").getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH));
+			ImageIcon refaireEclaire = new ImageIcon(new ImageIcon("./Images/"+theme+"/RefaireEclaire.png").getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH));
+			setIcone(boutons[1],new Color(0,0,0,0),refaire,refaireEclaire);
+			ImageIcon aide = new ImageIcon(new ImageIcon("./Images/"+theme+"/AmpouleGrisee.png").getImage().getScaledInstance(90, 90,  java.awt.Image.SCALE_SMOOTH));
+			ImageIcon aideEclaire = new ImageIcon(new ImageIcon("./Images/"+theme+"/AmpouleAlumee.png").getImage().getScaledInstance(90, 90,  java.awt.Image.SCALE_SMOOTH));
+			setIcone(aides[0],new Color(0,0,0,0),aide,aideEclaire);
+			setIcone(aides[1],new Color(0,0,0,0),aide,aideEclaire);
+			
+			//Layout Panel Blanc
+			blanc.setFont(new Font("Time New Roman",Font.BOLD,30));
+			ImageIcon pionBlanc = new ImageIcon(new ImageIcon("./Images/"+theme+"/Pion blanc.png").getImage().getScaledInstance(80, 80,  java.awt.Image.SCALE_SMOOTH));
+			nbPieces[1].setIcon(pionBlanc);
+			nbPieces[1].setHorizontalTextPosition(JLabel.CENTER);
+			nbPieces[1].setFont(new Font("Time New Roman",Font.BOLD,40));
+			nbPieces[1].setForeground(Color.BLACK);
 	}
 
 	private void setIcone(JButton b,Color color, ImageIcon normal, ImageIcon rollover) {
