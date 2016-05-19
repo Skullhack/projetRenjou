@@ -21,7 +21,7 @@ public class IA extends Joueur {
 	
     public IA(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
         super(moteur, type, nbPion, couleurJoueur);
-        
+         
 		java.util.GregorianCalendar calendar = new GregorianCalendar();
 		r = new Random(calendar.getTimeInMillis());
 		nbLigne = m.getRenjou().getPlateauDeJeu().getLignes();

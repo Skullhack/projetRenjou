@@ -71,7 +71,7 @@ public class Joueur implements MoteurObserveur {
 		this.couleur = c;
 	}
 
-	@Override
+	@Override 
 	public void actualiser() {
 		m.printTrace(3, "Joueur notifie");
 	}
