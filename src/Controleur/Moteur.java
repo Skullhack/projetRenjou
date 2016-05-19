@@ -72,6 +72,7 @@ public class Moteur implements InterfaceMoteur {
 			tableauJoueurs[1] = new IADifficile(this, TypeJoueur.IADifficile, nbPionsBase, TypeCouleur.Blanc);
 			break;
 		}
+		notifierObserveurs();
 		ajouterPlateauJeuDansListeAnnuler(renjou);
 
 	}

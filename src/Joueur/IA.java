@@ -52,13 +52,13 @@ public class IA extends Joueur implements MoteurObserveur{
 					tabHeuristique[i-1][j-1] ++;
 				}
 			}
-			if(j < nbColonne){
+			if(j < nbColonne-1){
 				if(caseJouable(new Coordonnees(i-1,j+1), plateau)){
 					tabHeuristique[i-1][j+1] ++;
 				}
 			}
 		}
-		if(i < nbLigne){
+		if(i < nbLigne-1){
 			if(caseJouable(new Coordonnees(i+1,j), plateau)){
 				tabHeuristique[i+1][j] ++;
 			}
@@ -67,7 +67,7 @@ public class IA extends Joueur implements MoteurObserveur{
 					tabHeuristique[i+1][j-1] ++;
 				}
 			}
-			if(j < nbColonne){
+			if(j < nbColonne-1){
 				if(caseJouable(new Coordonnees(i+1,j+1), plateau)){
 					tabHeuristique[i+1][j+1] ++;
 				}
@@ -79,7 +79,7 @@ public class IA extends Joueur implements MoteurObserveur{
 				tabHeuristique[i][j-1] ++;
 			}
 		}
-		if(j < nbColonne){
+		if(j < nbColonne-1){
 			if(caseJouable(new Coordonnees(i,j+1), plateau)){
 				tabHeuristique[i][j+1] ++;
 			}
@@ -100,7 +100,7 @@ public class IA extends Joueur implements MoteurObserveur{
 		for (int i = 0; i < nbLigne; i++) {
 			for (int j = 0; j < nbColonne; j++) {
 				Coordonnees p = new Coordonnees(i, j);
-				if (caseJouable(p, plateau)) {
+				if ((plateau.getPlateau()[i][j] == TypeCase.PionBlanc) || (plateau.getPlateau()[i][j] == TypeCase.PionNoir)) {
 					m.printTrace(9,"appel a modifier Heuristique");
 					modifierHeristique(p, plateau);
 				}
