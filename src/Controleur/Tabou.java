@@ -17,70 +17,34 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 
 	// Constructeur
 	public Tabou(boolean[][] conf, String nom) {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+		// throw new UnsupportedOperationException("Not supported yet."); // To
+		// change
+		// body
+		// of
+		// generated
+		// methods,
+		// choose
+		// Tools
+		// |
+		// Templates.
 	}
 
 	@Override
 	public String getNom() {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+		return this.nom;
 	}
 
 	@Override
 	public boolean[][] getConfiguration() {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+		return this.configuration;
 	}
 
 	private void setNom(String nom) {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+		this.nom = nom;
 	}
 
 	private void setConfiguration(boolean[][] configuration) {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+		this.configuration = configuration;
 	}
 
 	@Override
