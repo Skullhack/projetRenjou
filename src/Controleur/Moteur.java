@@ -33,7 +33,6 @@ public class Moteur implements InterfaceMoteur {
 		tableauJoueurs[1] = new Humain(this, TypeJoueur.Humain, nbPionsBase, TypeCouleur.Blanc);
 
 		this.renjou = new Renjou(tableauJoueurs);
-		ajouterPlateauJeuDansListeAnnuler(renjou);
 
 	}
 
@@ -79,10 +78,9 @@ public class Moteur implements InterfaceMoteur {
 
 	private void notifierObserveurs() {
 
-		for (int i = 0; i < observeurs.size(); i++) {
-			observeurs.get(i).actualiser();
+		for (MoteurObserveur m : observeurs ) {
+			m.actualiser();
 		}
-		// observeurs.forEach(MoteurObserveur::actualiser);
 	}
 
 	public void enregistrerObserveur(MoteurObserveur observer) {
@@ -170,6 +168,9 @@ public class Moteur implements InterfaceMoteur {
 		try {
 			TypeCase typeCaseJoueurCourant = getTypeCaseJoueurCourant(renjou);
 			renjou.getPlateauDeJeu().ajouter(c, typeCaseJoueurCourant);
+			
+			//ajout dans la liste
+			
 			decrementerPionsJoueurCourant(renjou);
 
 			int nbPionsRestant = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
@@ -193,7 +194,7 @@ public class Moteur implements InterfaceMoteur {
 			joueurSuivant();
 			majCasesInjouables(renjou);
 			majCasesTabous(renjou);
-			ajouterPlateauJeuDansListeAnnuler(renjou);
+			//ajouterPlateauJeuDansListeAnnuler(renjou);
 		}
 	}
 
@@ -484,6 +485,57 @@ public class Moteur implements InterfaceMoteur {
 				}
 			}
 		}
+	}
+
+	@Override
+	public void annuler(Renjou renjou) {
+
+		if (renjou.getJoueurs()[0].getType() == TypeJoueur.Humain
+				&& renjou.getJoueurs()[1].getType() == TypeJoueur.Humain) {
+			annulerDemiCoup(renjou);
+		} else {
+			annulerDemiCoup(renjou);
+			annulerDemiCoup(renjou);
+		}
+	}
+
+	@Override
+	public void annulerDemiCoup(Renjou renjou) {
+		int dernierElementHistorique = renjou.getListeAnnuler().size() - 1;
+		if (dernierElementHistorique >= 0) {
+			PlateauDeJeu dernierPlateauHistorique = renjou.getListeAnnuler().get(dernierElementHistorique);
+			renjou.setPlateauDeJeu(dernierPlateauHistorique);
+			renjou.getListeRefaire().add(renjou.getListeAnnuler().get(dernierElementHistorique));
+			renjou.getListeAnnuler().remove(dernierElementHistorique);
+			incrementerPionsJoueurCourant(renjou);
+			joueurPrecedent();
+
+		}
+	}
+
+	@Override
+	public void refaire(Renjou renjou) {
+		if (renjou.getJoueurs()[0].getType() == TypeJoueur.Humain
+				&& renjou.getJoueurs()[1].getType() == TypeJoueur.Humain) {
+			refaireDemiCoup(renjou);
+		} else {
+			refaireDemiCoup(renjou);
+			refaireDemiCoup(renjou);
+		}
+	}
+
+	public void refaireDemiCoup(Renjou renjou) {
+		int dernierElementHistorique = renjou.getListeRefaire().size() - 1;
+
+		if (dernierElementHistorique >= 0) {
+			PlateauDeJeu dernierPlateauHistorique = renjou.getListeRefaire().get(dernierElementHistorique);
+			renjou.setPlateauDeJeu(dernierPlateauHistorique);
+			renjou.getListeAnnuler().add(renjou.getListeRefaire().get(dernierElementHistorique));
+			renjou.getListeRefaire().remove(dernierElementHistorique);
+			decrementerPionsJoueurCourant(renjou);
+			joueurSuivant();
+		}
+
 	}
 
 }

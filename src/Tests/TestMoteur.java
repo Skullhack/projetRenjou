@@ -7,6 +7,7 @@ import org.junit.Test;
 import Controleur.Coordonnees;
 import Controleur.Moteur;
 import Enum.TypeCase;
+import Enum.TypeJoueur;
 
 public class TestMoteur {
 
@@ -59,8 +60,8 @@ public class TestMoteur {
 
 		for (int i = 0; i < 15; i++) {
 			for (int j = 0; j < 15; j++) {
-				
-				if(i == 4) {
+
+				if (i == 4) {
 					i++;
 				}
 				donneesJeu.operationJouer(new Coordonnees(i, j),
@@ -231,7 +232,7 @@ public class TestMoteur {
 		int nbJoueurs = 2;
 		Moteur donneesJeu = new Moteur(nbJoueurs);
 
-		donneesJeu.setNiveauTrace(10);
+		donneesJeu.setNiveauTrace(0);
 		donneesJeu.printTrace(1, "TEST d'une case tabou pour faire perdre joueur noir");
 		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
@@ -256,6 +257,37 @@ public class TestMoteur {
 		}
 
 		donneesJeu.printTrace(1, "FIN TEST d'une case tabou pour faire perdre joueur noir");
+
+	}
+
+	@Test
+	public void annulerCoup() {
+
+		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
+
+		donneesJeu.setNiveauTrace(10);
+		donneesJeu.printTrace(1, "TEST d'une annulation de coup");
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		Coordonnees[] tabCoord = new Coordonnees[4];
+		tabCoord[0] = new Coordonnees(7, 7); // noir
+		tabCoord[1] = new Coordonnees(6, 6); // blanc qui joue
+		tabCoord[2] = new Coordonnees(10, 10); // noir
+		tabCoord[3] = new Coordonnees(13, 13); // blanc
+
+		for (int i = 0; i < tabCoord.length; i++) {
+
+			donneesJeu.operationJouer(tabCoord[i],
+					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
+			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		}
+		
+		donneesJeu.printTrace(1, "ANNNULATION D'UN COUP COMPLET");
+		donneesJeu.annuler(donneesJeu.getRenjou());
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		donneesJeu.printTrace(1, "FIN TEST d'une annulation de coup");
 
 	}
 
