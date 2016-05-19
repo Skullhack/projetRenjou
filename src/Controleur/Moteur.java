@@ -73,7 +73,7 @@ public class Moteur implements InterfaceMoteur {
 			break;
 		}
 		notifierObserveurs();
-		//ajouterPlateauJeuDansListeAnnuler(renjou);
+		// ajouterPlateauJeuDansListeAnnuler(renjou);
 
 	}
 
@@ -496,7 +496,6 @@ public class Moteur implements InterfaceMoteur {
 		if (renjou.getJoueurs()[0].getType() == TypeJoueur.Humain
 				&& renjou.getJoueurs()[1].getType() == TypeJoueur.Humain) {
 			annulerDemiCoup(renjou);
-			joueurPrecedent();
 		} else {
 			annulerDemiCoup(renjou);
 			annulerDemiCoup(renjou);
@@ -507,12 +506,14 @@ public class Moteur implements InterfaceMoteur {
 	public void annulerDemiCoup(Renjou renjou) {
 		int dernierElementHistorique = renjou.getListeAnnuler().size() - 1;
 		if (dernierElementHistorique >= 0) {
+			
+			joueurPrecedent();
+			
 			PionJoue dernierPionJoueHistorique = renjou.getListeAnnuler().get(dernierElementHistorique);
 			renjou.getPlateauDeJeu().enlever(dernierPionJoueHistorique.c);
 			renjou.getListeRefaire().add(renjou.getListeAnnuler().get(dernierElementHistorique));
 			renjou.getListeAnnuler().remove(dernierElementHistorique);
 			incrementerPionsJoueurCourant(renjou);
-			//joueurPrecedent();
 			majCasesTabous(renjou);
 
 		}
