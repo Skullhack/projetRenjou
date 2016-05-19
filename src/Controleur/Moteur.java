@@ -160,15 +160,15 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 		this.printTrace(1, "Je rentre dans operation jouer");
 
+		if (renjou.getEtatPartie() != EtatPartie.EnCours) {
+			this.printTrace(1, "La partie n'est plus en cours mais elle est : " + renjou.getEtatPartie());
+			return;
+		}
+		
 		if (j != renjou.getJoueurs()[renjou.getJoueurCourant()].getType()) {
 			this.printTrace(1, "Les types ne correspondent pas");
 			return;
 
-		}
-
-		if (renjou.getEtatPartie() != EtatPartie.EnCours) {
-			this.printTrace(1, "La partie n'est plus en cours mais elle est : " + renjou.getEtatPartie());
-			return;
 		}
 
 		if (caseJouable(renjou, c)) {
