@@ -60,16 +60,16 @@ public class Moteur implements InterfaceMoteur {
 
 		switch (typeJoueur2) {
 		case Humain:
-			tableauJoueurs[1] = new Humain(this, TypeJoueur.Humain, nbPionsBase, TypeCouleur.Noir);
+			tableauJoueurs[1] = new Humain(this, TypeJoueur.Humain, nbPionsBase, TypeCouleur.Blanc);
 			break;
 		case IAFacile:
-			tableauJoueurs[1] = new IAFacile(this, TypeJoueur.IAFacile, nbPionsBase, TypeCouleur.Noir);
+			tableauJoueurs[1] = new IAFacile(this, TypeJoueur.IAFacile, nbPionsBase, TypeCouleur.Blanc);
 			break;
 		case IAMoyenne:
-			tableauJoueurs[1] = new IAMoyenne(this, TypeJoueur.IAMoyenne, nbPionsBase, TypeCouleur.Noir);
+			tableauJoueurs[1] = new IAMoyenne(this, TypeJoueur.IAMoyenne, nbPionsBase, TypeCouleur.Blanc);
 			break;
 		case IADifficile:
-			tableauJoueurs[1] = new IADifficile(this, TypeJoueur.IADifficile, nbPionsBase, TypeCouleur.Noir);
+			tableauJoueurs[1] = new IADifficile(this, TypeJoueur.IADifficile, nbPionsBase, TypeCouleur.Blanc);
 			break;
 		}
 		
