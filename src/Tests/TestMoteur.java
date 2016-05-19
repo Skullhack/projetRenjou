@@ -59,6 +59,10 @@ public class TestMoteur {
 
 		for (int i = 0; i < 15; i++) {
 			for (int j = 0; j < 15; j++) {
+				
+				if(i == 4) {
+					i++;
+				}
 				donneesJeu.operationJouer(new Coordonnees(i, j),
 						donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
 				donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());

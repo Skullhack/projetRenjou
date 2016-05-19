@@ -33,6 +33,7 @@ public class Moteur implements InterfaceMoteur {
 		tableauJoueurs[1] = new Humain(this, TypeJoueur.Humain, nbPionsBase, TypeCouleur.Blanc);
 
 		this.renjou = new Renjou(tableauJoueurs);
+		ajouterPlateauJeuDansListeAnnuler(renjou);
 
 	}
 
@@ -72,6 +73,7 @@ public class Moteur implements InterfaceMoteur {
 			tableauJoueurs[1] = new IADifficile(this, TypeJoueur.IADifficile, nbPionsBase, TypeCouleur.Blanc);
 			break;
 		}
+		ajouterPlateauJeuDansListeAnnuler(renjou);
 
 	}
 
@@ -168,7 +170,7 @@ public class Moteur implements InterfaceMoteur {
 		try {
 			TypeCase typeCaseJoueurCourant = getTypeCaseJoueurCourant(renjou);
 			renjou.getPlateauDeJeu().ajouter(c, typeCaseJoueurCourant);
-			decrementerPionsJoueurCourant();
+			decrementerPionsJoueurCourant(renjou);
 
 			int nbPionsRestant = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
 			this.printTrace(1,
@@ -191,7 +193,7 @@ public class Moteur implements InterfaceMoteur {
 			joueurSuivant();
 			majCasesInjouables(renjou);
 			majCasesTabous(renjou);
-			renjou.getListeAnnuler().add(renjou.getPlateauDeJeu());
+			ajouterPlateauJeuDansListeAnnuler(renjou);
 		}
 	}
 
@@ -203,9 +205,18 @@ public class Moteur implements InterfaceMoteur {
 		return (renjou.getPlateauDeJeu().getPlateau()[c.getLigne()][c.getColonne()] == TypeCase.Tabou);
 	}
 
-	private void decrementerPionsJoueurCourant() {
+	public void decrementerPionsJoueurCourant(Renjou renjou) {
 		renjou.getJoueurs()[renjou.getJoueurCourant()]
 				.setNbPion(renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion() - 1);
+	}
+
+	public void incrementerPionsJoueurCourant(Renjou renjou) {
+		renjou.getJoueurs()[renjou.getJoueurCourant()]
+				.setNbPion(renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion() + 1);
+	}
+
+	public void ajouterPlateauJeuDansListeAnnuler(Renjou renjou) {
+		renjou.getListeAnnuler().add(renjou.getPlateauDeJeu());
 	}
 
 	public TypeCase getTypeCaseJoueurCourant(Renjou renjou) throws Exception {
@@ -235,10 +246,18 @@ public class Moteur implements InterfaceMoteur {
 	@Override
 	public void joueurSuivant() {
 		int joueurSuivant = this.renjou.getJoueurCourant() + 1;
-		this.renjou.setJoueurCourant(joueurSuivant);
-		if (this.renjou.getJoueurCourant() >= this.renjou.getNbJoueurs()) {
-			this.renjou.setJoueurCourant(0);
+		if (joueurSuivant >= this.renjou.getNbJoueurs()) {
+			joueurSuivant = 0;
 		}
+		this.renjou.setJoueurCourant(joueurSuivant);
+	}
+
+	public void joueurPrecedent() {
+		int joueurPrecedent = this.renjou.getJoueurCourant() - 1;
+		if (joueurPrecedent < 0) {
+			joueurPrecedent = 1;
+		}
+		this.renjou.setJoueurCourant(joueurPrecedent);
 	}
 
 	@Override
