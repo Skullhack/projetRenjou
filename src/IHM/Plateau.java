@@ -65,8 +65,6 @@ public class Plateau extends JPanel {
             		afficherPion(i, j, tab[i][j], g);
             }
         }
-        
-        
         super.paintComponents(g);
     }
 }

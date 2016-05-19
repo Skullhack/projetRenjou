@@ -38,6 +38,7 @@ public class FenetreJeu extends JFrame {
 	private JButton[] aides;
 	private Plateau p;
 	private EcouteurDeSouris eds;
+	private EcouteurFenetreJeu efj;
 	private JLabel noir;
 	private JLabel blanc;
 	private String theme;
@@ -45,6 +46,7 @@ public class FenetreJeu extends JFrame {
 	public FenetreJeu(Moteur m) {
 		//Variables
 		this.m = m;
+		efj = new EcouteurFenetreJeu(m);
 		this.theme = m.getRenjou().getEmplacementThemes();
 		p = new Plateau(m.getRenjou().getPlateauDeJeu(), theme);
 		eds = new EcouteurDeSouris(m,p);
@@ -53,7 +55,7 @@ public class FenetreJeu extends JFrame {
 		for (int i=0;i<panels.length;i++)
 			panels[i] = new JPanel(); 
 		String[] nomMenus = {"Partie","Configuration","Aide"};
-		String[][] nomSousMenu = {{"Créer partie","Sauvegarder","Charger","Quitter"},{"Thème","Paramètres","Tabous"},{"Règles","Tutoriel","A propos de"}};
+		String[][] nomSousMenu = {{"Creer partie","Sauvegarder","Charger","Quitter"},{"Thème","Paramètres","Tabous"},{"Règles","Tutoriel","A propos de"}};
 		String[] nomBoutons={"Annuler","Refaire"};
 		JLabel[] tempsRestant;
 		JButton recommencer;
@@ -71,6 +73,7 @@ public class FenetreJeu extends JFrame {
 			for (int j=0; j<menuItem[i].length;j++) {
 				menuItem[i][j]=new JMenuItem(nomSousMenu[i][j]);
 				menus[i].add(menuItem[i][j]);
+				menuItem[i][j].addActionListener(efj);
 			}
 		}
 		
@@ -79,6 +82,7 @@ public class FenetreJeu extends JFrame {
 		for (int i=0; i<boutons.length;i++) {
 			boutons[i] = new JButton(nomBoutons[i]);
 			panels[4].add(boutons[i]);
+			boutons[i].addActionListener(efj);
 		}
 		
 		//Initialisation Noir
@@ -133,6 +137,7 @@ public class FenetreJeu extends JFrame {
 	    //Panel Sud
 	    recommencer = new JButton("Recommencer");
 	    panels[2].add(recommencer);
+	    recommencer.addActionListener(efj);
 		
 		//Fin
 		p.setPreferredSize(new Dimension(600,600));
@@ -202,7 +207,7 @@ public class FenetreJeu extends JFrame {
 		b.setIcon(normal);
 		b.setBackground(new Color(0,0,0,0));
 		b.setSize(new Dimension(normal.getIconWidth(),normal.getIconHeight()));
-		b.setText(null);
+		//b.setText(null);
 		b.setRolloverEnabled(false);
 		b.setRolloverIcon(rollover);
 		b.setBorderPainted(false);
