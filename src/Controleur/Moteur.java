@@ -77,7 +77,11 @@ public class Moteur implements InterfaceMoteur {
 
 	
 	private void notifierObserveurs() {
-        observeurs.forEach(MoteurObserveur::actualiser);
+		
+		for(int i = 0; i < observeurs.size(); i++) {
+			observeurs.get(i).actualiser();
+		}
+        //observeurs.forEach(MoteurObserveur::actualiser);
    }
 	
 	public void enregistrerObserveur(MoteurObserveur observer) {

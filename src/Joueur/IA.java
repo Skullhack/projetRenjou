@@ -113,7 +113,7 @@ public class IA extends Joueur implements MoteurObserveur{
 	public void actualiser() {
 		// TODO Auto-generated method stub
 		//doit lancer jouer()
-		m.printTrace(3, "IA notifiée");
+		m.printTrace(3, "IA notifiee");
 
 	}
 
