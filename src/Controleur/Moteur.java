@@ -19,19 +19,19 @@ import java.util.List;
 public class Moteur implements InterfaceMoteur {
 	private Renjou renjou;
 	private Log trace;
-    private final List<MoteurObserveur> observeurs;
+	private final List<MoteurObserveur> observeurs;
 
 	// Constructeur
 	public Moteur(int nbJoueurs) {
 		trace = new Log();
-		
+
 		int nbPionsBase = 60;
-	    this.observeurs = new ArrayList<>();
+		this.observeurs = new ArrayList<>();
 		Joueur[] tableauJoueurs = new Joueur[nbJoueurs];
-		
+
 		tableauJoueurs[0] = new Humain(this, TypeJoueur.Humain, nbPionsBase, TypeCouleur.Noir);
 		tableauJoueurs[1] = new Humain(this, TypeJoueur.Humain, nbPionsBase, TypeCouleur.Blanc);
-		
+
 		this.renjou = new Renjou(tableauJoueurs);
 
 	}
@@ -72,22 +72,21 @@ public class Moteur implements InterfaceMoteur {
 			tableauJoueurs[1] = new IADifficile(this, TypeJoueur.IADifficile, nbPionsBase, TypeCouleur.Blanc);
 			break;
 		}
-		
+
 	}
 
-	
 	private void notifierObserveurs() {
-		
-		for(int i = 0; i < observeurs.size(); i++) {
+
+		for (int i = 0; i < observeurs.size(); i++) {
 			observeurs.get(i).actualiser();
 		}
-        //observeurs.forEach(MoteurObserveur::actualiser);
-   }
-	
+		// observeurs.forEach(MoteurObserveur::actualiser);
+	}
+
 	public void enregistrerObserveur(MoteurObserveur observer) {
-        observeurs.add(observer);
-    }
-	
+		observeurs.add(observer);
+	}
+
 	@Override
 	public Renjou getRenjou() {
 		return this.renjou;
@@ -210,9 +209,9 @@ public class Moteur implements InterfaceMoteur {
 	}
 
 	public TypeCase getTypeCaseJoueurCourant(Renjou renjou) throws Exception {
-		if (renjou.getJoueurCourant() == 0) {
+		if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Noir) {
 			return TypeCase.PionNoir;
-		} else if (renjou.getJoueurCourant() == 1) {
+		} else if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Blanc) {
 			return TypeCase.PionBlanc;
 		} else {
 			throw new Exception("Erreur. Il n'y a pas de correspondance de joueur et de couleur de pion");
@@ -401,16 +400,19 @@ public class Moteur implements InterfaceMoteur {
 	public boolean partieNulle(Renjou renjou) {
 
 		// si les 2 joueurs ont un nombre de pions vide
+		// pions du joueur noir
 		int nbPionsEnCoursJoueurNoir = renjou.getJoueurs()[0].getNbPion();
+
+		// pions du joueur blanc
 		int nbPionsEnCoursJoueurBlanc = renjou.getJoueurs()[1].getNbPion();
 
 		return (nbPionsEnCoursJoueurNoir == 0 && nbPionsEnCoursJoueurBlanc == 0);
 	}
 
 	public void setPartieFinie(Renjou renjou) {
-		if (renjou.getJoueurCourant() == 0) {
+		if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Noir) {
 			renjou.setEtatPartie(EtatPartie.NoirGagne);
-		} else if (renjou.getJoueurCourant() == 1) {
+		} else if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Blanc) {
 			renjou.setEtatPartie(EtatPartie.BlancGagne);
 		}
 	}
@@ -430,9 +432,9 @@ public class Moteur implements InterfaceMoteur {
 		// int nbPionsEnCours =
 		// renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
 
-		if (renjou.getJoueurCourant() == 0) {
+		if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Noir) {
 			// mettre les cases tabous en fonction de la liste
-		} else if (renjou.getJoueurCourant() == 1) {
+		} else if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Blanc) {
 			// faire sauter toutes les cases tabous. Le joueur blanc n'en a pas
 			renjou.getPlateauDeJeu().supprimerCasesTabous();
 		}
@@ -444,9 +446,11 @@ public class Moteur implements InterfaceMoteur {
 		int nbPionsBase = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPionsBase();
 		int nbPionsEnCours = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
 
-		if (renjou.getJoueurCourant() == 0 && nbPionsEnCours == nbPionsBase - 1) {
+		if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Noir
+				&& nbPionsEnCours == nbPionsBase - 1) {
 			renjou.getPlateauDeJeu().supprimerCasesInjouables();
-		} else if (renjou.getJoueurCourant() == 1 && nbPionsBase == nbPionsEnCours) {
+		} else if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Blanc
+				&& nbPionsBase == nbPionsEnCours) {
 			// le tabou du joueur Blanc : les 8 cases adjacentes du premier coup
 			Coordonnees c = new Coordonnees();
 			int milieuLignes = renjou.getPlateauDeJeu().getLignes() / 2;
