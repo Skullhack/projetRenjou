@@ -56,5 +56,6 @@ public class IHM implements Runnable, MoteurObserveur {
 		// TODO Auto-generated method stub
 		//doit lancer repaint
 		m.printTrace(3, "IHM notifiee");
+		frames[0].repaint();
 	}
 }

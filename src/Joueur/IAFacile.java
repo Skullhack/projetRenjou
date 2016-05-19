@@ -19,8 +19,14 @@ public class IAFacile extends IA {
 		nbColonne = m.getRenjou().getPlateauDeJeu().getColonnes();
 	}
 
+//	@Override
+//	public void update(Observable arg0, Object arg1) {
+//
+//
+//	}
+	
 	@Override
-	public void update(Observable arg0, Object arg1) {
+	public void actualiser() {
 		if (m.getRenjou().getJoueurs()[m.getRenjou().getJoueurCourant()] == this) {
 			Coordonnees p = jouer(m.getRenjou().getPlateauDeJeu());
 			m.operationJouer(p, type);
@@ -28,6 +34,7 @@ public class IAFacile extends IA {
 		}
 
 	}
+	
 
 	public Coordonnees jouer(PlateauDeJeu p) {
 		Coordonnees c = estCoupGagnant(p);
@@ -89,7 +96,7 @@ public class IAFacile extends IA {
 			for (int j = 0; j < nbColonne; j++) {
 				c = troisAlignes(typeCase, new Coordonnees(i, j), plateau);
 				if (c.getLigne() != -1) {
-					break;
+					return c;
 				}
 			}
 
@@ -291,7 +298,7 @@ public class IAFacile extends IA {
 			if (i < nbLigne) {
 				if (plateau.getPlateau()[i][j] == typeCase) {
 					i++;
-					if (j < nbLigne) {
+					if (i < nbLigne) {
 						if (plateau.getPlateau()[i][j] == typeCase) {
 							return true;
 						}
@@ -312,7 +319,7 @@ public class IAFacile extends IA {
 		case Bas:
 
 			// on test le point en haut
-			if ((p.getLigne() - 1 > 0) && caseJouable(new Coordonnees(p.getLigne() - 1, p.getColonne()), plateau)) {
+			if ((p.getLigne() - 1 >= 0) && caseJouable(new Coordonnees(p.getLigne() - 1, p.getColonne()), plateau)) {
 				return (new Coordonnees(p.getLigne() - 1, p.getColonne()));
 			}
 			// on test le point en bas
@@ -326,7 +333,7 @@ public class IAFacile extends IA {
 		case Droite:
 
 			// on test le point a gauche
-			if ((p.getColonne() - 1 > 0) && (caseJouable(new Coordonnees(p.getLigne(), p.getColonne() - 1), plateau))) {
+			if ((p.getColonne() - 1 >= 0) && (caseJouable(new Coordonnees(p.getLigne(), p.getColonne() - 1), plateau))) {
 				return (new Coordonnees(p.getLigne(), p.getColonne() - 1));
 			}
 			// on test le point a droite
@@ -340,7 +347,7 @@ public class IAFacile extends IA {
 		case DiagonaleBasDroite:
 
 			// on test le point en haut a gauche
-			if ((p.getLigne() - 1 > 0) && (p.getColonne() - 1 > 0)
+			if ((p.getLigne() - 1 >= 0) && (p.getColonne() - 1 >= 0)
 					&& (caseJouable(new Coordonnees(p.getLigne() - 1, p.getColonne() - 1), plateau))) {
 				return (new Coordonnees(p.getLigne() - 1, p.getColonne() - 1));
 			}
@@ -355,12 +362,12 @@ public class IAFacile extends IA {
 		case DiagonaleBasGauche:
 
 			// on test le point en haut a droite
-			if ((p.getLigne() - 1 > 0) && (p.getColonne() + 1 < nbColonne)
+			if ((p.getLigne() - 1 >= 0) && (p.getColonne() + 1 < nbColonne)
 					&& (caseJouable(new Coordonnees(p.getLigne() - 1, p.getColonne() + 1), plateau))) {
 				return (new Coordonnees(p.getLigne() - 1, p.getColonne() + 1));
 			}
 			// on test le point en bas a gauche
-			else if ((p.getLigne() + 3 < nbLigne) && (p.getColonne() - 3 > 0)
+			else if ((p.getLigne() + 3 < nbLigne) && (p.getColonne() - 3 >= 0)
 					&& (caseJouable(new Coordonnees(p.getLigne() + 3, p.getColonne() - 3), plateau))) {
 				return (new Coordonnees(p.getLigne() + 3, p.getColonne() - 3));
 			}
@@ -387,7 +394,23 @@ public class IAFacile extends IA {
 			}
 		}
 
+		if(listePoint.size() == 0){
+			listePoint = listePointValide(plateau);
+		}
 		int indiceRandom = r.nextInt(listePoint.size());
 		return listePoint.get(indiceRandom);
+	}
+
+	private ArrayList<Coordonnees> listePointValide(PlateauDeJeu plateau) {
+		
+		ArrayList<Coordonnees> listePoint = new ArrayList<>();
+		for(int i=0; i < nbLigne; i++){
+			for(int j=0; j < nbColonne; j++){
+				if(plateau.getPlateau()[i][j] == TypeCase.Jouable){
+					listePoint.add(new Coordonnees(i,j));
+				}
+			}
+		}
+		return listePoint;
 	}
 }
