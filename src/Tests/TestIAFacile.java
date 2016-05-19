@@ -16,7 +16,7 @@ import Joueur.IAFacile;
 public class TestIAFacile {
 
 
-	private static String chemin = "TestsPlateauDeJeu/TestsIAFacile/";
+	private static String chemin = "Tests/TestsIAFacile/";
 	
 	
 	Moteur m;
