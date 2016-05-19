@@ -1,6 +1,6 @@
 package Controleur;
 
-public class Log {
+public class Log implements java.io.Serializable {
 
 	int niveau;
 	

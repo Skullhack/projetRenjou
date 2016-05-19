@@ -25,7 +25,7 @@ public interface InterfaceMoteur {
 	// Methodes
 	public void sauvegarder(String nomFichier);
 
-	public void charger(String nomFichier);
+	public void charger(String fichierCharger);
 
 	public void operationJouer(Coordonnees c, TypeJoueur j);
 

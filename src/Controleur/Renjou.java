@@ -15,7 +15,7 @@ import Enum.*;
  *
  * @author michauad
  */
-public class Renjou implements InterfaceRenjou {
+public class Renjou implements InterfaceRenjou, java.io.Serializable {
 	private PlateauDeJeu plateau;
 	private Joueur[] tabJoueurs;
 	private int joueurCourant;

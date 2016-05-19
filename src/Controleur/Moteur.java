@@ -9,6 +9,11 @@ import Enum.*;
 import Joueur.*;
 
 import java.awt.Point;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +21,7 @@ import java.util.List;
  *
  * @author michauad
  */
-public class Moteur implements InterfaceMoteur {
+public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	private Renjou renjou;
 	private Log trace;
 	private final List<MoteurObserveur> observeurs;
@@ -25,12 +30,11 @@ public class Moteur implements InterfaceMoteur {
 	public Moteur(int nbJoueurs) {
 		trace = new Log();
 
-		int nbPionsBase = 60;
 		this.observeurs = new ArrayList<>();
 		Joueur[] tableauJoueurs = new Joueur[nbJoueurs];
 
-		tableauJoueurs[0] = new Humain(this, TypeJoueur.Humain, nbPionsBase, TypeCouleur.Noir);
-		tableauJoueurs[1] = new Humain(this, TypeJoueur.Humain, nbPionsBase, TypeCouleur.Blanc);
+		tableauJoueurs[0] = creerJoueur(TypeJoueur.Humain, TypeCouleur.Noir);
+		tableauJoueurs[1] = creerJoueur(TypeJoueur.Humain, TypeCouleur.Blanc);
 
 		this.renjou = new Renjou(tableauJoueurs);
 
@@ -39,41 +43,33 @@ public class Moteur implements InterfaceMoteur {
 	public Moteur(TypeJoueur typeJoueur1, TypeJoueur typeJoueur2) {
 		trace = new Log();
 		trace.setNiveau(10);
-		int nbPionsBase = 60;
 		this.observeurs = new ArrayList<>();
 		Joueur[] tableauJoueurs = new Joueur[2];
 		this.renjou = new Renjou(tableauJoueurs);
-		switch (typeJoueur1) {
-		case Humain:
-			tableauJoueurs[0] = new Humain(this, TypeJoueur.Humain, nbPionsBase, TypeCouleur.Noir);
-			break;
-		case IAFacile:
-			tableauJoueurs[0] = new IAFacile(this, TypeJoueur.IAFacile, nbPionsBase, TypeCouleur.Noir);
-			break;
-		case IAMoyenne:
-			tableauJoueurs[0] = new IAMoyenne(this, TypeJoueur.IAMoyenne, nbPionsBase, TypeCouleur.Noir);
-			break;
-		case IADifficile:
-			tableauJoueurs[0] = new IADifficile(this, TypeJoueur.IADifficile, nbPionsBase, TypeCouleur.Noir);
-			break;
-		}
 
-		switch (typeJoueur2) {
-		case Humain:
-			tableauJoueurs[1] = new Humain(this, TypeJoueur.Humain, nbPionsBase, TypeCouleur.Blanc);
-			break;
-		case IAFacile:
-			tableauJoueurs[1] = new IAFacile(this, TypeJoueur.IAFacile, nbPionsBase, TypeCouleur.Blanc);
-			break;
-		case IAMoyenne:
-			tableauJoueurs[1] = new IAMoyenne(this, TypeJoueur.IAMoyenne, nbPionsBase, TypeCouleur.Blanc);
-			break;
-		case IADifficile:
-			tableauJoueurs[1] = new IADifficile(this, TypeJoueur.IADifficile, nbPionsBase, TypeCouleur.Blanc);
-			break;
-		}
+		tableauJoueurs[0] = creerJoueur(typeJoueur1, TypeCouleur.Noir);
+		tableauJoueurs[1] = creerJoueur(typeJoueur2, TypeCouleur.Blanc);
+
 		notifierObserveurs();
-		// ajouterPlateauJeuDansListeAnnuler(renjou);
+
+	}
+
+	public Joueur creerJoueur(TypeJoueur typeJoueur, TypeCouleur typeCouleur) {
+
+		int nbPionsBase = 60;
+
+		switch (typeJoueur) {
+		case Humain:
+			return (new Humain(this, TypeJoueur.Humain, nbPionsBase, typeCouleur));
+		case IAFacile:
+			return (new IAFacile(this, TypeJoueur.IAFacile, nbPionsBase, typeCouleur));
+		case IAMoyenne:
+			return (new IAMoyenne(this, TypeJoueur.IAMoyenne, nbPionsBase, typeCouleur));
+		case IADifficile:
+			return (new IADifficile(this, TypeJoueur.IADifficile, nbPionsBase, typeCouleur));
+		default:
+			return (new Humain(this, TypeJoueur.Humain, nbPionsBase, typeCouleur));
+		}
 
 	}
 
@@ -107,30 +103,66 @@ public class Moteur implements InterfaceMoteur {
 
 	@Override
 	public void sauvegarder(String nomFichier) {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+
+		ObjectOutputStream oos = null;
+
+		try {
+			final FileOutputStream fichier = new FileOutputStream(nomFichier);
+			oos = new ObjectOutputStream(fichier);
+			oos.writeObject(renjou);
+			oos.flush();
+		} catch (final java.io.IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (oos != null) {
+					oos.flush();
+					oos.close();
+				}
+			} catch (final IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+
 	}
 
 	@Override
-	public void charger(String nomFichier) {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+	public void charger(String fichierCharger) {
+
+		ObjectInputStream ois = null;
+		try {
+			final FileInputStream fichierIn = new FileInputStream(fichierCharger);
+			ois = new ObjectInputStream(fichierIn);
+			renjou = (Renjou) ois.readObject();
+
+			
+			this.enregistrerObserveur(renjou.getJoueurs()[0]);
+			this.enregistrerObserveur(renjou.getJoueurs()[1]);
+			
+			Joueur[] tableauJoueurs = new Joueur[2];
+			
+			
+			
+			tableauJoueurs[0] = creerJoueur(renjou.getJoueurs()[0].getType(), TypeCouleur.Noir);
+			tableauJoueurs[1] = creerJoueur(renjou.getJoueurs()[1].getType(), TypeCouleur.Blanc);
+
+			renjou.setJoueurs(tableauJoueurs);
+
+		} catch (final java.io.IOException e) {
+			e.printStackTrace();
+		} catch (final ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ois != null) {
+					ois.close();
+				}
+			} catch (final IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+
+		notifierObserveurs();
 	}
 
 	@Override

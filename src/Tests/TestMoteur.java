@@ -403,7 +403,7 @@ public class TestMoteur {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
 
-		donneesJeu.setNiveauTrace(10);
+		donneesJeu.setNiveauTrace(0);
 		donneesJeu.printTrace(1, "TEST d'un annuler/refaire de coup entre un joueur et une IA");
 		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
@@ -452,6 +452,66 @@ public class TestMoteur {
 				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
 
 		donneesJeu.printTrace(1, "FIN TEST d'un annuler/refaire un coup ENTRE JOUEUR ET IA");
+
+	}
+
+	@Test
+	public void testSauvegardePartie() {
+
+		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
+
+		donneesJeu.setNiveauTrace(10);
+		donneesJeu.printTrace(1, "TEST PARTIE AVEC SAUVEGARDE");
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		Coordonnees[] tabCoord = new Coordonnees[4];
+		tabCoord[0] = new Coordonnees(7, 7); // noir coup 1
+		tabCoord[1] = new Coordonnees(1, 1); // noir coup 2
+		tabCoord[2] = new Coordonnees(10, 10); // noir coup 3
+		tabCoord[3] = new Coordonnees(13, 13); // noir coup 4
+
+		for (int i = 0; i < tabCoord.length; i++) {
+			donneesJeu.operationJouer(tabCoord[i],
+					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
+			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		}
+
+		donneesJeu.sauvegarder("testSaveRenjou.ser");
+
+		donneesJeu.printTrace(1, "FIN TEST PARTIE AVEC SAUVEGARDE");
+
+	}
+
+	@Test
+	public void testChargementPartie() {
+
+		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
+
+		donneesJeu.setNiveauTrace(10);
+		donneesJeu.printTrace(1, "TEST CHARGEMENT DE PARTIE");
+
+		donneesJeu.charger("testSaveRenjouBackup.ser");
+
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		donneesJeu.printTrace(1, "LE JOUEUR NOIR EST DE TYPE : " + donneesJeu.getRenjou().getJoueurs()[0].getType());
+		donneesJeu.printTrace(1, "LE JOUEUR BLANC EST DE TYPE : " + donneesJeu.getRenjou().getJoueurs()[1].getType());
+
+		donneesJeu.printTrace(1, "LE JOUEUR NOIR HUMAIN JOUE");
+
+		donneesJeu.operationJouer(new Coordonnees(0, 0),
+				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
+
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		donneesJeu.printTrace(1, "QUE SE PASSE T'IL ???");
+
+		donneesJeu.operationJouer(new Coordonnees(0, 0),
+				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
+
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		donneesJeu.printTrace(1, "FIN TEST CHARGEMENT DE PARTIE");
 
 	}
 

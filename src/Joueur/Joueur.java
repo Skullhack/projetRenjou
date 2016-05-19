@@ -12,7 +12,7 @@ import Controleur.*;
 import Enum.*;
 
 
-public class Joueur implements Observer {
+public class Joueur implements Observer, java.io.Serializable {
     protected TypeJoueur type;
     protected int nbPion;
     protected Moteur m;

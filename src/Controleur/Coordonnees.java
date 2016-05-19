@@ -2,7 +2,7 @@ package Controleur;
 
 import java.awt.Point;
 
-public class Coordonnees {
+public class Coordonnees implements java.io.Serializable{
 
 	private int colonne;
 	private int ligne;
