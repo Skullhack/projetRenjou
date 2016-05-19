@@ -67,4 +67,8 @@ public class Plateau extends JPanel {
         }
         super.paintComponents(g);
     }
+    
+    public void setPlateau(PlateauDeJeu p) {
+    	this.p = p;
+    }
 }

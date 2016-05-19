@@ -30,6 +30,8 @@ public class EcouteurFenetreJeu implements ActionListener  {
 			System.exit(0);
 		else if (action.equals("Recommencer"))
 			m.recommencerPartie();
+		else if (action.equals("AideCoup"))
+			System.out.println("AideCoup");
 		else
 			System.out.println("Erreur Mauvais Bouton");
 	}

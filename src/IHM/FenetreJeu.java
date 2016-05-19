@@ -71,7 +71,8 @@ public class FenetreJeu extends JFrame {
 			menus[i] = new JMenu(nomMenus[i]);
 			barreMenu.add(menus[i]);
 			for (int j=0; j<menuItem[i].length;j++) {
-				menuItem[i][j]=new JMenuItem(nomSousMenu[i][j]);
+				menuItem[i][j]=new JMenuItem();
+				menuItem[i][j].setActionCommand(nomSousMenu[i][j]);
 				menus[i].add(menuItem[i][j]);
 				menuItem[i][j].addActionListener(efj);
 			}
@@ -80,7 +81,8 @@ public class FenetreJeu extends JFrame {
 		//Initialisation Bouton Dans Bouton
 		boutons = new JButton[nomBoutons.length];
 		for (int i=0; i<boutons.length;i++) {
-			boutons[i] = new JButton(nomBoutons[i]);
+			boutons[i] = new JButton();
+			boutons[i].setActionCommand(nomBoutons[i]);
 			panels[4].add(boutons[i]);
 			boutons[i].addActionListener(efj);
 		}
@@ -91,7 +93,8 @@ public class FenetreJeu extends JFrame {
 		nbPieces = new JLabel[2];
 		nbPieces[0] = new JLabel("60");
 		aides = new JButton[2];
-		aides[0] = new JButton("Aide Coup");
+		aides[0] = new JButton();
+		aides[0].setActionCommand("AideCoup");
 		tempsRestant = new JLabel[2];
 		tempsRestant[0] = new JLabel("Temps restant : 30");
 		panels[3].add(noir);
@@ -103,7 +106,8 @@ public class FenetreJeu extends JFrame {
 		panels[5].setLayout(new BoxLayout(panels[5], BoxLayout.PAGE_AXIS));
 		blanc = new JLabel("Blanc",SwingConstants.CENTER);
 		nbPieces[1] = new JLabel("60");
-		aides[1] = new JButton("Aide Coup");
+		aides[1] = new JButton();
+		aides[1].setActionCommand("AideCoup");
 		tempsRestant[1] = new JLabel("Temps restant : 30");
 		panels[5].add(blanc,"CENTER");
 		panels[5].add(nbPieces[1]);
@@ -153,6 +157,7 @@ public class FenetreJeu extends JFrame {
 	}
 
 	public void repaint() {
+		p.setPlateau(m.getRenjou().getPlateauDeJeu());
 		p.repaint();
 		nbPieces[0].setText(Integer.toString(m.getRenjou().getJoueurs()[0].getNbPion()));
 		nbPieces[1].setText(Integer.toString(m.getRenjou().getJoueurs()[1].getNbPion()));
@@ -172,7 +177,7 @@ public class FenetreJeu extends JFrame {
 				panels[3].setMinimumSize(new Dimension(panels[1].getWidth(),0));
 				noir.setAlignmentY(CENTER_ALIGNMENT);
 				noir.setFont(new Font("Time New Roman",Font.BOLD,30));
-				ImageIcon pionNoir = new ImageIcon(new ImageIcon("./Images/"+theme+"/Pion noir.png").getImage().getScaledInstance(100,100,  java.awt.Image.SCALE_SMOOTH));
+				ImageIcon pionNoir = new ImageIcon(new ImageIcon("./Images/"+theme+"/Pion noir.png").getImage().getScaledInstance(80,80,  java.awt.Image.SCALE_SMOOTH));
 				nbPieces[0].setIcon(pionNoir);
 				System.out.println(this.getWidth());
 				nbPieces[0].setHorizontalTextPosition(JLabel.CENTER);
@@ -181,6 +186,7 @@ public class FenetreJeu extends JFrame {
 				panels[3].setBackground(Color.WHITE);
 				panels[5].setBackground(Color.WHITE);
 				panels[4].setBackground(Color.WHITE);
+				
 				//Boutons annuler et refaire
 				ImageIcon annuler = new ImageIcon(new ImageIcon("./Images/"+theme+"/Annuler.png").getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH));
 				ImageIcon annulerEclaire = new ImageIcon(new ImageIcon("./Images/"+theme+"/AnnulerEclaire.png").getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH));
@@ -196,7 +202,7 @@ public class FenetreJeu extends JFrame {
 				
 				//Layout Panel Blanc
 				blanc.setFont(new Font("Time New Roman",Font.BOLD,30));
-				ImageIcon pionBlanc = new ImageIcon(new ImageIcon("./Images/"+theme+"/Pion blanc.png").getImage().getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH));
+				ImageIcon pionBlanc = new ImageIcon(new ImageIcon("./Images/"+theme+"/Pion blanc.png").getImage().getScaledInstance(80, 80,  java.awt.Image.SCALE_SMOOTH));
 				nbPieces[1].setIcon(pionBlanc);
 				nbPieces[1].setHorizontalTextPosition(JLabel.CENTER);
 				nbPieces[1].setFont(new Font("Time New Roman",Font.BOLD,40));
@@ -207,7 +213,6 @@ public class FenetreJeu extends JFrame {
 		b.setIcon(normal);
 		b.setBackground(new Color(0,0,0,0));
 		b.setSize(new Dimension(normal.getIconWidth(),normal.getIconHeight()));
-		//b.setText(null);
 		b.setRolloverEnabled(false);
 		b.setRolloverIcon(rollover);
 		b.setBorderPainted(false);
