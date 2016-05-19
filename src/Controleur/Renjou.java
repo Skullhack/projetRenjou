@@ -20,7 +20,7 @@ public class Renjou implements InterfaceRenjou {
 	private Joueur[] tabJoueurs;
 	private int joueurCourant;
 	private ArrayList<PionJoue> listeAnnuler;
-	private ArrayList<PionJoues> listeRefaire;
+	private ArrayList<PionJoue> listeRefaire;
 	private EtatPartie etatPartie;
 	private ArrayList<Tabou> tabouJeu;
 	private Tabous tabous;

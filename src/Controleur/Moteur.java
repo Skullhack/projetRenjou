@@ -73,13 +73,13 @@ public class Moteur implements InterfaceMoteur {
 			break;
 		}
 		notifierObserveurs();
-		ajouterPlateauJeuDansListeAnnuler(renjou);
+		//ajouterPlateauJeuDansListeAnnuler(renjou);
 
 	}
 
 	private void notifierObserveurs() {
 
-		for (MoteurObserveur m : observeurs ) {
+		for (MoteurObserveur m : observeurs) {
 			m.actualiser();
 		}
 	}
@@ -169,9 +169,10 @@ public class Moteur implements InterfaceMoteur {
 		try {
 			TypeCase typeCaseJoueurCourant = getTypeCaseJoueurCourant(renjou);
 			renjou.getPlateauDeJeu().ajouter(c, typeCaseJoueurCourant);
-			
-			//ajout dans la liste
-			
+
+			// ajout dans la liste
+			ajouterPionJoueDansListeAnnuler(renjou, c, typeCaseJoueurCourant);
+
 			decrementerPionsJoueurCourant(renjou);
 
 			int nbPionsRestant = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
@@ -195,7 +196,7 @@ public class Moteur implements InterfaceMoteur {
 			joueurSuivant();
 			majCasesInjouables(renjou);
 			majCasesTabous(renjou);
-			//ajouterPlateauJeuDansListeAnnuler(renjou);
+			// ajouterPlateauJeuDansListeAnnuler(renjou);
 		}
 	}
 
@@ -217,8 +218,9 @@ public class Moteur implements InterfaceMoteur {
 				.setNbPion(renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion() + 1);
 	}
 
-	public void ajouterPlateauJeuDansListeAnnuler(Renjou renjou) {
-		renjou.getListeAnnuler().add(renjou.getPlateauDeJeu());
+	public void ajouterPionJoueDansListeAnnuler(Renjou renjou, Coordonnees c, TypeCase typeCaseJoueurCourant) {
+		PionJoue pionJoue = new PionJoue(c, typeCaseJoueurCourant);
+		renjou.getListeAnnuler().add(pionJoue);
 	}
 
 	public TypeCase getTypeCaseJoueurCourant(Renjou renjou) throws Exception {
@@ -494,6 +496,7 @@ public class Moteur implements InterfaceMoteur {
 		if (renjou.getJoueurs()[0].getType() == TypeJoueur.Humain
 				&& renjou.getJoueurs()[1].getType() == TypeJoueur.Humain) {
 			annulerDemiCoup(renjou);
+			joueurPrecedent();
 		} else {
 			annulerDemiCoup(renjou);
 			annulerDemiCoup(renjou);
@@ -504,12 +507,13 @@ public class Moteur implements InterfaceMoteur {
 	public void annulerDemiCoup(Renjou renjou) {
 		int dernierElementHistorique = renjou.getListeAnnuler().size() - 1;
 		if (dernierElementHistorique >= 0) {
-			PlateauDeJeu dernierPlateauHistorique = renjou.getListeAnnuler().get(dernierElementHistorique);
-			renjou.setPlateauDeJeu(dernierPlateauHistorique);
+			PionJoue dernierPionJoueHistorique = renjou.getListeAnnuler().get(dernierElementHistorique);
+			renjou.getPlateauDeJeu().enlever(dernierPionJoueHistorique.c);
 			renjou.getListeRefaire().add(renjou.getListeAnnuler().get(dernierElementHistorique));
 			renjou.getListeAnnuler().remove(dernierElementHistorique);
 			incrementerPionsJoueurCourant(renjou);
-			joueurPrecedent();
+			//joueurPrecedent();
+			majCasesTabous(renjou);
 
 		}
 	}
@@ -529,12 +533,13 @@ public class Moteur implements InterfaceMoteur {
 		int dernierElementHistorique = renjou.getListeRefaire().size() - 1;
 
 		if (dernierElementHistorique >= 0) {
-			PlateauDeJeu dernierPlateauHistorique = renjou.getListeRefaire().get(dernierElementHistorique);
-			renjou.setPlateauDeJeu(dernierPlateauHistorique);
+			PionJoue dernierPionJoueHistorique = renjou.getListeRefaire().get(dernierElementHistorique);
+			renjou.getPlateauDeJeu().ajouter(dernierPionJoueHistorique.c, dernierPionJoueHistorique.typeCase);
 			renjou.getListeAnnuler().add(renjou.getListeRefaire().get(dernierElementHistorique));
 			renjou.getListeRefaire().remove(dernierElementHistorique);
 			decrementerPionsJoueurCourant(renjou);
 			joueurSuivant();
+			majCasesTabous(renjou);
 		}
 
 	}
