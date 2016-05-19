@@ -68,16 +68,7 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu {
 
 	@Override
 	public void enlever(Coordonnees c) {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+		this.plateau[c.getLigne()][c.getColonne()] = TypeCase.Jouable;
 	}
 
 	public void supprimerCasesTabous() {

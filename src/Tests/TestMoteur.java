@@ -7,6 +7,7 @@ import org.junit.Test;
 import Controleur.Coordonnees;
 import Controleur.Moteur;
 import Enum.TypeCase;
+import Enum.TypeJoueur;
 
 public class TestMoteur {
 
@@ -59,8 +60,8 @@ public class TestMoteur {
 
 		for (int i = 0; i < 15; i++) {
 			for (int j = 0; j < 15; j++) {
-				
-				if(i == 4) {
+
+				if (i == 4) {
 					i++;
 				}
 				donneesJeu.operationJouer(new Coordonnees(i, j),
@@ -231,7 +232,7 @@ public class TestMoteur {
 		int nbJoueurs = 2;
 		Moteur donneesJeu = new Moteur(nbJoueurs);
 
-		donneesJeu.setNiveauTrace(10);
+		donneesJeu.setNiveauTrace(0);
 		donneesJeu.printTrace(1, "TEST d'une case tabou pour faire perdre joueur noir");
 		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
@@ -256,6 +257,201 @@ public class TestMoteur {
 		}
 
 		donneesJeu.printTrace(1, "FIN TEST d'une case tabou pour faire perdre joueur noir");
+
+	}
+
+	@Test
+	public void annulerCoupEntreDeuxJoueurs() {
+
+		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
+
+		donneesJeu.setNiveauTrace(0);
+		donneesJeu.printTrace(1, "TEST d'une annulation de coup");
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		Coordonnees[] tabCoord = new Coordonnees[4];
+		tabCoord[0] = new Coordonnees(7, 7); // noir
+		tabCoord[1] = new Coordonnees(6, 6); // blanc qui joue
+		tabCoord[2] = new Coordonnees(10, 10); // noir
+		tabCoord[3] = new Coordonnees(13, 13); // blanc
+
+		for (int i = 0; i < tabCoord.length; i++) {
+
+			donneesJeu.operationJouer(tabCoord[i],
+					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
+			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		}
+
+		donneesJeu.printTrace(1, "ANNNULATION D'UN COUP ENTRE DEUX JOUEURS");
+		donneesJeu.annuler(donneesJeu.getRenjou());
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		donneesJeu.printTrace(1,
+				"Le nombre de pion du joueur courant " + donneesJeu.getRenjou().getJoueurCourant() + " est de  : "
+						+ donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getNbPion());
+
+		donneesJeu.operationJouer(new Coordonnees(2, 2),
+				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType()); // blanc
+																											// qui
+																											// joue
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		donneesJeu.operationJouer(new Coordonnees(13, 13),
+				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType()); // noir
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		donneesJeu.printTrace(1, "FIN TEST d'une annulation de coup");
+
+	}
+
+	@Test
+	public void annulerCoupEntreJoueurIA() {
+
+		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
+
+		donneesJeu.setNiveauTrace(0);
+		donneesJeu.printTrace(1, "TEST d'une annulation de coup entre un joueur et une IA");
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		Coordonnees[] tabCoord = new Coordonnees[4];
+		tabCoord[0] = new Coordonnees(7, 7); // noir coup 1
+		tabCoord[1] = new Coordonnees(1, 1); // noir coup 2
+		tabCoord[2] = new Coordonnees(10, 10); // noir coup 3
+		tabCoord[3] = new Coordonnees(13, 13); // noir coup 4
+
+		for (int i = 0; i < tabCoord.length; i++) {
+
+			donneesJeu.operationJouer(tabCoord[i],
+					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
+			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		}
+
+		donneesJeu.printTrace(1, "ANNNULATION D'UN COUP ENTRE JOUEUR ET IA");
+		donneesJeu.annuler(donneesJeu.getRenjou());
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		donneesJeu.printTrace(1,
+				"Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
+
+		donneesJeu.printTrace(1,
+				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
+
+		donneesJeu.operationJouer(new Coordonnees(2, 2),
+				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
+
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		donneesJeu.printTrace(1, "FIN TEST d'une annulation de coup ENTRE JOUEUR ET IA");
+
+	}
+
+	@Test
+	public void annulerRefaireCoupEntreDeuxJoueurs() {
+
+		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
+
+		donneesJeu.setNiveauTrace(0);
+		donneesJeu.printTrace(1, "TEST annuler/refaire coup entre 2 joueurs");
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		Coordonnees[] tabCoord = new Coordonnees[4];
+		tabCoord[0] = new Coordonnees(7, 7); // noir
+		tabCoord[1] = new Coordonnees(6, 6); // blanc qui joue
+		tabCoord[2] = new Coordonnees(10, 10); // noir
+		tabCoord[3] = new Coordonnees(13, 13); // blanc
+
+		for (int i = 0; i < tabCoord.length; i++) {
+
+			donneesJeu.operationJouer(tabCoord[i],
+					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
+			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		}
+
+		donneesJeu.printTrace(1, "ANNNULATION D'UN COUP ENTRE DEUX JOUEURS");
+		donneesJeu.annuler(donneesJeu.getRenjou());
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		donneesJeu.printTrace(1,
+				"Le nombre de pion du joueur courant " + donneesJeu.getRenjou().getJoueurCourant() + " est de  : "
+						+ donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getNbPion());
+
+		donneesJeu.printTrace(1, "REFAIRE UN COUP ENTRE DEUX JOUEURS");
+		donneesJeu.refaire(donneesJeu.getRenjou());
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		donneesJeu.printTrace(1,
+				"Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
+
+		donneesJeu.printTrace(1,
+				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
+
+		donneesJeu.operationJouer(new Coordonnees(14, 14),
+				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		donneesJeu.printTrace(1,
+				"Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
+
+		donneesJeu.printTrace(1,
+				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
+
+		donneesJeu.printTrace(1, "FIN TEST d'une ANNULATION/REFAIRE de coup entre DEUX JOUEURS");
+
+	}
+
+	@Test
+	public void annulerRefaireEntreJoueurEtIA() {
+
+		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
+
+		donneesJeu.setNiveauTrace(10);
+		donneesJeu.printTrace(1, "TEST d'un annuler/refaire de coup entre un joueur et une IA");
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		Coordonnees[] tabCoord = new Coordonnees[4];
+		tabCoord[0] = new Coordonnees(7, 7); // noir coup 1
+		tabCoord[1] = new Coordonnees(1, 1); // noir coup 2
+		tabCoord[2] = new Coordonnees(10, 10); // noir coup 3
+		tabCoord[3] = new Coordonnees(13, 13); // noir coup 4
+
+		for (int i = 0; i < tabCoord.length; i++) {
+
+			donneesJeu.operationJouer(tabCoord[i],
+					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
+			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		}
+
+		donneesJeu.printTrace(1, "ANNNULATION D'UN COUP ENTRE JOUEUR ET IA");
+		donneesJeu.annuler(donneesJeu.getRenjou());
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		donneesJeu.printTrace(1,
+				"Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
+
+		donneesJeu.printTrace(1,
+				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
+
+		donneesJeu.printTrace(1, "REFAIRE UN COUP ENTRE JOUEUR ET IA");
+		donneesJeu.refaire(donneesJeu.getRenjou());
+
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		donneesJeu.printTrace(1,
+				"Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
+
+		donneesJeu.printTrace(1,
+				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
+
+		donneesJeu.operationJouer(new Coordonnees(0, 14),
+				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		donneesJeu.printTrace(1,
+				"Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
+
+		donneesJeu.printTrace(1,
+				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
+
+		donneesJeu.printTrace(1, "FIN TEST d'un annuler/refaire un coup ENTRE JOUEUR ET IA");
 
 	}
 

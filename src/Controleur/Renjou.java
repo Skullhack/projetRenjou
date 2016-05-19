@@ -6,6 +6,8 @@
 package Controleur;
 
 import Joueur.Joueur;
+
+import java.awt.Point;
 import java.util.ArrayList;
 import Enum.*;
 
@@ -17,8 +19,8 @@ public class Renjou implements InterfaceRenjou {
 	private PlateauDeJeu plateau;
 	private Joueur[] tabJoueurs;
 	private int joueurCourant;
-	private ArrayList<PlateauDeJeu> listeAnnuler;
-	private ArrayList<PlateauDeJeu> listeRefaire;
+	private ArrayList<PionJoue> listeAnnuler;
+	private ArrayList<PionJoue> listeRefaire;
 	private EtatPartie etatPartie;
 	private ArrayList<Tabou> tabouJeu;
 	private Tabous tabous;
@@ -27,8 +29,8 @@ public class Renjou implements InterfaceRenjou {
 	public Renjou(Joueur[] tabJoueurs) {
 		this.plateau = new PlateauDeJeu();
 		this.tabJoueurs = tabJoueurs;
-		this.listeAnnuler = new ArrayList<PlateauDeJeu>();
-		this.listeRefaire = new ArrayList<PlateauDeJeu>();
+		this.listeAnnuler = new ArrayList<PionJoue>();
+		this.listeRefaire = new ArrayList<PionJoue>();
 		etatPartie = EtatPartie.EnCours;
 
 		this.tabouJeu = new ArrayList<Tabou>(); // ligne qui sera à modifier.
@@ -53,12 +55,12 @@ public class Renjou implements InterfaceRenjou {
 	}
 
 	@Override
-	public ArrayList<PlateauDeJeu> getListeAnnuler() {
+	public ArrayList<PionJoue> getListeAnnuler() {
 		return this.listeAnnuler;
 	}
 
 	@Override
-	public ArrayList<PlateauDeJeu> getListeRefaire() {
+	public ArrayList<PionJoue> getListeRefaire() {
 		return this.listeRefaire;
 	}
 
@@ -86,11 +88,11 @@ public class Renjou implements InterfaceRenjou {
 		this.joueurCourant = joueurCourant;
 	}
 
-	public void setListeAnnuler(ArrayList<PlateauDeJeu> listeAnnuler) {
+	public void setListeAnnuler(ArrayList<PionJoue> listeAnnuler) {
 		this.listeAnnuler = listeAnnuler;
 	}
 
-	public void setListeRefaire(ArrayList<PlateauDeJeu> listeRefaire) {
+	public void setListeRefaire(ArrayList<PionJoue> listeRefaire) {
 		this.listeRefaire = listeRefaire;
 	}
 
@@ -108,48 +110,6 @@ public class Renjou implements InterfaceRenjou {
 
 	public int getNbJoueurs() {
 		return tabJoueurs.length;
-	}
-
-	@Override
-	public Renjou annuler(Renjou renjou) {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
-	}
-
-	@Override
-	public Renjou annulerDemiCoup(Renjou renjou) {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
-	}
-
-	@Override
-	public Renjou refaire(Renjou renjou) {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
 	}
 
 	public Renjou clone(Renjou renjou) {

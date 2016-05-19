@@ -34,4 +34,12 @@ public interface InterfaceMoteur {
 	public void joueurSuivant();
 
 	public boolean partieFinie(Renjou renjou, Coordonnees c);
+	
+	public void annuler(Renjou renjou);
+
+	public void annulerDemiCoup(Renjou renjou);
+
+	public void refaire(Renjou renjou);
+	
+	public void refaireDemiCoup(Renjou renjou);
 }
