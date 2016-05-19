@@ -14,7 +14,7 @@ import Enum.TypeCase;
  *
  * @author michauad
  */
-public class PlateauDeJeu implements InterfacePlateauDeJeu {
+public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable {
 	private TypeCase[][] plateau;
 	private final int lignes = 15;
 	private final int colonnes = 15;

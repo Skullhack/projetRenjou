@@ -12,7 +12,7 @@ import Enum.TypeCouleur;
 import Enum.TypeJoueur;
 
 
-public class IA extends Joueur implements MoteurObserveur{
+public class IA extends Joueur{
 	
 	protected Random r;
 	protected int[][] tabHeuristique;
@@ -21,7 +21,7 @@ public class IA extends Joueur implements MoteurObserveur{
 	
     public IA(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
         super(moteur, type, nbPion, couleurJoueur);
-        moteur.enregistrerObserveur(this);
+        
 		java.util.GregorianCalendar calendar = new GregorianCalendar();
 		r = new Random(calendar.getTimeInMillis());
 		nbLigne = m.getRenjou().getPlateauDeJeu().getLignes();
@@ -109,12 +109,5 @@ public class IA extends Joueur implements MoteurObserveur{
 
 	}
 
-	@Override
-	public void actualiser() {
-		// TODO Auto-generated method stub
-		//doit lancer jouer()
-		m.printTrace(3, "IA notifiee");
-
-	}
 
 }

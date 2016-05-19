@@ -4,7 +4,7 @@ import java.awt.Point;
 
 import Enum.TypeCase;
 
-public class PionJoue {
+public class PionJoue implements java.io.Serializable {
 
 	Coordonnees c;
 	TypeCase typeCase;

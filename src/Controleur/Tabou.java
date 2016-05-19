@@ -11,7 +11,7 @@ import java.awt.Point;
  *
  * @author michauad
  */
-public class Tabou implements InterfaceTabou {
+public class Tabou implements InterfaceTabou, java.io.Serializable {
 	private String nom;
 	private boolean[][] configuration;
 

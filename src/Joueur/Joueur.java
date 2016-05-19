@@ -11,32 +11,23 @@ import java.util.Observer;
 import Controleur.*;
 import Enum.*;
 
+public class Joueur implements MoteurObserveur, java.io.Serializable {
+	protected TypeJoueur type;
+	protected int nbPion;
+	protected Moteur m;
+	protected TypeCouleur couleur;
+	protected int nbPionsBase;
 
-public class Joueur implements Observer {
-    protected TypeJoueur type;
-    protected int nbPion;
-    protected Moteur m;
-    protected TypeCouleur couleur;
-    protected int nbPionsBase;
-     
-    
-    public Joueur(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
-    	this.type = type;
-    	this.nbPion = nbPion;
-    	nbPionsBase = nbPion;
-    	couleur = couleurJoueur;
-    	m = moteur;
-    }
-    
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		 throw new UnsupportedOperationException("Not supported yet.");
-		
+	public Joueur(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
+		this.type = type;
+		this.nbPion = nbPion;
+		nbPionsBase = nbPion;
+		couleur = couleurJoueur;
+		m = moteur;
+		moteur.enregistrerObserveur(this);
 	}
 
-	
-	//Getter et setter
+	// Getter et setter
 	public TypeJoueur getType() {
 		return type;
 	}
@@ -52,7 +43,7 @@ public class Joueur implements Observer {
 	public void setNbPion(int nbPion) {
 		this.nbPion = nbPion;
 	}
-	
+
 	public int getNbPionsBase() {
 		return nbPionsBase;
 	}
@@ -60,25 +51,29 @@ public class Joueur implements Observer {
 	public void setNbPionsBase(int nbPionsBase) {
 		this.nbPionsBase = nbPionsBase;
 	}
-	
+
 	public Moteur getMoteur() {
 		return m;
 	}
-	
+
 	public void setMoteur(Moteur m) {
 		this.m = m;
 	}
 
-	
 	public TypeCouleur getCouleur() {
 		return couleur;
 	}
 
-	
 	public void setCouleur(TypeCouleur c) {
 		this.couleur = c;
 	}
 
-    
-	
+	@Override
+	public void actualiser() {
+		// TODO Auto-generated method stub
+		// doit lancer jouer()
+		m.printTrace(3, "IA notifiee");
+
+	}
+
 }

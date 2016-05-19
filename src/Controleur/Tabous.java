@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author michauad
  */
-public class Tabous implements InterfaceTabous {
+public class Tabous implements InterfaceTabous, java.io.Serializable {
     private ArrayList<Tabou> listeTabous;
     
     //Constructeur
