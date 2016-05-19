@@ -460,7 +460,7 @@ public class TestMoteur {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
 
-		donneesJeu.setNiveauTrace(10);
+		donneesJeu.setNiveauTrace(0);
 		donneesJeu.printTrace(1, "TEST PARTIE AVEC SAUVEGARDE");
 		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
@@ -487,7 +487,7 @@ public class TestMoteur {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
 
-		donneesJeu.setNiveauTrace(10);
+		donneesJeu.setNiveauTrace(0);
 		donneesJeu.printTrace(1, "TEST CHARGEMENT DE PARTIE");
 
 		donneesJeu.charger("testSaveRenjouBackup.ser");
@@ -504,12 +504,22 @@ public class TestMoteur {
 
 		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
-		donneesJeu.printTrace(1, "QUE SE PASSE T'IL ???");
+		Coordonnees[] tabCoord = new Coordonnees[8];
+		tabCoord[0] = new Coordonnees(11, 9); // noir coup 1
+		tabCoord[1] = new Coordonnees(13, 9); // noir coup 2
+		tabCoord[2] = new Coordonnees(12, 8); // noir coup 3
+		tabCoord[3] = new Coordonnees(11, 7); // noir coup 4
+		tabCoord[4] = new Coordonnees(10, 6); // noir coup 5
+		tabCoord[5] = new Coordonnees(9, 5); // noir coup 6
+		tabCoord[6] = new Coordonnees(14, 10); // noir coup 7
+		tabCoord[7] = new Coordonnees(3, 3); // noir coup 8 ne sera pas joué car
+												// gagné avant
 
-		donneesJeu.operationJouer(new Coordonnees(0, 0),
-				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		for (int i = 0; i < tabCoord.length; i++) {
+			donneesJeu.operationJouer(tabCoord[i],
+					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
+			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		}
 
 		donneesJeu.printTrace(1, "FIN TEST CHARGEMENT DE PARTIE");
 

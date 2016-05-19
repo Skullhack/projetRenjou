@@ -138,15 +138,6 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 			
 			this.enregistrerObserveur(renjou.getJoueurs()[0]);
 			this.enregistrerObserveur(renjou.getJoueurs()[1]);
-			
-			Joueur[] tableauJoueurs = new Joueur[2];
-			
-			
-			
-			tableauJoueurs[0] = creerJoueur(renjou.getJoueurs()[0].getType(), TypeCouleur.Noir);
-			tableauJoueurs[1] = creerJoueur(renjou.getJoueurs()[1].getType(), TypeCouleur.Blanc);
-
-			renjou.setJoueurs(tableauJoueurs);
 
 		} catch (final java.io.IOException e) {
 			e.printStackTrace();
