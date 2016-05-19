@@ -34,7 +34,6 @@ import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 
 import Controleur.Moteur;
-import javafx.scene.layout.FlowPane;
 /**
  *
  * @author michauad

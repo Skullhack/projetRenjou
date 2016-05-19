@@ -135,7 +135,6 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 			ois = new ObjectInputStream(fichierIn);
 			renjou = (Renjou) ois.readObject();
 
-			
 			this.enregistrerObserveur(renjou.getJoueurs()[0]);
 			this.enregistrerObserveur(renjou.getJoueurs()[1]);
 
@@ -259,6 +258,20 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 	@Override
 	public void nouvellePartie(TypeJoueur[] tabTypeJoueurs) {
+		throw new UnsupportedOperationException("Not supported yet."); // To
+																		// change
+																		// body
+																		// of
+																		// generated
+																		// methods,
+																		// choose
+																		// Tools
+																		// |
+																		// Templates.
+	}
+
+	@Override
+	public void recommencerPartie() {
 		throw new UnsupportedOperationException("Not supported yet."); // To
 																		// change
 																		// body

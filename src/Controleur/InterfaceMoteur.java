@@ -30,6 +30,8 @@ public interface InterfaceMoteur {
 	public void operationJouer(Coordonnees c, TypeJoueur j);
 
 	public void nouvellePartie(TypeJoueur[] tabTypeJoueurs);
+	
+	public void recommencerPartie();
 
 	public void joueurSuivant();
 
