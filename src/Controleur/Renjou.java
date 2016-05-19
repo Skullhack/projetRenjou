@@ -34,8 +34,27 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 		this.listeRefaire = new ArrayList<PionJoue>();
 		etatPartie = EtatPartie.EnCours;
 
-		this.tabouJeu = new ArrayList<Tabou>(); // ligne qui sera à modifier.
-												// pour le moment, mis en dur
+		// bloc de tabous en dur pour le moment
+		this.tabous = new Tabous();
+
+		boolean[][] configInterdite = new boolean[15][15];
+		Tabou tabou1 = new Tabou(configInterdite, "TROIS");
+		Tabou tabou2 = new Tabou(configInterdite, "FAUX-TROIS");
+		Tabou tabou3 = new Tabou(configInterdite, "QUATRE");
+		Tabou tabou4 = new Tabou(configInterdite, "SIX");
+		this.tabouJeu = new ArrayList<Tabou>();
+
+		tabous.getTabous().add(tabou1);
+		tabous.getTabous().add(tabou2);
+		tabous.getTabous().add(tabou3);
+		tabous.getTabous().add(tabou4);
+
+		tabouJeu.add(tabou1);
+		tabouJeu.add(tabou2);
+		tabouJeu.add(tabou3);
+		tabouJeu.add(tabou4);
+		// fin du bloc tabous
+
 		this.joueurCourant = 0;
 		this.emplacementThemes = "Defaut";
 

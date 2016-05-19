@@ -490,7 +490,7 @@ public class TestMoteur {
 		donneesJeu.setNiveauTrace(0);
 		donneesJeu.printTrace(1, "TEST CHARGEMENT DE PARTIE");
 
-		donneesJeu.charger("testSaveRenjouBackup.ser");
+		donneesJeu.charger("testSaveRenjou.ser");
 
 		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
