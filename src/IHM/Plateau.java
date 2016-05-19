@@ -22,16 +22,18 @@ public class Plateau extends JPanel {
 	private int lignes;
 	private int colonnes;
 	private TypeCase[][] tab;
+	private String theme;
 	
-    public Plateau(PlateauDeJeu p) {
+    public Plateau(PlateauDeJeu p, String theme) {
         this.p = p;
         this.lignes = p.getLignes();
         this.colonnes = p.getColonnes();
         this.tab = p.getPlateau();
+        this.theme = theme;
         try {
-    		imagePlateau = ImageIO.read(new File("./Images/Plateau 15x15.png"));
-    		imagePionBlanc = ImageIO.read(new File("./Images/Pion blanc.png"));
-    		imagePionNoir = ImageIO.read(new File("./Images/Pion noir.png"));
+    		imagePlateau = ImageIO.read(new File("./Images/"+theme+"/Plateau 15x15.png"));
+    		imagePionBlanc = ImageIO.read(new File("./Images/"+theme+"/Pion blanc.png"));
+    		imagePionNoir = ImageIO.read(new File("./Images/"+theme+"/Pion noir.png"));
     	} catch (IOException e) {
     		
     	}

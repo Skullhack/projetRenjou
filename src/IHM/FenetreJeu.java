@@ -35,7 +35,6 @@ import javax.swing.SwingConstants;
 
 import Controleur.Moteur;
 import javafx.scene.layout.FlowPane;
-
 /**
  *
  * @author michauad
@@ -53,11 +52,13 @@ public class FenetreJeu extends JFrame {
 	private EcouteurDeSouris eds;
 	private JLabel noir;
 	private JLabel blanc;
+	private String theme;
 	
 	public FenetreJeu(Moteur m) {
 		//Variables
 		this.m = m;
-		p = new Plateau(m.getRenjou().getPlateauDeJeu());
+		this.theme = m.getRenjou().getEmplacementThemes();
+		p = new Plateau(m.getRenjou().getPlateauDeJeu(), theme);
 		eds = new EcouteurDeSouris(m,p);
 		//0:PanelPrincipal 1:PanelBouton 2:PanelSud 3:PanelNoir 4:PanelBoutonDansBouton 5:PanelBlanc
 		panels = new JPanel[6];
@@ -178,7 +179,7 @@ public class FenetreJeu extends JFrame {
 				panels[3].setMinimumSize(new Dimension(panels[1].getWidth(),0));
 				noir.setAlignmentY(CENTER_ALIGNMENT);
 				noir.setFont(new Font("Time New Roman",Font.BOLD,30));
-				ImageIcon pionNoir = new ImageIcon(new ImageIcon("./Images/Pion noir.png").getImage().getScaledInstance(100,100,  java.awt.Image.SCALE_SMOOTH));
+				ImageIcon pionNoir = new ImageIcon(new ImageIcon("./Images/"+theme+"/Pion noir.png").getImage().getScaledInstance(100,100,  java.awt.Image.SCALE_SMOOTH));
 				nbPieces[0].setIcon(pionNoir);
 				System.out.println(this.getWidth());
 				nbPieces[0].setHorizontalTextPosition(JLabel.CENTER);
@@ -186,16 +187,19 @@ public class FenetreJeu extends JFrame {
 				nbPieces[0].setForeground(Color.WHITE);
 				panels[3].setBackground(Color.GRAY);
 				
+				panels[4].setBackground(Color.WHITE);
 				//Boutons annuler et refaire
-				ImageIcon annuler = new ImageIcon(new ImageIcon("./Images/Annuler.png").getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH));
-				setIcone(boutons[0],new Color(0,0,0,0),annuler,annuler);
+				ImageIcon annuler = new ImageIcon(new ImageIcon("./Images/"+theme+"/Annuler.png").getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH));
+				ImageIcon annulerEclaire = new ImageIcon(new ImageIcon("./Images/"+theme+"/AnnulerEclaire.png").getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH));
+				setIcone(boutons[0],new Color(0,0,0,0),annuler,annulerEclaire);
 				//boutons[0].addActionListener();
-				ImageIcon refaire = new ImageIcon(new ImageIcon("./Images/Refaire.png").getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH));
-				setIcone(boutons[1],new Color(0,0,0,0),refaire,refaire);
+				ImageIcon refaire = new ImageIcon(new ImageIcon("./Images/"+theme+"/Refaire.png").getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH));
+				ImageIcon refaireEclaire = new ImageIcon(new ImageIcon("./Images/"+theme+"/RefaireEclaire.png").getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH));
+				setIcone(boutons[1],new Color(0,0,0,0),refaire,refaireEclaire);
 				
 				//Layout Panel Blanc
 				blanc.setFont(new Font("Time New Roman",Font.BOLD,30));
-				ImageIcon pionBlanc = new ImageIcon(new ImageIcon("./Images/Pion blanc.png").getImage().getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH));
+				ImageIcon pionBlanc = new ImageIcon(new ImageIcon("./Images/"+theme+"/Pion blanc.png").getImage().getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH));
 				nbPieces[1].setIcon(pionBlanc);
 				nbPieces[1].setHorizontalTextPosition(JLabel.CENTER);
 				nbPieces[1].setFont(new Font("Time New Roman",Font.BOLD,40));
@@ -208,8 +212,9 @@ public class FenetreJeu extends JFrame {
 		b.setBackground(new Color(0,0,0,0));
 		b.setSize(new Dimension(normal.getIconWidth(),normal.getIconHeight()));
 		b.setText(null);
-		b.setRolloverEnabled(true);
+		b.setRolloverEnabled(false);
 		b.setRolloverIcon(rollover);
 		b.setBorderPainted(false);
+		b.setBackground(Color.WHITE);
 	}
 }
