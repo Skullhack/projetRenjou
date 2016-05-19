@@ -5,14 +5,11 @@
  */
 package Joueur;
 
-import java.util.Observable;
-import java.util.Observer;
-
 import Controleur.*;
 import Enum.*;
 
 
-public class Joueur implements Observer {
+public class Joueur implements MoteurObserveur {
     protected TypeJoueur type;
     protected int nbPion;
     protected Moteur m;
@@ -21,6 +18,7 @@ public class Joueur implements Observer {
      
     
     public Joueur(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
+    	moteur.enregistrerObserveur(this);
     	this.type = type;
     	this.nbPion = nbPion;
     	nbPionsBase = nbPion;
@@ -28,12 +26,6 @@ public class Joueur implements Observer {
     	m = moteur;
     }
     
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		 throw new UnsupportedOperationException("Not supported yet.");
-		
-	}
 
 	
 	//Getter et setter
@@ -79,6 +71,10 @@ public class Joueur implements Observer {
 		this.couleur = c;
 	}
 
+	@Override
+	public void actualiser() {
+		m.printTrace(3, "Joueur notifie");
+	}
     
 	
 }
