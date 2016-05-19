@@ -528,58 +528,58 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	}
 
 	@Override
-	public void annuler(Renjou renjou) {
+	public void annuler() {
 
-		if (renjou.getJoueurs()[0].getType() == TypeJoueur.Humain
-				&& renjou.getJoueurs()[1].getType() == TypeJoueur.Humain) {
-			annulerDemiCoup(renjou);
+		if (this.getRenjou().getJoueurs()[0].getType() == TypeJoueur.Humain
+				&& this.getRenjou().getJoueurs()[1].getType() == TypeJoueur.Humain) {
+			annulerDemiCoup();
 		} else {
-			annulerDemiCoup(renjou);
-			annulerDemiCoup(renjou);
+			annulerDemiCoup();
+			annulerDemiCoup();
 		}
 		notifierObserveurs();
 	}
 
 	@Override
-	public void annulerDemiCoup(Renjou renjou) {
-		int dernierElementHistorique = renjou.getListeAnnuler().size() - 1;
+	public void annulerDemiCoup() {
+		int dernierElementHistorique = this.getRenjou().getListeAnnuler().size() - 1;
 		if (dernierElementHistorique >= 0) {
 
 			joueurPrecedent();
 
-			PionJoue dernierPionJoueHistorique = renjou.getListeAnnuler().get(dernierElementHistorique);
-			renjou.getPlateauDeJeu().enlever(dernierPionJoueHistorique.c);
-			renjou.getListeRefaire().add(renjou.getListeAnnuler().get(dernierElementHistorique));
-			renjou.getListeAnnuler().remove(dernierElementHistorique);
-			incrementerPionsJoueurCourant(renjou);
-			majCasesTabous(renjou);
+			PionJoue dernierPionJoueHistorique = this.getRenjou().getListeAnnuler().get(dernierElementHistorique);
+			this.getRenjou().getPlateauDeJeu().enlever(dernierPionJoueHistorique.c);
+			this.getRenjou().getListeRefaire().add(this.getRenjou().getListeAnnuler().get(dernierElementHistorique));
+			this.getRenjou().getListeAnnuler().remove(dernierElementHistorique);
+			incrementerPionsJoueurCourant(this.getRenjou());
+			majCasesTabous(this.getRenjou());
 
 		}
 	}
 
 	@Override
-	public void refaire(Renjou renjou) {
-		if (renjou.getJoueurs()[0].getType() == TypeJoueur.Humain
+	public void refaire() {
+		if (this.getRenjou().getJoueurs()[0].getType() == TypeJoueur.Humain
 				&& renjou.getJoueurs()[1].getType() == TypeJoueur.Humain) {
-			refaireDemiCoup(renjou);
+			refaireDemiCoup();
 		} else {
-			refaireDemiCoup(renjou);
-			refaireDemiCoup(renjou);
+			refaireDemiCoup();
+			refaireDemiCoup();
 		}
 		notifierObserveurs();
 	}
 
-	public void refaireDemiCoup(Renjou renjou) {
-		int dernierElementHistorique = renjou.getListeRefaire().size() - 1;
+	public void refaireDemiCoup() {
+		int dernierElementHistorique = this.getRenjou().getListeRefaire().size() - 1;
 
 		if (dernierElementHistorique >= 0) {
-			PionJoue dernierPionJoueHistorique = renjou.getListeRefaire().get(dernierElementHistorique);
-			renjou.getPlateauDeJeu().ajouter(dernierPionJoueHistorique.c, dernierPionJoueHistorique.typeCase);
-			renjou.getListeAnnuler().add(renjou.getListeRefaire().get(dernierElementHistorique));
-			renjou.getListeRefaire().remove(dernierElementHistorique);
-			decrementerPionsJoueurCourant(renjou);
+			PionJoue dernierPionJoueHistorique = this.getRenjou().getListeRefaire().get(dernierElementHistorique);
+			this.getRenjou().getPlateauDeJeu().ajouter(dernierPionJoueHistorique.c, dernierPionJoueHistorique.typeCase);
+			this.getRenjou().getListeAnnuler().add(this.getRenjou().getListeRefaire().get(dernierElementHistorique));
+			this.getRenjou().getListeRefaire().remove(dernierElementHistorique);
+			decrementerPionsJoueurCourant(this.getRenjou());
 			joueurSuivant();
-			majCasesTabous(renjou);
+			majCasesTabous(this.getRenjou());
 		}
 
 	}

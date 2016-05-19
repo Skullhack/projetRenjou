@@ -284,7 +284,7 @@ public class TestMoteur {
 		}
 
 		donneesJeu.printTrace(1, "ANNNULATION D'UN COUP ENTRE DEUX JOUEURS");
-		donneesJeu.annuler(donneesJeu.getRenjou());
+		donneesJeu.annuler();
 		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 		donneesJeu.printTrace(1,
 				"Le nombre de pion du joueur courant " + donneesJeu.getRenjou().getJoueurCourant() + " est de  : "
@@ -328,7 +328,7 @@ public class TestMoteur {
 		}
 
 		donneesJeu.printTrace(1, "ANNNULATION D'UN COUP ENTRE JOUEUR ET IA");
-		donneesJeu.annuler(donneesJeu.getRenjou());
+		donneesJeu.annuler();
 		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 		donneesJeu.printTrace(1,
 				"Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
@@ -369,14 +369,14 @@ public class TestMoteur {
 		}
 
 		donneesJeu.printTrace(1, "ANNNULATION D'UN COUP ENTRE DEUX JOUEURS");
-		donneesJeu.annuler(donneesJeu.getRenjou());
+		donneesJeu.annuler();
 		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 		donneesJeu.printTrace(1,
 				"Le nombre de pion du joueur courant " + donneesJeu.getRenjou().getJoueurCourant() + " est de  : "
 						+ donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getNbPion());
 
 		donneesJeu.printTrace(1, "REFAIRE UN COUP ENTRE DEUX JOUEURS");
-		donneesJeu.refaire(donneesJeu.getRenjou());
+		donneesJeu.refaire();
 		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 		donneesJeu.printTrace(1,
 				"Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
@@ -422,7 +422,7 @@ public class TestMoteur {
 		}
 
 		donneesJeu.printTrace(1, "ANNNULATION D'UN COUP ENTRE JOUEUR ET IA");
-		donneesJeu.annuler(donneesJeu.getRenjou());
+		donneesJeu.annuler();
 		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 		donneesJeu.printTrace(1,
 				"Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
@@ -431,7 +431,7 @@ public class TestMoteur {
 				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
 
 		donneesJeu.printTrace(1, "REFAIRE UN COUP ENTRE JOUEUR ET IA");
-		donneesJeu.refaire(donneesJeu.getRenjou());
+		donneesJeu.refaire();
 
 		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
