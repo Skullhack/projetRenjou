@@ -35,7 +35,7 @@ public class FenetreJeu extends JFrame {
 	private JMenuItem[][] menuItem;
 	private JButton[] boutons;
 	private JLabel[] nbPieces;
-	private JButton[] aide;
+	private JButton[] aides;
 	private Plateau p;
 	private EcouteurDeSouris eds;
 	private JLabel noir;
@@ -86,24 +86,24 @@ public class FenetreJeu extends JFrame {
 		noir = new JLabel("Noir",SwingConstants.CENTER);
 		nbPieces = new JLabel[2];
 		nbPieces[0] = new JLabel("60");
-		aide = new JButton[2];
-		aide[0] = new JButton("Aide Coup");
+		aides = new JButton[2];
+		aides[0] = new JButton("Aide Coup");
 		tempsRestant = new JLabel[2];
 		tempsRestant[0] = new JLabel("Temps restant : 30");
 		panels[3].add(noir);
 		panels[3].add(nbPieces[0]);
-		panels[3].add(aide[0]);
+		panels[3].add(aides[0]);
 		panels[3].add(tempsRestant[0]);
 		
 		//Initialisation Blanc
 		panels[5].setLayout(new BoxLayout(panels[5], BoxLayout.PAGE_AXIS));
 		blanc = new JLabel("Blanc",SwingConstants.CENTER);
 		nbPieces[1] = new JLabel("60");
-		aide[1] = new JButton("Aide Coup");
+		aides[1] = new JButton("Aide Coup");
 		tempsRestant[1] = new JLabel("Temps restant : 30");
 		panels[5].add(blanc,"CENTER");
 		panels[5].add(nbPieces[1]);
-		panels[5].add(aide[1]);
+		panels[5].add(aides[1]);
 		panels[5].add(tempsRestant[1]);
 		
 		//Initialisation Panel Ouest
@@ -173,8 +173,8 @@ public class FenetreJeu extends JFrame {
 				nbPieces[0].setHorizontalTextPosition(JLabel.CENTER);
 				nbPieces[0].setFont(new Font("Time New Roman",Font.BOLD,40));
 				nbPieces[0].setForeground(Color.WHITE);
-				panels[3].setBackground(Color.GRAY);
-				
+				panels[3].setBackground(Color.WHITE);
+				panels[5].setBackground(Color.WHITE);
 				panels[4].setBackground(Color.WHITE);
 				//Boutons annuler et refaire
 				ImageIcon annuler = new ImageIcon(new ImageIcon("./Images/"+theme+"/Annuler.png").getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH));
@@ -184,6 +184,10 @@ public class FenetreJeu extends JFrame {
 				ImageIcon refaire = new ImageIcon(new ImageIcon("./Images/"+theme+"/Refaire.png").getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH));
 				ImageIcon refaireEclaire = new ImageIcon(new ImageIcon("./Images/"+theme+"/RefaireEclaire.png").getImage().getScaledInstance(70, 70,  java.awt.Image.SCALE_SMOOTH));
 				setIcone(boutons[1],new Color(0,0,0,0),refaire,refaireEclaire);
+				ImageIcon aide = new ImageIcon(new ImageIcon("./Images/"+theme+"/AmpouleGrisee.png").getImage().getScaledInstance(90, 90,  java.awt.Image.SCALE_SMOOTH));
+				ImageIcon aideEclaire = new ImageIcon(new ImageIcon("./Images/"+theme+"/AmpouleAlumee.png").getImage().getScaledInstance(90, 90,  java.awt.Image.SCALE_SMOOTH));
+				setIcone(aides[0],new Color(0,0,0,0),aide,aideEclaire);
+				setIcone(aides[1],new Color(0,0,0,0),aide,aideEclaire);
 				
 				//Layout Panel Blanc
 				blanc.setFont(new Font("Time New Roman",Font.BOLD,30));
@@ -192,7 +196,6 @@ public class FenetreJeu extends JFrame {
 				nbPieces[1].setHorizontalTextPosition(JLabel.CENTER);
 				nbPieces[1].setFont(new Font("Time New Roman",Font.BOLD,40));
 				nbPieces[1].setForeground(Color.BLACK);
-				panels[5].setBackground(Color.WHITE);
 	}
 
 	private void setIcone(JButton b,Color color, ImageIcon normal, ImageIcon rollover) {
