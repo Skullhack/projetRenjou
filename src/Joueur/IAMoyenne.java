@@ -43,7 +43,7 @@ public class IAMoyenne extends IA {
 	
 
 	public void Jouer(){
-		m.printTrace(8, "Dans Jouer IAMoyenne");
+		m.printTrace(66, "Dans Jouer IAMoyenne");
 		
 		PlateauDeJeu pdj =  m.getRenjou().getPlateauDeJeu().clone();
 		
@@ -239,96 +239,19 @@ public class IAMoyenne extends IA {
 		if(EstBlancOuNoir(pdj,c))
 			return false;
 		
-		return this.PionAlentourRecursif(pdj, c, 1);
-	}
-
-	public boolean PionAlentour(PlateauDeJeu pdj, Coordonnees p, int profondeur){
-		m.printTrace(66, "Dans pionAlentour");
-		if(EstBlancOuNoir(pdj, p)){
-			m.printTrace(66, "true (pionAlentour => EstBlancOuNoir)");
-			return true;
-		}else if(PionAlentourRecursif(pdj, p, profondeur -1)){
-			m.printTrace(66, "true (pionAlentour => caseJouable)");
-			return true;
-		}
-		
-		m.printTrace(66, "false");
-		return false;
-	}
-	
-	public boolean PionAlentourRecursif(PlateauDeJeu pdj, Coordonnees p, int profondeur) {
-		m.printTrace(66, "Dans caseJouable");	
-		
-		if (profondeur < 0){
-			m.printTrace(66, "profondeur < 0");
-			return false;
-		}
-		
-		int i = p.getLigne();
-		int j = p.getColonne();
-
-		if (i > 0) {
-			m.printTrace(66, "i > 0");
-			if(PionAlentour(pdj, new Coordonnees(i-1,j), profondeur)){
-				return true;
-			}
-			
-			if(j > 0){
-				m.printTrace(66, "j > 0");
-				if(PionAlentour(pdj, new Coordonnees(i-1,j-1), profondeur)){
-					 return true;	
+		for(int i = c.getLigne()-2;i<=c.getLigne()+2;i++){
+			for(int j = c.getColonne()-2;j<=c.getColonne()+2;j++){
+				if(i>=0 && i<= nbLigne-1 && j>=0 && j<=nbColonne-1 && (c.getLigne() != i || c.getColonne() != j)){
+					m.printTrace(11, "i=" + i + " j=" +j + " c= " + c );
+					if(EstBlancOuNoir(pdj,new Coordonnees(i,j))){
+						m.printTrace(1, "est un pion!" );
+						return true;
+					}
 				}
 			}
-			
-			if(j < nbColonne -1){
-				m.printTrace(66, "j < nbColonne -1");
-				if(PionAlentour(pdj, new Coordonnees(i-1,j+1), profondeur)){
-					return true;
-				}
-			}
-			
 		}
-		
-		if(i < nbLigne -1){
-			m.printTrace(66, "i < nbLigne -1");
-			if(PionAlentour(pdj, new Coordonnees(i+1,j), profondeur)){
-				return true;
-			}
-			
-			if(j >0){
-				m.printTrace(66, "j > 0");
-				if(PionAlentour(pdj, new Coordonnees(i+1,j-1), profondeur)){
-					return true;
-				}
-			}
 				
-			if(j < nbColonne -1){
-				m.printTrace(66, "j < nbColonne -1");
-				if(PionAlentour(pdj, new Coordonnees(i+1,j+1), profondeur)){
-					return true;
-				}
-			}
 				
-			
-		}
-		
-		if(j >0){
-			m.printTrace(66, "j > 0");
-			if(PionAlentour(pdj, new Coordonnees(i,j-1), profondeur)){
-				 return true;
-			}
-		}
-			
-		
-		if(j < nbColonne -1){
-			m.printTrace(66, "nbColonne -1");
-			if(PionAlentour(pdj, new Coordonnees(i,j+1), profondeur)){
-				 return true;
-			}
-		}
-			
-		
-		m.printTrace(66, "false (caseJouable)");
 		return false;
 	}
 
