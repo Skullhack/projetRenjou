@@ -2,6 +2,8 @@ package IHM;
 
 import java.awt.Dimension;
 import Controleur.Coordonnees;
+import Controleur.Moteur;
+
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
@@ -15,21 +17,19 @@ import Controleur.PlateauDeJeu;
 import Enum.TypeCase;
 
 public class Plateau extends JPanel {
-	private PlateauDeJeu p;
+	private IHM ihm;
 	private Image imagePlateau;
 	private Image imagePionBlanc;
 	private Image imagePionNoir;
 	private int lignes;
 	private int colonnes;
-	private TypeCase[][] tab;
 	private String theme;
 	
-    public Plateau(PlateauDeJeu p, String theme) {
-        this.p = p;
-        this.lignes = p.getLignes();
-        this.colonnes = p.getColonnes();
-        this.tab = p.getPlateau();
-        this.theme = theme;
+    public Plateau(IHM ihm) {
+    	this.ihm = ihm;
+        this.lignes = ihm.m.getRenjou().getPlateauDeJeu().getLignes();
+        this.colonnes = ihm.m.getRenjou().getPlateauDeJeu().getColonnes();
+        this.theme = ihm.m.getRenjou().getEmplacementThemes();;
         try {
     		imagePlateau = ImageIO.read(new File("./Images/"+theme+"/Plateau 15x15.png"));
     		imagePionBlanc = ImageIO.read(new File("./Images/"+theme+"/Pion blanc.png"));
@@ -58,6 +58,7 @@ public class Plateau extends JPanel {
     	//affichage du plateau
         g.drawImage(imagePlateau, 0, 0, this.getWidth(), this.getHeight(), null);
         
+        TypeCase[][] tab = ihm.m.getRenjou().getPlateauDeJeu().getPlateau();
         //affichage des cases
         for (int i=0; i<lignes; i++) {
             for (int j=0; j<colonnes; j++) {
@@ -66,9 +67,5 @@ public class Plateau extends JPanel {
             }
         }
         super.paintComponents(g);
-    }
-    
-    public void setPlateau(PlateauDeJeu p) {
-    	this.p = p;
     }
 }
