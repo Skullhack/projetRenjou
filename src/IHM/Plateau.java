@@ -61,17 +61,19 @@ public class Plateau extends JPanel {
     }
     
     public void afficherDernier(Graphics g) {
-    	int colonneDernier = historique.get(historique.size()-1).getCoordonnees().getColonne();
-        int ligneDernier = historique.get(historique.size()-1).getCoordonnees().getLigne();
+    	if (historique.size() > 0) {
+    		int colonneDernier = historique.get(historique.size()-1).getCoordonnees().getColonne();
+    		int ligneDernier = historique.get(historique.size()-1).getCoordonnees().getLigne();
         
-        Dimension pan = this.getSize();
+    		Dimension pan = this.getSize();
     	
-    	int width = (pan.width)/16;
-    	int height = (pan.height)/16;
-    	int x = (ligneDernier*width+4)+(width/2);
-        int y = (colonneDernier*height+4)+(height/2);
+    		int width = (pan.width)/16;
+    		int height = (pan.height)/16;
+    		int x = (ligneDernier*width+4)+(width/2);
+    		int y = (colonneDernier*height+4)+(height/2);
         
-        g.drawImage(imagePionNoirJoue, x, y, width, height, null);
+    		g.drawImage(imagePionNoirJoue, x, y, width, height, null);
+    	}
     }
 
     @Override
