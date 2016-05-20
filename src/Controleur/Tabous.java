@@ -29,6 +29,14 @@ public class Tabous implements InterfaceTabous, java.io.Serializable {
 		this.setTabous(tabous);
 	}
 
+	public ArrayList<String> getTabouToString() {
+		ArrayList<String> tabousToString = new ArrayList<String>();
+		for (int i=0; i<listeTabous.size();i++) {
+			tabousToString.add(listeTabous.get(i).getNom());
+		}
+		return tabousToString;
+	}
+	
 	@Override
 	public void lireTabous() {
 		// throw new UnsupportedOperationException("Not supported yet."); //To

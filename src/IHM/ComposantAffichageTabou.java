@@ -19,14 +19,14 @@ import javax.swing.JPanel;
  *
  * @author AdrienPort
  */
-public class ComposantAffichageRenjou extends JPanel implements ActionListener{
+public class ComposantAffichageTabou extends JPanel implements ActionListener{
 
     private JButton[] fleches;
     private JLabel[] affichages;
     private Moteur m;
     private int decalage;
 
-    public ComposantAffichageRenjou(Moteur m) {
+    public ComposantAffichageTabou(Moteur m) {
     	this.m = m;
     	this.decalage = 0;
         fleches = new JButton[2];

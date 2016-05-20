@@ -91,6 +91,9 @@ public class FenetreMenu extends JFrame {
             panels[4].add(boutonsTheme[i]);
         }
         
+        //Tab Tabou
+        ComposantSelectionTabou cst = new ComposantSelectionTabou(ihm);
+        panels[2].add(cst);
         
         //Boutons
         boutons = new JButton[nomBoutons.length];
