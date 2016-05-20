@@ -55,7 +55,7 @@ public class FenetreJeu extends JFrame {
         this.theme = m.getRenjou().getEmplacementThemes();
         p = new Plateau(ihm);
         eds = new EcouteurDeSouris(m, p);
-        //0:PanelPrincipal 1:PanelBouton 2:PanelSud 3:PanelBoutonDansBouton
+        //0:PanelPrincipal 1:PanelBouton 2:PanelSud 3:PanelBoutonDansBouton 4:Panel Centre
         panels = new JPanel[6];
         for (int i = 0; i < panels.length; i++) {
             panels[i] = new JPanel();
@@ -121,10 +121,12 @@ public class FenetreJeu extends JFrame {
         //Fin
         p.setPreferredSize(new Dimension(600, 600));
         this.setJMenuBar(barreMenu);
+        panels[4].setLayout(new BorderLayout());
+        panels[4].add(p, BorderLayout.CENTER);
+        panels[4].add(panels[2], BorderLayout.PAGE_END);
         panels[0].setLayout(new BorderLayout());
+        panels[0].add(panels[4], BorderLayout.CENTER);
         panels[0].add(panels[1], BorderLayout.LINE_START);
-        panels[0].add(p, BorderLayout.CENTER);
-        panels[0].add(panels[2], BorderLayout.PAGE_END);
         this.add(panels[0]);
         this.creerLayout();
         this.repaint();
