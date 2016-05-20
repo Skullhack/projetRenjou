@@ -71,7 +71,7 @@ public class TestIAMoyenne {
 		
 		//Alignements de moins de 5
 		pdj = pdj.charger(chemin + "PlateauPerdantBordures");
-		m.printTrace(5, pdj.toString()); 
+		m.printTrace(66, pdj.toString()); 
 
 		for(int i=0;i<pdj.getLignes();i++){
 			for(int j=0;j<pdj.getColonnes();j++){
@@ -85,7 +85,7 @@ public class TestIAMoyenne {
 		
 		//Alignements de plus de 5 considéré comme gagnant (sujet a changement)
 		pdj = pdj.charger(chemin + "PlateauGagnant5Plus");
-		m.printTrace(5, pdj.toString()); 
+		m.printTrace(66, pdj.toString()); 
 
 		for(int i=0;i<pdj.getLignes();i++){
 			for(int j=0;j<pdj.getColonnes();j++){
@@ -99,10 +99,12 @@ public class TestIAMoyenne {
 		
 		
 	}
+
+
 	
 	@Test
-	public void testEstJouable() {
-
+	public void testEstJouableSimple() {
+		
 		Coordonnees centre = new Coordonnees(5,5);
 		pdj.ajouter(centre, TypeCase.PionNoir);
 		m.printTrace(66, pdj.toString());
@@ -121,12 +123,17 @@ public class TestIAMoyenne {
 				
 			}
 		}
+	
+	
+	}
+	
+	
+	
+	@Test
+	public void testEstJouable() {		
 		
-		pdj.enlever(centre);
-		pdj.ajouter(centre, TypeCase.Injouable);
 		pdj.ajouter(new Coordonnees(7,7), TypeCase.Injouable);
-		
-		centre = new Coordonnees(0,0);
+		Coordonnees centre = new Coordonnees(0,0);
 		pdj.ajouter(centre, TypeCase.PionBlanc);
 		m.printTrace(66, pdj.toString());
 		for(int i=0;i<pdj.getLignes();i++){

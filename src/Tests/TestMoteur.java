@@ -1,9 +1,12 @@
 package Tests;
 
+<<<<<<< HEAD
+=======
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+>>>>>>> branch 'master' of https://github.com/arcaman/projetRenjou.git
 import org.junit.Test;
 
 import Controleur.Coordonnees;
@@ -16,11 +19,12 @@ import Enum.TypeJoueur;
 
 public class TestMoteur {
 
+	
+	
 	@Test
 	public void test() {
 
-		int nbJoueurs = 2;
-		Moteur donneesJeu = new Moteur(nbJoueurs);
+		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
 
 		donneesJeu.setNiveauTrace(0);
 		donneesJeu.printTrace(1, "TEST : d'activation/désactivation des cases injouables");
@@ -44,8 +48,7 @@ public class TestMoteur {
 	@Test
 	public void testPartieNulle() {
 
-		int nbJoueurs = 2;
-		Moteur donneesJeu = new Moteur(nbJoueurs);
+		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
 
 		donneesJeu.setNiveauTrace(0);
 
@@ -83,8 +86,7 @@ public class TestMoteur {
 	@Test
 	public void testPartieFinieJoueurNoirHautEnBas() {
 
-		int nbJoueurs = 2;
-		Moteur donneesJeu = new Moteur(nbJoueurs);
+		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);;
 
 		donneesJeu.setNiveauTrace(0);
 
@@ -122,8 +124,7 @@ public class TestMoteur {
 	@Test
 	public void testPartieFinieJoueurBlancDiagonaleHautGaucheBasDroite() {
 
-		int nbJoueurs = 2;
-		Moteur donneesJeu = new Moteur(nbJoueurs);
+		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);;
 
 		donneesJeu.setNiveauTrace(0);
 
@@ -160,8 +161,7 @@ public class TestMoteur {
 	@Test
 	public void testPartieFinieJoueurBlancGaucheADroite() {
 
-		int nbJoueurs = 2;
-		Moteur donneesJeu = new Moteur(nbJoueurs);
+		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);;
 
 		donneesJeu.setNiveauTrace(0);
 		donneesJeu.printTrace(1, "TEST d'une partie finie par le joueur blanc (GaucheADroite)");
@@ -198,8 +198,7 @@ public class TestMoteur {
 	@Test
 	public void testPartieFinieJoueurNoirDiagonaleHautDroiteBasGauche() {
 
-		int nbJoueurs = 2;
-		Moteur donneesJeu = new Moteur(nbJoueurs);
+		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);;
 
 		donneesJeu.setNiveauTrace(0);
 		donneesJeu.printTrace(1, "TEST d'une partie finie par le joueur noir (DiagonaleHautDroiteBasGauche)");
@@ -234,8 +233,7 @@ public class TestMoteur {
 	@Test
 	public void majCaseTabouAvecPartiePerduPourNoir() {
 
-		int nbJoueurs = 2;
-		Moteur donneesJeu = new Moteur(nbJoueurs);
+		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);;
 
 		donneesJeu.setNiveauTrace(0);
 		donneesJeu.printTrace(1, "TEST d'une case tabou pour faire perdre joueur noir");

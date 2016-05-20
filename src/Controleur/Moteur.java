@@ -27,18 +27,6 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	public ArrayList<MoteurObserveur> observeurs;
 
 	// Constructeur
-	public Moteur(int nbJoueurs) {
-		trace = new Log();
-
-		this.observeurs = new ArrayList<>();
-		Joueur[] tableauJoueurs = new Joueur[nbJoueurs];
-
-		tableauJoueurs[0] = creerJoueur(TypeJoueur.Humain, TypeCouleur.Noir);
-		tableauJoueurs[1] = creerJoueur(TypeJoueur.Humain, TypeCouleur.Blanc);
-
-		this.renjou = new Renjou(tableauJoueurs);
-
-	}
 
 	public Moteur(TypeJoueur typeJoueur1, TypeJoueur typeJoueur2) {
 		trace = new Log();
@@ -309,8 +297,14 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 			renjou.getJoueurs()[1].setNbPion(renjou.getJoueurs()[1].getNbPionsBase());
 		}
 
-		renjou.getJoueurs()[0].setType(typeJoueur1);
-		renjou.getJoueurs()[1].setType(typeJoueur2);
+		observeurs.remove(renjou.getJoueurs()[0]);
+		observeurs.remove(renjou.getJoueurs()[1]);
+		
+		Joueur[] tableauJoueurs = new Joueur[2];
+		tableauJoueurs[0] = creerJoueur(typeJoueur1, TypeCouleur.Noir);
+		tableauJoueurs[1] = creerJoueur(typeJoueur2, TypeCouleur.Blanc);
+		
+		renjou.setJoueurs(tableauJoueurs);
 		renjou.setTabouJeu(tabouPartie);
 		
 		notifierObserveurs();

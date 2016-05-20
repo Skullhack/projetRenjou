@@ -27,6 +27,12 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable
 		// doit systematiquement avoir une
 		// valeur impaire (pour avoir un point
 		// central sur le plateau)
+		initPlateau();
+
+	}
+
+	public void initPlateau() {
+
 		int milieuLignes = lignes / 2;
 		int milieuColonnes = colonnes / 2;
 
@@ -41,7 +47,6 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable
 				}
 			}
 		}
-
 	}
 
 	@Override
@@ -106,7 +111,7 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable
 	public TypeCase getTypeCaseTableau(Coordonnees c) {
 		return this.plateau[c.getLigne()][c.getColonne()];
 	}
-	
+
 	public TypeCase getTypeCaseTableauParLigneColonne(int lignes, int colonnes) {
 		return this.plateau[lignes][colonnes];
 	}
