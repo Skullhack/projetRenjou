@@ -199,7 +199,7 @@ public class FenetreJeu extends JFrame {
 
         //Boutons aide
         ImageIcon aide = new ImageIcon(new ImageIcon("./Images/" + theme + "/AmpouleGrisee.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon aideEclaire = new ImageIcon(new ImageIcon("./Images/" + theme + "/AmpouleAlumee.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon aideEclaire = new ImageIcon(new ImageIcon("./Images/" + theme + "/AmpouleAllumee.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
         setIcone(aides[1], new Color(0, 0, 0, 0), aide, aideEclaire);
         setIcone(aides[0], new Color(0, 0, 0, 0), aide, aideEclaire);
 
