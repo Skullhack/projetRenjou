@@ -12,26 +12,26 @@ import java.util.ArrayList;
  * @author michauad
  */
 public class Tabous implements InterfaceTabous, java.io.Serializable {
-    private ArrayList<Tabou> listeTabous;
-    
-    //Constructeur
-    public Tabous(){
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	private ArrayList<Tabou> listeTabous;
 
-    @Override
-    public ArrayList<Tabou> getTabous() {
-    	
-    	return new ArrayList<Tabou>();
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	// Constructeur
+	public Tabous() {
+		listeTabous = new ArrayList<Tabou>();
+	}
 
-    private void setTabous(ArrayList<Tabou> tabous) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public ArrayList<Tabou> getTabous() {
 
-    @Override
-    public void lireTabous() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+		return this.listeTabous;
+	}
+
+	private void setTabous(ArrayList<Tabou> tabous) {
+		this.setTabous(tabous);
+	}
+
+	@Override
+	public void lireTabous() {
+		// throw new UnsupportedOperationException("Not supported yet."); //To
+		// change body of generated methods, choose Tools | Templates.
+	}
 }
