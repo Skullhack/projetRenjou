@@ -85,6 +85,14 @@ public class ComposantAffichageRenjou extends JPanel implements ActionListener{
         }
 	}
 	
+	public JButton getRenjouPrecedent() {
+		return fleches[0];
+	}
+	
+	public JButton getRenjouSuivant() {
+		return fleches[1];
+	}
+	
 	public void repeindre() {
 		if ((m.getRenjou().getTabouJeu().get(0+decalage)) != null)  {
 			ImageIcon img1 = new ImageIcon(new ImageIcon("./Images/Tabous/"+m.getRenjou().getTabouJeu().get(0+decalage).getNom()+"Image.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));

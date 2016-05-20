@@ -20,7 +20,8 @@ public class EcouteurFenetreJeu implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String action = e.getActionCommand();;
+        FenetreMenu fm = (FenetreMenu) frames[1];
+        String action = e.getActionCommand();
         if (action.equals("Annuler")) {
             m.annuler();
         } else if (action.equals("Refaire")) {
@@ -35,10 +36,18 @@ public class EcouteurFenetreJeu implements ActionListener {
             m.recommencerPartie();
         } else if (action.equals("AideCoup")) {
             System.out.println("AideCoup");
-        } else if (action.equals("Parametres")) {
-            parametre();
+        } else if (action.equals("Joueur")) {
+            joueur();
+            fm.setNouvellePartie(false);
         } else if (action.equals("Creer partie")){
-            parametre();
+            joueur();
+            fm.setNouvellePartie(true);
+        } else if (action.equals("Tabous")){
+            tabous();
+            fm.setNouvellePartie(false);
+        } else if (action.equals("Theme")){
+            themes();
+            fm.setNouvellePartie(false);
         } else {
             System.out.println("Erreur Mauvais Bouton");
         }
@@ -66,8 +75,24 @@ public class EcouteurFenetreJeu implements ActionListener {
 
     }
 
-    private void parametre() {
+    private void joueur() {
         frames[1].setVisible(true);
         frames[0].setVisible(false);
+        FenetreMenu fm = (FenetreMenu) frames[1];
+        fm.getTabbedPane().setSelectedIndex(0);
+    }
+    
+    private void tabous() {
+        frames[1].setVisible(true);
+        frames[0].setVisible(false);
+        FenetreMenu fm = (FenetreMenu) frames[1];
+        fm.getTabbedPane().setSelectedIndex(1);
+    }
+    
+    private void themes() {
+        frames[1].setVisible(true);
+        frames[0].setVisible(false);
+        FenetreMenu fm = (FenetreMenu) frames[1];
+        fm.getTabbedPane().setSelectedIndex(2);
     }
 }

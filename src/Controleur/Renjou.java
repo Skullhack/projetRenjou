@@ -28,14 +28,16 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 
 	// Constructeur
 	public Renjou(Joueur[] tabJoueurs) {
+		
 		this.plateau = new PlateauDeJeu();
-		this.tabJoueurs = tabJoueurs;
 		this.listeAnnuler = new ArrayList<PionJoue>();
 		this.listeRefaire = new ArrayList<PionJoue>();
-		this.tabouJeu = new ArrayList<Tabou>();
-		etatPartie = EtatPartie.EnCours;
-
+		this.etatPartie = EtatPartie.EnCours;
+		this.joueurCourant = 0;
+		this.tabJoueurs = tabJoueurs;
+		
 		// bloc de tabous en dur pour le moment
+		this.tabouJeu = new ArrayList<Tabou>();
 		this.tabous = new Tabous();
 
 		boolean[][] configInterdite = new boolean[15][15];
@@ -56,11 +58,18 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 		tabouJeu.add(tabou4);
 		// fin du bloc tabous
 
-		this.joueurCourant = 0;
 		this.emplacementThemes = "Traditionnel";
 
 	}
 
+	public void initRenjou() {
+		this.plateau.initPlateau();
+		this.listeAnnuler.clear();
+		this.listeRefaire.clear();
+		setEtatPartie(EtatPartie.EnCours);
+		setJoueurCourant(0);
+	}
+	
 	@Override
 	public PlateauDeJeu getPlateauDeJeu() {
 		return this.plateau;

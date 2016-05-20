@@ -55,13 +55,13 @@ public class FenetreJeu extends JFrame {
         this.theme = m.getRenjou().getEmplacementThemes();
         p = new Plateau(ihm);
         eds = new EcouteurDeSouris(m, p);
-        //0:PanelPrincipal 1:PanelBouton 2:PanelSud 3:PanelBoutonDansBouton
+        //0:PanelPrincipal 1:PanelBouton 2:PanelSud 3:PanelBoutonDansBouton 4:Panel Centre
         panels = new JPanel[6];
         for (int i = 0; i < panels.length; i++) {
             panels[i] = new JPanel();
         }
         String[] nomMenus = {"Partie", "Configuration", "Aide"};
-        String[][] nomSousMenu = {{"Creer partie", "Sauvegarder", "Charger", "Quitter"}, {"Theme", "Parametres", "Tabous"}, {"Regles", "Tutoriel", "A propos de"}};
+        String[][] nomSousMenu = {{"Creer partie", "Sauvegarder", "Charger", "Quitter"}, {"Joueur", "Tabous", "Theme"}, {"Regles", "Tutoriel", "A propos de"}};
         String[] nomBoutons = {"Annuler", "Refaire"};
 
         //Initialisation menus
@@ -121,10 +121,12 @@ public class FenetreJeu extends JFrame {
         //Fin
         p.setPreferredSize(new Dimension(600, 600));
         this.setJMenuBar(barreMenu);
+        panels[4].setLayout(new BorderLayout());
+        panels[4].add(p, BorderLayout.CENTER);
+        panels[4].add(panels[2], BorderLayout.PAGE_END);
         panels[0].setLayout(new BorderLayout());
+        panels[0].add(panels[4], BorderLayout.CENTER);
         panels[0].add(panels[1], BorderLayout.LINE_START);
-        panels[0].add(p, BorderLayout.CENTER);
-        panels[0].add(panels[2], BorderLayout.PAGE_END);
         this.add(panels[0]);
         this.creerLayout();
         this.repaint();
@@ -215,11 +217,18 @@ public class FenetreJeu extends JFrame {
         nbPieces[1].setHorizontalTextPosition(JLabel.CENTER);
         nbPieces[1].setFont(new Font("Time New Roman", Font.BOLD, 30));
         nbPieces[1].setForeground(Color.BLACK);
-
+        
+        //Boutons Tabous
+        ImageIcon tabouPrecedent = new ImageIcon(new ImageIcon("./Images/" + theme + "/FlecheTabouGauche.png").getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon tabouSuivant = new ImageIcon(new ImageIcon("./Images/" + theme + "/FlecheTabouDroite.png").getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
+        setIcone(affichageRenjou.getRenjouPrecedent(),new Color(0,0,0,0),tabouPrecedent,tabouPrecedent);
+        setIcone(affichageRenjou.getRenjouSuivant(),new Color(0,0,0,0),tabouSuivant,tabouSuivant);
+        
         //Background
         panels[2].setBackground(Color.WHITE);
         panels[1].setBackground(Color.WHITE);
         panels[3].setBackground(Color.WHITE);
+        affichageRenjou.setBackground(Color.WHITE);
     }
 
     private void setIcone(JButton b, Color color, ImageIcon normal, ImageIcon rollover) {
