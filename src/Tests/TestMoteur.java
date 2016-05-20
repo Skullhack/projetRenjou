@@ -1,12 +1,10 @@
 package Tests;
 
-<<<<<<< HEAD
-=======
+
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
->>>>>>> branch 'master' of https://github.com/arcaman/projetRenjou.git
 import org.junit.Test;
 
 import Controleur.Coordonnees;
