@@ -29,19 +29,20 @@ public interface InterfaceMoteur {
 
 	public void operationJouer(Coordonnees c, TypeJoueur j);
 
-	public void nouvellePartie(TypeJoueur[] tabTypeJoueurs);
-	
+	public void configurerPartie(TypeJoueur typeJoueur1, TypeJoueur typeJoueur2, ArrayList<Tabou> tabouPartie,
+			boolean nouvellePartie);
+
 	public void recommencerPartie();
 
 	public void joueurSuivant();
 
 	public boolean partieFinie(Renjou renjou, Coordonnees c);
-	
+
 	public void annuler();
 
 	public void annulerDemiCoup();
 
 	public void refaire();
-	
+
 	public void refaireDemiCoup();
 }

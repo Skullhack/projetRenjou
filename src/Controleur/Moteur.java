@@ -301,17 +301,19 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	}
 
 	@Override
-	public void nouvellePartie(TypeJoueur[] tabTypeJoueurs) {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+	public void configurerPartie(TypeJoueur typeJoueur1, TypeJoueur typeJoueur2, ArrayList<Tabou> tabouPartie,
+			boolean nouvellePartie) {
+		if (nouvellePartie) {
+			renjou.initRenjou();
+			renjou.getJoueurs()[0].setNbPion(renjou.getJoueurs()[0].getNbPionsBase());
+			renjou.getJoueurs()[1].setNbPion(renjou.getJoueurs()[1].getNbPionsBase());
+		}
+
+		renjou.getJoueurs()[0].setType(typeJoueur1);
+		renjou.getJoueurs()[1].setType(typeJoueur2);
+		renjou.setTabouJeu(tabouPartie);
+		
+		notifierObserveurs();
 	}
 
 	@Override
