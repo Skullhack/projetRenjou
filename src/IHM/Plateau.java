@@ -63,7 +63,7 @@ public class Plateau extends JPanel {
         for (int i=0; i<lignes; i++) {
             for (int j=0; j<colonnes; j++) {
             	if (tab[i][j] == TypeCase.PionBlanc || tab[i][j] == TypeCase.PionNoir)
-            		afficherPion(i, j, tab[i][j], g);
+            		afficherPion(j, i, tab[i][j], g);
             }
         }
         super.paintComponents(g);

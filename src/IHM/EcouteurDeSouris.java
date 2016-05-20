@@ -33,7 +33,7 @@ class EcouteurDeSouris implements MouseListener {
     	if (e.getX()<widthMax && e.getY()<heightMax) {
     		int ligne = (e.getY() - height/2) /height %15;
     		int colonne = (e.getX() - width/2) /width %15;
-    		Coordonnees c = new Coordonnees(colonne,ligne);
+    		Coordonnees c = new Coordonnees(ligne,colonne);
     		m.operationJouer(c, TypeJoueur.Humain);
     	}
     }
