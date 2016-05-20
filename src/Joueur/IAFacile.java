@@ -22,6 +22,9 @@ public class IAFacile extends IA {
 	
 	@Override
 	public void actualiser() {
+		m.printTrace(80, "Dans IAFacile: moteur = " + Integer.toHexString(System.identityHashCode(m)));
+		m.printTrace(80, "Dans IAFacile: observeur = " + Integer.toHexString(System.identityHashCode(m.observeurs)));
+		m.printTrace(80, this.toString() + m.getRenjou().getJoueurs()[m.getRenjou().getJoueurCourant()].toString());
 		if (m.getRenjou().getJoueurs()[m.getRenjou().getJoueurCourant()] == this) {
 			Coordonnees p = jouer(m.getRenjou().getPlateauDeJeu());
 			m.operationJouer(p, type);
