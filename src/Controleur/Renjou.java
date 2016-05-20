@@ -29,7 +29,11 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 	// Constructeur
 	public Renjou(Joueur[] tabJoueurs) {
 		
-		initRenjou();
+		this.plateau = new PlateauDeJeu();
+		this.listeAnnuler = new ArrayList<PionJoue>();
+		this.listeRefaire = new ArrayList<PionJoue>();
+		this.etatPartie = EtatPartie.EnCours;
+		this.joueurCourant = 0;
 		this.tabJoueurs = tabJoueurs;
 		
 		// bloc de tabous en dur pour le moment
@@ -59,11 +63,11 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 	}
 
 	public void initRenjou() {
-		this.plateau = new PlateauDeJeu();
-		this.listeAnnuler = new ArrayList<PionJoue>();
-		this.listeRefaire = new ArrayList<PionJoue>();
-		this.etatPartie = EtatPartie.EnCours;
-		this.joueurCourant = 0;
+		this.plateau.initPlateau();
+		this.listeAnnuler.clear();
+		this.listeRefaire.clear();
+		setEtatPartie(EtatPartie.EnCours);
+		setJoueurCourant(0);
 	}
 	
 	@Override
