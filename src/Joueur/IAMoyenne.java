@@ -96,12 +96,12 @@ public class IAMoyenne extends IA {
 
 	public int EvaluationSansTabous(PlateauDeJeu pdj) {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	public int EvaluationAvecTabous(PlateauDeJeu pdj) {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	
