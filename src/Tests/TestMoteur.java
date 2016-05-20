@@ -460,7 +460,7 @@ public class TestMoteur {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
 
-		donneesJeu.setNiveauTrace(0);
+		donneesJeu.setNiveauTrace(10);
 		donneesJeu.printTrace(1, "TEST PARTIE AVEC SAUVEGARDE");
 		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
@@ -487,7 +487,7 @@ public class TestMoteur {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
 
-		donneesJeu.setNiveauTrace(0);
+		donneesJeu.setNiveauTrace(10);
 		donneesJeu.printTrace(1, "TEST CHARGEMENT DE PARTIE");
 
 		donneesJeu.charger("testSaveRenjou.ser");

@@ -24,7 +24,7 @@ import java.util.List;
 public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	private Renjou renjou;
 	private Log trace;
-	private final List<MoteurObserveur> observeurs;
+	public ArrayList<MoteurObserveur> observeurs;
 
 	// Constructeur
 	public Moteur(int nbJoueurs) {
@@ -74,9 +74,13 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	}
 
 	private void notifierObserveurs() {
-
+		printTrace(80, "Dans notifier: moteur = " + Integer.toHexString(System.identityHashCode(this)));
+		printTrace(80, "Dans notifier: " + Integer.toHexString(System.identityHashCode(observeurs)));
+		printTrace(80, "Dans notifier: " + observeurs.toString());
 		for (MoteurObserveur m : observeurs) {
+			printTrace(80, m.getClass().toString());
 			m.actualiser();
+
 		}
 	}
 
@@ -103,14 +107,37 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 	@Override
 	public void sauvegarder(String nomFichier) {
-
+		printTrace(80, "DANS SAUVEGARDER");
 		ObjectOutputStream oos = null;
 
 		try {
 			final FileOutputStream fichier = new FileOutputStream(nomFichier);
 			oos = new ObjectOutputStream(fichier);
+
+			// on creee une liste d'observeur temporaire et on vide la liste
+			// d'observeur courante.
+			// On effectue cette opération car dans la liste d'observeur, on à
+			// l'objet IHM.
+			// Cependant on ne veut pas serialiser cet objet (erreur)
+			ArrayList<MoteurObserveur> observeurTempo = new ArrayList<MoteurObserveur>();
+			for (MoteurObserveur m : observeurs) {
+				observeurTempo.add(m);
+			}
+			observeurs.clear();
+
 			oos.writeObject(renjou);
 			oos.flush();
+
+			// on reecrit les informations dans la liste des observeurs pour
+			// continuer la partie
+			for (MoteurObserveur m : observeurTempo) {
+				observeurs.add(m);
+			}
+
+			printTrace(80, "Dans sauvegarder: observeurTempo = "
+					+ Integer.toHexString(System.identityHashCode(observeurTempo)));
+			printTrace(80, "Dans sauvegarder: observeur = " + Integer.toHexString(System.identityHashCode(observeurs)));
+
 		} catch (final java.io.IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -128,15 +155,29 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 	@Override
 	public void charger(String fichierCharger) {
-
+		printTrace(80, "DANS CHARGER");
 		ObjectInputStream ois = null;
 		try {
 			final FileInputStream fichierIn = new FileInputStream(fichierCharger);
 			ois = new ObjectInputStream(fichierIn);
+
+			// pour chaque "ancien" joueur, on supprime leur références dans la
+			// liste d'observeurs
+			observeurs.remove(renjou.getJoueurs()[0]);
+			observeurs.remove(renjou.getJoueurs()[1]);
+
 			renjou = (Renjou) ois.readObject();
 
+			// on rajoute les observeurs par rapport aux joueurs du modele
 			this.enregistrerObserveur(renjou.getJoueurs()[0]);
 			this.enregistrerObserveur(renjou.getJoueurs()[1]);
+
+			// dans l'IA, il y a le moteur en paramètre. Pour que l'ia
+			// communique avec le nouveau moteur,
+			// il faut setter les joueurs avec le nouveau moteur et supprimer
+			// l'ancien
+			renjou.getJoueurs()[0].setMoteur(this);
+			renjou.getJoueurs()[1].setMoteur(this);
 
 		} catch (final java.io.IOException e) {
 			e.printStackTrace();
@@ -160,11 +201,14 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 		this.printTrace(1, "Je rentre dans operation jouer");
 
+		this.printTrace(80, "JOUEUR NOIR : " + renjou.getJoueurs()[0].toString() + "JOUEUR BLANC : "
+				+ renjou.getJoueurs()[1].toString());
+
 		if (renjou.getEtatPartie() != EtatPartie.EnCours) {
 			this.printTrace(1, "La partie n'est plus en cours mais elle est : " + renjou.getEtatPartie());
 			return;
 		}
-		
+
 		if (j != renjou.getJoueurs()[renjou.getJoueurCourant()].getType()) {
 			this.printTrace(1, "Les types ne correspondent pas");
 			return;
