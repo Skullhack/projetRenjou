@@ -2,10 +2,15 @@ package Tests;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import Controleur.Coordonnees;
 import Controleur.Moteur;
+import Controleur.MoteurObserveur;
+import Controleur.Tabou;
+import Controleur.Tabous;
 import Enum.TypeCase;
 import Enum.TypeJoueur;
 
@@ -460,7 +465,7 @@ public class TestMoteur {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
 
-		donneesJeu.setNiveauTrace(10);
+		donneesJeu.setNiveauTrace(0);
 		donneesJeu.printTrace(1, "TEST PARTIE AVEC SAUVEGARDE");
 		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
@@ -486,8 +491,11 @@ public class TestMoteur {
 	public void testChargementPartie() {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
+		// vu qu'on va charger un new renjou avec des paramètres humain vs
+		// IAFacile, la ligne au dessus n'a plus vraiment de sens. C'est
+		// seulement pour simuler une nouvelle partie
 
-		donneesJeu.setNiveauTrace(10);
+		donneesJeu.setNiveauTrace(0);
 		donneesJeu.printTrace(1, "TEST CHARGEMENT DE PARTIE");
 
 		donneesJeu.charger("testSaveRenjou.ser");
@@ -523,6 +531,50 @@ public class TestMoteur {
 
 		donneesJeu.printTrace(1, "FIN TEST CHARGEMENT DE PARTIE");
 
+	}
+
+	@Test
+	public void testRecommencerPartie() {
+
+		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
+		donneesJeu.setNiveauTrace(10);
+		donneesJeu.printTrace(1, "TEST RECOMMENCER UNE PARTIE");
+
+		Coordonnees[] tabCoord = new Coordonnees[11];
+		tabCoord[0] = new Coordonnees(7, 7); // noir
+		tabCoord[1] = new Coordonnees(6, 6); // blanc qui joue
+		tabCoord[2] = new Coordonnees(8, 6); // noir
+		tabCoord[3] = new Coordonnees(6, 5); // blanc
+		tabCoord[4] = new Coordonnees(9, 5); // noir
+		tabCoord[5] = new Coordonnees(6, 4); // blanc
+		tabCoord[6] = new Coordonnees(10, 4); // noir
+		tabCoord[7] = new Coordonnees(6, 3); // blanc
+		tabCoord[8] = new Coordonnees(13, 3); // noir
+		tabCoord[9] = new Coordonnees(9, 2); // blanc
+		tabCoord[10] = new Coordonnees(12, 12); // noir
+
+		for (int i = 0; i < tabCoord.length; i++) {
+			donneesJeu.operationJouer(tabCoord[i],
+					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
+			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		}
+
+		donneesJeu.recommencerPartie();
+
+		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+
+		ArrayList<Tabou> tabousDuJeu = donneesJeu.getRenjou().getTabouJeu();
+		Tabous allTabous = donneesJeu.getRenjou().getTabous();
+
+		for (int i = 0; i < tabousDuJeu.size(); i++) {
+			donneesJeu.printTrace(1, "" + tabousDuJeu.get(i).getNom());
+		}
+
+		for (int i = 0; i < allTabous.getTabous().size(); i++) {
+			donneesJeu.printTrace(1, "" + allTabous.getTabous().get(i).getNom());
+		}
+
+		donneesJeu.printTrace(1, "FIN TEST RECOMMENCER UNE PARTIE");
 	}
 
 }

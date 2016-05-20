@@ -316,16 +316,17 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 	@Override
 	public void recommencerPartie() {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+
+		Joueur[] tabJoueursRenouveau = new Joueur[2];
+		tabJoueursRenouveau[0] = creerJoueur(renjou.getJoueurs()[0].getType(), TypeCouleur.Noir);
+		tabJoueursRenouveau[1] = creerJoueur(renjou.getJoueurs()[1].getType(), TypeCouleur.Blanc);
+		Renjou renjouRenouveau = new Renjou(tabJoueursRenouveau);
+		renjouRenouveau.setEmplacementThemes(renjou.getEmplacementThemes());
+		renjouRenouveau.setTabouJeu(renjou.getTabouJeu());
+		renjouRenouveau.setTabous(renjou.getTabous());
+
+		setRenjou(renjouRenouveau);
+		notifierObserveurs();
 	}
 
 	@Override
