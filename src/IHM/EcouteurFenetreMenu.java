@@ -2,11 +2,13 @@ package IHM;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
 import Controleur.Moteur;
+import Controleur.Tabou;
 import Enum.TypeJoueur;
 import javax.swing.JFrame;
 
@@ -45,7 +47,8 @@ public class EcouteurFenetreMenu implements ActionListener {
         action = fm.getCouleur()[1].getSelection().getActionCommand();
         tab[1] = TypeJoueur.valueOf(action);
         if (tab[0] != null && tab[1] != null) {
-            m.nouvellePartie(tab);
+        	//gerer charger et nouvelle partie : TODO
+            m.configurerPartie(tab[0], tab[1], new ArrayList<Tabou>(), fm.getNouvellePartie());
         }
         frames[0].setVisible(true);
         frames[1].setVisible(false);
