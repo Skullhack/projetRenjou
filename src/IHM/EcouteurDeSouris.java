@@ -26,11 +26,16 @@ class EcouteurDeSouris implements MouseListener {
     public void mouseClicked(MouseEvent e) {
     	int width = (p.getWidth())/16;
     	int height = (p.getHeight())/16;
-    	int ligne = (e.getY() - height/2) /height %15; 
-    	int colonne = (e.getX() - width/2) /width %15; 
-    	Coordonnees c = new Coordonnees(colonne,ligne);
-    	//if (!(e.getX() < (p.getWidth()-width/2)) && !(e.getY() < (p.getHeight() - height/2)))
+    	
+    	double widthMax = p.getWidth() - width/1.4;
+    	double heightMax = p.getHeight() - height/1.4;
+    	
+    	if (e.getX()<widthMax && e.getY()<heightMax) {
+    		int ligne = (e.getY() - height/2) /height %15;
+    		int colonne = (e.getX() - width/2) /width %15;
+    		Coordonnees c = new Coordonnees(colonne,ligne);
     		m.operationJouer(c, TypeJoueur.Humain);
+    	}
     }
     
     public void mouseReleased(MouseEvent e) {}

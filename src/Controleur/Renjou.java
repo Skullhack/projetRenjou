@@ -32,13 +32,14 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 		this.tabJoueurs = tabJoueurs;
 		this.listeAnnuler = new ArrayList<PionJoue>();
 		this.listeRefaire = new ArrayList<PionJoue>();
+		this.tabouJeu = new ArrayList<Tabou>();
 		etatPartie = EtatPartie.EnCours;
 
 		// bloc de tabous en dur pour le moment
 		this.tabous = new Tabous();
 
 		boolean[][] configInterdite = new boolean[15][15];
-		Tabou tabou1 = new Tabou(configInterdite, "TROIS");
+		Tabou tabou1 = new Tabou(configInterdite, "TROIS-TROIS");
 		Tabou tabou2 = new Tabou(configInterdite, "FAUX-TROIS");
 		Tabou tabou3 = new Tabou(configInterdite, "QUATRE");
 		Tabou tabou4 = new Tabou(configInterdite, "SIX");

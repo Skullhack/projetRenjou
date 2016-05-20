@@ -17,16 +17,8 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 
 	// Constructeur
 	public Tabou(boolean[][] conf, String nom) {
-		// throw new UnsupportedOperationException("Not supported yet."); // To
-		// change
-		// body
-		// of
-		// generated
-		// methods,
-		// choose
-		// Tools
-		// |
-		// Templates.
+		this.nom=nom;
+		this.configuration=conf;
 	}
 
 	@Override
