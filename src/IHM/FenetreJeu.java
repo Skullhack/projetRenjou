@@ -110,11 +110,11 @@ public class FenetreJeu extends JFrame {
         aides[1].setActionCommand("AideCoup");
         sabliers[1] = new JLabel(); //Sablier du joueur blanc
         tempsRestant[1] = new JLabel("Temps restant : 30"); //Temps restant joueur blanc
-
-        //Panel Sud
         recommencer = new JButton("Recommencer");
-        panels[2].add(recommencer);
+        panels[1].add(recommencer);
         recommencer.addActionListener(efj);
+        
+        //Panel Sud
         affichageRenjou = new ComposantAffichageRenjou(m);
         panels[2].add(affichageRenjou);
 
@@ -176,6 +176,8 @@ public class FenetreJeu extends JFrame {
         panels[1].add(sabliers[1], gbc); //Second sablier
         gbc.gridy = 10;
         panels[1].add(tempsRestant[1], gbc); //Temps restant (noir)
+        gbc.gridy = 11;
+        panels[1].add(recommencer, gbc); //Bouton Recommencer
 
         //Layout Panel Noir
         noir.setAlignmentY(CENTER_ALIGNMENT);

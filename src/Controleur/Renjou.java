@@ -57,7 +57,7 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 		// fin du bloc tabous
 
 		this.joueurCourant = 0;
-		this.emplacementThemes = "Defaut";
+		this.emplacementThemes = "Traditionnel";
 
 	}
 
