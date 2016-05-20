@@ -5,6 +5,8 @@
  */
 package Joueur;
 
+import java.awt.Point;
+
 import Controleur.*;
 import Enum.*;
 
@@ -66,6 +68,13 @@ public class Joueur implements MoteurObserveur, java.io.Serializable {
 		this.couleur = c;
 	}
 
+	public Point play(int[][] plateau, int couleurJoueur, boolean tabou3x3, boolean tabou4x4, boolean tabouOverline){
+		//0 = Vide
+		//1 = Noir
+		//2 = Blanc
+		
+		return new Point();
+	}
 	@Override 
 	public void actualiser() {
 		m.printTrace(3, "Joueur notifie");

@@ -27,18 +27,6 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	public ArrayList<MoteurObserveur> observeurs;
 
 	// Constructeur
-	public Moteur(int nbJoueurs) {
-		trace = new Log();
-
-		this.observeurs = new ArrayList<>();
-		Joueur[] tableauJoueurs = new Joueur[nbJoueurs];
-
-		tableauJoueurs[0] = creerJoueur(TypeJoueur.Humain, TypeCouleur.Noir);
-		tableauJoueurs[1] = creerJoueur(TypeJoueur.Humain, TypeCouleur.Blanc);
-
-		this.renjou = new Renjou(tableauJoueurs);
-
-	}
 
 	public Moteur(TypeJoueur typeJoueur1, TypeJoueur typeJoueur2) {
 		trace = new Log();

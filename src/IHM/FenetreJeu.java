@@ -29,7 +29,7 @@ import Controleur.Moteur;
  * @author michauad
  */
 public class FenetreJeu extends JFrame {
-    private ComposantAffichageRenjou affichageRenjou;
+    private ComposantAffichageTabou affichageRenjou;
     private Moteur m;
     private JPanel[] panels;
     private JMenuBar barreMenu;
@@ -115,7 +115,7 @@ public class FenetreJeu extends JFrame {
         recommencer.addActionListener(efj);
         
         //Panel Sud
-        affichageRenjou = new ComposantAffichageRenjou(m);
+        affichageRenjou = new ComposantAffichageTabou(m);
         panels[2].add(affichageRenjou);
 
         //Fin
