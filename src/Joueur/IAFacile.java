@@ -19,11 +19,6 @@ public class IAFacile extends IA {
 		nbColonne = m.getRenjou().getPlateauDeJeu().getColonnes();
 	}
 
-//	@Override
-//	public void update(Observable arg0, Object arg1) {
-//
-//
-//	}
 	
 	@Override
 	public void actualiser() {

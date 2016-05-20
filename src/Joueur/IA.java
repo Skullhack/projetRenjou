@@ -12,7 +12,7 @@ import Enum.TypeCouleur;
 import Enum.TypeJoueur;
 
 
-public class IA extends Joueur{
+public class IA extends Joueur {
 	
 	protected Random r;
 	protected int[][] tabHeuristique;
@@ -21,7 +21,6 @@ public class IA extends Joueur{
 	
     public IA(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
         super(moteur, type, nbPion, couleurJoueur);
-        
 		java.util.GregorianCalendar calendar = new GregorianCalendar();
 		r = new Random(calendar.getTimeInMillis());
 		nbLigne = m.getRenjou().getPlateauDeJeu().getLignes();
@@ -31,7 +30,7 @@ public class IA extends Joueur{
 			for(int j=0; j< nbColonne; j++){
 				tabHeuristique[i][j] = 0;
 			}
-		}
+		}		
 	}
 	
 
@@ -41,6 +40,8 @@ public class IA extends Joueur{
 	}
 
 	public void modifierHeristique(Coordonnees p, PlateauDeJeu plateau) {
+		m.printTrace(15,"Dans modifier Heuristique");
+
 		int i = p.getLigne();
 		int j = p.getColonne();
 		if (i > 0) {
@@ -86,28 +87,32 @@ public class IA extends Joueur{
 		}
 	}
 	
-	public void afficherTabHeuristique(){
+	public String afficherTabHeuristique(){
+		String buff = "";
 		for(int i=0; i<13; i++){
-			for(int j=0; i<13; i++){
-				System.out.print(tabHeuristique[i][j]);
+			for(int j=0; j<13; j++){
+				if(tabHeuristique[i][j] == -1)
+					buff += "-";
+				else
+					buff += tabHeuristique[i][j];
 			}
-			System.out.println();
+			buff += "\n";
 		}
+		return buff;
 	}
 	
 	public void initHeuristique(PlateauDeJeu plateau) {
+		m.printTrace(15,"Dans init Heuristique");
 
 		for (int i = 0; i < nbLigne; i++) {
 			for (int j = 0; j < nbColonne; j++) {
 				Coordonnees p = new Coordonnees(i, j);
 				if ((plateau.getPlateau()[i][j] == TypeCase.PionBlanc) || (plateau.getPlateau()[i][j] == TypeCase.PionNoir)) {
-					m.printTrace(9,"appel a modifier Heuristique");
 					modifierHeristique(p, plateau);
 				}
 			}
 		}
 
 	}
-
 
 }

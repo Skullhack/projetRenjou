@@ -5,9 +5,6 @@
  */
 package Joueur;
 
-import java.util.Observable;
-import java.util.Observer;
-
 import Controleur.*;
 import Enum.*;
 
@@ -18,14 +15,15 @@ public class Joueur implements MoteurObserveur, java.io.Serializable {
 	protected TypeCouleur couleur;
 	protected int nbPionsBase;
 
-	public Joueur(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
-		this.type = type;
-		this.nbPion = nbPion;
-		nbPionsBase = nbPion;
-		couleur = couleurJoueur;
-		m = moteur;
-		moteur.enregistrerObserveur(this);
-	}
+    public Joueur(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
+    	moteur.enregistrerObserveur(this);
+    	this.type = type;
+    	this.nbPion = nbPion;
+    	nbPionsBase = nbPion;
+    	couleur = couleurJoueur;
+    	m = moteur;
+    }
+    
 
 	// Getter et setter
 	public TypeJoueur getType() {
@@ -68,12 +66,9 @@ public class Joueur implements MoteurObserveur, java.io.Serializable {
 		this.couleur = c;
 	}
 
-	@Override
+	@Override 
 	public void actualiser() {
-		// TODO Auto-generated method stub
-		// doit lancer jouer()
-		m.printTrace(3, "IA notifiee");
-
+		m.printTrace(3, "Joueur notifie");
 	}
-
+    
 }

@@ -8,7 +8,7 @@ import Controleur.PlateauDeJeu;
 
 public class TestPlateauDeJeu {
 
-	private static String chemin = "TestsPlateauDeJeu/";
+	private static String chemin = "Tests/TestsPlateauDeJeu/";
 	@Test
 	public void test() {
 		
@@ -19,14 +19,13 @@ public class TestPlateauDeJeu {
 		
 		
 		PlateauDeJeu pdj = new PlateauDeJeu();
-		comparer(pdj, "PlateauVide" );
+		comparer(pdj, chemin + "PlateauVide" );
 		
 			
 	}
 	
 	public static void comparer(PlateauDeJeu pdj, String test ){
-		PlateauDeJeu pdjtest = new PlateauDeJeu();
-		pdjtest.charger(TestPlateauDeJeu.chemin + "PlateauVide");
+		PlateauDeJeu pdjtest = pdj.charger(test);
 		for(int i=0;i<pdj.getLignes();i++){
 			for(int j=0;j<pdj.getColonnes();j++){
 					assertEquals(pdj.getPlateau()[i][j], pdjtest.getPlateau()[i][j]); 
