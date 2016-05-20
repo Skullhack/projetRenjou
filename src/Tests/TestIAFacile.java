@@ -26,8 +26,8 @@ public class TestIAFacile {
 	@Before
 	public void init() {
 		
-		m = new Moteur(nbJoueur);
-		iaFacileNoire = new IAFacile(m,TypeJoueur.IAFacile, 60, TypeCouleur.Noir);
+		m = new Moteur(TypeJoueur.IAFacile, TypeJoueur.Humain );
+		iaFacileNoire = (IAFacile) m.getRenjou().getJoueurs()[0];
 		
 	}
 	

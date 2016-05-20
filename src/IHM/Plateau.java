@@ -3,12 +3,14 @@ package IHM;
 import java.awt.Dimension;
 import Controleur.Coordonnees;
 import Controleur.Moteur;
+import Controleur.PionJoue;
 
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -21,19 +23,24 @@ public class Plateau extends JPanel {
 	private Image imagePlateau;
 	private Image imagePionBlanc;
 	private Image imagePionNoir;
+	private Image imagePionBlancJoue;
+	private Image imagePionNoirJoue;
 	private int lignes;
 	private int colonnes;
 	private String theme;
+	private ArrayList<PionJoue> historique;
 	
     public Plateau(IHM ihm) {
     	this.ihm = ihm;
         this.lignes = ihm.m.getRenjou().getPlateauDeJeu().getLignes();
         this.colonnes = ihm.m.getRenjou().getPlateauDeJeu().getColonnes();
-        this.theme = ihm.m.getRenjou().getEmplacementThemes();;
+        this.theme = ihm.m.getRenjou().getEmplacementThemes();
+        this.historique = ihm.m.getRenjou().getListeAnnuler();
         try {
     		imagePlateau = ImageIO.read(new File("./Images/"+theme+"/Plateau 15x15.png"));
     		imagePionBlanc = ImageIO.read(new File("./Images/"+theme+"/Pion blanc.png"));
     		imagePionNoir = ImageIO.read(new File("./Images/"+theme+"/Pion noir.png"));
+    		imagePionNoirJoue = ImageIO.read(new File("./Images/"+theme+"/Pion noir joue.png"));
     	} catch (IOException e) {
     		
     	}
@@ -52,6 +59,22 @@ public class Plateau extends JPanel {
         else
         	g.drawImage(imagePionNoir, x, y, width, height, null);
     }
+    
+    public void afficherDernier(Graphics g) {
+    	if (historique.size() > 0) {
+    		int colonneDernier = historique.get(historique.size()-1).getCoordonnees().getColonne();
+    		int ligneDernier = historique.get(historique.size()-1).getCoordonnees().getLigne();
+        
+    		Dimension pan = this.getSize();
+    	
+    		int width = (pan.width)/16;
+    		int height = (pan.height)/16;
+    		int x = (ligneDernier*width+4)+(width/2);
+    		int y = (colonneDernier*height+4)+(height/2);
+        
+    		g.drawImage(imagePionNoirJoue, x, y, width, height, null);
+    	}
+    }
 
     @Override
     public void paintComponent(Graphics g) {
@@ -66,6 +89,8 @@ public class Plateau extends JPanel {
             		afficherPion(i, j, tab[i][j], g);
             }
         }
+        
+        afficherDernier(g);
         super.paintComponents(g);
     }
 }
