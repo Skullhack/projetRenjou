@@ -104,6 +104,12 @@ public class IA extends Joueur {
 	public void initHeuristique(PlateauDeJeu plateau) {
 		m.printTrace(15,"Dans init Heuristique");
 
+		for(int i=0; i< nbLigne; i++){
+			for(int j=0; j< nbColonne; j++){
+				tabHeuristique[i][j] = 0;
+			}
+		}
+		
 		for (int i = 0; i < nbLigne; i++) {
 			for (int j = 0; j < nbColonne; j++) {
 				Coordonnees p = new Coordonnees(i, j);
