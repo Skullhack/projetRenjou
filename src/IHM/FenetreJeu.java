@@ -61,7 +61,7 @@ public class FenetreJeu extends JFrame {
             panels[i] = new JPanel();
         }
         String[] nomMenus = {"Partie", "Configuration", "Aide"};
-        String[][] nomSousMenu = {{"Creer partie", "Sauvegarder", "Charger", "Quitter"}, {"Theme", "Parametres", "Tabous"}, {"Regles", "Tutoriel", "A propos de"}};
+        String[][] nomSousMenu = {{"Creer partie", "Sauvegarder", "Charger", "Quitter"}, {"Joueur", "Tabous", "Theme"}, {"Regles", "Tutoriel", "A propos de"}};
         String[] nomBoutons = {"Annuler", "Refaire"};
 
         //Initialisation menus
@@ -217,11 +217,18 @@ public class FenetreJeu extends JFrame {
         nbPieces[1].setHorizontalTextPosition(JLabel.CENTER);
         nbPieces[1].setFont(new Font("Time New Roman", Font.BOLD, 30));
         nbPieces[1].setForeground(Color.BLACK);
-
+        
+        //Boutons Tabous
+        ImageIcon tabouPrecedent = new ImageIcon(new ImageIcon("./Images/" + theme + "/FlecheTabouGauche.png").getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon tabouSuivant = new ImageIcon(new ImageIcon("./Images/" + theme + "/FlecheTabouDroite.png").getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
+        setIcone(affichageRenjou.getRenjouPrecedent(),new Color(0,0,0,0),tabouPrecedent,tabouPrecedent);
+        setIcone(affichageRenjou.getRenjouSuivant(),new Color(0,0,0,0),tabouSuivant,tabouSuivant);
+        
         //Background
         panels[2].setBackground(Color.WHITE);
         panels[1].setBackground(Color.WHITE);
         panels[3].setBackground(Color.WHITE);
+        affichageRenjou.setBackground(Color.WHITE);
     }
 
     private void setIcone(JButton b, Color color, ImageIcon normal, ImageIcon rollover) {

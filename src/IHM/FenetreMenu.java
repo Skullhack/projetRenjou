@@ -41,6 +41,7 @@ public class FenetreMenu extends JFrame {
     private JLabel labelBlanc;
     private JLabel nom;
     private EcouteurFenetreMenu efm;
+    private boolean nouvellePartie;
 
     public FenetreMenu(IHM ihm) {
         this.m = ihm.m;
@@ -58,7 +59,7 @@ public class FenetreMenu extends JFrame {
         tabbedPane = new JTabbedPane();
         tabbedPane.addTab("Joueurs", null, panels[1], "Configuration de la partie");
         tabbedPane.addTab("Tabous", null, panels[2], "Configuration des tabous");
-        tabbedPane.addTab("Thème", null, panels[4], "Choix du thème");
+        tabbedPane.addTab("Theme", null, panels[4], "Choix du theme");
 
         //Tab Joueur
         couleur = new ButtonGroup[2];
@@ -147,4 +148,16 @@ public class FenetreMenu extends JFrame {
     public ButtonGroup[] getCouleur() {
         return couleur;
     }
+    
+    public JTabbedPane getTabbedPane() {
+    	return tabbedPane;
+    }
+
+	public boolean getNouvellePartie() {
+		return nouvellePartie;
+	}
+	
+	public void setNouvellePartie(boolean nouvellePartie) {
+		this.nouvellePartie = nouvellePartie;
+	}
 }
