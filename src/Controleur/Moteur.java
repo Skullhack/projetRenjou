@@ -89,6 +89,10 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		trace.setNiveau(niveau);
 	}
 
+	public void setPlageTrace(int plageBasse, int plageHaute) {
+		trace.setPlage(plageBasse, plageHaute);
+	}
+	
 	public void printTrace(int niveau, String msg) {
 		trace.print(niveau, msg);
 	}
