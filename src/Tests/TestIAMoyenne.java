@@ -29,7 +29,7 @@ public class TestIAMoyenne {
 		// plage detestPartieFinie 611 620
 		// plage detestEstJouableSimple 621 630
 		// plage detestEstJouable 631 640
-		m.setPlageTrace(600,600);
+		m.setPlageTrace(650,700);
 
 	}
 	
@@ -256,6 +256,52 @@ public class TestIAMoyenne {
 			(c1.getColonne() <= c2.getColonne() +2 && c1.getColonne() >= c2.getColonne() -2) &&
 			(c1.getLigne() != c2.getLigne() || c1.getColonne() != c2.getColonne());
 			
+	}
+	
+	
+	@Test
+	public void testJouerProfondeur0(){
+		m.printTrace(641, "debut testJouerProfondeur0");
+
+		m.printTrace(645, pdj.toString());
+
+		pdj = pdj.charger(chemin + "Plateau4NoirGagnant");
+		m.printTrace(645, pdj.toString());
+		m.setPlageTrace(640, 650);
+		Coordonnees c = ia.Jouer(pdj);
+		assertTrue(c.getLigne() == 5 && c.getColonne() == 1);
+		
+		pdj.ajouter(c, TypeCase.PionNoir);
+
+		m.printTrace(641, "c= " + c);
+		m.printTrace(645, pdj.toString());
+
+		
+		
+		
+		m.printTrace(641, "fin testJouerProfondeur0");
+	}
+	
+	@Test 
+	public void testJouerProfondeur2(){
+		m.printTrace(651, "debut testJouerProfondeur2");
+
+		m.printTrace(655, pdj.toString());
+
+		pdj = pdj.charger(chemin + "Plateau3VideNoirGagnant");
+		m.printTrace(655, pdj.toString());
+		Coordonnees c = ia.Jouer(pdj);
+		//assertTrue(c.getLigne() == 5 && c.getColonne() == 1);
+		
+		pdj.ajouter(c, TypeCase.PionNoir);
+
+		m.printTrace(651, "c= " + c);
+		m.printTrace(655, pdj.toString());
+
+		
+		
+		
+		m.printTrace(651, "fin testJouerProfondeur2");
 	}
 
 }

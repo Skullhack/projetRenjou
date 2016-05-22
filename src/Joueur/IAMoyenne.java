@@ -6,6 +6,7 @@
 package Joueur;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import Controleur.*;
 import Enum.*;
@@ -13,10 +14,15 @@ import Enum.*;
 
 public class IAMoyenne extends IA {
 	ArrayList<Coordonnees> coups;
-
+	Random r;
+	int profondeurMax;
+	
 	public IAMoyenne(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur){
 		super(moteur, type,nbPion,couleurJoueur);
 		coups = new ArrayList<>();
+		int seed = 12345;
+		r = new Random(seed);
+		profondeurMax = 3;
 	}
 	
 	
@@ -42,16 +48,13 @@ public class IAMoyenne extends IA {
 	}	
 	
 
-	public void Jouer(){
+	public Coordonnees Jouer(PlateauDeJeu p){
 		m.printTrace(66, "Dans Jouer IAMoyenne");
+		coups.clear();
+		PlateauDeJeu pdj =  p.clone();
 		
-		PlateauDeJeu pdj =  m.getRenjou().getPlateauDeJeu().clone();
-		
-		m.printTrace(19, afficherTabHeuristique());
-		initHeuristique(pdj);
-
-		int profondeur = 3;
-		int valeur = -100000;
+		int profondeur = profondeurMax;
+		int valeur = -10000;
 		int valeurtemp;
 		TypeCase tc =  this.getTypeCase(this.couleur);
 		
@@ -62,27 +65,40 @@ public class IAMoyenne extends IA {
 				//Heuristique, on ne cherche pas a jouer a plus de 2 cases d'un pion existant
 				if(EstJouable(pdj, c)){
 					pdj.ajouter(c,tc);
-					
+					m.printTrace(695, pdj.toString());
 					if(PartieFinie(pdj,c)){
-						// on peut couper là, le coup est gagnant... mais comment on renvoie la coordonnées n'est pas encore géré
-						valeurtemp = 10000;
+						// on peut couper là, le coup est gagnant.
+						m.printTrace(695, "dans jouer " + c + " gagnant en profondeur " + (profondeurMax -profondeur));
+						return c;
 					}else{
+						//valeurtemp = 0;
 						valeurtemp = EvaluerCoupAdversaire(pdj,profondeur -1, this.autreTypeCase(tc));
 					}
 					pdj.enlever(c);
 					if(valeurtemp == valeur){
+						m.printTrace(695, "dans egal valeurtemp=" + valeurtemp + " " + c);
 						coups.add(c);
+						m.printTrace(695, coups.toString());
 					}
 					else if(valeurtemp > valeur){
+						m.printTrace(695, "dans sup valeurtemp=" + valeurtemp + " " + c);
 						coups.clear();
 						coups.add(c);
 						valeur = valeurtemp;
+						m.printTrace(695, coups.toString());
 					}
 					
 				}
 			}
 		}
+		m.printTrace(695, coups.toString());
+
+		if(coups.isEmpty()){
+			return new Coordonnees(-1,-1);
+		}
 		
+		r.nextInt(coups.size());
+		return coups.get(r.nextInt(coups.size()));
 		
 	}
 	
@@ -116,10 +132,13 @@ public class IAMoyenne extends IA {
 				//Heuristique, on ne cherche pas a jouer a plus de 2 cases d'un pion existant
 				if(EstJouable(pdj, c)){
 					pdj.ajouter(c,tc);
-					
+					m.printTrace(695, pdj.toString());
 					if(PartieFinie(pdj, c)){
 						// on peut couper là, le coup est perdant.
-						return -10000;
+						pdj.enlever(c);
+
+						m.printTrace(695, "dans evalCoupAdv " + c + " gagnant en profondeur " + (profondeurMax -profondeur));
+						return -20000;
 					}else{
 						valeur =  Math.min(valeur, EvaluerCoupIA(pdj,profondeur -1, this.autreTypeCase(tc)));
 					}
@@ -143,6 +162,8 @@ public class IAMoyenne extends IA {
 					pdj.ajouter(c,tc);
 					if(PartieFinie(pdj, c)){
 						// on peut couper là, le coup est gagnant.
+						pdj.enlever(c);
+						m.printTrace(695, "dans evalCoupIA " + c + " gagnant en profondeur " + (profondeurMax -profondeur));
 						return 10000;
 					}else{
 						valeur =  Math.max(valeur, EvaluerCoupAdversaire(pdj,profondeur -1, this.autreTypeCase(tc)));
@@ -273,7 +294,7 @@ public class IAMoyenne extends IA {
 			return;
 		}
 		
-		Jouer();
+		Jouer(m.getRenjou().getPlateauDeJeu());
 	}
 	
 	public boolean AmonTour(){
