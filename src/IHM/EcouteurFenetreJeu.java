@@ -48,6 +48,12 @@ public class EcouteurFenetreJeu implements ActionListener {
         } else if (action.equals("Theme")){
             themes();
             fm.setNouvellePartie(false);
+        } else if (action.equals("Regles")){
+        	regles();
+        } else if (action.equals("Tutoriel")){
+        	tutoriel();
+        } else if (action.equals("A propos de")){
+        	aProposDe();
         } else {
             System.out.println("Erreur Mauvais Bouton");
         }
@@ -77,22 +83,49 @@ public class EcouteurFenetreJeu implements ActionListener {
 
     private void joueur() {
         frames[1].setVisible(true);
-        frames[0].setVisible(false);
+        frames[1].setAlwaysOnTop(true);
+        frames[0].setEnabled(false);
         FenetreMenu fm = (FenetreMenu) frames[1];
         fm.getTabbedPane().setSelectedIndex(0);
     }
     
     private void tabous() {
         frames[1].setVisible(true);
-        frames[0].setVisible(false);
+        frames[1].setAlwaysOnTop(true);
+        frames[0].setEnabled(false);
         FenetreMenu fm = (FenetreMenu) frames[1];
         fm.getTabbedPane().setSelectedIndex(1);
     }
     
     private void themes() {
         frames[1].setVisible(true);
-        frames[0].setVisible(false);
+        frames[1].setAlwaysOnTop(true);
+        frames[0].setEnabled(false);
         FenetreMenu fm = (FenetreMenu) frames[1];
+        fm.getTabbedPane().setSelectedIndex(2);
+    }
+    
+    private void regles() {
+        frames[2].setVisible(true);
+        frames[2].setAlwaysOnTop(true);
+        frames[0].setEnabled(false);
+        FenetreAide fm = (FenetreAide) frames[2];
+        fm.getTabbedPane().setSelectedIndex(0);
+    }
+    
+    private void tutoriel() {
+        frames[2].setVisible(true);
+        frames[2].setAlwaysOnTop(true);
+        frames[0].setEnabled(false);
+        FenetreAide fm = (FenetreAide) frames[2];
+        fm.getTabbedPane().setSelectedIndex(1);
+    }
+    
+    private void aProposDe() {
+        frames[2].setVisible(true);
+        frames[2].setAlwaysOnTop(true);
+        frames[0].setEnabled(false);
+        FenetreAide fm = (FenetreAide) frames[2];
         fm.getTabbedPane().setSelectedIndex(2);
     }
 }

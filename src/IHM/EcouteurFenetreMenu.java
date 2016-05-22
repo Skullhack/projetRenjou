@@ -35,8 +35,9 @@ public class EcouteurFenetreMenu implements ActionListener {
     }
 
     private void annuler() {
-        frames[0].setVisible(true);
+        frames[0].setEnabled(true);
         frames[1].setVisible(false);
+        frames[1].setAlwaysOnTop(false);
     }
 
     private void valider() {
@@ -50,7 +51,8 @@ public class EcouteurFenetreMenu implements ActionListener {
         	//gerer charger et nouvelle partie : TODO
             m.configurerPartie(tab[0], tab[1], new ArrayList<Tabou>(), fm.getNouvellePartie());
         }
-        frames[0].setVisible(true);
+        frames[0].setEnabled(true);
         frames[1].setVisible(false);
+        frames[1].setAlwaysOnTop(false);
     }
 }
