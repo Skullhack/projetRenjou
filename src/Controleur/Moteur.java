@@ -220,10 +220,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		try {
 			typeCaseJoueurCourant = getTypeCaseJoueurCourant(renjou);
 			renjou.getPlateauDeJeu().ajouter(c, typeCaseJoueurCourant);
-
-			ajouterPionJoueDansListeAnnuler(renjou, c, typeCaseJoueurCourant, renjou.getEtatPartie());
 			renjou.getListeRefaire().clear();
-
 			decrementerPionsJoueurCourant(renjou);
 
 			int nbPionsRestant = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
@@ -236,22 +233,20 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 		if (partieFinie(renjou, c)) {
 			setPartieFinie(renjou);
-			// ajouterPionJoueDansListeAnnuler(renjou, c, typeCaseJoueurCourant,
-			// renjou.getEtatPartie());
 			Log.print(1, "JEU FINI !!!");
+			for (PionJoue p : renjou.getListeAnnuler()) {
+				Log.print(1, p.toString());
+			}
 		} else if (partieNulle(renjou)) {
 			setPartieNulle(renjou);
-			// ajouterPionJoueDansListeAnnuler(renjou, c, typeCaseJoueurCourant,
-			// renjou.getEtatPartie());
 			Log.print(1, "PARTIE NULLE !!");
 		} else {
 			Log.print(1, "ON PASSE LA MAIN AU JOUEUR SUIVANT");
-			// ajouterPionJoueDansListeAnnuler(renjou, c, typeCaseJoueurCourant,
-			// renjou.getEtatPartie());
-			joueurSuivant();
-			majCasesInjouables(renjou);
-			majCasesTabous(renjou);
 		}
+		joueurSuivant();
+		ajouterPionJoueDansListeAnnuler(renjou, c, typeCaseJoueurCourant, renjou.getEtatPartie());
+		majCasesInjouables(renjou);
+		majCasesTabous(renjou);
 
 	}
 
@@ -275,7 +270,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 	public void ajouterPionJoueDansListeAnnuler(Renjou renjou, Coordonnees c, TypeCase typeCaseJoueurCourant,
 			EtatPartie etatPartie) {
-		
+
 		if (!estDeuxJoueursIA(renjou)) {
 			PionJoue pionJoue = new PionJoue(c, typeCaseJoueurCourant, etatPartie);
 			renjou.getListeAnnuler().add(pionJoue);
@@ -578,10 +573,14 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		if (this.getRenjou().getJoueurs()[0].getType() == TypeJoueur.Humain
 				&& this.getRenjou().getJoueurs()[1].getType() == TypeJoueur.Humain) {
 			annulerDemiCoup();
+			if (this.getRenjou().getEtatPartie() != EtatPartie.EnCours) {
+				annulerDemiCoup();
+			}
 		} else {
 			annulerDemiCoup();
 			annulerDemiCoup();
 		}
+
 		notifierObserveurs();
 	}
 
@@ -613,6 +612,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 			refaireDemiCoup();
 			refaireDemiCoup();
 		}
+
 		notifierObserveurs();
 	}
 
