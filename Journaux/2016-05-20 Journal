@@ -10,3 +10,9 @@
 
 #TÂCHES EFFECTUÉES
 
+- Plateau de jeu fonctionnel
+- Liaison IHM-Moteur fini avec test réussi
+- Fenêtre configuration et aide faite, manque les images
+- Questionnaire IHM ok
+- Image dernier coup joué en cours
+- Reflexion sur l'implémentation des tabous
