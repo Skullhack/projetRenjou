@@ -31,8 +31,8 @@ public class InfosAlignement {
 	public InfosAlignement(PlateauDeJeu pdj, Coordonnees c, TypeDirection td) {
 		nbNoir = 0;
 		nbBlanc = 0;
-		continuNoir = false;
-		continuBlanc = false;
+		continuNoir = true;
+		continuBlanc = true;
 		libreNoir = true;
 		libreBlanc = true;
 		ligne = c.getLigne();
@@ -44,41 +44,62 @@ public class InfosAlignement {
 		
 		boolean noirFini = false;
 		boolean blancFini = false;
+		boolean caseVideNoir = false;
+		boolean caseVideBlanc = false;
 		boolean bordure = !incremente();
 			
 		Log.print(795, "0 - "+ (!bordure || (noirFini && blancFini)) +" - bordure= " + bordure + " noirFini= " + noirFini + " blancFini= "+ blancFini + " ligne= " +ligne+ " colonne= " + colonne);
 		
-		while(!bordure && (!noirFini || !blancFini)){
+		while(!bordure && !(noirFini && blancFini)){
 			Log.print(795, "1 - "+ (!bordure || (noirFini && blancFini)) +" - bordure= " + bordure + " noirFini= " + noirFini + " blancFini= "+ blancFini + " ligne= " +ligne+ " colonne= " + colonne);
 
 			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
 			if(tc == TypeCase.PionBlanc){
 				noirFini = true;
 				libreNoir = false;
-				nbBlanc++;
-			}else if(tc == TypeCase.PionNoir){
-				blancFini = true;
-				libreBlanc = false;
-				nbNoir++;
-			}else if(tc == TypeCase.Jouable){
-				
-				if(!continuNoir){
-					continuNoir = true;
-				}else{
-					noirFini = true;
+				if(caseVideBlanc){
+					continuBlanc = false;
+					Log.print(795, "blanc non continu");
 				}
 				
-				if(!continuBlanc){
-					continuBlanc = true;
+				if(!blancFini){
+					nbBlanc++;
+					Log.print(795, "pionBlanc: " + nbBlanc);
+				}
+			}else if(tc == TypeCase.PionNoir && !noirFini){
+				blancFini = true;
+				libreBlanc = false;
+				if(caseVideNoir){
+					continuNoir = false;
+					Log.print(795, "noir non continu");
+				}
+				if(!noirFini){
+					nbNoir++;
+					Log.print(795, "pionNoir: " + nbNoir);
+				}
+			}else if(tc == TypeCase.Jouable){
+				
+				if(!caseVideNoir){
+					caseVideNoir = true;
+					Log.print(795, "caseVideNoir");
+				}else{
+					noirFini = true;
+					Log.print(795, "noirFini");
+				}
+				
+				if(!caseVideBlanc){
+					caseVideBlanc = true;
+					Log.print(795, "caseVideBlanc");
 				}else{
 					blancFini = true;
+					Log.print(795, "blancFini");
 				}
 				
 				
 			}
-			Log.print(795, "2 - "+ (bordure || (noirFini && blancFini)) +" - bordure= " + bordure + " noirFini= " + noirFini + " blancFini= "+ blancFini + " ligne= " +ligne+ " colonne= " + colonne);
-			bordure = incremente();
-			Log.print(795, "3 - "+ (bordure || (noirFini && blancFini)) +" - bordure= " + bordure + " noirFini= " + noirFini + " blancFini= "+ blancFini + " ligne= " +ligne+ " colonne= " + colonne);
+			Log.print(795, "2 - "+ (!bordure || (noirFini && blancFini)) +" - bordure= " + bordure + " noirFini= " + noirFini + " blancFini= "+ blancFini + " ligne= " +ligne+ " colonne= " + colonne);
+			bordure = !incremente();
+			Log.print(795, "3 - "+ (!bordure || (noirFini && blancFini)) +" - bordure= " + bordure + " noirFini= " + noirFini + " blancFini= "+ blancFini + " ligne= " +ligne+ " colonne= " + colonne);
 
 		}
 		
@@ -175,7 +196,6 @@ public class InfosAlignement {
 		buffer += "Pions Blancs Alignes: " + nbBlanc + " est libre? " + libreBlanc + " est continu? "+ continuBlanc;
 		
 		return buffer;
-		
 	}
 	
 }
