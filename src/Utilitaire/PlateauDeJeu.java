@@ -49,6 +49,36 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable
 		}
 	}
 
+	public void initPlateauDeuxiemeCoup() {
+		// on met toutes les cases injouables sauf le premier coup du joueur
+		// noir qui n'est pas modifié
+		int milieuLignes = lignes / 2;
+		int milieuColonnes = colonnes / 2;
+
+		for (int i = 0; i < lignes; i++) {
+			for (int j = 0; j < colonnes; j++) {
+
+				if (i == milieuLignes && j == milieuColonnes) {
+					// on ne modifie pas le coup déjà joué par le joueur noir
+				} else {
+					this.plateau[i][j] = TypeCase.Injouable;
+				}
+			}
+		}
+
+		// le tabou du joueur Blanc : les 8 cases adjacentes du premier coup
+		Coordonnees c = new Coordonnees();
+		for (int i = -1; i <= 1; i++) {
+			for (int j = -1; j <= 1; j++) {
+				if (i != 0 || j != 0) {
+					c.setLigne(milieuLignes + i);
+					c.setColonne(milieuColonnes + j);
+					this.ajouter(c, TypeCase.Jouable);
+				}
+			}
+		}
+	}
+
 	@Override
 	public TypeCase[][] getPlateau() {
 		return this.plateau;
