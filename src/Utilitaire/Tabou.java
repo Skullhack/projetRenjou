@@ -66,19 +66,20 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 		
 		boolean estValide = true;
 		if(troisFoistrois){
-			estValide = estValide || !troisFoisTrois();
+			Log.print(1010, "troisFoisTrois est Valide");
+			estValide = estValide && !troisFoisTrois();
 		}
 		if(quatreFoisQuatre){
-			estValide = estValide || !quatreFoisQuatre();
+			estValide = estValide && !quatreFoisQuatre();
 		}
 		if(overline){
-			estValide = estValide || !overline();
+			estValide = estValide && !overline();
 		}
 		
 		return estValide;
 	}
 	
-	private boolean overline() {
+	public boolean overline() {
 		if(nbPionDiagonaleDroite() > 5){
 			return true;
 		}
@@ -95,8 +96,7 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 		return false;
 	}
 
-	private boolean troisFoisTrois(){
-		
+	public boolean troisFoisTrois(){
 		if(estTroisDiagonaleDroite()){
 			if(estTroisDiagonaleGauche()){
 				return true;
@@ -118,10 +118,11 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 			}
 		}
 		
+		
 		return false;
 	}
 	
-	private boolean quatreFoisQuatre(){
+	public boolean quatreFoisQuatre(){
 		
 		if(estQuatreDiagonaleDroite()){
 			if(estQuatreDiagonaleGauche()){
