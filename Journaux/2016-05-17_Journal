@@ -1,0 +1,18 @@
+#TÂCHES À FAIRE
+
+- Mise en commun des questionnaires d'IHM
+- Améliorer l'IHM si besoin
+- Audi d'IHM
+- Début de la programmation du projet
+
+
+#TÂCHES EFFECTUÉES
+
+- Mise en commun du questionnaire + audit d'IHM
+                           -> Changement de la barre de menu
+                           -> Ajout des tabous utilisés
+                           -> Amelioration des régles
+- Christopher et Léa : Moteur : constructeur et discution sur "operationJouer"
+- Adrien et Vincent  : IHM    : Création des images à insérer et mise en place des panels
+- Anthony            : Test   : Création des prototype de classe pour effectuer les différents tests pour chaque méthode
+- Alixia             : IA     : Début de la programmation de l'IA Facile

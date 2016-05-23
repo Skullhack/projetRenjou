@@ -1,0 +1,18 @@
+#TÂCHES À FAIRE
+
+- Rectifier erreur IHM, point mal placer
+- Laison Moteur-IHM non fonctionnel à corriger
+- IHM : fenêtre configuration, règle, gestion des tabous, bouton recommencer
+- Améliorer code IHM
+- Questionnaire IHM
+- Dernier coup joué
+
+
+#TÂCHES EFFECTUÉES
+
+- Plateau de jeu fonctionnel
+- Liaison IHM-Moteur fini avec test réussi
+- Fenêtre configuration et aide faite, manque les images
+- Questionnaire IHM ok
+- Image dernier coup joué en cours
+- Reflexion sur l'implémentation des tabous

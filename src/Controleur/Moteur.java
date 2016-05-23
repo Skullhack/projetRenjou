@@ -30,7 +30,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	// Constructeur
 
 	public Moteur(TypeJoueur typeJoueur1, TypeJoueur typeJoueur2) {
-		
+
 		Log.setNiveau(10);
 		this.observeurs = new ArrayList<>();
 		Joueur[] tableauJoueurs = new Joueur[2];
@@ -215,14 +215,12 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 	public void jouer(Renjou renjou, Coordonnees c) {
 
+		TypeCase typeCaseJoueurCourant = null;
+
 		try {
-			TypeCase typeCaseJoueurCourant = getTypeCaseJoueurCourant(renjou);
+			typeCaseJoueurCourant = getTypeCaseJoueurCourant(renjou);
 			renjou.getPlateauDeJeu().ajouter(c, typeCaseJoueurCourant);
-
-			// ajout dans la liste
-			ajouterPionJoueDansListeAnnuler(renjou, c, typeCaseJoueurCourant);
 			renjou.getListeRefaire().clear();
-
 			decrementerPionsJoueurCourant(renjou);
 
 			int nbPionsRestant = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
@@ -236,18 +234,20 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		if (partieFinie(renjou, c)) {
 			setPartieFinie(renjou);
 			Log.print(1, "JEU FINI !!!");
+			for (PionJoue p : renjou.getListeAnnuler()) {
+				Log.print(1, p.toString());
+			}
 		} else if (partieNulle(renjou)) {
 			setPartieNulle(renjou);
 			Log.print(1, "PARTIE NULLE !!");
 		} else {
-
 			Log.print(1, "ON PASSE LA MAIN AU JOUEUR SUIVANT");
-
-			joueurSuivant();
-			majCasesInjouables(renjou);
-			majCasesTabous(renjou);
-			// ajouterPlateauJeuDansListeAnnuler(renjou);
 		}
+		joueurSuivant();
+		ajouterPionJoueDansListeAnnuler(renjou, c, typeCaseJoueurCourant, renjou.getEtatPartie());
+		majCasesInjouables(renjou);
+		majCasesTabous(renjou);
+
 	}
 
 	private boolean caseJouable(Renjou renjou, Coordonnees c) {
@@ -268,9 +268,18 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 				.setNbPion(renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion() + 1);
 	}
 
-	public void ajouterPionJoueDansListeAnnuler(Renjou renjou, Coordonnees c, TypeCase typeCaseJoueurCourant) {
-		PionJoue pionJoue = new PionJoue(c, typeCaseJoueurCourant);
-		renjou.getListeAnnuler().add(pionJoue);
+	public void ajouterPionJoueDansListeAnnuler(Renjou renjou, Coordonnees c, TypeCase typeCaseJoueurCourant,
+			EtatPartie etatPartie) {
+
+		if (!estDeuxJoueursIA(renjou)) {
+			PionJoue pionJoue = new PionJoue(c, typeCaseJoueurCourant, etatPartie);
+			renjou.getListeAnnuler().add(pionJoue);
+		}
+	}
+
+	public boolean estDeuxJoueursIA(Renjou renjou) {
+		return (renjou.getJoueurs()[0].getType() != TypeJoueur.Humain
+				&& renjou.getJoueurs()[1].getType() != TypeJoueur.Humain);
 	}
 
 	public TypeCase getTypeCaseJoueurCourant(Renjou renjou) throws Exception {
@@ -294,14 +303,17 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 		observeurs.remove(renjou.getJoueurs()[0]);
 		observeurs.remove(renjou.getJoueurs()[1]);
-		
+
 		Joueur[] tableauJoueurs = new Joueur[2];
 		tableauJoueurs[0] = creerJoueur(typeJoueur1, TypeCouleur.Noir);
 		tableauJoueurs[1] = creerJoueur(typeJoueur2, TypeCouleur.Blanc);
-		
+
+		tableauJoueurs[0].setNbPion(renjou.getJoueurs()[0].getNbPion());
+		tableauJoueurs[1].setNbPion(renjou.getJoueurs()[1].getNbPion());
+
 		renjou.setJoueurs(tableauJoueurs);
 		renjou.setTabouJeu(tabouPartie);
-		
+
 		notifierObserveurs();
 	}
 
@@ -537,24 +549,24 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		int nbPionsBase = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPionsBase();
 		int nbPionsEnCours = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
 
-		if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Noir
+		// si les deux joueurs ont le nombre de pions de base. On remet le
+		// plateau de base
+		if (renjou.getJoueurs()[0].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase()
+				&& renjou.getJoueurs()[1].getNbPion() == renjou.getJoueurs()[1].getNbPionsBase()) {
+			renjou.getPlateauDeJeu().initPlateau();
+		}
+		// si c'est au joueur noir de jouer et qu'il a déjà joué un coup, on
+		// supprime les cases injouables
+		else if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Noir
 				&& nbPionsEnCours == nbPionsBase - 1) {
 			renjou.getPlateauDeJeu().supprimerCasesInjouables();
-		} else if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Blanc
+		}
+		// si c'est le premier coup de joueur blanc, on laisse le premier coup
+		// de noir et on met toutes les cases injouables sauf les cases
+		// adjacentes au premier coup
+		else if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Blanc
 				&& nbPionsBase == nbPionsEnCours) {
-			// le tabou du joueur Blanc : les 8 cases adjacentes du premier coup
-			Coordonnees c = new Coordonnees();
-			int milieuLignes = renjou.getPlateauDeJeu().getLignes() / 2;
-			int milieuColonnes = renjou.getPlateauDeJeu().getColonnes() / 2;
-			for (int i = -1; i <= 1; i++) {
-				for (int j = -1; j <= 1; j++) {
-					if (i != 0 || j != 0) {
-						c.setLigne(milieuLignes + i);
-						c.setColonne(milieuColonnes + j);
-						renjou.getPlateauDeJeu().ajouter(c, TypeCase.Jouable);
-					}
-				}
-			}
+			renjou.getPlateauDeJeu().initPlateauDeuxiemeCoup();
 		}
 	}
 
@@ -564,10 +576,14 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		if (this.getRenjou().getJoueurs()[0].getType() == TypeJoueur.Humain
 				&& this.getRenjou().getJoueurs()[1].getType() == TypeJoueur.Humain) {
 			annulerDemiCoup();
+			if (this.getRenjou().getEtatPartie() != EtatPartie.EnCours) {
+				annulerDemiCoup();
+			}
 		} else {
 			annulerDemiCoup();
 			annulerDemiCoup();
 		}
+
 		notifierObserveurs();
 	}
 
@@ -580,9 +596,11 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 			PionJoue dernierPionJoueHistorique = this.getRenjou().getListeAnnuler().get(dernierElementHistorique);
 			this.getRenjou().getPlateauDeJeu().enlever(dernierPionJoueHistorique.c);
+			this.getRenjou().setEtatPartie(dernierPionJoueHistorique.etatPartie);
 			this.getRenjou().getListeRefaire().add(this.getRenjou().getListeAnnuler().get(dernierElementHistorique));
 			this.getRenjou().getListeAnnuler().remove(dernierElementHistorique);
 			incrementerPionsJoueurCourant(this.getRenjou());
+			majCasesInjouables(this.getRenjou());
 			majCasesTabous(this.getRenjou());
 
 		}
@@ -597,6 +615,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 			refaireDemiCoup();
 			refaireDemiCoup();
 		}
+
 		notifierObserveurs();
 	}
 
@@ -606,10 +625,12 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		if (dernierElementHistorique >= 0) {
 			PionJoue dernierPionJoueHistorique = this.getRenjou().getListeRefaire().get(dernierElementHistorique);
 			this.getRenjou().getPlateauDeJeu().ajouter(dernierPionJoueHistorique.c, dernierPionJoueHistorique.typeCase);
+			this.getRenjou().setEtatPartie(dernierPionJoueHistorique.etatPartie);
 			this.getRenjou().getListeAnnuler().add(this.getRenjou().getListeRefaire().get(dernierElementHistorique));
 			this.getRenjou().getListeRefaire().remove(dernierElementHistorique);
 			decrementerPionsJoueurCourant(this.getRenjou());
 			joueurSuivant();
+			majCasesInjouables(this.getRenjou());
 			majCasesTabous(this.getRenjou());
 		}
 
