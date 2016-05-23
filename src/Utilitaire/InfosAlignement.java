@@ -18,6 +18,16 @@ public class InfosAlignement {
 	int nbLignes;
 	int nbColonnes;
 
+	public InfosAlignement() {
+	
+		nbNoir = 0;
+		nbBlanc = 0;
+		noirLibre = false;
+		blancLibre = false;
+		caseVideBlanc = false;
+		
+	}
+	
 	public InfosAlignement(PlateauDeJeu pdj, Coordonnees c, TypeDirection td) {
 		nbNoir = 0;
 		nbBlanc = 0;
@@ -117,6 +127,56 @@ public class InfosAlignement {
 
 	}
 
+	
+	public int getNbNoir() {
+		return nbNoir;
+	}
+
+	public void setNbNoir(int nbNoir) {
+		this.nbNoir = nbNoir;
+	}
+
+	public int getNbBlanc() {
+		return nbBlanc;
+	}
+
+	public void setNbBlanc(int nbBlanc) {
+		this.nbBlanc = nbBlanc;
+	}
+
+	public boolean isNoirLibre() {
+		return noirLibre;
+	}
+
+	public void setNoirLibre(boolean noirLibre) {
+		this.noirLibre = noirLibre;
+	}
+
+	public boolean isBlancLibre() {
+		return blancLibre;
+	}
+
+	public void setBlancLibre(boolean blancLibre) {
+		this.blancLibre = blancLibre;
+	}
+
+	public boolean isCaseVideNoir() {
+		return caseVideNoir;
+	}
+
+	public void setCaseVideNoir(boolean caseVideNoir) {
+		this.caseVideNoir = caseVideNoir;
+	}
+
+	public boolean isCaseVideBlanc() {
+		return caseVideBlanc;
+	}
+
+	public void setCaseVideBlanc(boolean caseVideBlanc) {
+		this.caseVideBlanc = caseVideBlanc;
+	}
+
+	
 }
 
 
