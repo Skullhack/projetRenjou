@@ -35,6 +35,7 @@ public class IHM implements Runnable, MoteurObserveur {
 	
 		//Fenetre Jeu
 		frames[0] = new FenetreJeu(this);
+		frames[0].setTitle("Renjou");
 		frames[0].setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frames[0].setSize(1000,700);
         frames[0].setResizable(false);
