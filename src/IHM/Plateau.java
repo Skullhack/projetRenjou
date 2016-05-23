@@ -36,7 +36,6 @@ public class Plateau extends JPanel {
         this.lignes = ihm.m.getRenjou().getPlateauDeJeu().getLignes();
         this.colonnes = ihm.m.getRenjou().getPlateauDeJeu().getColonnes();
         this.theme = ihm.m.getRenjou().getEmplacementThemes();
-        this.historique = ihm.m.getRenjou().getListeAnnuler();
         try {
     		imagePlateau = ImageIO.read(new File("./Images/"+theme+"/Plateau 15x15.png"));
     		imagePionBlanc = ImageIO.read(new File("./Images/"+theme+"/Pion blanc.png"));
@@ -63,6 +62,7 @@ public class Plateau extends JPanel {
     }
     
     public void afficherDernier(Graphics g) {
+    	this.historique = ihm.m.getRenjou().getListeAnnuler();
     	if (historique.size() > 0) {
     		TypeCase c = historique.get(historique.size()-1).getTypeCase();
     		int colonneDernier = historique.get(historique.size()-1).getCoordonnees().getColonne();
@@ -81,6 +81,26 @@ public class Plateau extends JPanel {
     			g.drawImage(imagePionBlancJoue, x, y, width, height, null);
 		}
     }
+    
+    /*@Override
+    public void setBounds(int x, int y, int width, int height) {
+    	   int currentWidth = getWidth();
+    	   int currentHeight = getHeight();
+    	   if (currentWidth!=width || currentHeight!=height) {
+    	      // find out which one has changed
+    	      if (currentWidth!=width && currentHeight!=height) {  
+    	         // both changed, set size to max
+    	         width = height = Math.max(width, height);
+    	      }
+    	      else if (currentWidth==width) {
+    	          // height changed, make width the same
+    	          width = height;
+    	      }
+    	      else // currentHeight==height
+    	          height = width;
+    	   }
+    	   super.setBounds(x, y, width, height);
+    	}*/
 
     @Override
     public void paintComponent(Graphics g) {
