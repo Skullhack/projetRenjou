@@ -1,0 +1,19 @@
+INSTALLER E(FX)CLIPSE :
+(cf https://www.eclipse.org/efxclipse/install.html)
+
+- Aller dans Help, install new software
+- A côte du champs "work it" appuyer sur add
+- mettre un nom : "e(fx)clipse"
+- mettre une url : http://download.eclipse.org/efxclipse/updates-released/2.3.0/site
+- selectionner e(fx)clipse install et ok
+
+INSTALLER JAVAFX :
+(cf http://code.makery.ch/library/javafx-8-tutorial/fr/part1/)
+
+- Aller dans "Window", puis dans "Preference"
+- Appuyer sur la flèche à droite de java, puis appuyer sur installer JREs
+- Appuyer sur add et mettre le chemin jusqu'au java 8 (pour les ordis de la fac : /usr/lib/jvm/java-8-oracle)
+- Supprimer les autres JREs et JDKs afin que le JDK 8 devienne le JDK par défaut
+- Sélectionner, dans la partie Java , Compiler. Définissez la "Compiler compliance level" à 1.8
+- Selectionner la partie javaFX puis mettre le chemin vers l'exécutable de scéne builder
+(il est dans le dossier compressé : "javafx_scenebuilder-2.0-linux-x64.tar.gz" a décomprésser!!!!)
