@@ -28,6 +28,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import Controleur.Moteur;
 import Enum.EtatPartie;
+import Enum.TypeJoueur;
 
 /**
  *
@@ -149,6 +150,16 @@ public class FenetreJeu extends JFrame implements WindowListener{
             boutons[1].setEnabled(false);
         } else {
             boutons[1].setEnabled(true);
+        }
+        if (m.getRenjou().getJoueurs()[0].getType() != TypeJoueur.Humain) {
+        	sabliers[0].setEnabled(false);
+        } else {
+        	sabliers[0].setEnabled(true);
+        }
+        if (m.getRenjou().getJoueurs()[1].getType() != TypeJoueur.Humain) {
+        	sabliers[1].setEnabled(false);
+        } else {
+        	sabliers[1].setEnabled(true);
         }
     }
 
