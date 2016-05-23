@@ -6,10 +6,11 @@ import java.util.Random;
 import Controleur.Coordonnees;
 import Controleur.Moteur;
 import Controleur.MoteurObserveur;
-import Controleur.PlateauDeJeu;
 import Enum.TypeCase;
 import Enum.TypeCouleur;
 import Enum.TypeJoueur;
+import Utilitaire.Log;
+import Utilitaire.PlateauDeJeu;
 
 
 public class IA extends Joueur {
@@ -40,7 +41,7 @@ public class IA extends Joueur {
 	}
 
 	public void modifierHeristique(Coordonnees p, PlateauDeJeu plateau) {
-		m.printTrace(15,"Dans modifier Heuristique");
+		Log.print(15,"Dans modifier Heuristique");
 
 		int i = p.getLigne();
 		int j = p.getColonne();
@@ -102,7 +103,7 @@ public class IA extends Joueur {
 	}
 	
 	public void initHeuristique(PlateauDeJeu plateau) {
-		m.printTrace(15,"Dans init Heuristique");
+		Log.print(15,"Dans init Heuristique");
 
 		for(int i=0; i< nbLigne; i++){
 			for(int j=0; j< nbColonne; j++){

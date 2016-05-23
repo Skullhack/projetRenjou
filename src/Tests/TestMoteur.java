@@ -10,10 +10,11 @@ import org.junit.Test;
 import Controleur.Coordonnees;
 import Controleur.Moteur;
 import Controleur.MoteurObserveur;
-import Controleur.Tabou;
-import Controleur.Tabous;
 import Enum.TypeCase;
 import Enum.TypeJoueur;
+import Utilitaire.Log;
+import Utilitaire.Tabou;
+import Utilitaire.Tabous;
 
 public class TestMoteur {
 
@@ -24,22 +25,22 @@ public class TestMoteur {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
 
-		donneesJeu.setNiveauTrace(0);
-		donneesJeu.printTrace(1, "TEST : d'activation/désactivation des cases injouables");
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.setNiveau(0);
+		Log.print(1, "TEST : d'activation/désactivation des cases injouables");
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		Coordonnees c = new Coordonnees(7, 7);
 		donneesJeu.operationJouer(c,
 				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		c = new Coordonnees(8, 8);
 
 		donneesJeu.operationJouer(c,
 				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
-		donneesJeu.printTrace(1, "FIN TEST : d'activation/désactivation des cases injouables");
+		Log.print(1, "FIN TEST : d'activation/désactivation des cases injouables");
 
 	}
 
@@ -48,21 +49,21 @@ public class TestMoteur {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
 
-		donneesJeu.setNiveauTrace(0);
+		Log.setNiveau(0);
 
-		donneesJeu.printTrace(1, "TEST d'une partie nulle");
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1, "TEST d'une partie nulle");
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		Coordonnees c = new Coordonnees(7, 7);
 		donneesJeu.operationJouer(c,
 				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		c = new Coordonnees(8, 8);
 
 		donneesJeu.operationJouer(c,
 				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		for (int i = 0; i < 15; i++) {
 			for (int j = 0; j < 15; j++) {
@@ -72,12 +73,12 @@ public class TestMoteur {
 				}
 				donneesJeu.operationJouer(new Coordonnees(i, j),
 						donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-				donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+				Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 			}
 
 		}
 
-		donneesJeu.printTrace(1, "FIN TEST d'une partie nulle");
+		Log.print(1, "FIN TEST d'une partie nulle");
 
 	}
 
@@ -86,10 +87,10 @@ public class TestMoteur {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);;
 
-		donneesJeu.setNiveauTrace(0);
+		Log.setNiveau(0);
 
-		donneesJeu.printTrace(1, "TEST d'une partie finie par le joueur noir (haut en bas)");
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1, "TEST d'une partie finie par le joueur noir (haut en bas)");
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		Coordonnees[] tabCoord = new Coordonnees[12];
 		tabCoord[0] = new Coordonnees(7, 7); // noir
@@ -110,12 +111,12 @@ public class TestMoteur {
 		for (int i = 0; i < tabCoord.length; i++) {
 			donneesJeu.operationJouer(tabCoord[i],
 					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+			Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 			// System.out.println("ACTUELLEMENT LA PARTI EST : " +
 			// donneesJeu.getRenjou().getEtatPartie());
 
 		}
-		donneesJeu.printTrace(1, "FIN TEST d'une partie finie par le joueur noir (haut en bas)");
+		Log.print(1, "FIN TEST d'une partie finie par le joueur noir (haut en bas)");
 
 	}
 
@@ -124,10 +125,10 @@ public class TestMoteur {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);;
 
-		donneesJeu.setNiveauTrace(0);
+		Log.setNiveau(0);
 
-		donneesJeu.printTrace(1, "TEST d'une partie finie par le joueur blanc (DiagonaleHautGaucheBasDroite)");
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1, "TEST d'une partie finie par le joueur blanc (DiagonaleHautGaucheBasDroite)");
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		Coordonnees[] tabCoord = new Coordonnees[13];
 		tabCoord[0] = new Coordonnees(7, 7); // noir
@@ -147,13 +148,13 @@ public class TestMoteur {
 		for (int i = 0; i < tabCoord.length; i++) {
 			donneesJeu.operationJouer(tabCoord[i],
 					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+			Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 			// System.out.println("ACTUELLEMENT LA PARTI EST : " +
 			// donneesJeu.getRenjou().getEtatPartie());
 
 		}
 
-		donneesJeu.printTrace(1, "FIN TEST d'une partie finie par le joueur blanc (DiagonaleHautGaucheBasDroite)");
+		Log.print(1, "FIN TEST d'une partie finie par le joueur blanc (DiagonaleHautGaucheBasDroite)");
 	}
 
 	@Test
@@ -161,9 +162,9 @@ public class TestMoteur {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);;
 
-		donneesJeu.setNiveauTrace(0);
-		donneesJeu.printTrace(1, "TEST d'une partie finie par le joueur blanc (GaucheADroite)");
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.setNiveau(0);
+		Log.print(1, "TEST d'une partie finie par le joueur blanc (GaucheADroite)");
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		Coordonnees[] tabCoord = new Coordonnees[13];
 		tabCoord[0] = new Coordonnees(7, 7); // noir
@@ -183,13 +184,13 @@ public class TestMoteur {
 		for (int i = 0; i < tabCoord.length; i++) {
 			donneesJeu.operationJouer(tabCoord[i],
 					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+			Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 			// System.out.println("ACTUELLEMENT LA PARTI EST : " +
 			// donneesJeu.getRenjou().getEtatPartie());
 
 		}
 
-		donneesJeu.printTrace(1, "FIN TEST d'une partie finie par le joueur blanc (GaucheADroite)");
+		Log.print(1, "FIN TEST d'une partie finie par le joueur blanc (GaucheADroite)");
 
 	}
 
@@ -198,9 +199,9 @@ public class TestMoteur {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);;
 
-		donneesJeu.setNiveauTrace(0);
-		donneesJeu.printTrace(1, "TEST d'une partie finie par le joueur noir (DiagonaleHautDroiteBasGauche)");
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.setNiveau(0);
+		Log.print(1, "TEST d'une partie finie par le joueur noir (DiagonaleHautDroiteBasGauche)");
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		Coordonnees[] tabCoord = new Coordonnees[13];
 		tabCoord[0] = new Coordonnees(7, 7); // noir
@@ -218,13 +219,13 @@ public class TestMoteur {
 		for (int i = 0; i < tabCoord.length; i++) {
 			donneesJeu.operationJouer(tabCoord[i],
 					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+			Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 			// System.out.println("ACTUELLEMENT LA PARTI EST : " +
 			// donneesJeu.getRenjou().getEtatPartie());
 
 		}
 
-		donneesJeu.printTrace(1, "FIN TEST d'une partie finie par le joueur noir (DiagonaleHautDroiteBasGauche)");
+		Log.print(1, "FIN TEST d'une partie finie par le joueur noir (DiagonaleHautDroiteBasGauche)");
 
 	}
 
@@ -233,9 +234,9 @@ public class TestMoteur {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);;
 
-		donneesJeu.setNiveauTrace(0);
-		donneesJeu.printTrace(1, "TEST d'une case tabou pour faire perdre joueur noir");
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.setNiveau(0);
+		Log.print(1, "TEST d'une case tabou pour faire perdre joueur noir");
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		Coordonnees[] tabCoord = new Coordonnees[4];
 		tabCoord[0] = new Coordonnees(7, 7); // noir
@@ -253,11 +254,11 @@ public class TestMoteur {
 
 			donneesJeu.operationJouer(tabCoord[i],
 					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+			Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		}
 
-		donneesJeu.printTrace(1, "FIN TEST d'une case tabou pour faire perdre joueur noir");
+		Log.print(1, "FIN TEST d'une case tabou pour faire perdre joueur noir");
 
 	}
 
@@ -266,9 +267,9 @@ public class TestMoteur {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
 
-		donneesJeu.setNiveauTrace(0);
-		donneesJeu.printTrace(1, "TEST d'une annulation de coup");
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.setNiveau(0);
+		Log.print(1, "TEST d'une annulation de coup");
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		Coordonnees[] tabCoord = new Coordonnees[4];
 		tabCoord[0] = new Coordonnees(7, 7); // noir
@@ -280,14 +281,14 @@ public class TestMoteur {
 
 			donneesJeu.operationJouer(tabCoord[i],
 					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+			Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		}
 
-		donneesJeu.printTrace(1, "ANNNULATION D'UN COUP ENTRE DEUX JOUEURS");
+		Log.print(1, "ANNNULATION D'UN COUP ENTRE DEUX JOUEURS");
 		donneesJeu.annuler();
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
-		donneesJeu.printTrace(1,
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1,
 				"Le nombre de pion du joueur courant " + donneesJeu.getRenjou().getJoueurCourant() + " est de  : "
 						+ donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getNbPion());
 
@@ -295,13 +296,13 @@ public class TestMoteur {
 				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType()); // blanc
 																											// qui
 																											// joue
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		donneesJeu.operationJouer(new Coordonnees(13, 13),
 				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType()); // noir
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
-		donneesJeu.printTrace(1, "FIN TEST d'une annulation de coup");
+		Log.print(1, "FIN TEST d'une annulation de coup");
 
 	}
 
@@ -310,9 +311,9 @@ public class TestMoteur {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
 
-		donneesJeu.setNiveauTrace(0);
-		donneesJeu.printTrace(1, "TEST d'une annulation de coup entre un joueur et une IA");
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.setNiveau(0);
+		Log.print(1, "TEST d'une annulation de coup entre un joueur et une IA");
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		Coordonnees[] tabCoord = new Coordonnees[4];
 		tabCoord[0] = new Coordonnees(7, 7); // noir coup 1
@@ -324,25 +325,25 @@ public class TestMoteur {
 
 			donneesJeu.operationJouer(tabCoord[i],
 					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+			Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		}
 
-		donneesJeu.printTrace(1, "ANNNULATION D'UN COUP ENTRE JOUEUR ET IA");
+		Log.print(1, "ANNNULATION D'UN COUP ENTRE JOUEUR ET IA");
 		donneesJeu.annuler();
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
-		donneesJeu.printTrace(1,
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1,
 				"Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
 
-		donneesJeu.printTrace(1,
+		Log.print(1,
 				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
 
 		donneesJeu.operationJouer(new Coordonnees(2, 2),
 				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
 
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
-		donneesJeu.printTrace(1, "FIN TEST d'une annulation de coup ENTRE JOUEUR ET IA");
+		Log.print(1, "FIN TEST d'une annulation de coup ENTRE JOUEUR ET IA");
 
 	}
 
@@ -351,9 +352,9 @@ public class TestMoteur {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
 
-		donneesJeu.setNiveauTrace(0);
-		donneesJeu.printTrace(1, "TEST annuler/refaire coup entre 2 joueurs");
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.setNiveau(0);
+		Log.print(1, "TEST annuler/refaire coup entre 2 joueurs");
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		Coordonnees[] tabCoord = new Coordonnees[4];
 		tabCoord[0] = new Coordonnees(7, 7); // noir
@@ -365,37 +366,37 @@ public class TestMoteur {
 
 			donneesJeu.operationJouer(tabCoord[i],
 					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+			Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		}
 
-		donneesJeu.printTrace(1, "ANNNULATION D'UN COUP ENTRE DEUX JOUEURS");
+		Log.print(1, "ANNNULATION D'UN COUP ENTRE DEUX JOUEURS");
 		donneesJeu.annuler();
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
-		donneesJeu.printTrace(1,
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1,
 				"Le nombre de pion du joueur courant " + donneesJeu.getRenjou().getJoueurCourant() + " est de  : "
 						+ donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getNbPion());
 
-		donneesJeu.printTrace(1, "REFAIRE UN COUP ENTRE DEUX JOUEURS");
+		Log.print(1, "REFAIRE UN COUP ENTRE DEUX JOUEURS");
 		donneesJeu.refaire();
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
-		donneesJeu.printTrace(1,
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1,
 				"Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
 
-		donneesJeu.printTrace(1,
+		Log.print(1,
 				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
 
 		donneesJeu.operationJouer(new Coordonnees(14, 14),
 				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
-		donneesJeu.printTrace(1,
+		Log.print(1,
 				"Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
 
-		donneesJeu.printTrace(1,
+		Log.print(1,
 				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
 
-		donneesJeu.printTrace(1, "FIN TEST d'une ANNULATION/REFAIRE de coup entre DEUX JOUEURS");
+		Log.print(1, "FIN TEST d'une ANNULATION/REFAIRE de coup entre DEUX JOUEURS");
 
 	}
 
@@ -404,9 +405,9 @@ public class TestMoteur {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
 
-		donneesJeu.setNiveauTrace(0);
-		donneesJeu.printTrace(1, "TEST d'un annuler/refaire de coup entre un joueur et une IA");
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.setNiveau(0);
+		Log.print(1, "TEST d'un annuler/refaire de coup entre un joueur et une IA");
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		Coordonnees[] tabCoord = new Coordonnees[4];
 		tabCoord[0] = new Coordonnees(7, 7); // noir coup 1
@@ -418,41 +419,41 @@ public class TestMoteur {
 
 			donneesJeu.operationJouer(tabCoord[i],
 					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+			Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		}
 
-		donneesJeu.printTrace(1, "ANNNULATION D'UN COUP ENTRE JOUEUR ET IA");
+		Log.print(1, "ANNNULATION D'UN COUP ENTRE JOUEUR ET IA");
 		donneesJeu.annuler();
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
-		donneesJeu.printTrace(1,
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1,
 				"Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
 
-		donneesJeu.printTrace(1,
+		Log.print(1,
 				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
 
-		donneesJeu.printTrace(1, "REFAIRE UN COUP ENTRE JOUEUR ET IA");
+		Log.print(1, "REFAIRE UN COUP ENTRE JOUEUR ET IA");
 		donneesJeu.refaire();
 
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
-		donneesJeu.printTrace(1,
+		Log.print(1,
 				"Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
 
-		donneesJeu.printTrace(1,
+		Log.print(1,
 				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
 
 		donneesJeu.operationJouer(new Coordonnees(0, 14),
 				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
-		donneesJeu.printTrace(1,
+		Log.print(1,
 				"Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
 
-		donneesJeu.printTrace(1,
+		Log.print(1,
 				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
 
-		donneesJeu.printTrace(1, "FIN TEST d'un annuler/refaire un coup ENTRE JOUEUR ET IA");
+		Log.print(1, "FIN TEST d'un annuler/refaire un coup ENTRE JOUEUR ET IA");
 
 	}
 
@@ -461,9 +462,9 @@ public class TestMoteur {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
 
-		donneesJeu.setNiveauTrace(0);
-		donneesJeu.printTrace(1, "TEST PARTIE AVEC SAUVEGARDE");
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.setNiveau(0);
+		Log.print(1, "TEST PARTIE AVEC SAUVEGARDE");
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		Coordonnees[] tabCoord = new Coordonnees[4];
 		tabCoord[0] = new Coordonnees(7, 7); // noir coup 1
@@ -474,12 +475,12 @@ public class TestMoteur {
 		for (int i = 0; i < tabCoord.length; i++) {
 			donneesJeu.operationJouer(tabCoord[i],
 					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+			Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 		}
 
 		donneesJeu.sauvegarder("testSaveRenjou.ser");
 
-		donneesJeu.printTrace(1, "FIN TEST PARTIE AVEC SAUVEGARDE");
+		Log.print(1, "FIN TEST PARTIE AVEC SAUVEGARDE");
 
 	}
 
@@ -491,22 +492,22 @@ public class TestMoteur {
 		// IAFacile, la ligne au dessus n'a plus vraiment de sens. C'est
 		// seulement pour simuler une nouvelle partie
 
-		donneesJeu.setNiveauTrace(0);
-		donneesJeu.printTrace(1, "TEST CHARGEMENT DE PARTIE");
+		Log.setNiveau(0);
+		Log.print(1, "TEST CHARGEMENT DE PARTIE");
 
 		donneesJeu.charger("testSaveRenjou.ser");
 
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
-		donneesJeu.printTrace(1, "LE JOUEUR NOIR EST DE TYPE : " + donneesJeu.getRenjou().getJoueurs()[0].getType());
-		donneesJeu.printTrace(1, "LE JOUEUR BLANC EST DE TYPE : " + donneesJeu.getRenjou().getJoueurs()[1].getType());
+		Log.print(1, "LE JOUEUR NOIR EST DE TYPE : " + donneesJeu.getRenjou().getJoueurs()[0].getType());
+		Log.print(1, "LE JOUEUR BLANC EST DE TYPE : " + donneesJeu.getRenjou().getJoueurs()[1].getType());
 
-		donneesJeu.printTrace(1, "LE JOUEUR NOIR HUMAIN JOUE");
+		Log.print(1, "LE JOUEUR NOIR HUMAIN JOUE");
 
 		donneesJeu.operationJouer(new Coordonnees(0, 0),
 				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
 
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		Coordonnees[] tabCoord = new Coordonnees[8];
 		tabCoord[0] = new Coordonnees(11, 9); // noir coup 1
@@ -522,10 +523,10 @@ public class TestMoteur {
 		for (int i = 0; i < tabCoord.length; i++) {
 			donneesJeu.operationJouer(tabCoord[i],
 					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+			Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 		}
 
-		donneesJeu.printTrace(1, "FIN TEST CHARGEMENT DE PARTIE");
+		Log.print(1, "FIN TEST CHARGEMENT DE PARTIE");
 
 	}
 
@@ -533,8 +534,8 @@ public class TestMoteur {
 	public void testRecommencerPartie() {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
-		donneesJeu.setNiveauTrace(10);
-		donneesJeu.printTrace(1, "TEST RECOMMENCER UNE PARTIE");
+		Log.setNiveau(10);
+		Log.print(1, "TEST RECOMMENCER UNE PARTIE");
 
 		Coordonnees[] tabCoord = new Coordonnees[11];
 		tabCoord[0] = new Coordonnees(7, 7); // noir
@@ -552,25 +553,25 @@ public class TestMoteur {
 		for (int i = 0; i < tabCoord.length; i++) {
 			donneesJeu.operationJouer(tabCoord[i],
 					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-			donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+			Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 		}
 
 		donneesJeu.recommencerPartie();
 
-		donneesJeu.printTrace(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
 
 		ArrayList<Tabou> tabousDuJeu = donneesJeu.getRenjou().getTabouJeu();
 		Tabous allTabous = donneesJeu.getRenjou().getTabous();
 
 		for (int i = 0; i < tabousDuJeu.size(); i++) {
-			donneesJeu.printTrace(1, "" + tabousDuJeu.get(i).getNom());
+			Log.print(1, "" + tabousDuJeu.get(i).getNom());
 		}
 
 		for (int i = 0; i < allTabous.getTabous().size(); i++) {
-			donneesJeu.printTrace(1, "" + allTabous.getTabous().get(i).getNom());
+			Log.print(1, "" + allTabous.getTabous().get(i).getNom());
 		}
 
-		donneesJeu.printTrace(1, "FIN TEST RECOMMENCER UNE PARTIE");
+		Log.print(1, "FIN TEST RECOMMENCER UNE PARTIE");
 	}
 
 }

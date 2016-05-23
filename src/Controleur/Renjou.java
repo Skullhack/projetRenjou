@@ -6,6 +6,9 @@
 package Controleur;
 
 import Joueur.Joueur;
+import Utilitaire.PlateauDeJeu;
+import Utilitaire.Tabou;
+import Utilitaire.Tabous;
 
 import java.awt.Point;
 import java.util.ArrayList;

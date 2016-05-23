@@ -12,6 +12,7 @@ import javax.swing.*;
 import Controleur.Moteur;
 import Controleur.MoteurObserveur;
 import Enum.TypeJoueur;
+import Utilitaire.Log;
 
 /**
  *
@@ -60,7 +61,7 @@ public class IHM implements Runnable, MoteurObserveur {
 	public void actualiser() {
 		// TODO Auto-generated method stub
 		//doit lancer repaint
-		m.printTrace(3, "IHM notifiee");
+		Log.print(3, "IHM notifiee");
 		frames[0].repaint();
 	}
 }

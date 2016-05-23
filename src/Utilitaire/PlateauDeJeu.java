@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controleur;
+package Utilitaire;
 
 import java.awt.Point;
 import java.io.*;
 
+import Controleur.Coordonnees;
 import Enum.TypeCase;
 
 /**

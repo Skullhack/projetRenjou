@@ -9,6 +9,7 @@ import java.awt.Point;
 
 import Controleur.*;
 import Enum.*;
+import Utilitaire.Log;
 
 public class Joueur implements MoteurObserveur, java.io.Serializable {
 	protected TypeJoueur type;
@@ -77,7 +78,7 @@ public class Joueur implements MoteurObserveur, java.io.Serializable {
 	}
 	@Override 
 	public void actualiser() {
-		m.printTrace(3, "Joueur notifie");
+		Log.print(3, "Joueur notifie");
 	}
     
 }

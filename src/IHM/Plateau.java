@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import Controleur.PlateauDeJeu;
 import Enum.TypeCase;
+import Utilitaire.PlateauDeJeu;
 
 public class Plateau extends JPanel {
 	private IHM ihm;

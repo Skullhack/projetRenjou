@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Controleur.PlateauDeJeu;
+import Utilitaire.PlateauDeJeu;
 
 public class TestPlateauDeJeu {
 

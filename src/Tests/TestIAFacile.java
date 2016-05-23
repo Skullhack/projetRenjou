@@ -8,10 +8,10 @@ import org.omg.PortableServer.ServantLocatorPackage.CookieHolder;
 
 import Controleur.Coordonnees;
 import Controleur.Moteur;
-import Controleur.PlateauDeJeu;
 import Enum.TypeCouleur;
 import Enum.TypeJoueur;
 import Joueur.IAFacile;
+import Utilitaire.PlateauDeJeu;
 
 public class TestIAFacile {
 

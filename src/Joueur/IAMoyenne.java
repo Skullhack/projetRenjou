@@ -10,6 +10,8 @@ import java.util.Random;
 
 import Controleur.*;
 import Enum.*;
+import Utilitaire.Log;
+import Utilitaire.PlateauDeJeu;
 
 
 public class IAMoyenne extends IA {
@@ -49,7 +51,7 @@ public class IAMoyenne extends IA {
 	
 
 	public Coordonnees Jouer(PlateauDeJeu p){
-		m.printTrace(66, "Dans Jouer IAMoyenne");
+		Log.print(66, "Dans Jouer IAMoyenne");
 		coups.clear();
 		PlateauDeJeu pdj =  p.clone();
 		
@@ -65,10 +67,10 @@ public class IAMoyenne extends IA {
 				//Heuristique, on ne cherche pas a jouer a plus de 2 cases d'un pion existant
 				if(EstJouable(pdj, c)){
 					pdj.ajouter(c,tc);
-					m.printTrace(695, pdj.toString());
+					Log.print(695, pdj.toString());
 					if(PartieFinie(pdj,c)){
 						// on peut couper là, le coup est gagnant.
-						m.printTrace(695, "dans jouer " + c + " gagnant en profondeur " + (profondeurMax -profondeur));
+						Log.print(695, "dans jouer " + c + " gagnant en profondeur " + (profondeurMax -profondeur));
 						return c;
 					}else{
 						//valeurtemp = 0;
@@ -76,22 +78,22 @@ public class IAMoyenne extends IA {
 					}
 					pdj.enlever(c);
 					if(valeurtemp == valeur){
-						m.printTrace(695, "dans egal valeurtemp=" + valeurtemp + " " + c);
+						Log.print(695, "dans egal valeurtemp=" + valeurtemp + " " + c);
 						coups.add(c);
-						m.printTrace(695, coups.toString());
+						Log.print(695, coups.toString());
 					}
 					else if(valeurtemp > valeur){
-						m.printTrace(695, "dans sup valeurtemp=" + valeurtemp + " " + c);
+						Log.print(695, "dans sup valeurtemp=" + valeurtemp + " " + c);
 						coups.clear();
 						coups.add(c);
 						valeur = valeurtemp;
-						m.printTrace(695, coups.toString());
+						Log.print(695, coups.toString());
 					}
 					
 				}
 			}
 		}
-		m.printTrace(695, coups.toString());
+		Log.print(695, coups.toString());
 
 		if(coups.isEmpty()){
 			return new Coordonnees(-1,-1);
@@ -132,12 +134,12 @@ public class IAMoyenne extends IA {
 				//Heuristique, on ne cherche pas a jouer a plus de 2 cases d'un pion existant
 				if(EstJouable(pdj, c)){
 					pdj.ajouter(c,tc);
-					m.printTrace(695, pdj.toString());
+					Log.print(695, pdj.toString());
 					if(PartieFinie(pdj, c)){
 						// on peut couper là, le coup est perdant.
 						pdj.enlever(c);
 
-						m.printTrace(695, "dans evalCoupAdv " + c + " gagnant en profondeur " + (profondeurMax -profondeur));
+						Log.print(695, "dans evalCoupAdv " + c + " gagnant en profondeur " + (profondeurMax -profondeur));
 						return -20000;
 					}else{
 						valeur =  Math.min(valeur, EvaluerCoupIA(pdj,profondeur -1, this.autreTypeCase(tc)));
@@ -163,7 +165,7 @@ public class IAMoyenne extends IA {
 					if(PartieFinie(pdj, c)){
 						// on peut couper là, le coup est gagnant.
 						pdj.enlever(c);
-						m.printTrace(695, "dans evalCoupIA " + c + " gagnant en profondeur " + (profondeurMax -profondeur));
+						Log.print(695, "dans evalCoupIA " + c + " gagnant en profondeur " + (profondeurMax -profondeur));
 						return 10000;
 					}else{
 						valeur =  Math.max(valeur, EvaluerCoupAdversaire(pdj,profondeur -1, this.autreTypeCase(tc)));
@@ -183,17 +185,17 @@ public class IAMoyenne extends IA {
 		int somme = 0;
 		int i = c.getLigne();
 		int j = c.getColonne();
-		m.printTrace(66, "partiefinie diago i= " + i + " j= " + j + " somme= " +somme);
+		Log.print(66, "partiefinie diago i= " + i + " j= " + j + " somme= " +somme);
 		while(i>0 && j>0 && pdj.getTypeCaseTableau(new Coordonnees(--i,--j)) == tc){
 			somme++;
-			m.printTrace(66, "partiefinie diago i= " + i + " j= " + j + " somme= " +somme);
+			Log.print(66, "partiefinie diago i= " + i + " j= " + j + " somme= " +somme);
 		}
 		i = c.getLigne();
 		j = c.getColonne();
-		m.printTrace(66, "partiefinie diago i= " + i + " j= " + j + " somme= " +somme);
+		Log.print(66, "partiefinie diago i= " + i + " j= " + j + " somme= " +somme);
 		while(i<pdj.getLignes()-1 && j<pdj.getColonnes()-1 && pdj.getTypeCaseTableau(new Coordonnees(++i,++j)) == tc){
 			somme++;			
-			m.printTrace(66, "partiefinie diago i= " + i + " j= " + j + " somme= " +somme);
+			Log.print(66, "partiefinie diago i= " + i + " j= " + j + " somme= " +somme);
 		}
 		
 		if(somme >= 4)
@@ -235,22 +237,22 @@ public class IAMoyenne extends IA {
 		somme = 0;
 		i = c.getLigne();
 		j = c.getColonne();
-		m.printTrace(66, "partiefinie vertical i= " + i + " j= " + j + " somme= " +somme);
+		Log.print(66, "partiefinie vertical i= " + i + " j= " + j + " somme= " +somme);
 		while(i>0 && pdj.getTypeCaseTableau(new Coordonnees(--i,j)) == tc){
 			somme++;
-			m.printTrace(66, "partiefinie vertical i= " + i + " j= " + j + " somme= " +somme);
+			Log.print(66, "partiefinie vertical i= " + i + " j= " + j + " somme= " +somme);
 		}
 		i = c.getLigne();
 		j = c.getColonne();
-		m.printTrace(66, "partiefinie vertical i= " + i + " j= " + j + " somme= " +somme);
+		Log.print(66, "partiefinie vertical i= " + i + " j= " + j + " somme= " +somme);
 		while(i<pdj.getLignes()-1 && pdj.getTypeCaseTableau(new Coordonnees(++i,j)) == tc){
 			somme++;
-			m.printTrace(66, "partiefinie vertical i= " + i + " j= " + j + " somme= " +somme);
+			Log.print(66, "partiefinie vertical i= " + i + " j= " + j + " somme= " +somme);
 		}
 		
 		if(somme >= 4)
 			return true;
-		m.printTrace(6, c+ " ne donne pas lieu a une partie finie");
+		Log.print(6, c+ " ne donne pas lieu a une partie finie");
 		return false;
 	}
 
@@ -263,9 +265,9 @@ public class IAMoyenne extends IA {
 		for(int i = c.getLigne()-2;i<=c.getLigne()+2;i++){
 			for(int j = c.getColonne()-2;j<=c.getColonne()+2;j++){
 				if(i>=0 && i<= nbLigne-1 && j>=0 && j<=nbColonne-1 && (c.getLigne() != i || c.getColonne() != j)){
-					m.printTrace(11, "i=" + i + " j=" +j + " c= " + c );
+					Log.print(11, "i=" + i + " j=" +j + " c= " + c );
 					if(EstBlancOuNoir(pdj,new Coordonnees(i,j))){
-						m.printTrace(1, "est un pion!" );
+						Log.print(1, "est un pion!" );
 						return true;
 					}
 				}
@@ -277,7 +279,7 @@ public class IAMoyenne extends IA {
 	}
 
 	public boolean EstBlancOuNoir(PlateauDeJeu pdj, Coordonnees c){
-		m.printTrace(66, "Dans EstBlancOuNoir => " + pdj.getTypeCaseTableau(c));
+		Log.print(66, "Dans EstBlancOuNoir => " + pdj.getTypeCaseTableau(c));
 		return pdj.getTypeCaseTableau(c) == TypeCase.PionBlanc || pdj.getTypeCaseTableau(c) == TypeCase.PionNoir; 
 	}
 
@@ -287,10 +289,10 @@ public class IAMoyenne extends IA {
 	
 	@Override
 	public void actualiser() {
-		m.printTrace(3, "IAMoyenne notifiee");
+		Log.print(3, "IAMoyenne notifiee");
 		
 		if(!AmonTour()){
-			m.printTrace(9, "Ce n'est pas a mon tour de jouer");
+			Log.print(9, "Ce n'est pas a mon tour de jouer");
 			return;
 		}
 		

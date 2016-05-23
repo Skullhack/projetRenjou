@@ -7,6 +7,7 @@ package Controleur;
 
 import Enum.*;
 import Joueur.*;
+import Utilitaire.*;
 
 import java.awt.Point;
 import java.io.FileInputStream;
@@ -29,8 +30,8 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	// Constructeur
 
 	public Moteur(TypeJoueur typeJoueur1, TypeJoueur typeJoueur2) {
-		trace = new Log();
-		trace.setNiveau(10);
+		
+		Log.setNiveau(10);
 		this.observeurs = new ArrayList<>();
 		Joueur[] tableauJoueurs = new Joueur[2];
 		this.renjou = new Renjou(tableauJoueurs);
@@ -62,11 +63,11 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	}
 
 	private void notifierObserveurs() {
-		printTrace(80, "Dans notifier: moteur = " + Integer.toHexString(System.identityHashCode(this)));
-		printTrace(80, "Dans notifier: " + Integer.toHexString(System.identityHashCode(observeurs)));
-		printTrace(80, "Dans notifier: " + observeurs.toString());
+		Log.print(80, "Dans notifier: moteur = " + Integer.toHexString(System.identityHashCode(this)));
+		Log.print(80, "Dans notifier: " + Integer.toHexString(System.identityHashCode(observeurs)));
+		Log.print(80, "Dans notifier: " + observeurs.toString());
 		for (MoteurObserveur m : observeurs) {
-			printTrace(80, m.getClass().toString());
+			Log.print(80, m.getClass().toString());
 			m.actualiser();
 
 		}
@@ -85,21 +86,9 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		this.renjou = renjou;
 	}
 
-	public void setNiveauTrace(int niveau) {
-		trace.setNiveau(niveau);
-	}
-
-	public void setPlageTrace(int plageBasse, int plageHaute) {
-		trace.setPlage(plageBasse, plageHaute);
-	}
-	
-	public void printTrace(int niveau, String msg) {
-		trace.print(niveau, msg);
-	}
-
 	@Override
 	public void sauvegarder(String nomFichier) {
-		printTrace(80, "DANS SAUVEGARDER");
+		Log.print(80, "DANS SAUVEGARDER");
 		ObjectOutputStream oos = null;
 
 		try {
@@ -126,9 +115,9 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 				observeurs.add(m);
 			}
 
-			printTrace(80, "Dans sauvegarder: observeurTempo = "
+			Log.print(80, "Dans sauvegarder: observeurTempo = "
 					+ Integer.toHexString(System.identityHashCode(observeurTempo)));
-			printTrace(80, "Dans sauvegarder: observeur = " + Integer.toHexString(System.identityHashCode(observeurs)));
+			Log.print(80, "Dans sauvegarder: observeur = " + Integer.toHexString(System.identityHashCode(observeurs)));
 
 		} catch (final java.io.IOException e) {
 			e.printStackTrace();
@@ -147,7 +136,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 	@Override
 	public void charger(String fichierCharger) {
-		printTrace(80, "DANS CHARGER");
+		Log.print(80, "DANS CHARGER");
 		ObjectInputStream ois = null;
 		try {
 			final FileInputStream fichierIn = new FileInputStream(fichierCharger);
@@ -191,30 +180,30 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	@Override
 	public void operationJouer(Coordonnees c, TypeJoueur j) {
 
-		this.printTrace(1, "Je rentre dans operation jouer");
+		Log.print(1, "Je rentre dans operation jouer");
 
-		this.printTrace(80, "JOUEUR NOIR : " + renjou.getJoueurs()[0].toString() + "JOUEUR BLANC : "
+		Log.print(80, "JOUEUR NOIR : " + renjou.getJoueurs()[0].toString() + "JOUEUR BLANC : "
 				+ renjou.getJoueurs()[1].toString());
 
 		if (renjou.getEtatPartie() != EtatPartie.EnCours) {
-			this.printTrace(1, "La partie n'est plus en cours mais elle est : " + renjou.getEtatPartie());
+			Log.print(1, "La partie n'est plus en cours mais elle est : " + renjou.getEtatPartie());
 			return;
 		}
 
 		if (j != renjou.getJoueurs()[renjou.getJoueurCourant()].getType()) {
-			this.printTrace(1, "Les types ne correspondent pas");
+			Log.print(1, "Les types ne correspondent pas");
 			return;
 
 		}
 
 		if (caseJouable(renjou, c)) {
-			this.printTrace(1, "Je rentre dans la fonction jouer avec le point " + c.getLigne() + "," + c.getColonne());
+			Log.print(1, "Je rentre dans la fonction jouer avec le point " + c.getLigne() + "," + c.getColonne());
 			jouer(renjou, c);
 		} else if (caseTabou(renjou, c)) {
 			// il n'y a que le joueur noir qui est impliqué par des tabous.
 			// Si c'est une case tabou, forcément le joueur blanc gagne
 			setPartieFinieJoueurBlanc(renjou);
-			this.printTrace(1, "PARTIE GAGNE PAR BLANC AVEC TABOU !!");
+			Log.print(1, "PARTIE GAGNE PAR BLANC AVEC TABOU !!");
 		}
 
 		// notify avec etat de la partie
@@ -235,7 +224,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 			decrementerPionsJoueurCourant(renjou);
 
 			int nbPionsRestant = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
-			this.printTrace(1,
+			Log.print(1,
 					"Le nombre de pions du joueur courant " + renjou.getJoueurCourant() + " est : " + nbPionsRestant);
 
 		} catch (Exception e) {
@@ -244,13 +233,13 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 		if (partieFinie(renjou, c)) {
 			setPartieFinie(renjou);
-			this.printTrace(1, "JEU FINI !!!");
+			Log.print(1, "JEU FINI !!!");
 		} else if (partieNulle(renjou)) {
 			setPartieNulle(renjou);
-			this.printTrace(1, "PARTIE NULLE !!");
+			Log.print(1, "PARTIE NULLE !!");
 		} else {
 
-			this.printTrace(1, "ON PASSE LA MAIN AU JOUEUR SUIVANT");
+			Log.print(1, "ON PASSE LA MAIN AU JOUEUR SUIVANT");
 
 			joueurSuivant();
 			majCasesInjouables(renjou);

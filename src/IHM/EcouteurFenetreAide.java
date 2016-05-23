@@ -8,8 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
 import Controleur.Moteur;
-import Controleur.Tabou;
 import Enum.TypeJoueur;
+import Utilitaire.Tabou;
+
 import javax.swing.JFrame;
 
 public class EcouteurFenetreAide implements ActionListener {

@@ -1,15 +1,16 @@
-package Controleur;
+package Utilitaire;
 
 import java.io.File;
 import java.io.FileWriter;
 
 public class Log implements java.io.Serializable {
 
-	int plageBasse;
-	int plageHaute;
-    FileWriter fw;
+	static int plageBasse;
+	static int plageHaute;
+    static FileWriter fw;
+    private static Log instance = new Log();
 
-	public Log(){
+	private Log(){
 		plageBasse = 0;
 		plageHaute = 0;
 		try{
@@ -21,17 +22,17 @@ public class Log implements java.io.Serializable {
 		}
 	}
 	
-	public void setNiveau(int plageHaute){
+	public static void setNiveau(int PlageHaute){
 		plageBasse = 0;
-		this.plageHaute = plageHaute;
+		plageHaute = PlageHaute;
 	}
 	
-	public void setPlage(int plageBasse, int plageHaute){
-		this.plageBasse = plageBasse;
-		this.plageHaute = plageHaute;
+	public static void setPlage(int PlageBasse, int PlageHaute){
+		plageBasse = PlageBasse;
+		plageHaute = PlageHaute;
 	}
 	
-	public void print(int niveau, String message){
+	public static void print(int niveau, String message){
 		if(niveau >= plageBasse && niveau <= plageHaute){
 			try{
 			fw.write(message+"\n");

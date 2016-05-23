@@ -11,7 +11,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import Controleur.Tabou;
+import Utilitaire.Tabou;
 
 public class ComposantSelectionTabou extends JPanel implements ActionListener{
 	private IHM ihm;
