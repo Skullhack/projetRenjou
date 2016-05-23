@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -19,7 +21,7 @@ import javax.swing.JTabbedPane;
 import Controleur.Moteur;
 import Enum.TypeJoueur;
 
-public class FenetreAide extends JFrame{
+public class FenetreAide extends JFrame implements WindowListener{
 	 	private Moteur m;
 	    private JTabbedPane tabbedPane;
 	    private JPanel[] panels;
@@ -30,6 +32,7 @@ public class FenetreAide extends JFrame{
 	    public FenetreAide(IHM ihm) {
 	        this.m = ihm.m;
 	        efa = new EcouteurFenetreAide(ihm);
+	        this.addWindowListener(this);
 	        this.setTitle("Aide");
 	        String[] nomBoutons = {"Retour"};
 	        //0:PanelTout 1:PanelRegle 2:PanelTuto 3:PanelAPropos 4:PanelBoutons
@@ -40,7 +43,7 @@ public class FenetreAide extends JFrame{
 
 	        //Tabs
 	        tabbedPane = new JTabbedPane();
-	        tabbedPane.addTab("Regles", null, panels[1], "Aide sur règles du jeu");
+	        tabbedPane.addTab("Regles", null, panels[1], "Aide sur rï¿½gles du jeu");
 	        tabbedPane.addTab("Tutoriel", null, panels[2], "Tutoriel du jeu");
 	        tabbedPane.addTab("A propos de", null, panels[3], "A propos de ce jeu");
 
@@ -73,11 +76,51 @@ public class FenetreAide extends JFrame{
 
 	    public void creerLayout() {
 	        //Panel Aide Regle Jeu
-	        ImageIcon imageRegle = new ImageIcon(new ImageIcon("./Images/ImagesBasiques/RegleVierge.xcf").getImage().getScaledInstance(400, 400, java.awt.Image.SCALE_SMOOTH));
+	        ImageIcon imageRegle = new ImageIcon(new ImageIcon("./Images/"+m.getRenjou().getEmplacementThemes()+"/Regles.png").getImage().getScaledInstance(600, 500, java.awt.Image.SCALE_SMOOTH));
 	        labelRegle.setIcon(imageRegle);
 	    }
 	    
 	    public JTabbedPane getTabbedPane() {
 	    	return tabbedPane;
 	    }
+
+		@Override
+		public void windowActivated(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowClosed(WindowEvent e) {
+			// TODO Auto-generated method stub
+		}
+
+		@Override
+		public void windowClosing(WindowEvent e) {
+			efa.retour();
+		}
+
+		@Override
+		public void windowDeactivated(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowDeiconified(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowIconified(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowOpened(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
 }

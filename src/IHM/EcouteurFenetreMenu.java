@@ -35,7 +35,7 @@ public class EcouteurFenetreMenu implements ActionListener {
         }
     }
 
-    private void annuler() {
+    public void annuler() {
         frames[0].setEnabled(true);
         frames[1].setVisible(false);
         frames[1].setAlwaysOnTop(false);

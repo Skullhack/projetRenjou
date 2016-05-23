@@ -33,7 +33,7 @@ public class EcouteurFenetreAide implements ActionListener {
         }
     }
 
-    private void retour() {
+    public void retour() {
         frames[0].setEnabled(true);
         frames[2].setVisible(false);
         frames[2].setAlwaysOnTop(false);

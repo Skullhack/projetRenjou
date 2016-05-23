@@ -11,6 +11,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -22,12 +24,13 @@ import javax.swing.JTabbedPane;
 
 import Controleur.Moteur;
 import Enum.TypeJoueur;
+import sun.awt.WindowClosingListener;
 
 /**
  *
  * @author michauad
  */
-public class FenetreMenu extends JFrame {
+public class FenetreMenu extends JFrame implements WindowListener {
 
     private Moteur m;
     private JTabbedPane tabbedPane;
@@ -47,6 +50,7 @@ public class FenetreMenu extends JFrame {
         this.m = ihm.m;
         efm = new EcouteurFenetreMenu(ihm);
         this.setTitle("Configuration");
+        this.addWindowListener(this);
         String[] nomBoutons = {"Valider", "Annuler"};
         String[] nomTheme = {"Traditionnel", "Retro", "Troll", "Nicolas Cage", "Di Caprio", "Chuck Norris"};
         //0:PanelTout 1:PanelJoueur 2:PanelTabou 3:PanelBoutons 4:PanelTheme
@@ -162,5 +166,46 @@ public class FenetreMenu extends JFrame {
 	
 	public void setNouvellePartie(boolean nouvellePartie) {
 		this.nouvellePartie = nouvellePartie;
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		efm.annuler();
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

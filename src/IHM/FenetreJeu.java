@@ -11,6 +11,9 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -20,15 +23,17 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import Controleur.Moteur;
+import Enum.EtatPartie;
 
 /**
  *
  * @author michauad
  */
-public class FenetreJeu extends JFrame {
+public class FenetreJeu extends JFrame implements WindowListener{
     private ComposantAffichageTabou affichageRenjou;
     private Moteur m;
     private JPanel[] panels;
@@ -44,15 +49,14 @@ public class FenetreJeu extends JFrame {
     private EcouteurFenetreJeu efj;
     private JLabel noir;
     private JLabel blanc;
-    private String theme;
     private JButton recommencer;
     private JLabel[] tempsRestant;
 
     public FenetreJeu(IHM ihm) {
         //Variables
+    	this.addWindowListener(this);
         this.m = ihm.m;
         efj = new EcouteurFenetreJeu(ihm);
-        this.theme = m.getRenjou().getEmplacementThemes();
         p = new Plateau(ihm);
         eds = new EcouteurDeSouris(m, p);
         //0:PanelPrincipal 1:PanelBouton 2:PanelSud 3:PanelBoutonDansBouton 4:Panel Centre
@@ -184,43 +188,43 @@ public class FenetreJeu extends JFrame {
         //Layout Panel Noir
         noir.setAlignmentY(CENTER_ALIGNMENT);
         noir.setFont(new Font("Time New Roman", Font.BOLD, 30));
-        ImageIcon pionNoir = new ImageIcon(new ImageIcon("./Images/" + theme + "/Pion noir.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon pionNoir = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/Pion noir.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
         nbPieces[0].setIcon(pionNoir);
         nbPieces[0].setHorizontalTextPosition(JLabel.CENTER);
         nbPieces[0].setFont(new Font("Time New Roman", Font.BOLD, 30));
         nbPieces[0].setForeground(Color.WHITE);
 
         //Boutons annuler et refaire
-        ImageIcon annuler = new ImageIcon(new ImageIcon("./Images/" + theme + "/Annuler.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon annulerEclaire = new ImageIcon(new ImageIcon("./Images/" + theme + "/AnnulerEclaire.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon annuler = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/Annuler.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon annulerEclaire = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/AnnulerEclaire.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
         setIcone(boutons[0], new Color(0, 0, 0, 0), annuler, annulerEclaire);
         //boutons[0].addActionListener();
-        ImageIcon refaire = new ImageIcon(new ImageIcon("./Images/" + theme + "/Refaire.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon refaireEclaire = new ImageIcon(new ImageIcon("./Images/" + theme + "/RefaireEclaire.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon refaire = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/Refaire.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon refaireEclaire = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/RefaireEclaire.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
         setIcone(boutons[1], new Color(0, 0, 0, 0), refaire, refaireEclaire);
 
         //Boutons aide
-        ImageIcon aide = new ImageIcon(new ImageIcon("./Images/" + theme + "/AmpouleGrisee.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon aideEclaire = new ImageIcon(new ImageIcon("./Images/" + theme + "/AmpouleAllumee.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon aide = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/AmpouleGrisee.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon aideEclaire = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/AmpouleAllumee.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
         setIcone(aides[1], new Color(0, 0, 0, 0), aide, aideEclaire);
         setIcone(aides[0], new Color(0, 0, 0, 0), aide, aideEclaire);
 
         //Bouton sablier
-        ImageIcon sablier = new ImageIcon(new ImageIcon("./Images/" + theme + "/Sablier.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon sablier = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/Sablier.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
         sabliers[0].setIcon(sablier);
         sabliers[1].setIcon(sablier);
 
         //Layout Panel Blanc
         blanc.setFont(new Font("Time New Roman", Font.BOLD, 30));
-        ImageIcon pionBlanc = new ImageIcon(new ImageIcon("./Images/" + theme + "/Pion blanc.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon pionBlanc = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/Pion blanc.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
         nbPieces[1].setIcon(pionBlanc);
         nbPieces[1].setHorizontalTextPosition(JLabel.CENTER);
         nbPieces[1].setFont(new Font("Time New Roman", Font.BOLD, 30));
         nbPieces[1].setForeground(Color.BLACK);
         
         //Boutons Tabous
-        ImageIcon tabouPrecedent = new ImageIcon(new ImageIcon("./Images/" + theme + "/FlecheTabouGauche.png").getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon tabouSuivant = new ImageIcon(new ImageIcon("./Images/" + theme + "/FlecheTabouDroite.png").getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon tabouPrecedent = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/FlecheTabouGauche.png").getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon tabouSuivant = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/FlecheTabouDroite.png").getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
         setIcone(affichageRenjou.getRenjouPrecedent(),new Color(0,0,0,0),tabouPrecedent,tabouPrecedent);
         setIcone(affichageRenjou.getRenjouSuivant(),new Color(0,0,0,0),tabouSuivant,tabouSuivant);
         
@@ -240,4 +244,66 @@ public class FenetreJeu extends JFrame {
         b.setRolloverIcon(rollover);
         b.setBackground(Color.WHITE);
     }
+    
+    public void partieGagne() {
+    	String message;
+    	if (m.getRenjou().getEtatPartie() == EtatPartie.NoirGagne) {
+    		message = "Le joueur noir a gagné la partie !";
+    	} else if (m.getRenjou().getEtatPartie() == EtatPartie.BlancGagne) {
+    		message = "Le joueur blanc a gagné la partie !";
+    	} else {
+    		message = "Partie nulle !";
+    	}
+    	int confirm = JOptionPane.showOptionDialog(
+	             null, message, 
+	             "Fin de partie", JOptionPane.CLOSED_OPTION, 
+	             JOptionPane.QUESTION_MESSAGE, null, null, null);
+    }
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		int confirm = JOptionPane.showOptionDialog(
+	             null, "Etes vous sûr de vouloir quitter ?", 
+	             "Quitter la partie", JOptionPane.YES_NO_OPTION, 
+	             JOptionPane.QUESTION_MESSAGE, null, null, null);
+	        if (confirm == 0) {
+	           System.exit(0);
+	        }
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }
