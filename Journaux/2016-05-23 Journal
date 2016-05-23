@@ -3,7 +3,6 @@
 PARTIE IHM :
 
 
-- Mettre un titre au jeu
 - POP-UP de VICTOIRE/DEFAITE/NUL
 - Modification du bouton recommencer
 - Gestion du sablier pour les IA uniquement
@@ -16,7 +15,6 @@ PARTIE IHM :
 - Fenêtre du tutoriel
 - Fenêtre "à propos de"
 - Afficher les cases injouables (en début de partie)
-- Afficher le dernier coup joué
 - Uitliser un système de timer pour que l'IA ne joue pas en INSTANT
 - Mettre le plateau carré
  
