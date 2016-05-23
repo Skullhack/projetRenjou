@@ -3,12 +3,12 @@ package Joueur;
 import java.util.GregorianCalendar;
 import java.util.Random;
 
-import Controleur.Coordonnees;
 import Controleur.Moteur;
 import Controleur.MoteurObserveur;
 import Enum.TypeCase;
 import Enum.TypeCouleur;
 import Enum.TypeJoueur;
+import Utilitaire.Coordonnees;
 import Utilitaire.Log;
 import Utilitaire.PlateauDeJeu;
 

@@ -8,7 +8,6 @@ package Utilitaire;
 import java.awt.Point;
 import java.io.*;
 
-import Controleur.Coordonnees;
 import Enum.TypeCase;
 
 /**

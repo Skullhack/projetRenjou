@@ -10,6 +10,7 @@ import org.junit.Test;
 import Controleur.*;
 import Enum.*;
 import Joueur.IAMoyenne;
+import Utilitaire.Coordonnees;
 import Utilitaire.Log;
 import Utilitaire.PlateauDeJeu;
 

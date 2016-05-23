@@ -3,9 +3,9 @@ package IHM;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import Controleur.Coordonnees;
 import Controleur.Moteur;
 import Enum.TypeJoueur;
+import Utilitaire.Coordonnees;
 
 class EcouteurDeSouris implements MouseListener {
     Moteur m;

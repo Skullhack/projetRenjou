@@ -5,11 +5,13 @@
  */
 package Joueur;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
 
 import Controleur.*;
 import Enum.*;
+import Utilitaire.Coordonnees;
 import Utilitaire.Log;
 import Utilitaire.PlateauDeJeu;
 
@@ -27,6 +29,11 @@ public class IAMoyenne extends IA {
 		profondeurMax = 3;
 	}
 	
+	public Point play(int[][] plateau, int couleurJoueur, boolean tabou3x3, boolean tabou4x4, boolean tabouOverline){
+		initPlateauEtCouleur(plateau, couleurJoueur);
+		Coordonnees c = Jouer(pdj);
+		return new Point(c.getColonne(), c.getLigne());
+	}
 	
 	public TypeCase getTypeCase(TypeCouleur tc){
 		if(tc == TypeCouleur.Blanc)

@@ -9,7 +9,9 @@ import java.awt.Point;
 
 import Controleur.*;
 import Enum.*;
+import Utilitaire.Coordonnees;
 import Utilitaire.Log;
+import Utilitaire.PlateauDeJeu;
 
 public class Joueur implements MoteurObserveur, java.io.Serializable {
 	protected TypeJoueur type;
@@ -17,7 +19,8 @@ public class Joueur implements MoteurObserveur, java.io.Serializable {
 	protected Moteur m;
 	protected TypeCouleur couleur;
 	protected int nbPionsBase;
-
+	protected PlateauDeJeu pdj;
+	
     public Joueur(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
     	moteur.enregistrerObserveur(this);
     	this.type = type;
@@ -25,6 +28,7 @@ public class Joueur implements MoteurObserveur, java.io.Serializable {
     	nbPionsBase = nbPion;
     	couleur = couleurJoueur;
     	m = moteur;
+    	pdj = new PlateauDeJeu();
     }
     
 
@@ -73,9 +77,37 @@ public class Joueur implements MoteurObserveur, java.io.Serializable {
 		//0 = Vide
 		//1 = Noir
 		//2 = Blanc
-		
-		return new Point();
+
+		return new Point(0,0);
 	}
+	
+	
+	public void initPlateauEtCouleur(int[][] plateau, int couleur){
+		int pN=nbPionsBase;
+		int pB=nbPionsBase;
+		for(int i=0;i<15;i++){
+			for(int j=0;j<15;j++){
+				if(plateau[i][j] == 1){
+					pdj.ajouter(new Coordonnees(i,j), TypeCase.PionNoir);
+					pN--;
+				}else if(plateau[i][j] == 0){
+					pdj.ajouter(new Coordonnees(i,j), TypeCase.PionBlanc);
+					pB--;
+				}else{
+					pdj.ajouter(new Coordonnees(i,j), TypeCase.Jouable);
+				}
+			}
+		}
+		
+		if(couleur == 1){
+			nbPion = pN;
+			this.couleur = TypeCouleur.Noir;
+		}else{
+			nbPion = pB;
+			this.couleur = TypeCouleur.Blanc;
+		}
+	}
+	
 	@Override 
 	public void actualiser() {
 		Log.print(3, "Joueur notifie");

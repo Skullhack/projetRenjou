@@ -7,11 +7,11 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import Controleur.Coordonnees;
 import Controleur.Moteur;
 import Controleur.MoteurObserveur;
 import Enum.TypeCase;
 import Enum.TypeJoueur;
+import Utilitaire.Coordonnees;
 import Utilitaire.Log;
 import Utilitaire.Tabou;
 import Utilitaire.Tabous;

@@ -13,5 +13,6 @@ public enum TypeJoueur {
     Humain,
     IAFacile,
     IAMoyenne,
-    IADifficile
+    IADifficile,
+    IAExterne
 }

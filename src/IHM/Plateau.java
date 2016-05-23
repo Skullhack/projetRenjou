@@ -1,7 +1,7 @@
 package IHM;
 
 import java.awt.Dimension;
-import Controleur.Coordonnees;
+
 import Controleur.Moteur;
 import Controleur.PionJoue;
 
@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import Enum.TypeCase;
+import Utilitaire.Coordonnees;
 import Utilitaire.PlateauDeJeu;
 
 public class Plateau extends JPanel {

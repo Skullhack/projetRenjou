@@ -5,11 +5,13 @@
  */
 package Joueur;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Observable;
 
 import Controleur.*;
 import Enum.*;
+import Utilitaire.Coordonnees;
 import Utilitaire.Log;
 import Utilitaire.PlateauDeJeu;
 
@@ -36,6 +38,12 @@ public class IAFacile extends IA {
 	}
 	
 
+	public Point play(int[][] plateau, int couleurJoueur, boolean tabou3x3, boolean tabou4x4, boolean tabouOverline){
+		initPlateauEtCouleur(plateau, couleurJoueur);
+		Coordonnees c = jouer(pdj);
+		return new Point(c.getColonne(), c.getLigne());
+	}
+	
 	public Coordonnees jouer(PlateauDeJeu p) {
 		Coordonnees c = estCoupGagnant(p);
 		if (c.getLigne() == -1) {

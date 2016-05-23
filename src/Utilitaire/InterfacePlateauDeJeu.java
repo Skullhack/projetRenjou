@@ -7,7 +7,6 @@ package Utilitaire;
 
 import java.awt.Point;
 
-import Controleur.Coordonnees;
 import Enum.*;
 
 /**

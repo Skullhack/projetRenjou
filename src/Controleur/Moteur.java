@@ -56,6 +56,8 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 			return (new IAMoyenne(this, TypeJoueur.IAMoyenne, nbPionsBase, typeCouleur));
 		case IADifficile:
 			return (new IADifficile(this, TypeJoueur.IADifficile, nbPionsBase, typeCouleur));
+		case IAExterne:
+			return (new IADifficile(this, TypeJoueur.IAExterne, nbPionsBase, typeCouleur));
 		default:
 			return (new Humain(this, TypeJoueur.Humain, nbPionsBase, typeCouleur));
 		}

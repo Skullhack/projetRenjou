@@ -7,6 +7,7 @@ package Controleur;
 
 import Enum.TypeJoueur;
 import Joueur.Joueur;
+import Utilitaire.Coordonnees;
 import Utilitaire.Tabou;
 
 import java.awt.Point;

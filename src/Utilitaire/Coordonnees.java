@@ -1,4 +1,4 @@
-package Controleur;
+package Utilitaire;
 
 import java.awt.Point;
 

@@ -6,11 +6,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.omg.PortableServer.ServantLocatorPackage.CookieHolder;
 
-import Controleur.Coordonnees;
 import Controleur.Moteur;
 import Enum.TypeCouleur;
 import Enum.TypeJoueur;
 import Joueur.IAFacile;
+import Utilitaire.Coordonnees;
 import Utilitaire.PlateauDeJeu;
 
 public class TestIAFacile {

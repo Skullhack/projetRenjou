@@ -3,6 +3,7 @@ package Controleur;
 import java.awt.Point;
 
 import Enum.TypeCase;
+import Utilitaire.Coordonnees;
 
 public class PionJoue implements java.io.Serializable {
 
