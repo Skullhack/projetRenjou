@@ -7,10 +7,10 @@ public class InfosAlignement {
 
 	int nbNoir;
 	int nbBlanc;
-	boolean noirLibre;
-	boolean blancLibre;
-	boolean caseVideNoir;
-	boolean caseVideBlanc;
+	boolean libreNoir;
+	boolean libreBlanc;
+	boolean continuNoir;
+	boolean continuBlanc;
 	private int ligne;
 	private int colonne;
 	private TypeDirection direction;
@@ -22,19 +22,19 @@ public class InfosAlignement {
 	
 		nbNoir = 0;
 		nbBlanc = 0;
-		noirLibre = false;
-		blancLibre = false;
-		caseVideBlanc = false;
+		libreNoir = false;
+		libreBlanc = false;
+		continuBlanc = false;
 		
 	}
 	
 	public InfosAlignement(PlateauDeJeu pdj, Coordonnees c, TypeDirection td) {
 		nbNoir = 0;
 		nbBlanc = 0;
-		caseVideNoir = false;
-		caseVideBlanc = false;
-		noirLibre = true;
-		blancLibre = true;
+		continuNoir = false;
+		continuBlanc = false;
+		libreNoir = true;
+		libreBlanc = true;
 		ligne = c.getLigne();
 		colonne = c.getColonne();
 		direction = td;
@@ -54,22 +54,22 @@ public class InfosAlignement {
 			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
 			if(tc == TypeCase.PionBlanc){
 				noirFini = true;
-				noirLibre = false;
+				libreNoir = false;
 				nbBlanc++;
 			}else if(tc == TypeCase.PionNoir){
 				blancFini = true;
-				blancLibre = false;
+				libreBlanc = false;
 				nbNoir++;
 			}else if(tc == TypeCase.Jouable){
 				
-				if(!caseVideNoir){
-					caseVideNoir = true;
+				if(!continuNoir){
+					continuNoir = true;
 				}else{
 					noirFini = true;
 				}
 				
-				if(!caseVideBlanc){
-					caseVideBlanc = true;
+				if(!continuBlanc){
+					continuBlanc = true;
 				}else{
 					blancFini = true;
 				}
@@ -83,8 +83,8 @@ public class InfosAlignement {
 		}
 		
 		if(bordure){
-			noirLibre = false;
-			blancLibre = false;
+			libreNoir = false;
+			libreBlanc = false;
 		}
 		
 		
@@ -131,51 +131,52 @@ public class InfosAlignement {
 	public int getNbNoir() {
 		return nbNoir;
 	}
+	public int getNbBlanc() {
+		return nbBlanc;
+	}
+	public boolean estLibreNoir() {
+		return libreNoir;
+	}
+	public boolean estLibreBlanc() {
+		return libreBlanc;
+	}
+	public boolean estContinuNoir() {
+		return continuNoir;
+	}
+	public boolean estContinuBlanc() {
+		return continuBlanc;
+	}
 
 	public void setNbNoir(int nbNoir) {
 		this.nbNoir = nbNoir;
 	}
-
-	public int getNbBlanc() {
-		return nbBlanc;
-	}
-
 	public void setNbBlanc(int nbBlanc) {
+
 		this.nbBlanc = nbBlanc;
 	}
-
-	public boolean isNoirLibre() {
-		return noirLibre;
+	public void setLibreNoir(boolean libreNoir) {
+		this.libreNoir = libreNoir;
+	}
+	public void setLibreBlanc(boolean libreBlanc) {
+		this.libreBlanc = libreBlanc;
+	}
+	public void setContinuNoir(boolean continuNoir) {
+		this.continuNoir = continuNoir;
+	}
+	public void setContinuBlanc(boolean continuBlanc) {
+		this.continuBlanc = continuBlanc;
 	}
 
-	public void setNoirLibre(boolean noirLibre) {
-		this.noirLibre = noirLibre;
-	}
 
-	public boolean isBlancLibre() {
-		return blancLibre;
-	}
 
-	public void setBlancLibre(boolean blancLibre) {
-		this.blancLibre = blancLibre;
+	public String toString(){
+		String buffer ="Infos Alignement " + direction + "\n";
+		buffer += "Pions Noirs Alignes: " + nbNoir + " est libre? " + libreNoir + " est continu? "+ continuNoir +"\n";
+		buffer += "Pions Blancs Alignes: " + nbBlanc + " est libre? " + libreBlanc + " est continu? "+ continuBlanc;
+		
+		return buffer;
+		
 	}
-
-	public boolean isCaseVideNoir() {
-		return caseVideNoir;
-	}
-
-	public void setCaseVideNoir(boolean caseVideNoir) {
-		this.caseVideNoir = caseVideNoir;
-	}
-
-	public boolean isCaseVideBlanc() {
-		return caseVideBlanc;
-	}
-
-	public void setCaseVideBlanc(boolean caseVideBlanc) {
-		this.caseVideBlanc = caseVideBlanc;
-	}
-
 	
 }
 
