@@ -236,15 +236,18 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 		if (partieFinie(renjou, c)) {
 			setPartieFinie(renjou);
-			//ajouterPionJoueDansListeAnnuler(renjou, c, typeCaseJoueurCourant, renjou.getEtatPartie());
+			// ajouterPionJoueDansListeAnnuler(renjou, c, typeCaseJoueurCourant,
+			// renjou.getEtatPartie());
 			Log.print(1, "JEU FINI !!!");
 		} else if (partieNulle(renjou)) {
 			setPartieNulle(renjou);
-			//ajouterPionJoueDansListeAnnuler(renjou, c, typeCaseJoueurCourant, renjou.getEtatPartie());
+			// ajouterPionJoueDansListeAnnuler(renjou, c, typeCaseJoueurCourant,
+			// renjou.getEtatPartie());
 			Log.print(1, "PARTIE NULLE !!");
 		} else {
 			Log.print(1, "ON PASSE LA MAIN AU JOUEUR SUIVANT");
-			//ajouterPionJoueDansListeAnnuler(renjou, c, typeCaseJoueurCourant, renjou.getEtatPartie());
+			// ajouterPionJoueDansListeAnnuler(renjou, c, typeCaseJoueurCourant,
+			// renjou.getEtatPartie());
 			joueurSuivant();
 			majCasesInjouables(renjou);
 			majCasesTabous(renjou);
@@ -272,8 +275,16 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 	public void ajouterPionJoueDansListeAnnuler(Renjou renjou, Coordonnees c, TypeCase typeCaseJoueurCourant,
 			EtatPartie etatPartie) {
-		PionJoue pionJoue = new PionJoue(c, typeCaseJoueurCourant, etatPartie);
-		renjou.getListeAnnuler().add(pionJoue);
+		
+		if (!estDeuxJoueursIA(renjou)) {
+			PionJoue pionJoue = new PionJoue(c, typeCaseJoueurCourant, etatPartie);
+			renjou.getListeAnnuler().add(pionJoue);
+		}
+	}
+
+	public boolean estDeuxJoueursIA(Renjou renjou) {
+		return (renjou.getJoueurs()[0].getType() != TypeJoueur.Humain
+				&& renjou.getJoueurs()[1].getType() != TypeJoueur.Humain);
 	}
 
 	public TypeCase getTypeCaseJoueurCourant(Renjou renjou) throws Exception {
