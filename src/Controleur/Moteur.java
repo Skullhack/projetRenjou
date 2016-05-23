@@ -308,6 +308,9 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		tableauJoueurs[0] = creerJoueur(typeJoueur1, TypeCouleur.Noir);
 		tableauJoueurs[1] = creerJoueur(typeJoueur2, TypeCouleur.Blanc);
 
+		tableauJoueurs[0].setNbPion(renjou.getJoueurs()[0].getNbPion());
+		tableauJoueurs[1].setNbPion(renjou.getJoueurs()[1].getNbPion());
+
 		renjou.setJoueurs(tableauJoueurs);
 		renjou.setTabouJeu(tabouPartie);
 

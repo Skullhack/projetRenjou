@@ -27,8 +27,6 @@ PARTIE MOTEUR :
 
 - Gestion des tabous
 - Méthode aide
-- Verif quand on add un point si c'est IA contre IA. Si oui, on stocke rien
-- Revoir gestion annuler refaire
 
 AUTRE : 
 
@@ -36,3 +34,5 @@ AUTRE :
 
 #TÂCHES EFFECTUÉES
 
+- Verif quand on add un point si c'est IA contre IA. Si oui, on stocke rien
+- Revoir gestion annuler refaire
