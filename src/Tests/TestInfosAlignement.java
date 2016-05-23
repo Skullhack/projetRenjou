@@ -24,13 +24,13 @@ public class TestInfosAlignement {
 		m = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
 		pdj = m.getRenjou().getPlateauDeJeu();
 		//plage de trace 700 à 800
-		Log.setPlage(700, 800);
+		Log.setPlage(790, 800);
 	}
 	
 	
 	@Test
 	public void test3continuNoirVide() {
-		Log.print(701, "debut test3VideNoirVide");
+		Log.print(701, "debut test3continuNoirVide");
 		pdj = pdj.charger(chemin + "PlateauInfosAlignement3VideNoir");
 		Log.print(705, pdj.toString());
 		InfosAlignement infos;
@@ -45,13 +45,13 @@ public class TestInfosAlignement {
 			Log.print(705, infos.toString());
 		}
 		
-		Log.print(701, "fin test3VideNoirVide");
+		Log.print(701, "fin test3continuNoirVide");
 
 	}
 	
 	@Test
 	public void test3continuNoirBloqueBlanc() {
-		Log.print(701, "debut test3VideNoirVide");
+		Log.print(701, "debut test3continuNoirBloqueBlanc");
 		pdj = pdj.charger(chemin + "PlateauInfosAlignement3BloqueNoir");
 		Log.print(705, pdj.toString());
 		InfosAlignement infos;
@@ -67,13 +67,13 @@ public class TestInfosAlignement {
 			assertFalse(infos.estLibreNoir());
 		}
 		
-		Log.print(701, "fin test3VideNoirVide");
+		Log.print(701, "fin test3continuNoirBloqueBlanc");
 
 	}
 
 	@Test
 	public void test3continuNoirBloqueBordure() {
-		Log.print(701, "debut test3VideNoirVide");
+		Log.print(701, "debut test3continuNoirBloqueBordure");
 		pdj = pdj.charger(chemin + "PlateauInfosAlignement3BordureNoir");
 		Log.print(705, pdj.toString());
 		InfosAlignement[] infos = new InfosAlignement[12];
@@ -111,14 +111,14 @@ public class TestInfosAlignement {
 			assertFalse(infos[i].estLibreNoir());
 		}
 		
-		Log.print(701, "fin test3VideNoirVide");
+		Log.print(701, "fin test3continuNoirBloqueBordure");
 
 	}
 	
 	@Test
 	public void test3NonContinuNoirVide() {
-		Log.print(701, "debut test3VideNoirVide");
-		pdj = pdj.charger(chemin + "PlateauInfosAlignement3VideNoir");
+		Log.print(701, "debut test3NonContinuNoirVide");
+		pdj = pdj.charger(chemin + "PlateauInfosAlignement3VideNonContinuNoir");
 		Log.print(705, pdj.toString());
 		InfosAlignement infos;
 		for(TypeDirection d: TypeDirection.values()){
@@ -126,15 +126,55 @@ public class TestInfosAlignement {
 			assertTrue(infos.getNbBlanc() == 0);
 			assertTrue(infos.getNbNoir() == 3);
 			assertTrue(infos.estContinuBlanc());
+			assertFalse(infos.estContinuNoir());
+			assertFalse(infos.estLibreBlanc());
+			assertTrue(infos.estLibreNoir());
+			Log.print(705, infos.toString());
+		}
+		
+		Log.print(701, "fin test3NonContinuNoirVide");
+
+	}
+	
+	@Test
+	public void test2NonVideContinuNoir() {
+		Log.print(701, "debut test2NonVideContinuNoir");
+		pdj = pdj.charger(chemin + "PlateauInfosAlignement2NonVideContinuNoir");
+		Log.print(705, pdj.toString());
+		InfosAlignement infos;
+		for(TypeDirection d: TypeDirection.values()){
+			infos = new InfosAlignement(pdj, new Coordonnees(7,7), d);
+			assertTrue(infos.getNbBlanc() == 0);
+			assertTrue(infos.getNbNoir() == 2);
+			assertTrue(infos.estContinuBlanc());
+			assertTrue(infos.estContinuNoir());
+			assertFalse(infos.estLibreBlanc());
+			assertFalse(infos.estLibreNoir());
+			Log.print(705, infos.toString());
+		}
+		
+		Log.print(701, "fin test2NonVideContinuNoir");
+
+	}
+	
+	@Test
+	public void test1VideContinuNoir() {
+		Log.print(701, "debut test1VideContinuNoir");
+		pdj = pdj.charger(chemin + "PlateauInfosAlignement1VideContinuNoir");
+		Log.print(705, pdj.toString());
+		InfosAlignement infos;
+		for(TypeDirection d: TypeDirection.values()){
+			infos = new InfosAlignement(pdj, new Coordonnees(7,7), d);
+			assertTrue(infos.getNbBlanc() == 0);
+			assertTrue(infos.getNbNoir() == 1);
+			assertTrue(infos.estContinuBlanc());
 			assertTrue(infos.estContinuNoir());
 			assertFalse(infos.estLibreBlanc());
 			assertTrue(infos.estLibreNoir());
 			Log.print(705, infos.toString());
 		}
 		
-		Log.print(701, "fin test3VideNoirVide");
+		Log.print(701, "fin test1VideContinuNoir");
 
 	}
-	
-	
 }
