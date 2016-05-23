@@ -20,5 +20,6 @@ public interface InterfaceTabou {
 	public boolean[][] getConfiguration();
 
 	// Methodes
-	public boolean estValide(Renjou r, Coordonnees c);
+
+	boolean estValide(PlateauDeJeu r, Coordonnees c, boolean troisFoistrois, boolean quatreFoisQuatre, boolean overline);
 }
