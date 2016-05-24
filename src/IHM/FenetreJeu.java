@@ -204,7 +204,7 @@ public class FenetreJeu extends JFrame implements WindowListener{
         //Layout Panel Noir
         noir.setAlignmentY(CENTER_ALIGNMENT);
         noir.setFont(new Font("Time New Roman", Font.BOLD, 30));
-        ImageIcon pionNoir = new ImageIcon(new ImageIcon("src/Images/" + m.getRenjou().getEmplacementThemes() + "/Pion noir.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon pionNoir = new ImageIcon(new ImageIcon("src/Images/" + m.getRenjou().getEmplacementThemes() + "/PionNoir.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
         nbPieces[0].setIcon(pionNoir);
         nbPieces[0].setHorizontalTextPosition(JLabel.CENTER);
         nbPieces[0].setFont(new Font("Time New Roman", Font.BOLD, 30));
@@ -232,7 +232,7 @@ public class FenetreJeu extends JFrame implements WindowListener{
 
         //Layout Panel Blanc
         blanc.setFont(new Font("Time New Roman", Font.BOLD, 30));
-        ImageIcon pionBlanc = new ImageIcon(new ImageIcon("src/Images/" + m.getRenjou().getEmplacementThemes() + "/Pion blanc.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon pionBlanc = new ImageIcon(new ImageIcon("src/Images/" + m.getRenjou().getEmplacementThemes() + "/PionBlanc.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
         nbPieces[1].setIcon(pionBlanc);
         nbPieces[1].setHorizontalTextPosition(JLabel.CENTER);
         nbPieces[1].setFont(new Font("Time New Roman", Font.BOLD, 30));

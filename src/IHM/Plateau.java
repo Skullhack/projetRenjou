@@ -37,11 +37,11 @@ public class Plateau extends JPanel {
         this.colonnes = ihm.m.getRenjou().getPlateauDeJeu().getColonnes();
         this.theme = ihm.m.getRenjou().getEmplacementThemes();
         try {
-    		imagePlateau = ImageIO.read(new File("src/Images/"+theme+"/Plateau 15x15.png"));
-    		imagePionBlanc = ImageIO.read(new File("src/Images/"+theme+"/Pion blanc.png"));
-    		imagePionNoir = ImageIO.read(new File("src/Images/"+theme+"/Pion noir.png"));
-    		imagePionNoirJoue = ImageIO.read(new File("src/Images/"+theme+"/Pion noir joue.png"));
-    		imagePionBlancJoue = ImageIO.read(new File("src/Images/"+theme+"/Pion blanc joue.png"));
+    		imagePlateau = ImageIO.read(new File("src/Images/"+theme+"/Plateau15x15.png"));
+    		imagePionBlanc = ImageIO.read(new File("src/Images/"+theme+"/PionBlanc.png"));
+    		imagePionNoir = ImageIO.read(new File("src/Images/"+theme+"/PionNoir.png"));
+    		imagePionNoirJoue = ImageIO.read(new File("src/Images/"+theme+"/PionNoirJoue.png"));
+    		imagePionBlancJoue = ImageIO.read(new File("src/Images/"+theme+"/PionBlancJoue.png"));
     	} catch (IOException e) {
     		
     	}

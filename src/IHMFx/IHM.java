@@ -27,9 +27,9 @@ public class IHM extends Application implements MoteurObserveur{
 	public Moteur m;
 	public FenetreJeu fj;
 	public Images i;
-	public Stage[] stages;
-	public Scene[] scenes;
-	
+	public Stage menuStage;
+	public Stage aideStage;
+
     public static void main(String[] args) {
         Application.launch(IHM.class, args);
     }
@@ -39,16 +39,28 @@ public class IHM extends Application implements MoteurObserveur{
     	m = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
     	i = new Images(m);
     	fj = new FenetreJeu(this);
-    	Parent root;
 		try {		
+			//Premiere Fenetre
 			FXMLLoader fx = new FXMLLoader(getClass().getResource("LayoutFenetreJeu.fxml"));
 			fx.setController(fj);
-			root = fx.load();
+			Parent root = fx.load();
 	    	Scene scene = new Scene(root, 950, 650);
 	    	primaryStage.setScene(scene);
 	        primaryStage.show();
 	        primaryStage.setTitle("Renjou");
 	        primaryStage.centerOnScreen();
+	        
+	        //Seconde Fenetre
+	        FXMLLoader fx2 = new FXMLLoader(getClass().getResource("LayoutFenetreMenu.fxml"));
+			fx2.setController(fj);
+			Parent root2 = fx2.load();
+	        menuStage = new Stage();
+	        menuStage.setTitle("Menu");
+	        menuStage.setScene(new Scene(new Group(), 260, 230, Color.LIGHTCYAN));
+	        //menuStage.show();
+	        
+	        //Troisieme Fenetre
+	        
 	    	m.enregistrerObserveur(this);
 	    	actualiser();
 		} catch (IOException e) {
@@ -58,7 +70,6 @@ public class IHM extends Application implements MoteurObserveur{
 
 	@Override
 	public void actualiser() {
-		System.out.println("yolo");
 		fj.update();
 	}
 

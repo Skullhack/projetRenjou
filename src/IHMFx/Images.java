@@ -36,11 +36,11 @@ public class Images {
 		annulerDrag = new Image("./Images/"+theme+"/AnnulerDrag.png");
 		refaire = new Image("./Images/"+theme+"/Refaire.png");
 		refaireDrag = new Image("./Images/"+theme+"/RefaireDrag.png");
-		plateau = new Image("./Images/"+theme+"/Plateau 15x15.png");
-		pionNoir = new Image("./Images/"+theme+"/Pion noir.png");
-		pionBlanc = new Image("./Images/"+theme+"/Pion blanc.png");
-		pionNoirJoue = new Image("./Images/"+theme+"/Pion noir joue.png");
-		pionBlancJoue = new Image("./Images/"+theme+"/Pion blanc joue.png");
+		plateau = new Image("./Images/"+theme+"/Plateau15x15.png");
+		pionNoir = new Image("./Images/"+theme+"/PionNoir.png");
+		pionBlanc = new Image("./Images/"+theme+"/PionBlanc.png");
+		pionNoirJoue = new Image("./Images/"+theme+"/PionNoirJoue.png");
+		pionBlancJoue = new Image("./Images/"+theme+"/PionBlancJoue.png");
 	}
 	
 	public Image getAmpoule() {
