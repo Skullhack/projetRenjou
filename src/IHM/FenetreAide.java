@@ -76,7 +76,7 @@ public class FenetreAide extends JFrame implements WindowListener{
 
 	    public void creerLayout() {
 	        //Panel Aide Regle Jeu
-	        ImageIcon imageRegle = new ImageIcon(new ImageIcon("./Images/"+m.getRenjou().getEmplacementThemes()+"/Regles.png").getImage().getScaledInstance(600, 500, java.awt.Image.SCALE_SMOOTH));
+	        ImageIcon imageRegle = new ImageIcon(new ImageIcon("src/Images/"+m.getRenjou().getEmplacementThemes()+"/Regles.png").getImage().getScaledInstance(600, 500, java.awt.Image.SCALE_SMOOTH));
 	        labelRegle.setIcon(imageRegle);
 	    }
 	    
