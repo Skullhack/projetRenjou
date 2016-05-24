@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="650.0" maxWidth="950.0" minHeight="650.0" minWidth="950.0" prefHeight="650.0" prefWidth="950.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <BorderPane layoutX="0.0" layoutY="0.0" maxHeight="650.0" maxWidth="950.0" minHeight="650.0" minWidth="950.0" prefHeight="650.0" prefWidth="950.0">
+      <bottom>
+        <FlowPane minHeight="60.0001220703125" prefHeight="71.0" prefWidth="950.0">
+          <children>
+            <FlowPane prefHeight="70.0" prefWidth="195.0" style="-fx-border-width: 3;&#10;-fx-border-color:black;&#10;-fx-border-style:dashed;">
+              <children>
+                <ImageView fx:id="recommencer" fitHeight="55.0" fitWidth="190.0" onMouseClicked="#recommencerClick" onMouseEntered="#dragDebutRecommencer" onMouseExited="#dragFinRecommencer" pickOnBounds="true" preserveRatio="true" style="">
+                  <image>
+                    <Image url="@../Images/Traditionnel/Recommencer.png" />
+                  </image>
+                  <FlowPane.margin>
+                    <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+                  </FlowPane.margin>
+                </ImageView>
+              </children>
+            </FlowPane>
+            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Images/Traditionnel/Plateau%2015x15.png" />
+              </image>
+              <FlowPane.margin>
+                <Insets left="90.0" right="10.0" />
+              </FlowPane.margin>
+            </ImageView>
+            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Images/Traditionnel/Plateau%2015x15.png" />
+              </image>
+              <FlowPane.margin>
+                <Insets left="10.0" right="10.0" fx:id="x1" />
+              </FlowPane.margin>
+            </ImageView>
+            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" FlowPane.margin="$x1">
+              <image>
+                <Image url="@../Images/Traditionnel/Plateau%2015x15.png" />
+              </image>
+            </ImageView>
+            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Images/Traditionnel/Plateau%2015x15.png" />
+              </image>
+              <FlowPane.margin>
+                <Insets left="10.0" right="10.0" fx:id="x1" />
+              </FlowPane.margin>
+            </ImageView>
+            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Images/Traditionnel/Plateau%2015x15.png" />
+              </image>
+              <FlowPane.margin>
+                <Insets left="10.0" right="10.0" fx:id="x1" />
+              </FlowPane.margin>
+            </ImageView>
+          </children>
+        </FlowPane>
+      </bottom>
+      <center>
+        <ImageView fitHeight="551.079345703125" fitWidth="551.079345703125" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../Images/Traditionnel/Plateau%2015x15.png" />
+          </image>
+        </ImageView>
+      </center>
+      <left>
+        <FlowPane maxHeight="620.0" minWidth="195.0" orientation="VERTICAL" prefHeight="510.0" prefWidth="195.0" style="-fx-border-color: black;&#10;-fx-border-width: 3;&#10;-fx-border-style:dashed;">
+          <children>
+            <FlowPane maxHeight="250.0" maxWidth="190.0" minHeight="250.0" minWidth="52.0" orientation="VERTICAL" prefHeight="250.0" prefWidth="190.0">
+              <children>
+                <Label id="" alignment="CENTER" contentDisplay="CENTER" minHeight="20.0" prefHeight="47.0" prefWidth="191.0" text="Noir" textAlignment="CENTER">
+                  <font>
+                    <Font name="System Bold" size="35.0" fx:id="x4" />
+                  </font>
+                  <FlowPane.margin>
+                    <Insets />
+                  </FlowPane.margin>
+                </Label>
+                <Label id="labelJ1" fx:id="labelNoir" alignment="CENTER" prefWidth="196.0" text="Humain" textAlignment="CENTER">
+                  <font>
+                    <Font size="18.0" fx:id="x2" />
+                  </font>
+                </Label>
+                <AnchorPane id="AnchorPane" minWidth="60.0" prefWidth="60.0">
+                  <children>
+                    <ImageView fx:id="pionNoir" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" smooth="true" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="0.0">
+                      <image>
+                        <Image url="@../Images/Traditionnel/Pion%20noir.png" />
+                      </image>
+                    </ImageView>
+                    <Label fx:id="nbPieceNoir" alignment="CENTER" prefHeight="24.0" prefWidth="59.0" text="60" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="10.0">
+                      <font>
+                        <Font size="30.0" fx:id="x5" />
+                      </font>
+                    </Label>
+                  </children>
+                </AnchorPane>
+                <ImageView fx:id="iconeNoir" fitHeight="58.583099185661105" fitWidth="38.112300872802734" onMouseEntered="#dragDebutSablierAmpoule1" onMouseExited="#dragFinSablierAmpoule1" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@../Images/Traditionnel/Ampoule.png" />
+                  </image>
+                  <FlowPane.margin>
+                    <Insets left="75.0" right="75.0" top="5.0" />
+                  </FlowPane.margin>
+                </ImageView>
+                <Label fx:id="tempsNoir" alignment="CENTER" font="$x2" prefWidth="200.0" text="Temps restant : 30" textAlignment="CENTER">
+                  <FlowPane.margin>
+                    <Insets />
+                  </FlowPane.margin>
+                </Label>
+              </children>
+            </FlowPane>
+            <FlowPane maxHeight="68.0" maxWidth="190.0" minHeight="65.0" minWidth="190.0" prefHeight="68.0" prefWidth="190.0" style="-fx-background-color:gray;">
+              <children>
+                <ImageView fx:id="annuler" fitHeight="65.0" fitWidth="65.0" onMouseClicked="#annuler" onMouseEntered="#dragDebutAnnuler" onMouseExited="#dragFinAnnuler" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@../Images/Traditionnel/Annuler.png" />
+                  </image>
+                  <FlowPane.margin>
+                    <Insets left="20.0" right="10.0" />
+                  </FlowPane.margin>
+                </ImageView>
+                <ImageView fx:id="refaire" fitHeight="65.0" fitWidth="65.0" onMouseClicked="#refaire" onMouseEntered="#dragDebutRefaire" onMouseExited="#dragFinRefaire" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@../Images/Traditionnel/Refaire.png" />
+                  </image>
+                  <FlowPane.margin>
+                    <Insets left="12.0" right="10.0" />
+                  </FlowPane.margin>
+                </ImageView>
+              </children>
+            </FlowPane>
+            <FlowPane maxHeight="220.00009999999747" maxWidth="190.0" minHeight="220.0" minWidth="190.0" prefHeight="220.00009999999747" prefWidth="190.0">
+              <children>
+                <Label alignment="CENTER" font="$x4" minHeight="20.0" prefHeight="47.0" prefWidth="200.0" text="Blanc" textAlignment="CENTER" />
+                <Label fx:id="labelBlanc" alignment="CENTER" font="$x2" prefWidth="200.0" text="Ordi. Facile" textAlignment="CENTER" />
+                <AnchorPane id="AnchorPane" minWidth="60.000091552734375" prefWidth="60.000091552734375">
+                  <children>
+                    <ImageView fx:id="pionBlanc" fitHeight="60.000099999997474" fitWidth="60.000099999997474" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="0.0">
+                      <image>
+                        <Image url="@../Images/Traditionnel/Pion%20blanc.png" />
+                      </image>
+                    </ImageView>
+                    <Label fx:id="nbPieceBlanc" alignment="CENTER" font="$x5" layoutX="70.0" layoutY="10.0" prefHeight="24.0" prefWidth="59.0" text="60" textAlignment="CENTER" textFill="BLACK" />
+                  </children>
+                </AnchorPane>
+                <ImageView fx:id="iconeBlanc" fitHeight="58.583099185661105" fitWidth="38.112300872802734" onMouseEntered="#dragDebutSablierAmpoule2" onMouseExited="#dragFinSablierAmpoule2" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@../Images/Traditionnel/Ampoule.png" />
+                  </image>
+                  <FlowPane.margin>
+                    <Insets left="80.0" right="80.0" top="5.0" fx:id="x6" />
+                  </FlowPane.margin>
+                </ImageView>
+                <Label fx:id="tempsBlanc" alignment="CENTER" font="$x2" prefWidth="199.9998779296875" text="Temps restant : 30" textAlignment="CENTER" />
+              </children>
+            </FlowPane>
+          </children>
+        </FlowPane>
+      </left>
+      <right>
+        <FlowPane maxHeight="650.0" minHeight="626.0" orientation="VERTICAL" prefHeight="626.0" prefWidth="150.0" style="-fx-border-width:3;&#10;-fx-border-style:dashed;&#10;-fx-border-color:black;">
+          <children>
+            <ImageView fitHeight="52.61025091526654" fitWidth="76.75659942626953" pickOnBounds="true" preserveRatio="true" rotate="269.0">
+              <image>
+                <Image url="@../Images/Traditionnel/FlecheTabouDroite.png" />
+              </image>
+              <FlowPane.margin>
+                <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" fx:id="x7" />
+              </FlowPane.margin>
+            </ImageView>
+            <ImageView fitHeight="137.9411163330078" fitWidth="137.9411163330078" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Images/Traditionnel/Plateau%2015x15.png" />
+              </image>
+              <FlowPane.margin>
+                <Insets />
+              </FlowPane.margin>
+            </ImageView>
+            <ImageView fitHeight="137.9411163330078" fitWidth="137.9411163330078" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Images/Traditionnel/Plateau%2015x15.png" />
+              </image>
+            </ImageView>
+            <ImageView fitHeight="137.9412078857422" fitWidth="137.9412078857422" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Images/Traditionnel/Plateau%2015x15.png" />
+              </image>
+            </ImageView>
+            <ImageView fitHeight="48.54688235906618" fitWidth="70.82827758789062" pickOnBounds="true" preserveRatio="true" rotate="90.0" FlowPane.margin="$x7">
+              <image>
+                <Image url="@../Images/Traditionnel/FlecheTabouDroite.png" />
+              </image>
+            </ImageView>
+          </children>
+        </FlowPane>
+      </right>
+      <top>
+        <MenuBar prefWidth="1059.970458984375">
+          <menus>
+            <Menu mnemonicParsing="false" text="Partie">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Creer partie" />
+                <MenuItem mnemonicParsing="false" text="Sauvegarder" />
+                <MenuItem mnemonicParsing="false" text="Charger" />
+                <MenuItem mnemonicParsing="false" text="Quitter" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Configuration">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Joueur" />
+                <MenuItem mnemonicParsing="false" text="Tabous" />
+                <MenuItem mnemonicParsing="false" text="Them" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Aide">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Regles" />
+                <MenuItem mnemonicParsing="false" text="Tutoriel" />
+                <MenuItem mnemonicParsing="false" text="A propos de" />
+              </items>
+            </Menu>
+          </menus>
+        </MenuBar>
+      </top>
+    </BorderPane>
+  </children>
+</AnchorPane>
