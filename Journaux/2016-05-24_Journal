@@ -7,3 +7,6 @@ PARTIE IA  :
 PARTIE MOTEUR : 
 
 #TÂCHES EFFECTUÉES
+
+- Remise des tests au propre avec l'utilisation des asserts
+- Intégration de IHM Fx dans le projet de github pour avoir les deux IHM supportées. 
