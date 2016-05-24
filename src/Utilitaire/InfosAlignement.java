@@ -6,9 +6,13 @@ import Enum.*;
 public class InfosAlignement {
 
 	int nbNoir;
-	int nbBlanc;
+	int nbBlanc;	
+	int nbNoirNonContinu;
+	int nbBlancNonContinu;
 	boolean libreNoir;
 	boolean libreBlanc;
+	boolean libre2casesNoir;
+	boolean libre2casesBlanc;
 	boolean continuNoir;
 	boolean continuBlanc;
 	private int ligne;
@@ -31,10 +35,14 @@ public class InfosAlignement {
 	public InfosAlignement(PlateauDeJeu pdj, Coordonnees c, TypeDirection td) {
 		nbNoir = 0;
 		nbBlanc = 0;
+		nbNoirNonContinu = 0;
+		nbBlancNonContinu = 0;
 		continuNoir = true;
 		continuBlanc = true;
 		libreNoir = true;
 		libreBlanc = true;
+		libre2casesNoir = false;;
+		libre2casesBlanc = false;
 		ligne = c.getLigne();
 		colonne = c.getColonne();
 		direction = td;
@@ -46,6 +54,7 @@ public class InfosAlignement {
 		boolean blancFini = false;
 		boolean caseVideNoir = false;
 		boolean caseVideBlanc = false;
+		TypeCase casePrecedent = TypeCase.Jouable;
 		boolean bordure = !incremente();
 			
 		Log.print(795, "0 - "+ (!bordure || (noirFini && blancFini)) +" - bordure= " + bordure + " noirFini= " + noirFini + " blancFini= "+ blancFini + " ligne= " +ligne+ " colonne= " + colonne);
@@ -63,8 +72,13 @@ public class InfosAlignement {
 				}
 				
 				if(!blancFini){
-					nbBlanc++;
-					Log.print(795, "pionBlanc: " + nbBlanc);
+					if(caseVideBlanc){
+						nbBlancNonContinu++;
+					}
+					else{
+						nbBlanc++;
+					}
+					Log.print(795, "pionBlanc: " + nbBlanc + " nbBlancNonContinu: " + nbBlancNonContinu);
 				}
 			}else if(tc == TypeCase.PionNoir && !noirFini){
 				blancFini = true;
@@ -74,38 +88,63 @@ public class InfosAlignement {
 					Log.print(795, "noir non continu");
 				}
 				if(!noirFini){
-					nbNoir++;
-					Log.print(795, "pionNoir: " + nbNoir);
+						if(caseVideNoir){
+							nbNoirNonContinu++;
+						}
+						else{
+							nbNoir++;
+						}
+					Log.print(795, "pionNoir: " + nbNoir + " nbNoirNonContinu: " + nbNoirNonContinu );
 				}
 			}else if(tc == TypeCase.Jouable){
 				
-				if(!caseVideNoir){
-					caseVideNoir = true;
-					Log.print(795, "caseVideNoir");
-				}else{
-					noirFini = true;
-					Log.print(795, "noirFini");
+				if(!noirFini){
+					if(!caseVideNoir){
+						caseVideNoir = true;
+						Log.print(795, "caseVideNoir");
+					}else{
+						if(casePrecedent == TypeCase.Jouable){
+							libre2casesNoir = true;
+						}
+						noirFini = true;
+						Log.print(795, "noirFini");
+					}
 				}
 				
-				if(!caseVideBlanc){
-					caseVideBlanc = true;
-					Log.print(795, "caseVideBlanc");
-				}else{
-					blancFini = true;
-					Log.print(795, "blancFini");
+				if(!blancFini){
+					if(!caseVideBlanc){
+						caseVideBlanc = true;
+						Log.print(795, "caseVideBlanc");
+					}else{
+						if(casePrecedent == TypeCase.Jouable){
+							libre2casesBlanc = true;
+						}
+						blancFini = true;
+						Log.print(795, "blancFini");
+					}
 				}
 				
 				
 			}
+			casePrecedent = tc;
 			Log.print(795, "2 - "+ (!bordure || (noirFini && blancFini)) +" - bordure= " + bordure + " noirFini= " + noirFini + " blancFini= "+ blancFini + " ligne= " +ligne+ " colonne= " + colonne);
 			bordure = !incremente();
 			Log.print(795, "3 - "+ (!bordure || (noirFini && blancFini)) +" - bordure= " + bordure + " noirFini= " + noirFini + " blancFini= "+ blancFini + " ligne= " +ligne+ " colonne= " + colonne);
-
+			
 		}
 		
 		if(bordure){
 			libreNoir = false;
 			libreBlanc = false;
+		}else if(casePrecedent == TypeCase.Jouable){
+			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
+			if(tc == TypeCase.Jouable && nbBlanc == 0 && nbBlancNonContinu == 0){
+				libre2casesNoir = true;	
+			}
+			
+			if(tc == TypeCase.Jouable && nbNoir == 0 && nbNoirNonContinu == 0){
+				libre2casesBlanc = true;	
+			}
 		}
 		
 		
@@ -155,12 +194,27 @@ public class InfosAlignement {
 	public int getNbBlanc() {
 		return nbBlanc;
 	}
+	public int getNbNoirNonContinu() {
+		return nbNoirNonContinu;
+	}
+	public int getNbBlancNonContinu() {
+		return nbBlancNonContinu;
+	}
+	
 	public boolean estLibreNoir() {
 		return libreNoir;
 	}
 	public boolean estLibreBlanc() {
 		return libreBlanc;
 	}
+	public boolean estLibre2CasesNoir() {
+		return libre2casesNoir;
+	}
+	public boolean estLibre2CasesBlanc() {
+		return libre2casesBlanc;
+	}
+	
+
 	public boolean estContinuNoir() {
 		return continuNoir;
 	}
@@ -181,6 +235,12 @@ public class InfosAlignement {
 	public void setLibreBlanc(boolean libreBlanc) {
 		this.libreBlanc = libreBlanc;
 	}
+	public void setLibre2CasesNoir(boolean libre2CasesNoir) {
+		this.libre2casesNoir = libre2CasesNoir;
+	}
+	public void sestLibre2CasesBlanc(boolean libre2CasesBlanc) {
+		this.libre2casesBlanc = libre2CasesBlanc;
+	}	
 	public void setContinuNoir(boolean continuNoir) {
 		this.continuNoir = continuNoir;
 	}
@@ -192,8 +252,8 @@ public class InfosAlignement {
 
 	public String toString(){
 		String buffer ="Infos Alignement " + direction + "\n";
-		buffer += "Pions Noirs Alignes: " + nbNoir + " est libre? " + libreNoir + " est continu? "+ continuNoir +"\n";
-		buffer += "Pions Blancs Alignes: " + nbBlanc + " est libre? " + libreBlanc + " est continu? "+ continuBlanc;
+		buffer += "Pions Noirs Alignes: " + nbNoir + " + " + nbNoirNonContinu + " est libre? " + libreNoir + " a deux cases? " + libre2casesNoir + " est continu? "+ continuNoir +"\n";
+		buffer += "Pions Blancs Alignes: " + nbBlanc + " + " + nbBlancNonContinu + " est libre? " + libreBlanc + " a deux cases? " + libre2casesBlanc + " est continu? "+ continuBlanc;
 		
 		return buffer;
 	}

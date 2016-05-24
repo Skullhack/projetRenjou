@@ -24,7 +24,7 @@ public class TestInfosAlignement {
 		m = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
 		pdj = m.getRenjou().getPlateauDeJeu();
 		//plage de trace 700 à 800
-		Log.setPlage(790, 800);
+		Log.setPlage(720, 730);
 	}
 	
 	
@@ -38,10 +38,15 @@ public class TestInfosAlignement {
 			infos = new InfosAlignement(pdj, new Coordonnees(7,7), d);
 			assertTrue(infos.getNbBlanc() == 0);
 			assertTrue(infos.getNbNoir() == 3);
+			assertTrue(infos.getNbBlancNonContinu() == 0);
+			assertTrue(infos.getNbNoirNonContinu() == 0);
 			assertTrue(infos.estContinuBlanc());
 			assertTrue(infos.estContinuNoir());
 			assertFalse(infos.estLibreBlanc());
 			assertTrue(infos.estLibreNoir());
+			assertFalse(infos.estLibre2CasesBlanc());
+			assertTrue(infos.estLibre2CasesNoir());
+			
 			Log.print(705, infos.toString());
 		}
 		
@@ -61,10 +66,14 @@ public class TestInfosAlignement {
 			
 			assertTrue(infos.getNbBlanc() == 0);
 			assertTrue(infos.getNbNoir() == 3);
+			assertTrue(infos.getNbBlancNonContinu() == 0);
+			assertTrue(infos.getNbNoirNonContinu() == 0);
 			assertTrue(infos.estContinuBlanc());
 			assertTrue(infos.estContinuNoir());
 			assertFalse(infos.estLibreBlanc());
 			assertFalse(infos.estLibreNoir());
+			assertFalse(infos.estLibre2CasesBlanc());
+			assertFalse(infos.estLibre2CasesNoir());
 		}
 		
 		Log.print(701, "fin test3continuNoirBloqueBlanc");
@@ -105,10 +114,14 @@ public class TestInfosAlignement {
 			
 			assertTrue(infos[i].getNbBlanc() == 0);
 			assertTrue(infos[i].getNbNoir() == 3);
+			assertTrue(infos[i].getNbBlancNonContinu() == 0);
+			assertTrue(infos[i].getNbNoirNonContinu() == 0);
 			assertTrue(infos[i].estContinuBlanc());
 			assertTrue(infos[i].estContinuNoir());
 			assertFalse(infos[i].estLibreBlanc());
 			assertFalse(infos[i].estLibreNoir());
+			assertFalse(infos[i].estLibre2CasesBlanc());
+			assertFalse(infos[i].estLibre2CasesNoir());
 		}
 		
 		Log.print(701, "fin test3continuNoirBloqueBordure");
@@ -117,19 +130,24 @@ public class TestInfosAlignement {
 	
 	@Test
 	public void test3NonContinuNoirVide() {
+		Log.setPlage(700, 710);
 		Log.print(701, "debut test3NonContinuNoirVide");
 		pdj = pdj.charger(chemin + "PlateauInfosAlignement3VideNonContinuNoir");
 		Log.print(705, pdj.toString());
 		InfosAlignement infos;
 		for(TypeDirection d: TypeDirection.values()){
 			infos = new InfosAlignement(pdj, new Coordonnees(7,7), d);
+			Log.print(705, infos.toString());
 			assertTrue(infos.getNbBlanc() == 0);
-			assertTrue(infos.getNbNoir() == 3);
+			assertTrue(infos.getNbNoir() == 2);
+			assertTrue(infos.getNbBlancNonContinu() == 0);
+			assertTrue(infos.getNbNoirNonContinu() == 1);
 			assertTrue(infos.estContinuBlanc());
 			assertFalse(infos.estContinuNoir());
 			assertFalse(infos.estLibreBlanc());
 			assertTrue(infos.estLibreNoir());
-			Log.print(705, infos.toString());
+			assertFalse(infos.estLibre2CasesBlanc());
+			assertTrue(infos.estLibre2CasesNoir());
 		}
 		
 		Log.print(701, "fin test3NonContinuNoirVide");
@@ -146,6 +164,8 @@ public class TestInfosAlignement {
 			infos = new InfosAlignement(pdj, new Coordonnees(7,7), d);
 			assertTrue(infos.getNbBlanc() == 0);
 			assertTrue(infos.getNbNoir() == 2);
+			assertTrue(infos.getNbBlancNonContinu() == 0);
+			assertTrue(infos.getNbNoirNonContinu() == 0);
 			assertTrue(infos.estContinuBlanc());
 			assertTrue(infos.estContinuNoir());
 			assertFalse(infos.estLibreBlanc());
@@ -167,6 +187,8 @@ public class TestInfosAlignement {
 			infos = new InfosAlignement(pdj, new Coordonnees(7,7), d);
 			assertTrue(infos.getNbBlanc() == 0);
 			assertTrue(infos.getNbNoir() == 1);
+			assertTrue(infos.getNbBlancNonContinu() == 0);
+			assertTrue(infos.getNbNoirNonContinu() == 0);
 			assertTrue(infos.estContinuBlanc());
 			assertTrue(infos.estContinuNoir());
 			assertFalse(infos.estLibreBlanc());
@@ -177,4 +199,16 @@ public class TestInfosAlignement {
 		Log.print(701, "fin test1VideContinuNoir");
 
 	}
+	
+	@Test
+	public void main() {
+		Log.print(721, "debut main");
+		pdj = pdj.charger(chemin + "PlateauInfosAlignementMain");
+		Log.print(725, pdj.toString());
+		InfosAlignement infos = new InfosAlignement(pdj, new Coordonnees(7,7), TypeDirection.Gauche);;
+		Log.print(725, infos.toString());
+		Log.print(721, "fin main");
+
+	}
+	
 }
