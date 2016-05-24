@@ -5,6 +5,7 @@
  */
 package IHM;
 
+import Images.*;
 import Controleur.Moteur;
 
 import java.awt.event.ActionEvent;
@@ -95,17 +96,17 @@ public class ComposantAffichageTabou extends JPanel implements ActionListener{
 	
 	public void repeindre() {
 		if ((m.getRenjou().getTabouJeu().get(0+decalage)) != null)  {
-			ImageIcon img1 = new ImageIcon(new ImageIcon("./Images/Tabous/"+m.getRenjou().getTabouJeu().get(0+decalage).getNom()+"Image.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
+			ImageIcon img1 = new ImageIcon(new ImageIcon("src/Images/Tabous/"+m.getRenjou().getTabouJeu().get(0+decalage).getNom()+"Image.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
 			if  (img1 != null)
 				affichages[0].setIcon(img1);
 		}
 		if ((m.getRenjou().getTabouJeu().get(1+decalage)) != null)  {
-			ImageIcon img2 = new ImageIcon(new ImageIcon("./Images/Tabous/"+m.getRenjou().getTabouJeu().get(1+decalage).getNom()+"Image.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
+			ImageIcon img2 = new ImageIcon(new ImageIcon("src/Images/Tabous/"+m.getRenjou().getTabouJeu().get(1+decalage).getNom()+"Image.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
 			if  (img2 != null)
 				affichages[1].setIcon(img2);
 		}
 		if ((m.getRenjou().getTabouJeu().get(1+decalage)) != null)  {
-			ImageIcon img3 = new ImageIcon(new ImageIcon("./Images/Tabous/"+m.getRenjou().getTabouJeu().get(2+decalage).getNom()+"Image.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));getInsets();
+			ImageIcon img3 = new ImageIcon(new ImageIcon("src/Images/Tabous/"+m.getRenjou().getTabouJeu().get(2+decalage).getNom()+"Image.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));getInsets();
 			if  (img3 != null)
 				affichages[2].setIcon(img3);
 		}

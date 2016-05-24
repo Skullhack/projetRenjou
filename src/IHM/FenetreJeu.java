@@ -5,6 +5,8 @@
  */
 package IHM;
 
+import Images.*;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,6 +15,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -55,6 +59,7 @@ public class FenetreJeu extends JFrame implements WindowListener{
 
     public FenetreJeu(IHM ihm) {
         //Variables
+    	
     	this.addWindowListener(this);
         this.m = ihm.m;
         efj = new EcouteurFenetreJeu(ihm);
@@ -199,43 +204,43 @@ public class FenetreJeu extends JFrame implements WindowListener{
         //Layout Panel Noir
         noir.setAlignmentY(CENTER_ALIGNMENT);
         noir.setFont(new Font("Time New Roman", Font.BOLD, 30));
-        ImageIcon pionNoir = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/Pion noir.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon pionNoir = new ImageIcon(new ImageIcon("src/Images/" + m.getRenjou().getEmplacementThemes() + "/Pion noir.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
         nbPieces[0].setIcon(pionNoir);
         nbPieces[0].setHorizontalTextPosition(JLabel.CENTER);
         nbPieces[0].setFont(new Font("Time New Roman", Font.BOLD, 30));
         nbPieces[0].setForeground(Color.WHITE);
 
         //Boutons annuler et refaire
-        ImageIcon annuler = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/Annuler.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon annulerEclaire = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/AnnulerEclaire.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon annuler = new ImageIcon(new ImageIcon("src/Images/" + m.getRenjou().getEmplacementThemes() + "/Annuler.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon annulerEclaire = new ImageIcon(new ImageIcon("src/Images/" + m.getRenjou().getEmplacementThemes() + "/AnnulerDrag.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
         setIcone(boutons[0], new Color(0, 0, 0, 0), annuler, annulerEclaire);
         //boutons[0].addActionListener();
-        ImageIcon refaire = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/Refaire.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon refaireEclaire = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/RefaireEclaire.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon refaire = new ImageIcon(new ImageIcon("src/Images/" + m.getRenjou().getEmplacementThemes() + "/Refaire.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon refaireEclaire = new ImageIcon(new ImageIcon("src/Images/" + m.getRenjou().getEmplacementThemes() + "/RefaireDrag.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
         setIcone(boutons[1], new Color(0, 0, 0, 0), refaire, refaireEclaire);
 
         //Boutons aide
-        ImageIcon aide = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/AmpouleGrisee.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon aideEclaire = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/AmpouleAllumee.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon aide = new ImageIcon(new ImageIcon("src/Images/" + m.getRenjou().getEmplacementThemes() + "/Ampoule.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon aideEclaire = new ImageIcon(new ImageIcon("src/Images/" + m.getRenjou().getEmplacementThemes() + "/AmpouleDrag.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
         setIcone(aides[1], new Color(0, 0, 0, 0), aide, aideEclaire);
         setIcone(aides[0], new Color(0, 0, 0, 0), aide, aideEclaire);
 
         //Bouton sablier
-        ImageIcon sablier = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/Sablier.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon sablier = new ImageIcon(new ImageIcon("src/Images/" + m.getRenjou().getEmplacementThemes() + "/Sablier.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
         sabliers[0].setIcon(sablier);
         sabliers[1].setIcon(sablier);
 
         //Layout Panel Blanc
         blanc.setFont(new Font("Time New Roman", Font.BOLD, 30));
-        ImageIcon pionBlanc = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/Pion blanc.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon pionBlanc = new ImageIcon(new ImageIcon("src/Images/" + m.getRenjou().getEmplacementThemes() + "/Pion blanc.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
         nbPieces[1].setIcon(pionBlanc);
         nbPieces[1].setHorizontalTextPosition(JLabel.CENTER);
         nbPieces[1].setFont(new Font("Time New Roman", Font.BOLD, 30));
         nbPieces[1].setForeground(Color.BLACK);
         
         //Boutons Tabous
-        ImageIcon tabouPrecedent = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/FlecheTabouGauche.png").getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon tabouSuivant = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/FlecheTabouDroite.png").getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon tabouPrecedent = new ImageIcon(new ImageIcon("src/Images/" + m.getRenjou().getEmplacementThemes() + "/FlecheTabouGauche.png").getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon tabouSuivant = new ImageIcon(new ImageIcon("src/Images/" + m.getRenjou().getEmplacementThemes() + "/FlecheTabouDroite.png").getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
         setIcone(affichageRenjou.getRenjouPrecedent(),new Color(0,0,0,0),tabouPrecedent,tabouPrecedent);
         setIcone(affichageRenjou.getRenjouSuivant(),new Color(0,0,0,0),tabouSuivant,tabouSuivant);
         

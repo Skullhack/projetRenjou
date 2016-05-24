@@ -18,14 +18,21 @@ import Utilitaire.PlateauDeJeu;
 
 public class IAMoyenne extends IA {
 	ArrayList<Coordonnees> coups;
-	Random r;
 	int profondeurMax;
+	
+	public IAMoyenne(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur, int seed){
+		super(moteur, type,nbPion,couleurJoueur, seed);
+		init();
+
+	}
 	
 	public IAMoyenne(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur){
 		super(moteur, type,nbPion,couleurJoueur);
+		init();
+	}
+	
+	private void init(){
 		coups = new ArrayList<>();
-		int seed = 12345;
-		r = new Random(seed);
 		profondeurMax = 3;
 	}
 	
@@ -76,7 +83,7 @@ public class IAMoyenne extends IA {
 					pdj.ajouter(c,tc);
 					Log.print(695, pdj.toString());
 					if(PartieFinie(pdj,c)){
-						// on peut couper là, le coup est gagnant.
+						// on peut couper lï¿½, le coup est gagnant.
 						Log.print(695, "dans jouer " + c + " gagnant en profondeur " + (profondeurMax -profondeur));
 						return c;
 					}else{
@@ -143,7 +150,7 @@ public class IAMoyenne extends IA {
 					pdj.ajouter(c,tc);
 					Log.print(695, pdj.toString());
 					if(PartieFinie(pdj, c)){
-						// on peut couper là, le coup est perdant.
+						// on peut couper lï¿½, le coup est perdant.
 						pdj.enlever(c);
 
 						Log.print(695, "dans evalCoupAdv " + c + " gagnant en profondeur " + (profondeurMax -profondeur));
@@ -170,7 +177,7 @@ public class IAMoyenne extends IA {
 				if(EstJouable(pdj, c)){
 					pdj.ajouter(c,tc);
 					if(PartieFinie(pdj, c)){
-						// on peut couper là, le coup est gagnant.
+						// on peut couper lï¿½, le coup est gagnant.
 						pdj.enlever(c);
 						Log.print(695, "dans evalCoupIA " + c + " gagnant en profondeur " + (profondeurMax -profondeur));
 						return 10000;
