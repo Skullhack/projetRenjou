@@ -10,6 +10,7 @@ import Controleur.Moteur;
 import Controleur.MoteurObserveur;
 import Enum.TypeCase;
 import Enum.TypeJoueur;
+import Joueur.IAFacile;
 import Utilitaire.Coordonnees;
 import Utilitaire.Log;
 import Utilitaire.PlateauDeJeu;
@@ -263,7 +264,8 @@ public class TestMoteur {
 
 		}
 
-		//TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauCaseApresClicTabouJoueurNoir");
+		// TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin +
+		// "PlateauCaseApresClicTabouJoueurNoir");
 		Log.print(1, "FIN TEST d'une case tabou pour faire perdre joueur noir");
 
 	}
@@ -291,38 +293,43 @@ public class TestMoteur {
 
 		}
 		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauTestAvantAnnulation2Humains");
-		
 
 		Log.print(1, "ANNNULATION D'UN COUP ENTRE DEUX JOUEURS");
 		donneesJeu.annuler();
-		
+
 		afficherPlateauJeuCourant(plateauJeuEnCours);
-		
+
 		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauTestAprèsAnnulation2Humains");
-		
+
 		Log.print(1, "Le nombre de pion du joueur courant " + donneesJeu.getRenjou().getJoueurCourant() + " est de  : "
 				+ donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getNbPion());
 
-		operationJouerJoueurCourant(donneesJeu, new Coordonnees(2, 2)); //blanc qui joue
+		operationJouerJoueurCourant(donneesJeu, new Coordonnees(2, 2)); // blanc
+																		// qui
+																		// joue
 		afficherPlateauJeuCourant(plateauJeuEnCours);
 
-		operationJouerJoueurCourant(donneesJeu, new Coordonnees(13, 13)); //noir qui joue
+		operationJouerJoueurCourant(donneesJeu, new Coordonnees(13, 13)); // noir
+																			// qui
+																			// joue
 		afficherPlateauJeuCourant(plateauJeuEnCours);
-		
+
 		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauTestAprèsAnnulationJeuxEntre2Humains");
-		
+
 		Log.print(1, "FIN TEST d'une annulation de coup");
 	}
 
 	@Test
 	public void annulerCoupEntreJoueurIA() {
 
-		//-------------
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
+		PlateauDeJeu plateauJeuEnCours = donneesJeu.getRenjou().getPlateauDeJeu();
 
 		Log.setNiveau(0);
 		Log.print(1, "TEST d'une annulation de coup entre un joueur et une IA");
-		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		afficherPlateauJeuCourant(plateauJeuEnCours);
+
+		((IAFacile) donneesJeu.getRenjou().getJoueurs()[1]).setSeed(100);
 
 		Coordonnees[] tabCoord = new Coordonnees[4];
 		tabCoord[0] = new Coordonnees(7, 7); // noir coup 1
@@ -332,24 +339,28 @@ public class TestMoteur {
 
 		for (int i = 0; i < tabCoord.length; i++) {
 
-			donneesJeu.operationJouer(tabCoord[i],
-					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-			Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+			operationJouerJoueurCourant(donneesJeu, tabCoord[i]);
+			afficherPlateauJeuCourant(plateauJeuEnCours);
 
 		}
 
+		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauTestAvantAnnulationHumainIA");
+
 		Log.print(1, "ANNNULATION D'UN COUP ENTRE JOUEUR ET IA");
 		donneesJeu.annuler();
-		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		afficherPlateauJeuCourant(plateauJeuEnCours);
+
+		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauTestAprèsAnnulationHumainIA");
+
 		Log.print(1, "Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
 
 		Log.print(1,
 				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
 
-		donneesJeu.operationJouer(new Coordonnees(2, 2),
-				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
+		operationJouerJoueurCourant(donneesJeu, new Coordonnees(2, 2));
 
-		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		afficherPlateauJeuCourant(plateauJeuEnCours);
+		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauTestAprèsAnnulationEtUnCoupHumainIA");
 
 		Log.print(1, "FIN TEST d'une annulation de coup ENTRE JOUEUR ET IA");
 
@@ -359,10 +370,11 @@ public class TestMoteur {
 	public void annulerRefaireCoupEntreDeuxJoueurs() {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
+		PlateauDeJeu plateauJeuEnCours = donneesJeu.getRenjou().getPlateauDeJeu();
 
 		Log.setNiveau(0);
 		Log.print(1, "TEST annuler/refaire coup entre 2 joueurs");
-		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		afficherPlateauJeuCourant(plateauJeuEnCours);
 
 		Coordonnees[] tabCoord = new Coordonnees[4];
 		tabCoord[0] = new Coordonnees(7, 7); // noir
@@ -372,29 +384,33 @@ public class TestMoteur {
 
 		for (int i = 0; i < tabCoord.length; i++) {
 
-			donneesJeu.operationJouer(tabCoord[i],
-					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-			Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+			operationJouerJoueurCourant(donneesJeu, tabCoord[i]);
+			afficherPlateauJeuCourant(plateauJeuEnCours);
 
 		}
 
+		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauAvantAnnulerRefaire2Humains");
+
 		Log.print(1, "ANNNULATION D'UN COUP ENTRE DEUX JOUEURS");
 		donneesJeu.annuler();
-		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		afficherPlateauJeuCourant(plateauJeuEnCours);
 		Log.print(1, "Le nombre de pion du joueur courant " + donneesJeu.getRenjou().getJoueurCourant() + " est de  : "
 				+ donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getNbPion());
 
 		Log.print(1, "REFAIRE UN COUP ENTRE DEUX JOUEURS");
 		donneesJeu.refaire();
-		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		afficherPlateauJeuCourant(plateauJeuEnCours);
 		Log.print(1, "Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
 
 		Log.print(1,
 				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
 
-		donneesJeu.operationJouer(new Coordonnees(14, 14),
-				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauAprèsAnnulerRefaire2Humains");
+
+		operationJouerJoueurCourant(donneesJeu, new Coordonnees(14, 14));
+		afficherPlateauJeuCourant(plateauJeuEnCours);
+
+		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauAprèsAnnulerRefaireEtUnCoup2Humains");
 
 		Log.print(1, "Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
 
@@ -409,10 +425,13 @@ public class TestMoteur {
 	public void annulerRefaireEntreJoueurEtIA() {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
+		PlateauDeJeu plateauJeuEnCours = donneesJeu.getRenjou().getPlateauDeJeu();
 
-		Log.setNiveau(0);
+		Log.setNiveau(10);
 		Log.print(1, "TEST d'un annuler/refaire de coup entre un joueur et une IA");
-		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		afficherPlateauJeuCourant(plateauJeuEnCours);
+
+		((IAFacile) donneesJeu.getRenjou().getJoueurs()[1]).setSeed(100);
 
 		Coordonnees[] tabCoord = new Coordonnees[4];
 		tabCoord[0] = new Coordonnees(7, 7); // noir coup 1
@@ -422,15 +441,17 @@ public class TestMoteur {
 
 		for (int i = 0; i < tabCoord.length; i++) {
 
-			donneesJeu.operationJouer(tabCoord[i],
-					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-			Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+			operationJouerJoueurCourant(donneesJeu, tabCoord[i]);
+			afficherPlateauJeuCourant(plateauJeuEnCours);
 
 		}
+		
+		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauAvantAnnulerRefaireHumainIA");
+		
 
 		Log.print(1, "ANNNULATION D'UN COUP ENTRE JOUEUR ET IA");
 		donneesJeu.annuler();
-		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		afficherPlateauJeuCourant(plateauJeuEnCours);
 		Log.print(1, "Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
 
 		Log.print(1,
@@ -439,16 +460,19 @@ public class TestMoteur {
 		Log.print(1, "REFAIRE UN COUP ENTRE JOUEUR ET IA");
 		donneesJeu.refaire();
 
-		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
-
+		afficherPlateauJeuCourant(plateauJeuEnCours);
+		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauAprèsAnnulerRefaireHumainIA");
+		
+		
 		Log.print(1, "Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
 
 		Log.print(1,
 				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
 
-		donneesJeu.operationJouer(new Coordonnees(0, 14),
-				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		operationJouerJoueurCourant(donneesJeu, new Coordonnees(0, 14));
+		afficherPlateauJeuCourant(plateauJeuEnCours);
+		
+		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauAprèsAnnulerRefaireEtUnCoupHumainIA");
 
 		Log.print(1, "Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
 
@@ -456,12 +480,12 @@ public class TestMoteur {
 				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
 
 		Log.print(1, "FIN TEST d'un annuler/refaire un coup ENTRE JOUEUR ET IA");
-
 	}
 
 	@Test
 	public void testSauvegardePartie() {
 
+		// --------TODO
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
 
 		Log.setNiveau(0);
@@ -489,6 +513,7 @@ public class TestMoteur {
 	@Test
 	public void testChargementPartie() {
 
+		// --------TODO
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
 		// vu qu'on va charger un new renjou avec des paramètres humain vs
 		// IAFacile, la ligne au dessus n'a plus vraiment de sens. C'est
@@ -535,6 +560,7 @@ public class TestMoteur {
 	@Test
 	public void testRecommencerPartie() {
 
+		// --------TODO
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
 		Log.setNiveau(0);
 		Log.print(1, "TEST RECOMMENCER UNE PARTIE");
