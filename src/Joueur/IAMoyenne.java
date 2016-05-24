@@ -19,12 +19,7 @@ import Utilitaire.PlateauDeJeu;
 public class IAMoyenne extends IA {
 	ArrayList<Coordonnees> coups;
 	int profondeurMax;
-	
-	public IAMoyenne(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur, int seed){
-		super(moteur, type,nbPion,couleurJoueur, seed);
-		init();
 
-	}
 	
 	public IAMoyenne(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur){
 		super(moteur, type,nbPion,couleurJoueur);

@@ -20,13 +20,6 @@ public class IA extends Joueur {
 	protected int nbLigne;
 	protected int nbColonne;
 	
-    public IA(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur, int seed) {
-    	super(moteur, type, nbPion, couleurJoueur);
-		r = new Random(seed);
-		init();
-    }
-
-	
 	
     public IA(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
         super(moteur, type, nbPion, couleurJoueur);
@@ -46,7 +39,9 @@ public class IA extends Joueur {
 		}	
     	
     }
-
+    public void setSeed(int seed){
+    	r = new Random(seed);
+    }
 	public boolean caseJouable(Coordonnees p, PlateauDeJeu plateau) {
 		return (plateau.getPlateau()[p.getLigne()][p.getColonne()] == TypeCase.Jouable);
 

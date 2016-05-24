@@ -16,10 +16,6 @@ import Utilitaire.Log;
 import Utilitaire.PlateauDeJeu;
 
 public class IAFacile extends IA {
-	public IAFacile(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur, int seed) {
-		super(moteur, type, nbPion, couleurJoueur, seed);
-		init();
-	}
 
 	public IAFacile(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
 		super(moteur, type, nbPion, couleurJoueur);
