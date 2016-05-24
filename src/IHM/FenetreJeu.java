@@ -207,16 +207,16 @@ public class FenetreJeu extends JFrame implements WindowListener{
 
         //Boutons annuler et refaire
         ImageIcon annuler = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/Annuler.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon annulerEclaire = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/AnnulerEclaire.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon annulerEclaire = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/AnnulerDrag.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
         setIcone(boutons[0], new Color(0, 0, 0, 0), annuler, annulerEclaire);
         //boutons[0].addActionListener();
         ImageIcon refaire = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/Refaire.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon refaireEclaire = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/RefaireEclaire.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon refaireEclaire = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/RefaireDrag.png").getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH));
         setIcone(boutons[1], new Color(0, 0, 0, 0), refaire, refaireEclaire);
 
         //Boutons aide
-        ImageIcon aide = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/AmpouleGrisee.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon aideEclaire = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/AmpouleAllumee.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon aide = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/Ampoule.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon aideEclaire = new ImageIcon(new ImageIcon("./Images/" + m.getRenjou().getEmplacementThemes() + "/AmpouleDrag.png").getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH));
         setIcone(aides[1], new Color(0, 0, 0, 0), aide, aideEclaire);
         setIcone(aides[0], new Color(0, 0, 0, 0), aide, aideEclaire);
 
