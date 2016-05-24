@@ -25,9 +25,11 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 public class IHM extends Application implements MoteurObserveur{
 	public Moteur m;
-	public FenetreJeu fj;
+	public EcouteurFenetreJeu efj;
+	public EcouteurFenetreMenu efm;
 	public Images i;
-	public Stage menuStage;
+	public FenetreJeu fj;
+	public FenetreMenu fm;
 	public Stage aideStage;
 
     public static void main(String[] args) {
@@ -38,26 +40,15 @@ public class IHM extends Application implements MoteurObserveur{
     public void start(Stage primaryStage) {
     	m = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
     	i = new Images(m);
-    	fj = new FenetreJeu(this);
+    	efj = new EcouteurFenetreJeu(this);
+    	efm = new EcouteurFenetreMenu(this);
 		try {		
 			//Premiere Fenetre
-			FXMLLoader fx = new FXMLLoader(getClass().getResource("LayoutFenetreJeu.fxml"));
-			fx.setController(fj);
-			Parent root = fx.load();
-	    	primaryStage.setScene(new Scene(root, 950, 650));
-	        primaryStage.show();
-	        primaryStage.setTitle("Renjou");
-	        primaryStage.centerOnScreen();
+			fj = new FenetreJeu(efj);
+			fj.montrer();
 	        
 	        //Seconde Fenetre
-	        FXMLLoader fx2 = new FXMLLoader(getClass().getResource("LayoutFenetreMenu.fxml"));
-			fx2.setController(fj);
-			Parent root2 = fx2.load();
-	        menuStage = new Stage();
-	        menuStage.setTitle("Menu");
-	        menuStage.setScene(new Scene(root2, 700, 500));
-	        menuStage.show();
-	        menuStage.centerOnScreen();
+			fm = new FenetreMenu(efm);
 	        
 	        //Troisieme Fenetre
 	        
@@ -70,7 +61,7 @@ public class IHM extends Application implements MoteurObserveur{
 
 	@Override
 	public void actualiser() {
-		fj.update();
+		efj.update();
 	}
 
 }
