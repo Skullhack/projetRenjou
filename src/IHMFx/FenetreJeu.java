@@ -221,6 +221,36 @@ public class FenetreJeu implements Initializable {
 		
 	}
 	
+	@FXML
+	private void joueurMenu(ActionEvent e) {
+		
+	}
+	
+	@FXML
+	private void tabousMenu(ActionEvent e) {
+		
+	}
+	
+	@FXML
+	private void themeMenu(ActionEvent e) {
+		
+	}
+	
+	@FXML
+	private void reglesMenu(ActionEvent e) {
+		
+	}
+	
+	@FXML
+	private void tutorielMenu(ActionEvent e) {
+		
+	}
+	
+	@FXML
+	private void aProposMenu(ActionEvent e) {
+		
+	}
+	
 	public void update() {
 		//Panel Gauche
 		labelNoir.setText(m.getRenjou().getJoueurs()[0].getType().toString());

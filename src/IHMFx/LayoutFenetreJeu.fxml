@@ -211,24 +211,24 @@
           <menus>
             <Menu mnemonicParsing="false" text="Partie">
               <items>
-                <MenuItem mnemonicParsing="false" text="Creer partie" />
-                <MenuItem mnemonicParsing="false" text="Sauvegarder" />
-                <MenuItem mnemonicParsing="false" text="Charger" />
-                <MenuItem mnemonicParsing="false" text="Quitter" />
+                <MenuItem mnemonicParsing="false" onAction="#creerPartieMenu" text="Creer partie" fx:id="creerPartieMenu" />
+                <MenuItem mnemonicParsing="false" onAction="#sauvegarderMenu" text="Sauvegarder" fx:id="sauvegarderMenu" />
+                <MenuItem mnemonicParsing="false" onAction="#chargerMenu" text="Charger" fx:id="chargerMenu" />
+                <MenuItem mnemonicParsing="false" onAction="#quitterMenu" text="Quitter" fx:id="quitterMenu" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Configuration">
               <items>
-                <MenuItem mnemonicParsing="false" text="Joueur" />
-                <MenuItem mnemonicParsing="false" text="Tabous" />
-                <MenuItem mnemonicParsing="false" text="Them" />
+                <MenuItem mnemonicParsing="false" onAction="#joueurMenu" text="Joueur" fx:id="joueurMenu" />
+                <MenuItem mnemonicParsing="false" onAction="#tabousMenu" text="Tabous" fx:id="tabousMenu" />
+                <MenuItem mnemonicParsing="false" onAction="#themeMenu" text="Theme" fx:id="themeMenu" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Aide">
               <items>
-                <MenuItem mnemonicParsing="false" text="Regles" />
-                <MenuItem mnemonicParsing="false" text="Tutoriel" />
-                <MenuItem mnemonicParsing="false" text="A propos de" />
+                <MenuItem mnemonicParsing="false" onAction="#reglesMenu" text="Regles" fx:id="reglesMenu" />
+                <MenuItem mnemonicParsing="false" onAction="#tutorielMenu" text="Tutoriel" fx:id="tutorielMenu" />
+                <MenuItem mnemonicParsing="false" onAction="#aProposMenu" text="A propos de" fx:id="aProposMenu" />
               </items>
             </Menu>
           </menus>
