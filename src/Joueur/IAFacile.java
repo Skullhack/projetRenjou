@@ -19,10 +19,13 @@ public class IAFacile extends IA {
 
 	public IAFacile(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
 		super(moteur, type, nbPion, couleurJoueur);
+		init();
+	}
+
+	private void init(){
 		nbLigne = m.getRenjou().getPlateauDeJeu().getLignes();
 		nbColonne = m.getRenjou().getPlateauDeJeu().getColonnes();
 	}
-
 	
 	@Override
 	public void actualiser() {

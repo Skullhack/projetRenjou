@@ -20,10 +20,15 @@ public class IA extends Joueur {
 	protected int nbLigne;
 	protected int nbColonne;
 	
+	
     public IA(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
         super(moteur, type, nbPion, couleurJoueur);
 		java.util.GregorianCalendar calendar = new GregorianCalendar();
 		r = new Random(calendar.getTimeInMillis());
+		init();
+	}
+	
+    private void init(){
 		nbLigne = m.getRenjou().getPlateauDeJeu().getLignes();
 		nbColonne = m.getRenjou().getPlateauDeJeu().getColonnes();
 		tabHeuristique = new int[nbLigne][nbColonne];
@@ -31,10 +36,12 @@ public class IA extends Joueur {
 			for(int j=0; j< nbColonne; j++){
 				tabHeuristique[i][j] = 0;
 			}
-		}		
-	}
-	
-
+		}	
+    	
+    }
+    public void setSeed(int seed){
+    	r = new Random(seed);
+    }
 	public boolean caseJouable(Coordonnees p, PlateauDeJeu plateau) {
 		return (plateau.getPlateau()[p.getLigne()][p.getColonne()] == TypeCase.Jouable);
 

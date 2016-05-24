@@ -79,7 +79,7 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 	}
 	
 	public boolean sixSept() {
-		if((nbPionNoirDiagonaleDroite() > 5) && (infoDiagonaleBasGauche.estContinuNoir())){
+		if((nbPionNoirDiagonaleDroite() > 5) && (infoDiagonaleBasGauche.nbNoirNonContinu > 0)){
 			return true;
 		}
 		if(nbPionNoirDiagonaleGauche() > 5){
