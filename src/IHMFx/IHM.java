@@ -44,8 +44,7 @@ public class IHM extends Application implements MoteurObserveur{
 			FXMLLoader fx = new FXMLLoader(getClass().getResource("LayoutFenetreJeu.fxml"));
 			fx.setController(fj);
 			Parent root = fx.load();
-	    	Scene scene = new Scene(root, 950, 650);
-	    	primaryStage.setScene(scene);
+	    	primaryStage.setScene(new Scene(root, 950, 650));
 	        primaryStage.show();
 	        primaryStage.setTitle("Renjou");
 	        primaryStage.centerOnScreen();
@@ -56,8 +55,9 @@ public class IHM extends Application implements MoteurObserveur{
 			Parent root2 = fx2.load();
 	        menuStage = new Stage();
 	        menuStage.setTitle("Menu");
-	        menuStage.setScene(new Scene(new Group(), 260, 230, Color.LIGHTCYAN));
-	        //menuStage.show();
+	        menuStage.setScene(new Scene(root2, 700, 500));
+	        menuStage.show();
+	        menuStage.centerOnScreen();
 	        
 	        //Troisieme Fenetre
 	        
