@@ -16,7 +16,6 @@ public class InfosAlignement {
 	private int ligne;
 	private int colonne;
 	private TypeDirection direction;
-	
 	int nbLignes;
 	int nbColonnes;
 
@@ -30,7 +29,6 @@ public class InfosAlignement {
 	}
 	
 	public InfosAlignement(PlateauDeJeu pdj, Coordonnees c, TypeDirection td) {
-
 		ligne = c.getLigne();
 		colonne = c.getColonne();
 		direction = td;
@@ -178,13 +176,13 @@ public class InfosAlignement {
 		Log.print(795, "Dans blancNonContinu");
 		boolean bordure = !incremente();
 		if(bordure){
-			libreBlanc = false;
+			libreBlanc = true;
 			libre2casesBlanc = false;
 			blancBloque1Case(pdj);
 		}else{
 			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
 			if(tc == TypeCase.PionNoir){
-				libreBlanc = false;
+				libreBlanc = true;
 				libre2casesBlanc = false;
 				blancBloque1Case(pdj);
 			}else if( tc == TypeCase.PionBlanc){
@@ -192,7 +190,8 @@ public class InfosAlignement {
 				blancNonContinu(pdj);
 			}else if(tc == TypeCase.Jouable){
 				libreBlanc = true;
-				blancLibre1Case(pdj);
+				libre2casesBlanc = true;
+				blancLibre2Case(pdj);
 			}else{
 				Log.print(795, "Dans : Cas impossible?");
 			}
@@ -203,7 +202,7 @@ public class InfosAlignement {
 		boolean bordure = !incremente();
 
 		if(bordure){
-			libreNoir = false;
+			libreNoir = true;
 			libre2casesNoir = false;
 			noirBloque1Case(pdj);
 		}else{
@@ -212,62 +211,17 @@ public class InfosAlignement {
 				nbNoirNonContinu++;
 				noirNonContinu(pdj);
 			}else if( tc == TypeCase.PionBlanc){
-				libreNoir = false;
+				libreNoir = true;
 				libre2casesNoir = false;
 				noirBloque1Case(pdj);
 			}else if(tc == TypeCase.Jouable){
 				libreNoir = true;
-				noirLibre1Case(pdj);
-			}else{
-				Log.print(795, "Dans : Cas impossible?");
-			}
-		}		
-	}
-
-	private void blancLibre1Case(PlateauDeJeu pdj) {
-		Log.print(795, "Dans blancLibre1Case");
-		boolean bordure = !incremente();
-		 if(bordure){
-			libre2casesBlanc = false;
-			blancBloque2Case(pdj);
-		}else{
-			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
-			if(tc == TypeCase.PionNoir){
-				libre2casesBlanc = true;
-				blancBloque2Case(pdj);
-			}else if( tc == TypeCase.PionBlanc){
-				libre2casesBlanc = false;
-				blancLibre2Case(pdj);
-			}else if(tc == TypeCase.Jouable){
-				libre2casesBlanc = true;
-				blancLibre2Case(pdj);
-			}else{
-				Log.print(795, "Dans : Cas impossible?");
-			}
-		}		
-	}
-	private void noirLibre1Case(PlateauDeJeu pdj) {
-		Log.print(795, "Dans noirLibre1Case");
-		boolean bordure = !incremente();
-		
-		if(bordure){
-			libre2casesNoir = false;
-			noirBloque2Case(pdj);
-		}else{
-			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
-			if(tc == TypeCase.PionNoir){
-				libre2casesNoir = true;
-				noirLibre2Case(pdj);
-			}else if( tc == TypeCase.PionBlanc){
-				libre2casesNoir = false;
-				noirBloque2Case(pdj);
-			}else if(tc == TypeCase.Jouable){
 				libre2casesNoir = true;
 				noirLibre2Case(pdj);
 			}else{
 				Log.print(795, "Dans : Cas impossible?");
 			}
-		}
+		}		
 	}
 
 	private void blancLibre2Case(PlateauDeJeu pdj) {

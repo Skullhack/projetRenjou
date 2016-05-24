@@ -107,7 +107,7 @@ public class TestInfosAlignement {
 		
 		
 		for(int i=0;i<infos.length;i++){
-			Log.print(705, infos[i].toString());
+			Log.print(705,infos[i].toString());
 			
 			assertTrue(infos[i].getNbBlanc() == 0);
 			assertTrue(infos[i].getNbNoir() == 3);
@@ -125,10 +125,10 @@ public class TestInfosAlignement {
 	
 	@Test
 	public void test3NonContinuNoirVide() {
-		Log.setPlage(790, 800);
-		Log.print(791, "debut test3NonContinuNoirVide");
+		
+		Log.print(701, "debut test3NonContinuNoirVide");
 		pdj = pdj.charger(chemin + "troisVideNonContinuNoir");
-		Log.print(795, pdj.toString());
+		Log.print(705, pdj.toString());
 		InfosAlignement infos;
 		for(TypeDirection d: TypeDirection.values()){
 			infos = new InfosAlignement(pdj, new Coordonnees(7,7), d);
@@ -143,7 +143,7 @@ public class TestInfosAlignement {
 			assertTrue(infos.estLibre2CasesNoir());
 		}
 		
-		Log.print(791, "fin test3NonContinuNoirVide");
+		Log.print(701, "fin test3NonContinuNoirVide");
 
 	}
 	
@@ -188,6 +188,55 @@ public class TestInfosAlignement {
 		Log.print(701, "fin test1VideContinuNoir");
 
 	}
+	
+	@Test
+	public void testtrois1CaseBordureNoir() {
+		
+		Log.print(701, "debut testtrois1CaseBordureNoir");
+		pdj = pdj.charger(chemin + "trois1CaseBordureNoir");
+		Log.print(705, pdj.toString());
+		InfosAlignement[] infos = new InfosAlignement[12];
+		Coordonnees c1 = new Coordonnees(4,4);
+		Coordonnees c2 = new Coordonnees(4,10);
+		Coordonnees c3 = new Coordonnees(10,4);
+		Coordonnees c4 = new Coordonnees(10,10);
+		
+		infos[0] = new InfosAlignement(pdj, c1, TypeDirection.Gauche);
+		infos[1] = new InfosAlignement(pdj, c1, TypeDirection.DiagonaleHautGauche);
+		infos[2] = new InfosAlignement(pdj, c1, TypeDirection.Haut);
+		
+		infos[3] = new InfosAlignement(pdj, c2, TypeDirection.Haut);
+		infos[4] = new InfosAlignement(pdj, c2, TypeDirection.DiagonaleHautDroite);
+		infos[5] = new InfosAlignement(pdj, c2, TypeDirection.Droite);
+		
+		infos[6] = new InfosAlignement(pdj, c3, TypeDirection.Gauche);
+		infos[7] = new InfosAlignement(pdj, c3, TypeDirection.DiagonaleBasGauche);
+		infos[8] = new InfosAlignement(pdj, c3, TypeDirection.Bas);
+		
+		infos[9] = new InfosAlignement(pdj, c4, TypeDirection.Droite);
+		infos[10] = new InfosAlignement(pdj, c4, TypeDirection.DiagonaleBasDroite);
+		infos[11] = new InfosAlignement(pdj, c4, TypeDirection.Bas);
+		
+		
+		
+		for(int i=0;i<infos.length;i++){
+			Log.print(705, "i= " + i + infos[i].toString());
+			
+			assertTrue(infos[i].getNbBlanc() == 0);
+			assertTrue(infos[i].getNbNoir() == 3);
+			assertTrue(infos[i].getNbBlancNonContinu() == 0);
+			assertTrue(infos[i].getNbNoirNonContinu() == 0);
+			assertFalse(infos[i].estLibreBlanc());
+			assertTrue(infos[i].estLibreNoir());
+			assertFalse(infos[i].estLibre2CasesBlanc());
+			assertFalse(infos[i].estLibre2CasesNoir());
+		}
+		
+		Log.print(701, "fin test1VideContinuNoir");
+
+	}
+	
+	
 	
 	@Test
 	public void main() {
