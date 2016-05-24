@@ -427,7 +427,7 @@ public class TestMoteur {
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
 		PlateauDeJeu plateauJeuEnCours = donneesJeu.getRenjou().getPlateauDeJeu();
 
-		Log.setNiveau(10);
+		Log.setNiveau(0);
 		Log.print(1, "TEST d'un annuler/refaire de coup entre un joueur et une IA");
 		afficherPlateauJeuCourant(plateauJeuEnCours);
 
@@ -445,9 +445,8 @@ public class TestMoteur {
 			afficherPlateauJeuCourant(plateauJeuEnCours);
 
 		}
-		
+
 		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauAvantAnnulerRefaireHumainIA");
-		
 
 		Log.print(1, "ANNNULATION D'UN COUP ENTRE JOUEUR ET IA");
 		donneesJeu.annuler();
@@ -462,8 +461,7 @@ public class TestMoteur {
 
 		afficherPlateauJeuCourant(plateauJeuEnCours);
 		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauApresAnnulerRefaireHumainIA");
-		
-		
+
 		Log.print(1, "Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
 
 		Log.print(1,
@@ -471,7 +469,7 @@ public class TestMoteur {
 
 		operationJouerJoueurCourant(donneesJeu, new Coordonnees(0, 14));
 		afficherPlateauJeuCourant(plateauJeuEnCours);
-		
+
 		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauApresAnnulerRefaireEtUnCoupHumainIA");
 
 		Log.print(1, "Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
@@ -485,12 +483,14 @@ public class TestMoteur {
 	@Test
 	public void testSauvegardePartie() {
 
-		// --------TODO
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
+		PlateauDeJeu plateauJeuEnCours = donneesJeu.getRenjou().getPlateauDeJeu();
+
+		((IAFacile) donneesJeu.getRenjou().getJoueurs()[1]).setSeed(100);
 
 		Log.setNiveau(0);
 		Log.print(1, "TEST PARTIE AVEC SAUVEGARDE");
-		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		afficherPlateauJeuCourant(plateauJeuEnCours);
 
 		Coordonnees[] tabCoord = new Coordonnees[4];
 		tabCoord[0] = new Coordonnees(7, 7); // noir coup 1
@@ -499,12 +499,13 @@ public class TestMoteur {
 		tabCoord[3] = new Coordonnees(13, 13); // noir coup 4
 
 		for (int i = 0; i < tabCoord.length; i++) {
-			donneesJeu.operationJouer(tabCoord[i],
-					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-			Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+			operationJouerJoueurCourant(donneesJeu, tabCoord[i]);
+			afficherPlateauJeuCourant(plateauJeuEnCours);
 		}
 
 		donneesJeu.sauvegarder("testSaveRenjou.ser");
+
+		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauJeuSauvegardeHumainIA");
 
 		Log.print(1, "FIN TEST PARTIE AVEC SAUVEGARDE");
 
@@ -513,7 +514,6 @@ public class TestMoteur {
 	@Test
 	public void testChargementPartie() {
 
-		// --------TODO
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
 		// vu qu'on va charger un new renjou avec des paramètres humain vs
 		// IAFacile, la ligne au dessus n'a plus vraiment de sens. C'est
@@ -523,18 +523,19 @@ public class TestMoteur {
 		Log.print(1, "TEST CHARGEMENT DE PARTIE");
 
 		donneesJeu.charger("testSaveRenjou.ser");
+		PlateauDeJeu plateauJeuEnCours = donneesJeu.getRenjou().getPlateauDeJeu();
 
-		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		afficherPlateauJeuCourant(plateauJeuEnCours);
+
+		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauJeuSauvegardeHumainIA");
 
 		Log.print(1, "LE JOUEUR NOIR EST DE TYPE : " + donneesJeu.getRenjou().getJoueurs()[0].getType());
 		Log.print(1, "LE JOUEUR BLANC EST DE TYPE : " + donneesJeu.getRenjou().getJoueurs()[1].getType());
 
 		Log.print(1, "LE JOUEUR NOIR HUMAIN JOUE");
 
-		donneesJeu.operationJouer(new Coordonnees(0, 0),
-				donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-
-		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		operationJouerJoueurCourant(donneesJeu, new Coordonnees(0, 0));
+		afficherPlateauJeuCourant(plateauJeuEnCours);
 
 		Coordonnees[] tabCoord = new Coordonnees[8];
 		tabCoord[0] = new Coordonnees(11, 9); // noir coup 1
@@ -548,10 +549,11 @@ public class TestMoteur {
 												// gagné avant
 
 		for (int i = 0; i < tabCoord.length; i++) {
-			donneesJeu.operationJouer(tabCoord[i],
-					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-			Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+			operationJouerJoueurCourant(donneesJeu, tabCoord[i]);
+			afficherPlateauJeuCourant(plateauJeuEnCours);
 		}
+
+		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauJeuSauvegardeVictoireNoireHumainIA");
 
 		Log.print(1, "FIN TEST CHARGEMENT DE PARTIE");
 
@@ -560,8 +562,8 @@ public class TestMoteur {
 	@Test
 	public void testRecommencerPartie() {
 
-		// --------TODO
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
+		PlateauDeJeu plateauJeuEnCours = donneesJeu.getRenjou().getPlateauDeJeu();
 		Log.setNiveau(0);
 		Log.print(1, "TEST RECOMMENCER UNE PARTIE");
 
@@ -579,14 +581,17 @@ public class TestMoteur {
 		tabCoord[10] = new Coordonnees(12, 12); // noir
 
 		for (int i = 0; i < tabCoord.length; i++) {
-			donneesJeu.operationJouer(tabCoord[i],
-					donneesJeu.getRenjou().getJoueurs()[donneesJeu.getRenjou().getJoueurCourant()].getType());
-			Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+			operationJouerJoueurCourant(donneesJeu, tabCoord[i]);
+			afficherPlateauJeuCourant(plateauJeuEnCours);
 		}
 
+		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauJeuAvantRecommencerPartie");
+		
 		donneesJeu.recommencerPartie();
+		
+		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauJeuApresRecommencerPartie");
 
-		Log.print(1, donneesJeu.getRenjou().getPlateauDeJeu().toString());
+		afficherPlateauJeuCourant(plateauJeuEnCours);
 
 		ArrayList<Tabou> tabousDuJeu = donneesJeu.getRenjou().getTabouJeu();
 		Tabous allTabous = donneesJeu.getRenjou().getTabous();
