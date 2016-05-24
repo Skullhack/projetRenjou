@@ -68,7 +68,7 @@
         </FlowPane>
       </bottom>
       <center>
-        <ImageView fitHeight="551.079345703125" fitWidth="551.079345703125" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="plateau" fitHeight="551.079345703125" fitWidth="551.079345703125" onMouseClicked="#clickPlateau" pickOnBounds="true" preserveRatio="true">
           <image>
             <Image url="@../Images/Traditionnel/Plateau%2015x15.png" />
           </image>

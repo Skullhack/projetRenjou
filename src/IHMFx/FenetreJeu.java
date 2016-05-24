@@ -6,25 +6,37 @@
 package IHMFx;
 
 import Images.*;
+import Utilitaire.Coordonnees;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import Controleur.Moteur;
+import Controleur.PionJoue;
+import Enum.TypeCase;
 import Enum.TypeJoueur;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -34,6 +46,7 @@ import javafx.scene.input.MouseEvent;
  */
 public class FenetreJeu implements Initializable {
     private Moteur m;
+    private IHM ihm;
     //Panneau gauche;
     @FXML
     private Label labelNoir;
@@ -67,6 +80,7 @@ public class FenetreJeu implements Initializable {
     
     public FenetreJeu(IHM ihm) {
         //Variables
+    	this.ihm = ihm;
         this.m = ihm.m;
     }
 
@@ -80,9 +94,9 @@ public class FenetreJeu implements Initializable {
 	private void dragDebutSablierAmpoule1(MouseEvent e) {
 		String theme=m.getRenjou().getEmplacementThemes();
 		if (m.getRenjou().getJoueurs()[0].getType() == TypeJoueur.Humain) {
-			iconeNoir.setImage(new Image("./Images/"+theme+"/AmpouleDrag.png"));
+			iconeNoir.setImage(ihm.i.getAmpouleDrag());
 		} else {
-			iconeNoir.setImage(new Image("./Images/"+theme+"/Sablier.png"));
+			iconeNoir.setImage(ihm.i.getSablier());
 		}
 	}
 	
@@ -90,9 +104,9 @@ public class FenetreJeu implements Initializable {
 	private void dragFinSablierAmpoule1(MouseEvent e) {
 		String theme=m.getRenjou().getEmplacementThemes();
 		if (m.getRenjou().getJoueurs()[0].getType() == TypeJoueur.Humain) {
-			iconeNoir.setImage(new Image("./Images/"+theme+"/Ampoule.png"));
+			iconeNoir.setImage(ihm.i.getAmpoule());
 		} else {
-			iconeNoir.setImage(new Image("./Images/"+theme+"/Sablier.png"));
+			iconeNoir.setImage(ihm.i.getSablier());
 		}
 	}
 	
@@ -100,9 +114,9 @@ public class FenetreJeu implements Initializable {
 	private void dragDebutSablierAmpoule2(MouseEvent e) {
 		String theme=m.getRenjou().getEmplacementThemes();
 		if (m.getRenjou().getJoueurs()[1].getType() == TypeJoueur.Humain) {
-			iconeBlanc.setImage(new Image("./Images/"+theme+"/AmpouleDrag.png"));
+			iconeBlanc.setImage(ihm.i.getAmpouleDrag());
 		} else {
-			iconeBlanc.setImage(new Image("./Images/"+theme+"/Sablier.png"));
+			iconeBlanc.setImage(ihm.i.getSablier());
 		}
 	}
 	
@@ -110,9 +124,9 @@ public class FenetreJeu implements Initializable {
 	private void dragFinSablierAmpoule2(MouseEvent e) {
 		String theme=m.getRenjou().getEmplacementThemes();
 		if (m.getRenjou().getJoueurs()[1].getType() == TypeJoueur.Humain) {
-			iconeBlanc.setImage(new Image("./Images/"+theme+"/Ampoule.png"));
+			iconeBlanc.setImage(ihm.i.getAmpoule());
 		} else {
-			iconeBlanc.setImage(new Image("./Images/"+theme+"/Sablier.png"));
+			iconeBlanc.setImage(ihm.i.getSablier());
 		}
 	}
 	
@@ -120,52 +134,52 @@ public class FenetreJeu implements Initializable {
 	private void dragDebutRecommencer(MouseEvent e) {
 		
 		String theme=m.getRenjou().getEmplacementThemes();
-		recommencer.setImage(new Image("./Images/"+theme+"/RecommencerDrag.png"));
+		recommencer.setImage(ihm.i.getRecommencerDrag());
 	}
 	
 	@FXML
 	private void dragFinRecommencer(MouseEvent e) {
 		String theme=m.getRenjou().getEmplacementThemes();
-		recommencer.setImage(new Image("./Images/"+theme+"/Recommencer.png"));
+		recommencer.setImage(ihm.i.getRecommencer());
 	}
 	
 	@FXML
 	private void setIconeSablierAmpoule() {
 		String theme=m.getRenjou().getEmplacementThemes();
 		if (m.getRenjou().getJoueurs()[0].getType() == TypeJoueur.Humain) {
-			iconeNoir.setImage(new Image("./Images/"+theme+"/Ampoule.png"));
+			iconeNoir.setImage(ihm.i.getAmpoule());
 		} else {
-			iconeNoir.setImage(new Image("./Images/"+theme+"/Sablier.png"));
+			iconeNoir.setImage(ihm.i.getSablier());
 		}
 		if (m.getRenjou().getJoueurs()[1].getType() == TypeJoueur.Humain) {
-			iconeBlanc.setImage(new Image("./Images/"+theme+"/Ampoule.png"));
+			iconeBlanc.setImage(ihm.i.getAmpoule());
 		} else {
-			iconeBlanc.setImage(new Image("./Images/"+theme+"/Sablier.png"));
+			iconeBlanc.setImage(ihm.i.getSablier());
 		}
 	}
 	
 	@FXML
 	private void dragDebutAnnuler() {
 		String theme=m.getRenjou().getEmplacementThemes();
-		annuler.setImage(new Image("./Images/"+theme+"/AnnulerDrag.png"));
+		annuler.setImage(ihm.i.getAnnulerDrag());
 	}
 	
 	@FXML
 	private void dragFinAnnuler() {
 		String theme=m.getRenjou().getEmplacementThemes();
-		annuler.setImage(new Image("./Images/"+theme+"/Annuler.png"));
+		annuler.setImage(ihm.i.getAnnuler());
 	}
 	
 	@FXML
 	private void dragDebutRefaire() {
 		String theme=m.getRenjou().getEmplacementThemes();
-		refaire.setImage(new Image("./Images/"+theme+"/RefaireDrag.png"));
+		refaire.setImage(ihm.i.getRefaireDrag());
 	}
 	
 	@FXML
 	private void dragFinRefaire() {
 		String theme=m.getRenjou().getEmplacementThemes();
-		refaire.setImage(new Image("./Images/"+theme+"/Refaire.png"));
+		refaire.setImage(ihm.i.getRefaire());
 	}
 	
 	@FXML
@@ -218,8 +232,20 @@ public class FenetreJeu implements Initializable {
 	
 	@FXML
 	private void clickPlateau(MouseEvent e) {
-		
-	}
+		Coordonnees c;
+    	int width =(int) ((plateau.getFitWidth())/16);
+    	int height = (int) ((plateau.getFitHeight())/16);
+    	
+    	double widthMax = plateau.getFitWidth() - width/1.4;
+    	double heightMax = plateau.getFitHeight() - height/1.4;
+    	
+    	if (e.getX()<widthMax && e.getY()<heightMax) {
+    		int ligne = (int) ((e.getY() - height/2) /height %15);
+    		int colonne = (int) ((e.getX() - width/2) /width %15);
+    		c = new Coordonnees(ligne,colonne);
+    		m.operationJouer(c, TypeJoueur.Humain);
+    	}
+   	}
 	
 	@FXML
 	private void joueurMenu(ActionEvent e) {
@@ -258,5 +284,38 @@ public class FenetreJeu implements Initializable {
 		nbPieceNoir.setText(Integer.toString(m.getRenjou().getJoueurs()[0].getNbPion()));
 		nbPieceBlanc.setText(Integer.toString(m.getRenjou().getJoueurs()[1].getNbPion()));
 		setIconeSablierAmpoule();
+		//Plateau
+		repeindrePlateau();
+	}
+
+	private void repeindrePlateau() {
+		String theme = m.getRenjou().getEmplacementThemes();
+		Image plat = ihm.i.getPlateau();
+
+		Canvas canvas = new Canvas(plat.getWidth(),plat.getHeight());
+		GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
+		
+		//On dessine l'image dans le canvas
+		graphicsContext.drawImage(plat, 0, 0);
+		
+		//On ajoute les pions
+		for (int i=0;i<m.getRenjou().getListeAnnuler().size();i++) {
+			PionJoue p = m.getRenjou().getListeAnnuler().get(i); 
+	    	double width = (plat.getWidth())/16;
+	    	double height = (plat.getHeight())/16;
+	    	double x = (p.getCoordonnees().getColonne()*width+4)+(width/2);
+	        double y = (p.getCoordonnees().getLigne()*height+4)+(height/2);
+	        
+	        if (p.getTypeCase() == TypeCase.PionBlanc)
+	        	graphicsContext.drawImage(ihm.i.getPionBlanc(), x, y, width, height);
+	        else
+	        	graphicsContext.drawImage(ihm.i.getPionNoir(), x, y, width, height);
+		}
+		
+		//On retransforme en Image
+		WritableImage writableImage = new WritableImage((int)plat.getWidth(), (int)plat.getHeight());
+		canvas.snapshot(null, writableImage);
+		Image wi = (Image) writableImage;
+		plateau.setImage(wi);
 	}   
 }

@@ -26,17 +26,18 @@ import javafx.stage.Stage;
 public class IHM extends Application implements MoteurObserveur{
 	public Moteur m;
 	public FenetreJeu fj;
+	public Images i;
 	public Stage[] stages;
 	public Scene[] scenes;
 	
     public static void main(String[] args) {
-    	
         Application.launch(IHM.class, args);
     }
 
     @Override
     public void start(Stage primaryStage) {
     	m = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
+    	i = new Images(m);
     	fj = new FenetreJeu(this);
     	Parent root;
 		try {		
