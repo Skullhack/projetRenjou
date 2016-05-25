@@ -72,6 +72,10 @@ public class EcouteurFenetreMenu {
 	
 	@FXML
 	private void boutonAnnuler(MouseEvent e) {
+		annuler();
+	}
+	
+	public void annuler() {
 		ihm.fj.montrer();
 		ihm.fm.cacher();
 	}

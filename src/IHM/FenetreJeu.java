@@ -296,7 +296,7 @@ public class FenetreJeu extends JFrame implements WindowListener{
 
 	@Override
 	public void windowClosing(WindowEvent e) {
-		int confirm = JOptionPane.showOptionDialog(
+			int confirm = JOptionPane.showOptionDialog(
 	             null, "Etes vous sûr de vouloir quitter ?", 
 	             "Quitter la partie", JOptionPane.YES_NO_OPTION, 
 	             JOptionPane.QUESTION_MESSAGE, null, null, null);

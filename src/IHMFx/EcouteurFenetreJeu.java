@@ -39,6 +39,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 
 /**
  *
@@ -167,25 +168,29 @@ public class EcouteurFenetreJeu implements Initializable {
 	@FXML
 	private void dragDebutAnnuler() {
 		String theme=m.getRenjou().getEmplacementThemes();
-		annuler.setImage(ihm.i.getAnnulerDrag());
+		if (!annuler.isDisabled())
+			annuler.setImage(ihm.i.getAnnulerDrag());
 	}
 	
 	@FXML
 	private void dragFinAnnuler() {
 		String theme=m.getRenjou().getEmplacementThemes();
+		if (!annuler.isDisabled())
 		annuler.setImage(ihm.i.getAnnuler());
 	}
 	
 	@FXML
 	private void dragDebutRefaire() {
 		String theme=m.getRenjou().getEmplacementThemes();
-		refaire.setImage(ihm.i.getRefaireDrag());
+		if (!refaire.isDisabled())
+			refaire.setImage(ihm.i.getRefaireDrag());
 	}
 	
 	@FXML
 	private void dragFinRefaire() {
 		String theme=m.getRenjou().getEmplacementThemes();
-		refaire.setImage(ihm.i.getRefaire());
+		if (!refaire.isDisabled())
+			refaire.setImage(ihm.i.getRefaire());
 	}
 	
 	@FXML
@@ -208,8 +213,8 @@ public class EcouteurFenetreJeu implements Initializable {
 		//rendre FenetreJeu inactif : TODO
 		ihm.fm.setNouvellePartie(true);
 		ihm.fm.montrer();
+		ihm.fm.setAlwaysOnTop(true);
 		ihm.efm.getTabPane().getSelectionModel().select(0);
-		ihm.fm.toujoursMettreEnHaut();
 	}
 	
 	@FXML
@@ -232,7 +237,6 @@ public class EcouteurFenetreJeu implements Initializable {
             fichierCharger = ouvertureFenetre.getSelectedFile().getAbsolutePath();
             m.charger(fichierCharger);
         }
-
 	}
 	
 	@FXML
@@ -262,8 +266,8 @@ public class EcouteurFenetreJeu implements Initializable {
 		//rendre FenetreJeu inactif : TODO
 		ihm.fm.setNouvellePartie(false);
 		ihm.fm.montrer();
+		ihm.fm.setAlwaysOnTop(true);
 		ihm.efm.getTabPane().getSelectionModel().select(0);
-		ihm.fm.toujoursMettreEnHaut();
 	}
 	
 	@FXML
@@ -271,33 +275,40 @@ public class EcouteurFenetreJeu implements Initializable {
 		//rendre FenetreJeu inactif : TODO
 		ihm.fm.setNouvellePartie(false);
 		ihm.fm.montrer();
+		ihm.fm.setAlwaysOnTop(true);
 		ihm.efm.getTabPane().getSelectionModel().select(1);
-		ihm.fm.toujoursMettreEnHaut();
 	}
 	
 	@FXML
 	private void themeMenu(ActionEvent e) {
-		//rendre FenetreJeu inactif : TODO
-		ihm.fm.setNouvellePartie(false);
+		ihm.fm.initModality(Modality.WINDOW_MODAL);		ihm.fm.setNouvellePartie(false);
 		ihm.fm.montrer();
+		ihm.fm.setAlwaysOnTop(true);
 		ihm.efm.getTabPane().getSelectionModel().select(2);
-		ihm.fm.toujoursMettreEnHaut();
-		//ihm.efm.
 	}
 	
 	@FXML
 	private void reglesMenu(ActionEvent e) {
-		
+		//rendre FenetreJeu inactif : TODO
+		ihm.fa.montrer();
+		ihm.fa.setAlwaysOnTop(true);
+		ihm.efa.getTabPane().getSelectionModel().select(0);
 	}
 	
 	@FXML
 	private void tutorielMenu(ActionEvent e) {
-		
+		//rendre FenetreJeu inactif : TODO
+		ihm.fa.montrer();
+		ihm.fa.setAlwaysOnTop(true);
+		ihm.efa.getTabPane().getSelectionModel().select(1);
 	}
 	
 	@FXML
 	private void aProposMenu(ActionEvent e) {
-		
+		//rendre FenetreJeu inactif : TODO
+		ihm.fa.montrer();
+		ihm.fa.setAlwaysOnTop(true);
+		ihm.efa.getTabPane().getSelectionModel().select(2);
 	}
 	
 	public void update() {
@@ -308,22 +319,25 @@ public class EcouteurFenetreJeu implements Initializable {
 		nbPieceBlanc.setText(Integer.toString(m.getRenjou().getJoueurs()[1].getNbPion()));
 		setIconeSablierAmpoule();
 		//Plateau
-		repeindrePlateau();
-		
-		if (m.getRenjou().getListeAnnuler().isEmpty()) {
-			annuler.setDisable(true);
-			annuler.setImage(ihm.i.getAnnulerDisab());
-		} else {
-			annuler.setDisable(false);
-			annuler.setImage(ihm.i.getAnnuler());
-		}
-		
+		repeindrePlateau();		
+		disabEnabAnnulerRefaire();
+	}
+	
+	public void disabEnabAnnulerRefaire() {
 		if (m.getRenjou().getListeRefaire().isEmpty()) {
-			refaire.setDisable(true);
 			refaire.setImage(ihm.i.getRefaireDisab());
+			refaire.setDisable(true);
 		} else {
 			refaire.setDisable(false);
 			refaire.setImage(ihm.i.getRefaire());
+		}
+		
+		if (m.getRenjou().getListeAnnuler().isEmpty()) {
+			annuler.setImage(ihm.i.getAnnulerDisab());
+			annuler.setDisable(true);
+		} else {
+			annuler.setDisable(false);
+			annuler.setImage(ihm.i.getAnnuler());
 		}
 	}
 

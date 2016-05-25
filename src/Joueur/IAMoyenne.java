@@ -13,6 +13,7 @@ import Controleur.*;
 import Enum.*;
 import Utilitaire.Coordonnees;
 import Utilitaire.Log;
+import Utilitaire.Motif;
 import Utilitaire.PlateauDeJeu;
 import Utilitaire.Tabou;
 
@@ -141,94 +142,95 @@ public class IAMoyenne extends IA {
 
 	
 	public int EvaluationSansTabous(PlateauDeJeu pdj) {
-//		
-//		int valeurBlanc = 0;
-//		int valeurNoir = 0;
-//		TypeCouleur tc = TypeCouleur.Blanc;
-//		for(int i=0;i<nbLigne;i++){
-//			for(int j=0;j<nbColonne; j++){
-//				Tabou t = new Tabou(pdj, new Coordonnees(i,j), true,true,true);
-//				Coordonnees c = new Coordonnees(i,j);
-//				// POUR BLANC
-//				if(t.estValide(pdj, c, true, true, true, tc) || ){
-//					valeurBlanc += 10000;
-//				}
-//				
-//				if(/* est 2x2 */){
-//					valeurBlanc += 5;
-//					if(/* est 2x2 libre */){
-//						valeurBlanc += 50;
-//						if(/* est 2x2 libre a 2 cases */){
-//							valeurBlanc += 500;
-//						}
-//					}
-//				}
-//				
-//				if(/* est 3x2 */){
-//					valeurBlanc += 50;
-//					if(/* est 3x2 libre */){
-//						valeurBlanc += 600;
-//						if(/* est 3x2 libre a 2 cases */){
-//							valeurBlanc += 5000;
-//						}
-//					}
-//				}
-//				
-//				if(/* est 3 */){
-//					valeurBlanc += 5;
-//					if(/* est 3 libre */){
-//						valeurBlanc += 25;
-//						if(/* est 3 libre a 2 cases */){
-//							valeurBlanc += 250;
-//						}
-//					}
-//				}
-//				
-//				// POUR NOIR
-//				if(/* est 4x3 */){
-//					valeurNoir += 10000;
-//				}
-//				
-//				if(/* est 3x3 */ || /* est 4x4 */ || /* est 6 ou 7 */){
-//					
-//				}
-//				
-//				
-//				if(/* est 2x2 */){
-//					valeurBlanc += 5;
-//					if(/* est 2x2 libre */){
-//						valeurBlanc += 50;
-//						if(/* est 2x2 libre a 2 cases */){
-//							valeurBlanc += 500;
-//						}
-//					}
-//				}
-//				
-//				if(/* est 3x2 */){
-//					valeurBlanc += 50;
-//					if(/* est 3x2 libre */){
-//						valeurBlanc += 600;
-//						if(/* est 3x2 libre a 2 cases */){
-//							valeurBlanc += 5000;
-//						}
-//					}
-//				}
-//				
-//				if(/* est 3 */){
-//					valeurBlanc += 5;
-//					if(/* est 3 libre */){
-//						valeurBlanc += 25;
-//						if(/* est 3 libre a 2 cases */){
-//							valeurBlanc += 250;
-//						}
-//					}
-//				}
-//				
-//				
-//				
-//			}
-//		}
-//			
+		int valeurBlanc = 0;
+		int valeurNoir = 0;
+		TypeCouleur tc = TypeCouleur.Blanc;
+		for(int i=0;i<nbLigne;i++){
+			for(int j=0;j<nbColonne; j++){
+				Coordonnees c = new Coordonnees(i,j);
+				Motif m = new Motif(pdj, c);
+
+				
+				// POUR BLANC
+				if(m.estTroisFoisTroisLibreLibre(tc) || m.estQuatreFoisQuatre(tc) || m.estSixSept(tc)){
+					valeurBlanc += 10000;
+				}
+				
+				if(m.estDeuxFoisDeux(tc)){
+					valeurBlanc += 5;
+					if(m.estDeuxFoisDeuxLibre(tc)){
+						valeurBlanc += 50;
+						if(m.estDeuxFoisDeuxLibreLibre(tc)){
+							valeurBlanc += 500;
+						}
+					}
+				}
+				
+				if(m.estTroisFoisDeux(tc)){
+					valeurBlanc += 50;
+					if(m.estTroisFoisDeuxLibre(tc)){
+						valeurBlanc += 600;
+						if(m.estTroisFoisDeuxLibreLibre(tc)){
+							valeurBlanc += 5000;
+						}
+					}
+				}
+				
+				if(m.estTrois(tc)){
+					valeurBlanc += 5;
+					if(m.estTroisLibre(tc)){
+						valeurBlanc += 25;
+						if(m.estTroisLibreLibre(tc)){
+							valeurBlanc += 250;
+						}
+					}
+				}
+				
+				// POUR NOIR
+				if(m.estQuatreFoisTrois(tc)){
+					valeurNoir += 10000;
+				}
+				
+				if(m.estTroisFoisTroisLibreLibre(tc) || m.estQuatreFoisQuatre(tc) || m.estSixSept(tc)){
+					valeurNoir += 10000;
+				}
+				
+				
+				if(m.estDeuxFoisDeux(tc)){
+					valeurNoir += 5;
+					if(m.estDeuxFoisDeuxLibre(tc)){
+						valeurNoir += 50;
+						if(m.estDeuxFoisDeuxLibreLibre(tc)){
+							valeurNoir += 500;
+						}
+					}
+				}
+				
+				if(m.estTroisFoisDeux(tc)){
+					valeurNoir += 50;
+					if(m.estTroisFoisDeuxLibre(tc)){
+						valeurNoir += 600;
+						if(m.estTroisFoisDeuxLibreLibre(tc)){
+							valeurNoir += 5000;
+						}
+					}
+				}
+				
+				if(m.estTrois(tc)){
+					valeurNoir += 5;
+					if(m.estTroisLibre(tc)){
+						valeurNoir += 25;
+						if(m.estTroisLibreLibre(tc)){
+							valeurNoir += 250;
+						}
+					}
+				}
+				
+				
+				
+			}
+		}
+			
 		
 		return 1;
 	}

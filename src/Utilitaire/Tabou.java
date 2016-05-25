@@ -149,15 +149,15 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 
 	
 	public boolean sixSept(Motif motif, TypeCouleur typeCouleur) {
-		return motif.sixSept(typeCouleur);
+		return motif.estSixSept(typeCouleur);
 	}
 
 	public boolean troisFoisTrois(Motif motif, TypeCouleur typeCouleur) {
-		return motif.troisFoisTroisLibre(typeCouleur);
+		return motif.estTroisFoisTroisLibreLibre(typeCouleur);
 	}
 
 	public boolean quatreFoisQuatre(Motif motif, TypeCouleur typeCouleur) {
-		return motif.quatreFoisQuatre(typeCouleur);
+		return motif.estQuatreFoisQuatre(typeCouleur);
 	}
 
 }
