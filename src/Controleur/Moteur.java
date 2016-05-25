@@ -152,7 +152,6 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 			renjou = (Renjou) ois.readObject();
 
-
 			// dans l'IA, il y a le moteur en paramètre. Pour que l'ia
 			// communique avec le nouveau moteur,
 			// il faut setter les joueurs avec le nouveau moteur et supprimer
@@ -179,9 +178,10 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	}
 
 	private void faireJouerIA() {
-		if(renjou.getJoueurs()[renjou.getJoueurCourant()].getType() != TypeJoueur.Humain ){
-			operationJouer(renjou.getJoueurs()[renjou.getJoueurCourant()].jouer(renjou.getPlateauDeJeu()) , renjou.getJoueurs()[renjou.getJoueurCourant()].getType());
-		}		
+		if (renjou.getJoueurs()[renjou.getJoueurCourant()].getType() != TypeJoueur.Humain) {
+			operationJouer(renjou.getJoueurs()[renjou.getJoueurCourant()].jouer(renjou.getPlateauDeJeu()),
+					renjou.getJoueurs()[renjou.getJoueurCourant()].getType());
+		}
 	}
 
 	@Override
@@ -203,16 +203,10 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 		}
 
-		if (caseJouable(renjou, c)) {
+		if (caseJouable(renjou, c) || caseTabou(renjou, c)) {
 			Log.print(1, "Je rentre dans la fonction jouer avec le point " + c.getLigne() + "," + c.getColonne());
 			jouer(renjou, c);
-		} else if (caseTabou(renjou, c)) {
-			// il n'y a que le joueur noir qui est impliqué par des tabous.
-			// Si c'est une case tabou, forcément le joueur blanc gagne
-			setPartieFinieJoueurBlanc(renjou);
-			Log.print(1, "PARTIE GAGNE PAR BLANC AVEC TABOU !!");
 		}
-
 		// notify avec etat de la partie
 		notifierObserveurs();
 
@@ -239,7 +233,11 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 			System.out.print(e);
 		}
 
-		if (partieFinie(renjou, c)) {
+		if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Noir
+				&& !renjou.getTabouJeu().estValide(renjou.getPlateauDeJeu(), c)) {
+			setPartieFinieJoueurBlancParTabou(renjou);
+			Log.print(1, "PARTIE GAGNE PAR BLANC AVEC TABOU !!");
+		} else if (partieFinie(renjou, c)) {
 			setPartieFinie(renjou);
 			Log.print(1, "JEU FINI !!!");
 			for (PionJoue p : renjou.getListeAnnuler()) {
@@ -320,6 +318,9 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		tableauJoueurs[1].setNbPion(renjou.getJoueurs()[1].getNbPion());
 
 		renjou.setJoueurs(tableauJoueurs);
+
+		// tabouPartie.add(TypeTabous.TROIS_TROIS);
+
 		renjou.getTabouJeu().setListeTabous(tabouPartie);
 
 		notifierObserveurs();
@@ -534,8 +535,8 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		renjou.setEtatPartie(EtatPartie.PartieNulle);
 	}
 
-	public void setPartieFinieJoueurBlanc(Renjou renjou) {
-		renjou.setEtatPartie(EtatPartie.BlancGagne);
+	public void setPartieFinieJoueurBlancParTabou(Renjou renjou) {
+		renjou.setEtatPartie(EtatPartie.BlancGagneParTabou);
 	}
 
 	public void majCasesTabous(Renjou renjou) {

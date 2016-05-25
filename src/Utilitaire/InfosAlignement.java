@@ -3,7 +3,7 @@ package Utilitaire;
 import Controleur.*;
 import Enum.*;
 
-public class InfosAlignement {
+public class InfosAlignement implements java.io.Serializable {
 
 	int nbNoir;
 	int nbBlanc;	
@@ -298,52 +298,47 @@ public class InfosAlignement {
 
 
 
-	public int getNbNoir() {
+	public int getNbPion(TypeCouleur c) {
+		if(c == TypeCouleur.Blanc)
+			return nbBlanc;
 		return nbNoir;
 	}
-	public int getNbBlanc() {
-		return nbBlanc;
-	}
-	public int getNbNoirNonContinu() {
+	public int getNbPionNonContinu(TypeCouleur c) {
+		if(c == TypeCouleur.Blanc)
+			return nbBlancNonContinu;
 		return nbNoirNonContinu;
 	}
-	public int getNbBlancNonContinu() {
-		return nbBlancNonContinu;
-	}
 	
-	public boolean estLibreNoir() {
+	public boolean estLibre(TypeCouleur c) {
+		if(c == TypeCouleur.Blanc)
+			return libreBlanc;	
 		return libreNoir;
 	}
-	public boolean estLibreBlanc() {
-		return libreBlanc;
-	}
-	public boolean estLibre2CasesNoir() {
+
+	public boolean estLibre2Cases(TypeCouleur c) {
+		if(c == TypeCouleur.Blanc)
+			return libre2casesBlanc;
 		return libre2casesNoir;
 	}
-	public boolean estLibre2CasesBlanc() {
-		return libre2casesBlanc;
-	}
-	
 
-	public void setNbNoir(int nbNoir) {
-		this.nbNoir = nbNoir;
+	public void setPion(int nb, TypeCouleur c) {
+		if(c == TypeCouleur.Blanc)
+			this.nbBlanc = nb;
+		this.nbNoir = nb;
 	}
-	public void setNbBlanc(int nbBlanc) {
 
-		this.nbBlanc = nbBlanc;
+	public void setLibre(boolean libre,TypeCouleur c) {
+		if(c == TypeCouleur.Blanc)
+			this.libreBlanc = libre;
+		this.libreNoir = libre;
 	}
-	public void setLibreNoir(boolean libreNoir) {
-		this.libreNoir = libreNoir;
+
+	public void setLibre2Cases(boolean libre2Cases,TypeCouleur c) {
+		if(c == TypeCouleur.Blanc)
+			this.libre2casesBlanc = libre2Cases;
+		this.libre2casesNoir = libre2Cases;
 	}
-	public void setLibreBlanc(boolean libreBlanc) {
-		this.libreBlanc = libreBlanc;
-	}
-	public void setLibre2CasesNoir(boolean libre2CasesNoir) {
-		this.libre2casesNoir = libre2CasesNoir;
-	}
-	public void sestLibre2CasesBlanc(boolean libre2CasesBlanc) {
-		this.libre2casesBlanc = libre2CasesBlanc;
-	}	
+
 
 
 

@@ -267,8 +267,14 @@ public class FenetreJeu extends JFrame implements WindowListener{
     		message = "Le joueur noir a gagné la partie !";
     	} else if (m.getRenjou().getEtatPartie() == EtatPartie.BlancGagne) {
     		message = "Le joueur blanc a gagné la partie !";
-    	} else {
+    	} else if (m.getRenjou().getEtatPartie() == EtatPartie.BlancGagneParTabou) {
+    		message = "Le joueur blanc a gagné la partie grâce à un tabou !";
+    	}
+    	else if(m.getRenjou().getEtatPartie() == EtatPartie.PartieNulle) {
     		message = "Partie nulle !";
+    	}
+    	else {
+    		message = "Erreur, on ne doit pas rentrer dans le cas la !";
     	}
     	int confirm = JOptionPane.showOptionDialog(
 	             null, message, 
