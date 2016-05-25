@@ -452,6 +452,23 @@ public class Motif {
 		return false;
 	}
 
+	public boolean sixSept(TypeCouleur typeCouleur) {
+		
+		if ((nbPionDiagonaleDroiteContinu(typeCouleur) > 5)) {
+			return true;
+		}
+		if (nbPionDiagonaleGaucheContinu(typeCouleur) > 5) {
+			return true;
+		}
+		if (nbPionHorizontaleContinu(typeCouleur) > 5) {
+			return true;
+		}
+		if (nbPionVerticaleContinu(typeCouleur) > 5) {
+			return true;
+		}
+
+		return false;
+	}
 	
 	
 	public int nbPionDiagonaleDroite(TypeCouleur typeCouleur) {
