@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import Controleur.MoteurObserveur;
 import Controleur.Renjou;
+import Enum.TypeCouleur;
 import Enum.TypeDirection;
 import Enum.TypeTabous;
 
@@ -215,7 +216,7 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 		if(estQuatreQuatreDiagonaleDroite()){
 			return true;
 		}
-		if(estQuatreDiagonaleGauche()){
+		if(estQuatreQuatreDiagonaleGauche()){
 			return true;
 		}
 		if(estQuatreQuatreHorizontale()){
@@ -256,64 +257,60 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 	// -
 	// -
 	// -
-	private boolean estTroisDiagonaleDroite() {
-		// Log.print(1010, infoDiagonaleHautGauche.toString());
-		return (infoDiagonaleHautGauche.estLibreNoir() && infoDiagonaleBasDroite.estLibreNoir()
-				&& (infoDiagonaleHautGauche.estLibre2CasesNoir() || infoDiagonaleBasDroite.estLibre2CasesNoir())
-				&& (nbPionNoirDiagonaleDroite() == 3));
+	//   -
+	//     -
+	private boolean estTroisDiagonaleDroite(){
+		//Log.print(1010, infoDiagonaleHautGauche.toString());
+		return (infoDiagonaleHautGauche.estLibre(TypeCouleur.Noir) && infoDiagonaleBasDroite.estLibre(TypeCouleur.Noir) && (infoDiagonaleHautGauche.estLibre2Cases(TypeCouleur.Noir) || infoDiagonaleBasDroite.estLibre2Cases(TypeCouleur.Noir)) && (nbPionNoirDiagonaleDroite() == 3));
 	}
 
 	// -
 	// -
 	// -
-	private boolean estTroisDiagonaleGauche() {
-		return (infoDiagonaleHautDroite.estLibreNoir() && infoDiagonaleBasGauche.estLibreNoir()
-				&& (infoDiagonaleHautDroite.estLibre2CasesNoir() || infoDiagonaleBasGauche.estLibre2CasesNoir())
-				&& (nbPionNoirDiagonaleGauche() == 3));
+	private boolean estTroisDiagonaleGauche(){	
+		return (infoDiagonaleHautDroite.estLibre(TypeCouleur.Noir) && infoDiagonaleBasGauche.estLibre(TypeCouleur.Noir) && (infoDiagonaleHautDroite.estLibre2Cases(TypeCouleur.Noir) || infoDiagonaleBasGauche.estLibre2Cases(TypeCouleur.Noir)) && ( nbPionNoirDiagonaleGauche() == 3));
 	}
-
-	private boolean estTroisVerticale() {
-
-		return (infoHaut.estLibreNoir() && infoBas.estLibreNoir()
-				&& (infoHaut.estLibre2CasesNoir() || infoBas.estLibre2CasesNoir()) && (nbPionNoirVerticale() == 3));
+	
+	private boolean estTroisVerticale(){
+		
+		return (infoHaut.estLibre(TypeCouleur.Noir) && infoBas.estLibre(TypeCouleur.Noir) && (infoHaut.estLibre2Cases(TypeCouleur.Noir) || infoBas.estLibre2Cases(TypeCouleur.Noir)) && (nbPionNoirVerticale() == 3));
 	}
-
-	private boolean estTroisHorizontale() {
-
-		return (infoDroite.estLibreNoir() && infoGauche.estLibreNoir()
-				&& (infoDroite.estLibre2CasesNoir() || infoGauche.estLibre2CasesNoir())
-				&& (nbPionNoirHorizontale() == 3));
-	}
-
-	// -
-	// -
-	// -
-	// -
-	private boolean estQuatreDiagonaleDroite() {
-		return ((infoDiagonaleHautGauche.estLibreNoir() || infoDiagonaleBasDroite.estLibreNoir())
-				&& (nbPionNoirDiagonaleDroite() == 4));
+	
+	private boolean estTroisHorizontale(){
+		
+		return (infoDroite.estLibre(TypeCouleur.Noir) && infoGauche.estLibre(TypeCouleur.Noir) && (infoDroite.estLibre2Cases(TypeCouleur.Noir) || infoGauche.estLibre2Cases(TypeCouleur.Noir)) &&( nbPionNoirHorizontale()== 3));
 	}
 
 	// -
 	// -
 	// -
 	// -
-	private boolean estQuatreDiagonaleGauche() {
-		return ((infoDiagonaleHautDroite.estLibreNoir() || infoDiagonaleBasGauche.estLibreNoir())
-				&& (nbPionNoirDiagonaleGauche() == 4));
+	//   -
+	//     -
+	//       -
+	private boolean estQuatreDiagonaleDroite(){
+		return ((infoDiagonaleHautGauche.estLibre(TypeCouleur.Noir) || infoDiagonaleBasDroite.estLibre(TypeCouleur.Noir)) && (nbPionNoirDiagonaleDroite() == 4));
+	}
+
+	// -
+	// -
+	// -
+	// -
+	private boolean estQuatreDiagonaleGauche(){	
+		return ((infoDiagonaleHautDroite.estLibre(TypeCouleur.Noir) || infoDiagonaleBasGauche.estLibre(TypeCouleur.Noir)) && (nbPionNoirDiagonaleGauche() == 4));
 	}
 
 	private boolean estQuatreVerticale() {
-		return ((infoHaut.estLibreNoir() || infoBas.estLibreNoir()) && (nbPionNoirVerticale() == 4));
+		return ((infoHaut.estLibre(TypeCouleur.Noir) || infoBas.estLibre(TypeCouleur.Noir)) && (nbPionNoirVerticale() == 4));
 	}
 
 	private boolean estQuatreHorizontale() {
-		return ((infoDroite.estLibreNoir() || infoGauche.estLibreNoir()) && (nbPionNoirHorizontale() == 4));
+		return ((infoDroite.estLibre(TypeCouleur.Noir) || infoGauche.estLibre(TypeCouleur.Noir)) && (nbPionNoirHorizontale() == 4));
 	}
 
 	private boolean estQuatreQuatreVerticale(){
-		if(nbPionNoirVerticaleContinu() + infoHaut.getNbNoirNonContinu() == 4 ){
-			if(nbPionNoirVerticaleContinu() + infoBas.getNbNoirNonContinu() == 4){
+		if(nbPionNoirVerticaleContinu() + infoHaut.getNbPionNonContinu(TypeCouleur.Noir) == 4 ){
+			if(nbPionNoirVerticaleContinu() + infoBas.getNbPionNonContinu(TypeCouleur.Noir) == 4){
 				return true;
 			}
 		}
@@ -321,8 +318,8 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 	}
 	
 	private boolean estQuatreQuatreHorizontale(){
-		if(nbPionNoirHorizontaleContinu() + infoDroite.getNbNoirNonContinu() == 4 ){
-			if(nbPionNoirVerticaleContinu() + infoGauche.getNbNoirNonContinu() == 4){
+		if(nbPionNoirHorizontaleContinu() + infoDroite.getNbPionNonContinu(TypeCouleur.Noir) == 4 ){
+			if(nbPionNoirVerticaleContinu() + infoGauche.getNbPionNonContinu(TypeCouleur.Noir) == 4){
 				return true;
 			}
 		}
@@ -330,8 +327,8 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 	}
 	
 	private boolean estQuatreQuatreDiagonaleGauche(){
-		if(nbPionNoirDiagonaleGaucheContinu() + infoDiagonaleHautDroite.getNbNoirNonContinu() == 4 ){
-			if(nbPionNoirVerticaleContinu() + infoDiagonaleBasGauche.getNbNoirNonContinu() == 4){
+		if(nbPionNoirDiagonaleGaucheContinu() + infoDiagonaleHautDroite.getNbPionNonContinu(TypeCouleur.Noir) == 4 ){
+			if(nbPionNoirVerticaleContinu() + infoDiagonaleBasGauche.getNbPionNonContinu(TypeCouleur.Noir) == 4){
 				return true;
 			}
 		}
@@ -339,48 +336,46 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 	}
 	
 	private boolean estQuatreQuatreDiagonaleDroite(){
-		if(nbPionNoirDiagonaleDroiteContinu() + infoDiagonaleHautGauche.getNbNoirNonContinu() == 4 ){
-			if(nbPionNoirVerticaleContinu() + infoDiagonaleBasDroite.getNbNoirNonContinu() == 4){
+		if(nbPionNoirDiagonaleDroiteContinu() + infoDiagonaleHautGauche.getNbPionNonContinu(TypeCouleur.Noir) == 4 ){
+			if(nbPionNoirVerticaleContinu() + infoDiagonaleBasDroite.getNbPionNonContinu(TypeCouleur.Noir) == 4){
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	private int nbPionNoirDiagonaleDroite() {
-		return (infoDiagonaleHautGauche.getNbNoirNonContinu() + infoDiagonaleBasDroite.getNbNoirNonContinu()
-				+ infoDiagonaleHautGauche.getNbNoir() + infoDiagonaleBasDroite.getNbNoir() + 1);
-	}
 
-	private int nbPionNoirDiagonaleGauche() {
-		return (infoDiagonaleHautDroite.getNbNoirNonContinu() + infoDiagonaleBasGauche.getNbNoirNonContinu()
-				+ infoDiagonaleHautDroite.getNbNoir() + infoDiagonaleBasGauche.getNbNoir() + 1);
+	
+	private int nbPionNoirDiagonaleDroite(){
+		return (infoDiagonaleHautGauche.getNbPionNonContinu(TypeCouleur.Noir) + infoDiagonaleBasDroite.getNbPionNonContinu(TypeCouleur.Noir) + infoDiagonaleHautGauche.getNbPion(TypeCouleur.Noir) + infoDiagonaleBasDroite.getNbPion(TypeCouleur.Noir)  + 1);
 	}
-
-	private int nbPionNoirVerticale() {
-		return (infoHaut.getNbNoirNonContinu() + infoBas.getNbNoirNonContinu() + 1 + infoHaut.getNbNoir()
-				+ infoBas.getNbNoir());
+	
+	private int nbPionNoirDiagonaleGauche(){
+		return (infoDiagonaleHautDroite.getNbPionNonContinu(TypeCouleur.Noir) + infoDiagonaleBasGauche.getNbPionNonContinu(TypeCouleur.Noir) + infoDiagonaleHautDroite.getNbPion(TypeCouleur.Noir) + infoDiagonaleBasGauche.getNbPion(TypeCouleur.Noir) + 1);
 	}
-
-	private int nbPionNoirHorizontale() {
-		return (infoDroite.getNbNoirNonContinu() + infoGauche.getNbNoirNonContinu() + 1 + infoDroite.getNbNoir()
-				+ infoGauche.getNbNoir());
+	
+	private int nbPionNoirVerticale(){
+		return (infoHaut.getNbPionNonContinu(TypeCouleur.Noir) + infoBas.getNbPionNonContinu(TypeCouleur.Noir) + 1 + infoHaut.getNbPion(TypeCouleur.Noir) + infoBas.getNbPion(TypeCouleur.Noir));
+	}
+	
+	private int nbPionNoirHorizontale(){
+		return (infoDroite.getNbPionNonContinu(TypeCouleur.Noir) + infoGauche.getNbPionNonContinu(TypeCouleur.Noir) + 1 + infoDroite.getNbPion(TypeCouleur.Noir) + infoGauche.getNbPion(TypeCouleur.Noir));
 	}
 
 	private int nbPionNoirDiagonaleDroiteContinu() {
-		return (infoDiagonaleHautGauche.getNbNoir() + infoDiagonaleBasDroite.getNbNoir() + 1);
+		return (infoDiagonaleHautGauche.getNbPion(TypeCouleur.Noir) + infoDiagonaleBasDroite.getNbPion(TypeCouleur.Noir) + 1);
 	}
 
 	private int nbPionNoirDiagonaleGaucheContinu() {
-		return (infoDiagonaleHautDroite.getNbNoir() + infoDiagonaleBasGauche.getNbNoir() + 1);
+		return (infoDiagonaleHautDroite.getNbPion(TypeCouleur.Noir) + infoDiagonaleBasGauche.getNbPion(TypeCouleur.Noir) + 1);
 	}
 
 	private int nbPionNoirVerticaleContinu() {
-		return (infoHaut.getNbNoir() + infoBas.getNbNoir() + 1);
+		return (infoHaut.getNbPion(TypeCouleur.Noir) + infoBas.getNbPion(TypeCouleur.Noir) + 1);
 	}
 
 	private int nbPionNoirHorizontaleContinu() {
-		return (infoDroite.getNbNoir() + infoGauche.getNbNoir() + 1);
+		return (infoDroite.getNbPion(TypeCouleur.Noir) + infoGauche.getNbPion(TypeCouleur.Noir) + 1);
 	}
 
 }
