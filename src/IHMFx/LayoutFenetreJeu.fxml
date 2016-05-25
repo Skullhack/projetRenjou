@@ -29,28 +29,15 @@
             </FlowPane>
             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
               <image>
-                <Image url="@../Images/Traditionnel/Plateau%2015x15.png" />
+                <Image url="@../Images/Traditionnel/Plateau15x15.png" />
               </image>
               <FlowPane.margin>
-                <Insets left="90.0" right="10.0" />
+                <Insets left="180.0" right="10.0" />
               </FlowPane.margin>
             </ImageView>
             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
               <image>
-                <Image url="@../Images/Traditionnel/Plateau%2015x15.png" />
-              </image>
-              <FlowPane.margin>
-                <Insets left="10.0" right="10.0" fx:id="x1" />
-              </FlowPane.margin>
-            </ImageView>
-            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" FlowPane.margin="$x1">
-              <image>
-                <Image url="@../Images/Traditionnel/Plateau%2015x15.png" />
-              </image>
-            </ImageView>
-            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-              <image>
-                <Image url="@../Images/Traditionnel/Plateau%2015x15.png" />
+                <Image url="@../Images/Traditionnel/Plateau15x15.png" />
               </image>
               <FlowPane.margin>
                 <Insets left="10.0" right="10.0" fx:id="x1" />
@@ -58,7 +45,7 @@
             </ImageView>
             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
               <image>
-                <Image url="@../Images/Traditionnel/Plateau%2015x15.png" />
+                <Image url="@../Images/Traditionnel/Plateau15x15.png" />
               </image>
               <FlowPane.margin>
                 <Insets left="10.0" right="10.0" fx:id="x1" />
@@ -68,9 +55,9 @@
         </FlowPane>
       </bottom>
       <center>
-        <ImageView fitHeight="551.079345703125" fitWidth="551.079345703125" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="plateau" fitHeight="551.079345703125" fitWidth="551.079345703125" onMouseClicked="#clickPlateau" pickOnBounds="true" preserveRatio="true">
           <image>
-            <Image url="@../Images/Traditionnel/Plateau%2015x15.png" />
+            <Image url="@../Images/Traditionnel/Plateau15x15.png" />
           </image>
         </ImageView>
       </center>
@@ -96,7 +83,7 @@
                   <children>
                     <ImageView fx:id="pionNoir" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" smooth="true" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="0.0">
                       <image>
-                        <Image url="@../Images/Traditionnel/Pion%20noir.png" />
+                        <Image url="@../Images/Traditionnel/PionNoir.png" />
                       </image>
                     </ImageView>
                     <Label fx:id="nbPieceNoir" alignment="CENTER" prefHeight="24.0" prefWidth="59.0" text="60" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="10.0">
@@ -149,7 +136,7 @@
                   <children>
                     <ImageView fx:id="pionBlanc" fitHeight="60.000099999997474" fitWidth="60.000099999997474" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="0.0">
                       <image>
-                        <Image url="@../Images/Traditionnel/Pion%20blanc.png" />
+                        <Image url="@../Images/Traditionnel/PionBlanc.png" />
                       </image>
                     </ImageView>
                     <Label fx:id="nbPieceBlanc" alignment="CENTER" font="$x5" layoutX="70.0" layoutY="10.0" prefHeight="24.0" prefWidth="59.0" text="60" textAlignment="CENTER" textFill="BLACK" />
@@ -182,7 +169,7 @@
             </ImageView>
             <ImageView fitHeight="137.9411163330078" fitWidth="137.9411163330078" pickOnBounds="true" preserveRatio="true">
               <image>
-                <Image url="@../Images/Traditionnel/Plateau%2015x15.png" />
+                <Image url="@../Images/Traditionnel/Plateau15x15.png" />
               </image>
               <FlowPane.margin>
                 <Insets />
@@ -190,12 +177,12 @@
             </ImageView>
             <ImageView fitHeight="137.9411163330078" fitWidth="137.9411163330078" pickOnBounds="true" preserveRatio="true">
               <image>
-                <Image url="@../Images/Traditionnel/Plateau%2015x15.png" />
+                <Image url="@../Images/Traditionnel/Plateau15x15.png" />
               </image>
             </ImageView>
             <ImageView fitHeight="137.9412078857422" fitWidth="137.9412078857422" pickOnBounds="true" preserveRatio="true">
               <image>
-                <Image url="@../Images/Traditionnel/Plateau%2015x15.png" />
+                <Image url="@../Images/Traditionnel/Plateau15x15.png" />
               </image>
             </ImageView>
             <ImageView fitHeight="48.54688235906618" fitWidth="70.82827758789062" pickOnBounds="true" preserveRatio="true" rotate="90.0" FlowPane.margin="$x7">

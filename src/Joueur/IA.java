@@ -21,16 +21,16 @@ public class IA extends Joueur {
 	protected int nbColonne;
 	
 	
-    public IA(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
-        super(moteur, type, nbPion, couleurJoueur);
+    public IA(TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
+        super(type, nbPion, couleurJoueur);
 		java.util.GregorianCalendar calendar = new GregorianCalendar();
 		r = new Random(calendar.getTimeInMillis());
 		init();
 	}
 	
     private void init(){
-		nbLigne = m.getRenjou().getPlateauDeJeu().getLignes();
-		nbColonne = m.getRenjou().getPlateauDeJeu().getColonnes();
+		nbLigne = 15;
+		nbColonne = 15;
 		tabHeuristique = new int[nbLigne][nbColonne];
 		for(int i=0; i< nbLigne; i++){
 			for(int j=0; j< nbColonne; j++){

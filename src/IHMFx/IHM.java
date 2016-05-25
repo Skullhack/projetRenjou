@@ -25,29 +25,33 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 public class IHM extends Application implements MoteurObserveur{
 	public Moteur m;
+	public EcouteurFenetreJeu efj;
+	public EcouteurFenetreMenu efm;
+	public Images i;
 	public FenetreJeu fj;
-	public Stage[] stages;
-	public Scene[] scenes;
-	
+	public FenetreMenu fm;
+	public Stage aideStage;
+
     public static void main(String[] args) {
-    	
         Application.launch(IHM.class, args);
     }
 
     @Override
     public void start(Stage primaryStage) {
     	m = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
-    	fj = new FenetreJeu(this);
-    	Parent root;
+    	i = new Images(m);
+    	efj = new EcouteurFenetreJeu(this);
+    	efm = new EcouteurFenetreMenu(this);
 		try {		
-			FXMLLoader fx = new FXMLLoader(getClass().getResource("LayoutFenetreJeu.fxml"));
-			fx.setController(fj);
-			root = fx.load();
-	    	Scene scene = new Scene(root, 950, 650);
-	    	primaryStage.setScene(scene);
-	        primaryStage.show();
-	        primaryStage.setTitle("Renjou");
-	        primaryStage.centerOnScreen();
+			//Premiere Fenetre
+			fj = new FenetreJeu(efj);
+			fj.montrer();
+	        
+	        //Seconde Fenetre
+			fm = new FenetreMenu(efm);
+	        
+	        //Troisieme Fenetre
+	        
 	    	m.enregistrerObserveur(this);
 	    	actualiser();
 		} catch (IOException e) {
@@ -57,8 +61,7 @@ public class IHM extends Application implements MoteurObserveur{
 
 	@Override
 	public void actualiser() {
-		System.out.println("yolo");
-		fj.update();
+		efj.update();
 	}
 
 }

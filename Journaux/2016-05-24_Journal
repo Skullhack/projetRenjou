@@ -2,11 +2,33 @@
 
 PARTIE IHM :
 
+- Uitliser un système de timer pour que l'IA ne joue pas en INSTANT
+- Supprimer le windows close lors du clic sur la croix (ça doit uniquement fermer la fenêtre courante)
+- Fenêtre des règles
+- Fenêtre du tutoriel
+- Fenêtre "à propos de"
+- Gestion du sablier pour les IA uniquement
+- Gestion de l'ampoule pour les Humains uniquement
+- Aligner le texte pour la fenêtre de configuration -> Joueurs
+- Afficher les tabous
+- Afficher les thèmes
+
 PARTIE IA  :
 
+- implémenter les tabous les plus optiale possible pour les cacules sur l'IA
+
 PARTIE MOTEUR : 
+
+- Tester le moteur
+
 
 #TÂCHES EFFECTUÉES
 
 - Remise des tests au propre avec l'utilisation des asserts
-- Intégration de IHM Fx dans le projet de github pour avoir les deux IHM supportées. 
+- Intégration de IHM Fx dans le projet de github pour avoir les deux IHM supportées.
+IHM :
+- Supprimer le windows close lors du clic sur la croix (ça doit uniquement fermer la fenêtre courante)
+- Gestion du sablier pour les IA uniquement
+- Gestion de l'ampoule pour les Humains uniquement
+IA  :
+- implémentation des tabous ok

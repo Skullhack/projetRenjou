@@ -1,0 +1,38 @@
+#TÂCHES À FAIRE
+
+PARTIE IHM :
+
+- Uitliser un système de timer pour que l'IA ne joue pas en INSTANT
+- Aligner le texte pour la fenêtre de configuration -> Joueurs
+- Afficher les tabous
+- Afficher les thèmes
+
+PARTIE IA  :
+
+- Faire IA Moyen et difficile
+
+PARTIE MOTEUR : 
+
+- Liaison tabous-moteur
+
+Distribution des tâches pour la journée :
+
+- Anthony et Léa : Faire héristique pour l'IA moyenne et la tester
+- Adrien : finir gestion des fenêtres
+           mettre des fonds sur les fenêtres
+           afficher les tabous
+           afficher les thèmes
+           fenêtre "à propos de"
+           aligner le texte pour la fenêtre de configuration -> Joueurs
+- Vincent : finir image pour thème traditionnel (voir avec Adrien)
+           faire un plateau de jeu sans fond (il y en a une dans le dossier ImagesBasiques : grille vierge, il faut juste la mettre à la bonne taille)
+           aider Adrien
+           faire d'autre thème
+- Alixia : finir tests tabous et aider christopher
+- Christopher : mettre les tabous dans le moteur 
+           faire fonctions qui parcours le plateau et met à jour les cases tabous
+           reflechir au mode débutant et au tutoriel
+           
+           
+#TÂCHES EFFECTUÉES
+
