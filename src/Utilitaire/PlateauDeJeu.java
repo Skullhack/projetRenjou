@@ -18,11 +18,14 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable
 	private TypeCase[][] plateau;
 	private final int lignes = 15;
 	private final int colonnes = 15;
+	private int nbPionBlanc;
+	private int nbPionNoir;
 
 	// Constructeur
 	public PlateauDeJeu() {
 		this.plateau = new TypeCase[lignes][colonnes];
-
+		nbPionBlanc = 0;
+		nbPionNoir = 0;
 		// si on evolue le terrain, le terrain
 		// doit systematiquement avoir une
 		// valeur impaire (pour avoir un point
@@ -96,13 +99,32 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable
 		return lignes;
 	}
 
+	public int getNbPionBlanc(){
+		return nbPionBlanc;
+	}
+	
+	public int getNbPionNoir(){
+		return nbPionNoir;
+	}	
 	@Override
 	public void ajouter(Coordonnees c, TypeCase typeCase) {
 		this.plateau[c.getLigne()][c.getColonne()] = typeCase;
+		if(typeCase == TypeCase.PionBlanc){
+			nbPionBlanc++;
+		}
+		if(typeCase == TypeCase.PionNoir){
+			nbPionNoir++;
+		}		
 	}
 
 	@Override
 	public void enlever(Coordonnees c) {
+		if(this.plateau[c.getLigne()][c.getColonne()] == TypeCase.PionBlanc){
+			nbPionBlanc--;
+		}
+		if(this.plateau[c.getLigne()][c.getColonne()] == TypeCase.PionNoir){
+			nbPionNoir--;
+		}	
 		this.plateau[c.getLigne()][c.getColonne()] = TypeCase.Jouable;
 	}
 
@@ -131,9 +153,10 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable
 		PlateauDeJeu plateauDeJeuClone = new PlateauDeJeu();
 		for (int i = 0; i < this.lignes; i++) {
 			for (int j = 0; j < this.colonnes; j++) {
-				plateauDeJeuClone.plateau[i][j] = this.plateau[i][j];
+				plateauDeJeuClone.ajouter(new Coordonnees(i,j), this.plateau[i][j]);
 			}
 		}
+		
 		return plateauDeJeuClone;
 
 	}
@@ -191,7 +214,7 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable
 			int i = 0;
 			while ((ligne = buff.readLine()) != null) {
 				for (int j = 0; j < ligne.length(); j++)
-					pdj.plateau[i][j] = charToTypeCase(ligne.charAt(j));
+					pdj.ajouter(new Coordonnees(i,j), charToTypeCase(ligne.charAt(j)));
 				i++;
 			}
 			buff.close();
