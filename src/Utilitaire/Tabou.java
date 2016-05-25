@@ -212,51 +212,47 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 	// -
 	// -
 	// -
-	private boolean estTroisDiagonaleDroite() {
-		// Log.print(1010, infoDiagonaleHautGauche.toString());
-		return (infoDiagonaleHautGauche.estLibre(TypeCouleur.Noir) && infoDiagonaleBasDroite.estLibre(TypeCouleur.Noir)
-				&& (infoDiagonaleHautGauche.estLibre2Cases(TypeCouleur.Noir) || infoDiagonaleBasDroite.estLibre2Cases(TypeCouleur.Noir))
-				&& (nbPionNoirDiagonaleDroite() == 3));
+	//   -
+	//     -
+	private boolean estTroisDiagonaleDroite(){
+		//Log.print(1010, infoDiagonaleHautGauche.toString());
+		return (infoDiagonaleHautGauche.estLibre(TypeCouleur.Noir) && infoDiagonaleBasDroite.estLibre(TypeCouleur.Noir) && (infoDiagonaleHautGauche.estLibre2Cases(TypeCouleur.Noir) || infoDiagonaleBasDroite.estLibre2Cases(TypeCouleur.Noir)) && (nbPionNoirDiagonaleDroite() == 3));
 	}
 
 	// -
 	// -
 	// -
-	private boolean estTroisDiagonaleGauche() {
-		return (infoDiagonaleHautDroite.estLibre(TypeCouleur.Noir) && infoDiagonaleBasGauche.estLibre(TypeCouleur.Noir)
-				&& (infoDiagonaleHautDroite.estLibre2Cases(TypeCouleur.Noir) || infoDiagonaleBasGauche.estLibre2Cases(TypeCouleur.Noir))
-				&& (nbPionNoirDiagonaleGauche() == 3));
+	private boolean estTroisDiagonaleGauche(){	
+		return (infoDiagonaleHautDroite.estLibre(TypeCouleur.Noir) && infoDiagonaleBasGauche.estLibre(TypeCouleur.Noir) && (infoDiagonaleHautDroite.estLibre2Cases(TypeCouleur.Noir) || infoDiagonaleBasGauche.estLibre2Cases(TypeCouleur.Noir)) && ( nbPionNoirDiagonaleGauche() == 3));
 	}
-
-	private boolean estTroisVerticale() {
-
-		return (infoHaut.estLibre(TypeCouleur.Noir) && infoBas.estLibre(TypeCouleur.Noir)
-				&& (infoHaut.estLibre2Cases(TypeCouleur.Noir) || infoBas.estLibre2Cases(TypeCouleur.Noir)) && (nbPionNoirVerticale() == 3));
+	
+	private boolean estTroisVerticale(){
+		
+		return (infoHaut.estLibre(TypeCouleur.Noir) && infoBas.estLibre(TypeCouleur.Noir) && (infoHaut.estLibre2Cases(TypeCouleur.Noir) || infoBas.estLibre2Cases(TypeCouleur.Noir)) && (nbPionNoirVerticale() == 3));
 	}
-
-	private boolean estTroisHorizontale() {
-
-		return (infoDroite.estLibre(TypeCouleur.Noir) && infoGauche.estLibre(TypeCouleur.Noir)
-				&& (infoDroite.estLibre2Cases(TypeCouleur.Noir) || infoGauche.estLibre2Cases(TypeCouleur.Noir))
-				&& (nbPionNoirHorizontale() == 3));
-	}
-
-	// -
-	// -
-	// -
-	// -
-	private boolean estQuatreDiagonaleDroite() {
-		return ((infoDiagonaleHautGauche.estLibre(TypeCouleur.Noir) || infoDiagonaleBasDroite.estLibre(TypeCouleur.Noir))
-				&& (nbPionNoirDiagonaleDroite() == 4));
+	
+	private boolean estTroisHorizontale(){
+		
+		return (infoDroite.estLibre(TypeCouleur.Noir) && infoGauche.estLibre(TypeCouleur.Noir) && (infoDroite.estLibre2Cases(TypeCouleur.Noir) || infoGauche.estLibre2Cases(TypeCouleur.Noir)) &&( nbPionNoirHorizontale()== 3));
 	}
 
 	// -
 	// -
 	// -
 	// -
-	private boolean estQuatreDiagonaleGauche() {
-		return ((infoDiagonaleHautDroite.estLibre(TypeCouleur.Noir) || infoDiagonaleBasGauche.estLibre(TypeCouleur.Noir))
-				&& (nbPionNoirDiagonaleGauche() == 4));
+	//   -
+	//     -
+	//       -
+	private boolean estQuatreDiagonaleDroite(){
+		return ((infoDiagonaleHautGauche.estLibre(TypeCouleur.Noir) || infoDiagonaleBasDroite.estLibre(TypeCouleur.Noir)) && (nbPionNoirDiagonaleDroite() == 4));
+	}
+
+	// -
+	// -
+	// -
+	// -
+	private boolean estQuatreDiagonaleGauche(){	
+		return ((infoDiagonaleHautDroite.estLibre(TypeCouleur.Noir) || infoDiagonaleBasGauche.estLibre(TypeCouleur.Noir)) && (nbPionNoirDiagonaleGauche() == 4));
 	}
 
 	private boolean estQuatreVerticale() {
@@ -266,25 +262,21 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 	private boolean estQuatreHorizontale() {
 		return ((infoDroite.estLibre(TypeCouleur.Noir) || infoGauche.estLibre(TypeCouleur.Noir)) && (nbPionNoirHorizontale() == 4));
 	}
-
-	private int nbPionNoirDiagonaleDroite() {
-		return (infoDiagonaleHautGauche.getNbPionNonContinu(TypeCouleur.Noir) + infoDiagonaleBasDroite.getNbPionNonContinu(TypeCouleur.Noir)
-				+ infoDiagonaleHautGauche.getNbPion(TypeCouleur.Noir) + infoDiagonaleBasDroite.getNbPion(TypeCouleur.Noir) + 1);
+	
+	private int nbPionNoirDiagonaleDroite(){
+		return (infoDiagonaleHautGauche.getNbPionNonContinu(TypeCouleur.Noir) + infoDiagonaleBasDroite.getNbPionNonContinu(TypeCouleur.Noir) + infoDiagonaleHautGauche.getNbPion(TypeCouleur.Noir) + infoDiagonaleBasDroite.getNbPion(TypeCouleur.Noir)  + 1);
 	}
-
-	private int nbPionNoirDiagonaleGauche() {
-		return (infoDiagonaleHautDroite.getNbPionNonContinu(TypeCouleur.Noir) + infoDiagonaleBasGauche.getNbPionNonContinu(TypeCouleur.Noir)
-				+ infoDiagonaleHautDroite.getNbPion(TypeCouleur.Noir) + infoDiagonaleBasGauche.getNbPion(TypeCouleur.Noir) + 1);
+	
+	private int nbPionNoirDiagonaleGauche(){
+		return (infoDiagonaleHautDroite.getNbPionNonContinu(TypeCouleur.Noir) + infoDiagonaleBasGauche.getNbPionNonContinu(TypeCouleur.Noir) + infoDiagonaleHautDroite.getNbPion(TypeCouleur.Noir) + infoDiagonaleBasGauche.getNbPion(TypeCouleur.Noir) + 1);
 	}
-
-	private int nbPionNoirVerticale() {
-		return (infoHaut.getNbPionNonContinu(TypeCouleur.Noir) + infoBas.getNbPionNonContinu(TypeCouleur.Noir) + 1 + infoHaut.getNbPion(TypeCouleur.Noir)
-				+ infoBas.getNbPion(TypeCouleur.Noir));
+	
+	private int nbPionNoirVerticale(){
+		return (infoHaut.getNbPionNonContinu(TypeCouleur.Noir) + infoBas.getNbPionNonContinu(TypeCouleur.Noir) + 1 + infoHaut.getNbPion(TypeCouleur.Noir) + infoBas.getNbPion(TypeCouleur.Noir));
 	}
-
-	private int nbPionNoirHorizontale() {
-		return (infoDroite.getNbPionNonContinu(TypeCouleur.Noir) + infoGauche.getNbPionNonContinu(TypeCouleur.Noir) + 1 + infoDroite.getNbPion(TypeCouleur.Noir)
-				+ infoGauche.getNbPion(TypeCouleur.Noir));
+	
+	private int nbPionNoirHorizontale(){
+		return (infoDroite.getNbPionNonContinu(TypeCouleur.Noir) + infoGauche.getNbPionNonContinu(TypeCouleur.Noir) + 1 + infoDroite.getNbPion(TypeCouleur.Noir) + infoGauche.getNbPion(TypeCouleur.Noir));
 	}
 
 	private int nbPionNoirDiagonaleDroiteContinu() {
