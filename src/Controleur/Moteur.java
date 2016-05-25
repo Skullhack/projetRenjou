@@ -235,7 +235,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 		if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Noir
 				&& !renjou.getTabouJeu().estValide(renjou.getPlateauDeJeu(), c)) {
-			setPartieFinieJoueurBlanc(renjou);
+			setPartieFinieJoueurBlancParTabou(renjou);
 			Log.print(1, "PARTIE GAGNE PAR BLANC AVEC TABOU !!");
 		} else if (partieFinie(renjou, c)) {
 			setPartieFinie(renjou);
@@ -535,8 +535,8 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		renjou.setEtatPartie(EtatPartie.PartieNulle);
 	}
 
-	public void setPartieFinieJoueurBlanc(Renjou renjou) {
-		renjou.setEtatPartie(EtatPartie.BlancGagne);
+	public void setPartieFinieJoueurBlancParTabou(Renjou renjou) {
+		renjou.setEtatPartie(EtatPartie.BlancGagneParTabou);
 	}
 
 	public void majCasesTabous(Renjou renjou) {
