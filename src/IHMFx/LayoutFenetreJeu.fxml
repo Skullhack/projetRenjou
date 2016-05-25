@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="650.0" maxWidth="950.0" minHeight="650.0" minWidth="950.0" prefHeight="650.0" prefWidth="950.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane id="AnchorPane" maxHeight="650.0" maxWidth="950.0" minHeight="650.0" minWidth="950.0" prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <BorderPane layoutX="0.0" layoutY="0.0" maxHeight="650.0" maxWidth="950.0" minHeight="650.0" minWidth="950.0" prefHeight="650.0" prefWidth="950.0">
       <bottom>
@@ -108,7 +108,7 @@
                 </Label>
               </children>
             </FlowPane>
-            <FlowPane maxHeight="68.0" maxWidth="190.0" minHeight="65.0" minWidth="190.0" prefHeight="68.0" prefWidth="190.0" style="-fx-background-color:gray;">
+            <FlowPane maxHeight="68.0" maxWidth="190.0" minHeight="65.0" minWidth="190.0" prefHeight="68.0" prefWidth="190.0" style="-fx-background-color: white;">
               <children>
                 <ImageView fx:id="annuler" fitHeight="65.0" fitWidth="65.0" onMouseClicked="#annuler" onMouseEntered="#dragDebutAnnuler" onMouseExited="#dragFinAnnuler" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -198,24 +198,24 @@
           <menus>
             <Menu mnemonicParsing="false" text="Partie">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#creerPartieMenu" text="Creer partie" fx:id="creerPartieMenu" />
-                <MenuItem mnemonicParsing="false" onAction="#sauvegarderMenu" text="Sauvegarder" fx:id="sauvegarderMenu" />
-                <MenuItem mnemonicParsing="false" onAction="#chargerMenu" text="Charger" fx:id="chargerMenu" />
-                <MenuItem mnemonicParsing="false" onAction="#quitterMenu" text="Quitter" fx:id="quitterMenu" />
+                <MenuItem fx:id="creerPartieMenu" mnemonicParsing="false" onAction="#creerPartieMenu" text="Creer partie" />
+                <MenuItem fx:id="sauvegarderMenu" mnemonicParsing="false" onAction="#sauvegarderMenu" text="Sauvegarder" />
+                <MenuItem fx:id="chargerMenu" mnemonicParsing="false" onAction="#chargerMenu" text="Charger" />
+                <MenuItem fx:id="quitterMenu" mnemonicParsing="false" onAction="#quitterMenu" text="Quitter" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Configuration">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#joueurMenu" text="Joueur" fx:id="joueurMenu" />
-                <MenuItem mnemonicParsing="false" onAction="#tabousMenu" text="Tabous" fx:id="tabousMenu" />
-                <MenuItem mnemonicParsing="false" onAction="#themeMenu" text="Theme" fx:id="themeMenu" />
+                <MenuItem fx:id="joueurMenu" mnemonicParsing="false" onAction="#joueurMenu" text="Joueur" />
+                <MenuItem fx:id="tabousMenu" mnemonicParsing="false" onAction="#tabousMenu" text="Tabous" />
+                <MenuItem fx:id="themeMenu" mnemonicParsing="false" onAction="#themeMenu" text="Theme" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Aide">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#reglesMenu" text="Regles" fx:id="reglesMenu" />
-                <MenuItem mnemonicParsing="false" onAction="#tutorielMenu" text="Tutoriel" fx:id="tutorielMenu" />
-                <MenuItem mnemonicParsing="false" onAction="#aProposMenu" text="A propos de" fx:id="aProposMenu" />
+                <MenuItem fx:id="reglesMenu" mnemonicParsing="false" onAction="#reglesMenu" text="Regles" />
+                <MenuItem fx:id="tutorielMenu" mnemonicParsing="false" onAction="#tutorielMenu" text="Tutoriel" />
+                <MenuItem fx:id="aProposMenu" mnemonicParsing="false" onAction="#aProposMenu" text="A propos de" />
               </items>
             </Menu>
           </menus>

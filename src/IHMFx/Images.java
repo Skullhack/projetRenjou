@@ -25,6 +25,8 @@ public class Images {
 	private Image boutonValiderDrag;
 	private Image boutonAnnuler;
 	private Image boutonAnnulerDrag;
+	private Image boutonRetour;
+	private Image boutonRetourDrag;
 	
 	public Images(Moteur m) {
 		this.m = m;
@@ -53,6 +55,8 @@ public class Images {
 		boutonValiderDrag = new Image("./Images/"+theme+"/BoutonValiderDrag.png");
 		boutonAnnuler = new Image("./Images/"+theme+"/BoutonAnnuler.png");
 		boutonAnnulerDrag = new Image("./Images/"+theme+"/BoutonAnnulerDrag.png");
+		boutonRetour = new Image("./Images/"+theme+"/BoutonRetour.png");
+		boutonRetourDrag = new Image("./Images/"+theme+"/BoutonRetourDrag.png");
 	}
 	
 	public Image getAmpoule() {
@@ -133,5 +137,13 @@ public class Images {
 	
 	public Image getBoutonValiderDrag() {
 		return boutonValiderDrag;
+	}
+	
+	public Image getBoutonRetour() {
+		return boutonRetour;
+	}
+	
+	public Image getBoutonRetourDrag() {
+		return boutonRetourDrag;
 	}
 }
