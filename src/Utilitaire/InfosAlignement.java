@@ -3,7 +3,7 @@ package Utilitaire;
 import Controleur.*;
 import Enum.*;
 
-public class InfosAlignement {
+public class InfosAlignement implements java.io.Serializable {
 
 	int nbNoir;
 	int nbBlanc;	
