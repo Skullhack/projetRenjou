@@ -2,7 +2,6 @@
 
 PARTIE IHM :
 
-
 - POP-UP de VICTOIRE/DEFAITE/NUL
 - Modification du bouton recommencer
 - Gestion du sablier pour les IA uniquement
@@ -36,3 +35,8 @@ AUTRE :
 
 - Verif quand on add un point si c'est IA contre IA. Si oui, on stocke rien
 - Revoir gestion annuler refaire
+- IHM : refaire l'IHM avec javaFX 
+- POP-UP de VICTOIRE/DEFAITE/NUL
+- Modification du bouton recommencer
+- Afficher les cases injouables (en début de partie)
+- Mettre le plateau carré
