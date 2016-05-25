@@ -17,28 +17,12 @@ import Utilitaire.PlateauDeJeu;
 
 public class IAFacile extends IA {
 
-	public IAFacile(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
-		super(moteur, type, nbPion, couleurJoueur);
-		init();
+	public IAFacile(TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
+		super(type, nbPion, couleurJoueur);
 	}
 
-	private void init(){
-		nbLigne = m.getRenjou().getPlateauDeJeu().getLignes();
-		nbColonne = m.getRenjou().getPlateauDeJeu().getColonnes();
-	}
 	
-	@Override
-	public void actualiser() {
-		Log.print(80, "Dans IAFacile: moteur = " + Integer.toHexString(System.identityHashCode(m)));
-		Log.print(80, "Dans IAFacile: observeur = " + Integer.toHexString(System.identityHashCode(m.observeurs)));
-		Log.print(80, this.toString() + m.getRenjou().getJoueurs()[m.getRenjou().getJoueurCourant()].toString());
-		if (m.getRenjou().getJoueurs()[m.getRenjou().getJoueurCourant()] == this) {
-			Coordonnees p = jouer(m.getRenjou().getPlateauDeJeu());
-			m.operationJouer(p, type);
 
-		}
-
-	}
 	
 
 	public Point play(int[][] plateau, int couleurJoueur, boolean tabou3x3, boolean tabou4x4, boolean tabouOverline){
@@ -47,6 +31,7 @@ public class IAFacile extends IA {
 		return new Point(c.getColonne(), c.getLigne());
 	}
 	
+	@Override
 	public Coordonnees jouer(PlateauDeJeu p) {
 		Coordonnees c = estCoupGagnant(p);
 		if (c.getLigne() == -1) {

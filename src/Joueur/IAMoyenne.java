@@ -21,8 +21,8 @@ public class IAMoyenne extends IA {
 	int profondeurMax;
 
 	
-	public IAMoyenne(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur){
-		super(moteur, type,nbPion,couleurJoueur);
+	public IAMoyenne(TypeJoueur type, int nbPion, TypeCouleur couleurJoueur){
+		super(type,nbPion,couleurJoueur);
 		init();
 	}
 	
@@ -33,7 +33,7 @@ public class IAMoyenne extends IA {
 	
 	public Point play(int[][] plateau, int couleurJoueur, boolean tabou3x3, boolean tabou4x4, boolean tabouOverline){
 		initPlateauEtCouleur(plateau, couleurJoueur);
-		Coordonnees c = Jouer(pdj);
+		Coordonnees c = jouer(pdj);
 		return new Point(c.getColonne(), c.getLigne());
 	}
 	
@@ -58,8 +58,8 @@ public class IAMoyenne extends IA {
 		return TypeCase.PionBlanc;
 	}	
 	
-
-	public Coordonnees Jouer(PlateauDeJeu p){
+	@Override
+	public Coordonnees jouer(PlateauDeJeu p){
 		Log.print(66, "Dans Jouer IAMoyenne");
 		coups.clear();
 		PlateauDeJeu pdj =  p.clone();
@@ -292,25 +292,6 @@ public class IAMoyenne extends IA {
 		return pdj.getTypeCaseTableau(c) == TypeCase.PionBlanc || pdj.getTypeCaseTableau(c) == TypeCase.PionNoir; 
 	}
 
-	
-
-
-	
-	@Override
-	public void actualiser() {
-		Log.print(3, "IAMoyenne notifiee");
-		
-		if(!AmonTour()){
-			Log.print(9, "Ce n'est pas a mon tour de jouer");
-			return;
-		}
-		
-		Jouer(m.getRenjou().getPlateauDeJeu());
-	}
-	
-	public boolean AmonTour(){
-		return m.getRenjou().getJoueurs()[m.getRenjou().getJoueurCourant()] == this;
-	}
 
 	
 }

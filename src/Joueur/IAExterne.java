@@ -11,11 +11,11 @@ public class IAExterne extends IA {
 	
 	IAFacile ia;
 	
-	public IAExterne(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
-		super(moteur, type, nbPion, couleurJoueur);
+	public IAExterne(TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
+		super(type, nbPion, couleurJoueur);
 		nbLigne = m.getRenjou().getPlateauDeJeu().getLignes();
 		nbColonne = m.getRenjou().getPlateauDeJeu().getColonnes();
-		ia = new IAFacile(moteur, type, nbPion, couleurJoueur); // a remplacer par la classe correcpondante a l'ia a implementer
+		ia = new IAFacile(type, nbPion, couleurJoueur); // a remplacer par la classe correcpondante a l'ia a implementer
 	}
 	
 	public Coordonnees Jouer(PlateauDeJeu p){

@@ -13,7 +13,7 @@ import Utilitaire.Coordonnees;
 import Utilitaire.Log;
 import Utilitaire.PlateauDeJeu;
 
-public class Joueur implements MoteurObserveur, java.io.Serializable {
+public class Joueur implements InterfaceJoueur, java.io.Serializable {
 	protected TypeJoueur type;
 	protected int nbPion;
 	protected Moteur m;
@@ -21,13 +21,12 @@ public class Joueur implements MoteurObserveur, java.io.Serializable {
 	protected int nbPionsBase;
 	protected PlateauDeJeu pdj;
 	
-    public Joueur(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
-    	moteur.enregistrerObserveur(this);
+    public Joueur(TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
+    	
     	this.type = type;
     	this.nbPion = nbPion;
     	nbPionsBase = nbPion;
     	couleur = couleurJoueur;
-    	m = moteur;
     	pdj = new PlateauDeJeu();
     }
     
@@ -81,6 +80,7 @@ public class Joueur implements MoteurObserveur, java.io.Serializable {
 		return new Point(0,0);
 	}
 	
+
 	
 	public void initPlateauEtCouleur(int[][] plateau, int couleur){
 		int pN=nbPionsBase;
@@ -108,9 +108,12 @@ public class Joueur implements MoteurObserveur, java.io.Serializable {
 		}
 	}
 	
-	@Override 
-	public void actualiser() {
-		Log.print(3, "Joueur notifie");
+
+
+	@Override
+	public Coordonnees jouer(PlateauDeJeu pdj) {
+		// TODO Auto-generated method stub
+		return null;
 	}
     
 }

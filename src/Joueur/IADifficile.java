@@ -11,8 +11,8 @@ import Enum.TypeJoueur;
 
 public class IADifficile extends IA  {
     
-	public IADifficile(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur){
-		super(moteur,type,nbPion,couleurJoueur);
+	public IADifficile(TypeJoueur type, int nbPion, TypeCouleur couleurJoueur){
+		super(type,nbPion,couleurJoueur);
 	
 	}
 	

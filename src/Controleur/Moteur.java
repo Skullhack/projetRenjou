@@ -40,6 +40,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		tableauJoueurs[1] = creerJoueur(typeJoueur2, TypeCouleur.Blanc);
 
 		notifierObserveurs();
+		faireJouerIA();
 
 	}
 
@@ -49,17 +50,17 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 		switch (typeJoueur) {
 		case Humain:
-			return (new Humain(this, TypeJoueur.Humain, nbPionsBase, typeCouleur));
+			return (new Humain(TypeJoueur.Humain, nbPionsBase, typeCouleur));
 		case IAFacile:
-			return (new IAFacile(this, TypeJoueur.IAFacile, nbPionsBase, typeCouleur));
+			return (new IAFacile(TypeJoueur.IAFacile, nbPionsBase, typeCouleur));
 		case IAMoyenne:
-			return (new IAMoyenne(this, TypeJoueur.IAMoyenne, nbPionsBase, typeCouleur));
+			return (new IAMoyenne(TypeJoueur.IAMoyenne, nbPionsBase, typeCouleur));
 		case IADifficile:
-			return (new IADifficile(this, TypeJoueur.IADifficile, nbPionsBase, typeCouleur));
+			return (new IADifficile(TypeJoueur.IADifficile, nbPionsBase, typeCouleur));
 		case IAExterne:
-			return (new IADifficile(this, TypeJoueur.IAExterne, nbPionsBase, typeCouleur));
+			return (new IADifficile(TypeJoueur.IAExterne, nbPionsBase, typeCouleur));
 		default:
-			return (new Humain(this, TypeJoueur.Humain, nbPionsBase, typeCouleur));
+			return (new Humain(TypeJoueur.Humain, nbPionsBase, typeCouleur));
 		}
 
 	}
@@ -151,9 +152,6 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 			renjou = (Renjou) ois.readObject();
 
-			// on rajoute les observeurs par rapport aux joueurs du modele
-			this.enregistrerObserveur(renjou.getJoueurs()[0]);
-			this.enregistrerObserveur(renjou.getJoueurs()[1]);
 
 			// dans l'IA, il y a le moteur en paramètre. Pour que l'ia
 			// communique avec le nouveau moteur,
@@ -177,6 +175,13 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		}
 
 		notifierObserveurs();
+		faireJouerIA();
+	}
+
+	private void faireJouerIA() {
+		if(renjou.getJoueurs()[renjou.getJoueurCourant()].getType() != TypeJoueur.Humain ){
+			operationJouer(renjou.getJoueurs()[renjou.getJoueurCourant()].jouer(renjou.getPlateauDeJeu()) , renjou.getJoueurs()[renjou.getJoueurCourant()].getType());
+		}		
 	}
 
 	@Override
@@ -210,6 +215,9 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 		// notify avec etat de la partie
 		notifierObserveurs();
+		
+		// si c'est une IA, on la fait jouer
+		faireJouerIA();
 
 	}
 
@@ -315,6 +323,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		renjou.setTabouJeu(tabouPartie);
 
 		notifierObserveurs();
+		faireJouerIA();
 	}
 
 	@Override
@@ -325,6 +334,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		renjou.getJoueurs()[1].setNbPion(renjou.getJoueurs()[1].getNbPionsBase());
 
 		notifierObserveurs();
+		faireJouerIA();
 	}
 
 	@Override
@@ -585,6 +595,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		}
 
 		notifierObserveurs();
+		faireJouerIA();
 	}
 
 	@Override
@@ -617,6 +628,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		}
 
 		notifierObserveurs();
+		faireJouerIA();
 	}
 
 	public void refaireDemiCoup() {
