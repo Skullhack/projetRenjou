@@ -254,7 +254,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		majCasesInjouables(renjou);
 		majCasesTabous(renjou);
 
-		//Log.print(1, renjou.getPlateauDeJeu().toString());
+		// Log.print(1, renjou.getPlateauDeJeu().toString());
 
 	}
 
@@ -322,6 +322,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		renjou.setJoueurs(tableauJoueurs);
 
 		// tabouPartie.add(TypeTabous.TROIS_TROIS);
+		// renjou.setModeDebutant(true);
 
 		renjou.getTabouJeu().setListeTabous(tabouPartie);
 
@@ -545,7 +546,9 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 		if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Noir) {
 			// mettre les cases tabous pour le joueur noir en mode débutant
-			ajoutCoupsTabouModeDebutant(renjou);
+			if (renjou.estModeDebutant()) {
+				ajoutCoupsTabouModeDebutant(renjou);
+			}
 
 		} else if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Blanc) {
 			// faire sauter toutes les cases tabous. Le joueur blanc n'en a pas

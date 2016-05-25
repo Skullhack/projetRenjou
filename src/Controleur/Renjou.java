@@ -26,6 +26,7 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 	private EtatPartie etatPartie;
 	private Tabou tabousJeu;
 	private String emplacementThemes;
+	private boolean modeDebutant;
 
 	// Constructeur
 	public Renjou(Joueur[] tabJoueurs) {
@@ -44,6 +45,7 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 		// fin ajout des tabous en dur
 
 		this.emplacementThemes = "Traditionnel";
+		this.modeDebutant = false;
 
 	}
 
@@ -91,6 +93,10 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 	public String getEmplacementThemes() {
 		return emplacementThemes;
 	}
+	
+	public boolean estModeDebutant() {
+		return modeDebutant;
+	}
 
 	public void setPlateauDeJeu(PlateauDeJeu plateau) {
 		this.plateau = plateau;
@@ -122,6 +128,10 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 
 	public void setEmplacementThemes(String emplacementThemes) {
 		this.emplacementThemes = emplacementThemes;
+	}
+	
+	public void setModeDebutant(boolean modeDebutant) {
+		this.modeDebutant = modeDebutant;
 	}
 
 	public int getNbJoueurs() {
