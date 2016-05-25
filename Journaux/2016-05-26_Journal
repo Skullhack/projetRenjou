@@ -1,0 +1,25 @@
+#TÂCHES À FAIRE
+
+PARTIE IHM :
+
+- Uitliser un système de timer pour que l'IA ne joue pas en INSTANT
+- Aligner le texte pour la fenêtre de configuration -> Joueurs
+- Afficher les tabous
+- Afficher les thèmes
+
+PARTIE IA  :
+
+- Faire IA Moyen et difficile
+
+PARTIE MOTEUR : 
+
+- Liaison tabous-moteur
+
+Distribution des tâches pour la journée :
+
+- Christopher : 
+           - voir pour gérer configurer partie (ajout variable débutant, garder un seul point d'entrée ??)
+           - voir pour mode tutoriel
+           
+           
+#TÂCHES EFFECTUÉES
