@@ -704,7 +704,7 @@ public class TestMoteur {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
 		PlateauDeJeu plateauJeuEnCours = donneesJeu.getRenjou().getPlateauDeJeu();
-		Log.setNiveau(10);
+		Log.setNiveau(0);
 		Log.print(1, "TEST PARTIE FINIE AVEC UN TABOU TROIS-TROIS");
 
 		ArrayList<TypeTabous> tabousJeu = new ArrayList<TypeTabous>();
