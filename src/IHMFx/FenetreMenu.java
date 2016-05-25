@@ -2,12 +2,14 @@ package IHMFx;
 
 import java.io.IOException;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-public class FenetreMenu extends Stage{
+public class FenetreMenu extends Stage{	
 	public FenetreMenu(EcouteurFenetreMenu efm) throws IOException {
         FXMLLoader fx2 = new FXMLLoader(getClass().getResource("LayoutFenetreMenu.fxml"));
 		fx2.setController(efm);
@@ -19,6 +21,10 @@ public class FenetreMenu extends Stage{
 	
 	public void montrer() {
 		this.show();
+	}
+	
+	public void cacher() {
+		this.hide();
 	}
 	
 	public void toujoursMettreEnHaut() {

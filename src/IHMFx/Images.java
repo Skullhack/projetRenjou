@@ -19,6 +19,10 @@ public class Images {
 	private Image pionBlanc;
 	private Image pionNoirJoue;
 	private Image pionBlancJoue;
+	private Image boutonValider;
+	private Image boutonValiderDrag;
+	private Image boutonAnnuler;
+	private Image boutonAnnulerDrag;
 	
 	public Images(Moteur m) {
 		this.m = m;
@@ -41,6 +45,10 @@ public class Images {
 		pionBlanc = new Image("./Images/"+theme+"/PionBlanc.png");
 		pionNoirJoue = new Image("./Images/"+theme+"/PionNoirJoue.png");
 		pionBlancJoue = new Image("./Images/"+theme+"/PionBlancJoue.png");
+		boutonValider = new Image("./Images/"+theme+"/BoutonValider.png");
+		boutonValiderDrag = new Image("./Images/"+theme+"/BoutonValiderDrag.png");
+		boutonAnnuler = new Image("./Images/"+theme+"/BoutonAnnuler.png");
+		boutonAnnulerDrag = new Image("./Images/"+theme+"/BoutonAnnulerDrag.png");
 	}
 	
 	public Image getAmpoule() {
@@ -97,5 +105,21 @@ public class Images {
 	
 	public Image getPionBlancJoue() {
 		return pionBlancJoue;
+	}
+	
+	public Image getBoutonAnnuler() {
+		return boutonAnnuler;
+	}
+	
+	public Image getBoutonAnnulerDrag() {
+		return boutonAnnulerDrag;
+	}
+	
+	public Image getBoutonValider() {
+		return boutonValider;
+	}
+	
+	public Image getBoutonValiderDrag() {
+		return boutonValiderDrag;
 	}
 }
