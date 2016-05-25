@@ -82,6 +82,12 @@ public class EcouteurFenetreJeu implements Initializable {
         //Variables
     	this.ihm = ihm;
         this.m = ihm.m;
+		try {
+			ihm.fj = new FenetreJeu(this);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 	@Override
@@ -199,7 +205,11 @@ public class EcouteurFenetreJeu implements Initializable {
 	
 	@FXML
 	private void creerPartieMenu(ActionEvent e) {
-		//TODO
+		//rendre FenetreJeu inactif : TODO
+		ihm.fm.setNouvellePartie(true);
+		ihm.fm.montrer();
+		ihm.efm.getTabPane().getSelectionModel().select(0);
+		ihm.fm.toujoursMettreEnHaut();
 	}
 	
 	@FXML
@@ -250,21 +260,27 @@ public class EcouteurFenetreJeu implements Initializable {
 	@FXML
 	private void joueurMenu(ActionEvent e) {
 		//rendre FenetreJeu inactif : TODO
-		ihm.fm.show();
+		ihm.fm.setNouvellePartie(false);
+		ihm.fm.montrer();
+		ihm.efm.getTabPane().getSelectionModel().select(0);
 		ihm.fm.toujoursMettreEnHaut();
 	}
 	
 	@FXML
 	private void tabousMenu(ActionEvent e) {
 		//rendre FenetreJeu inactif : TODO
-		ihm.fm.show();
+		ihm.fm.setNouvellePartie(false);
+		ihm.fm.montrer();
+		ihm.efm.getTabPane().getSelectionModel().select(1);
 		ihm.fm.toujoursMettreEnHaut();
 	}
 	
 	@FXML
 	private void themeMenu(ActionEvent e) {
 		//rendre FenetreJeu inactif : TODO
-		ihm.fm.show();
+		ihm.fm.setNouvellePartie(false);
+		ihm.fm.montrer();
+		ihm.efm.getTabPane().getSelectionModel().select(2);
 		ihm.fm.toujoursMettreEnHaut();
 		//ihm.efm.
 	}
@@ -293,6 +309,22 @@ public class EcouteurFenetreJeu implements Initializable {
 		setIconeSablierAmpoule();
 		//Plateau
 		repeindrePlateau();
+		
+		if (m.getRenjou().getListeAnnuler().isEmpty()) {
+			annuler.setDisable(true);
+			annuler.setImage(ihm.i.getAnnulerDisab());
+		} else {
+			annuler.setDisable(false);
+			annuler.setImage(ihm.i.getAnnuler());
+		}
+		
+		if (m.getRenjou().getListeRefaire().isEmpty()) {
+			refaire.setDisable(true);
+			refaire.setImage(ihm.i.getRefaireDisab());
+		} else {
+			refaire.setDisable(false);
+			refaire.setImage(ihm.i.getRefaire());
+		}
 	}
 
 	private void repeindrePlateau() {

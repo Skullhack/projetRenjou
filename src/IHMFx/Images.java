@@ -11,8 +11,10 @@ public class Images {
 	private Image recommencer;
 	private Image recommencerDrag;
 	private Image annuler;
+	private Image annulerDisab;
 	private Image annulerDrag;
 	private Image refaire;
+	private Image refaireDisab;
 	private Image refaireDrag;
 	private Image plateau;
 	private Image pionNoir;
@@ -37,8 +39,10 @@ public class Images {
 		recommencer = new Image("./Images/"+theme+"/Recommencer.png");
 		recommencerDrag = new Image("./Images/"+theme+"/RecommencerDrag.png");
 		annuler = new Image("./Images/"+theme+"/Annuler.png");
+		annulerDisab = new Image("./Images/"+theme+"/AnnulerDisab.png");
 		annulerDrag = new Image("./Images/"+theme+"/AnnulerDrag.png");
 		refaire = new Image("./Images/"+theme+"/Refaire.png");
+		refaireDisab = new Image("./Images/"+theme+"/RefaireDisab.png");
 		refaireDrag = new Image("./Images/"+theme+"/RefaireDrag.png");
 		plateau = new Image("./Images/"+theme+"/Plateau15x15.png");
 		pionNoir = new Image("./Images/"+theme+"/PionNoir.png");
@@ -75,12 +79,20 @@ public class Images {
 		return annuler;
 	}
 	
+	public Image getAnnulerDisab() {
+		return annulerDisab;
+	}
+	
 	public Image getAnnulerDrag() {
 		return annulerDrag;
 	}
 	
 	public Image getRefaire() {
 		return refaire;
+	}
+	
+	public Image getRefaireDisab() {
+		return refaireDisab;
 	}
 	
 	public Image getRefaireDrag() {
