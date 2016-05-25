@@ -135,24 +135,22 @@ public class IAMoyenne extends IA {
 	}
 	
 	private int Evaluation(PlateauDeJeu pdj) {
-		
-		if(this.couleur == TypeCouleur.Blanc)
-			return EvaluationSansTabous(pdj);
-		
-		return EvaluationAvecTabous(pdj);
+		return EvaluationSansTabous(pdj) + EvaluationAvecTabous(pdj);
 	}
 
+
+	
 	public int EvaluationSansTabous(PlateauDeJeu pdj) {
-		Tabou t = new Tabou(true, true, true);
-		
+//		
 //		int valeurBlanc = 0;
 //		int valeurNoir = 0;
+//		TypeCouleur tc = TypeCouleur.Blanc;
 //		for(int i=0;i<nbLigne;i++){
 //			for(int j=0;j<nbColonne; j++){
-//				//Tabou t = new Tabou(conf, nom)
-//				
+//				Tabou t = new Tabou(pdj, new Coordonnees(i,j), true,true,true);
+//				Coordonnees c = new Coordonnees(i,j);
 //				// POUR BLANC
-//				if(/* est 3x3 */ || /* est 4x4 */ || /* est 6 ou 7 */ || /* est 4x3 */){
+//				if(t.estValide(pdj, c, true, true, true, tc) || ){
 //					valeurBlanc += 10000;
 //				}
 //				
@@ -230,7 +228,7 @@ public class IAMoyenne extends IA {
 //				
 //			}
 //		}
-			
+//			
 		
 		return 1;
 	}
