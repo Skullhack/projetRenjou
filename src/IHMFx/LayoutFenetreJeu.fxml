@@ -11,6 +11,11 @@
 
 <AnchorPane id="AnchorPane" maxHeight="650.0" maxWidth="950.0" minHeight="650.0" minWidth="950.0" prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <children>
+      <ImageView fitHeight="650.0" fitWidth="950.0" pickOnBounds="true">
+         <image>
+            <Image url="@../Images/Traditionnel/Fond.png" />
+         </image>
+      </ImageView>
     <BorderPane layoutX="0.0" layoutY="0.0" maxHeight="650.0" maxWidth="950.0" minHeight="650.0" minWidth="950.0" prefHeight="650.0" prefWidth="950.0">
       <bottom>
         <FlowPane minHeight="60.0001220703125" prefHeight="71.0" prefWidth="950.0">
@@ -108,7 +113,7 @@
                 </Label>
               </children>
             </FlowPane>
-            <FlowPane maxHeight="68.0" maxWidth="190.0" minHeight="65.0" minWidth="190.0" prefHeight="68.0" prefWidth="190.0" style="-fx-background-color: white;">
+            <FlowPane maxHeight="68.0" maxWidth="190.0" minHeight="65.0" minWidth="190.0" prefHeight="68.0" prefWidth="190.0" style="-fx-background-color: gray;">
               <children>
                 <ImageView fx:id="annuler" fitHeight="65.0" fitWidth="65.0" onMouseClicked="#annuler" onMouseEntered="#dragDebutAnnuler" onMouseExited="#dragFinAnnuler" pickOnBounds="true" preserveRatio="true">
                   <image>
