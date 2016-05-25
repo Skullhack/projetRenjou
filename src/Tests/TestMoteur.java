@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import Controleur.Moteur;
 import Controleur.MoteurObserveur;
+import Enum.EtatPartie;
 import Enum.TypeCase;
 import Enum.TypeJoueur;
 import Enum.TypeTabous;
@@ -237,39 +238,42 @@ public class TestMoteur {
 
 	}
 
-	@Test
-	public void majCaseTabouAvecPartiePerduPourNoir() {
-
-		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
-		PlateauDeJeu plateauJeuEnCours = donneesJeu.getRenjou().getPlateauDeJeu();
-
-		Log.setNiveau(0);
-		Log.print(1, "TEST d'une case tabou pour faire perdre joueur noir");
-		afficherPlateauJeuCourant(plateauJeuEnCours);
-
-		Coordonnees[] tabCoord = new Coordonnees[4];
-		tabCoord[0] = new Coordonnees(7, 7); // noir
-		tabCoord[1] = new Coordonnees(6, 6); // blanc qui joue
-		tabCoord[2] = new Coordonnees(10, 10); // noir va jouer sur une case
-												// tabou
-		tabCoord[3] = new Coordonnees(13, 13);
-
-		for (int i = 0; i < tabCoord.length; i++) {
-
-			if (i == 2) {
-				// on va mettre la case tabou pour pieger le joueur noir
-				plateauJeuEnCours.ajouter(new Coordonnees(10, 10), TypeCase.Tabou);
-				TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauCaseTabouForcee");
-			}
-			operationJouerJoueurCourant(donneesJeu, tabCoord[i]);
-			afficherPlateauJeuCourant(plateauJeuEnCours);
-
-		}
-
-		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauCaseApresClicTabouJoueurNoir");
-		Log.print(1, "FIN TEST d'une case tabou pour faire perdre joueur noir");
-
-	}
+	// @Test
+	// public void majCaseTabouAvecPartiePerduPourNoir() {
+	//
+	// Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
+	// PlateauDeJeu plateauJeuEnCours =
+	// donneesJeu.getRenjou().getPlateauDeJeu();
+	//
+	// Log.setNiveau(10);
+	// Log.print(1, "TEST d'une case tabou pour faire perdre joueur noir");
+	// afficherPlateauJeuCourant(plateauJeuEnCours);
+	//
+	// Coordonnees[] tabCoord = new Coordonnees[4];
+	// tabCoord[0] = new Coordonnees(7, 7); // noir
+	// tabCoord[1] = new Coordonnees(6, 6); // blanc qui joue
+	// tabCoord[2] = new Coordonnees(10, 10); // noir va jouer sur une case
+	// // tabou
+	// tabCoord[3] = new Coordonnees(13, 13);
+	//
+	// for (int i = 0; i < tabCoord.length; i++) {
+	//
+	// if (i == 2) {
+	// // on va mettre la case tabou pour pieger le joueur noir
+	// plateauJeuEnCours.ajouter(new Coordonnees(10, 10), TypeCase.Tabou);
+	// TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin +
+	// "PlateauCaseTabouForcee");
+	// }
+	// operationJouerJoueurCourant(donneesJeu, tabCoord[i]);
+	// afficherPlateauJeuCourant(plateauJeuEnCours);
+	//
+	// }
+	//
+	// TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin +
+	// "PlateauCaseApresClicTabouJoueurNoir");
+	// Log.print(1, "FIN TEST d'une case tabou pour faire perdre joueur noir");
+	//
+	// }
 
 	@Test
 	public void annulerCoupEntreDeuxJoueurs() {
@@ -648,22 +652,22 @@ public class TestMoteur {
 
 		Log.print(1, "FIN TEST RECOMMENCER UNE PARTIE");
 	}
-	
+
 	@Test
 	public void testRecommencerPartieAvecTabous() {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
 		PlateauDeJeu plateauJeuEnCours = donneesJeu.getRenjou().getPlateauDeJeu();
-		Log.setNiveau(10);
-		Log.print(1, "TEST RECOMMENCER UNE PARTIE");
-		
+		Log.setNiveau(0);
+		Log.print(1, "TEST RECOMMENCER UNE PARTIE AVEC CONSERVATION DES TABOUS");
+
 		ArrayList<TypeTabous> tabousJeu = new ArrayList<TypeTabous>();
 		tabousJeu.add(TypeTabous.TROIS_TROIS);
 		tabousJeu.add(TypeTabous.SIX_SEPT);
 		donneesJeu.configurerPartie(TypeJoueur.Humain, TypeJoueur.Humain, tabousJeu, false);
 
 		Log.print(1, donneesJeu.getRenjou().getTabouJeu().getListeTabous().toString());
-		
+
 		Coordonnees[] tabCoord = new Coordonnees[11];
 		tabCoord[0] = new Coordonnees(7, 7); // noir
 		tabCoord[1] = new Coordonnees(6, 6); // blanc qui joue
@@ -683,17 +687,56 @@ public class TestMoteur {
 		}
 
 		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauJeuAvantRecommencerPartie");
-		
 
 		donneesJeu.recommencerPartie();
 		Log.print(1, donneesJeu.getRenjou().getTabouJeu().getListeTabous().toString());
 
 		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauJeuApresRecommencerPartie");
-		
+		assertEquals(donneesJeu.getRenjou().getTabouJeu().getListeTabous(), tabousJeu);
+
 		afficherPlateauJeuCourant(plateauJeuEnCours);
 
-		Log.print(1, "FIN TEST RECOMMENCER UNE PARTIE");
+		Log.print(1, "FIN TEST RECOMMENCER UNE PARTIE AVEC CONSERVATION DES TABOUS");
 	}
-	
+
+	@Test
+	public void testPartieAvecTabouTroisTroisVictoireBlanc() {
+
+		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
+		PlateauDeJeu plateauJeuEnCours = donneesJeu.getRenjou().getPlateauDeJeu();
+		Log.setNiveau(0);
+		Log.print(1, "TEST PARTIE FINIE AVEC UN TABOU TROIS-TROIS");
+
+		ArrayList<TypeTabous> tabousJeu = new ArrayList<TypeTabous>();
+		tabousJeu.add(TypeTabous.TROIS_TROIS);
+		donneesJeu.configurerPartie(TypeJoueur.Humain, TypeJoueur.Humain, tabousJeu, false);
+
+		Coordonnees[] tabCoord = new Coordonnees[12];
+		tabCoord[0] = new Coordonnees(7, 7); // noir
+		tabCoord[1] = new Coordonnees(6, 6); // blanc
+		tabCoord[2] = new Coordonnees(10, 10); // noir
+		tabCoord[3] = new Coordonnees(1, 1); // blanc
+		tabCoord[4] = new Coordonnees(10, 11); // noir
+		tabCoord[5] = new Coordonnees(2, 2); // blanc
+		tabCoord[6] = new Coordonnees(11, 12); // noir
+		tabCoord[7] = new Coordonnees(3, 3); // blanc
+		tabCoord[8] = new Coordonnees(12, 12); // noir
+		tabCoord[9] = new Coordonnees(3, 8); // blanc
+		tabCoord[10] = new Coordonnees(10, 12); // noir joue un coup tabou. La
+												// partie va se finir
+		tabCoord[11] = new Coordonnees(14, 14); // blanc ne pourra pas jouer.
+												// Partie finie suite à tabou
+
+		for (int i = 0; i < tabCoord.length; i++) {
+			operationJouerJoueurCourant(donneesJeu, tabCoord[i]);
+			afficherPlateauJeuCourant(plateauJeuEnCours);
+		}
+
+		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauFinPartieSuiteTabouTroisTroisNoir");
+
+		assertEquals(donneesJeu.getRenjou().getEtatPartie(), EtatPartie.BlancGagneParTabou);
+
+		Log.print(1, "FIN TEST PARTIE FINIE AVEC UN TABOU TROIS-TROIS");
+	}
 
 }

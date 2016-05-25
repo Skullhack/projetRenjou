@@ -10,8 +10,12 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class FenetreMenu extends Stage{	
+	private boolean nouvellePartie;
+	private EcouteurFenetreMenu efm;
+	
 	public FenetreMenu(EcouteurFenetreMenu efm) throws IOException {
-        FXMLLoader fx2 = new FXMLLoader(getClass().getResource("LayoutFenetreMenu.fxml"));
+        this.efm = efm;
+		FXMLLoader fx2 = new FXMLLoader(getClass().getResource("LayoutFenetreMenu.fxml"));
 		fx2.setController(efm);
 		Parent root2 = fx2.load();
         this.setTitle("Menu");
@@ -20,6 +24,7 @@ public class FenetreMenu extends Stage{
 	}
 	
 	public void montrer() {
+		efm.selectionnerRadioJoueur();
 		this.show();
 	}
 	
@@ -29,5 +34,13 @@ public class FenetreMenu extends Stage{
 	
 	public void toujoursMettreEnHaut() {
 		this.setAlwaysOnTop(true);
+	}
+	
+	public boolean getNouvellePartie() {
+		return this.nouvellePartie;
+	}
+	
+	public void setNouvellePartie(boolean nouvellePartie) {
+		this.nouvellePartie = nouvellePartie;
 	}
 }

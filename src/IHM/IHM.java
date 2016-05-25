@@ -30,7 +30,7 @@ public class IHM implements Runnable, MoteurObserveur {
 	public void run() {
 		// Creation d'une fenetre
 		frames = new JFrame[3];
-		this.m = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
+		this.m = new Moteur(TypeJoueur.Humain, TypeJoueur.IAMoyenne);
 		this.m.enregistrerObserveur(this);
 	
 		//Fenetre Jeu

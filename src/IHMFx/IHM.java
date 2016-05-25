@@ -39,24 +39,18 @@ public class IHM extends Application implements MoteurObserveur{
     @Override
     public void start(Stage primaryStage) {
     	m = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
-    	i = new Images(m);
-    	efj = new EcouteurFenetreJeu(this);
-    	efm = new EcouteurFenetreMenu(this);
-		try {		
-			//Premiere Fenetre
-			fj = new FenetreJeu(efj);
-			fj.montrer();
+    	i = new Images(m);	
+		//Premiere Fenetre
+	    efj = new EcouteurFenetreJeu(this);
+		fj.montrer();
 	        
-	        //Seconde Fenetre
-			fm = new FenetreMenu(efm);
+	    //Seconde Fenetre
+	    efm = new EcouteurFenetreMenu(this);
 	        
-	        //Troisieme Fenetre
+	    //Troisieme Fenetre
 	        
-	    	m.enregistrerObserveur(this);
-	    	actualiser();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	    m.enregistrerObserveur(this);
+	    actualiser();
     }
 
 	@Override
