@@ -149,88 +149,15 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 
 	
 	public boolean sixSept(Motif motif, TypeCouleur typeCouleur) {
-		
-		if ((motif.nbPionDiagonaleDroiteContinu(typeCouleur) > 5)) {
-			return true;
-		}
-		if (motif.nbPionDiagonaleGaucheContinu(typeCouleur) > 5) {
-			return true;
-		}
-		if (motif.nbPionHorizontaleContinu(typeCouleur) > 5) {
-			return true;
-		}
-		if (motif.nbPionVerticaleContinu(typeCouleur) > 5) {
-			return true;
-		}
-
-		return false;
+		return motif.sixSept(typeCouleur);
 	}
 
 	public boolean troisFoisTrois(Motif motif, TypeCouleur typeCouleur) {
-		if (motif.estTroisDiagonaleDroite(typeCouleur)) {
-			if (motif.estTroisDiagonaleGauche(typeCouleur)) {
-				return true;
-			} else if (motif.estTroisHorizontale(typeCouleur)) {
-				return true;
-			} else if (motif.estTroisVerticale(typeCouleur)) {
-
-				return true;
-			}
-
-		} else if (motif.estTroisDiagonaleGauche(typeCouleur)) {
-			if (motif.estTroisHorizontale(typeCouleur)) {
-				return true;
-			} else if (motif.estTroisVerticale(typeCouleur)) {
-				return true;
-			}
-		} else if (motif.estTroisHorizontale(typeCouleur)) {
-			if (motif.estTroisVerticale(typeCouleur)) {
-				return true;
-			}
-		}
-
-		return false;
+		return motif.troisFoisTroisLibre(typeCouleur);
 	}
 
 	public boolean quatreFoisQuatre(Motif motif, TypeCouleur typeCouleur) {
-
-		if(motif.estQuatreQuatreDiagonaleDroite(typeCouleur)){
-			return true;
-		}
-		if(motif.estQuatreQuatreDiagonaleGauche(typeCouleur)){
-			return true;
-		}
-		if(motif.estQuatreQuatreHorizontale(typeCouleur)){
-			return true;
-		}
-		if(motif.estQuatreQuatreVerticale(typeCouleur)){
-			return true;
-		}
-		
-		// test quand le 4*4 est dans des directions différentes cf
-		// testQuatreQuatreBasique1
-		if (motif.estQuatreDiagonaleDroite(typeCouleur)) {
-			if (motif.estQuatreDiagonaleGauche(typeCouleur)) {
-				return true;
-			} else if (motif.estQuatreHorizontale(typeCouleur)) {
-				return true;
-			} else if (motif.estQuatreVerticale(typeCouleur)) {
-				return true;
-			}
-
-		} else if (motif.estQuatreDiagonaleGauche(typeCouleur)) {
-			if (motif.estQuatreHorizontale(typeCouleur)) {
-				return true;
-			} else if (motif.estQuatreVerticale(typeCouleur)) {
-				return true;
-			}
-		} else if (motif.estQuatreHorizontale(typeCouleur)) {
-			if (motif.estQuatreVerticale(typeCouleur)) {
-				return true;
-			}
-		}
-
-		return false;
+		return motif.quatreFoisQuatre(typeCouleur);
 	}
 
 }

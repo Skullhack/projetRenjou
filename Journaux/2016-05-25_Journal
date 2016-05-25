@@ -34,5 +34,8 @@ Distribution des tâches pour la journée :
            
            
 #TÂCHES EFFECTUÉES
-mettre les tabous dans le moteur 
-faire fonctions qui parcours le plateau et met à jour les cases tabous
+
+- mettre les tabous dans le moteur 
+- faire fonctions qui parcours le plateau et met à jour les cases tabous
+- Tabous enfin implémenté
+- Mode débutant ok niveau moteur mais pas niveau IHM
