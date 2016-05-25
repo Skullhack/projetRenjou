@@ -17,6 +17,7 @@ public class FenetreAide extends Stage{
 		FXMLLoader fx = new FXMLLoader(getClass().getResource("LayoutFenetreAide.fxml"));
 		fx.setController(efa);
 		Parent root = fx.load();
+    	this.setResizable(false);
         this.setTitle("Aide");
         this.setScene(new Scene(root, 700, 500));
         this.centerOnScreen();

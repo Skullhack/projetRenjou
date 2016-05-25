@@ -18,6 +18,7 @@ public class FenetreJeu extends Stage {
 		Parent root = fx.load();
     	this.setScene(new Scene(root, 950, 650));
     	this.setTitle("Renjou");
+    	this.setResizable(false);
     	this.centerOnScreen();
     	EventHandler<WindowEvent> eh = new EventHandler<WindowEvent>() {
             public void handle(WindowEvent we) {
@@ -35,9 +36,5 @@ public class FenetreJeu extends Stage {
 	
 	public void montrer() {
 		this.show();
-	}
-	
-	public void toujoursMettreEnHaut() {
-		this.setAlwaysOnTop(true);
 	}
 }

@@ -24,6 +24,7 @@ public class FenetreMenu extends Stage {
 		fx.setController(efm);
 		Parent root = fx.load();
         this.setTitle("Menu");
+    	this.setResizable(false);
         this.setScene(new Scene(root, 700, 500));
         this.centerOnScreen();
 	}

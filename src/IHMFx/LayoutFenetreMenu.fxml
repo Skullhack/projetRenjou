@@ -53,7 +53,7 @@
                     <Label alignment="CENTER" font="$x3" prefHeight="45.0" prefWidth="200.0" text="Ordi. Moyen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                     <Label alignment="CENTER" font="$x3" prefHeight="45.0" prefWidth="200.0" text="Ordi. Difficile" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                     <Label alignment="CENTER" font="$x3" prefHeight="45.0" prefWidth="200.0" text="Ordi. Externe" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                    <RadioButton fx:id="noir1" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="45.0" prefWidth="203.0" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <RadioButton fx:id="noir1" contentDisplay="CENTER" maxHeight="50.0" maxWidth="203.0" minHeight="50.0" minWidth="127.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="127.0" text="pute" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="1">
                       <font>
                         <Font size="20.0" fx:id="x4" />
                       </font>
