@@ -11,9 +11,7 @@ import Enum.*;
 
 public class Humain extends Joueur {
 
-    public Humain(Moteur moteur, TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
-        super(moteur, type,nbPion,couleurJoueur);
-
-
+    public Humain(TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
+        super(type,nbPion,couleurJoueur);
 	}
 }

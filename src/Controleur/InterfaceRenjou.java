@@ -8,7 +8,6 @@ package Controleur;
 import Joueur.Joueur;
 import Utilitaire.PlateauDeJeu;
 import Utilitaire.Tabou;
-import Utilitaire.Tabous;
 
 import java.awt.List;
 import java.util.ArrayList;
@@ -33,9 +32,8 @@ public interface InterfaceRenjou {
 
 	public EtatPartie getEtatPartie();
 
-	public ArrayList<Tabou> getTabouJeu();
+	public Tabou getTabouJeu();
 
-	public Tabous getTabous();
 
 	// Setter
 	public void setPlateauDeJeu(PlateauDeJeu plateau);
@@ -50,9 +48,8 @@ public interface InterfaceRenjou {
 
 	public void setEtatPartie(EtatPartie etatPartie);
 
-	public void setTabouJeu(ArrayList<Tabou> tabouJeu);
+	public void setTabouJeu(Tabou tabouJeu);
 
-	public void setTabous(Tabous tabous);
 
 	// Methodes
 	public Renjou clone(Renjou renjou);

@@ -271,7 +271,7 @@ public class TestIAMoyenne {
 		pdj = pdj.charger(chemin + "Plateau4NoirGagnant");
 		Log.print(645, pdj.toString());
 		Log.setPlage(640, 650);
-		Coordonnees c = ia.Jouer(pdj);
+		Coordonnees c = ia.jouer(pdj);
 		assertTrue(c.getLigne() == 5 && c.getColonne() == 1);
 		
 		pdj.ajouter(c, TypeCase.PionNoir);
@@ -293,7 +293,7 @@ public class TestIAMoyenne {
 
 		pdj = pdj.charger(chemin + "Plateau3VideNoirGagnant");
 		Log.print(655, pdj.toString());
-		Coordonnees c = ia.Jouer(pdj);
+		Coordonnees c = ia.jouer(pdj);
 		//assertTrue(c.getLigne() == 5 && c.getColonne() == 1);
 		
 		pdj.ajouter(c, TypeCase.PionNoir);

@@ -6,6 +6,7 @@
 package Controleur;
 
 import Enum.TypeJoueur;
+import Enum.TypeTabous;
 import Joueur.Joueur;
 import Utilitaire.Coordonnees;
 import Utilitaire.Tabou;
@@ -31,7 +32,7 @@ public interface InterfaceMoteur {
 
 	public void operationJouer(Coordonnees c, TypeJoueur j);
 
-	public void configurerPartie(TypeJoueur typeJoueur1, TypeJoueur typeJoueur2, ArrayList<Tabou> tabouPartie,
+	public void configurerPartie(TypeJoueur typeJoueur1, TypeJoueur typeJoueur2, ArrayList<TypeTabous> tabouPartie,
 			boolean nouvellePartie);
 
 	public void recommencerPartie();

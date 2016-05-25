@@ -9,6 +9,7 @@ import javax.swing.JFileChooser;
 
 import Controleur.Moteur;
 import Enum.TypeJoueur;
+import Enum.TypeTabous;
 import Utilitaire.Tabou;
 
 import javax.swing.JFrame;
@@ -50,7 +51,7 @@ public class EcouteurFenetreMenu implements ActionListener {
         tab[1] = TypeJoueur.valueOf(action);
         if (tab[0] != null && tab[1] != null) {
         	//gerer charger et nouvelle partie : TODO
-            m.configurerPartie(tab[0], tab[1], new ArrayList<Tabou>(), fm.getNouvellePartie());
+            m.configurerPartie(tab[0], tab[1], new ArrayList<TypeTabous>(), fm.getNouvellePartie());
         }
         frames[0].setEnabled(true);
         frames[1].setVisible(false);

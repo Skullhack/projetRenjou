@@ -10,12 +10,12 @@ import Controleur.Moteur;
 import Controleur.MoteurObserveur;
 import Enum.TypeCase;
 import Enum.TypeJoueur;
+import Enum.TypeTabous;
 import Joueur.IAFacile;
 import Utilitaire.Coordonnees;
 import Utilitaire.Log;
 import Utilitaire.PlateauDeJeu;
 import Utilitaire.Tabou;
-import Utilitaire.Tabous;
 
 public class TestMoteur {
 
@@ -646,18 +646,54 @@ public class TestMoteur {
 
 		afficherPlateauJeuCourant(plateauJeuEnCours);
 
-		ArrayList<Tabou> tabousDuJeu = donneesJeu.getRenjou().getTabouJeu();
-		Tabous allTabous = donneesJeu.getRenjou().getTabous();
+		Log.print(1, "FIN TEST RECOMMENCER UNE PARTIE");
+	}
+	
+	@Test
+	public void testRecommencerPartieAvecTabous() {
 
-		for (int i = 0; i < tabousDuJeu.size(); i++) {
-			Log.print(1, "" + tabousDuJeu.get(i).getNom());
+		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
+		PlateauDeJeu plateauJeuEnCours = donneesJeu.getRenjou().getPlateauDeJeu();
+		Log.setNiveau(10);
+		Log.print(1, "TEST RECOMMENCER UNE PARTIE");
+		
+		ArrayList<TypeTabous> tabousJeu = new ArrayList<TypeTabous>();
+		tabousJeu.add(TypeTabous.TROIS_TROIS);
+		tabousJeu.add(TypeTabous.SIX_SEPT);
+		donneesJeu.configurerPartie(TypeJoueur.Humain, TypeJoueur.Humain, tabousJeu, false);
+
+		Log.print(1, donneesJeu.getRenjou().getTabouJeu().getListeTabous().toString());
+		
+		Coordonnees[] tabCoord = new Coordonnees[11];
+		tabCoord[0] = new Coordonnees(7, 7); // noir
+		tabCoord[1] = new Coordonnees(6, 6); // blanc qui joue
+		tabCoord[2] = new Coordonnees(8, 6); // noir
+		tabCoord[3] = new Coordonnees(6, 5); // blanc
+		tabCoord[4] = new Coordonnees(9, 5); // noir
+		tabCoord[5] = new Coordonnees(6, 4); // blanc
+		tabCoord[6] = new Coordonnees(10, 4); // noir
+		tabCoord[7] = new Coordonnees(6, 3); // blanc
+		tabCoord[8] = new Coordonnees(13, 3); // noir
+		tabCoord[9] = new Coordonnees(9, 2); // blanc
+		tabCoord[10] = new Coordonnees(12, 12); // noir
+
+		for (int i = 0; i < tabCoord.length; i++) {
+			operationJouerJoueurCourant(donneesJeu, tabCoord[i]);
+			afficherPlateauJeuCourant(plateauJeuEnCours);
 		}
 
-		for (int i = 0; i < allTabous.getTabous().size(); i++) {
-			Log.print(1, "" + allTabous.getTabous().get(i).getNom());
-		}
+		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauJeuAvantRecommencerPartie");
+		
+
+		donneesJeu.recommencerPartie();
+		Log.print(1, donneesJeu.getRenjou().getTabouJeu().getListeTabous().toString());
+
+		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauJeuApresRecommencerPartie");
+		
+		afficherPlateauJeuCourant(plateauJeuEnCours);
 
 		Log.print(1, "FIN TEST RECOMMENCER UNE PARTIE");
 	}
+	
 
 }

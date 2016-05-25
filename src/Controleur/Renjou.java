@@ -8,7 +8,6 @@ package Controleur;
 import Joueur.Joueur;
 import Utilitaire.PlateauDeJeu;
 import Utilitaire.Tabou;
-import Utilitaire.Tabous;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -25,8 +24,7 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 	private ArrayList<PionJoue> listeAnnuler;
 	private ArrayList<PionJoue> listeRefaire;
 	private EtatPartie etatPartie;
-	private ArrayList<Tabou> tabouJeu;
-	private Tabous tabous;
+	private Tabou tabousJeu;
 	private String emplacementThemes;
 
 	// Constructeur
@@ -39,27 +37,7 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 		this.joueurCourant = 0;
 		this.tabJoueurs = tabJoueurs;
 		
-		// bloc de tabous en dur pour le moment
-		this.tabouJeu = new ArrayList<Tabou>();
-		this.tabous = new Tabous();
-
-		boolean[][] configInterdite = new boolean[15][15];
-		Tabou tabou1 = new Tabou(configInterdite, "TROIS-TROIS");
-		Tabou tabou2 = new Tabou(configInterdite, "FAUX-TROIS");
-		Tabou tabou3 = new Tabou(configInterdite, "QUATRE");
-		Tabou tabou4 = new Tabou(configInterdite, "SIX");
-		this.tabouJeu = new ArrayList<Tabou>();
-
-		tabous.getTabous().add(tabou1);
-		tabous.getTabous().add(tabou2);
-		tabous.getTabous().add(tabou3);
-		tabous.getTabous().add(tabou4);
-
-		tabouJeu.add(tabou1);
-		tabouJeu.add(tabou2);
-		tabouJeu.add(tabou3);
-		tabouJeu.add(tabou4);
-		// fin du bloc tabous
+		this.tabousJeu = new Tabou(new ArrayList<TypeTabous>());
 
 		this.emplacementThemes = "Traditionnel";
 
@@ -102,12 +80,8 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 		return etatPartie;
 	}
 
-	public ArrayList<Tabou> getTabouJeu() {
-		return tabouJeu;
-	}
-
-	public Tabous getTabous() {
-		return tabous;
+	public Tabou getTabouJeu() {
+		return tabousJeu;
 	}
 
 	public String getEmplacementThemes() {
@@ -138,12 +112,8 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 		this.etatPartie = etatPartie;
 	}
 
-	public void setTabouJeu(ArrayList<Tabou> tabouJeu) {
-		this.tabouJeu = tabouJeu;
-	}
-
-	public void setTabous(Tabous tabous) {
-		this.tabous = tabous;
+	public void setTabouJeu(Tabou tabousJeu) {
+		this.tabousJeu = tabousJeu;
 	}
 
 	public void setEmplacementThemes(String emplacementThemes) {
