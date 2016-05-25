@@ -14,6 +14,7 @@ import Enum.*;
 import Utilitaire.Coordonnees;
 import Utilitaire.Log;
 import Utilitaire.PlateauDeJeu;
+import Utilitaire.Tabou;
 
 
 public class IAMoyenne extends IA {
@@ -63,6 +64,26 @@ public class IAMoyenne extends IA {
 		Log.print(66, "Dans Jouer IAMoyenne");
 		coups.clear();
 		PlateauDeJeu pdj =  p.clone();
+		Log.print(1, p.toString() + "\nnbPionNoir= " + p.getNbPionNoir() + "\nnbPionBlanc= " + p.getNbPionBlanc());
+		Log.print(1, pdj.toString() + "\nnbPionNoir= " + pdj.getNbPionNoir() + "\nnbPionBlanc= " + pdj.getNbPionBlanc());
+		
+		if(premierTour(pdj)){
+			return new Coordonnees(7,7);
+		}
+		
+		if(secondTour(pdj)){
+			for(int i = 6;i<8;i++){
+				for(int j= 6; j< 8; j++){
+					if(i != 7 || j != 7){
+						coups.add(new Coordonnees(i,j));
+					}
+				}
+			}
+			
+			r.nextInt(coups.size());
+			return coups.get(r.nextInt(coups.size()));
+		}
+		
 		
 		int profondeur = profondeurMax;
 		int valeur = -10000;
@@ -122,7 +143,95 @@ public class IAMoyenne extends IA {
 	}
 
 	public int EvaluationSansTabous(PlateauDeJeu pdj) {
-		// TODO Auto-generated method stub
+		Tabou t = new Tabou(true, true, true);
+		
+//		int valeurBlanc = 0;
+//		int valeurNoir = 0;
+//		for(int i=0;i<nbLigne;i++){
+//			for(int j=0;j<nbColonne; j++){
+//				//Tabou t = new Tabou(conf, nom)
+//				
+//				// POUR BLANC
+//				if(/* est 3x3 */ || /* est 4x4 */ || /* est 6 ou 7 */ || /* est 4x3 */){
+//					valeurBlanc += 10000;
+//				}
+//				
+//				if(/* est 2x2 */){
+//					valeurBlanc += 5;
+//					if(/* est 2x2 libre */){
+//						valeurBlanc += 50;
+//						if(/* est 2x2 libre a 2 cases */){
+//							valeurBlanc += 500;
+//						}
+//					}
+//				}
+//				
+//				if(/* est 3x2 */){
+//					valeurBlanc += 50;
+//					if(/* est 3x2 libre */){
+//						valeurBlanc += 600;
+//						if(/* est 3x2 libre a 2 cases */){
+//							valeurBlanc += 5000;
+//						}
+//					}
+//				}
+//				
+//				if(/* est 3 */){
+//					valeurBlanc += 5;
+//					if(/* est 3 libre */){
+//						valeurBlanc += 25;
+//						if(/* est 3 libre a 2 cases */){
+//							valeurBlanc += 250;
+//						}
+//					}
+//				}
+//				
+//				// POUR NOIR
+//				if(/* est 4x3 */){
+//					valeurNoir += 10000;
+//				}
+//				
+//				if(/* est 3x3 */ || /* est 4x4 */ || /* est 6 ou 7 */){
+//					
+//				}
+//				
+//				
+//				if(/* est 2x2 */){
+//					valeurBlanc += 5;
+//					if(/* est 2x2 libre */){
+//						valeurBlanc += 50;
+//						if(/* est 2x2 libre a 2 cases */){
+//							valeurBlanc += 500;
+//						}
+//					}
+//				}
+//				
+//				if(/* est 3x2 */){
+//					valeurBlanc += 50;
+//					if(/* est 3x2 libre */){
+//						valeurBlanc += 600;
+//						if(/* est 3x2 libre a 2 cases */){
+//							valeurBlanc += 5000;
+//						}
+//					}
+//				}
+//				
+//				if(/* est 3 */){
+//					valeurBlanc += 5;
+//					if(/* est 3 libre */){
+//						valeurBlanc += 25;
+//						if(/* est 3 libre a 2 cases */){
+//							valeurBlanc += 250;
+//						}
+//					}
+//				}
+//				
+//				
+//				
+//			}
+//		}
+			
+		
 		return 1;
 	}
 
@@ -130,7 +239,6 @@ public class IAMoyenne extends IA {
 		// TODO Auto-generated method stub
 		return 1;
 	}
-
 	
 	public int EvaluerCoupAdversaire(PlateauDeJeu pdj, int profondeur, TypeCase tc) {
 		if(profondeur == 0)

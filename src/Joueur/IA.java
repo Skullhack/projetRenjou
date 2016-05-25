@@ -46,7 +46,15 @@ public class IA extends Joueur {
 		return (plateau.getPlateau()[p.getLigne()][p.getColonne()] == TypeCase.Jouable);
 
 	}
-
+	
+	public boolean premierTour(PlateauDeJeu pdj){
+		return pdj.getNbPionBlanc() == 0 && pdj.getNbPionNoir() == 0;
+	}
+	
+	public boolean secondTour(PlateauDeJeu pdj){
+		return pdj.getNbPionBlanc() == 0 && pdj.getNbPionNoir() == 1;
+	}
+	
 	public void modifierHeristique(Coordonnees p, PlateauDeJeu plateau) {
 		Log.print(15,"Dans modifier Heuristique");
 
