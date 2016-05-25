@@ -55,6 +55,8 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 	//A appliquer que sur noir!!!!
 	public boolean estValide(PlateauDeJeu r, Coordonnees c, boolean troisFoistrois, boolean quatreFoisQuatre, boolean sixSept ) {
 		//initialisation des infos selon les directions
+		Log.print(1010, "r = " +r + "c" + c);
+		
 		infoGauche = new InfosAlignement(r, c, TypeDirection.Gauche);
 		infoDroite = new InfosAlignement(r, c, TypeDirection.Droite);
 		infoHaut = new InfosAlignement(r, c, TypeDirection.Haut);
@@ -64,7 +66,7 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 		infoDiagonaleBasGauche = new InfosAlignement(r, c, TypeDirection.DiagonaleBasGauche);
 		infoDiagonaleBasDroite = new InfosAlignement(r, c, TypeDirection.DiagonaleBasDroite);
 		
-		Log.print(1010, "r = " +r + "c" + c);
+		
 		Log.print(1010, infoDiagonaleHautGauche.toString());
 		Log.print(1010, infoDiagonaleHautDroite.toString());
 		Log.print(1010, infoDiagonaleBasGauche.toString());
@@ -80,7 +82,6 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 		if(sixSept){
 			estValide = estValide && !sixSept();
 		}
-		
 		return estValide;
 	}
 	
@@ -130,6 +131,7 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 	
 	public boolean quatreFoisQuatre(){
 		
+		//test quand le 4*4 est dans des directions différentes cf testQuatreQuatreBasique1
 		if(estQuatreDiagonaleDroite()){
 			if(estQuatreDiagonaleGauche()){
 				return true;

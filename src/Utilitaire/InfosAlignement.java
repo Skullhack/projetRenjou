@@ -58,7 +58,7 @@ public class InfosAlignement {
 		case DiagonaleHautDroite:
 			ligne--;
 			colonne++;
-			return ligne >= 0 && ligne < nbLignes;
+			return ligne >= 0 && colonne < nbColonnes;
 		case DiagonaleBasGauche:
 			ligne++;
 			colonne--;
@@ -200,7 +200,6 @@ public class InfosAlignement {
 	private void noirNonContinu(PlateauDeJeu pdj) {
 		Log.print(795, "Dans noirNonContinu");
 		boolean bordure = !incremente();
-
 		if(bordure){
 			libreNoir = true;
 			libre2casesNoir = false;
