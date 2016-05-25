@@ -36,15 +36,15 @@ public class TestInfosAlignement {
 		InfosAlignement infos;
 		for(TypeDirection d: TypeDirection.values()){
 			infos = new InfosAlignement(pdj, new Coordonnees(7,7), d);
-			assertTrue(infos.getNbBlanc() == 0);
-			assertTrue(infos.getNbNoir() == 3);
-			assertTrue(infos.getNbBlancNonContinu() == 0);
-			assertTrue(infos.getNbNoirNonContinu() == 0);
+			assertTrue(infos.getNbPion(TypeCouleur.Blanc) == 0);
+			assertTrue(infos.getNbPion(TypeCouleur.Noir) == 3);
+			assertTrue(infos.getNbPionNonContinu(TypeCouleur.Blanc) == 0);
+			assertTrue(infos.getNbPionNonContinu(TypeCouleur.Noir) == 0);
 
-			assertFalse(infos.estLibreBlanc());
-			assertTrue(infos.estLibreNoir());
-			assertFalse(infos.estLibre2CasesBlanc());
-			assertTrue(infos.estLibre2CasesNoir());
+			assertFalse(infos.estLibre(TypeCouleur.Blanc));
+			assertTrue(infos.estLibre(TypeCouleur.Noir));
+			assertFalse(infos.estLibre2Cases(TypeCouleur.Blanc));
+			assertTrue(infos.estLibre2Cases(TypeCouleur.Noir));
 			
 			Log.print(705, infos.toString());
 		}
@@ -63,14 +63,14 @@ public class TestInfosAlignement {
 			infos = new InfosAlignement(pdj, new Coordonnees(7,7), d);
 			Log.print(705, infos.toString());
 			
-			assertTrue(infos.getNbBlanc() == 0);
-			assertTrue(infos.getNbNoir() == 3);
-			assertTrue(infos.getNbBlancNonContinu() == 0);
-			assertTrue(infos.getNbNoirNonContinu() == 0);
-			assertFalse(infos.estLibreBlanc());
-			assertFalse(infos.estLibreNoir());
-			assertFalse(infos.estLibre2CasesBlanc());
-			assertFalse(infos.estLibre2CasesNoir());
+			assertTrue(infos.getNbPion(TypeCouleur.Blanc) == 0);
+			assertTrue(infos.getNbPion(TypeCouleur.Noir) == 3);
+			assertTrue(infos.getNbPionNonContinu(TypeCouleur.Blanc) == 0);
+			assertTrue(infos.getNbPionNonContinu(TypeCouleur.Noir) == 0);
+			assertFalse(infos.estLibre(TypeCouleur.Blanc));
+			assertFalse(infos.estLibre(TypeCouleur.Noir));
+			assertFalse(infos.estLibre2Cases(TypeCouleur.Blanc));
+			assertFalse(infos.estLibre2Cases(TypeCouleur.Noir));
 		}
 		
 		Log.print(701, "fin test3continuNoirBloqueBlanc");
@@ -109,14 +109,14 @@ public class TestInfosAlignement {
 		for(int i=0;i<infos.length;i++){
 			Log.print(705,infos[i].toString());
 			
-			assertTrue(infos[i].getNbBlanc() == 0);
-			assertTrue(infos[i].getNbNoir() == 3);
-			assertTrue(infos[i].getNbBlancNonContinu() == 0);
-			assertTrue(infos[i].getNbNoirNonContinu() == 0);
-			assertFalse(infos[i].estLibreBlanc());
-			assertFalse(infos[i].estLibreNoir());
-			assertFalse(infos[i].estLibre2CasesBlanc());
-			assertFalse(infos[i].estLibre2CasesNoir());
+			assertTrue(infos[i].getNbPion(TypeCouleur.Blanc) == 0);
+			assertTrue(infos[i].getNbPion(TypeCouleur.Noir) == 3);
+			assertTrue(infos[i].getNbPionNonContinu(TypeCouleur.Blanc) == 0);
+			assertTrue(infos[i].getNbPionNonContinu(TypeCouleur.Noir) == 0);
+			assertFalse(infos[i].estLibre(TypeCouleur.Blanc));
+			assertFalse(infos[i].estLibre(TypeCouleur.Noir));
+			assertFalse(infos[i].estLibre2Cases(TypeCouleur.Blanc));
+			assertFalse(infos[i].estLibre2Cases(TypeCouleur.Noir));
 		}
 		
 		Log.print(701, "fin test3continuNoirBloqueBordure");
@@ -133,14 +133,14 @@ public class TestInfosAlignement {
 		for(TypeDirection d: TypeDirection.values()){
 			infos = new InfosAlignement(pdj, new Coordonnees(7,7), d);
 			Log.print(795, infos.toString());
-			assertTrue(infos.getNbBlanc() == 0);
-			assertTrue(infos.getNbNoir() == 2);
-			assertTrue(infos.getNbBlancNonContinu() == 0);
-			assertTrue(infos.getNbNoirNonContinu() == 1);
-			assertFalse(infos.estLibreBlanc());
-			assertTrue(infos.estLibreNoir());
-			assertFalse(infos.estLibre2CasesBlanc());
-			assertTrue(infos.estLibre2CasesNoir());
+			assertTrue(infos.getNbPion(TypeCouleur.Blanc) == 0);
+			assertTrue(infos.getNbPion(TypeCouleur.Noir) == 2);
+			assertTrue(infos.getNbPionNonContinu(TypeCouleur.Blanc) == 0);
+			assertTrue(infos.getNbPionNonContinu(TypeCouleur.Noir) == 1);
+			assertFalse(infos.estLibre(TypeCouleur.Blanc));
+			assertTrue(infos.estLibre(TypeCouleur.Noir));
+			assertFalse(infos.estLibre2Cases(TypeCouleur.Blanc));
+			assertTrue(infos.estLibre2Cases(TypeCouleur.Noir));
 		}
 		
 		Log.print(701, "fin test3NonContinuNoirVide");
@@ -155,12 +155,12 @@ public class TestInfosAlignement {
 		InfosAlignement infos;
 		for(TypeDirection d: TypeDirection.values()){
 			infos = new InfosAlignement(pdj, new Coordonnees(7,7), d);
-			assertTrue(infos.getNbBlanc() == 0);
-			assertTrue(infos.getNbNoir() == 2);
-			assertTrue(infos.getNbBlancNonContinu() == 0);
-			assertTrue(infos.getNbNoirNonContinu() == 0);
-			assertFalse(infos.estLibreBlanc());
-			assertFalse(infos.estLibreNoir());
+			assertTrue(infos.getNbPion(TypeCouleur.Blanc) == 0);
+			assertTrue(infos.getNbPion(TypeCouleur.Noir) == 2);
+			assertTrue(infos.getNbPionNonContinu(TypeCouleur.Blanc) == 0);
+			assertTrue(infos.getNbPionNonContinu(TypeCouleur.Noir) == 0);
+			assertFalse(infos.estLibre(TypeCouleur.Blanc));
+			assertFalse(infos.estLibre(TypeCouleur.Noir));
 			Log.print(705, infos.toString());
 		}
 		
@@ -176,12 +176,12 @@ public class TestInfosAlignement {
 		InfosAlignement infos;
 		for(TypeDirection d: TypeDirection.values()){
 			infos = new InfosAlignement(pdj, new Coordonnees(7,7), d);
-			assertTrue(infos.getNbBlanc() == 0);
-			assertTrue(infos.getNbNoir() == 1);
-			assertTrue(infos.getNbBlancNonContinu() == 0);
-			assertTrue(infos.getNbNoirNonContinu() == 0);
-			assertFalse(infos.estLibreBlanc());
-			assertTrue(infos.estLibreNoir());
+			assertTrue(infos.getNbPion(TypeCouleur.Blanc) == 0);
+			assertTrue(infos.getNbPion(TypeCouleur.Noir) == 1);
+			assertTrue(infos.getNbPionNonContinu(TypeCouleur.Blanc) == 0);
+			assertTrue(infos.getNbPionNonContinu(TypeCouleur.Noir) == 0);
+			assertFalse(infos.estLibre(TypeCouleur.Blanc));
+			assertTrue(infos.estLibre(TypeCouleur.Noir));
 			Log.print(705, infos.toString());
 		}
 		
@@ -222,14 +222,14 @@ public class TestInfosAlignement {
 		for(int i=0;i<infos.length;i++){
 			Log.print(705, "i= " + i + infos[i].toString());
 			
-			assertTrue(infos[i].getNbBlanc() == 0);
-			assertTrue(infos[i].getNbNoir() == 3);
-			assertTrue(infos[i].getNbBlancNonContinu() == 0);
-			assertTrue(infos[i].getNbNoirNonContinu() == 0);
-			assertFalse(infos[i].estLibreBlanc());
-			assertTrue(infos[i].estLibreNoir());
-			assertFalse(infos[i].estLibre2CasesBlanc());
-			assertFalse(infos[i].estLibre2CasesNoir());
+			assertTrue(infos[i].getNbPion(TypeCouleur.Blanc) == 0);
+			assertTrue(infos[i].getNbPion(TypeCouleur.Noir) == 3);
+			assertTrue(infos[i].getNbPionNonContinu(TypeCouleur.Blanc) == 0);
+			assertTrue(infos[i].getNbPionNonContinu(TypeCouleur.Noir) == 0);
+			assertFalse(infos[i].estLibre(TypeCouleur.Blanc));
+			assertTrue(infos[i].estLibre(TypeCouleur.Noir));
+			assertFalse(infos[i].estLibre2Cases(TypeCouleur.Blanc));
+			assertFalse(infos[i].estLibre2Cases(TypeCouleur.Noir));
 		}
 		
 		Log.print(701, "fin test1VideContinuNoir");
