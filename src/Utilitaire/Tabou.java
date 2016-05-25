@@ -56,7 +56,14 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 			}
 		}
 	}
+	public Tabou(PlateauDeJeu p, Coordonnees c, boolean troisFoistrois, boolean quatreFoisQuatre, boolean sixSept) {
 
+		this.troisFoistrois = troisFoistrois;
+		this.quatreFoisQuatre = quatreFoisQuatre;
+		this.sixSept = sixSept;
+		init(p,c);
+	}
+	
 	public Tabou(boolean troisFoistrois, boolean quatreFoisQuatre, boolean sixSept) {
 
 		this.troisFoistrois = troisFoistrois;
@@ -103,6 +110,17 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 			}
 		}
 	}
+	
+	private void init(PlateauDeJeu r, Coordonnees c){
+		infoGauche = new InfosAlignement(r, c, TypeDirection.Gauche);
+		infoDroite = new InfosAlignement(r, c, TypeDirection.Droite);
+		infoHaut = new InfosAlignement(r, c, TypeDirection.Haut);
+		infoBas = new InfosAlignement(r, c, TypeDirection.Bas);
+		infoDiagonaleHautGauche = new InfosAlignement(r, c, TypeDirection.DiagonaleHautGauche);
+		infoDiagonaleHautDroite = new InfosAlignement(r, c, TypeDirection.DiagonaleHautDroite);
+		infoDiagonaleBasGauche = new InfosAlignement(r, c, TypeDirection.DiagonaleBasGauche);
+		infoDiagonaleBasDroite = new InfosAlignement(r, c, TypeDirection.DiagonaleBasDroite);
+	}
 
 	// A appliquer que sur noir!!!!
 	@Override
@@ -112,14 +130,7 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 		Log.print(1010, "r = " + r + "c" + c);
 
 		TypeCouleur typeCouleur = TypeCouleur.Noir;
-		infoGauche = new InfosAlignement(r, c, TypeDirection.Gauche);
-		infoDroite = new InfosAlignement(r, c, TypeDirection.Droite);
-		infoHaut = new InfosAlignement(r, c, TypeDirection.Haut);
-		infoBas = new InfosAlignement(r, c, TypeDirection.Bas);
-		infoDiagonaleHautGauche = new InfosAlignement(r, c, TypeDirection.DiagonaleHautGauche);
-		infoDiagonaleHautDroite = new InfosAlignement(r, c, TypeDirection.DiagonaleHautDroite);
-		infoDiagonaleBasGauche = new InfosAlignement(r, c, TypeDirection.DiagonaleBasGauche);
-		infoDiagonaleBasDroite = new InfosAlignement(r, c, TypeDirection.DiagonaleBasDroite);
+		init(r,c);
 
 		Log.print(1010, infoDiagonaleHautGauche.toString());
 		Log.print(1010, infoDiagonaleHautDroite.toString());
@@ -142,14 +153,7 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 	public boolean estValide(PlateauDeJeu r, Coordonnees c, boolean troisFoisTroisAtribut, boolean quatreFoisQuatreAtribut, boolean sixSeptAtribut, TypeCouleur typeCouleur) {
 		// initialisation des infos selon les directions
 		Log.print(1010, "r = " + r + "c" + c);
-		infoGauche = new InfosAlignement(r, c, TypeDirection.Gauche);
-		infoDroite = new InfosAlignement(r, c, TypeDirection.Droite);
-		infoHaut = new InfosAlignement(r, c, TypeDirection.Haut);
-		infoBas = new InfosAlignement(r, c, TypeDirection.Bas);
-		infoDiagonaleHautGauche = new InfosAlignement(r, c, TypeDirection.DiagonaleHautGauche);
-		infoDiagonaleHautDroite = new InfosAlignement(r, c, TypeDirection.DiagonaleHautDroite);
-		infoDiagonaleBasGauche = new InfosAlignement(r, c, TypeDirection.DiagonaleBasGauche);
-		infoDiagonaleBasDroite = new InfosAlignement(r, c, TypeDirection.DiagonaleBasDroite);
+		init(r,c);
 
 		Log.print(1010, infoDiagonaleHautGauche.toString());
 		Log.print(1010, infoDiagonaleHautDroite.toString());
