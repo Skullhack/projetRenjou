@@ -319,6 +319,8 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 		renjou.setJoueurs(tableauJoueurs);
 
+		// tabouPartie.add(TypeTabous.TROIS_TROIS);
+
 		renjou.getTabouJeu().setListeTabous(tabouPartie);
 
 		notifierObserveurs();
