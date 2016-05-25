@@ -254,6 +254,8 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		majCasesInjouables(renjou);
 		majCasesTabous(renjou);
 
+		//Log.print(1, renjou.getPlateauDeJeu().toString());
+
 	}
 
 	private boolean caseJouable(Renjou renjou, Coordonnees c) {
@@ -541,18 +543,28 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 	public void majCasesTabous(Renjou renjou) {
 
-		// int nbPionsBase =
-		// renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPionsBase();
-		// int nbPionsEnCours =
-		// renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
-
 		if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Noir) {
-			// mettre les cases tabous en fonction de la liste
+			// mettre les cases tabous pour le joueur noir en mode débutant
+			ajoutCoupsTabouModeDebutant(renjou);
+
 		} else if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Blanc) {
 			// faire sauter toutes les cases tabous. Le joueur blanc n'en a pas
 			renjou.getPlateauDeJeu().supprimerCasesTabous();
 		}
 
+	}
+
+	private void ajoutCoupsTabouModeDebutant(Renjou renjou) {
+		for (int i = 0; i < renjou.getPlateauDeJeu().getLignes(); i++) {
+			for (int j = 0; j < renjou.getPlateauDeJeu().getColonnes(); j++) {
+				Coordonnees coorParcours = new Coordonnees(i, j);
+				if (caseJouable(renjou, coorParcours)) {
+					if (!renjou.getTabouJeu().estValide(renjou.getPlateauDeJeu(), coorParcours)) {
+						renjou.getPlateauDeJeu().ajouter(coorParcours, TypeCase.Tabou);
+					}
+				}
+			}
+		}
 	}
 
 	public void majCasesInjouables(Renjou renjou) {
