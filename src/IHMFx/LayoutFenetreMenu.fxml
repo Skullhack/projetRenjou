@@ -9,13 +9,13 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="500.0" maxWidth="700.0" minHeight="500.0" minWidth="700.0" prefHeight="500.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane id="AnchorPane" maxHeight="500.0" maxWidth="700.0" minHeight="500.0" minWidth="700.0" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <BorderPane layoutX="0.0" layoutY="0.0" prefHeight="500.0" prefWidth="700.0">
       <bottom>
         <FlowPane prefHeight="56.0" prefWidth="700.0">
           <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="boutonValider" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#boutonValider" onMouseEntered="#boutonValiderDebutDrag" onMouseExited="#boutonValiderFinDrag" pickOnBounds="true" preserveRatio="true">
               <image>
                 <Image url="@../Images/Traditionnel/BoutonValider.png" />
               </image>
@@ -23,7 +23,7 @@
                 <Insets left="80.0" right="60.0" fx:id="x1" />
               </FlowPane.margin>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" FlowPane.margin="$x1">
+            <ImageView fx:id="boutonAnnuler" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#boutonAnnuler" onMouseEntered="#boutonAnnulerDebutDrag" onMouseExited="#boutonAnnulerFinDrag" pickOnBounds="true" preserveRatio="true" FlowPane.margin="$x1">
               <image>
                 <Image url="@../Images/Traditionnel/BoutonAnnuler.png" />
               </image>
@@ -53,7 +53,7 @@
                     <Label alignment="CENTER" font="$x3" prefHeight="45.0" prefWidth="200.0" text="Ordi. Moyen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                     <Label alignment="CENTER" font="$x3" prefHeight="45.0" prefWidth="200.0" text="Ordi. Difficile" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                     <Label alignment="CENTER" font="$x3" prefHeight="45.0" prefWidth="200.0" text="Ordi. Externe" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                    <RadioButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <RadioButton contentDisplay="CENTER" mnemonicParsing="false" prefHeight="45.0" prefWidth="24.0" text="" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="1">
                       <font>
                         <Font size="20.0" fx:id="x4" />
                       </font>
