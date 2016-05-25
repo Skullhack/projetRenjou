@@ -13,5 +13,6 @@ public enum EtatPartie {
     EnCours,
     NoirGagne,
     BlancGagne,
+    BlancGagneParTabou,
     PartieNulle
 }
