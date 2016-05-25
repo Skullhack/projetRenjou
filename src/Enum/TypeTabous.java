@@ -3,20 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Utilitaire;
-
-import java.awt.Point;
-
-import Controleur.Renjou;
+package Enum;
 
 /**
  *
  * @author michauad
  */
-public interface InterfaceTabou {
-	// Getter
-	
-	// Methodes
-
-	boolean estValide(PlateauDeJeu r, Coordonnees c);
+public enum TypeTabous {
+    TROIS_TROIS,
+    QUATRE_QUATRE,
+    SIX_SEPT
 }

@@ -239,10 +239,10 @@ public class FenetreJeu extends JFrame implements WindowListener{
         nbPieces[1].setForeground(Color.BLACK);
         
         //Boutons Tabous
-        ImageIcon tabouPrecedent = new ImageIcon(new ImageIcon("src/Images/" + m.getRenjou().getEmplacementThemes() + "/FlecheTabouGauche.png").getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon tabouSuivant = new ImageIcon(new ImageIcon("src/Images/" + m.getRenjou().getEmplacementThemes() + "/FlecheTabouDroite.png").getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
-        setIcone(affichageRenjou.getRenjouPrecedent(),new Color(0,0,0,0),tabouPrecedent,tabouPrecedent);
-        setIcone(affichageRenjou.getRenjouSuivant(),new Color(0,0,0,0),tabouSuivant,tabouSuivant);
+//        ImageIcon tabouPrecedent = new ImageIcon(new ImageIcon("src/Images/" + m.getRenjou().getEmplacementThemes() + "/FlecheTabouGauche.png").getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
+//        ImageIcon tabouSuivant = new ImageIcon(new ImageIcon("src/Images/" + m.getRenjou().getEmplacementThemes() + "/FlecheTabouDroite.png").getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
+//        setIcone(affichageRenjou.getRenjouPrecedent(),new Color(0,0,0,0),tabouPrecedent,tabouPrecedent);
+//        setIcone(affichageRenjou.getRenjouSuivant(),new Color(0,0,0,0),tabouSuivant,tabouSuivant);
         
         //Background
         panels[2].setBackground(Color.WHITE);
