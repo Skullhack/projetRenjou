@@ -135,7 +135,39 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 		return estValide;
 	}
 
-	public boolean sixSept() {
+	public boolean estValide(PlateauDeJeu r, Coordonnees c, boolean troisFoisTroisAtribut, boolean quatreFoisQuatreAtribut, boolean sixSeptAtribut) {
+		// initialisation des infos selon les directions
+		Log.print(1010, "r = " + r + "c" + c);
+
+		infoGauche = new InfosAlignement(r, c, TypeDirection.Gauche);
+		infoDroite = new InfosAlignement(r, c, TypeDirection.Droite);
+		infoHaut = new InfosAlignement(r, c, TypeDirection.Haut);
+		infoBas = new InfosAlignement(r, c, TypeDirection.Bas);
+		infoDiagonaleHautGauche = new InfosAlignement(r, c, TypeDirection.DiagonaleHautGauche);
+		infoDiagonaleHautDroite = new InfosAlignement(r, c, TypeDirection.DiagonaleHautDroite);
+		infoDiagonaleBasGauche = new InfosAlignement(r, c, TypeDirection.DiagonaleBasGauche);
+		infoDiagonaleBasDroite = new InfosAlignement(r, c, TypeDirection.DiagonaleBasDroite);
+
+		Log.print(1010, infoDiagonaleHautGauche.toString());
+		Log.print(1010, infoDiagonaleHautDroite.toString());
+		Log.print(1010, infoDiagonaleBasGauche.toString());
+		Log.print(1010, infoDiagonaleBasDroite.toString());
+
+		boolean estValide = true;
+		if (troisFoisTroisAtribut) {
+			estValide = estValide && !troisFoisTrois();
+		}
+		if (quatreFoisQuatreAtribut) {
+			estValide = estValide && !quatreFoisQuatre();
+		}
+		if (sixSeptAtribut) {
+			estValide = estValide && !sixSept();
+		}
+		return estValide;
+	}
+
+	
+	private boolean sixSept() {
 		if ((nbPionNoirDiagonaleDroiteContinu() > 5)) {
 			return true;
 		}
@@ -152,7 +184,7 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 		return false;
 	}
 
-	public boolean troisFoisTrois() {
+	private boolean troisFoisTrois() {
 		if (estTroisDiagonaleDroite()) {
 			if (estTroisDiagonaleGauche()) {
 				return true;
@@ -178,8 +210,21 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 		return false;
 	}
 
-	public boolean quatreFoisQuatre() {
+	private boolean quatreFoisQuatre() {
 
+		if(estQuatreQuatreDiagonaleDroite()){
+			return true;
+		}
+		if(estQuatreDiagonaleGauche()){
+			return true;
+		}
+		if(estQuatreQuatreHorizontale()){
+			return true;
+		}
+		if(estQuatreQuatreVerticale()){
+			return true;
+		}
+		
 		// test quand le 4*4 est dans des directions différentes cf
 		// testQuatreQuatreBasique1
 		if (estQuatreDiagonaleDroite()) {
@@ -266,6 +311,42 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 		return ((infoDroite.estLibreNoir() || infoGauche.estLibreNoir()) && (nbPionNoirHorizontale() == 4));
 	}
 
+	private boolean estQuatreQuatreVerticale(){
+		if(nbPionNoirVerticaleContinu() + infoHaut.getNbNoirNonContinu() == 4 ){
+			if(nbPionNoirVerticaleContinu() + infoBas.getNbNoirNonContinu() == 4){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private boolean estQuatreQuatreHorizontale(){
+		if(nbPionNoirHorizontaleContinu() + infoDroite.getNbNoirNonContinu() == 4 ){
+			if(nbPionNoirVerticaleContinu() + infoGauche.getNbNoirNonContinu() == 4){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private boolean estQuatreQuatreDiagonaleGauche(){
+		if(nbPionNoirDiagonaleGaucheContinu() + infoDiagonaleHautDroite.getNbNoirNonContinu() == 4 ){
+			if(nbPionNoirVerticaleContinu() + infoDiagonaleBasGauche.getNbNoirNonContinu() == 4){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private boolean estQuatreQuatreDiagonaleDroite(){
+		if(nbPionNoirDiagonaleDroiteContinu() + infoDiagonaleHautGauche.getNbNoirNonContinu() == 4 ){
+			if(nbPionNoirVerticaleContinu() + infoDiagonaleBasDroite.getNbNoirNonContinu() == 4){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	private int nbPionNoirDiagonaleDroite() {
 		return (infoDiagonaleHautGauche.getNbNoirNonContinu() + infoDiagonaleBasDroite.getNbNoirNonContinu()
 				+ infoDiagonaleHautGauche.getNbNoir() + infoDiagonaleBasDroite.getNbNoir() + 1);
