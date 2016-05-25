@@ -32,7 +32,7 @@
         </FlowPane>
       </bottom>
       <center>
-        <TabPane minHeight="400.0" prefHeight="400.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="20.0" tabMaxWidth="150.0" tabMinHeight="20.0" tabMinWidth="150.0">
+        <TabPane fx:id="tabs" minHeight="400.0" prefHeight="400.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="20.0" tabMaxWidth="150.0" tabMinHeight="20.0" tabMinWidth="150.0">
           <tabs>
             <Tab text="Joueurs">
               <content>
@@ -53,20 +53,20 @@
                     <Label alignment="CENTER" font="$x3" prefHeight="45.0" prefWidth="200.0" text="Ordi. Moyen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                     <Label alignment="CENTER" font="$x3" prefHeight="45.0" prefWidth="200.0" text="Ordi. Difficile" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                     <Label alignment="CENTER" font="$x3" prefHeight="45.0" prefWidth="200.0" text="Ordi. Externe" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                    <RadioButton contentDisplay="CENTER" mnemonicParsing="false" prefHeight="45.0" prefWidth="24.0" text="" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <RadioButton fx:id="noir1" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="45.0" prefWidth="203.0" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="1">
                       <font>
                         <Font size="20.0" fx:id="x4" />
                       </font>
                     </RadioButton>
-                    <RadioButton alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                    <RadioButton alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                    <RadioButton alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                    <RadioButton alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-                    <RadioButton alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                    <RadioButton alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                    <RadioButton alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                    <RadioButton alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                    <RadioButton alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                    <RadioButton fx:id="noir2" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <RadioButton fx:id="noir3" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                    <RadioButton fx:id="noir4" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                    <RadioButton fx:id="noir5" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                    <RadioButton fx:id="blanc1" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                    <RadioButton fx:id="blanc2" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                    <RadioButton fx:id="blanc3" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                    <RadioButton fx:id="blanc4" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                    <RadioButton fx:id="blanc5" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                   </children>
                   <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

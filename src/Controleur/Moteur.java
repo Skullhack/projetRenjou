@@ -215,7 +215,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 		// notify avec etat de la partie
 		notifierObserveurs();
-		
+
 		// si c'est une IA, on la fait jouer
 		faireJouerIA();
 
