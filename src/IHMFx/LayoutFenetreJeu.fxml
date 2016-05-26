@@ -27,7 +27,7 @@
                     <Image url="@../Images/Traditionnel/Recommencer.png" />
                   </image>
                   <FlowPane.margin>
-                    <Insets left="15.0" top="10.0" />
+                    <Insets left="10.0" top="10.0" />
                   </FlowPane.margin>
                 </ImageView>
               </children>
@@ -69,29 +69,29 @@
       <left>
         <FlowPane maxHeight="620.0" minWidth="195.0" orientation="VERTICAL" prefHeight="541.0" prefWidth="195.0">
           <children>
-            <FlowPane fx:id="panelJ1" maxHeight="240.0" maxWidth="190.0" minHeight="240.0" minWidth="52.0" orientation="VERTICAL" prefHeight="240.0" prefWidth="190.0">
+            <FlowPane fx:id="panelJ1" maxHeight="235.0" maxWidth="190.0" minHeight="235.0" minWidth="190.0" orientation="VERTICAL" prefHeight="235.0" prefWidth="190.0" style="-fx-border-width: 5; -fx-border-color: gray;">
               <children>
-                <Label id="" alignment="CENTER" contentDisplay="CENTER" minHeight="20.0" prefHeight="47.0" prefWidth="191.0" text="Noir" textAlignment="CENTER">
+                <Label id="" alignment="CENTER" contentDisplay="CENTER" maxHeight="35.0" maxWidth="190.0" minHeight="35.0" minWidth="177.0" prefHeight="35.0" prefWidth="177.0" text="Noir" textAlignment="CENTER">
                   <font>
-                    <Font name="System Bold" size="35.0" fx:id="x4" />
+                    <Font name="System Bold" size="32.0" fx:id="x4" />
                   </font>
                   <FlowPane.margin>
                     <Insets />
                   </FlowPane.margin>
                 </Label>
-                <Label id="labelJ1" fx:id="labelNoir" alignment="CENTER" prefWidth="196.0" text="Humain" textAlignment="CENTER">
+                <Label id="labelJ1" fx:id="labelNoir" alignment="CENTER" prefHeight="21.0" prefWidth="180.0" text="Humain" textAlignment="CENTER">
                   <font>
                     <Font size="18.0" fx:id="x2" />
                   </font>
                 </Label>
                 <AnchorPane id="AnchorPane" minWidth="60.0" prefWidth="60.0">
                   <children>
-                    <ImageView fx:id="pionNoir" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" smooth="true" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="0.0">
+                    <ImageView fx:id="pionNoir" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" smooth="true" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0">
                       <image>
                         <Image url="@../Images/Traditionnel/PionNoir.png" />
                       </image>
                     </ImageView>
-                    <Label fx:id="nbPieceNoir" alignment="CENTER" prefHeight="24.0" prefWidth="59.0" text="60" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="10.0">
+                    <Label fx:id="nbPieceNoir" alignment="CENTER" layoutX="70.0" layoutY="11.0" prefHeight="39.0" prefWidth="40.0" text="60" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="11.0">
                       <font>
                         <Font size="30.0" fx:id="x5" />
                       </font>
@@ -103,10 +103,10 @@
                     <Image url="@../Images/Traditionnel/Ampoule.png" />
                   </image>
                   <FlowPane.margin>
-                    <Insets left="75.0" right="75.0" top="5.0" />
+                    <Insets left="70.0" right="70.0" top="5.0" />
                   </FlowPane.margin>
                 </ImageView>
-                <Label fx:id="tempsNoir" alignment="CENTER" font="$x2" prefWidth="200.0" text="Temps restant : 30" textAlignment="CENTER">
+                <Label fx:id="tempsNoir" alignment="CENTER" font="$x2" prefHeight="21.0" prefWidth="180.0" text="Temps restant : 30" textAlignment="CENTER">
                   <FlowPane.margin>
                     <Insets />
                   </FlowPane.margin>
@@ -133,18 +133,18 @@
                 </ImageView>
               </children>
             </FlowPane>
-            <FlowPane fx:id="panelJ2" maxHeight="240.0" maxWidth="190.0" minHeight="240.0" minWidth="190.0" prefHeight="240.0" prefWidth="190.0">
+            <FlowPane fx:id="panelJ2" maxHeight="235.0" maxWidth="190.0" minHeight="235.0" minWidth="190.0" prefHeight="235.0" prefWidth="190.0" style="-fx-border-color: grey; -fx-border-width: 5;">
               <children>
-                <Label alignment="CENTER" font="$x4" minHeight="20.0" prefHeight="47.0" prefWidth="200.0" text="Blanc" textAlignment="CENTER" />
-                <Label fx:id="labelBlanc" alignment="CENTER" font="$x2" prefWidth="200.0" text="Ordi. Facile" textAlignment="CENTER" />
+                <Label alignment="CENTER" font="$x4" maxHeight="35.0" maxWidth="190.0" minHeight="35.0" minWidth="180.0" prefHeight="35.0" prefWidth="180.0" text="Blanc" textAlignment="CENTER" />
+                <Label fx:id="labelBlanc" alignment="CENTER" font="$x2" prefHeight="21.0" prefWidth="181.0" text="Ordi. Facile" textAlignment="CENTER" />
                 <AnchorPane id="AnchorPane" minWidth="60.000091552734375" prefWidth="60.000091552734375">
                   <children>
-                    <ImageView fx:id="pionBlanc" fitHeight="60.000099999997474" fitWidth="60.000099999997474" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.0">
+                    <ImageView fx:id="pionBlanc" fitHeight="60.000099999997474" fitWidth="60.000099999997474" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="0.0">
                       <image>
                         <Image url="@../Images/Traditionnel/PionBlanc.png" />
                       </image>
                     </ImageView>
-                    <Label fx:id="nbPieceBlanc" alignment="CENTER" font="$x5" layoutX="70.0" layoutY="10.0" prefHeight="24.0" prefWidth="59.0" text="60" textAlignment="CENTER" textFill="BLACK" />
+                    <Label fx:id="nbPieceBlanc" alignment="CENTER" font="$x5" layoutX="66.0" layoutY="13.0" prefHeight="35.0" prefWidth="48.0" text="60" textAlignment="CENTER" textFill="BLACK" />
                   </children>
                 </AnchorPane>
                 <ImageView fx:id="iconeBlanc" fitHeight="58.583099185661105" fitWidth="38.112300872802734" onMouseEntered="#dragDebutSablierAmpoule2" onMouseExited="#dragFinSablierAmpoule2" pickOnBounds="true" preserveRatio="true">
@@ -152,10 +152,13 @@
                     <Image url="@../Images/Traditionnel/Ampoule.png" />
                   </image>
                   <FlowPane.margin>
-                    <Insets left="80.0" right="80.0" top="5.0" fx:id="x6" />
+                    <Insets left="70.0" right="70.0" top="5.0" fx:id="x6" />
                   </FlowPane.margin>
                 </ImageView>
-                <Label fx:id="tempsBlanc" alignment="CENTER" font="$x2" prefWidth="199.9998779296875" text="Temps restant : 30" textAlignment="CENTER" />
+                <Label fx:id="tempsBlanc" alignment="CENTER" font="$x2" prefHeight="21.0" prefWidth="179.0" text="Temps restant : 30" textAlignment="CENTER">
+                           <opaqueInsets>
+                              <Insets left="3.0" />
+                           </opaqueInsets></Label>
               </children>
             </FlowPane>
           </children>
