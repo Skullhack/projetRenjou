@@ -336,7 +336,8 @@ public class EcouteurFenetreJeu implements Initializable {
 		//Voir si partie gagne
 		partieGagne();
 		//Si c'est au tour de l'IA de jouer on desactive annuler et refaire
-		if (m.getRenjou().getJoueurs()[m.getRenjou().getJoueurCourant()].getType() != TypeJoueur.Humain) {
+		if (m.getRenjou().getJoueurs()[m.getRenjou().getJoueurCourant()].getType() != TypeJoueur.Humain 
+				&& m.getRenjou().getEtatPartie() == EtatPartie.EnCours) {
 			annuler.setImage(ihm.i.getAnnulerDisab());
 			annuler.setDisable(true);
 			refaire.setImage(ihm.i.getRefaireDisab());
