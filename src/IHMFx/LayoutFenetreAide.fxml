@@ -33,7 +33,7 @@
                      <content>
                         <ImageView fitHeight="415.0" fitWidth="701.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../Images/Regles/Regles.png" />
+                              <Image url="@../Images/PourToutLesThemes/Regles.png" />
                            </image>
                         </ImageView>
                      </content>
