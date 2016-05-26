@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 public class EcouteurFenetreMenu {
 	private IHM ihm;
 	private Moteur m;
+	private String ancienTheme;
 	@FXML
 	private ImageView boutonValider;
 	@FXML
@@ -141,7 +142,6 @@ public class EcouteurFenetreMenu {
 		boutonValider.setImage(ihm.i.getBoutonValider());
 	}
 	
-	
 	@FXML
 	private void boutonValiderDebutDrag(MouseEvent e) {
 		boutonValider.setImage(ihm.i.getBoutonValiderDrag());
@@ -155,6 +155,22 @@ public class EcouteurFenetreMenu {
 	@FXML
 	private void boutonAnnulerFinDrag(MouseEvent e) {
 		boutonAnnuler.setImage(ihm.i.getBoutonAnnuler());
+	}
+	
+	@FXML
+	private void selectionnerThemeTraditionnel(MouseEvent e) {
+		ancienTheme = m.getRenjou().getEmplacementThemes();
+		m.getRenjou().setNouveauTheme("Traditionnel");
+		ihm.i.setImage();
+		ihm.actualiser();
+	}
+	
+	@FXML
+	private void selectionnerThemeZelda(MouseEvent e) {
+		ancienTheme = m.getRenjou().getEmplacementThemes();
+		m.getRenjou().setNouveauTheme("Zelda");
+		ihm.i.setImage();
+		ihm.actualiser();
 	}
 	
 	public void selectionnerRadioJoueur() {

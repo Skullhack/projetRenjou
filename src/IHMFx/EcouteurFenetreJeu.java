@@ -21,11 +21,13 @@ import java.util.ResourceBundle;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import Controleur.Moteur;
 import Controleur.PionJoue;
+import Enum.EtatPartie;
 import Enum.TypeCase;
 import Enum.TypeJoueur;
 import javafx.fxml.FXML;
@@ -37,9 +39,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelReader;
+import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 
 /**
@@ -144,7 +149,6 @@ public class EcouteurFenetreJeu implements Initializable {
 	
 	@FXML
 	private void dragDebutRecommencer(MouseEvent e) {
-		
 		String theme=m.getRenjou().getEmplacementThemes();
 		recommencer.setImage(ihm.i.getRecommencerDrag());
 	}
@@ -287,7 +291,7 @@ public class EcouteurFenetreJeu implements Initializable {
 	
 	@FXML
 	private void themeMenu(ActionEvent e) {
-		ihm.fm.initModality(Modality.WINDOW_MODAL);		ihm.fm.setNouvellePartie(false);
+		ihm.fm.setNouvellePartie(false);
 		ihm.fm.montrer();
 		ihm.fm.setAlwaysOnTop(true);
 		ihm.efm.getTabPane().getSelectionModel().select(2);
@@ -327,6 +331,15 @@ public class EcouteurFenetreJeu implements Initializable {
 		//Plateau
 		repeindrePlateau();		
 		disabEnabAnnulerRefaire();
+		//Voir si partie gagne
+		partieGagne();
+		//Si c'est au tour de l'IA de jouer on desactive annuler et refaire
+		if (m.getRenjou().getJoueurs()[m.getRenjou().getJoueurCourant()].getType() != TypeJoueur.Humain) {
+			annuler.setImage(ihm.i.getAnnulerDisab());
+			annuler.setDisable(true);
+			refaire.setImage(ihm.i.getRefaireDisab());
+			refaire.setDisable(true);
+		}
 	}
 	
 	public void disabEnabAnnulerRefaire() {
@@ -347,6 +360,28 @@ public class EcouteurFenetreJeu implements Initializable {
 		}
 	}
 
+	private void partieGagne() {
+    	String message;
+    	if (!(m.getRenjou().getEtatPartie() == EtatPartie.EnCours)) {
+	    	if (m.getRenjou().getEtatPartie() == EtatPartie.NoirGagne) {
+	    		message = "Le joueur noir a gagné la partie !";
+	    	} else if (m.getRenjou().getEtatPartie() == EtatPartie.BlancGagne) {
+	    		message = "Le joueur blanc a gagné la partie !";
+	    	} else if (m.getRenjou().getEtatPartie() == EtatPartie.BlancGagneParTabou) {
+	    		message = "Le joueur blanc a gagné la partie grace a  un tabou !";
+	    	}
+	    	else if(m.getRenjou().getEtatPartie() == EtatPartie.PartieNulle) {
+	    		message = "Partie nulle !";
+	    	} else {
+	    		message = "Erreur !";
+	    	}
+	    	int confirm = JOptionPane.showOptionDialog(
+		             null, message, 
+		             "Fin de partie", JOptionPane.CLOSED_OPTION, 
+		             JOptionPane.QUESTION_MESSAGE, null, null, null);
+    	}
+    }
+	
 	private void repeindrePlateau() {
 		String theme = m.getRenjou().getEmplacementThemes();
 		Image plat = ihm.i.getPlateau();
@@ -374,8 +409,9 @@ public class EcouteurFenetreJeu implements Initializable {
 		//On retransforme en Image
 		WritableImage writableImage = new WritableImage((int)plat.getWidth(), (int)plat.getHeight());
 		canvas.snapshot(null, writableImage);
-		Image wi = (Image) writableImage;
-		imageAnnuler.add(wi);
-		plateau.setImage(wi);
+		
+		Image i = (Image) writableImage;
+		//imageAnnuler.add(i);
+		plateau.setImage(i);
 	}   
 }

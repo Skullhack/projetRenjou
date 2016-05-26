@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -24,6 +25,7 @@ public class FenetreMenu extends Stage {
 		fx.setController(efm);
 		Parent root = fx.load();
         this.setTitle("Menu");
+        this.initModality(Modality.APPLICATION_MODAL);
     	this.setResizable(false);
         this.setScene(new Scene(root, 700, 500));
         this.centerOnScreen();

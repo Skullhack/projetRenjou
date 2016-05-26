@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,10 +21,11 @@ public class FenetreJeu extends Stage {
     	this.setTitle("Renjou");
     	this.setResizable(false);
     	this.centerOnScreen();
+    	Platform.setImplicitExit(false);
     	EventHandler<WindowEvent> eh = new EventHandler<WindowEvent>() {
             public void handle(WindowEvent we) {
         		int confirm = JOptionPane.showOptionDialog(
-       	             null, "Etes vous sûr de vouloir quitter ?", 
+       	             null, "Etes vous sur de vouloir quitter ?", 
        	             "Quitter la partie", JOptionPane.YES_NO_OPTION, 
        	             JOptionPane.QUESTION_MESSAGE, null, null, null);
        	        if (confirm == 0) {

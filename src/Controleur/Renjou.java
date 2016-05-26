@@ -148,4 +148,8 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 		return null;
 	}
 
+	public void setNouveauTheme(String theme) {
+		this.emplacementThemes = theme;
+	}
+
 }
