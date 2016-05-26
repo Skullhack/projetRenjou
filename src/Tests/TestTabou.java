@@ -15,6 +15,7 @@ import Enum.TypeTabous;
 import Utilitaire.Coordonnees;
 import Utilitaire.InfosAlignement;
 import Utilitaire.Log;
+import Utilitaire.Motif;
 import Utilitaire.PlateauDeJeu;
 import Utilitaire.Tabou;
 
@@ -138,6 +139,19 @@ public class TestTabou {
 		assertTrue(test.estValide(pdj, new Coordonnees(7,10), true, true, true, typeCouleur));
 		assertTrue(test.estValide(pdj, new Coordonnees(11,10), true, true, true, typeCouleur));
 		assertTrue(test.estValide(pdj, new Coordonnees(10,4), true, true, true, typeCouleur));
+	}
+	
+	@Test
+	public void testQuatreTrois2(){
+		pdj = pdj.charger(chemin + "TestQuatreTrois");
+		Motif m1 = new Motif(pdj, new Coordonnees(2,3));
+		Motif m2 = new Motif(pdj, new Coordonnees(7,10));
+		Motif m3 = new Motif(pdj, new Coordonnees(11,10));
+		Motif m4 = new Motif(pdj, new Coordonnees(10,4));
+		assertTrue(m1.estQuatreFoisTrois(TypeCouleur.Noir));
+		assertTrue(m2.estQuatreFoisTrois(TypeCouleur.Noir));
+		assertTrue(m3.estQuatreFoisTrois(TypeCouleur.Noir));
+		assertTrue(m4.estQuatreFoisTrois(TypeCouleur.Noir));
 	}
 	
 }

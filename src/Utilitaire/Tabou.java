@@ -95,8 +95,6 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 		}
 	}
 	
-
-
 	// A appliquer que sur noir!!!!
 	@Override
 	// A appliquer que sur noir!!!!

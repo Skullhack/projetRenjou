@@ -618,23 +618,102 @@ public class Motif {
 	}
 
 	public boolean estTroisFoisDeux(TypeCouleur tc) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-	public boolean estTroisFoisDeuxLibreLibre(TypeCouleur tc) {
-		// TODO Auto-generated method stub
+		if(estTroisHorizontale(tc)){
+			if(estDeuxDiagonaleDroite(tc)||estDeuxVerticale(tc)||estDeuxDiagonaleGauche(tc)){
+				return true;
+			}
+		}
+		if(estTroisDiagonaleDroite(tc)){
+			if(estDeuxVerticaleLibre(tc)||estDeuxDiagonaleGauche(tc)||estDeuxHorizontale(tc)){
+				return true;
+			}
+		}
+		if(estTroisVerticale(tc)){
+			if(estDeuxDiagonaleGauche(tc)||estDeuxHorizontale(tc)||estDeuxDiagonaleDroite(tc)){
+				return true;
+			}
+		}
+		if(estTroisDiagonaleGauche(tc)){
+			if(estDeuxVerticale(tc)||estDeuxHorizontale(tc)||estDeuxDiagonaleDroite(tc)){
+				return true;
+			}
+		}
+		
 		return false;
 	}
 
 	public boolean estTroisFoisDeuxLibre(TypeCouleur tc) {
-		// TODO Auto-generated method stub
+		if(estTroisHorizontaleLibre(tc)){
+			if(estDeuxDiagonaleDroiteLibre(tc)||estDeuxVerticaleLibre(tc)||estDeuxDiagonaleGaucheLibre(tc)){
+				return true;
+			}
+		}
+		if(estTroisDiagonaleDroiteLibre(tc)){
+			if(estDeuxVerticaleLibreLibre(tc)||estDeuxDiagonaleGaucheLibre(tc)||estDeuxHorizontaleLibre(tc)){
+				return true;
+			}
+		}
+		if(estTroisVerticaleLibre(tc)){
+			if(estDeuxDiagonaleGaucheLibre(tc)||estDeuxHorizontaleLibre(tc)||estDeuxDiagonaleDroiteLibre(tc)){
+				return true;
+			}
+		}
+		if(estTroisDiagonaleGaucheLibre(tc)){
+			if(estDeuxVerticaleLibre(tc)||estDeuxHorizontaleLibre(tc)||estDeuxDiagonaleDroiteLibre(tc)){
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	public boolean estTroisFoisDeuxLibreLibre(TypeCouleur tc) {
+		if(estTroisHorizontaleLibreLibre(tc)){
+			if(estDeuxDiagonaleDroiteLibreLibre(tc)||estDeuxVerticaleLibreLibre(tc)||estDeuxDiagonaleGaucheLibreLibre(tc)){
+				return true;
+			}
+		}
+		if(estTroisDiagonaleDroiteLibreLibre(tc)){
+			if(estDeuxVerticaleLibreLibre(tc)||estDeuxDiagonaleGaucheLibreLibre(tc)||estDeuxHorizontaleLibreLibre(tc)){
+				return true;
+			}
+		}
+		if(estTroisVerticaleLibreLibre(tc)){
+			if(estDeuxDiagonaleGaucheLibreLibre(tc)||estDeuxHorizontaleLibreLibre(tc)||estDeuxDiagonaleDroiteLibreLibre(tc)){
+				return true;
+			}
+		}
+		if(estTroisDiagonaleGaucheLibreLibre(tc)){
+			if(estDeuxVerticaleLibreLibre(tc)||estDeuxHorizontaleLibreLibre(tc)||estDeuxDiagonaleDroiteLibreLibre(tc)){
+				return true;
+			}
+		}
+		
 		return false;
 	}
 
 	public boolean estQuatreFoisTrois(TypeCouleur tc) {
-		// TODO Auto-generated method stub
+		if(estQuatreHorizontaleLibre(tc)){
+			if(estTroisDiagonaleDroiteLibreLibre(tc)||estTroisVerticaleLibreLibre(tc)||estTroisDiagonaleGaucheLibreLibre(tc)){
+				return true;
+			}
+		}
+		if(estQuatreDiagonaleDroiteLibre(tc)){
+			if(estTroisVerticaleLibreLibre(tc)||estTroisDiagonaleGaucheLibreLibre(tc)||estTroisHorizontaleLibreLibre(tc)){
+				return true;
+			}
+		}
+		if(estQuatreVerticaleLibre(tc)){
+			if(estTroisDiagonaleDroiteLibreLibre(tc)||estTroisDiagonaleGaucheLibreLibre(tc)||estTroisHorizontaleLibreLibre(tc)){
+				return true;
+			}
+		}
+		if(estQuatreDiagonaleGaucheLibre(tc)){
+			if(estTroisDiagonaleDroiteLibreLibre(tc)||estTroisVerticaleLibreLibre(tc)||estTroisHorizontaleLibreLibre(tc)){
+				return true;
+			}
+		}
+		
 		return false;
 	}
 
