@@ -69,7 +69,7 @@
       <left>
         <FlowPane maxHeight="620.0" minWidth="195.0" orientation="VERTICAL" prefHeight="541.0" prefWidth="195.0">
           <children>
-            <FlowPane fx:id="panelJ1" maxHeight="250.0" maxWidth="190.0" minHeight="250.0" minWidth="52.0" orientation="VERTICAL" prefHeight="250.0" prefWidth="190.0">
+            <FlowPane fx:id="panelJ1" maxHeight="240.0" maxWidth="190.0" minHeight="240.0" minWidth="52.0" orientation="VERTICAL" prefHeight="240.0" prefWidth="190.0">
               <children>
                 <Label id="" alignment="CENTER" contentDisplay="CENTER" minHeight="20.0" prefHeight="47.0" prefWidth="191.0" text="Noir" textAlignment="CENTER">
                   <font>
@@ -133,7 +133,7 @@
                 </ImageView>
               </children>
             </FlowPane>
-            <FlowPane fx:id="panelJ2" maxHeight="230.0" maxWidth="190.0" minHeight="230.0" minWidth="190.0" prefHeight="230.0" prefWidth="190.0">
+            <FlowPane fx:id="panelJ2" maxHeight="240.0" maxWidth="190.0" minHeight="240.0" minWidth="190.0" prefHeight="240.0" prefWidth="190.0">
               <children>
                 <Label alignment="CENTER" font="$x4" minHeight="20.0" prefHeight="47.0" prefWidth="200.0" text="Blanc" textAlignment="CENTER" />
                 <Label fx:id="labelBlanc" alignment="CENTER" font="$x2" prefWidth="200.0" text="Ordi. Facile" textAlignment="CENTER" />
