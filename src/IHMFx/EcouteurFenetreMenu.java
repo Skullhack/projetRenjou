@@ -19,6 +19,7 @@ public class EcouteurFenetreMenu {
 	private IHM ihm;
 	private Moteur m;
 	private String ancienTheme;
+	private boolean themeChangement;
 	@FXML
 	private ImageView boutonValider;
 	@FXML
@@ -58,6 +59,7 @@ public class EcouteurFenetreMenu {
 	public EcouteurFenetreMenu(IHM ihm) {
 		this.ihm = ihm;
 		this.m = ihm.m;
+		this.themeChangement = false;
 		try {
 			ihm.fm = new FenetreMenu(this);
 		} catch (IOException e) {
@@ -85,7 +87,7 @@ public class EcouteurFenetreMenu {
 	}
 	
 	public void annuler() {
-		if (ancienTheme != "") {
+		if (ancienTheme != "" && themeChangement) {
 			m.getRenjou().setNouveauTheme(ancienTheme);
 			ihm.i.setImage();
 			ihm.actualiser();
@@ -93,6 +95,7 @@ public class EcouteurFenetreMenu {
 		}	
 		ihm.fj.montrer();
 		ihm.fm.cacher();
+		themeChangement = false;
 	}
 	
 	@FXML
@@ -179,6 +182,7 @@ public class EcouteurFenetreMenu {
 		m.getRenjou().setNouveauTheme(nouveauTheme);
 		ihm.i.setImage();
 		ihm.actualiser();
+		themeChangement = true;
 	}
 	
 	public void selectionnerRadioJoueur() {
