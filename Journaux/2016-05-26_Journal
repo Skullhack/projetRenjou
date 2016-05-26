@@ -11,15 +11,19 @@ PARTIE IA  :
 
 - Faire IA Moyen et difficile
 
-PARTIE MOTEUR : 
+PARTIE MOTEUR :
 
-- Liaison tabous-moteur
+- voir pour gérer configurer partie (ajout variable débutant, garder un seul point d'entrée ??)
+- voir pour mode tutoriel
 
 Distribution des tâches pour la journée :
 
-- Christopher : 
-           - voir pour gérer configurer partie (ajout variable débutant, garder un seul point d'entrée ??)
-           - voir pour mode tutoriel
+- Christopher Alixia Vincent Adrien : 
+           - Gestion d'un thread/timer pour l'IA
+           
+- Léa Anthony :
+           - Travail sur l'heuristique
+                 
            
            
 #TÂCHES EFFECTUÉES
