@@ -339,14 +339,14 @@ public class EcouteurFenetreJeu implements Initializable {
 		
 		//Pointillé sur joueur en cours
 		if (m.getRenjou().getJoueurCourant() == 0 && m.getRenjou().getEtatPartie() == EtatPartie.EnCours) {
+			panelJ2.setStyle("-fx-border-width : 5;-fx-border-color : gray;");
 			panelJ1.setStyle("-fx-border-width : 5;-fx-border-color : yellow;");
-			panelJ2.setStyle(null);
 		} else if (m.getRenjou().getJoueurCourant() == 1 && m.getRenjou().getEtatPartie() == EtatPartie.EnCours) {
-			panelJ1.setStyle(null);
+			panelJ1.setStyle("-fx-border-width : 5;-fx-border-color : gray;");
 			panelJ2.setStyle("-fx-border-width : 5;-fx-border-color : yellow;");
 		} else {
-			panelJ1.setStyle(null);
-			panelJ2.setStyle(null);
+			panelJ1.setStyle("-fx-border-width : 5;-fx-border-color : gray;");
+			panelJ2.setStyle("-fx-border-width : 5;-fx-border-color : gray;");
 		}
 		
 		setIconeSablierAmpoule();
@@ -363,7 +363,6 @@ public class EcouteurFenetreJeu implements Initializable {
 			refaire.setImage(ihm.i.getRefaireDisab());
 			refaire.setDisable(true);
 		}
-		
 		fond.setImage(ihm.i.getFond());
 	}
 	
