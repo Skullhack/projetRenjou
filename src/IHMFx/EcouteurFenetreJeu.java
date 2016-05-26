@@ -92,6 +92,12 @@ public class EcouteurFenetreJeu implements Initializable {
     private FlowPane panelJ2;
     @FXML
     private ImageView fond;
+    @FXML
+    private ImageView tabou1;
+    @FXML
+    private ImageView tabou2;
+    @FXML
+    private ImageView tabou3;
    
     
     public EcouteurFenetreJeu(IHM ihm) {
@@ -207,6 +213,39 @@ public class EcouteurFenetreJeu implements Initializable {
 		String theme=m.getRenjou().getEmplacementThemes();
 		if (!refaire.isDisabled())
 			refaire.setImage(ihm.i.getRefaire());
+	}
+	
+	@FXML
+	private void dragDebutTabou1(MouseEvent e) {
+		ihm.efat.setImageTabou(ihm.i.getTroisTroisExplication());
+		ihm.fat.montrer();
+	}
+	
+	@FXML
+	private void dragFinTabou1(MouseEvent e) {
+		ihm.fat.cacher();
+	}
+	
+	@FXML
+	private void dragDebutTabou2(MouseEvent e) {
+		ihm.efat.setImageTabou(ihm.i.getQuatreQuatreExplication());
+		ihm.fat.montrer();
+	}
+	
+	@FXML
+	private void dragFinTabou2(MouseEvent e) {
+		ihm.fat.cacher();
+	}
+	
+	@FXML
+	private void dragDebutTabou3(MouseEvent e) {
+		ihm.efat.setImageTabou(ihm.i.getSixSeptExplication());
+		ihm.fat.montrer();
+	}
+	
+	@FXML
+	private void dragFinTabou3(MouseEvent e) {
+		ihm.fat.cacher();
 	}
 	
 	@FXML
@@ -364,6 +403,9 @@ public class EcouteurFenetreJeu implements Initializable {
 			refaire.setDisable(true);
 		}
 		fond.setImage(ihm.i.getFond());
+		tabou1.setImage(ihm.i.getTroisTroisImage());
+		tabou2.setImage(ihm.i.getQuatreQuatreImage());
+		tabou3.setImage(ihm.i.getSixSeptImage());
 	}
 	
 	public void disabEnabAnnulerRefaire() {

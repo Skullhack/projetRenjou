@@ -28,6 +28,16 @@ public class Images {
 	private Image boutonRetour;
 	private Image boutonRetourDrag;
 	private Image fond;
+	private Image quatreQuatreImage;
+	private Image quatreQuatreExplication;
+	private Image quatreQuatreDisab;
+	private Image troisTroisImage;
+	private Image troisTroisExplication;
+	private Image troisTroisDisab;
+	private Image sixSeptImage;
+	private Image sixSeptExplication;
+	private Image sixSeptDisab;
+	
 	
 	public Images(Moteur m) {
 		this.m = m;
@@ -59,6 +69,15 @@ public class Images {
 		boutonRetour = new Image("./Images/"+theme+"/BoutonRetour.png");
 		boutonRetourDrag = new Image("./Images/"+theme+"/BoutonRetourDrag.png");
 		fond = new Image("./Images/"+theme+"/Fond.png");
+		quatreQuatreImage = new Image("./Images/PourToutLesThemes/QUATRE-QUATREImage.png");
+		quatreQuatreExplication = new Image("./Images/PourToutLesThemes/QUATRE-QUATREExplication.png");
+		quatreQuatreDisab = new Image("./Images/PourToutLesThemes/QUATRE-QUATREDisab.png");
+		troisTroisImage = new Image("./Images/PourToutLesThemes/TROIS-TROISImage.png");
+		troisTroisExplication = new Image("./Images/PourToutLesThemes/TROIS-TROISExplication.png");
+		troisTroisDisab = new Image("./Images/PourToutLesThemes/TROIS-TROISDisab.png");
+		sixSeptImage = new Image("./Images/PourToutLesThemes/SIX-SEPTImage.png");
+		sixSeptExplication = new Image("./Images/PourToutLesThemes/SIX-SEPTExplication.png");
+		sixSeptDisab = new Image("./Images/PourToutLesThemes/SIX-SEPTDisab.png");
 	}
 	
 	public Image getAmpoule() {
@@ -151,5 +170,40 @@ public class Images {
 	
 	public Image getFond() {
 		return fond;
+	}
+	
+	public Image getQuatreQuatreImage() {
+		return quatreQuatreImage;
+	}
+	public Image getQuatreQuatreExplication() {
+		return quatreQuatreExplication;
+	}
+	
+	public Image getQuatreQuatreDisab() {
+		return quatreQuatreDisab;
+	}
+	
+	public Image getTroisTroisImage() {
+		return troisTroisImage;
+	}
+	
+	public Image getTroisTroisExplication() {
+		return troisTroisExplication;
+	}
+	
+	public Image getTroisTroisDisab() {
+		return troisTroisDisab;
+	}
+	
+	public Image getSixSeptImage() {
+		return sixSeptImage;
+	}
+	
+	public Image getSixSeptExplication() {
+		return sixSeptExplication;
+	}
+	
+	public Image getSixSeptDisab() {
+		return sixSeptDisab;
 	}
 }
