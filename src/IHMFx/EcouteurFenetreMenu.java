@@ -8,6 +8,7 @@ import Enum.TypeJoueur;
 import Enum.TypeTabous;
 import IHMFx.FenetreMenu;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.ToggleGroup;
@@ -45,6 +46,12 @@ public class EcouteurFenetreMenu {
 	private RadioButton blanc5;
 	@FXML
 	private TabPane tabs;
+	@FXML
+	private CheckBox tabou1;
+	@FXML
+	private CheckBox tabou2;
+	@FXML
+	private CheckBox tabou3;
 	
 	
 	public EcouteurFenetreMenu(IHM ihm) {
@@ -83,6 +90,9 @@ public class EcouteurFenetreMenu {
 	@FXML
 	private void boutonValider(MouseEvent e) {
 		TypeJoueur[] tab = new TypeJoueur[2];
+		ArrayList<TypeTabous> tabous = new ArrayList<TypeTabous>();
+		
+		//Valeurs sélectionnées radiobutton joueur
 		if(noir1.isSelected()) {
 			tab[0] = TypeJoueur.values()[0];
 		} else if(noir2.isSelected()) {
@@ -106,9 +116,21 @@ public class EcouteurFenetreMenu {
 		} else if(blanc5.isSelected()) {
 			tab[1] = TypeJoueur.values()[4];
 		}
+		
+		//Valeurs sélectionnées dans tabou
+		if (tabou1.isSelected()) {
+			tabous.add(TypeTabous.QUATRE_QUATRE);
+		}
+		if (tabou2.isSelected()) {
+			tabous.add(TypeTabous.SIX_SEPT);
+		}
+		if (tabou3.isSelected()) {
+			tabous.add(TypeTabous.TROIS_TROIS);
+		}
+		
         if (tab[0] != null && tab[1] != null) {
         	//gerer charger et nouvelle partie : TODO
-            m.configurerPartie(tab[0], tab[1], new ArrayList<TypeTabous>(), ihm.fm.getNouvellePartie());
+            m.configurerPartie(tab[0], tab[1], tabous, ihm.fm.getNouvellePartie());
         }
 		ihm.fj.montrer();
 		ihm.fm.cacher();
@@ -158,7 +180,6 @@ public class EcouteurFenetreMenu {
 		} else if(m.getRenjou().getJoueurs()[1].getType() == TypeJoueur.values()[4]) {
 			blanc5.setSelected(true);
 		}
-		
 	}
 	
 	public TabPane getTabPane() {

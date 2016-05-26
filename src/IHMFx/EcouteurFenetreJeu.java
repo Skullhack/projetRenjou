@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.swing.ImageIcon;
@@ -48,6 +49,8 @@ import javafx.stage.Modality;
 public class EcouteurFenetreJeu implements Initializable {
     private Moteur m;
     private IHM ihm;
+    private ArrayList<Image> imageAnnuler;
+    private ArrayList<Image> imageRefaire;
     //Panneau gauche;
     @FXML
     private Label labelNoir;
@@ -83,6 +86,8 @@ public class EcouteurFenetreJeu implements Initializable {
         //Variables
     	this.ihm = ihm;
         this.m = ihm.m;
+        this.imageAnnuler = new ArrayList<>();
+        this.imageRefaire = new ArrayList<>();
 		try {
 			ihm.fj = new FenetreJeu(this);
 		} catch (IOException e) {
@@ -237,6 +242,7 @@ public class EcouteurFenetreJeu implements Initializable {
             fichierCharger = ouvertureFenetre.getSelectedFile().getAbsolutePath();
             m.charger(fichierCharger);
         }
+        
 	}
 	
 	@FXML
@@ -369,6 +375,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		WritableImage writableImage = new WritableImage((int)plat.getWidth(), (int)plat.getHeight());
 		canvas.snapshot(null, writableImage);
 		Image wi = (Image) writableImage;
+		imageAnnuler.add(wi);
 		plateau.setImage(wi);
 	}   
 }
