@@ -323,6 +323,8 @@ public class EcouteurFenetreJeu implements Initializable {
 	
 	public void update() {
 		//Panel Gauche
+		pionNoir.setImage(ihm.i.getPionNoir());
+		pionBlanc.setImage(ihm.i.getPionBlanc());
 		labelNoir.setText(m.getRenjou().getJoueurs()[0].getType().toString());
 		labelBlanc.setText(m.getRenjou().getJoueurs()[1].getType().toString());
 		nbPieceNoir.setText(Integer.toString(m.getRenjou().getJoueurs()[0].getNbPion()));
@@ -393,7 +395,16 @@ public class EcouteurFenetreJeu implements Initializable {
 		graphicsContext.drawImage(plat, 0, 0);
 		
 		//On ajoute les pions
+		Image iPionBlanc;
+		Image iPionNoir;
 		for (int i=0;i<m.getRenjou().getListeAnnuler().size();i++) {
+			if (i>m.getRenjou().getListeAnnuler().size()-3) {
+				iPionBlanc = ihm.i.getPionBlancJoue();
+				iPionNoir = ihm.i.getPionNoirJoue();
+			} else {
+				iPionBlanc = ihm.i.getPionBlanc();
+				iPionNoir = ihm.i.getPionNoir();
+			}
 			PionJoue p = m.getRenjou().getListeAnnuler().get(i); 
 	    	double width = (plat.getWidth())/16;
 	    	double height = (plat.getHeight())/16;
@@ -401,9 +412,9 @@ public class EcouteurFenetreJeu implements Initializable {
 	        double y = (p.getCoordonnees().getLigne()*height+4)+(height/2);
 	        
 	        if (p.getTypeCase() == TypeCase.PionBlanc)
-	        	graphicsContext.drawImage(ihm.i.getPionBlanc(), x, y, width, height);
+	        	graphicsContext.drawImage(iPionBlanc, x, y, width, height);
 	        else
-	        	graphicsContext.drawImage(ihm.i.getPionNoir(), x, y, width, height);
+	        	graphicsContext.drawImage(iPionNoir, x, y, width, height);
 		}
 		
 		//On retransforme en Image

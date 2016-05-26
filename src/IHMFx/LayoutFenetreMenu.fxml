@@ -199,7 +199,7 @@
               <content>
                 <GridPane>
                   <children>
-                    <ImageView fitHeight="83.82641876220703" fitWidth="172.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <ImageView fitHeight="83.82641876220703" fitWidth="172.0" onMouseClicked="#selectionnerThemeTraditionnel" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
                       <image>
                         <Image url="@../Images/Theme/ThemeTraditionnel.png" />
                       </image>
@@ -207,9 +207,9 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                       </GridPane.margin>
                     </ImageView>
-                              <ImageView fitHeight="83.82641876220703" fitWidth="172.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                              <ImageView fitHeight="83.82641876220703" fitWidth="172.0" onMouseClicked="#selectionnerThemeZelda" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                                  <image>
-                                    <Image url="@../Images/Theme/ThemeTraditionnel.png" />
+                                    <Image url="@../Images/Theme/ThemeZelda.png" />
                                  </image>
                                  <GridPane.margin>
                                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
