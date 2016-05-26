@@ -18,10 +18,14 @@ PARTIE MOTEUR :
 
 Distribution des tâches pour la journée :
 
-- Christopher Alixia Vincent Adrien : 
+- Vincent Adrien :
+  - Terminer l'IHM (gestion des thèmes, gestion des tabous etc...)
+
+- Christopher Alixia  : 
            - Gestion d'un thread/timer pour l'IA
            
 - Léa Anthony :
+		   - Remettre le système de l'IA comme avant (gros BUG ia contre ia et posession du tour entre joueur et IA)
            - Travail sur l'heuristique
                  
            
