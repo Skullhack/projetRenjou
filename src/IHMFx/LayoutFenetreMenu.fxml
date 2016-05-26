@@ -139,12 +139,12 @@
                            <children>
                               <ImageView fitHeight="193.0" fitWidth="221.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <image>
-                                    <Image url="@../Images/Tabous/QUATRE-QUATREImage.png" />
+                                    <Image url="@../Images/PourToutLesThemes/QUATRE-QUATREImage.png" />
                                  </image>
                               </ImageView>
                               <ImageView fitHeight="161.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
                                  <image>
-                                    <Image url="@../Images/Tabous/QUATRE-QUATREExplication.png" />
+                                    <Image url="@../Images/PourToutLesThemes/QUATRE-QUATREExplication.png" />
                                  </image>
                               </ImageView>
                               <CheckBox fx:id="tabou2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="13.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -173,22 +173,22 @@
                               </CheckBox>
                               <ImageView fitHeight="193.0" fitWidth="221.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                                  <image>
-                                    <Image url="@../Images/Tabous/SIX-SEPTImage.png" />
+                                    <Image url="@../Images/PourToutLesThemes/SIX-SEPTImage.png" />
                                  </image>
                               </ImageView>
                               <ImageView fitHeight="193.0" fitWidth="221.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <image>
-                                    <Image url="@../Images/Tabous/SIX-SEPTExplication.png" />
+                                    <Image url="@../Images/PourToutLesThemes/SIX-SEPTExplication.png" />
                                  </image>
                               </ImageView>
                               <ImageView fitHeight="193.0" fitWidth="221.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <image>
-                                    <Image url="@../Images/Tabous/TROIS-TROISExplication.png" />
+                                    <Image url="@../Images/PourToutLesThemes/TROIS-TROISExplication.png" />
                                  </image>
                               </ImageView>
                               <ImageView fitHeight="193.0" fitWidth="221.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                                  <image>
-                                    <Image url="@../Images/Tabous/TROIS-TROISImage.png" />
+                                    <Image url="@../Images/PourToutLesThemes/TROIS-TROISImage.png" />
                                  </image>
                               </ImageView>
                            </children>
