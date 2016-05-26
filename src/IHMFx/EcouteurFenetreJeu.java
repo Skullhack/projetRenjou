@@ -44,6 +44,7 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 
@@ -85,6 +86,10 @@ public class EcouteurFenetreJeu implements Initializable {
     private ImageView recommencer;
     @FXML
     private ImageView plateau;
+    @FXML
+    private FlowPane panelJ1;
+    @FXML
+    private FlowPane panelJ2;
    
     
     public EcouteurFenetreJeu(IHM ihm) {
@@ -329,6 +334,19 @@ public class EcouteurFenetreJeu implements Initializable {
 		labelBlanc.setText(m.getRenjou().getJoueurs()[1].getType().toString());
 		nbPieceNoir.setText(Integer.toString(m.getRenjou().getJoueurs()[0].getNbPion()));
 		nbPieceBlanc.setText(Integer.toString(m.getRenjou().getJoueurs()[1].getNbPion()));
+		
+		//Pointillé sur joueur en cours
+		if (m.getRenjou().getJoueurCourant() == 0 && m.getRenjou().getEtatPartie() == EtatPartie.EnCours) {
+			panelJ1.setStyle("-fx-border-width : 5;-fx-border-color : yellow;");
+			panelJ2.setStyle(null);
+		} else if (m.getRenjou().getJoueurCourant() == 1 && m.getRenjou().getEtatPartie() == EtatPartie.EnCours) {
+			panelJ1.setStyle(null);
+			panelJ2.setStyle("-fx-border-width : 5;-fx-border-color : yellow;");
+		} else {
+			panelJ1.setStyle(null);
+			panelJ2.setStyle(null);
+		}
+		
 		setIconeSablierAmpoule();
 		//Plateau
 		repeindrePlateau();		

@@ -20,7 +20,7 @@
       <bottom>
         <FlowPane minHeight="60.0001220703125" prefHeight="71.0" prefWidth="950.0">
           <children>
-            <FlowPane prefHeight="70.0" prefWidth="195.0" style="-fx-border-width: 3;&#10;-fx-border-color:black;&#10;-fx-border-style:dashed;">
+            <FlowPane prefHeight="70.0" prefWidth="195.0" style="-fx-border-width: 3; -fx-border-color: black;">
               <children>
                 <ImageView fx:id="recommencer" fitHeight="55.0" fitWidth="190.0" onMouseClicked="#recommencerClick" onMouseEntered="#dragDebutRecommencer" onMouseExited="#dragFinRecommencer" pickOnBounds="true" preserveRatio="true" style="">
                   <image>
@@ -67,9 +67,9 @@
         </ImageView>
       </center>
       <left>
-        <FlowPane maxHeight="620.0" minWidth="195.0" orientation="VERTICAL" prefHeight="510.0" prefWidth="195.0" style="-fx-border-color: black;&#10;-fx-border-width: 3;&#10;-fx-border-style:dashed;">
+        <FlowPane maxHeight="620.0" minWidth="195.0" orientation="VERTICAL" prefHeight="541.0" prefWidth="195.0" style="-fx-border-color: black; -fx-border-width: 3;">
           <children>
-            <FlowPane maxHeight="250.0" maxWidth="190.0" minHeight="250.0" minWidth="52.0" orientation="VERTICAL" prefHeight="250.0" prefWidth="190.0">
+            <FlowPane fx:id="panelJ1" maxHeight="240.0" maxWidth="190.0" minHeight="240.0" minWidth="52.0" orientation="VERTICAL" prefHeight="240.0" prefWidth="190.0">
               <children>
                 <Label id="" alignment="CENTER" contentDisplay="CENTER" minHeight="20.0" prefHeight="47.0" prefWidth="191.0" text="Noir" textAlignment="CENTER">
                   <font>
@@ -113,14 +113,14 @@
                 </Label>
               </children>
             </FlowPane>
-            <FlowPane maxHeight="68.0" maxWidth="190.0" minHeight="65.0" minWidth="190.0" prefHeight="68.0" prefWidth="190.0" style="-fx-background-color: gray;">
+            <FlowPane maxHeight="76.0" maxWidth="190.0" minHeight="65.0" minWidth="190.0" prefHeight="76.0" prefWidth="190.0" style="-fx-border-width: 5; -fx-border-color: black;">
               <children>
                 <ImageView fx:id="annuler" fitHeight="65.0" fitWidth="65.0" onMouseClicked="#annuler" onMouseEntered="#dragDebutAnnuler" onMouseExited="#dragFinAnnuler" pickOnBounds="true" preserveRatio="true">
                   <image>
                     <Image url="@../Images/Traditionnel/Annuler.png" />
                   </image>
                   <FlowPane.margin>
-                    <Insets left="20.0" right="10.0" />
+                    <Insets left="18.0" right="5.0" />
                   </FlowPane.margin>
                 </ImageView>
                 <ImageView fx:id="refaire" fitHeight="65.0" fitWidth="65.0" onMouseClicked="#refaire" onMouseEntered="#dragDebutRefaire" onMouseExited="#dragFinRefaire" pickOnBounds="true" preserveRatio="true">
@@ -128,12 +128,12 @@
                     <Image url="@../Images/Traditionnel/Refaire.png" />
                   </image>
                   <FlowPane.margin>
-                    <Insets left="12.0" right="10.0" />
+                    <Insets left="5.0" right="18.0" />
                   </FlowPane.margin>
                 </ImageView>
               </children>
             </FlowPane>
-            <FlowPane maxHeight="220.00009999999747" maxWidth="190.0" minHeight="220.0" minWidth="190.0" prefHeight="220.00009999999747" prefWidth="190.0">
+            <FlowPane fx:id="panelJ2" maxHeight="229.0" maxWidth="190.0" minHeight="220.0" minWidth="190.0" prefHeight="229.0" prefWidth="190.0">
               <children>
                 <Label alignment="CENTER" font="$x4" minHeight="20.0" prefHeight="47.0" prefWidth="200.0" text="Blanc" textAlignment="CENTER" />
                 <Label fx:id="labelBlanc" alignment="CENTER" font="$x2" prefWidth="200.0" text="Ordi. Facile" textAlignment="CENTER" />
@@ -162,7 +162,7 @@
         </FlowPane>
       </left>
       <right>
-        <FlowPane maxHeight="650.0" minHeight="626.0" orientation="VERTICAL" prefHeight="626.0" prefWidth="150.0" style="-fx-border-width:3;&#10;-fx-border-style:dashed;&#10;-fx-border-color:black;">
+        <FlowPane maxHeight="650.0" minHeight="626.0" orientation="VERTICAL" prefHeight="626.0" prefWidth="150.0" style="-fx-border-width: 3; -fx-border-color: black;">
           <children>
             <ImageView fitHeight="52.61025091526654" fitWidth="76.75659942626953" pickOnBounds="true" preserveRatio="true" rotate="269.0">
               <image>
