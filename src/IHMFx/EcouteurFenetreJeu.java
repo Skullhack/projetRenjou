@@ -90,6 +90,8 @@ public class EcouteurFenetreJeu implements Initializable {
     private FlowPane panelJ1;
     @FXML
     private FlowPane panelJ2;
+    @FXML
+    private ImageView fond;
    
     
     public EcouteurFenetreJeu(IHM ihm) {
@@ -361,6 +363,8 @@ public class EcouteurFenetreJeu implements Initializable {
 			refaire.setImage(ihm.i.getRefaireDisab());
 			refaire.setDisable(true);
 		}
+		
+		fond.setImage(ihm.i.getFond());
 	}
 	
 	public void disabEnabAnnulerRefaire() {

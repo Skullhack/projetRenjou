@@ -54,6 +54,8 @@ public class EcouteurFenetreMenu {
 	private CheckBox tabou2;
 	@FXML
 	private CheckBox tabou3;
+	@FXML
+	private ImageView fond;
 	
 	
 	public EcouteurFenetreMenu(IHM ihm) {
@@ -212,5 +214,12 @@ public class EcouteurFenetreMenu {
 	
 	public TabPane getTabPane() {
 		return tabs;
+	}
+	
+	
+	public void update() {
+		fond.setImage(ihm.i.getFond());
+		boutonValider.setImage(ihm.i.getBoutonValider());
+		boutonAnnuler.setImage(ihm.i.getBoutonAnnuler());
 	}
 }

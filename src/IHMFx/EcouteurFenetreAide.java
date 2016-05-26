@@ -19,6 +19,8 @@ public class EcouteurFenetreAide {
 	private IHM ihm;
 	private Moteur m;
 	@FXML
+	private ImageView fond;
+	@FXML
 	private TabPane tabs;
 	@FXML
 	private ImageView boutonRetour;
@@ -53,6 +55,11 @@ public class EcouteurFenetreAide {
 	
 	public TabPane getTabPane() {
 		return tabs;
+	}
+	
+	public void update() {
+		fond.setImage(ihm.i.getFond());
+		boutonRetour.setImage(ihm.i.getBoutonRetour());
 	}
 }
 

@@ -27,6 +27,7 @@ public class Images {
 	private Image boutonAnnulerDrag;
 	private Image boutonRetour;
 	private Image boutonRetourDrag;
+	private Image fond;
 	
 	public Images(Moteur m) {
 		this.m = m;
@@ -57,6 +58,7 @@ public class Images {
 		boutonAnnulerDrag = new Image("./Images/"+theme+"/BoutonAnnulerDrag.png");
 		boutonRetour = new Image("./Images/"+theme+"/BoutonRetour.png");
 		boutonRetourDrag = new Image("./Images/"+theme+"/BoutonRetourDrag.png");
+		fond = new Image("./Images/"+theme+"/Fond.png");
 	}
 	
 	public Image getAmpoule() {
@@ -145,5 +147,9 @@ public class Images {
 	
 	public Image getBoutonRetourDrag() {
 		return boutonRetourDrag;
+	}
+	
+	public Image getFond() {
+		return fond;
 	}
 }

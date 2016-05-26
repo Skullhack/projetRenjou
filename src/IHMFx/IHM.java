@@ -59,6 +59,9 @@ public class IHM extends Application implements MoteurObserveur{
 	@Override
 	public void actualiser() {
 		efj.update();
+		efm.update();
+		efa.update();
+
 	}
 
 }
