@@ -673,4 +673,9 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	public boolean deuxiemeCoup(){
 		return((renjou.getJoueurs()[0].getNbPion() == 59) && (renjou.getJoueurs()[1].getNbPion() == 60));
 	}
+	
+	public Coordonnees aide(){		
+		Joueur j = new IAFacile(TypeJoueur.IAFacile, 60, TypeCouleur.Blanc);
+		return j.jouer(renjou.getPlateauDeJeu());
+	}
 }
