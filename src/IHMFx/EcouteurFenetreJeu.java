@@ -467,6 +467,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		graphicsContext.drawImage(plat, 0, 0);
 		
 		//On ajoute les pions
+		PionJoue pion = null;
 		Image iPionBlanc;
 		Image iPionNoir;
 		Image croixRouge = ihm.i.getCroixRouge();
@@ -474,8 +475,9 @@ public class EcouteurFenetreJeu implements Initializable {
 		if (m.getRenjou().estModeDebutant()) {
 			for (int i=0;i<m.getRenjou().getPlateauDeJeu().getPlateau().length;i++) {
 				for (int j=0;j<m.getRenjou().getPlateauDeJeu().getPlateau()[i].length;j++) {
-					PionJoue pion = m.getRenjou().getListeAnnuler().get(m.getRenjou().getListeAnnuler().size()-1);
-					if (pion.getCoordonnees().getColonne() == j && pion.getCoordonnees().getLigne() == i) {
+					if (m.getRenjou().getListeAnnuler().size() > 0)
+						pion = m.getRenjou().getListeAnnuler().get(m.getRenjou().getListeAnnuler().size()-1);
+					if (pion != null && pion.getCoordonnees().getColonne() == j && pion.getCoordonnees().getLigne() == i) {
 						iPionBlanc = ihm.i.getPionBlancJoue();
 						iPionNoir = ihm.i.getPionNoirJoue();
 					} else {
@@ -492,9 +494,9 @@ public class EcouteurFenetreJeu implements Initializable {
 			        	graphicsContext.drawImage(iPionBlanc, x, y, width, height);
 			        else if (p == TypeCase.Tabou)
 			        	graphicsContext.drawImage(croixRouge, x, y, width, height);
-			        else if (p == TypeCase.Jouable)
+			        else if (p == TypeCase.Jouable && m.premierCoup() && m.deuxiemeCoup())
 			        	graphicsContext.drawImage(cercleVert, x, y, width, height);
-			        else
+			        else if (p == TypeCase.PionNoir) 
 			        	graphicsContext.drawImage(iPionNoir, x, y, width, height);
 				}
 			}

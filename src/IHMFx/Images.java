@@ -81,9 +81,9 @@ public class Images {
 		sixSeptImage = new Image("./Images/PourToutLesThemes/SIX-SEPTImage.png");
 		sixSeptExplication = new Image("./Images/PourToutLesThemes/SIX-SEPTExplication.png");
 		sixSeptDisab = new Image("./Images/PourToutLesThemes/SIX-SEPTDisab.png");
-		croixRouge = new Image("./Images/"+theme+"/CroixRouge.png");
-		cercleVert = new Image("./Images/"+theme+"/CercleVert.png");
-		cercleVertPlein = new Image("./Images/"+theme+"/CercleVertPlein.png");
+		croixRouge = new Image("./Images/PourToutLesThemes/CroixRouge.png");
+		cercleVert = new Image("./Images/PourToutLesThemes/CercleVert.png");
+		cercleVertPlein = new Image("./Images/PourToutLesThemes/CercleVertPlein.png");
 	}
 	
 	public Image getAmpoule() {
