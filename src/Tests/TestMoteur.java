@@ -664,7 +664,7 @@ public class TestMoteur {
 		ArrayList<TypeTabous> tabousJeu = new ArrayList<TypeTabous>();
 		tabousJeu.add(TypeTabous.TROIS_TROIS);
 		tabousJeu.add(TypeTabous.SIX_SEPT);
-		donneesJeu.configurerPartie(TypeJoueur.Humain, TypeJoueur.Humain, tabousJeu, false);
+		donneesJeu.configurerPartie(TypeJoueur.Humain, TypeJoueur.Humain, tabousJeu, false, false);
 
 		Log.print(1, donneesJeu.getRenjou().getTabouJeu().getListeTabous().toString());
 
@@ -709,7 +709,7 @@ public class TestMoteur {
 
 		ArrayList<TypeTabous> tabousJeu = new ArrayList<TypeTabous>();
 		tabousJeu.add(TypeTabous.TROIS_TROIS);
-		donneesJeu.configurerPartie(TypeJoueur.Humain, TypeJoueur.Humain, tabousJeu, false);
+		donneesJeu.configurerPartie(TypeJoueur.Humain, TypeJoueur.Humain, tabousJeu, false, false);
 
 		Coordonnees[] tabCoord = new Coordonnees[12];
 		tabCoord[0] = new Coordonnees(7, 7); // noir

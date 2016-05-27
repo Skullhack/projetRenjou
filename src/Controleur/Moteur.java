@@ -302,7 +302,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 	@Override
 	public void configurerPartie(TypeJoueur typeJoueur1, TypeJoueur typeJoueur2, ArrayList<TypeTabous> tabouPartie,
-			boolean nouvellePartie) {
+			boolean nouvellePartie, boolean modeDebutant) {
 		if (nouvellePartie) {
 			renjou.initRenjou();
 			renjou.getJoueurs()[0].setNbPion(renjou.getJoueurs()[0].getNbPionsBase());
@@ -326,6 +326,8 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 		renjou.getTabouJeu().setListeTabous(tabouPartie);
 
+		renjou.setModeDebutant(modeDebutant);
+		
 		notifierObserveurs();
 		faireJouerIA();
 	}
@@ -663,5 +665,6 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		}
 
 	}
+	
 
 }

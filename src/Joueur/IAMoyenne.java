@@ -28,7 +28,7 @@ public class IAMoyenne extends IA {
 
 	private void init() {
 		coups = new ArrayList<>();
-		profondeurMax = 3;
+		profondeurMax = 4;
 	}
 
 	public Point play(int[][] plateau, int couleurJoueur, boolean tabou3x3, boolean tabou4x4, boolean tabouOverline) {
@@ -135,14 +135,15 @@ public class IAMoyenne extends IA {
 
 	}
 
-	public int Evaluation(PlateauDeJeu pdj) {
+	public int Evaluation(PlateauDeJeu pdj, TypeCase tc) {
 		TypeCouleur blanc = TypeCouleur.Blanc;
 		int valeurBlanc = 0;
 		TypeCouleur noir = TypeCouleur.Noir;
 		int valeurNoir = 0;
 		boolean[] presenceMotifBlanc = new boolean[14];
 		boolean[] presenceMotifNoir = new boolean[14];
-
+		boolean coupGagnantBlanc = false;
+		boolean coupGagnantNoir = false;
 		
 		for (int i = 0; i < nbLigne; i++) {
 			for (int j = 0; j < nbColonne; j++) {
@@ -151,26 +152,26 @@ public class IAMoyenne extends IA {
 						|| pdj.getTypeCaseTableauParLigneColonne(i,j) == TypeCase.PionNoir) {
 					Motif m = new Motif(pdj, c);
 
-					if (pdj.getTypeCaseTableau(c) == TypeCase.PionBlanc) {
+					if (pdj.getTypeCaseTableau(c) == TypeCase.PionBlanc && !coupGagnantBlanc) {
 
 						// POUR BLANC
 						if(!presenceMotifBlanc[1]){
 							if(m.estTroisFoisTroisLibreLibre(blanc)){
-								valeurBlanc += 10000;
+								coupGagnantBlanc = true;
 								presenceMotifBlanc[1] = true;
 							}
 						}
 
 						if(!presenceMotifBlanc[2]){
 							if(m.estQuatreFoisQuatre(blanc)){
-								valeurBlanc += 10000;
+								coupGagnantBlanc = true;
 								presenceMotifBlanc[2] = true;
 							}
 						}
 						
 						if(!presenceMotifBlanc[3]){
 							if (m.estQuatreFoisTrois(blanc)) {
-								valeurBlanc += 10000;
+								coupGagnantBlanc = true;
 								presenceMotifBlanc[3] = true;
 							}
 						}
@@ -198,7 +199,7 @@ public class IAMoyenne extends IA {
 						
 						if(!presenceMotifBlanc[7]){
 							if (m.estTroisLibreLibre(blanc)) {
-								valeurBlanc += 10000;
+								coupGagnantBlanc = true;
 								presenceMotifBlanc[7] = true;
 							}
 						}
@@ -249,25 +250,25 @@ public class IAMoyenne extends IA {
 
 					}
 
-					if (pdj.getTypeCaseTableau(c) == TypeCase.PionNoir) {
+					if (pdj.getTypeCaseTableau(c) == TypeCase.PionNoir && !coupGagnantNoir) {
 						// POUR NOIR
 						if(!presenceMotifNoir[1]){
 							if(m.estTroisFoisTroisLibreLibre(noir)){
-								valeurNoir += 10000;
+								coupGagnantNoir = true;
 								presenceMotifNoir[1] = true;
 							}
 						}
 
 						if(!presenceMotifNoir[2]){
 							if(m.estQuatreFoisQuatre(noir)){
-								valeurNoir += 10000;
+								coupGagnantNoir = true;
 								presenceMotifNoir[2] = true;
 							}
 						}
 						
 						if(!presenceMotifNoir[3]){
 							if (m.estQuatreFoisTrois(noir)) {
-								valeurNoir += 10000;
+								coupGagnantNoir = true;
 								presenceMotifNoir[3] = true;
 							}
 						}
@@ -295,7 +296,7 @@ public class IAMoyenne extends IA {
 						
 						if(!presenceMotifNoir[7]){
 							if (m.estTroisLibreLibre(noir)) {
-								valeurNoir += 10000;
+								coupGagnantNoir = true;
 								presenceMotifNoir[7] = true;
 							}
 						}
@@ -348,11 +349,29 @@ public class IAMoyenne extends IA {
 		}
 		
 		if(couleur == TypeCouleur.Blanc){
-			Log.print(1, "blanc " + valeurBlanc + " - valeurNoir " + valeurNoir );
+			if(coupGagnantNoir){
+				return -20000;
+			}
+			
+			if(coupGagnantBlanc){
+				return 20000;
+			}
+				
+			//Log.print(1, "blanc " + valeurBlanc + " - valeurNoir " + valeurNoir );
 			return valeurBlanc - valeurNoir;
 		}else{
-			Log.print(1," valeurNoir " + valeurNoir + " - valeurBlanc " + valeurBlanc );
-			return valeurBlanc - valeurNoir;
+			
+			if(coupGagnantBlanc){
+				return -20000;
+			}
+			
+			if(coupGagnantNoir){
+				return 20000;
+			}
+			
+
+			//Log.print(1," valeurNoir " + valeurNoir + " - valeurBlanc " + valeurBlanc );
+			return valeurNoir - valeurBlanc;
 		}
 		
 		
@@ -363,7 +382,7 @@ public class IAMoyenne extends IA {
 
 	public int EvaluerCoupAdversaire(PlateauDeJeu pdj, int profondeur, TypeCase tc) {
 		if (profondeur == 0)
-			return Evaluation(pdj);
+			return Evaluation(pdj,tc);
 
 		int valeur = 1000000;
 		for (int i = 0; i < nbLigne; i++) {
@@ -397,7 +416,7 @@ public class IAMoyenne extends IA {
 
 	public int EvaluerCoupIA(PlateauDeJeu pdj, int profondeur, TypeCase tc) {
 		if (profondeur == 0)
-			return Evaluation(pdj);
+			return Evaluation(pdj,tc);
 
 		int valeur = -1000000;
 		for (int i = 0; i < nbLigne; i++) {
