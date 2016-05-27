@@ -56,6 +56,12 @@ public class EcouteurFenetreMenu {
 	private CheckBox tabou3;
 	@FXML
 	private ImageView fond;
+	@FXML
+	private ImageView tabouImage;
+	@FXML
+	private ImageView tabouExplication;
+	@FXML
+	private CheckBox modeDebutant;
 	
 	
 	public EcouteurFenetreMenu(IHM ihm) {
@@ -143,7 +149,7 @@ public class EcouteurFenetreMenu {
 		
         if (tab[0] != null && tab[1] != null) {
         	//gerer charger et nouvelle partie : TODO
-            m.configurerPartie(tab[0], tab[1], tabous, ihm.fm.getNouvellePartie());
+            m.configurerPartie(tab[0], tab[1], tabous, ihm.fm.getNouvellePartie()/*,modeDebutant.isSelected()*/);
         }
         ancienTheme = m.getRenjou().getEmplacementThemes();
         
@@ -169,6 +175,24 @@ public class EcouteurFenetreMenu {
 	@FXML
 	private void boutonAnnulerFinDrag(MouseEvent e) {
 		boutonAnnuler.setImage(ihm.i.getBoutonAnnuler());
+	}
+	
+	@FXML
+	public void tabou1DebutDrag(MouseEvent e) {
+		tabouImage.setImage(ihm.i.getTroisTroisImage());
+		tabouExplication.setImage(ihm.i.getTroisTroisExplication());
+	}
+	
+	@FXML
+	public void tabou2DebutDrag(MouseEvent e) {
+		tabouImage.setImage(ihm.i.getQuatreQuatreImage());
+		tabouExplication.setImage(ihm.i.getQuatreQuatreExplication());
+	}
+	
+	@FXML
+	public void tabou3DebutDrag(MouseEvent e) {
+		tabouImage.setImage(ihm.i.getSixSeptImage());
+		tabouExplication.setImage(ihm.i.getSixSeptExplication());
 	}
 	
 	@FXML

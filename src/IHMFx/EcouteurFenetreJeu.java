@@ -48,6 +48,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
+import sun.awt.image.SurfaceManager.FlushableCacheData;
 
 /**
  *
@@ -235,8 +236,21 @@ public class EcouteurFenetreJeu implements Initializable {
 	}
 	
 	@FXML
-	private void clickAffichageTabou(MouseEvent e) {
+	private void clickAffichageTabou1(MouseEvent e) {
 		tabousMenu(null);
+		ihm.efm.tabou1DebutDrag(null);
+	}
+	
+	@FXML
+	private void clickAffichageTabou2(MouseEvent e) {
+		tabousMenu(null);
+		ihm.efm.tabou2DebutDrag(null);
+	}
+	
+	@FXML
+	private void clickAffichageTabou3(MouseEvent e) {
+		tabousMenu(null);
+		ihm.efm.tabou3DebutDrag(null);
 	}
 	
 	@FXML
@@ -399,6 +413,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		tabou1Image.setImage(ihm.i.getTroisTroisImage());
 		tabou2Image.setImage(ihm.i.getQuatreQuatreImage());
 		tabou3Image.setImage(ihm.i.getSixSeptImage());
+		recommencer.setImage(ihm.i.getRecommencer());
 	}
 	
 	public void disabEnabAnnulerRefaire() {

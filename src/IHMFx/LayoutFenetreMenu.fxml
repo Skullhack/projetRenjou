@@ -116,6 +116,11 @@
                                           <Insets left="85.0" />
                                        </padding>
                                     </RadioButton>
+                                    <CheckBox fx:id="modeDebutant" mnemonicParsing="false" prefHeight="39.0" prefWidth="201.0" text="Mode Débutant" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                       <font>
+                                          <Font size="21.0" />
+                                       </font>
+                                    </CheckBox>
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -132,6 +137,7 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                               </GridPane>
                            </content>
@@ -140,73 +146,67 @@
                            <content>
                               <GridPane prefHeight="237.0" prefWidth="486.0">
                                  <children>
-                                    <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                       <image>
-                                          <Image url="@../Images/PourToutLesThemes/QUATRE-QUATREImage.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView fitHeight="136.0" fitWidth="193.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                                       <image>
-                                          <Image url="@../Images/PourToutLesThemes/QUATRE-QUATREExplication.png" />
-                                       </image>
-                                    </ImageView>
-                                    <CheckBox fx:id="tabou2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="13.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
+                                    <FlowPane prefHeight="57.0" prefWidth="660.0" GridPane.rowIndex="1">
+                                       <children>
+                                          <CheckBox fx:id="tabou1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#tabou1DebutDrag" prefHeight="30.0" prefWidth="131.0" text="Trois-Trois" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                             <FlowPane.margin>
+                                                <Insets left="120.0" />
+                                             </FlowPane.margin>
+                                          </CheckBox>
+                                          <CheckBox fx:id="tabou2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#tabou2DebutDrag" prefHeight="30.0" prefWidth="167.0" text="Quatre-Quatre" textAlignment="CENTER">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                             <FlowPane.margin>
+                                                <Insets left="40.0" />
+                                             </FlowPane.margin>
+                                          </CheckBox>
+                                          <CheckBox fx:id="tabou3" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#tabou3DebutDrag" prefHeight="30.0" prefWidth="111.0" text="Six-Sept" textAlignment="CENTER">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                             <FlowPane.margin>
+                                                <Insets left="20.0" />
+                                             </FlowPane.margin>
+                                          </CheckBox>
+                                       </children>
                                        <GridPane.margin>
-                                          <Insets left="90.0" />
+                                          <Insets />
                                        </GridPane.margin>
-                                    </CheckBox>
-                                    <CheckBox fx:id="tabou1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="13.0" textAlignment="CENTER" GridPane.rowIndex="2">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                       <GridPane.margin>
-                                          <Insets left="90.0" />
-                                       </GridPane.margin>
-                                    </CheckBox>
-                                    <CheckBox fx:id="tabou3" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="13.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                       <GridPane.margin>
-                                          <Insets left="90.0" />
-                                       </GridPane.margin>
-                                    </CheckBox>
-                                    <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                       <image>
-                                          <Image url="@../Images/PourToutLesThemes/SIX-SEPTImage.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView fitHeight="133.0" fitWidth="193.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                                       <image>
-                                          <Image url="@../Images/PourToutLesThemes/SIX-SEPTExplication.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView fitHeight="141.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                                       <image>
-                                          <Image url="@../Images/PourToutLesThemes/TROIS-TROISExplication.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                       <image>
-                                          <Image url="@../Images/PourToutLesThemes/TROIS-TROISImage.png" />
-                                       </image>
-                                    </ImageView>
+                                    </FlowPane>
+                                    <FlowPane orientation="VERTICAL" prefHeight="347.0" prefWidth="681.0">
+                                       <children>
+                                          <ImageView fx:id="tabouImage" fitHeight="300.0" fitWidth="281.0" pickOnBounds="true">
+                                             <image>
+                                                <Image url="@../Images/PourToutLesThemes/QUATRE-QUATREImage.png" />
+                                             </image>
+                                             <FlowPane.margin>
+                                                <Insets />
+                                             </FlowPane.margin>
+                                          </ImageView>
+                                          <ImageView fx:id="tabouExplication" fitHeight="255.0" fitWidth="377.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Images/PourToutLesThemes/QUATRE-QUATREExplication.png" />
+                                             </image>
+                                             <FlowPane.margin>
+                                                <Insets left="10.0" right="10.0" top="30.0" />
+                                             </FlowPane.margin>
+                                          </ImageView>
+                                       </children>
+                                    </FlowPane>
                                  </children>
                                  <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="660.0" minWidth="10.0" prefWidth="384.0" />
                                  </columnConstraints>
                                  <padding>
                                     <Insets left="20.0" right="20.0" top="20.0" />
                                  </padding>
                                  <rowConstraints>
-                                    <RowConstraints maxHeight="190.0" minHeight="10.0" prefHeight="190.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="251.0" minHeight="10.0" prefHeight="133.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="251.0" minHeight="9.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="318.0" minHeight="10.0" prefHeight="318.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="251.0" minHeight="9.0" prefHeight="35.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                               </GridPane>
                            </content>
