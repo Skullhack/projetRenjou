@@ -455,15 +455,19 @@ public class Motif {
 	public boolean estQuatreFoisQuatre(TypeCouleur typeCouleur) {
 
 		if(estQuatreQuatreDiagonaleDroite(typeCouleur)){
+			Log.print(1010, "estQuatreQuatreDiagonaleDroite " + estQuatreQuatreDiagonaleDroite(typeCouleur));
 			return true;
 		}
 		if(estQuatreQuatreDiagonaleGauche(typeCouleur)){
+			Log.print(1010, "estQuatreQuatreDiagonaleGauche " + estQuatreQuatreDiagonaleGauche(typeCouleur));
 			return true;
 		}
 		if(estQuatreQuatreHorizontale(typeCouleur)){
+			Log.print(1010, "estQuatreQuatreHorizontale " + estQuatreQuatreHorizontale(typeCouleur));
 			return true;
 		}
 		if(estQuatreQuatreVerticale(typeCouleur)){
+			Log.print(1010, "estQuatreQuatreVerticale " + estQuatreQuatreVerticale(typeCouleur));
 			return true;
 		}
 		
@@ -494,10 +498,10 @@ public class Motif {
 	}
 
 	public boolean estQuatreQuatreVerticale(TypeCouleur typeCouleur){
-		if(getInfoHaut().getNbPion(typeCouleur) + getInfoHaut().getNbPionNonContinu(typeCouleur) == 0){
+		if(getInfoHaut().getNbPionNonContinu(typeCouleur) == 0){
 			return false;
 		}
-		if(getInfoBas().getNbPion(typeCouleur) + getInfoBas().getNbPionNonContinu(typeCouleur) == 0){
+		if(getInfoBas().getNbPionNonContinu(typeCouleur) == 0){
 			return false;
 		}
 		
@@ -511,10 +515,10 @@ public class Motif {
 	
 	public boolean estQuatreQuatreHorizontale(TypeCouleur typeCouleur){
 		
-		if(getInfoDroite().getNbPion(typeCouleur) + getInfoDroite().getNbPionNonContinu(typeCouleur) == 0){
+		if(getInfoDroite().getNbPionNonContinu(typeCouleur) == 0){
 			return false;
 		}
-		if(getInfoGauche().getNbPion(typeCouleur) + getInfoGauche().getNbPionNonContinu(typeCouleur) == 0){
+		if(getInfoGauche().getNbPionNonContinu(typeCouleur) == 0){
 			return false;
 		}
 		
@@ -528,10 +532,10 @@ public class Motif {
 	
 	public boolean estQuatreQuatreDiagonaleGauche(TypeCouleur typeCouleur){
 		
-		if(getInfoDiagonaleHautDroite().getNbPion(typeCouleur) + getInfoDiagonaleHautDroite().getNbPionNonContinu(typeCouleur) == 0){
+		if(getInfoDiagonaleHautDroite().getNbPionNonContinu(typeCouleur) == 0){
 			return false;
 		}
-		if(getInfoDiagonaleBasGauche().getNbPion(typeCouleur) + getInfoDiagonaleBasGauche().getNbPionNonContinu(typeCouleur) == 0){
+		if(getInfoDiagonaleBasGauche().getNbPionNonContinu(typeCouleur) == 0){
 			return false;
 		}
 		
@@ -545,10 +549,10 @@ public class Motif {
 	
 	public boolean estQuatreQuatreDiagonaleDroite(TypeCouleur typeCouleur){
 		
-		if(getInfoDiagonaleHautGauche().getNbPion(typeCouleur) + getInfoDiagonaleHautGauche().getNbPionNonContinu(typeCouleur) == 0){
+		if(getInfoDiagonaleHautGauche().getNbPionNonContinu(typeCouleur) == 0){
 			return false;
 		}
-		if(getInfoDiagonaleBasDroite().getNbPion(typeCouleur) + getInfoDiagonaleBasDroite().getNbPionNonContinu(typeCouleur) == 0){
+		if(getInfoDiagonaleBasDroite().getNbPionNonContinu(typeCouleur) == 0){
 			return false;
 		}
 		

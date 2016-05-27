@@ -131,15 +131,24 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 		Log.print(1010, motif.getInfoDiagonaleHautDroite().toString());
 		Log.print(1010, motif.getInfoDiagonaleBasGauche().toString());
 		Log.print(1010, motif.getInfoDiagonaleBasDroite().toString());
+		Log.print(1010, motif.getInfoBas().toString());
+		Log.print(1010, motif.getInfoHaut().toString());
+		Log.print(1010, motif.getInfoDroite().toString());
+		Log.print(1010, motif.getInfoGauche().toString());
 
 		boolean estValide = true;
 		if (troisFoisTroisAtribut) {
+			Log.print(1010, "troisfoistrois" + troisFoisTrois(motif, typeCouleur));
 			estValide = estValide && !troisFoisTrois(motif, typeCouleur);
 		}
 		if (quatreFoisQuatreAtribut) {
+
+			Log.print(1010, "quatrefoisquatre" + quatreFoisQuatre(motif, typeCouleur));
 			estValide = estValide && !quatreFoisQuatre(motif, typeCouleur);
 		}
 		if (sixSeptAtribut) {
+
+			Log.print(1010, "sixSept" + sixSept(motif, typeCouleur));
 			estValide = estValide && !sixSept(motif, typeCouleur);
 		}
 		return estValide;
