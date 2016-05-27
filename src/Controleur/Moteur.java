@@ -667,11 +667,11 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	}
 	
 	public boolean premierCoup(){
-		return((renjou.getJoueurs()[0].getNbPion() == 60) && (renjou.getJoueurs()[1].getNbPion() == 60));
+		return((renjou.getJoueurs()[0].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase()) && (renjou.getJoueurs()[1].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase()));
 	}
 	
 	public boolean deuxiemeCoup(){
-		return((renjou.getJoueurs()[0].getNbPion() == 59) && (renjou.getJoueurs()[1].getNbPion() == 60));
+		return((renjou.getJoueurs()[0].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase()-1) && (renjou.getJoueurs()[1].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase()));
 	}
 	
 	public Coordonnees aide(){		
