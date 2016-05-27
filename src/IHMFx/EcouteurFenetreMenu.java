@@ -105,7 +105,7 @@ public class EcouteurFenetreMenu {
 		TypeJoueur[] tab = new TypeJoueur[2];
 		ArrayList<TypeTabous> tabous = new ArrayList<TypeTabous>();
 		
-		//Valeurs sélectionnées radiobutton joueur
+		//Valeurs sï¿½lectionnï¿½es radiobutton joueur
 		if(noir1.isSelected()) {
 			tab[0] = TypeJoueur.values()[0];
 		} else if(noir2.isSelected()) {
@@ -130,7 +130,7 @@ public class EcouteurFenetreMenu {
 			tab[1] = TypeJoueur.values()[4];
 		}
 		
-		//Valeurs sélectionnées dans tabou
+		//Valeurs sï¿½lectionnï¿½es dans tabou
 		if (tabou1.isSelected()) {
 			tabous.add(TypeTabous.QUATRE_QUATRE);
 		}
@@ -145,6 +145,8 @@ public class EcouteurFenetreMenu {
         	//gerer charger et nouvelle partie : TODO
             m.configurerPartie(tab[0], tab[1], tabous, ihm.fm.getNouvellePartie());
         }
+        ancienTheme = m.getRenjou().getEmplacementThemes();
+        
 		ihm.fj.montrer();
 		ihm.fm.cacher();
 	}
