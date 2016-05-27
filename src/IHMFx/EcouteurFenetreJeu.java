@@ -282,6 +282,8 @@ public class EcouteurFenetreJeu implements Initializable {
         if (checkEtatFenetre == ouvertureFenetre.APPROVE_OPTION) {
             fichierCharger = ouvertureFenetre.getSelectedFile().getAbsolutePath();
             m.charger(fichierCharger);
+            ihm.efm.selectionnerTheme(m.getRenjou().getEmplacementThemes());
+            ihm.efm.setAncienTheme("");
         }
         
 	}

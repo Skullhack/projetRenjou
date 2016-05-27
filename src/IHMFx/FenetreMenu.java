@@ -24,11 +24,17 @@ public class FenetreMenu extends Stage {
 		FXMLLoader fx = new FXMLLoader(getClass().getResource("LayoutFenetreMenu.fxml"));
 		fx.setController(efm);
 		Parent root = fx.load();
-        this.setTitle("Menu");
+        this.setTitle("Configuration");
         this.initModality(Modality.APPLICATION_MODAL);
     	this.setResizable(false);
         this.setScene(new Scene(root, 700, 500));
         this.centerOnScreen();
+        EventHandler<WindowEvent> eh = new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                efm.annuler();
+            }
+        };
+        this.setOnCloseRequest(eh);
 	}
 	
 	public void montrer() {

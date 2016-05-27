@@ -93,7 +93,7 @@ public class EcouteurFenetreMenu {
 			m.getRenjou().setNouveauTheme(ancienTheme);
 			ihm.i.setImage();
 			ihm.actualiser();
-			ancienTheme = "";
+			setAncienTheme("");
 		}	
 		ihm.fj.montrer();
 		ihm.fm.cacher();
@@ -173,20 +173,26 @@ public class EcouteurFenetreMenu {
 	
 	@FXML
 	private void selectionnerThemeTraditionnel(MouseEvent e) {
+		setAncienTheme(m.getRenjou().getEmplacementThemes());
 		selectionnerTheme("Traditionnel");
+		themeChangement = true;
 	}
 	
 	@FXML
 	private void selectionnerThemeZelda(MouseEvent e) {
+		setAncienTheme(m.getRenjou().getEmplacementThemes());
 		selectionnerTheme("Zelda");
+		themeChangement = true;
 	}
 	
-	private void selectionnerTheme(String nouveauTheme) {
-		ancienTheme = m.getRenjou().getEmplacementThemes();
+	public void selectionnerTheme(String nouveauTheme) {
 		m.getRenjou().setNouveauTheme(nouveauTheme);
 		ihm.i.setImage();
 		ihm.actualiser();
-		themeChangement = true;
+	}
+	
+	public void setAncienTheme(String theme) {
+		this.ancienTheme = theme;
 	}
 	
 	public void selectionnerRadioJoueur() {
