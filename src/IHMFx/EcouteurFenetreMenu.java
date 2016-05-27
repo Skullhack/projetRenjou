@@ -138,18 +138,18 @@ public class EcouteurFenetreMenu {
 		
 		//Valeurs s�lectionn�es dans tabou
 		if (tabou1.isSelected()) {
-			tabous.add(TypeTabous.QUATRE_QUATRE);
+			tabous.add(TypeTabous.TROIS_TROIS);
 		}
 		if (tabou2.isSelected()) {
-			tabous.add(TypeTabous.SIX_SEPT);
+			tabous.add(TypeTabous.QUATRE_QUATRE);
 		}
 		if (tabou3.isSelected()) {
-			tabous.add(TypeTabous.TROIS_TROIS);
+			tabous.add(TypeTabous.SIX_SEPT);
 		}
 		
         if (tab[0] != null && tab[1] != null) {
         	//gerer charger et nouvelle partie : TODO
-            m.configurerPartie(tab[0], tab[1], tabous, ihm.fm.getNouvellePartie()/*,modeDebutant.isSelected()*/);
+            m.configurerPartie(tab[0], tab[1], tabous, ihm.fm.getNouvellePartie(),modeDebutant.isSelected());
         }
         ancienTheme = m.getRenjou().getEmplacementThemes();
         

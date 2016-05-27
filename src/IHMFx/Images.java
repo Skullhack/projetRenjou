@@ -37,6 +37,9 @@ public class Images {
 	private Image sixSeptImage;
 	private Image sixSeptExplication;
 	private Image sixSeptDisab;
+	private Image croixRouge;
+	private Image cercleVert;
+	private Image cercleVertPlein;
 	
 	
 	public Images(Moteur m) {
@@ -78,6 +81,9 @@ public class Images {
 		sixSeptImage = new Image("./Images/PourToutLesThemes/SIX-SEPTImage.png");
 		sixSeptExplication = new Image("./Images/PourToutLesThemes/SIX-SEPTExplication.png");
 		sixSeptDisab = new Image("./Images/PourToutLesThemes/SIX-SEPTDisab.png");
+		croixRouge = new Image("./Images/"+theme+"/CroixRouge.png");
+		cercleVert = new Image("./Images/"+theme+"/CercleVert.png");
+		cercleVertPlein = new Image("./Images/"+theme+"/CercleVertPlein.png");
 	}
 	
 	public Image getAmpoule() {
@@ -205,5 +211,17 @@ public class Images {
 	
 	public Image getSixSeptDisab() {
 		return sixSeptDisab;
+	}
+	
+	public Image getCroixRouge() {
+		return croixRouge;
+	}
+	
+	public Image getCercleVert() {
+		return cercleVert;
+	}
+	
+	public Image getCercleVertPlein() {
+		return cercleVertPlein;
 	}
 }

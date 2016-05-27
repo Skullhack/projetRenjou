@@ -469,26 +469,56 @@ public class EcouteurFenetreJeu implements Initializable {
 		//On ajoute les pions
 		Image iPionBlanc;
 		Image iPionNoir;
-		for (int i=0;i<m.getRenjou().getListeAnnuler().size();i++) {
-			if (i>m.getRenjou().getListeAnnuler().size()-3) {
-				iPionBlanc = ihm.i.getPionBlancJoue();
-				iPionNoir = ihm.i.getPionNoirJoue();
-			} else {
-				iPionBlanc = ihm.i.getPionBlanc();
-				iPionNoir = ihm.i.getPionNoir();
+		Image croixRouge = ihm.i.getCroixRouge();
+		Image cercleVert = ihm.i.getCercleVert();
+		if (m.getRenjou().estModeDebutant()) {
+			for (int i=0;i<m.getRenjou().getPlateauDeJeu().getPlateau().length;i++) {
+				for (int j=0;j<m.getRenjou().getPlateauDeJeu().getPlateau()[i].length;j++) {
+					PionJoue pion = m.getRenjou().getListeAnnuler().get(m.getRenjou().getListeAnnuler().size()-1);
+					if (pion.getCoordonnees().getColonne() == j && pion.getCoordonnees().getLigne() == i) {
+						iPionBlanc = ihm.i.getPionBlancJoue();
+						iPionNoir = ihm.i.getPionNoirJoue();
+					} else {
+						iPionBlanc = ihm.i.getPionBlanc();
+						iPionNoir = ihm.i.getPionNoir();
+					}
+					TypeCase p = m.getRenjou().getPlateauDeJeu().getPlateau()[i][j]; 
+			    	double width = (plat.getWidth())/16;
+			    	double height = (plat.getHeight())/16;
+			    	double x = (j*width+4)+(width/2);
+			        double y = (i*height+4)+(height/2);
+			        
+			        if (p == TypeCase.PionBlanc)
+			        	graphicsContext.drawImage(iPionBlanc, x, y, width, height);
+			        else if (p == TypeCase.Tabou)
+			        	graphicsContext.drawImage(croixRouge, x, y, width, height);
+			        else if (p == TypeCase.Jouable)
+			        	graphicsContext.drawImage(cercleVert, x, y, width, height);
+			        else
+			        	graphicsContext.drawImage(iPionNoir, x, y, width, height);
+				}
 			}
-			PionJoue p = m.getRenjou().getListeAnnuler().get(i); 
-	    	double width = (plat.getWidth())/16;
-	    	double height = (plat.getHeight())/16;
-	    	double x = (p.getCoordonnees().getColonne()*width+4)+(width/2);
-	        double y = (p.getCoordonnees().getLigne()*height+4)+(height/2);
-	        
-	        if (p.getTypeCase() == TypeCase.PionBlanc)
-	        	graphicsContext.drawImage(iPionBlanc, x, y, width, height);
-	        else
-	        	graphicsContext.drawImage(iPionNoir, x, y, width, height);
+		} else {
+			for (int i=0;i<m.getRenjou().getListeAnnuler().size();i++) {
+				if (i>m.getRenjou().getListeAnnuler().size()-3) {
+					iPionBlanc = ihm.i.getPionBlancJoue();
+					iPionNoir = ihm.i.getPionNoirJoue();
+				} else {
+					iPionBlanc = ihm.i.getPionBlanc();
+					iPionNoir = ihm.i.getPionNoir();
+				}
+				PionJoue p = m.getRenjou().getListeAnnuler().get(i); 
+		    	double width = (plat.getWidth())/16;
+		    	double height = (plat.getHeight())/16;
+		    	double x = (p.getCoordonnees().getColonne()*width+4)+(width/2);
+		        double y = (p.getCoordonnees().getLigne()*height+4)+(height/2);
+		        
+		        if (p.getTypeCase() == TypeCase.PionBlanc)
+		        	graphicsContext.drawImage(iPionBlanc, x, y, width, height);
+		        else
+		        	graphicsContext.drawImage(iPionNoir, x, y, width, height);
+			}
 		}
-		
 		//On retransforme en Image
 		WritableImage writableImage = new WritableImage((int)plat.getWidth(), (int)plat.getHeight());
 		canvas.snapshot(null, writableImage);
