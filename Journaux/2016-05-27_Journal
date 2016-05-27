@@ -1,0 +1,23 @@
+#TÂCHES À FAIRE
+
+PARTIE IHM :
+
+- Uitiliser un système de timer pour que l'IA ne joue pas en INSTANT
+- Quand on clique sur quitter puis non, ça ferme la fenêtre quand même
+- Affichage des coups précedent dans la partie de droite
+- Mettre les sous menu de la barre de menu de la même taille que l'intitulé du label (ex : quand on clique sur partie barre de sous menu qui s'affiche déborde sur configuration)
+- Les images de tabous dans la selection des tabous sont inversés horizontalement par rapport à l'image de base
+- Reprendre la selection des tabous, trop petit
+- Reprendre les aides des tabous pour ne pas afficher une fenêtre mais plutôt un tooltilp
+- Quand on ferme la fenêtre de menu il faut garder les ancien paramètre et pas le nouveau thème (faire comme un annuler)
+- Changer les nom de la fenêtre de menu par configuration
+- Quand on sauvegarde une partie avec un theme Zelda. On charge la partie : le theme zelda n'est pas chargé en même temps. Mais dans le renjou, le thème stocké est bien celui de Zelda
+
+PARTIE IA  :
+
+- Faire IA Moyen et difficile
+
+PARTIE MOTEUR :
+
+- voir pour gérer configurer partie (ajout variable débutant, garder un seul point d'entrée ??)
+- voir pour mode tutoriel

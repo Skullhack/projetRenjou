@@ -25,9 +25,14 @@ Distribution des tâches pour la journée :
            - Gestion d'un thread/timer pour l'IA
            
 - Léa Anthony :
-		   - Remettre le système de l'IA comme avant (gros BUG ia contre ia et posession du tour entre joueur et IA)
            - Travail sur l'heuristique
                  
            
            
 #TÂCHES EFFECTUÉES
+
+- Aligner le texte pour la fenêtre de configuration -> Joueurs
+- Afficher les tabous
+- Afficher les thèmes
+- Création d'un thème zelda
+- Modif sur les images de base des tabous et des règles
