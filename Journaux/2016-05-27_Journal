@@ -21,7 +21,9 @@ PARTIE IA  :
 
 PARTIE MOTEUR :
 
-- voir pour gérer configurer partie (ajout variable débutant, garder un seul point d'entrée ??)
+- systeme de threads a voir en prio !!!
+- mode aide
+- sauvegarde historique
 - voir pour mode tutoriel
 
 Autre :
