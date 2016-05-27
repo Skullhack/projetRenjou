@@ -13,7 +13,7 @@ PARTIE IHM :
 - Quand on ferme la fenêtre de menu il faut garder les ancien paramètre et pas le nouveau thème (faire comme un annuler) //REGLE
 - Changer les nom de la fenêtre de menu par configuration //REGLE
 - Quand on sauvegarde une partie avec un theme Zelda. On charge la partie : le theme zelda n'est pas chargé en même temps. Mais dans le renjou, le thème stocké est bien celui de Zelda //REGLE
-
+- Refaire l'image du tabou 3x3 pour enlevr les bors épais de la grille
 
 PARTIE IA  :
 
