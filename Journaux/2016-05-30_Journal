@@ -3,9 +3,12 @@
 PARTIE IHM :
 
 - Uitiliser un système de timer pour que l'IA ne joue pas en INSTANT
-- Affichage des coups précedent dans la partie de droite
+- Affichage des coups précedent/suivant dans la partie de droite
 - Refaire l'image du tabou 3x3 pour enlevr les bors épais de la grille
 - voir pour mode tutoriel
+- aide a implementer
+- desactiver sablier avec image quand tour joueur
+- tabou disable quand non activé
 
 PARTIE IA  :
 
