@@ -494,7 +494,7 @@ public class EcouteurFenetreJeu implements Initializable {
 			        	graphicsContext.drawImage(iPionBlanc, x, y, width, height);
 			        else if (p == TypeCase.Tabou)
 			        	graphicsContext.drawImage(croixRouge, x, y, width, height);
-			        else if (p == TypeCase.Jouable && m.premierCoup() && m.deuxiemeCoup())
+			        else if (p == TypeCase.Jouable && (m.premierCoup() || m.deuxiemeCoup()))
 			        	graphicsContext.drawImage(cercleVert, x, y, width, height);
 			        else if (p == TypeCase.PionNoir) 
 			        	graphicsContext.drawImage(iPionNoir, x, y, width, height);

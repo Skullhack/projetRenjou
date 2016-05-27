@@ -242,6 +242,9 @@ public class EcouteurFenetreMenu {
 		} else if(m.getRenjou().getJoueurs()[1].getType() == TypeJoueur.values()[4]) {
 			blanc5.setSelected(true);
 		}
+		if (m.getRenjou().estModeDebutant()) {
+			modeDebutant.setSelected(true);
+		}
 	}
 	
 	public TabPane getTabPane() {
