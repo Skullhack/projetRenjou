@@ -140,12 +140,12 @@
                            <content>
                               <GridPane prefHeight="237.0" prefWidth="486.0">
                                  <children>
-                                    <ImageView fitHeight="193.0" fitWidth="221.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                    <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                        <image>
                                           <Image url="@../Images/PourToutLesThemes/QUATRE-QUATREImage.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="161.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                                    <ImageView fitHeight="136.0" fitWidth="193.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                        <image>
                                           <Image url="@../Images/PourToutLesThemes/QUATRE-QUATREExplication.png" />
                                        </image>
@@ -174,22 +174,22 @@
                                           <Insets left="90.0" />
                                        </GridPane.margin>
                                     </CheckBox>
-                                    <ImageView fitHeight="193.0" fitWidth="221.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                    <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                        <image>
                                           <Image url="@../Images/PourToutLesThemes/SIX-SEPTImage.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="193.0" fitWidth="221.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <ImageView fitHeight="133.0" fitWidth="193.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                        <image>
                                           <Image url="@../Images/PourToutLesThemes/SIX-SEPTExplication.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="193.0" fitWidth="221.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <ImageView fitHeight="141.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                        <image>
                                           <Image url="@../Images/PourToutLesThemes/TROIS-TROISExplication.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="193.0" fitWidth="221.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                                    <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                        <image>
                                           <Image url="@../Images/PourToutLesThemes/TROIS-TROISImage.png" />
                                        </image>
@@ -201,12 +201,12 @@
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                  </columnConstraints>
                                  <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                    <Insets left="20.0" right="20.0" top="20.0" />
                                  </padding>
                                  <rowConstraints>
                                     <RowConstraints maxHeight="190.0" minHeight="10.0" prefHeight="190.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="251.0" minHeight="10.0" prefHeight="160.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="120.0" minHeight="0.0" prefHeight="27.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="251.0" minHeight="10.0" prefHeight="133.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="251.0" minHeight="9.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                               </GridPane>
                            </content>

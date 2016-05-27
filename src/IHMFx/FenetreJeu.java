@@ -24,6 +24,7 @@ public class FenetreJeu extends Stage {
     	Platform.setImplicitExit(false);
     	EventHandler<WindowEvent> eh = new EventHandler<WindowEvent>() {
             public void handle(WindowEvent we) {
+                we.consume();
         		int confirm = JOptionPane.showOptionDialog(
        	             null, "Etes vous sur de vouloir quitter ?", 
        	             "Quitter la partie", JOptionPane.YES_NO_OPTION, 
