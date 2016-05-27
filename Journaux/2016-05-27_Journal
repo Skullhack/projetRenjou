@@ -3,7 +3,7 @@
 PARTIE IHM :
 
 - Uitiliser un système de timer pour que l'IA ne joue pas en INSTANT
-- Quand on clique sur quitter puis non, ça ferme la fenêtre quand même
+- Quand on clique sur quitter puis non, ça ferme la fenêtre quand même //REGLE
 - Affichage des coups précedent dans la partie de droite
 - Mettre les sous menu de la barre de menu de la même taille que l'intitulé du label (ex : quand on clique sur partie barre de sous menu qui s'affiche déborde sur configuration)
 - Les images de tabous dans la selection des tabous sont inversés horizontalement par rapport à l'image de base
