@@ -7,12 +7,12 @@ PARTIE IHM :
 - Affichage des coups précedent dans la partie de droite
 - Mettre les sous menu de la barre de menu de la même taille que l'intitulé du label (ex : quand on clique sur partie barre de sous menu qui s'affiche déborde sur configuration)
 - Les images de tabous dans la selection des tabous sont inversés horizontalement par rapport à l'image de base
-- Les images de tabous et de règles des tabous sont superposés n'importe comment
+- Les images de tabous et de règles des tabous sont superposés n'importe comment //REGLE
 - Reprendre la selection des tabous, trop petit
-- Reprendre les aides des tabous pour ne pas afficher une fenêtre mais plutôt un tooltilp
-- Quand on ferme la fenêtre de menu il faut garder les ancien paramètre et pas le nouveau thème (faire comme un annuler)
-- Changer les nom de la fenêtre de menu par configuration
-- Quand on sauvegarde une partie avec un theme Zelda. On charge la partie : le theme zelda n'est pas chargé en même temps. Mais dans le renjou, le thème stocké est bien celui de Zelda
+- Reprendre les aides des tabous pour ne pas afficher une fenêtre mais plutôt un tooltilp //REGLE
+- Quand on ferme la fenêtre de menu il faut garder les ancien paramètre et pas le nouveau thème (faire comme un annuler) //REGLE
+- Changer les nom de la fenêtre de menu par configuration //REGLE
+- Quand on sauvegarde une partie avec un theme Zelda. On charge la partie : le theme zelda n'est pas chargé en même temps. Mais dans le renjou, le thème stocké est bien celui de Zelda //REGLE
 
 
 PARTIE IA  :
