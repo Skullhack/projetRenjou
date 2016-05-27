@@ -33,7 +33,7 @@ public interface InterfaceMoteur {
 	public void operationJouer(Coordonnees c, TypeJoueur j);
 
 	public void configurerPartie(TypeJoueur typeJoueur1, TypeJoueur typeJoueur2, ArrayList<TypeTabous> tabouPartie,
-			boolean nouvellePartie);
+			boolean nouvellePartie, boolean modeDebutant);
 
 	public void recommencerPartie();
 
