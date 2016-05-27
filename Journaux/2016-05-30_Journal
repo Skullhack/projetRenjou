@@ -1,0 +1,23 @@
+#TÂCHES À FAIRE
+
+PARTIE IHM :
+
+- Uitiliser un système de timer pour que l'IA ne joue pas en INSTANT
+- Affichage des coups précedent dans la partie de droite
+- Refaire l'image du tabou 3x3 pour enlevr les bors épais de la grille
+- voir pour mode tutoriel
+
+PARTIE IA  :
+
+- Faire IA Moyen et difficile
+
+PARTIE MOTEUR :
+
+- systeme de threads a voir en prio !!!
+- sauvegarde historique
+- voir pour mode tutoriel
+
+Autre :
+
+- Préparer soutenance
+- Faire dossier IHM et IA ( Pour IA pensé à faire combattre les différentes IA entre elles)
