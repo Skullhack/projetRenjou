@@ -32,30 +32,45 @@
                 </ImageView>
               </children>
             </FlowPane>
-            <ImageView fx:id="tabou1" fitHeight="70.0" fitWidth="70.0" onMouseEntered="#dragDebutTabou1" onMouseExited="#dragFinTabou1" pickOnBounds="true" preserveRatio="true">
-              <image>
-                <Image url="@../Images/Traditionnel/Plateau15x15.png" />
-              </image>
-              <FlowPane.margin>
-                <Insets left="180.0" right="10.0" />
-              </FlowPane.margin>
-            </ImageView>
-            <ImageView fx:id="tabou2" fitHeight="70.0" fitWidth="70.0" onMouseEntered="#dragDebutTabou2" onMouseExited="#dragFinTabou2" pickOnBounds="true" preserveRatio="true">
-              <image>
-                <Image url="@../Images/Traditionnel/Plateau15x15.png" />
-              </image>
-              <FlowPane.margin>
-                <Insets left="10.0" right="10.0" fx:id="x1" />
-              </FlowPane.margin>
-            </ImageView>
-            <ImageView fx:id="tabou3" fitHeight="70.0" fitWidth="70.0" onMouseEntered="#dragDebutTabou3" onMouseExited="#dragFinTabou3" pickOnBounds="true" preserveRatio="true">
-              <image>
-                <Image url="@../Images/Traditionnel/Plateau15x15.png" />
-              </image>
-              <FlowPane.margin>
-                <Insets left="10.0" right="10.0" fx:id="x1" />
-              </FlowPane.margin>
-            </ImageView>
+                  <AnchorPane onMouseClicked="#clickAffichageTabou" prefHeight="69.0" prefWidth="65.0">
+                     <children>
+                  <ImageView fx:id="tabou1Image" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0">
+                    <image>
+                      <Image url="@../Images/Traditionnel/Plateau15x15.png" />
+                    </image>
+                  </ImageView>
+                        <Label fx:id="tabou1" prefHeight="66.0" prefWidth="71.0" textAlignment="CENTER" />
+                     </children>
+                     <FlowPane.margin>
+                        <Insets left="170.0" right="10.0" />
+                     </FlowPane.margin>
+                  </AnchorPane>
+                  <AnchorPane layoutX="205.0" layoutY="10.0" onMouseClicked="#clickAffichageTabou" prefHeight="69.0" prefWidth="65.0">
+                     <children>
+                        <ImageView fx:id="tabou2Image" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/Traditionnel/Plateau15x15.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="tabou2" prefHeight="67.0" prefWidth="67.0" />
+                     </children>
+                     <FlowPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </FlowPane.margin>
+                  </AnchorPane>
+                  <AnchorPane layoutX="275.0" layoutY="10.0" onMouseClicked="#clickAffichageTabou" prefHeight="69.0" prefWidth="65.0">
+                     <children>
+                        <ImageView fx:id="tabou3Image" fitHeight="70.0" fitWidth="70.0" onMouseClicked="#clickAffichageTabou" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/Traditionnel/Plateau15x15.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="tabou3" prefHeight="67.0" prefWidth="69.0" />
+                     </children>
+                     <FlowPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </FlowPane.margin>
+                  </AnchorPane>
           </children>
         </FlowPane>
       </bottom>

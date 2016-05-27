@@ -37,6 +37,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelReader;
@@ -93,11 +94,17 @@ public class EcouteurFenetreJeu implements Initializable {
     @FXML
     private ImageView fond;
     @FXML
-    private ImageView tabou1;
+    private ImageView tabou1Image;
     @FXML
-    private ImageView tabou2;
+    private ImageView tabou2Image;
     @FXML
-    private ImageView tabou3;
+    private ImageView tabou3Image;
+    @FXML
+    private Label tabou1;
+    @FXML
+    private Label tabou2;
+    @FXML
+    private Label tabou3;
    
     
     public EcouteurFenetreJeu(IHM ihm) {
@@ -112,6 +119,18 @@ public class EcouteurFenetreJeu implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		Tooltip tooltipTabou1 = new Tooltip();
+		tooltipTabou1.setText("Trois-Trois : Si NOIR aligne trois pions dans deux directions différentes simultanément, il perd. \n Un clic sur l'icone vous renvoi dans la fenètre de configuration des tabous.");
+		tabou1.setTooltip(tooltipTabou1);
+		tabou1.setStyle("-fx-font-size: 20");
+		Tooltip tooltipTabou2 = new Tooltip();
+		tooltipTabou2.setText("Quatre-Quatre : Si NOIR aligne quatre pions dans deux directions différentes simultanément, il perd. \n Un clic sur l'icone vous renvoi dans la fenètre de configuration des tabous.");
+		tabou2.setTooltip(tooltipTabou2);
+		tabou2.setStyle("-fx-font-size: 20");
+		Tooltip tooltipTabou3 = new Tooltip();
+		tooltipTabou3.setText("Six-Sept : Si NOIR aligne plus de cinq pion connexe, il perd. \n Un clic sur l'icone vous renvoi dans la fenètre de configuration des tabous.");
+		tabou3.setTooltip(tooltipTabou3);
+		tabou3.setStyle("-fx-font-size: 20");
     }
 
 	@Override
@@ -216,36 +235,8 @@ public class EcouteurFenetreJeu implements Initializable {
 	}
 	
 	@FXML
-	private void dragDebutTabou1(MouseEvent e) {
-		ihm.efat.setImageTabou(ihm.i.getTroisTroisExplication());
-		ihm.fat.montrer();
-	}
-	
-	@FXML
-	private void dragFinTabou1(MouseEvent e) {
-		ihm.fat.cacher();
-	}
-	
-	@FXML
-	private void dragDebutTabou2(MouseEvent e) {
-		ihm.efat.setImageTabou(ihm.i.getQuatreQuatreExplication());
-		ihm.fat.montrer();
-	}
-	
-	@FXML
-	private void dragFinTabou2(MouseEvent e) {
-		ihm.fat.cacher();
-	}
-	
-	@FXML
-	private void dragDebutTabou3(MouseEvent e) {
-		ihm.efat.setImageTabou(ihm.i.getSixSeptExplication());
-		ihm.fat.montrer();
-	}
-	
-	@FXML
-	private void dragFinTabou3(MouseEvent e) {
-		ihm.fat.cacher();
+	private void clickAffichageTabou(MouseEvent e) {
+		tabousMenu(null);
 	}
 	
 	@FXML
@@ -403,9 +394,9 @@ public class EcouteurFenetreJeu implements Initializable {
 			refaire.setDisable(true);
 		}
 		fond.setImage(ihm.i.getFond());
-		tabou1.setImage(ihm.i.getTroisTroisImage());
-		tabou2.setImage(ihm.i.getQuatreQuatreImage());
-		tabou3.setImage(ihm.i.getSixSeptImage());
+		tabou1Image.setImage(ihm.i.getTroisTroisImage());
+		tabou2Image.setImage(ihm.i.getQuatreQuatreImage());
+		tabou3Image.setImage(ihm.i.getSixSeptImage());
 	}
 	
 	public void disabEnabAnnulerRefaire() {
