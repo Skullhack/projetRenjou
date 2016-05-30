@@ -154,15 +154,15 @@ public class EcouteurFenetreJeu implements Initializable {
 			e.printStackTrace();
 		}
 		Tooltip tooltipTabou1 = new Tooltip();
-		tooltipTabou1.setText("Trois-Trois : Si NOIR aligne trois pions dans deux directions différentes simultanément, il perd. \n Un clic sur l'icone vous renvoie dans la fenêtre de configuration des tabous.");
+		tooltipTabou1.setText("Trois-Trois : Si NOIR aligne trois pions dans deux directions diffÃ©rentes simultanÃ©ment, il perd. \n Un clic sur l'icone vous renvoie dans la fenÃªtre de configuration des tabous.");
 		tabou1.setTooltip(tooltipTabou1);
 		tabou1.setStyle("-fx-font-size: 20");
 		Tooltip tooltipTabou2 = new Tooltip();
-		tooltipTabou2.setText("Quatre-Quatre : Si NOIR aligne quatre pions dans deux directions différentes simultanément, il perd. \n Un clic sur l'icone vous renvoie dans la fenêtre de configuration des tabous.");
+		tooltipTabou2.setText("Quatre-Quatre : Si NOIR aligne quatre pions dans deux directions diffÃ©rentes simultanÃ©ment, il perd. \n Un clic sur l'icone vous renvoie dans la fenÃªtre de configuration des tabous.");
 		tabou2.setTooltip(tooltipTabou2);
 		tabou2.setStyle("-fx-font-size: 20");
 		Tooltip tooltipTabou3 = new Tooltip();
-		tooltipTabou3.setText("Six-Sept : Si NOIR aligne plus de cinq pions connexes, il perd. \n Un clic sur l'icone vous renvoie dans la fenêtre de configuration des tabous.");
+		tooltipTabou3.setText("Six-Sept : Si NOIR aligne plus de cinq pions connexes, il perd. \n Un clic sur l'icone vous renvoie dans la fenÃªtre de configuration des tabous.");
 		tabou3.setTooltip(tooltipTabou3);
 		tabou3.setStyle("-fx-font-size: 20");
     }
@@ -423,7 +423,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		nbPieceNoir.setText(Integer.toString(m.getRenjou().getJoueurs()[0].getNbPion()));
 		nbPieceBlanc.setText(Integer.toString(m.getRenjou().getJoueurs()[1].getNbPion()));
 		
-		//Pointillé sur joueur en cours
+		//Pointille sur joueur en cours
 		if (m.getRenjou().getJoueurCourant() == 0 && m.getRenjou().getEtatPartie() == EtatPartie.EnCours) {
 			panelJ2.setStyle("-fx-border-width : 5;-fx-border-color : gray;");
 			panelJ1.setStyle("-fx-border-width : 5;-fx-border-color : yellow;");
@@ -524,11 +524,11 @@ public class EcouteurFenetreJeu implements Initializable {
     	String message;
     	if (!(m.getRenjou().getEtatPartie() == EtatPartie.EnCours)) {
 	    	if (m.getRenjou().getEtatPartie() == EtatPartie.NoirGagne) {
-	    		message = "Le joueur noir a gagné la partie !";
+	    		message = "Le joueur noir a gagnÃ© la partie !";
 	    	} else if (m.getRenjou().getEtatPartie() == EtatPartie.BlancGagne) {
-	    		message = "Le joueur blanc a gagné la partie !";
+	    		message = "Le joueur blanc a gagnÃ© la partie !";
 	    	} else if (m.getRenjou().getEtatPartie() == EtatPartie.BlancGagneParTabou) {
-	    		message = "Le joueur blanc a gagné la partie grace a  un tabou !";
+	    		message = "Le joueur blanc a gagnÃ© la partie grace Ã  un tabou !";
 	    	}
 	    	else if(m.getRenjou().getEtatPartie() == EtatPartie.PartieNulle) {
 	    		message = "Partie nulle !";
