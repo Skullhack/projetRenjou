@@ -30,6 +30,7 @@ import Controleur.PionJoue;
 import Enum.EtatPartie;
 import Enum.TypeCase;
 import Enum.TypeJoueur;
+import Enum.TypeTabous;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -45,6 +46,7 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
@@ -106,6 +108,12 @@ public class EcouteurFenetreJeu implements Initializable {
     private Label tabou2;
     @FXML
     private Label tabou3;
+    @FXML
+    private AnchorPane tabou1Panel;
+    @FXML
+    private AnchorPane tabou2Panel;
+    @FXML
+    private AnchorPane tabou3Panel;
    
     
     public EcouteurFenetreJeu(IHM ihm) {
@@ -121,15 +129,15 @@ public class EcouteurFenetreJeu implements Initializable {
 			e.printStackTrace();
 		}
 		Tooltip tooltipTabou1 = new Tooltip();
-		tooltipTabou1.setText("Trois-Trois : Si NOIR aligne trois pions dans deux directions différentes simultanément, il perd. \n Un clic sur l'icone vous renvoi dans la fenètre de configuration des tabous.");
+		tooltipTabou1.setText("Trois-Trois : Si NOIR aligne trois pions dans deux directions différentes simultanément, il perd. \n Un clic sur l'icone vous renvoie dans la fenêtre de configuration des tabous.");
 		tabou1.setTooltip(tooltipTabou1);
 		tabou1.setStyle("-fx-font-size: 20");
 		Tooltip tooltipTabou2 = new Tooltip();
-		tooltipTabou2.setText("Quatre-Quatre : Si NOIR aligne quatre pions dans deux directions différentes simultanément, il perd. \n Un clic sur l'icone vous renvoi dans la fenètre de configuration des tabous.");
+		tooltipTabou2.setText("Quatre-Quatre : Si NOIR aligne quatre pions dans deux directions différentes simultanément, il perd. \n Un clic sur l'icone vous renvoie dans la fenêtre de configuration des tabous.");
 		tabou2.setTooltip(tooltipTabou2);
 		tabou2.setStyle("-fx-font-size: 20");
 		Tooltip tooltipTabou3 = new Tooltip();
-		tooltipTabou3.setText("Six-Sept : Si NOIR aligne plus de cinq pion connexe, il perd. \n Un clic sur l'icone vous renvoi dans la fenètre de configuration des tabous.");
+		tooltipTabou3.setText("Six-Sept : Si NOIR aligne plus de cinq pions connexes, il perd. \n Un clic sur l'icone vous renvoie dans la fenêtre de configuration des tabous.");
 		tabou3.setTooltip(tooltipTabou3);
 		tabou3.setStyle("-fx-font-size: 20");
     }
@@ -193,13 +201,20 @@ public class EcouteurFenetreJeu implements Initializable {
 	}
 	
 	@FXML
-	private void setIconeSablierAmpoule() {
-		String theme=m.getRenjou().getEmplacementThemes();
+	private void setIconeSablierAmpoule() {		
+		setIconeSablierAmpouleNoir();
+		setIconeSablierAmpouleBlanc();
+	}
+	
+	private void setIconeSablierAmpouleNoir() {
 		if (m.getRenjou().getJoueurs()[0].getType() == TypeJoueur.Humain) {
 			iconeNoir.setImage(ihm.i.getAmpoule());
 		} else {
 			iconeNoir.setImage(ihm.i.getSablier());
 		}
+	}
+	
+	private void setIconeSablierAmpouleBlanc() {
 		if (m.getRenjou().getJoueurs()[1].getType() == TypeJoueur.Humain) {
 			iconeBlanc.setImage(ihm.i.getAmpoule());
 		} else {
@@ -414,6 +429,49 @@ public class EcouteurFenetreJeu implements Initializable {
 		tabou2Image.setImage(ihm.i.getQuatreQuatreImage());
 		tabou3Image.setImage(ihm.i.getSixSeptImage());
 		recommencer.setImage(ihm.i.getRecommencer());
+		
+		//Disable les clic tabou si non actif
+		boolean troisTroisActif = m.getRenjou().getTabouJeu().estDansListeTabous(TypeTabous.TROIS_TROIS);
+		tabou1.setDisable(!troisTroisActif);
+		tabou1Panel.setDisable(!troisTroisActif);
+		if (!troisTroisActif) {
+			tabou1Panel.setStyle("-fx-background-color : black;");
+		} else {
+			tabou1Panel.setStyle(null);
+		}
+		boolean quatreQuatreActif = m.getRenjou().getTabouJeu().estDansListeTabous(TypeTabous.QUATRE_QUATRE);
+		tabou2.setDisable(!quatreQuatreActif);
+		tabou2Panel.setDisable(!quatreQuatreActif);
+		if (!quatreQuatreActif) {
+			tabou2Panel.setStyle("-fx-background-color : black;");
+		} else {
+			tabou2Panel.setStyle(null);
+		}
+		boolean sixSeptActif = m.getRenjou().getTabouJeu().estDansListeTabous(TypeTabous.SIX_SEPT);
+		tabou3.setDisable(!sixSeptActif);
+		tabou3Panel.setDisable(!sixSeptActif);
+		if (!sixSeptActif) {
+			tabou3Panel.setStyle("-fx-background-color : black;");
+		} else {
+			tabou3Panel.setStyle(null);
+		}
+		
+		//Desactiver sablier lorsque tour adverse
+		if (m.getRenjou().getJoueurCourant() == 0) {
+			iconeNoir.setDisable(false);
+			setIconeSablierAmpouleNoir();
+			iconeBlanc.setDisable(true);
+			iconeBlanc.setImage(ihm.i.getImageVide());
+			tempsBlanc.setText("");
+			tempsNoir.setText("");
+		} else {
+			iconeBlanc.setDisable(false);
+			setIconeSablierAmpouleBlanc();
+			iconeNoir.setDisable(true);
+			iconeNoir.setImage(ihm.i.getImageVide());
+			tempsBlanc.setText("");
+			tempsNoir.setText("");
+		}
 	}
 	
 	public void disabEnabAnnulerRefaire() {
@@ -457,7 +515,6 @@ public class EcouteurFenetreJeu implements Initializable {
     }
 	
 	private void repeindrePlateau() {
-		String theme = m.getRenjou().getEmplacementThemes();
 		Image plat = ihm.i.getPlateau();
 
 		Canvas canvas = new Canvas(plat.getWidth(),plat.getHeight());
@@ -472,53 +529,27 @@ public class EcouteurFenetreJeu implements Initializable {
 		Image iPionNoir;
 		Image croixRouge = ihm.i.getCroixRouge();
 		Image cercleVert = ihm.i.getCercleVert();
-		if (m.getRenjou().estModeDebutant()) {
-			for (int i=0;i<m.getRenjou().getPlateauDeJeu().getPlateau().length;i++) {
-				for (int j=0;j<m.getRenjou().getPlateauDeJeu().getPlateau()[i].length;j++) {
-					if (m.getRenjou().getListeAnnuler().size() > 0)
-						pion = m.getRenjou().getListeAnnuler().get(m.getRenjou().getListeAnnuler().size()-1);
-					if (pion != null && pion.getCoordonnees().getColonne() == j && pion.getCoordonnees().getLigne() == i) {
-						iPionBlanc = ihm.i.getPionBlancJoue();
-						iPionNoir = ihm.i.getPionNoirJoue();
-					} else {
-						iPionBlanc = ihm.i.getPionBlanc();
-						iPionNoir = ihm.i.getPionNoir();
-					}
-					TypeCase p = m.getRenjou().getPlateauDeJeu().getPlateau()[i][j]; 
-			    	double width = (plat.getWidth())/16;
-			    	double height = (plat.getHeight())/16;
-			    	double x = (j*width+4)+(width/2);
-			        double y = (i*height+4)+(height/2);
-			        
-			        if (p == TypeCase.PionBlanc)
-			        	graphicsContext.drawImage(iPionBlanc, x, y, width, height);
-			        else if (p == TypeCase.Tabou)
-			        	graphicsContext.drawImage(croixRouge, x, y, width, height);
-			        else if (p == TypeCase.Jouable && (m.premierCoup() || m.deuxiemeCoup()))
-			        	graphicsContext.drawImage(cercleVert, x, y, width, height);
-			        else if (p == TypeCase.PionNoir) 
-			        	graphicsContext.drawImage(iPionNoir, x, y, width, height);
-				}
-			}
-		} else {
-			for (int i=0;i<m.getRenjou().getListeAnnuler().size();i++) {
-				if (i>m.getRenjou().getListeAnnuler().size()-3) {
+		for (int i=0;i<m.getRenjou().getPlateauDeJeu().getPlateau().length;i++) {
+			for (int j=0;j<m.getRenjou().getPlateauDeJeu().getPlateau()[i].length;j++) {
+				TypeCase p = m.getRenjou().getPlateauDeJeu().getPlateau()[i][j]; 
+				if (m.getRenjou().getListeAnnuler().size() > 0)
+					pion = m.getRenjou().getListeAnnuler().get(m.getRenjou().getListeAnnuler().size()-1);
+				if (pion != null && pion.getCoordonnees().getColonne() == j && pion.getCoordonnees().getLigne() == i) {
 					iPionBlanc = ihm.i.getPionBlancJoue();
 					iPionNoir = ihm.i.getPionNoirJoue();
 				} else {
 					iPionBlanc = ihm.i.getPionBlanc();
 					iPionNoir = ihm.i.getPionNoir();
 				}
-				PionJoue p = m.getRenjou().getListeAnnuler().get(i); 
-		    	double width = (plat.getWidth())/16;
-		    	double height = (plat.getHeight())/16;
-		    	double x = (p.getCoordonnees().getColonne()*width+4)+(width/2);
-		        double y = (p.getCoordonnees().getLigne()*height+4)+(height/2);
-		        
-		        if (p.getTypeCase() == TypeCase.PionBlanc)
-		        	graphicsContext.drawImage(iPionBlanc, x, y, width, height);
-		        else
-		        	graphicsContext.drawImage(iPionNoir, x, y, width, height);
+			    if (p == TypeCase.PionBlanc) {
+			        dessinerPion(plat, graphicsContext, iPionBlanc, i, j);
+			    } else if (m.getRenjou().estModeDebutant() && p == TypeCase.Tabou) {
+			    	dessinerPion(plat, graphicsContext, croixRouge, i, j);
+			    } else if (m.getRenjou().estModeDebutant() && p == TypeCase.Jouable && (m.premierCoup() || m.deuxiemeCoup())) {
+			        dessinerPion(plat, graphicsContext, cercleVert, i, j);
+			    } else if (p == TypeCase.PionNoir) {
+			        dessinerPion(plat, graphicsContext, iPionNoir, i, j);
+			    }    
 			}
 		}
 		//On retransforme en Image
@@ -529,4 +560,31 @@ public class EcouteurFenetreJeu implements Initializable {
 		//imageAnnuler.add(i);
 		plateau.setImage(i);
 	}   
+	
+	private void dessinerPion(Image plat, GraphicsContext graphicsContext, Image image,int i, int j) {	
+    	double width = (plat.getWidth())/16;
+    	double height = (plat.getHeight())/16;
+    	double x = (j*width+4)+(width/2);
+        double y = (i*height+4)+(height/2);
+        graphicsContext.drawImage(image, x, y, width, height);
+	}
+	
+	@FXML
+	private void peindreAide() {
+		Coordonnees c = m.aide();
+		Canvas canvas = new Canvas(plateau.getImage().getWidth(),plateau.getImage().getHeight());
+		GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
+		
+		//On dessine l'image dans le canvas
+		graphicsContext.drawImage(plateau.getImage(), 0, 0);
+		
+		dessinerPion(plateau.getImage(), graphicsContext, ihm.i.getCercleVertPlein() , c.getLigne(), c.getColonne());
+		
+		//On retransforme en Image
+		WritableImage writableImage = new WritableImage((int)plateau.getImage().getWidth(), (int)plateau.getImage().getHeight());
+		canvas.snapshot(null, writableImage);
+		
+		Image i = (Image) writableImage;
+		plateau.setImage(i);
+	}
 }

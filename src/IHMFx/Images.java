@@ -40,6 +40,7 @@ public class Images {
 	private Image croixRouge;
 	private Image cercleVert;
 	private Image cercleVertPlein;
+	private Image imageVide;
 	
 	
 	public Images(Moteur m) {
@@ -84,6 +85,7 @@ public class Images {
 		croixRouge = new Image("./Images/PourToutLesThemes/CroixRouge.png");
 		cercleVert = new Image("./Images/PourToutLesThemes/CercleVert.png");
 		cercleVertPlein = new Image("./Images/PourToutLesThemes/CercleVertPlein.png");
+		imageVide = new Image("./Images/PourToutLesThemes/ImageVide.png");
 	}
 	
 	public Image getAmpoule() {
@@ -223,5 +225,9 @@ public class Images {
 	
 	public Image getCercleVertPlein() {
 		return cercleVertPlein;
+	}
+	
+	public Image getImageVide() {
+		return imageVide;
 	}
 }

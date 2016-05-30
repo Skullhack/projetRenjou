@@ -38,7 +38,6 @@ public class FenetreMenu extends Stage {
 	}
 	
 	public void montrer() {
-		efm.selectionnerRadioJoueur();
 		this.show();
 	}
 	

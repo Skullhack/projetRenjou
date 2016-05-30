@@ -32,7 +32,7 @@
                 </ImageView>
               </children>
             </FlowPane>
-                  <AnchorPane onMouseClicked="#clickAffichageTabou1" prefHeight="69.0" prefWidth="65.0">
+                  <AnchorPane fx:id="tabou1Panel" onMouseClicked="#clickAffichageTabou1" prefHeight="69.0" prefWidth="65.0">
                      <children>
                   <ImageView fx:id="tabou1Image" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0">
                     <image>
@@ -45,7 +45,7 @@
                         <Insets left="170.0" right="10.0" />
                      </FlowPane.margin>
                   </AnchorPane>
-                  <AnchorPane layoutX="205.0" layoutY="10.0" onMouseClicked="#clickAffichageTabou2" prefHeight="69.0" prefWidth="65.0">
+                  <AnchorPane fx:id="tabou2Panel" layoutX="205.0" layoutY="10.0" onMouseClicked="#clickAffichageTabou2" prefHeight="69.0" prefWidth="65.0">
                      <children>
                         <ImageView fx:id="tabou2Image" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -58,7 +58,7 @@
                         <Insets left="10.0" right="10.0" />
                      </FlowPane.margin>
                   </AnchorPane>
-                  <AnchorPane layoutX="275.0" layoutY="10.0" onMouseClicked="#clickAffichageTabou3" prefHeight="69.0" prefWidth="65.0">
+                  <AnchorPane fx:id="tabou3Panel" layoutX="275.0" layoutY="10.0" onMouseClicked="#clickAffichageTabou3" prefHeight="69.0" prefWidth="65.0">
                      <children>
                         <ImageView fx:id="tabou3Image" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -113,7 +113,7 @@
                     </Label>
                   </children>
                 </AnchorPane>
-                <ImageView fx:id="iconeNoir" fitHeight="58.583099185661105" fitWidth="38.112300872802734" onMouseEntered="#dragDebutSablierAmpoule1" onMouseExited="#dragFinSablierAmpoule1" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="iconeNoir" fitHeight="58.583099185661105" fitWidth="38.112300872802734" onMouseClicked="#peindreAide" onMouseEntered="#dragDebutSablierAmpoule1" onMouseExited="#dragFinSablierAmpoule1" pickOnBounds="true" preserveRatio="true">
                   <image>
                     <Image url="@../Images/Traditionnel/Ampoule.png" />
                   </image>
@@ -162,7 +162,7 @@
                     <Label fx:id="nbPieceBlanc" alignment="CENTER" font="$x5" layoutX="66.0" layoutY="13.0" prefHeight="35.0" prefWidth="48.0" text="60" textAlignment="CENTER" textFill="BLACK" />
                   </children>
                 </AnchorPane>
-                <ImageView fx:id="iconeBlanc" fitHeight="58.583099185661105" fitWidth="38.112300872802734" onMouseEntered="#dragDebutSablierAmpoule2" onMouseExited="#dragFinSablierAmpoule2" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="iconeBlanc" fitHeight="58.583099185661105" fitWidth="38.112300872802734" onMouseClicked="#peindreAide" onMouseEntered="#dragDebutSablierAmpoule2" onMouseExited="#dragFinSablierAmpoule2" pickOnBounds="true" preserveRatio="true">
                   <image>
                     <Image url="@../Images/Traditionnel/Ampoule.png" />
                   </image>
