@@ -91,7 +91,6 @@ public class EcouteurFenetreMenu {
 	@FXML
 	private void boutonAnnuler(MouseEvent e) {
 		annuler();
-		
 	}
 	
 	public void annuler() {
@@ -103,6 +102,7 @@ public class EcouteurFenetreMenu {
 		}	
 		ihm.fj.montrer();
 		ihm.fm.cacher();
+		ihm.efj.setEnabled();
 		themeChangement = false;
 	}
 	
@@ -155,6 +155,7 @@ public class EcouteurFenetreMenu {
         ihm.efj.update();
 		ihm.fj.montrer();
 		ihm.fm.cacher();
+		ihm.efj.setEnabled();
 	}
 	
 	@FXML
