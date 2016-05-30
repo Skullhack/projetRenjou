@@ -12,6 +12,7 @@ PARTIE IHM :
 - quand une partie est terminé, quand on veut faire une configuration de partie, ça réaffiche la page "vous avez gagné"
 - Reprendre lanterne mettre l'écriture tout le temps //ok
 - Temps restant a implementer
+- Quand on lcic sur le sablier, cela affiche l'aide
 
 PARTIE IA  :
 
