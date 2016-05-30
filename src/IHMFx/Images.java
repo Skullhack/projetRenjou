@@ -40,6 +40,13 @@ public class Images {
 	private Image croixRouge;
 	private Image cercleVert;
 	private Image cercleVertPlein;
+	private Image imageVide;
+	private Image flecheHaut;
+	private Image flecheHautDisab;
+	private Image flecheHautDrag;
+	private Image flecheBas;
+	private Image flecheBasDisab;
+	private Image flecheBasDrag;
 	
 	
 	public Images(Moteur m) {
@@ -72,6 +79,12 @@ public class Images {
 		boutonRetour = new Image("./Images/"+theme+"/BoutonRetour.png");
 		boutonRetourDrag = new Image("./Images/"+theme+"/BoutonRetourDrag.png");
 		fond = new Image("./Images/"+theme+"/Fond.png");
+		flecheHaut = new Image("./Images/"+theme+"/FlecheHaut.png");
+		flecheHautDisab = new Image("./Images/"+theme+"/FlecheHautDisab.png");
+		flecheHautDrag = new Image("./Images/"+theme+"/FlecheHautDrag.png");
+		flecheBas = new Image("./Images/"+theme+"/FlecheBas.png");
+		flecheBasDisab = new Image("./Images/"+theme+"/FlecheBasDisab.png");
+		flecheBasDrag = new Image("./Images/"+theme+"/FlecheBasDrag.png");
 		quatreQuatreImage = new Image("./Images/PourToutLesThemes/QUATRE-QUATREImage.png");
 		quatreQuatreExplication = new Image("./Images/PourToutLesThemes/QUATRE-QUATREExplication.png");
 		quatreQuatreDisab = new Image("./Images/PourToutLesThemes/QUATRE-QUATREDisab.png");
@@ -84,6 +97,7 @@ public class Images {
 		croixRouge = new Image("./Images/PourToutLesThemes/CroixRouge.png");
 		cercleVert = new Image("./Images/PourToutLesThemes/CercleVert.png");
 		cercleVertPlein = new Image("./Images/PourToutLesThemes/CercleVertPlein.png");
+		imageVide = new Image("./Images/PourToutLesThemes/ImageVide.png");
 	}
 	
 	public Image getAmpoule() {
@@ -223,5 +237,33 @@ public class Images {
 	
 	public Image getCercleVertPlein() {
 		return cercleVertPlein;
+	}
+	
+	public Image getImageVide() {
+		return imageVide;
+	}
+	
+	public Image getFlecheHaut() {
+		return flecheHaut;
+	}
+	
+	public Image getFlecheHautDisab() {
+		return flecheHautDisab;
+	}
+	
+	public Image getFlecheHautDrag() {
+		return flecheHautDrag;
+	}
+	
+	public Image getFlecheBas() {
+		return flecheBas;
+	}
+	
+	public Image getFlecheBasDisab() {
+		return flecheBasDisab;
+	}
+	
+	public Image getFlecheBasDrag() {
+		return flecheBasDrag;
 	}
 }

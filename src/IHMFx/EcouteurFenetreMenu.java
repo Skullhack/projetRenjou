@@ -148,11 +148,11 @@ public class EcouteurFenetreMenu {
 		}
 		
         if (tab[0] != null && tab[1] != null) {
-        	//gerer charger et nouvelle partie : TODO
             m.configurerPartie(tab[0], tab[1], tabous, ihm.fm.getNouvellePartie(),modeDebutant.isSelected());
         }
         ancienTheme = m.getRenjou().getEmplacementThemes();
         
+        ihm.efj.update();
 		ihm.fj.montrer();
 		ihm.fm.cacher();
 	}
@@ -219,7 +219,7 @@ public class EcouteurFenetreMenu {
 		this.ancienTheme = theme;
 	}
 	
-	public void selectionnerRadioJoueur() {
+	public void selectionnerBoxJoueur() {
 		if(m.getRenjou().getJoueurs()[0].getType() == TypeJoueur.values()[0]) {
 			noir1.setSelected(true);
 		} else if(m.getRenjou().getJoueurs()[0].getType() == TypeJoueur.values()[1]) {
@@ -245,6 +245,21 @@ public class EcouteurFenetreMenu {
 		if (m.getRenjou().estModeDebutant()) {
 			modeDebutant.setSelected(true);
 		}
+		if (m.getRenjou().getTabouJeu().estDansListeTabous(TypeTabous.TROIS_TROIS)) {
+			tabou1.setSelected(true);
+		} else {
+			tabou1.setSelected(false);
+		}
+		if (m.getRenjou().getTabouJeu().estDansListeTabous(TypeTabous.QUATRE_QUATRE)) {
+			tabou2.setSelected(true);
+		} else {
+			tabou2.setSelected(false);
+		}
+		if (m.getRenjou().getTabouJeu().estDansListeTabous(TypeTabous.SIX_SEPT)) {
+			tabou3.setSelected(true);
+		} else {
+			tabou3.setSelected(false);
+		}
 	}
 	
 	public TabPane getTabPane() {
@@ -256,5 +271,6 @@ public class EcouteurFenetreMenu {
 		fond.setImage(ihm.i.getFond());
 		boutonValider.setImage(ihm.i.getBoutonValider());
 		boutonAnnuler.setImage(ihm.i.getBoutonAnnuler());
+		selectionnerBoxJoueur();	
 	}
 }
