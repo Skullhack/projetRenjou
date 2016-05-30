@@ -595,6 +595,7 @@ public class EcouteurFenetreJeu implements Initializable {
 	
 	@FXML
 	private void peindreAide() {
+		this.repeindrePlateau();
 		Coordonnees c = m.aide();
 		Canvas canvas = new Canvas(plateau.getImage().getWidth(),plateau.getImage().getHeight());
 		GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
