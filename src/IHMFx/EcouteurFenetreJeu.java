@@ -725,29 +725,29 @@ public class EcouteurFenetreJeu implements Initializable {
 			int nbCoupAAnulleeOuRefaire = m.getRenjou().getNbDemiTourCourant() - indiceDebutTab - i;
 			if(nbCoupAAnulleeOuRefaire < 0){
 				//affichage des pions jusqu'a pos courant puis affichage transparent
-				afficherPlateauPionTransparent(m.getRenjou().getNbDemiTourCourant());
+				afficherPlateauPionTransparent(m.getRenjou().getNbDemiTourCourant(), m.getRenjou().getListeAnnuler().size() + m.getRenjou().getListeRefaire().size());
 			}else if(nbCoupAAnulleeOuRefaire > 0){
 				//affichage des pions jusqu'a clique (indiceFinTab-i) puis affichage transparent
-				afficherPlateauPionTransparent(indiceDebutTab - i);
+				afficherPlateauPionTransparent(indiceDebutTab - i, m.getRenjou().getNbDemiTourCourant());
 			}
 		}
 	}
 
-	private void afficherPlateauPionTransparent(int n) {
+	private void afficherPlateauPionTransparent(int bornePionVisible, int bornePionTransparent) {
 		int i=0;
-		while((i<n) || (i<m.getRenjou().getListeAnnuler().size())){
+		while((i<bornePionVisible) || (i<m.getRenjou().getListeAnnuler().size())){
 			
 			//affichage du pion dans la liste annuler
 			
 			i++;
 		}
-		if(i<n){
+		if(i<bornePionVisible){
 			int j=0;
-			while((i+j<n) || (j<m.getRenjou().getListeRefaire().size())){
+			while((i+j<bornePionVisible) || (j<m.getRenjou().getListeRefaire().size())){
 				//affichage du pion dans la liste refaire
 				j++;
 			}
-			if(i+j<n){
+			if(i+j<bornePionVisible){
 				while((j<m.getRenjou().getListeRefaire().size())){
 					//affichage du pion transparent dans la liste refaire
 					i++;
