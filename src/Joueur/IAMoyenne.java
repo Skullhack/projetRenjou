@@ -98,7 +98,7 @@ public class IAMoyenne extends IA {
 				if (EstJouable(pdj, c)) {
 					pdj.ajouter(c, tc);
 					Log.print(1, pdj.toString());
-					if (PartieFinie(pdj, c)) {
+					if (PartieFinie(pdj, c, tc)) {
 						// on peut couper l�, le coup est gagnant.
 						Log.print(1, "dans jouer " + c + " gagnant en profondeur " + (profondeurMax - profondeur));
 						return c;
@@ -390,7 +390,7 @@ public class IAMoyenne extends IA {
 				if (EstJouable(pdj, c)) {
 					pdj.ajouter(c, tc);
 					// Log.print(695, pdj.toString());
-					if (PartieFinie(pdj, c)) {
+					if (PartieFinie(pdj, c, tc)) {
 						// on peut couper l�, le coup est perdant.
 						pdj.enlever(c);
 
@@ -423,7 +423,7 @@ public class IAMoyenne extends IA {
 				// pion existant
 				if (EstJouable(pdj, c)) {
 					pdj.ajouter(c, tc);
-					if (PartieFinie(pdj, c)) {
+					if (PartieFinie(pdj, c, tc)) {
 						// on peut couper l�, le coup est gagnant.
 						pdj.enlever(c);
 						// Log.print(695, "dans evalCoupIA " + c + " gagnant en
