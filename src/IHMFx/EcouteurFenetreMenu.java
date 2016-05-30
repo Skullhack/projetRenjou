@@ -209,6 +209,13 @@ public class EcouteurFenetreMenu {
 		themeChangement = true;
 	}
 	
+	@FXML
+	private void selectionnerThemeCage(MouseEvent e) {
+		setAncienTheme(m.getRenjou().getEmplacementThemes());
+		selectionnerTheme("Cage");
+		themeChangement = true;
+	}
+	
 	public void selectionnerTheme(String nouveauTheme) {
 		m.getRenjou().setNouveauTheme(nouveauTheme);
 		ihm.i.setImage();
