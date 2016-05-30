@@ -231,6 +231,14 @@
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                        </GridPane.margin>
                                     </ImageView>
+                                    <ImageView fitHeight="83.82641876220703" fitWidth="172.0" onMouseClicked="#selectionnerThemeCage" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                                       <image>
+                                          <Image url="@../Images/Theme/ThemeCage.png" />
+                                       </image>
+                                       <GridPane.margin>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </GridPane.margin>
+                                    </ImageView>
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

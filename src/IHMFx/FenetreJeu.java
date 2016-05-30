@@ -21,7 +21,6 @@ public class FenetreJeu extends Stage {
     	this.setTitle("Renjou");
     	this.setResizable(false);
     	this.centerOnScreen();
-    	Platform.setImplicitExit(false);
     	EventHandler<WindowEvent> eh = new EventHandler<WindowEvent>() {
             public void handle(WindowEvent we) {
                 we.consume();

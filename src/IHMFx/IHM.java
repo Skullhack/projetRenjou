@@ -28,10 +28,12 @@ public class IHM extends Application implements MoteurObserveur{
 	public EcouteurFenetreJeu efj;
 	public EcouteurFenetreMenu efm;
 	public EcouteurFenetreAide efa;
+	public EcouteurFenetreRenjou efr;
 	public Images i;
 	public FenetreJeu fj;
 	public FenetreMenu fm;
 	public FenetreAide fa;
+	public FenetreRenjou fr;
 	public Stage aideStage;
 
     public static void main(String[] args) {
@@ -44,13 +46,16 @@ public class IHM extends Application implements MoteurObserveur{
     	i = new Images(m);	
 		//Premiere Fenetre
 	    efj = new EcouteurFenetreJeu(this);
-		fj.montrer();
 	        
 	    //Seconde Fenetre
 	    efm = new EcouteurFenetreMenu(this);
 	        
 	    //Troisieme Fenetre
 	    efa = new EcouteurFenetreAide(this);
+	    
+	    //Quatrieme Fenetre
+	    efr = new EcouteurFenetreRenjou(this);
+	    fr.montrer();
 	    
 	    m.enregistrerObserveur(this);
 	    actualiser();

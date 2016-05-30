@@ -31,8 +31,8 @@ public class TestIAMoyenneEvaluation {
 		// plage detestPartieFinie 711 720
 		// plage detestEstJouableSimple 721 730
 		// plage detestEstJouable 731 740
-		Log.setPlage(500,600);
-		Log.setPlage(00,00);
+		Log.setPlage(504,600);
+		//Log.setPlage(00,00);
 	}
 	@Test
 	public void DeuxBlanc() {
@@ -47,40 +47,37 @@ public class TestIAMoyenneEvaluation {
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 //		
 
-		
+		fail();
 	}
 
 	@Test
 	public void DeuxBlancLibre() {
-		
+		Log.setPlage(500, 502);
 		pdj = pdj.charger(chemin + "DeuxBlancLibre");
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
+		Log.print(501, pdj.toString());
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 
-		
 	}
 	
 	@Test
 	public void DeuxBlancLibreLibre() {
-		
 		pdj = pdj.charger(chemin + "DeuxBlancLibreLibre");
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
-
+		Log.print(501, pdj.toString());
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(-5, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-5, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(5, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(5, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 		
 	}
 	
@@ -98,7 +95,7 @@ public class TestIAMoyenneEvaluation {
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 //		
 
-		
+		fail();
 	}
 	
 	@Test
@@ -115,7 +112,7 @@ public class TestIAMoyenneEvaluation {
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 //		
 
-		
+		fail();
 	}
 	
 	@Test
@@ -132,7 +129,7 @@ public class TestIAMoyenneEvaluation {
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 //		
 
-		
+		fail();
 	}
 	
 	@Test
@@ -149,41 +146,36 @@ public class TestIAMoyenneEvaluation {
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 //		
 
-		
+		fail();
 	}
 	
 	@Test
 	public void DeuxFoisDeuxNoirLibre() {
-		
+		Log.setPlage(501,502);
 		pdj = pdj.charger(chemin + "DeuxFoisDeuxNoirLibre");
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
-
-		
+		Log.print(501, pdj.toString());
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(5, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(5, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(-5, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-5, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 	}
 	
 	@Test
 	public void DeuxFoisDeuxNoirLibreLibre() {
-		
 		pdj = pdj.charger(chemin + "DeuxFoisDeuxNoirLibreLibre");
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
-
-		
+//		Log.print(501, pdj.toString());
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(500, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(500, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(-500, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-500, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 	}
 	
 	@Test
@@ -200,7 +192,7 @@ public class TestIAMoyenneEvaluation {
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 //		
 
-		
+		fail();
 	}
 	
 	@Test
@@ -217,60 +209,54 @@ public class TestIAMoyenneEvaluation {
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 //		
 
-		
+		fail();
 	}
 	
 	@Test
 	public void DeuxNoirEtBlancLibreLibre() {
 		pdj = pdj.charger(chemin + "DeuxNoirEtBlancLibreLibre");
+		Log.print(505, pdj.toString());
+		Log.print(505,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		Log.print(505,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		Log.print(505,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		Log.print(505,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
-
-		
 	}
 	
 	@Test
 	public void DeuxNoirLibre() {
-		
+		Log.setPlage(500, 502);;
 		pdj = pdj.charger(chemin + "DeuxNoirLibre");
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
-
-		
+		Log.print(501, pdj.toString());
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 	}
 	
 	@Test
 	public void QuatreBlancLibre() {
 		
 		pdj = pdj.charger(chemin + "QuatreBlancLibre");
-		//Log.setPlage(500,600);
-		Log.print(501,pdj.toString());
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
-
 		
+		Log.print(501,pdj.toString());
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(-20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
+
 	}
 	
 	@Test
@@ -286,7 +272,7 @@ public class TestIAMoyenneEvaluation {
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 //		
-
+		fail();
 		
 	}
 	
@@ -304,24 +290,21 @@ public class TestIAMoyenneEvaluation {
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 //		
 
-		
+		fail();
 	}
 	
 	@Test
 	public void QuatreNoirEtBlancLibreLibre() {
-		
 		pdj = pdj.charger(chemin + "QuatreNoirEtBlancLibreLibre");
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
-
-		
+		Log.print(501, pdj.toString());
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(-20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 	}
 	
 	@Test
@@ -337,7 +320,7 @@ public class TestIAMoyenneEvaluation {
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 //		
-
+		fail();
 		
 	}
 	
@@ -355,7 +338,7 @@ public class TestIAMoyenneEvaluation {
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 //		
 
-		
+		fail();
 	}
 	
 	@Test
@@ -371,7 +354,7 @@ public class TestIAMoyenneEvaluation {
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 //		
-
+		fail();
 		
 	}
 	
@@ -388,7 +371,7 @@ public class TestIAMoyenneEvaluation {
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 //		
-
+		fail();
 		
 	}
 	
@@ -408,7 +391,7 @@ public class TestIAMoyenneEvaluation {
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 //		
 
-		
+		fail();
 	}
 	
 	@Test
@@ -424,25 +407,23 @@ public class TestIAMoyenneEvaluation {
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 //		
-
+		fail();
 		
 	}
 	
 	@Test
 	public void TroisFoisDeuxBlancEtNoirLibre() {
-		
+		Log.setPlage(500, 502);
 		pdj = pdj.charger(chemin + "TroisFoisDeuxBlancEtNoirLibre");
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
-
-		
+		Log.print(501, pdj.toString());
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 	}
 	
 	@Test
@@ -459,7 +440,7 @@ public class TestIAMoyenneEvaluation {
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 //		
 
-		
+		fail();
 	}
 	
 	@Test
@@ -475,7 +456,7 @@ public class TestIAMoyenneEvaluation {
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 //		
-
+		fail();
 		
 	}
 	
@@ -492,145 +473,129 @@ public class TestIAMoyenneEvaluation {
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 //		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 //		
-
+		fail();
 		
 	}
 	
 	@Test
 	public void TroisFoisDeuxNoirLibre() {
-		
 		pdj = pdj.charger(chemin + "TroisFoisDeuxNoirLibre");
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
+		Log.print(501, pdj.toString());
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(75, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(75, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(-75, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-75, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 
-		
 	}
 	
 	@Test
 	public void TroisFoisTroisBlanc() {
-		
 		pdj = pdj.charger(chemin + "TroisFoisTroisBlanc");
-		Log.setPlage(500,600);
 		Log.print(501,pdj.toString());
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
-
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(-100, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-100, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(100, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(100, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
+		
 		
 	}
 	
 	@Test
 	public void TroisFoisTroisBlancEtNoirLibre() {
-		
 		pdj = pdj.charger(chemin + "TroisFoisTroisBlancEtNoirLibre");
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
+		Log.print(501, pdj.toString());
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(-20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 
-		
 	}
 	
 	@Test
 	public void TroisFoisTroisBlancLibre() {
-		
 		pdj = pdj.charger(chemin + "TroisFoisTroisBlancLibre");
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
+		Log.print(501, pdj.toString());
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(-20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 
-		
 	}
 	
 	@Test
 	public void TroisFoisTroisBlancLibreLibre() {
-		
 		pdj = pdj.charger(chemin + "TroisFoisTroisBlancLibreLibre");
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
+		Log.print(501, pdj.toString());
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(-20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 
 		
 	}
 	
 	@Test
 	public void TroisFoisTroisNoir() {
-		
 		pdj = pdj.charger(chemin + "TroisFoisTroisNoir");
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
-
+		Log.print(501, pdj.toString());
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 		
 	}
 	
 	@Test
 	public void TroisFoisTroisNoirLibre() {
-		
 		pdj = pdj.charger(chemin + "TroisFoisTroisNoirLibre");
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
+		Log.print(501, pdj.toString());
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 
-		
 	}
 	
 	@Test
 	public void TroisFoisTroisNoirLibreLibre() {
-		
 		pdj = pdj.charger(chemin + "TroisFoisTroisNoirLibreLibre");
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
-
+		Log.print(501, pdj.toString());
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 		
 	}
 	
@@ -638,68 +603,58 @@ public class TestIAMoyenneEvaluation {
 	public void TroisNoir() {
 		
 		pdj = pdj.charger(chemin + "TroisNoir");
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
-
-		
+		Log.print(501, pdj.toString());
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 	}
 	
 	@Test
 	public void TroisNoirEtBlancLibreLibre() {
-		
 		pdj = pdj.charger(chemin + "TroisNoirEtBlancLibreLibre");
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
-
-		
+		Log.print(501, pdj.toString());
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 	}
 	
 	@Test
 	public void TroisNoirLibre() {
-		
 		pdj = pdj.charger(chemin + "TroisNoirLibre");
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
+		Log.print(501, pdj.toString());
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 
-		
 	}
 	
 	@Test
 	public void TroisNoirLibreLibre() {
-		
 		pdj = pdj.charger(chemin + "TroisNoirLibreLibre");
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-//		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
-//		
-
-		
+		Log.print(501, pdj.toString());
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+//		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 	}
 	
 }

@@ -158,15 +158,27 @@ public class EcouteurFenetreJeu implements Initializable {
 			e.printStackTrace();
 		}
 		Tooltip tooltipTabou1 = new Tooltip();
+<<<<<<< HEAD
 		tooltipTabou1.setText("Trois-Trois : Si NOIR aligne trois pions dans deux directions diff�rentes simultan�ment, il perd. \n Un clic sur l'icone vous renvoie dans la fen�tre de configuration des tabous.");
+=======
+		tooltipTabou1.setText("Trois-Trois : Si NOIR aligne trois pions dans deux directions différentes simultanément, il perd. \n Un clic sur l'icone vous renvoie dans la fenêtre de configuration des tabous.");
+>>>>>>> branch 'master' of https://github.com/arcaman/projetRenjou.git
 		tabou1.setTooltip(tooltipTabou1);
 		tabou1.setStyle("-fx-font-size: 20");
 		Tooltip tooltipTabou2 = new Tooltip();
+<<<<<<< HEAD
 		tooltipTabou2.setText("Quatre-Quatre : Si NOIR aligne quatre pions dans deux directions diff�rentes simultan�ment, il perd. \n Un clic sur l'icone vous renvoie dans la fen�tre de configuration des tabous.");
+=======
+		tooltipTabou2.setText("Quatre-Quatre : Si NOIR aligne quatre pions dans deux directions différentes simultanément, il perd. \n Un clic sur l'icone vous renvoie dans la fenêtre de configuration des tabous.");
+>>>>>>> branch 'master' of https://github.com/arcaman/projetRenjou.git
 		tabou2.setTooltip(tooltipTabou2);
 		tabou2.setStyle("-fx-font-size: 20");
 		Tooltip tooltipTabou3 = new Tooltip();
+<<<<<<< HEAD
 		tooltipTabou3.setText("Six-Sept : Si NOIR aligne plus de cinq pions connexes, il perd. \n Un clic sur l'icone vous renvoie dans la fen�tre de configuration des tabous.");
+=======
+		tooltipTabou3.setText("Six-Sept : Si NOIR aligne plus de cinq pions connexes, il perd. \n Un clic sur l'icone vous renvoie dans la fenêtre de configuration des tabous.");
+>>>>>>> branch 'master' of https://github.com/arcaman/projetRenjou.git
 		tabou3.setTooltip(tooltipTabou3);
 		tabou3.setStyle("-fx-font-size: 20");
     }
@@ -427,7 +439,11 @@ public class EcouteurFenetreJeu implements Initializable {
 		nbPieceNoir.setText(Integer.toString(m.getRenjou().getJoueurs()[0].getNbPion()));
 		nbPieceBlanc.setText(Integer.toString(m.getRenjou().getJoueurs()[1].getNbPion()));
 		
+<<<<<<< HEAD
 		//Pointill� sur joueur en cours
+=======
+		//Pointille sur joueur en cours
+>>>>>>> branch 'master' of https://github.com/arcaman/projetRenjou.git
 		if (m.getRenjou().getJoueurCourant() == 0 && m.getRenjou().getEtatPartie() == EtatPartie.EnCours) {
 			panelJ2.setStyle("-fx-border-width : 5;-fx-border-color : gray;");
 			panelJ1.setStyle("-fx-border-width : 5;-fx-border-color : yellow;");
@@ -528,11 +544,23 @@ public class EcouteurFenetreJeu implements Initializable {
     	String message;
     	if (!(m.getRenjou().getEtatPartie() == EtatPartie.EnCours)) {
 	    	if (m.getRenjou().getEtatPartie() == EtatPartie.NoirGagne) {
+<<<<<<< HEAD
 	    		message = "Le joueur noir a gagn� la partie !";
+=======
+	    		message = "Le joueur noir a gagné la partie !";
+>>>>>>> branch 'master' of https://github.com/arcaman/projetRenjou.git
 	    	} else if (m.getRenjou().getEtatPartie() == EtatPartie.BlancGagne) {
+<<<<<<< HEAD
 	    		message = "Le joueur blanc a gagn� la partie !";
+=======
+	    		message = "Le joueur blanc a gagné la partie !";
+>>>>>>> branch 'master' of https://github.com/arcaman/projetRenjou.git
 	    	} else if (m.getRenjou().getEtatPartie() == EtatPartie.BlancGagneParTabou) {
+<<<<<<< HEAD
 	    		message = "Le joueur blanc a gagn� la partie grace a� un tabou !";
+=======
+	    		message = "Le joueur blanc a gagné la partie grace à un tabou !";
+>>>>>>> branch 'master' of https://github.com/arcaman/projetRenjou.git
 	    	}
 	    	else if(m.getRenjou().getEtatPartie() == EtatPartie.PartieNulle) {
 	    		message = "Partie nulle !";

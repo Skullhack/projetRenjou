@@ -111,7 +111,7 @@ public class EcouteurFenetreMenu {
 		TypeJoueur[] tab = new TypeJoueur[2];
 		ArrayList<TypeTabous> tabous = new ArrayList<TypeTabous>();
 		
-		//Valeurs s�lectionn�es radiobutton joueur
+		//Valeurs selectionnees radiobutton joueur
 		if(noir1.isSelected()) {
 			tab[0] = TypeJoueur.values()[0];
 		} else if(noir2.isSelected()) {
@@ -136,7 +136,7 @@ public class EcouteurFenetreMenu {
 			tab[1] = TypeJoueur.values()[4];
 		}
 		
-		//Valeurs s�lectionn�es dans tabou
+		//Valeurs selectionnees dans tabou
 		if (tabou1.isSelected()) {
 			tabous.add(TypeTabous.TROIS_TROIS);
 		}
@@ -206,6 +206,13 @@ public class EcouteurFenetreMenu {
 	private void selectionnerThemeZelda(MouseEvent e) {
 		setAncienTheme(m.getRenjou().getEmplacementThemes());
 		selectionnerTheme("Zelda");
+		themeChangement = true;
+	}
+	
+	@FXML
+	private void selectionnerThemeCage(MouseEvent e) {
+		setAncienTheme(m.getRenjou().getEmplacementThemes());
+		selectionnerTheme("Cage");
 		themeChangement = true;
 	}
 	

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0">
+         <image>
+            <Image url="@../Images/Traditionnel/Fond.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="chargerPartie" fitHeight="63.0" fitWidth="200.0" layoutX="57.0" layoutY="237.0" onMouseClicked="#chargerPartie" onMouseEntered="#boutonChargerPartieDebutDrag" onMouseExited="#boutonChargerPartieFinDrag">
+         <image>
+            <Image url="@../Images/PourToutLesThemes/ChargerPartie.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lancerTutoriel" fitHeight="63.0" fitWidth="200.0" layoutX="360.0" layoutY="237.0" onMouseClicked="#lancerTutoriel" onMouseEntered="#boutonLancerTutorielDebutDrag" onMouseExited="#boutonLancerTutorielFinDrag">
+         <image>
+            <Image url="@../Images/PourToutLesThemes/LancerTutoriel.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="partieRapide" fitHeight="63.0" fitWidth="200.0" layoutX="57.0" layoutY="146.0" onMouseClicked="#partieRapide" onMouseEntered="#boutonPartieRapideDebutDrag" onMouseExited="#boutonPartieRapideFinDrag">
+         <image>
+            <Image url="@../Images/PourToutLesThemes/PartieRapide.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="partiePersonnalisee" fitHeight="63.0" fitWidth="200.0" layoutX="360.0" layoutY="146.0" onMouseClicked="#partiePersonnalisee" onMouseEntered="#boutonPartiePersonnaliseeDebutDrag" onMouseExited="#boutonPartiePersonnaliseeFinDrag">
+         <image>
+            <Image url="@../Images/PourToutLesThemes/PartiePersonnalisee.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="quitter" fitHeight="54.0" fitWidth="200.0" layoutX="200.0" layoutY="338.0" onMouseClicked="#quitter" onMouseEntered="#boutonQuitterDebutDrag" onMouseExited="#boutonQuitterFinDrag">
+         <image>
+            <Image url="@../Images/PourToutLesThemes/Quitter.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="-1.0" layoutY="5.0" prefHeight="98.0" prefWidth="600.0" text="Renjou" textAlignment="CENTER">
+         <font>
+            <Font name="Arial" size="86.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

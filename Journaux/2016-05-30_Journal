@@ -1,5 +1,8 @@
 #TÂCHES À FAIRE
 
+
+VERIFIER ENCODAGE DU PROJET POUR LES HOMMES DE L'IHM !!!
+
 PARTIE IHM :
 
 - Uitiliser un système de timer pour que l'IA ne joue pas en INSTANT
@@ -12,6 +15,13 @@ PARTIE IHM :
 - quand une partie est terminé, quand on veut faire une configuration de partie, ça réaffiche la page "vous avez gagné"
 - Reprendre lanterne mettre l'écriture tout le temps //ok
 - Temps restant a implementer
+
+
+BUG A REGLER EN PRIO :
+
+- Quand on clic sur le sablier, cela affiche l'aide
+- Sur l'historique, les images haut et bas ne sont pas chargées
+- Les cercles verts du mode débutant ne sont pas centrés
 
 PARTIE IA  :
 
