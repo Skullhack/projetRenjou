@@ -337,6 +337,10 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		renjou.getTabouJeu().setListeTabous(tabouPartie);
 
 		renjou.setModeDebutant(modeDebutant);
+		majCasesTabous(renjou);
+		
+		Log.print(1, "LE PLATEAU DE JEU APRES CONFIGURER PARTIE : " + renjou.getPlateauDeJeu().toString());
+		
 
 		notifierObserveurs();
 		faireJouerIA();
@@ -576,6 +580,11 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 				if (caseJouable(renjou, coorParcours)) {
 					if (!renjou.getTabouJeu().estValide(renjou.getPlateauDeJeu(), coorParcours)) {
 						renjou.getPlateauDeJeu().ajouter(coorParcours, TypeCase.Tabou);
+					}
+				}
+				if (caseTabou(renjou, coorParcours)) {
+					if (renjou.getTabouJeu().estValide(renjou.getPlateauDeJeu(), coorParcours)) {
+						renjou.getPlateauDeJeu().ajouter(coorParcours, TypeCase.Jouable);
 					}
 				}
 			}
