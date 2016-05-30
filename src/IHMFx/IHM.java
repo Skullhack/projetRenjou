@@ -55,7 +55,7 @@ public class IHM extends Application implements MoteurObserveur{
 	    
 	    //Quatrieme Fenetre
 	    efr = new EcouteurFenetreRenjou(this);
-	    fj.montrer();
+	    fr.montrer();
 	    
 	    m.enregistrerObserveur(this);
 	    actualiser();

@@ -3,6 +3,8 @@ package IHMFx;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.JFileChooser;
+
 import Controleur.Moteur;
 import Enum.TypeJoueur;
 import Enum.TypeTabous;
@@ -19,11 +21,15 @@ public class EcouteurFenetreRenjou {
 	private IHM ihm;
 	private Moteur m;
 	@FXML
-	private ImageView fond;
+	private ImageView partieRapide;
 	@FXML
-	private TabPane tabs;
+	private ImageView partiePersonnalisee;
 	@FXML
-	private ImageView boutonRetour;
+	private ImageView chargerPartie;
+	@FXML
+	private ImageView lancerTutoriel;
+	@FXML
+	private ImageView quitter;
 	
 	
 	public EcouteurFenetreRenjou(IHM ihm) {
@@ -38,28 +44,95 @@ public class EcouteurFenetreRenjou {
 	}
 	
 	@FXML
-	private void boutonRetour() {
+	private void boutonPartieRapideDebutDrag() {
+		partieRapide.setImage(ihm.i.getPartieRapideDrag());
+	}
+	
+	@FXML
+	private void boutonPartieRapideFinDrag() {
+		partieRapide.setImage(ihm.i.getPartieRapide());
+	}
+	
+	@FXML
+	private void boutonPartiePersonnaliseeDebutDrag() {
+		partiePersonnalisee.setImage(ihm.i.getPartiePersonnaliseeDrag());
+	}
+	
+	@FXML
+	private void boutonPartiePersonnaliseeFinDrag() {
+		partiePersonnalisee.setImage(ihm.i.getPartiePersonnalisee());
+	}
+	
+	@FXML
+	private void boutonChargerPartieDebutDrag() {
+		chargerPartie.setImage(ihm.i.getChargerPartieDrag());
+	}
+	
+	@FXML
+	private void boutonChargerPartieFinDrag() {
+		chargerPartie.setImage(ihm.i.getChargerPartie());
+	}
+	
+	@FXML
+	private void boutonLancerTutorielDebutDrag() {
+		lancerTutoriel.setImage(ihm.i.getLancerTutorielDrag());
+	}
+	
+	@FXML
+	private void boutonLancerTutorielFinDrag() {
+		lancerTutoriel.setImage(ihm.i.getLancerTutoriel());
+	}
+	
+	@FXML
+	private void boutonQuitterDebutDrag() {
+		quitter.setImage(ihm.i.getQuitterDrag());
+	}
+	
+	@FXML
+	private void boutonQuitterFinDrag() {
+		quitter.setImage(ihm.i.getQuitter());
+	}
+	
+	@FXML
+	private void partieRapide(MouseEvent e) {
+		//rendre FenetreRenjou inactif : TODO
+		ihm.fr.hide();
 		ihm.fj.montrer();
-		ihm.fa.cacher();
 	}
 	
 	@FXML
-	private void boutonRetourDebutDrag() {
-		boutonRetour.setImage(ihm.i.getBoutonRetourDrag());
+	private void partiePersonnalisee(MouseEvent e) {
+		//rendre FenetreRenjou inactif : TODO
+		ihm.fr.hide();
+		ihm.fm.setNouvellePartie(true);
+		ihm.fm.montrer();
+		ihm.fm.setAlwaysOnTop(true);
+		ihm.efm.getTabPane().getSelectionModel().select(0);
 	}
 	
 	@FXML
-	private void boutonRetourFinDrag() {
-		boutonRetour.setImage(ihm.i.getBoutonRetour());
+	private void chargerPartie(MouseEvent e) {
+		String fichierCharger = null;
+        JFileChooser ouvertureFenetre = new JFileChooser();
+        int checkEtatFenetre = ouvertureFenetre.showOpenDialog(null);
+        if (checkEtatFenetre == ouvertureFenetre.APPROVE_OPTION) {
+            fichierCharger = ouvertureFenetre.getSelectedFile().getAbsolutePath();
+            m.charger(fichierCharger);
+            ihm.efm.selectionnerTheme(m.getRenjou().getEmplacementThemes());
+            ihm.efm.setAncienTheme("");
+            ihm.fr.hide();
+            ihm.fj.montrer();
+        }
 	}
 	
-	public TabPane getTabPane() {
-		return tabs;
+	@FXML
+	private void lancerTutoriel(MouseEvent e) {
+		
 	}
 	
-	public void update() {
-		fond.setImage(ihm.i.getFond());
-		boutonRetour.setImage(ihm.i.getBoutonRetour());
+	@FXML
+	private void quitter(MouseEvent e) {
+		System.exit(0);
 	}
 }
 
