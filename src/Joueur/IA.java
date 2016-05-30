@@ -55,9 +55,8 @@ public class IA extends Joueur {
 		return pdj.getNbPionBlanc() == 0 && pdj.getNbPionNoir() == 1;
 	}
 	
-	public boolean PartieFinie(PlateauDeJeu pdj, Coordonnees c) {
+	public boolean PartieFinie(PlateauDeJeu pdj, Coordonnees c, TypeCase tc) {
 
-		TypeCase tc = pdj.getTypeCaseTableau(c);
 
 		// diago hautgauchebasdroit
 		int somme = 0;

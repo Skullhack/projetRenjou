@@ -32,11 +32,10 @@ public class TestIAMoyenneEvaluation {
 		// plage detestEstJouableSimple 721 730
 		// plage detestEstJouable 731 740
 		Log.setPlage(500,600);
-
+		Log.setPlage(00,00);
 	}
 	@Test
 	public void DeuxBlanc() {
-		
 		pdj = pdj.charger(chemin + "DeuxBlanc");
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
@@ -222,9 +221,9 @@ public class TestIAMoyenneEvaluation {
 	}
 	
 	@Test
-	public void tesDeuxNoirEtBlancLibreLibret13() {
-		
+	public void DeuxNoirEtBlancLibreLibre() {
 		pdj = pdj.charger(chemin + "DeuxNoirEtBlancLibreLibre");
+
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
@@ -259,6 +258,8 @@ public class TestIAMoyenneEvaluation {
 	public void QuatreBlancLibre() {
 		
 		pdj = pdj.charger(chemin + "QuatreBlancLibre");
+		//Log.setPlage(500,600);
+		Log.print(501,pdj.toString());
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
@@ -395,6 +396,8 @@ public class TestIAMoyenneEvaluation {
 	public void TroisBlancLibreLibre() {
 		
 		pdj = pdj.charger(chemin + "TroisBlancLibreLibre");
+		//Log.setPlage(500,600);
+		Log.print(501,pdj.toString());
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
@@ -514,6 +517,8 @@ public class TestIAMoyenneEvaluation {
 	public void TroisFoisTroisBlanc() {
 		
 		pdj = pdj.charger(chemin + "TroisFoisTroisBlanc");
+		Log.setPlage(500,600);
+		Log.print(501,pdj.toString());
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
