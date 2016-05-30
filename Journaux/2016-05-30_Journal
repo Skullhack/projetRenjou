@@ -12,7 +12,13 @@ PARTIE IHM :
 - quand une partie est terminé, quand on veut faire une configuration de partie, ça réaffiche la page "vous avez gagné"
 - Reprendre lanterne mettre l'écriture tout le temps //ok
 - Temps restant a implementer
-- Quand on lcic sur le sablier, cela affiche l'aide
+
+
+BUG A REGLER EN PRIO :
+
+- Quand on clic sur le sablier, cela affiche l'aide
+- Sur l'historique, les images haut et bas ne sont pas chargées
+- Les cercles verts du mode débutant ne sont pas centrés
 
 PARTIE IA  :
 
