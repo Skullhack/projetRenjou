@@ -55,6 +55,93 @@ public class IA extends Joueur {
 		return pdj.getNbPionBlanc() == 0 && pdj.getNbPionNoir() == 1;
 	}
 	
+	public boolean PartieFinie(PlateauDeJeu pdj, Coordonnees c, TypeCase tc) {
+
+
+		// diago hautgauchebasdroit
+		int somme = 0;
+		int i = c.getLigne();
+		int j = c.getColonne();
+		// Log.print(66, "partiefinie diago i= " + i + " j= " + j + " somme= "
+		// +somme);
+		while (i > 0 && j > 0 && pdj.getTypeCaseTableau(new Coordonnees(--i, --j)) == tc) {
+			somme++;
+			// Log.print(66, "partiefinie diago i= " + i + " j= " + j + " somme=
+			// " +somme);
+		}
+		i = c.getLigne();
+		j = c.getColonne();
+		// Log.print(66, "partiefinie diago i= " + i + " j= " + j + " somme= "
+		// +somme);
+		while (i < pdj.getLignes() - 1 && j < pdj.getColonnes() - 1
+				&& pdj.getTypeCaseTableau(new Coordonnees(++i, ++j)) == tc) {
+			somme++;
+			// Log.print(66, "partiefinie diago i= " + i + " j= " + j + " somme=
+			// " +somme);
+		}
+
+		if (somme >= 4)
+			return true;
+
+		// diago hautdroitbasgauche
+		somme = 0;
+		i = c.getLigne();
+		j = c.getColonne();
+		while (i > 0 && j < pdj.getColonnes() - 1 && pdj.getTypeCaseTableau(new Coordonnees(--i, ++j)) == tc) {
+			somme++;
+		}
+		i = c.getLigne();
+		j = c.getColonne();
+		while (i < pdj.getLignes() - 1 && j > 0 && pdj.getTypeCaseTableau(new Coordonnees(++i, --j)) == tc) {
+			somme++;
+		}
+
+		if (somme >= 4)
+			return true;
+
+		// horizontal
+		somme = 0;
+		i = c.getLigne();
+		j = c.getColonne();
+		while (j < pdj.getColonnes() - 1 && pdj.getTypeCaseTableau(new Coordonnees(i, ++j)) == tc) {
+			somme++;
+		}
+		i = c.getLigne();
+		j = c.getColonne();
+		while (j > 0 && pdj.getTypeCaseTableau(new Coordonnees(i, --j)) == tc) {
+			somme++;
+		}
+
+		if (somme >= 4)
+			return true;
+
+		// vertical
+		somme = 0;
+		i = c.getLigne();
+		j = c.getColonne();
+		// Log.print(66, "partiefinie vertical i= " + i + " j= " + j + " somme=
+		// " +somme);
+		while (i > 0 && pdj.getTypeCaseTableau(new Coordonnees(--i, j)) == tc) {
+			somme++;
+			// Log.print(66, "partiefinie vertical i= " + i + " j= " + j + "
+			// somme= " +somme);
+		}
+		i = c.getLigne();
+		j = c.getColonne();
+		// Log.print(66, "partiefinie vertical i= " + i + " j= " + j + " somme=
+		// " +somme);
+		while (i < pdj.getLignes() - 1 && pdj.getTypeCaseTableau(new Coordonnees(++i, j)) == tc) {
+			somme++;
+			// Log.print(66, "partiefinie vertical i= " + i + " j= " + j + "
+			// somme= " +somme);
+		}
+
+		if (somme >= 4)
+			return true;
+		// Log.print(6, c+ " ne donne pas lieu a une partie finie");
+		return false;
+	}
+	
 	public void modifierHeristique(Coordonnees p, PlateauDeJeu plateau) {
 		Log.print(15,"Dans modifier Heuristique");
 
