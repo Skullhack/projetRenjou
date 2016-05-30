@@ -1,11 +1,8 @@
 #TÂCHES À FAIRE
 
-
-VERIFIER ENCODAGE DU PROJET POUR LES HOMMES DE L'IHM !!!
-
 PARTIE IHM :
 
-- Uitiliser un système de timer pour que l'IA ne joue pas en INSTANT
+- Utiliser un système de timer pour que l'IA ne joue pas en INSTANT
 - Affichage des coups précedent/suivant dans la partie de droite
 - Refaire l'image du tabou 3x3 pour enlever les bors épais de la grille
 - voir pour mode tutoriel
@@ -29,7 +26,7 @@ PARTIE IA  :
 
 PARTIE MOTEUR :
 
-
+- Système de thread
 - sauvegarde historique
 - voir pour mode tutoriel
 
@@ -45,3 +42,11 @@ Autre :
 - Reprendre lanterne mettre l'écriture tout le temps
 - Système de thread géré 
 - Redimensionnement images zelda
+- aide a implementer
+- desactiver sablier avec image quand tour joueur
+- quand une partie est terminé, quand on veut faire une configuration de partie, ça réaffiche la page "vous avez gagné"
+- tabou disable quand non activé
+- Reprendre lanterne mettre l'écriture tout le temps
+- Quand on clic sur le sablier, cela affiche l'aide
+- Les cercles verts du mode débutant ne sont pas centrés
+- Récuperer réponse des questionnaire

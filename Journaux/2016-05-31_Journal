@@ -1,0 +1,36 @@
+#TÂCHES À FAIRE
+
+
+PARTIE IHM :
+
+Partie importante :
+- Affichage des coups précedent/suivant dans la partie de droite
+- Sur l'historique, les images haut et bas ne sont pas chargées
+- voir pour mode tutoriel
+- Thèmes rugby et retro
+Partie si temps en plus :
+- Temps restant a implementer
+- Utiliser un système de timer pour que l'IA ne joue pas en INSTANT
+- Améliorer fenêtre de victoire, ça doit être la fête
+- Expliquer le mode débutant (mettre une phrase comme "fait apparaître les coups tabous")
+- Rectifier alignements :
+    - mode débutant écriture en entier
+    - selection des tabous écriture en entier
+- Mettre un lien PDF dans les règles du jeu, pour avoir plus d'informations
+
+PARTIE IA  :
+
+- Faire IA Moyen et difficile
+
+PARTIE MOTEUR :
+
+- voir pour mode tutoriel
+
+Autre à partir de mercredi:
+
+- Préparer soutenance
+- Faire dossier IHM et IA ( Pour IA pensé à faire combattre les différentes IA entre elles)
+
+
+#TÂCHES EFFECTUÉES
+
