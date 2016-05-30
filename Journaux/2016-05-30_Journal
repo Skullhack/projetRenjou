@@ -7,10 +7,11 @@ PARTIE IHM :
 - Refaire l'image du tabou 3x3 pour enlever les bors épais de la grille
 - voir pour mode tutoriel
 - aide a implementer
-- desactiver sablier avec image quand tour joueur
-- tabou disable quand non activé
+- desactiver sablier avec image quand tour joueur //fait
+- tabou disable quand non activé //fait
 - quand une partie est terminé, quand on veut faire une configuration de partie, ça réaffiche la page "vous avez gagné"
 - Reprendre lanterne mettre l'écriture tout le temps //ok
+- Temps restant a implementer
 
 PARTIE IA  :
 
