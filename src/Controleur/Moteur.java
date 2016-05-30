@@ -265,6 +265,12 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		majCasesTabous(renjou);
 		
 		renjou.setNbDemiTourCourant(renjou.getNbDemiTourCourant() + 1);
+		if(renjou.getNbDemiTourCourant() > 4){
+			renjou.setIndiceDebutHistorique(renjou.getIndiceDebutHistorique()+1);
+			renjou.setIndiceFinHistorique(renjou.getIndiceFinHistorique()+1);
+		}else{
+			renjou.setIndiceFinHistorique(renjou.getIndiceFinHistorique()+1);
+		}
 
 		// Log.print(1, renjou.getPlateauDeJeu().toString());
 

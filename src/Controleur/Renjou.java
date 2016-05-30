@@ -28,6 +28,8 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 	private String emplacementThemes;
 	private boolean modeDebutant;
 	private int nbDemiTourCourant;
+	private int indiceDebutHistorique;
+	private int indiceFinHistorique;
 
 	// Constructeur
 	public Renjou(Joueur[] tabJoueurs) {
@@ -38,7 +40,9 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 		this.etatPartie = EtatPartie.EnCours;
 		this.joueurCourant = 0;
 		this.tabJoueurs = tabJoueurs;
-
+		this.setIndiceDebutHistorique(0);
+		this.setIndiceFinHistorique(0);
+		
 		ArrayList<TypeTabous> listeTabou = new ArrayList<TypeTabous>();
 		listeTabou.add(TypeTabous.TROIS_TROIS);
 		listeTabou.add(TypeTabous.QUATRE_QUATRE);
@@ -163,6 +167,22 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 
 	public void setNouveauTheme(String theme) {
 		this.emplacementThemes = theme;
+	}
+
+	public int getIndiceDebutHistorique() {
+		return indiceDebutHistorique;
+	}
+
+	public void setIndiceDebutHistorique(int indiceDebutHistorique) {
+		this.indiceDebutHistorique = indiceDebutHistorique;
+	}
+
+	public int getIndiceFinHistorique() {
+		return indiceFinHistorique;
+	}
+
+	public void setIndiceFinHistorique(int indiceFinHistorique) {
+		this.indiceFinHistorique = indiceFinHistorique;
 	}
 
 }

@@ -134,14 +134,9 @@ public class EcouteurFenetreJeu implements Initializable {
     @FXML
     private ImageView flecheBas;
 
-    private int indiceDebutTab;
-    private int indiceFinTab;
-   
-    
+
     public EcouteurFenetreJeu(IHM ihm) {
         //Variables
-    	this.indiceDebutTab = 0;
-    	this.indiceFinTab = 0;
     	this.seuleFois = false;
     	this.ihm = ihm;
         this.m = ihm.m;
@@ -562,7 +557,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		    	} else if (m.getRenjou().getEtatPartie() == EtatPartie.BlancGagne) {
 		    		message = "Le joueur blanc a gagne la partie !";
 		    	} else if (m.getRenjou().getEtatPartie() == EtatPartie.BlancGagneParTabou) {
-		    		message = "Le joueur blanc a gagne la partie grace à un tabou !";
+		    		message = "Le joueur blanc a gagne la partie grace ï¿½ un tabou !";
 		    	}
 		    	else if(m.getRenjou().getEtatPartie() == EtatPartie.PartieNulle) {
 		    		message = "Partie nulle !";
@@ -661,6 +656,8 @@ public class EcouteurFenetreJeu implements Initializable {
     	this.list3.setText("");
     	this.list4.setText("");
 		
+    	int indiceFinTab = m.getRenjou().getIndiceFinHistorique();
+		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
     	int tailleAnulleRefaire = m.getRenjou().getListeAnnuler().size() + m.getRenjou().getListeRefaire().size();
     	
     	if(tailleAnulleRefaire <= 4){
@@ -690,17 +687,20 @@ public class EcouteurFenetreJeu implements Initializable {
 	}
 	@FXML
 	private void clickFlecheHaut(MouseEvent e){
+		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
 		if(indiceDebutTab > 0){
-			indiceDebutTab --;
-			indiceFinTab --;
+			m.getRenjou().setIndiceDebutHistorique(m.getRenjou().getIndiceDebutHistorique() -1);
+			m.getRenjou().setIndiceFinHistorique(m.getRenjou().getIndiceFinHistorique() -1);
 		}
 		update();
 	}
 	@FXML
 	private void clickFlecheBas(MouseEvent e){
+
+		int indiceFinTab = m.getRenjou().getIndiceFinHistorique();
 		if(indiceFinTab < m.getRenjou().getListeAnnuler().size() + m.getRenjou().getListeRefaire().size()){
-			indiceDebutTab ++;
-			indiceFinTab ++;
+			m.getRenjou().setIndiceDebutHistorique(m.getRenjou().getIndiceDebutHistorique() + 1);
+			m.getRenjou().setIndiceFinHistorique(m.getRenjou().getIndiceFinHistorique() + 1);
 		}
 		update();
 	}
@@ -726,6 +726,9 @@ public class EcouteurFenetreJeu implements Initializable {
 	}
 	
 	private void clickList(int i){
+		int indiceFinTab = m.getRenjou().getIndiceFinHistorique();
+		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
+		
 		if(indiceFinTab - i >= 0){
 			int nbCoupAAnulleeOuRefaire = m.getRenjou().getNbDemiTourCourant() - indiceDebutTab - i;
 			if(nbCoupAAnulleeOuRefaire < 0){
@@ -755,6 +758,9 @@ public class EcouteurFenetreJeu implements Initializable {
 	}
 	
 	private void dragList(int i){
+		int indiceFinTab = m.getRenjou().getIndiceFinHistorique();
+		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
+		
 		if(indiceFinTab - i >= 0){
 			int nbCoupAAnulleeOuRefaire = m.getRenjou().getNbDemiTourCourant() - indiceDebutTab - i;
 			if(nbCoupAAnulleeOuRefaire < 0){
