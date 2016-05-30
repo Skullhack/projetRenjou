@@ -72,6 +72,20 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 		return listeTabous;
 	}
 
+	public boolean estDansListeTabous (TypeTabous typeTabou){
+		switch(typeTabou){
+		case TROIS_TROIS:
+			return troisFoistrois;
+		case QUATRE_QUATRE:
+			return quatreFoisQuatre;
+		case SIX_SEPT:
+			return sixSept;
+		default :
+			break;
+		}
+		return true;
+	}
+	
 	public void setListeTabous(ArrayList<TypeTabous> listeTabous) {
 		this.troisFoistrois = false;
 		this.quatreFoisQuatre = false;
