@@ -59,6 +59,8 @@ import sun.awt.image.SurfaceManager.FlushableCacheData;
 public class EcouteurFenetreJeu implements Initializable {
     private Moteur m;
     private IHM ihm;
+    private int decalageAnnuler;
+    private int decalageRefaire;
     private ArrayList<Image> imageAnnuler;
     private ArrayList<Image> imageRefaire;
     //Panneau gauche;
@@ -139,6 +141,8 @@ public class EcouteurFenetreJeu implements Initializable {
     
     public EcouteurFenetreJeu(IHM ihm) {
         //Variables
+    	this.decalageAnnuler = 0;
+    	this.decalageRefaire = 0;
     	this.ihm = ihm;
         this.m = ihm.m;
         this.imageAnnuler = new ArrayList<>();
@@ -581,7 +585,6 @@ public class EcouteurFenetreJeu implements Initializable {
 		canvas.snapshot(null, writableImage);
 		
 		Image i = (Image) writableImage;
-		//imageAnnuler.add(i);
 		plateau.setImage(i);
 	}   
 	
@@ -614,22 +617,5 @@ public class EcouteurFenetreJeu implements Initializable {
 	}
 	
 	private void panelAnnulerRefaire() {
-		if (m.getRenjou().getListeAnnuler().isEmpty() && m.getRenjou().getListeRefaire().isEmpty()) {
-			//On desactive historique car vide
-			list1.setText("");
-		    listAnchor1.setDisable(true);
-			list2.setText("");
-		    listAnchor2.setDisable(true);
-			list3.setText("");
-		    listAnchor3.setDisable(true);
-			list4.setText("");
-		    listAnchor4.setDisable(true);
-		    flecheHaut.setImage(ihm.i.getFlecheHautDisab());
-		    flecheHaut.setDisable(true);
-		    flecheBas.setImage(ihm.i.getFlecheBasDisab());
-		    flecheBas.setDisable(true);
-		}
-	}
-	
-	
+	}	
 }
