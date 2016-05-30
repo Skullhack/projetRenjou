@@ -27,6 +27,7 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 	private Tabou tabousJeu;
 	private String emplacementThemes;
 	private boolean modeDebutant;
+	private int nbDemiTourCourant;
 
 	// Constructeur
 	public Renjou(Joueur[] tabJoueurs) {
@@ -98,6 +99,10 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 		return emplacementThemes;
 	}
 	
+	public int getNbDemiTourCourant(){
+		return nbDemiTourCourant ;
+	}
+	
 	public boolean estModeDebutant() {
 		return modeDebutant;
 	}
@@ -138,6 +143,10 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 		this.modeDebutant = modeDebutant;
 	}
 
+	public void setNbDemiTourCourant(int n){
+		nbDemiTourCourant = n;
+	}
+	
 	public int getNbJoueurs() {
 		return tabJoueurs.length;
 	}

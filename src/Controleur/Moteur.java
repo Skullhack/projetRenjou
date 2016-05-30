@@ -219,7 +219,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		}
 		// notify avec etat de la partie
 		notifierObserveurs();
-
+		
 		// si c'est une IA, on la fait jouer
 		faireJouerIA();
 
@@ -263,6 +263,8 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		ajouterPionJoueDansListeAnnuler(renjou, c, typeCaseJoueurCourant, renjou.getEtatPartie());
 		majCasesInjouables(renjou);
 		majCasesTabous(renjou);
+		
+		renjou.setNbDemiTourCourant(renjou.getNbDemiTourCourant() + 1);
 
 		// Log.print(1, renjou.getPlateauDeJeu().toString());
 
@@ -642,6 +644,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 			majCasesInjouables(this.getRenjou());
 			majCasesTabous(this.getRenjou());
 
+			renjou.setNbDemiTourCourant(renjou.getNbDemiTourCourant() - 1);
 		}
 	}
 
@@ -680,10 +683,20 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 			joueurSuivant();
 			majCasesInjouables(this.getRenjou());
 			majCasesTabous(this.getRenjou());
+			
+			renjou.setNbDemiTourCourant(renjou.getNbDemiTourCourant() +1);
 		}
 
 	}
 
+	public void refaireNDemiCoup(int n){
+		for(int i=0; i<n; i++){
+			refaireDemiCoup();
+		}
+		notifierObserveurs();
+		faireJouerIA();
+	}
+	
 	public boolean premierCoup() {
 		return ((renjou.getJoueurs()[0].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase())
 				&& (renjou.getJoueurs()[1].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase()));

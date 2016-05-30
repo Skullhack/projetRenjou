@@ -137,10 +137,14 @@ public class EcouteurFenetreJeu implements Initializable {
     @FXML
     private ImageView flecheBas;
 
+    private int indiceDebutTab;
+    private int indiceFinTab;
    
     
     public EcouteurFenetreJeu(IHM ihm) {
         //Variables
+    	this.indiceDebutTab = 0;
+    	this.indiceFinTab = 0;
     	this.decalageAnnuler = 0;
     	this.decalageRefaire = 0;
     	this.ihm = ihm;
@@ -154,15 +158,15 @@ public class EcouteurFenetreJeu implements Initializable {
 			e.printStackTrace();
 		}
 		Tooltip tooltipTabou1 = new Tooltip();
-		tooltipTabou1.setText("Trois-Trois : Si NOIR aligne trois pions dans deux directions différentes simultanément, il perd. \n Un clic sur l'icone vous renvoie dans la fenêtre de configuration des tabous.");
+		tooltipTabou1.setText("Trois-Trois : Si NOIR aligne trois pions dans deux directions diffï¿½rentes simultanï¿½ment, il perd. \n Un clic sur l'icone vous renvoie dans la fenï¿½tre de configuration des tabous.");
 		tabou1.setTooltip(tooltipTabou1);
 		tabou1.setStyle("-fx-font-size: 20");
 		Tooltip tooltipTabou2 = new Tooltip();
-		tooltipTabou2.setText("Quatre-Quatre : Si NOIR aligne quatre pions dans deux directions différentes simultanément, il perd. \n Un clic sur l'icone vous renvoie dans la fenêtre de configuration des tabous.");
+		tooltipTabou2.setText("Quatre-Quatre : Si NOIR aligne quatre pions dans deux directions diffï¿½rentes simultanï¿½ment, il perd. \n Un clic sur l'icone vous renvoie dans la fenï¿½tre de configuration des tabous.");
 		tabou2.setTooltip(tooltipTabou2);
 		tabou2.setStyle("-fx-font-size: 20");
 		Tooltip tooltipTabou3 = new Tooltip();
-		tooltipTabou3.setText("Six-Sept : Si NOIR aligne plus de cinq pions connexes, il perd. \n Un clic sur l'icone vous renvoie dans la fenêtre de configuration des tabous.");
+		tooltipTabou3.setText("Six-Sept : Si NOIR aligne plus de cinq pions connexes, il perd. \n Un clic sur l'icone vous renvoie dans la fenï¿½tre de configuration des tabous.");
 		tabou3.setTooltip(tooltipTabou3);
 		tabou3.setStyle("-fx-font-size: 20");
     }
@@ -423,7 +427,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		nbPieceNoir.setText(Integer.toString(m.getRenjou().getJoueurs()[0].getNbPion()));
 		nbPieceBlanc.setText(Integer.toString(m.getRenjou().getJoueurs()[1].getNbPion()));
 		
-		//Pointillé sur joueur en cours
+		//Pointillï¿½ sur joueur en cours
 		if (m.getRenjou().getJoueurCourant() == 0 && m.getRenjou().getEtatPartie() == EtatPartie.EnCours) {
 			panelJ2.setStyle("-fx-border-width : 5;-fx-border-color : gray;");
 			panelJ1.setStyle("-fx-border-width : 5;-fx-border-color : yellow;");
@@ -524,11 +528,11 @@ public class EcouteurFenetreJeu implements Initializable {
     	String message;
     	if (!(m.getRenjou().getEtatPartie() == EtatPartie.EnCours)) {
 	    	if (m.getRenjou().getEtatPartie() == EtatPartie.NoirGagne) {
-	    		message = "Le joueur noir a gagné la partie !";
+	    		message = "Le joueur noir a gagnï¿½ la partie !";
 	    	} else if (m.getRenjou().getEtatPartie() == EtatPartie.BlancGagne) {
-	    		message = "Le joueur blanc a gagné la partie !";
+	    		message = "Le joueur blanc a gagnï¿½ la partie !";
 	    	} else if (m.getRenjou().getEtatPartie() == EtatPartie.BlancGagneParTabou) {
-	    		message = "Le joueur blanc a gagné la partie grace a  un tabou !";
+	    		message = "Le joueur blanc a gagnï¿½ la partie grace aï¿½ un tabou !";
 	    	}
 	    	else if(m.getRenjou().getEtatPartie() == EtatPartie.PartieNulle) {
 	    		message = "Partie nulle !";
@@ -617,5 +621,153 @@ public class EcouteurFenetreJeu implements Initializable {
 	}
 	
 	private void panelAnnulerRefaire() {
-	}	
+		
+    	this.list1.setText("");
+    	this.list2.setText("");
+    	this.list3.setText("");
+    	this.list4.setText("");
+		
+    	int tailleAnulleRefaire = m.getRenjou().getListeAnnuler().size() + m.getRenjou().getListeRefaire().size();
+    	
+    	if(tailleAnulleRefaire <= 4){
+    		indiceDebutTab = 0;
+    		indiceFinTab = m.getRenjou().getListeAnnuler().size() + m.getRenjou().getListeRefaire().size();
+    	}
+    	
+		int i = indiceDebutTab;
+		if(i != indiceFinTab){
+			list1.setText(""+i);
+			i++;
+		}
+		if(i != indiceFinTab){
+			list2.setText(""+i);
+			i++;
+		}
+		if(i != indiceFinTab){
+			list3.setText(""+i);
+			i++;
+		}
+		if(i != indiceFinTab){
+			list4.setText(""+i);
+			i++;
+		}
+			
+		
+	}
+	@FXML
+	private void cliqueFlecheHaut(MouseEvent e){
+		if(indiceDebutTab > 0){
+			indiceDebutTab --;
+			indiceFinTab --;
+		}
+		update();
+	}
+	@FXML
+	private void cliqueFlecheBas(MouseEvent e){
+		if(indiceFinTab < m.getRenjou().getListeAnnuler().size() + m.getRenjou().getListeRefaire().size()){
+			indiceDebutTab ++;
+			indiceFinTab ++;
+		}
+		update();
+	}
+	
+	@FXML
+	private void cliqueList1(MouseEvent e){
+		cliqueList(0);
+	}
+	
+	@FXML
+	private void cliqueList2(MouseEvent e){
+		cliqueList(1);
+	}
+	
+	@FXML
+	private void cliqueList3(MouseEvent e){
+		cliqueList(2);
+	}
+	
+	@FXML
+	private void cliqueList4(MouseEvent e){
+		cliqueList(3);
+	}
+	
+	private void cliqueList(int i){
+		if(indiceFinTab - i >= 0){
+			int nbCoupAAnulleeOuRefaire = m.getRenjou().getNbDemiTourCourant() - indiceDebutTab - i;
+			if(nbCoupAAnulleeOuRefaire < 0){
+				nbCoupAAnulleeOuRefaire = 0 - nbCoupAAnulleeOuRefaire;
+				m.refaireNDemiCoup(nbCoupAAnulleeOuRefaire);
+			}else if(nbCoupAAnulleeOuRefaire > 0){
+				m.annulerNDemiCoup(nbCoupAAnulleeOuRefaire);
+			}
+		}
+	}
+	
+	@FXML
+	private void dragList1(MouseEvent e){
+		dragList(0);
+	}
+	@FXML
+	private void dragList2(MouseEvent e){
+		dragList(1);
+	}
+	@FXML
+	private void dragList3(MouseEvent e){
+		dragList(2);
+	}
+	@FXML
+	private void dragList4(MouseEvent e){
+		dragList(3);
+	}
+	
+	private void dragList(int i){
+		if(indiceFinTab - i >= 0){
+			int nbCoupAAnulleeOuRefaire = m.getRenjou().getNbDemiTourCourant() - indiceDebutTab - i;
+			if(nbCoupAAnulleeOuRefaire < 0){
+				//affichage des pions jusqu'a pos courant puis affichage transparent
+				afficherPlateauPionTransparent(m.getRenjou().getNbDemiTourCourant());
+			}else if(nbCoupAAnulleeOuRefaire > 0){
+				//affichage des pions jusqu'a clique (indiceFinTab-i) puis affichage transparent
+				afficherPlateauPionTransparent(indiceDebutTab - i);
+			}
+		}
+	}
+
+	private void afficherPlateauPionTransparent(int n) {
+		int i=0;
+		while((i<n) || (i<m.getRenjou().getListeAnnuler().size())){
+			
+			//affichage du pion dans la liste annuler
+			
+			i++;
+		}
+		if(i<n){
+			int j=0;
+			while((i+j<n) || (j<m.getRenjou().getListeRefaire().size())){
+				//affichage du pion dans la liste refaire
+				j++;
+			}
+			if(i+j<n){
+				while((j<m.getRenjou().getListeRefaire().size())){
+					//affichage du pion transparent dans la liste refaire
+					i++;
+				}
+			}
+			
+		}else{
+			while((i<m.getRenjou().getListeAnnuler().size())){
+				
+				//affichage du pion transparent dans la liste annuler
+				
+				i++;
+			}
+			i=0;
+			while((i<m.getRenjou().getListeRefaire().size())){
+				//affichage du pion transparent dans la liste refaire
+				i++;
+			}
+		}
+		
+	}
+	
 }
