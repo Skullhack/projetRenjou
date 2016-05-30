@@ -19,7 +19,7 @@ PARTIE IA  :
 
 PARTIE MOTEUR :
 
-- systeme de threads a voir en prio !!!
+
 - sauvegarde historique
 - voir pour mode tutoriel
 
@@ -33,3 +33,4 @@ Autre :
 #TÂCHES EFFECTUÉES
 
 - Reprendre lanterne mettre l'écriture tout le temps
+- Système de thread géré 
