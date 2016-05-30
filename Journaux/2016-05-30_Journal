@@ -9,7 +9,8 @@ PARTIE IHM :
 - aide a implementer
 - desactiver sablier avec image quand tour joueur
 - tabou disable quand non activé
-- Reprendre lanterne mettre l'écriture tout le temps
+- quand une partie est terminé, quand on veut faire une configuration de partie, ça réaffiche la page "vous avez gagné"
+- Reprendre lanterne mettre l'écriture tout le temps //ok
 
 PARTIE IA  :
 
@@ -26,3 +27,8 @@ Autre :
 - Récuperer réponse des questionnaire
 - Préparer soutenance
 - Faire dossier IHM et IA ( Pour IA pensé à faire combattre les différentes IA entre elles)
+
+
+#TÂCHES EFFECTUÉES
+
+- Reprendre lanterne mettre l'écriture tout le temps
