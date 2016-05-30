@@ -38,7 +38,11 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 		this.joueurCourant = 0;
 		this.tabJoueurs = tabJoueurs;
 
-		this.tabousJeu = new Tabou(new ArrayList<TypeTabous>());
+		ArrayList<TypeTabous> listeTabou = new ArrayList<TypeTabous>();
+		listeTabou.add(TypeTabous.TROIS_TROIS);
+		listeTabou.add(TypeTabous.QUATRE_QUATRE);
+		listeTabou.add(TypeTabous.SIX_SEPT);
+		this.tabousJeu = new Tabou(listeTabou);
 		// ajout des tabous en dur
 		// ArrayList<TypeTabous> listeTabous = new ArrayList<TypeTabous>();
 		// listeTabous.add(TypeTabous.TROIS_TROIS);
