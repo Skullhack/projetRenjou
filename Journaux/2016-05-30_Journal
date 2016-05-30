@@ -19,9 +19,9 @@ PARTIE IHM :
 
 BUG A REGLER EN PRIO :
 
-- Quand on clic sur le sablier, cela affiche l'aide
+- Quand on clic sur le sablier, cela affiche l'aide //FAIT
 - Sur l'historique, les images haut et bas ne sont pas chargées
-- Les cercles verts du mode débutant ne sont pas centrés
+- Les cercles verts du mode débutant ne sont pas centrés //FAIT
 
 PARTIE IA  :
 
