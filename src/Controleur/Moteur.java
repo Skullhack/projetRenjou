@@ -8,6 +8,7 @@ package Controleur;
 import Enum.*;
 import Joueur.*;
 import Utilitaire.*;
+import javafx.application.Platform;
 
 import java.awt.Point;
 import java.io.FileInputStream;
@@ -179,8 +180,17 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 	private void faireJouerIA() {
 		if (renjou.getJoueurs()[renjou.getJoueurCourant()].getType() != TypeJoueur.Humain) {
-			operationJouer(renjou.getJoueurs()[renjou.getJoueurCourant()].jouer(renjou.getPlateauDeJeu()),
-					renjou.getJoueurs()[renjou.getJoueurCourant()].getType());
+
+			Thread threadIa = new Thread() {
+				public void run() {
+					Coordonnees c = renjou.getJoueurs()[renjou.getJoueurCourant()].jouer(renjou.getPlateauDeJeu());
+					Platform.runLater(
+							() -> operationJouer(c, renjou.getJoueurs()[renjou.getJoueurCourant()].getType()));
+				}
+			};
+
+			threadIa.start();
+
 		}
 	}
 
@@ -209,6 +219,38 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		}
 		// notify avec etat de la partie
 		notifierObserveurs();
+
+		// si c'est une IA, on la fait jouer
+		faireJouerIA();
+
+	}
+
+	public void operationJouer(Coordonnees c, TypeJoueur j, boolean notify) {
+
+		Log.print(1, "Je rentre dans operation jouer");
+
+		Log.print(80, "JOUEUR NOIR : " + renjou.getJoueurs()[0].toString() + "JOUEUR BLANC : "
+				+ renjou.getJoueurs()[1].toString());
+
+		if (renjou.getEtatPartie() != EtatPartie.EnCours) {
+			Log.print(1, "La partie n'est plus en cours mais elle est : " + renjou.getEtatPartie());
+			return;
+		}
+
+		if (j != renjou.getJoueurs()[renjou.getJoueurCourant()].getType()) {
+			Log.print(1, "Les types ne correspondent pas");
+			return;
+
+		}
+
+		if (caseJouable(renjou, c) || caseTabou(renjou, c)) {
+			Log.print(1, "Je rentre dans la fonction jouer avec le point " + c.getLigne() + "," + c.getColonne());
+			jouer(renjou, c);
+		}
+		// notify avec etat de la partie
+		if (notify) {
+			notifierObserveurs();
+		}
 
 		// si c'est une IA, on la fait jouer
 		faireJouerIA();
@@ -327,7 +369,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		renjou.getTabouJeu().setListeTabous(tabouPartie);
 
 		renjou.setModeDebutant(modeDebutant);
-		
+
 		notifierObserveurs();
 		faireJouerIA();
 	}
@@ -665,16 +707,18 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		}
 
 	}
-	
-	public boolean premierCoup(){
-		return((renjou.getJoueurs()[0].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase()) && (renjou.getJoueurs()[1].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase()));
+
+	public boolean premierCoup() {
+		return ((renjou.getJoueurs()[0].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase())
+				&& (renjou.getJoueurs()[1].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase()));
 	}
-	
-	public boolean deuxiemeCoup(){
-		return((renjou.getJoueurs()[0].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase()-1) && (renjou.getJoueurs()[1].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase()));
+
+	public boolean deuxiemeCoup() {
+		return ((renjou.getJoueurs()[0].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase() - 1)
+				&& (renjou.getJoueurs()[1].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase()));
 	}
-	
-	public Coordonnees aide(){		
+
+	public Coordonnees aide() {
 		Joueur j = new IAFacile(TypeJoueur.IAFacile, 60, TypeCouleur.Blanc);
 		return j.jouer(renjou.getPlateauDeJeu());
 	}
