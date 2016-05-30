@@ -157,32 +157,40 @@ public class IAMoyenne extends IA {
 						// POUR BLANC
 						for(int k=0;k<mr.length;k++){
 							if(!presenceMotifBlanc[k]){
-								if(mr[k].test(m, blanc)){
+								if(mr[k].verif(m, blanc)){
+									Log.print(501, "i= " + i + " j= "+j+ " dans Blanc " + mr[k].name());
 									presenceMotifBlanc[k] = true;
 								}
 							}
 						}
+						
 						coupGagnantBlanc = CoupGagnant(presenceMotifBlanc);
 						coupGagnant2CoupsBlanc = CoupGagnant2Coups(presenceMotifBlanc);
+						Log.print(501, "CGB = "+coupGagnantBlanc + " CG2CB = " + coupGagnant2CoupsBlanc );
 					}
 
+					
 					if (pdj.getTypeCaseTableau(c) == TypeCase.PionNoir && !coupGagnantNoir) {
 						// POUR NOIR
 						for(int k=0;k<mr.length;k++){
 							if(!presenceMotifNoir[k]){
-								if(mr[k].test(m, noir)){
+								if(mr[k].verif(m, noir)){
+									Log.print(501, "i= " + i + " j= "+j+ " dans Noir " + mr[k].name());
 									presenceMotifNoir[k] = true;
 								}
 							}
 						}
 						coupGagnantNoir = CoupGagnant(presenceMotifNoir);
 						coupGagnant2CoupsNoir = CoupGagnant2Coups(presenceMotifNoir);
+						Log.print(501, "CGN = "+coupGagnantNoir + " CG2CN = " + coupGagnant2CoupsNoir );
 					}
 
 				}
 
 			}
 		}
+		
+		
 		
 		// si c'est a blanc de jouer 
 		if(tc == TypeCase.PionBlanc){
@@ -310,44 +318,60 @@ public class IAMoyenne extends IA {
 	}
 	
 	private boolean CoupGagnant(boolean[] tab){
-		return 	tab[MotifsReconnus.estTroisLibre.ordinal()];
+		return 	tab[MotifsReconnus.estQuatreLibre.ordinal()];
 	}
 
 	private boolean CoupGagnant2Coups(boolean[] tab){
-		return 	tab[MotifsReconnus.estDeuxFoisDeuxLibreLibre.ordinal()] || 
-				tab[MotifsReconnus.estTroisFoisTroisLibre.ordinal()] ||
-				tab[MotifsReconnus.estDeuxLibreLibre.ordinal()] ||
-				tab[MotifsReconnus.estTroisFoisDeux.ordinal()];
+		return 	tab[MotifsReconnus.estTroisFoisTroisLibreLibre.ordinal()] || 
+				tab[MotifsReconnus.estTroisLibreLibre.ordinal()] ||
+				tab[MotifsReconnus.estQuatreFoisTrois.ordinal()];
 	}
 	
 	private int Valeur(boolean[] tab){
 		int v = 0;
 		
-		if(tab[MotifsReconnus.estDeuxFoisUnLibreLibre.ordinal()]){
+		if(tab[MotifsReconnus.estTroisFoisDeuxLibreLibre.ordinal()]){
+			Log.print(501, "+5000");
 			v +=5000;
 		}
-		else if(tab[MotifsReconnus.estDeuxFoisUnLibre.ordinal()]){
+		else if(tab[MotifsReconnus.estTroisFoisDeuxLibre.ordinal()]){
+			Log.print(501, "+600");
 			v +=600;
 		}
-		else if(tab[MotifsReconnus.estUnFoisUnLibreLibre.ordinal()]){
+		else if(tab[MotifsReconnus.estDeuxFoisDeuxLibreLibre.ordinal()]){
+			Log.print(501, "+500");
 			v +=500;
 		}
-		else if(tab[MotifsReconnus.estDeuxFoisUn.ordinal()]){
-			v +=5;
+		else if(tab[MotifsReconnus.estTroisFoisTrois.ordinal()]){
+			Log.print(501, "+100");
+			v +=100;
 		}
-		else if(tab[MotifsReconnus.estUnFoisUnLibre.ordinal()]){
+		else if(tab[MotifsReconnus.estTroisFoisDeux.ordinal()]){
+			Log.print(501, "+75");
+			v +=75;
+		}
+		else if(tab[MotifsReconnus.estDeuxFoisDeuxLibre.ordinal()]){
+			Log.print(501, "+50");
 			v +=50;
 		}
-		else if(tab[MotifsReconnus.estUnLibreLibre.ordinal()]){
+		else if(tab[MotifsReconnus.estTroisLibre.ordinal()]){
+			Log.print(501, "+50");
+			v +=50;
+		}
+		else if(tab[MotifsReconnus.estDeuxLibreLibre.ordinal()]){
+			Log.print(501, "+5");
 			v +=5;
 		}
-		else if(tab[MotifsReconnus.estUnFoisUn.ordinal()]){
+		else if(tab[MotifsReconnus.estDeuxFoisDeux.ordinal()]){
+			Log.print(501, "+5");
 			v +=5;
 		}
 		else if(tab[MotifsReconnus.estDeuxLibre.ordinal()]){
-			v +=50;
+			Log.print(501, "+1");
+			v +=1;
 		}
 		
+		Log.print(501, "valeur= " + v);
 		return v;
 	}
 	
