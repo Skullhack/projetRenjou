@@ -677,6 +677,14 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		}
 	}
 
+	public void annulerNDemiCoup(int n){
+		for(int i=0; i<n; i++){
+			annulerDemiCoup();
+		}
+		notifierObserveurs();
+		faireJouerIA();
+	}
+	
 	@Override
 	public void refaire() {
 		if (this.getRenjou().getJoueurs()[0].getType() == TypeJoueur.Humain

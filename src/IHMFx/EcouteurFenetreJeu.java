@@ -114,6 +114,27 @@ public class EcouteurFenetreJeu implements Initializable {
     private AnchorPane tabou2Panel;
     @FXML
     private AnchorPane tabou3Panel;
+    @FXML
+    private Label list1;
+    @FXML
+    private Label list2;
+    @FXML
+    private Label list3;
+    @FXML
+    private Label list4;
+    @FXML
+    private AnchorPane listAnchor1;
+    @FXML
+    private AnchorPane listAnchor2;
+    @FXML
+    private AnchorPane listAnchor3;
+    @FXML
+    private AnchorPane listAnchor4;
+    @FXML
+    private ImageView flecheHaut;
+    @FXML
+    private ImageView flecheBas;
+
    
     
     public EcouteurFenetreJeu(IHM ihm) {
@@ -472,6 +493,9 @@ public class EcouteurFenetreJeu implements Initializable {
 			tempsBlanc.setText("");
 			tempsNoir.setText("");
 		}
+		
+		//Gere le panel annuler refaire
+		panelAnnulerRefaire();
 	}
 	
 	public void disabEnabAnnulerRefaire() {
@@ -587,4 +611,24 @@ public class EcouteurFenetreJeu implements Initializable {
 		Image i = (Image) writableImage;
 		plateau.setImage(i);
 	}
+	
+	private void panelAnnulerRefaire() {
+		if (m.getRenjou().getListeAnnuler().isEmpty() && m.getRenjou().getListeRefaire().isEmpty()) {
+			//On desactive historique car vide
+			list1.setText("");
+		    listAnchor1.setDisable(true);
+			list2.setText("");
+		    listAnchor2.setDisable(true);
+			list3.setText("");
+		    listAnchor3.setDisable(true);
+			list4.setText("");
+		    listAnchor4.setDisable(true);
+		    flecheHaut.setImage(ihm.i.getFlecheHautDisab());
+		    flecheHaut.setDisable(true);
+		    flecheBas.setImage(ihm.i.getFlecheBasDisab());
+		    flecheBas.setDisable(true);
+		}
+	}
+	
+	
 }
