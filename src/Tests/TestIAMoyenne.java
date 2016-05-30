@@ -64,7 +64,7 @@ public class TestIAMoyenne {
 			for(int j=0;j<pdj.getColonnes();j++){
 				Coordonnees c = new Coordonnees(i,j);
 				if(ia.EstBlancOuNoir(pdj,c)){
-					assertTrue(ia.PartieFinie(pdj,c));
+					assertTrue(ia.PartieFinie(pdj,c, pdj.getTypeCaseTableau(c)));
 				}
 			}
 		}
@@ -80,7 +80,7 @@ public class TestIAMoyenne {
 				Coordonnees c = new Coordonnees(i,j);
 				if(ia.EstBlancOuNoir(pdj,c)){
 					Log.print(615, "test Partie Finie en " + c);
-					assertTrue(ia.PartieFinie(pdj,c));
+					assertTrue(ia.PartieFinie(pdj,c, pdj.getTypeCaseTableau(c)));
 				}
 			}
 		}
@@ -94,12 +94,12 @@ public class TestIAMoyenne {
 				Coordonnees c = new Coordonnees(i,j);
 				if(ia.EstBlancOuNoir(pdj,c)){
 					Log.print(615, "test Partie Finie en " + c);
-					assertFalse(ia.PartieFinie(pdj,c));
+					assertFalse(ia.PartieFinie(pdj,c, pdj.getTypeCaseTableau(c)));
 				}
 			}
 		}
 		
-		//Alignements de plus de 5 considéré comme gagnant (sujet a changement)
+		//Alignements de plus de 5 considï¿½rï¿½ comme gagnant (sujet a changement)
 		pdj = pdj.charger(chemin + "PlateauGagnant5Plus");
 		Log.print(615, pdj.toString()); 
 
@@ -108,7 +108,7 @@ public class TestIAMoyenne {
 				Coordonnees c = new Coordonnees(i,j);
 				if(ia.EstBlancOuNoir(pdj,c)){
 					Log.print(615, "test Partie Finie en " + c);
-					assertTrue(ia.PartieFinie(pdj,c));
+					assertTrue(ia.PartieFinie(pdj,c, pdj.getTypeCaseTableau(c)));
 				}
 			}
 		}
