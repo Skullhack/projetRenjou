@@ -4,11 +4,13 @@ PARTIE IHM :
 
 - Uitiliser un système de timer pour que l'IA ne joue pas en INSTANT
 - Affichage des coups précedent/suivant dans la partie de droite
-- Refaire l'image du tabou 3x3 pour enlevr les bors épais de la grille
+- Refaire l'image du tabou 3x3 pour enlever les bors épais de la grille
 - voir pour mode tutoriel
 - aide a implementer
 - desactiver sablier avec image quand tour joueur
 - tabou disable quand non activé
+- Reprendre Tabous faute orthographe
+- Reprendre lanterne mettre l'écriture tout le temps
 
 PARTIE IA  :
 
@@ -22,5 +24,6 @@ PARTIE MOTEUR :
 
 Autre :
 
+- Récuperer réponse des questionnaire
 - Préparer soutenance
 - Faire dossier IHM et IA ( Pour IA pensé à faire combattre les différentes IA entre elles)
