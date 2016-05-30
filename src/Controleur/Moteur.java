@@ -225,38 +225,6 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 	}
 
-	public void operationJouer(Coordonnees c, TypeJoueur j, boolean notify) {
-
-		Log.print(1, "Je rentre dans operation jouer");
-
-		Log.print(80, "JOUEUR NOIR : " + renjou.getJoueurs()[0].toString() + "JOUEUR BLANC : "
-				+ renjou.getJoueurs()[1].toString());
-
-		if (renjou.getEtatPartie() != EtatPartie.EnCours) {
-			Log.print(1, "La partie n'est plus en cours mais elle est : " + renjou.getEtatPartie());
-			return;
-		}
-
-		if (j != renjou.getJoueurs()[renjou.getJoueurCourant()].getType()) {
-			Log.print(1, "Les types ne correspondent pas");
-			return;
-
-		}
-
-		if (caseJouable(renjou, c) || caseTabou(renjou, c)) {
-			Log.print(1, "Je rentre dans la fonction jouer avec le point " + c.getLigne() + "," + c.getColonne());
-			jouer(renjou, c);
-		}
-		// notify avec etat de la partie
-		if (notify) {
-			notifierObserveurs();
-		}
-
-		// si c'est une IA, on la fait jouer
-		faireJouerIA();
-
-	}
-
 	public void jouer(Renjou renjou, Coordonnees c) {
 
 		TypeCase typeCaseJoueurCourant = null;
