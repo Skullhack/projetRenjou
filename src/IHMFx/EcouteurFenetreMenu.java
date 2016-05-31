@@ -116,6 +116,12 @@ public class EcouteurFenetreMenu {
 	
 	@FXML
 	private void boutonValider(MouseEvent e) {
+		if (ihm.etatTuto == 12) {
+			imageTuto.setImage(ihm.i.getImageVide());
+			ihm.etatTuto = 1;
+			ihm.modeTuto = false;
+		}
+		
 		TypeJoueur[] tab = new TypeJoueur[2];
 		ArrayList<TypeTabous> tabous = new ArrayList<TypeTabous>();
 		
@@ -206,26 +212,26 @@ public class EcouteurFenetreMenu {
 	
 	@FXML
 	private void selectionnerThemeTraditionnel(MouseEvent e) {
-		selectionnerTheme("Traditionnel");
 		themeChangement = true;
+		selectionnerTheme("Traditionnel");
 	}
 	
 	@FXML
 	private void selectionnerThemeZelda(MouseEvent e) {
-		selectionnerTheme("Zelda");
 		themeChangement = true;
+		selectionnerTheme("Zelda");
 	}
 	
 	@FXML
 	private void selectionnerThemeCage(MouseEvent e) {
-		selectionnerTheme("Cage");
 		themeChangement = true;
+		selectionnerTheme("Cage");
 	}
 	
 	@FXML
 	private void selectionnerThemeRugby(MouseEvent e) {
-		selectionnerTheme("Rugby");
 		themeChangement = true;
+		selectionnerTheme("Rugby");
 	}
 	
 	public void selectionnerTheme(String nouveauTheme) {
@@ -239,46 +245,48 @@ public class EcouteurFenetreMenu {
 	}
 	
 	public void selectionnerBoxJoueur() {
-		if(m.getRenjou().getJoueurs()[0].getType() == TypeJoueur.values()[0]) {
-			noir1.setSelected(true);
-		} else if(m.getRenjou().getJoueurs()[0].getType() == TypeJoueur.values()[1]) {
-			noir2.setSelected(true);
-		} else if(m.getRenjou().getJoueurs()[0].getType() == TypeJoueur.values()[2]) {
-			noir3.setSelected(true);
-		} else if(m.getRenjou().getJoueurs()[0].getType() == TypeJoueur.values()[3]) {
-			noir4.setSelected(true);
-		} else if(m.getRenjou().getJoueurs()[0].getType() == TypeJoueur.values()[4]) {
-			noir5.setSelected(true);
-		}
-		if(m.getRenjou().getJoueurs()[1].getType() == TypeJoueur.values()[0]) {
-			blanc1.setSelected(true);
-		} else if(m.getRenjou().getJoueurs()[1].getType() == TypeJoueur.values()[1]) {
-			blanc2.setSelected(true);
-		} else if(m.getRenjou().getJoueurs()[1].getType() == TypeJoueur.values()[2]) {
-			blanc3.setSelected(true);
-		} else if(m.getRenjou().getJoueurs()[1].getType() == TypeJoueur.values()[3]) {
-			blanc4.setSelected(true);
-		} else if(m.getRenjou().getJoueurs()[1].getType() == TypeJoueur.values()[4]) {
-			blanc5.setSelected(true);
-		}
-		if (m.getRenjou().estModeDebutant()) {
-			modeDebutant.setSelected(true);
-		}
-		if (m.getRenjou().getTabouJeu().estDansListeTabous(TypeTabous.TROIS_TROIS)) {
-			tabou1.setSelected(true);
-		} else {
-			tabou1.setSelected(false);
-		}
-		if (m.getRenjou().getTabouJeu().estDansListeTabous(TypeTabous.QUATRE_QUATRE)) {
-			tabou2.setSelected(true);
-		} else {
-			tabou2.setSelected(false);
-		}
-		if (m.getRenjou().getTabouJeu().estDansListeTabous(TypeTabous.SIX_SEPT)) {
-			tabou3.setSelected(true);
-		} else {
-			tabou3.setSelected(false);
-		}
+		if (!themeChangement) {
+			if(m.getRenjou().getJoueurs()[0].getType() == TypeJoueur.values()[0]) {
+				noir1.setSelected(true);
+			} else if(m.getRenjou().getJoueurs()[0].getType() == TypeJoueur.values()[1]) {
+				noir2.setSelected(true);
+			} else if(m.getRenjou().getJoueurs()[0].getType() == TypeJoueur.values()[2]) {
+				noir3.setSelected(true);
+			} else if(m.getRenjou().getJoueurs()[0].getType() == TypeJoueur.values()[3]) {
+				noir4.setSelected(true);
+			} else if(m.getRenjou().getJoueurs()[0].getType() == TypeJoueur.values()[4]) {
+				noir5.setSelected(true);
+			}
+			if(m.getRenjou().getJoueurs()[1].getType() == TypeJoueur.values()[0]) {
+				blanc1.setSelected(true);
+			} else if(m.getRenjou().getJoueurs()[1].getType() == TypeJoueur.values()[1]) {
+				blanc2.setSelected(true);
+			} else if(m.getRenjou().getJoueurs()[1].getType() == TypeJoueur.values()[2]) {
+				blanc3.setSelected(true);
+			} else if(m.getRenjou().getJoueurs()[1].getType() == TypeJoueur.values()[3]) {
+				blanc4.setSelected(true);
+			} else if(m.getRenjou().getJoueurs()[1].getType() == TypeJoueur.values()[4]) {
+				blanc5.setSelected(true);
+			}
+			if (m.getRenjou().estModeDebutant()) {
+				modeDebutant.setSelected(true);
+			}
+			if (m.getRenjou().getTabouJeu().estDansListeTabous(TypeTabous.TROIS_TROIS)) {
+				tabou1.setSelected(true);
+			} else {
+				tabou1.setSelected(false);
+			}
+			if (m.getRenjou().getTabouJeu().estDansListeTabous(TypeTabous.QUATRE_QUATRE)) {
+				tabou2.setSelected(true);
+			} else {
+				tabou2.setSelected(false);
+			}
+			if (m.getRenjou().getTabouJeu().estDansListeTabous(TypeTabous.SIX_SEPT)) {
+				tabou3.setSelected(true);
+			} else {
+				tabou3.setSelected(false);
+			}
+		}	
 	}
 	
 	public TabPane getTabPane() {
@@ -309,9 +317,10 @@ public class EcouteurFenetreMenu {
 			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto-1));
 			getTabPane().getSelectionModel().select(2);
 		} else if (ihm.etatTuto == 11) {
-			imageTuto.setImage(ihm.i.getImageVide());
-			ihm.etatTuto = 1;
-			ihm.modeTuto = false;
+			ihm.etatTuto = ihm.etatTuto+1;
+			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto-1));
+		} else if (ihm.etatTuto == 12) {
+			//DO NOTHING
 		} else {
 			imageTuto.setImage(ihm.i.getImageVide());
 		}	

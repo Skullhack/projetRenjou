@@ -301,8 +301,8 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Aide        ">
               <items>
-                <MenuItem fx:id="reglesMenu" mnemonicParsing="false" onAction="#reglesMenu" text="Regles" />
                 <MenuItem fx:id="tutorielMenu" mnemonicParsing="false" onAction="#tutorielMenu" text="Tutoriel" />
+                <MenuItem fx:id="reglesMenu" mnemonicParsing="false" onAction="#reglesMenu" text="Regles" />
                 <MenuItem fx:id="aProposMenu" mnemonicParsing="false" onAction="#aProposMenu" text="A propos de" />
               </items>
             </Menu>

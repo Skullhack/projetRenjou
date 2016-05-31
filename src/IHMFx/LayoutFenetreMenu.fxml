@@ -43,103 +43,112 @@
                      <tabs>
                         <Tab text="Joueurs">
                            <content>
-                              <GridPane>
+                              <FlowPane orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="45.0" prefWidth="200.0" text="Noir" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <GridPane prefHeight="302.0" prefWidth="700.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="45.0" prefWidth="200.0" text="Noir" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                             <font>
+                                                <Font name="System Bold" size="30.0" fx:id="x2" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" font="$x2" prefHeight="45.0" prefWidth="200.0" text="Blanc" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                                          <Label alignment="CENTER" prefHeight="45.0" prefWidth="200.0" text="Humain" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font size="25.0" fx:id="x3" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" font="$x3" prefHeight="45.0" prefWidth="200.0" text="Ordi. Facile" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Label alignment="CENTER" font="$x3" prefHeight="45.0" prefWidth="200.0" text="Ordi. Moyen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <Label alignment="CENTER" font="$x3" prefHeight="45.0" prefWidth="200.0" text="Ordi. Difficile" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                          <Label alignment="CENTER" font="$x3" prefHeight="45.0" prefWidth="200.0" text="Ordi. Externe" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                          <RadioButton fx:id="noir1" centerShape="false" contentDisplay="CENTER" maxHeight="50.0" maxWidth="203.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="11.0" textAlignment="CENTER" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font size="20.0" fx:id="x4" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="85.0" />
+                                             </padding>
+                                          </RadioButton>
+                                          <RadioButton fx:id="noir2" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                             <padding>
+                                                <Insets left="85.0" />
+                                             </padding>
+                                          </RadioButton>
+                                          <RadioButton fx:id="noir3" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                                             <padding>
+                                                <Insets left="85.0" />
+                                             </padding>
+                                             <GridPane.margin>
+                                                <Insets />
+                                             </GridPane.margin>
+                                          </RadioButton>
+                                          <RadioButton fx:id="noir4" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                                             <padding>
+                                                <Insets left="85.0" />
+                                             </padding>
+                                          </RadioButton>
+                                          <RadioButton fx:id="noir5" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                                             <GridPane.margin>
+                                                <Insets left="85.0" />
+                                             </GridPane.margin>
+                                          </RadioButton>
+                                          <RadioButton fx:id="blanc1" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                             <padding>
+                                                <Insets left="85.0" />
+                                             </padding>
+                                          </RadioButton>
+                                          <RadioButton fx:id="blanc2" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                             <padding>
+                                                <Insets left="85.0" />
+                                             </padding>
+                                          </RadioButton>
+                                          <RadioButton fx:id="blanc3" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                             <padding>
+                                                <Insets left="85.0" />
+                                             </padding>
+                                          </RadioButton>
+                                          <RadioButton fx:id="blanc4" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                             <padding>
+                                                <Insets left="85.0" />
+                                             </padding>
+                                          </RadioButton>
+                                          <RadioButton fx:id="blanc5" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                             <padding>
+                                                <Insets left="85.0" />
+                                             </padding>
+                                          </RadioButton>
+                                          <CheckBox fx:id="modeDebutant" alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="201.0" text="Mode Débutant" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                             <font>
+                                                <Font size="19.0" />
+                                             </font>
+                                          </CheckBox>
+                                       </children>
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <padding>
+                                          <Insets left="50.0" right="50.0" top="30.0" />
+                                       </padding>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                    <Label alignment="CENTER" prefHeight="37.0" prefWidth="694.0" text="Le mode débutant affiche les cases tabous et les cases à jouer en début de partie.">
                                        <font>
-                                          <Font name="System Bold" size="30.0" fx:id="x2" />
+                                          <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER" font="$x2" prefHeight="45.0" prefWidth="200.0" text="Blanc" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-                                    <Label alignment="CENTER" prefHeight="45.0" prefWidth="200.0" text="Humain" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                       <font>
-                                          <Font size="25.0" fx:id="x3" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER" font="$x3" prefHeight="45.0" prefWidth="200.0" text="Ordi. Facile" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Label alignment="CENTER" font="$x3" prefHeight="45.0" prefWidth="200.0" text="Ordi. Moyen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <Label alignment="CENTER" font="$x3" prefHeight="45.0" prefWidth="200.0" text="Ordi. Difficile" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <Label alignment="CENTER" font="$x3" prefHeight="45.0" prefWidth="200.0" text="Ordi. Externe" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                    <RadioButton fx:id="noir1" centerShape="false" contentDisplay="CENTER" maxHeight="50.0" maxWidth="203.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="11.0" textAlignment="CENTER" GridPane.rowIndex="1">
-                                       <font>
-                                          <Font size="20.0" fx:id="x4" />
-                                       </font>
-                                       <padding>
-                                          <Insets left="85.0" />
-                                       </padding>
-                                    </RadioButton>
-                                    <RadioButton fx:id="noir2" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                                       <padding>
-                                          <Insets left="85.0" />
-                                       </padding>
-                                    </RadioButton>
-                                    <RadioButton fx:id="noir3" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="3">
-                                       <padding>
-                                          <Insets left="85.0" />
-                                       </padding>
-                                       <GridPane.margin>
-                                          <Insets />
-                                       </GridPane.margin>
-                                    </RadioButton>
-                                    <RadioButton fx:id="noir4" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="4">
-                                       <padding>
-                                          <Insets left="85.0" />
-                                       </padding>
-                                    </RadioButton>
-                                    <RadioButton fx:id="noir5" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="5">
-                                       <GridPane.margin>
-                                          <Insets left="85.0" />
-                                       </GridPane.margin>
-                                    </RadioButton>
-                                    <RadioButton fx:id="blanc1" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                       <padding>
-                                          <Insets left="85.0" />
-                                       </padding>
-                                    </RadioButton>
-                                    <RadioButton fx:id="blanc2" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                       <padding>
-                                          <Insets left="85.0" />
-                                       </padding>
-                                    </RadioButton>
-                                    <RadioButton fx:id="blanc3" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                       <padding>
-                                          <Insets left="85.0" />
-                                       </padding>
-                                    </RadioButton>
-                                    <RadioButton fx:id="blanc4" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                                       <padding>
-                                          <Insets left="85.0" />
-                                       </padding>
-                                    </RadioButton>
-                                    <RadioButton fx:id="blanc5" alignment="CENTER" contentDisplay="CENTER" font="$x4" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="5">
-                                       <padding>
-                                          <Insets left="85.0" />
-                                       </padding>
-                                    </RadioButton>
-                                    <CheckBox fx:id="modeDebutant" mnemonicParsing="false" prefHeight="39.0" prefWidth="201.0" text="Mode Débutant" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                                       <font>
-                                          <Font size="21.0" />
-                                       </font>
-                                    </CheckBox>
                                  </children>
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <padding>
-                                    <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
-                                 </padding>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                              </GridPane>
+                              </FlowPane>
                            </content>
                         </Tab>
                         <Tab text="Tabous">
@@ -270,10 +279,5 @@
             </AnchorPane>
          </center>
     </BorderPane>
-      <ImageView fx:id="imageTuto" fitHeight="508.0" fitWidth="700.0" layoutY="-2.0" onMouseClicked="#clickImage">
-         <image>
-            <Image url="@../Images/PourToutLesThemes/ImageVide.png" />
-         </image>
-      </ImageView>
   </children>
 </AnchorPane>
