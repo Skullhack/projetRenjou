@@ -7,6 +7,9 @@ Partie importante :
 - Affichage des coups précedent/suivant dans la partie de droite
 - Sur l'historique, les images haut et bas ne sont pas chargées
 - voir pour mode tutoriel
+
+- quand on change de thème, les boutons annuler/refaire/flèches historiques ne sont pas disabled
+
 - Thèmes rugby et retro
 Partie si temps en plus :
 - Temps restant a implementer
