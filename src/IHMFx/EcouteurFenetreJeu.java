@@ -692,9 +692,9 @@ public class EcouteurFenetreJeu implements Initializable {
 		
     	int indiceFinTab = m.getRenjou().getIndiceFinHistorique();
 		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
-    	int tailleAnulleRefaire = m.getRenjou().getListeAnnuler().size() + m.getRenjou().getListeRefaire().size();
+    	int tailleAnulleRefaire = indiceFinTab - indiceDebutTab;
     	
-    	if(tailleAnulleRefaire <= 4){
+    	if(tailleAnulleRefaire < 4){
     		m.getRenjou().setIndiceFinHistorique(tailleAnulleRefaire);
     		m.getRenjou().setIndiceDebutHistorique(0);
     		
@@ -758,7 +758,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		}
 		
 		//Disable ou non la fleche bas
-		if(m.getRenjou().getIndiceFinHistorique() == m.getRenjou().getListeAnnuler().size() + m.getRenjou().getListeRefaire().size() || m.getRenjou().getIndiceFinHistorique() - m.getRenjou().getIndiceDebutHistorique() <4){
+		if((m.getRenjou().getIndiceFinHistorique() == m.getRenjou().getListeAnnuler().size() + m.getRenjou().getListeRefaire().size()) || m.getRenjou().getIndiceFinHistorique() - m.getRenjou().getIndiceDebutHistorique() <4){
 			flecheBas.setImage(ihm.i.getFlecheBasDisab());
 			flecheBas.setDisable(true);
 		}else{
@@ -810,7 +810,6 @@ public class EcouteurFenetreJeu implements Initializable {
 	private void clickList(int i){
 		int indiceFinTab = m.getRenjou().getIndiceFinHistorique();
 		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
-		
 		if(indiceFinTab - i >= 0){
 			ancienPlateau = null;
 			int nbCoupAAnulleeOuRefaire = m.getRenjou().getNbDemiTourCourant() - (indiceDebutTab + i);
@@ -908,7 +907,6 @@ public class EcouteurFenetreJeu implements Initializable {
 			//On dessine l'état actuel
 			for (int i=0;i<m.getRenjou().getListeAnnuler().size();i++) {
 					PionJoue p = m.getRenjou().getListeAnnuler().get(i); 
-					System.out.println("i Annuler : " + i + "borne pion : " + bornePion);
 				    if (p.getTypeCase() == TypeCase.PionBlanc) {
 				        dessinerPion(plat, graphicsContext, iPionBlanc, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
 				    } else if (p.getTypeCase() == TypeCase.PionNoir) {
@@ -919,8 +917,7 @@ public class EcouteurFenetreJeu implements Initializable {
 			iPionBlanc = ihm.i.getCercleVertPlein();
 			iPionNoir = ihm.i.getCercleVertPlein();
 			for (int i=0;i<bornePion - m.getRenjou().getListeAnnuler().size();i++) {
-				PionJoue p = m.getRenjou().getListeRefaire().get(i); 
-				System.out.println("i Refaire : " + i);
+				PionJoue p = m.getRenjou().getListeRefaire().get( m.getRenjou().getListeRefaire().size() -i -1); 
 			    if (p.getTypeCase() == TypeCase.PionBlanc) {
 			        dessinerPion(plat, graphicsContext, iPionBlanc, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
 			    } else if (p.getTypeCase() == TypeCase.PionNoir) {
