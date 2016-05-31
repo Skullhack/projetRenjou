@@ -122,7 +122,7 @@ public class Images {
 		quitter = new Image("./Images/PourToutLesThemes/Quitter.png");
 		quitterDrag = new Image("./Images/PourToutLesThemes/QuitterDrag.png");
 		imagesTuto = new ArrayList<>();
-		for (int i=1;i<12;i++) {
+		for (int i=1;i<13;i++) {
 			imagesTuto.add(new Image("./Images/Tutoriel/Tutoriel"+i+".png"));
 		}
 	}

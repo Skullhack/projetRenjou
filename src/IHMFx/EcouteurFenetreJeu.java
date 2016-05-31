@@ -463,7 +463,7 @@ public class EcouteurFenetreJeu implements Initializable {
 	
 	public void update() {
 		//Mode Tuto
-		if (ihm.modeTuto) {
+		if (ihm.modeTuto && ihm.etatTuto == 1) {
 			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto-1));
 		}
 		

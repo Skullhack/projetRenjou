@@ -311,6 +311,7 @@ public class EcouteurFenetreMenu {
 		} else if (ihm.etatTuto == 11) {
 			imageTuto.setImage(ihm.i.getImageVide());
 			ihm.etatTuto = 1;
+			ihm.modeTuto = false;
 		} else {
 			imageTuto.setImage(ihm.i.getImageVide());
 		}	
