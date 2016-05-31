@@ -26,14 +26,10 @@ import java.util.List;
 public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	private Renjou renjou;
 	private Log trace;
-	private boolean modeTuto;
-	private int etatTuto;
 	public ArrayList<MoteurObserveur> observeurs;
 
 	// Constructeur
 	public Moteur(TypeJoueur typeJoueur1, TypeJoueur typeJoueur2) {
-		modeTuto = false;
-		etatTuto = 1;
 		Log.setNiveau(10);
 		this.observeurs = new ArrayList<>();
 		Joueur[] tableauJoueurs = new Joueur[2];
@@ -727,22 +723,5 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	public Coordonnees aide() {
 		Joueur j = new IAFacile(TypeJoueur.IAFacile, 60, TypeCouleur.Blanc);
 		return j.jouer(renjou.getPlateauDeJeu());
-	}
-	
-	public boolean getModeTuto() {
-		return modeTuto;
-	}
-	
-	public int getEtatTuto() {
-		return etatTuto;
-	}
-	
-	public void setModeTuto(boolean modeTuto) {
-		this.modeTuto = modeTuto;
-	}
-	
-	public void setEtatTuto(int etatTuto) {
-		this.etatTuto = etatTuto;
-		System.out.println(etatTuto);
 	}
 }

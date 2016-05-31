@@ -35,6 +35,8 @@ public class IHM extends Application implements MoteurObserveur{
 	public FenetreAide fa;
 	public FenetreRenjou fr;
 	public Stage aideStage;
+	public boolean modeTuto = false;
+	public int etatTuto = 1;
 
     public static void main(String[] args) {
         Application.launch(IHM.class, args);

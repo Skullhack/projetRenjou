@@ -291,26 +291,27 @@ public class EcouteurFenetreMenu {
 		boutonValider.setImage(ihm.i.getBoutonValider());
 		boutonAnnuler.setImage(ihm.i.getBoutonAnnuler());
 		selectionnerBoxJoueur();
-		if (m.getEtatTuto() == 8) {
+		if (ihm.etatTuto == 8) {
 			Tutoriel();
 		}
 	}
 	
 	private void Tutoriel() {
-		if (m.getEtatTuto() == 8) {
-			m.setEtatTuto(m.getEtatTuto()+1);
-			imageTuto.setImage(ihm.i.getImagesTuto().get(m.getEtatTuto()-1));
-		} else if (m.getEtatTuto() == 9) {
-			m.setEtatTuto(m.getEtatTuto()+1);
-			imageTuto.setImage(ihm.i.getImagesTuto().get(m.getEtatTuto()-1));
+		if (ihm.etatTuto == 8) {
+			ihm.etatTuto = ihm.etatTuto+1;
+			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto-1));
+		} else if (ihm.etatTuto == 9) {
+			ihm.etatTuto = ihm.etatTuto+1;
+			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto-1));
 			getTabPane().getSelectionModel().select(1);
-		} else if (m.getEtatTuto() == 10) {
-			m.setEtatTuto(m.getEtatTuto()+1);
-			imageTuto.setImage(ihm.i.getImagesTuto().get(m.getEtatTuto()-1));
+		} else if (ihm.etatTuto == 10) {
+			ihm.etatTuto = ihm.etatTuto+1;
+			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto-1));
 			getTabPane().getSelectionModel().select(2);
-		} else if (m.getEtatTuto() == 11) {
+		} else if (ihm.etatTuto == 11) {
 			imageTuto.setImage(ihm.i.getImageVide());
-			m.setEtatTuto(1);
+			ihm.etatTuto = 1;
+			ihm.modeTuto = false;
 		} else {
 			imageTuto.setImage(ihm.i.getImageVide());
 		}	
