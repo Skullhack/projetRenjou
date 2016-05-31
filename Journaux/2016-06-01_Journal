@@ -12,6 +12,8 @@ Partie importante :
 - Modifier affichage coups en cours, bug quand on réinitialise une partie (l'icone reste)
 - Tout tester comme un bourin!!
 
+- Réctifier l'explication du mode débutant, sur machine fac on ne voit pas tout
+
 Partie si temps en plus :
 - Temps restant a implementer
 - Utiliser un système de timer pour que l'IA ne joue pas en INSTANT
@@ -21,6 +23,11 @@ Partie si temps en plus :
 - Rectifier alignements :
     - selection des tabous écriture en entier
 - Mettre un lien PDF dans les règles du jeu, pour avoir plus d'informations
+
+PARTIE MOTEUR:
+
+- Modif ajout element annuler, quand ia contre ia ça serait bien de le garder en historique, dans la démo on pourra mettre en évidence les coups contrés
+
 
 PARTIE IA  :
 
