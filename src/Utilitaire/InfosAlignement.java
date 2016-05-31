@@ -105,6 +105,8 @@ public class InfosAlignement implements java.io.Serializable {
 				libre2casesNoir = false;
 				blancContinu(pdj);
 			}else if(tc == TypeCase.Jouable){
+				libreBlanc = true;
+				libreNoir = true;
 				noirEtBlancVide(pdj);
 			}else{
 				Log.print(795, "Dans entree automate: Cas impossible?");
@@ -156,6 +158,7 @@ public class InfosAlignement implements java.io.Serializable {
 				libre2casesNoir = false;
 				noirBloque1Case(pdj);
 			}else if(tc == TypeCase.Jouable){
+				libreNoir = true;
 				noirVide(pdj);
 			}else{
 			Log.print(795, "Dans : Cas impossible?");
@@ -165,11 +168,51 @@ public class InfosAlignement implements java.io.Serializable {
 
 	private void blancVide(PlateauDeJeu pdj) {
 		Log.print(795, "Dans blancVide");
-		blancNonContinu(pdj);
+		boolean bordure = !incremente();
+		if(bordure){
+			libre2casesBlanc = false;
+			blancBloque2Case(pdj);
+		}else{
+			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
+			if(tc == TypeCase.PionNoir){
+				libre2casesBlanc = false;
+				noirBloque2Case(pdj);
+			}else if( tc == TypeCase.PionBlanc){
+				nbBlancNonContinu++;
+				libreBlanc = false;
+				libre2casesNoir = false;
+				noirNonContinu(pdj);
+			}else if(tc == TypeCase.Jouable){
+				libre2casesBlanc = true;
+				noirLibre2Case(pdj);
+			}else{
+				Log.print(795, "Dans : Cas impossible?");
+			}
+		}
 	}
 	private void noirVide(PlateauDeJeu pdj) {
 		Log.print(795, "Dans noirVide");
-		noirNonContinu(pdj);		
+		boolean bordure = !incremente();
+		if(bordure){
+			libre2casesNoir = false;
+			noirBloque2Case(pdj);
+		}else{
+			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
+			if(tc == TypeCase.PionNoir){
+				nbNoirNonContinu++;
+				libreNoir = false;
+				libre2casesBlanc = false;
+				noirNonContinu(pdj);
+			}else if( tc == TypeCase.PionBlanc){
+				libre2casesNoir = false;
+				noirBloque2Case(pdj);
+			}else if(tc == TypeCase.Jouable){
+				libre2casesNoir = true;
+				noirLibre2Case(pdj);
+			}else{
+				Log.print(795, "Dans : Cas impossible?");
+			}
+		}	
 	}
 
 	private void blancNonContinu(PlateauDeJeu pdj) {
@@ -191,7 +234,7 @@ public class InfosAlignement implements java.io.Serializable {
 			}else if(tc == TypeCase.Jouable){
 				libreBlanc = true;
 				libre2casesBlanc = true;
-				blancLibre2Case(pdj);
+				blancLibre(pdj);
 			}else{
 				Log.print(795, "Dans : Cas impossible?");
 			}
@@ -201,26 +244,74 @@ public class InfosAlignement implements java.io.Serializable {
 		Log.print(795, "Dans noirNonContinu");
 		boolean bordure = !incremente();
 		if(bordure){
-			libreNoir = true;
+			libreNoir = false;
 			libre2casesNoir = false;
 			noirBloque1Case(pdj);
 		}else{
 			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
 			if(tc == TypeCase.PionNoir){
 				nbNoirNonContinu++;
+				libreNoir = false;
 				noirNonContinu(pdj);
 			}else if( tc == TypeCase.PionBlanc){
-				libreNoir = true;
+				libreNoir = false;
 				libre2casesNoir = false;
 				noirBloque1Case(pdj);
 			}else if(tc == TypeCase.Jouable){
 				libreNoir = true;
+				libre2casesNoir = false;
+				noirLibre(pdj);
+			}else{
+				Log.print(795, "Dans : Cas impossible?");
+			}
+		}		
+	}
+
+	private void noirLibre(PlateauDeJeu pdj) {
+		Log.print(795, "Dans noirLibre");
+		boolean bordure = !incremente();
+		if(bordure){
+			libre2casesNoir = false;
+			noirBloque1Case(pdj);
+		}else{
+			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
+			if(tc == TypeCase.PionNoir){
+				libre2casesNoir = true;
+				noirLibre2Case(pdj);
+			}else if( tc == TypeCase.PionBlanc){
+				libre2casesNoir = false;
+				noirBloque2Case(pdj);
+			}else if(tc == TypeCase.Jouable){
 				libre2casesNoir = true;
 				noirLibre2Case(pdj);
 			}else{
 				Log.print(795, "Dans : Cas impossible?");
 			}
-		}		
+		}	
+		
+	}
+	private void blancLibre(PlateauDeJeu pdj) {
+		Log.print(795, "Dans blancLibre");
+		boolean bordure = !incremente();
+		if(bordure){
+			libre2casesBlanc = false;
+			blancBloque1Case(pdj);
+		}else{
+			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
+			if(tc == TypeCase.PionNoir){
+				libre2casesBlanc = false;
+				blancBloque2Case(pdj);
+			}else if( tc == TypeCase.PionBlanc){
+				libre2casesBlanc = true;
+				blancLibre2Case(pdj);
+			}else if(tc == TypeCase.Jouable){
+				libre2casesBlanc = true;
+				blancLibre2Case(pdj);
+			}else{
+				Log.print(795, "Dans : Cas impossible?");
+			}
+		}	
+		
 	}
 
 	private void blancLibre2Case(PlateauDeJeu pdj) {
@@ -259,8 +350,6 @@ public class InfosAlignement implements java.io.Serializable {
 		Log.print(795, "Dans noirEtBlancVide");
 		boolean bordure = !incremente();
 		if(bordure){
-			libreNoir = true;
-			libreBlanc = true;
 			libre2casesNoir = false;
 			libre2casesBlanc = false;
 			noirEtBlancBloque1Case(pdj);
@@ -268,17 +357,15 @@ public class InfosAlignement implements java.io.Serializable {
 			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
 			if(tc == TypeCase.PionNoir){
 				nbNoirNonContinu++;
-				libreBlanc = false;
+				libreNoir = false;
 				libre2casesBlanc = false;
 				noirNonContinu(pdj);
 			}else if( tc == TypeCase.PionBlanc){
 				nbBlancNonContinu++;
-				libreNoir = false;
+				libreBlanc = false;
 				libre2casesNoir = false;
 				blancNonContinu(pdj);
 			}else if(tc == TypeCase.Jouable){
-				libreNoir = true;
-				libreBlanc = true;
 				libre2casesNoir = true;
 				libre2casesBlanc = true;
 				noirEtBlancLibre(pdj);

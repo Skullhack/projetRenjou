@@ -136,7 +136,7 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 		return estValide;
 	}
 
-	public boolean estValide(PlateauDeJeu r, Coordonnees c, boolean troisFoisTroisAtribut, boolean quatreFoisQuatreAtribut, boolean sixSeptAtribut, TypeCouleur typeCouleur) {
+	public static  boolean estValide(PlateauDeJeu r, Coordonnees c, boolean troisFoisTroisAtribut, boolean quatreFoisQuatreAtribut, boolean sixSeptAtribut) {
 		// initialisation des infos selon les directions
 		Log.print(1010, "r = " + r + "c" + c);
 		Motif motif = new Motif(r,c);
@@ -152,32 +152,32 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 
 		boolean estValide = true;
 		if (troisFoisTroisAtribut) {
-			Log.print(1010, "troisfoistrois" + troisFoisTrois(motif, typeCouleur));
-			estValide = estValide && !troisFoisTrois(motif, typeCouleur);
+			//Log.print(1010, "troisfoistrois " + troisFoisTrois(motif, typeCouleur));
+			estValide = estValide && !troisFoisTrois(motif, TypeCouleur.Noir);
 		}
 		if (quatreFoisQuatreAtribut) {
 
-			Log.print(1010, "quatrefoisquatre" + quatreFoisQuatre(motif, typeCouleur));
-			estValide = estValide && !quatreFoisQuatre(motif, typeCouleur);
+			Log.print(1010, "quatrefoisquatre " + quatreFoisQuatre(motif, TypeCouleur.Noir));
+			estValide = estValide && !quatreFoisQuatre(motif, TypeCouleur.Noir);
 		}
 		if (sixSeptAtribut) {
 
-			Log.print(1010, "sixSept" + sixSept(motif, typeCouleur));
-			estValide = estValide && !sixSept(motif, typeCouleur);
+			Log.print(1010, "sixSept" + sixSept(motif, TypeCouleur.Noir));
+			estValide = estValide && !sixSept(motif, TypeCouleur.Noir);
 		}
 		return estValide;
 	}
 
 	
-	public boolean sixSept(Motif motif, TypeCouleur typeCouleur) {
+	public static boolean sixSept(Motif motif, TypeCouleur typeCouleur) {
 		return motif.estSixSept(typeCouleur);
 	}
 
-	public boolean troisFoisTrois(Motif motif, TypeCouleur typeCouleur) {
+	public static boolean troisFoisTrois(Motif motif, TypeCouleur typeCouleur) {
 		return motif.estTroisFoisTroisLibreLibre(typeCouleur);
 	}
 
-	public boolean quatreFoisQuatre(Motif motif, TypeCouleur typeCouleur) {
+	public static boolean quatreFoisQuatre(Motif motif, TypeCouleur typeCouleur) {
 		return motif.estQuatreFoisQuatre(typeCouleur);
 	}
 

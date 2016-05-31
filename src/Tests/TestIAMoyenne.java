@@ -131,13 +131,13 @@ public class TestIAMoyenne {
 		for(int i=0;i<pdj.getLignes();i++){
 			for(int j=0;j<pdj.getColonnes();j++){
 				if(i == centre.getLigne() && j == centre.getColonne()){
-					assertFalse(ia.EstJouable(pdj, new Coordonnees(i,j)));
+					assertFalse(ia.EstJouable(pdj, new Coordonnees(i,j), 2));
 				}
 				else if((i <= centre.getLigne() +2 && i >= centre.getLigne() -2) && (j <= centre.getColonne() +2 && j >= centre.getColonne() -2)){
-					assertTrue(ia.EstJouable(pdj, new Coordonnees(i,j)));
+					assertTrue(ia.EstJouable(pdj, new Coordonnees(i,j), 2));
 				}
 				else{
-					assertFalse(ia.EstJouable(pdj, new Coordonnees(i,j)));
+					assertFalse(ia.EstJouable(pdj, new Coordonnees(i,j), 2));
 				}
 				
 			}
@@ -161,13 +161,13 @@ public class TestIAMoyenne {
 			for(int j=0;j<pdj.getColonnes();j++){
 				if(Esta2cases(new Coordonnees(i,j), centre)){
 					Log.print(635, "true? i= "+i+" j= "+j);
-					assertTrue(ia.EstJouable(pdj, new Coordonnees(i,j)));
+					assertTrue(ia.EstJouable(pdj, new Coordonnees(i,j), 2));
 					pdj.enlever(new Coordonnees(i,j));
 				}
 				else{
 					Log.print(635, "false? i= "+i+" j= "+j);
 
-					assertFalse(ia.EstJouable(pdj, new Coordonnees(i,j)));
+					assertFalse(ia.EstJouable(pdj, new Coordonnees(i,j), 2));
 				}
 				
 			}
@@ -193,13 +193,13 @@ public class TestIAMoyenne {
 			for(int j=0;j<pdj.getColonnes();j++){
 				if(Esta2cases(l,new Coordonnees(i,j))){
 					Log.print(635, "true? i= "+i+" j= "+j);
-					assertTrue(ia.EstJouable(pdj, new Coordonnees(i,j)));
+					assertTrue(ia.EstJouable(pdj, new Coordonnees(i,j), 2));
 					pdj.enlever(new Coordonnees(i,j));
 				}
 				else{
 					Log.print(635, "false? i= "+i+" j= "+j);
 
-					assertFalse(ia.EstJouable(pdj, new Coordonnees(i,j)));
+					assertFalse(ia.EstJouable(pdj, new Coordonnees(i,j), 2));
 				}
 				
 			}
@@ -224,13 +224,13 @@ public class TestIAMoyenne {
 			for(int j=0;j<pdj.getColonnes();j++){
 				if(Esta2cases(l,new Coordonnees(i,j)) && !ia.EstBlancOuNoir(pdj, new Coordonnees(i,j))){
 					Log.print(639, "true? i= "+i+" j= "+j);
-					assertTrue(ia.EstJouable(pdj, new Coordonnees(i,j)));
+					assertTrue(ia.EstJouable(pdj, new Coordonnees(i,j), 2));
 					pdj.enlever(new Coordonnees(i,j));
 				}
 				else{
 					Log.print(639, "false? i= "+i+" j= "+j);
 
-					assertFalse(ia.EstJouable(pdj, new Coordonnees(i,j)));
+					assertFalse(ia.EstJouable(pdj, new Coordonnees(i,j), 2));
 				}
 				
 			}

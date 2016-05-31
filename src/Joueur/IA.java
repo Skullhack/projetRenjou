@@ -204,6 +204,31 @@ public class IA extends Joueur {
 		return buff;
 	}
 	
+	public boolean EstJouable(PlateauDeJeu pdj, Coordonnees c, int distanceMax) {
+		if (EstBlancOuNoir(pdj, c))
+			return false;
+
+		for (int i = c.getLigne() - distanceMax; i <= c.getLigne() + distanceMax; i++) {
+			for (int j = c.getColonne() - distanceMax; j <= c.getColonne() + distanceMax; j++) {
+				if (i >= 0 && i <= nbLigne - 1 && j >= 0 && j <= nbColonne - 1
+						&& (c.getLigne() != i || c.getColonne() != j)) {
+					// Log.print(11, "i=" + i + " j=" +j + " c= " + c );
+					if (EstBlancOuNoir(pdj, new Coordonnees(i, j))) {
+						// Log.print(1, "est un pion!" );
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+	
+	public boolean EstBlancOuNoir(PlateauDeJeu pdj, Coordonnees c) {
+		// Log.print(66, "Dans EstBlancOuNoir => " + pdj.getTypeCaseTableau(c));
+		return pdj.getTypeCaseTableau(c) == TypeCase.PionBlanc || pdj.getTypeCaseTableau(c) == TypeCase.PionNoir;
+	}
+	
 	public void initHeuristique(PlateauDeJeu plateau) {
 		Log.print(15,"Dans init Heuristique");
 
