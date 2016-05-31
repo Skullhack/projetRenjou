@@ -190,9 +190,9 @@
                 <Insets left="40.0" right="30.0" top="3.0" fx:id="x7" />
               </FlowPane.margin>
             </ImageView>
-                  <AnchorPane prefHeight="0.0" prefWidth="43.0">
+                  <AnchorPane fx:id="listAnchor1" prefHeight="0.0" prefWidth="43.0">
                      <children>
-                        <ImageView fx:id="listImage1" fitHeight="123.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0">
+                        <ImageView fx:id="listImage1" fitHeight="123.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0">
                            <image>
                               <Image url="@../Images/Traditionnel/Plateau15x15.png" />
                            </image>
@@ -207,12 +207,12 @@
                         <Insets />
                      </opaqueInsets>
                      <FlowPane.margin>
-                        <Insets bottom="2.0" top="2.0" />
+                        <Insets />
                      </FlowPane.margin>
                   </AnchorPane>
-                  <AnchorPane prefHeight="0.0" prefWidth="43.0">
+                  <AnchorPane fx:id="listAnchor2" prefHeight="0.0" prefWidth="43.0">
                      <children>
-                        <ImageView fx:id="listImage2" fitHeight="123.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0">
+                        <ImageView fx:id="listImage2" fitHeight="123.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0">
                            <image>
                               <Image url="@../Images/Traditionnel/Plateau15x15.png" />
                            </image>
@@ -227,12 +227,12 @@
                         <Insets />
                      </opaqueInsets>
                      <FlowPane.margin>
-                        <Insets bottom="2.0" top="2.0" />
+                        <Insets />
                      </FlowPane.margin>
                   </AnchorPane>
-                  <AnchorPane prefHeight="0.0" prefWidth="43.0">
+                  <AnchorPane fx:id="listAnchor3" prefHeight="0.0" prefWidth="43.0">
                      <children>
-                        <ImageView fx:id="listImage3" fitHeight="123.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0">
+                        <ImageView fx:id="listImage3" fitHeight="123.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0">
                            <image>
                               <Image url="@../Images/Traditionnel/Plateau15x15.png" />
                            </image>
@@ -247,12 +247,12 @@
                         <Insets />
                      </opaqueInsets>
                      <FlowPane.margin>
-                        <Insets bottom="2.0" top="2.0" />
+                        <Insets />
                      </FlowPane.margin>
                   </AnchorPane>
-                  <AnchorPane prefHeight="0.0" prefWidth="43.0">
+                  <AnchorPane fx:id="listAnchor4" prefHeight="0.0" prefWidth="43.0">
                      <children>
-                        <ImageView fx:id="listImage4" fitHeight="123.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0">
+                        <ImageView fx:id="listImage4" fitHeight="123.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0">
                            <image>
                               <Image url="@../Images/Traditionnel/Plateau15x15.png" />
                            </image>
@@ -267,7 +267,7 @@
                         <Insets />
                      </opaqueInsets>
                      <FlowPane.margin>
-                        <Insets bottom="2.0" top="2.0" />
+                        <Insets />
                      </FlowPane.margin>
                   </AnchorPane>
             <ImageView fx:id="flecheBas" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#clickFlecheBas" onMouseEntered="#dragDebutFlecheBas" onMouseExited="#dragFinFlecheBas" pickOnBounds="true" preserveRatio="true" rotate="-0.0">

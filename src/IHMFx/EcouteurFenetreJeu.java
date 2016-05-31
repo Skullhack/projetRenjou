@@ -136,7 +136,14 @@ public class EcouteurFenetreJeu implements Initializable {
     private ImageView flecheBas;
     @FXML
     private ImageView imageTuto;
-
+    @FXML
+    private AnchorPane listAnchor1;
+    @FXML
+    private AnchorPane listAnchor2;   
+    @FXML
+    private AnchorPane listAnchor3;
+    @FXML
+    private AnchorPane listAnchor4;
 
     public EcouteurFenetreJeu(IHM ihm) {
         //Variables
@@ -714,10 +721,10 @@ public class EcouteurFenetreJeu implements Initializable {
 		int i = indiceDebutTab;
 		if(i != indiceFinTab){
 			if(i == m.getRenjou().getNbDemiTourCourant()){
-				listImage1.setStyle("-fx-background-color:black;");
+				listAnchor1.setStyle("-fx-background-color:black;");
 				list1.setText("Tour "+i +" En Cours");
 			}else{
-				listImage1.setStyle(null);
+				listAnchor1.setStyle(null);
 				list1.setText("Tour "+i);
 			}
 			
@@ -725,10 +732,10 @@ public class EcouteurFenetreJeu implements Initializable {
 		}
 		if(i != indiceFinTab){
 			if(i == m.getRenjou().getNbDemiTourCourant()){
-				listImage2.setStyle("-fx-background-color:black;");
+				listAnchor2.setStyle("-fx-background-color:black;");
 				list2.setText("Tour "+i +" En Cours");
 			}else{
-				listImage2.setStyle(null);
+				listAnchor2.setStyle(null);
 				list2.setText("Tour "+i);
 			}
 			
@@ -736,10 +743,10 @@ public class EcouteurFenetreJeu implements Initializable {
 		}
 		if(i != indiceFinTab){
 			if(i == m.getRenjou().getNbDemiTourCourant()){
-				listImage3.setStyle("-fx-background-color:black;");
+				listAnchor3.setStyle("-fx-background-color:black;");
 				list3.setText("Tour "+i +" En Cours");
 			}else{
-				listImage3.setStyle(null);
+				listAnchor3.setStyle(null);
 				list3.setText("Tour "+i);
 			}
 			
@@ -747,10 +754,10 @@ public class EcouteurFenetreJeu implements Initializable {
 		}
 		if(i != indiceFinTab){
 			if(i == m.getRenjou().getNbDemiTourCourant()){
-				listImage4.setStyle("-fx-background-color:black;");
+				listAnchor4.setStyle("-fx-background-color:black;");
 				list4.setText("Tour "+i +" En Cours");
 			}else{
-				listImage4.setStyle(null);
+				listAnchor4.setStyle(null);
 				list4.setText("Tour "+i);
 			}
 			
