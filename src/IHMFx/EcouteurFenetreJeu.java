@@ -708,7 +708,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		
     	int indiceFinTab = m.getRenjou().getIndiceFinHistorique();
 		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
-    	int tailleAnulleRefaire = indiceFinTab - indiceDebutTab;
+    	int tailleAnulleRefaire = m.getRenjou().getListeAnnuler().size() +  m.getRenjou().getListeRefaire().size();
     	
     	if(tailleAnulleRefaire < 4){
     		m.getRenjou().setIndiceFinHistorique(tailleAnulleRefaire);
@@ -722,45 +722,37 @@ public class EcouteurFenetreJeu implements Initializable {
 		if(i != indiceFinTab){
 			if(i == m.getRenjou().getNbDemiTourCourant()){
 				listAnchor1.setStyle("-fx-background-color:black;");
-				list1.setText("Tour "+i +" En Cours");
 			}else{
 				listAnchor1.setStyle(null);
-				list1.setText("Tour "+i);
 			}
-			
+			list1.setText("Tour "+i);
 			i++;
 		}
 		if(i != indiceFinTab){
 			if(i == m.getRenjou().getNbDemiTourCourant()){
 				listAnchor2.setStyle("-fx-background-color:black;");
-				list2.setText("Tour "+i +" En Cours");
 			}else{
 				listAnchor2.setStyle(null);
-				list2.setText("Tour "+i);
 			}
-			
+			list2.setText("Tour "+i);
 			i++;
 		}
 		if(i != indiceFinTab){
 			if(i == m.getRenjou().getNbDemiTourCourant()){
 				listAnchor3.setStyle("-fx-background-color:black;");
-				list3.setText("Tour "+i +" En Cours");
 			}else{
 				listAnchor3.setStyle(null);
-				list3.setText("Tour "+i);
 			}
-			
+			list3.setText("Tour "+i);
 			i++;
 		}
 		if(i != indiceFinTab){
 			if(i == m.getRenjou().getNbDemiTourCourant()){
 				listAnchor4.setStyle("-fx-background-color:black;");
-				list4.setText("Tour "+i +" En Cours");
 			}else{
 				listAnchor4.setStyle(null);
-				list4.setText("Tour "+i);
 			}
-			
+			list4.setText("Tour "+i);
 			i++;
 		}
 			
@@ -836,6 +828,7 @@ public class EcouteurFenetreJeu implements Initializable {
 				m.annulerNDemiCoup(nbCoupAAnulleeOuRefaire);
 			}
 		}
+		panelAnnulerRefaire();
 	}
 
 	@FXML
@@ -886,7 +879,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		int indiceFinTab = m.getRenjou().getIndiceFinHistorique();
 		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
 		
-		if(indiceFinTab - i >= 0){
+		if(indiceDebutTab + i <= indiceFinTab){
 			int nbCoupAAnulleeOuRefaire = m.getRenjou().getNbDemiTourCourant() - (indiceDebutTab + i);
 			if(nbCoupAAnulleeOuRefaire < 0){
 				//Refaire
