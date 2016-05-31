@@ -915,7 +915,7 @@ public class EcouteurFenetreJeu implements Initializable {
 			}
 			//On dessine en transparent ce qui peut être ajouté
 			iPionBlanc = ihm.i.getCercleVertPlein();
-			iPionNoir = ihm.i.getCercleVertPlein();
+			iPionNoir = ihm.i.getCercleVert();
 			for (int i=0;i<bornePion - m.getRenjou().getListeAnnuler().size();i++) {
 				PionJoue p = m.getRenjou().getListeRefaire().get( m.getRenjou().getListeRefaire().size() -i -1); 
 			    if (p.getTypeCase() == TypeCase.PionBlanc) {
@@ -936,7 +936,7 @@ public class EcouteurFenetreJeu implements Initializable {
 			}
 			//On dessine en transparent ce qui peut être ajouté
 			iPionBlanc = ihm.i.getCercleVertPlein();
-			iPionNoir = ihm.i.getCercleVertPlein();
+			iPionNoir = ihm.i.getCercleVert();
 			for (int i=bornePion; i<m.getRenjou().getListeAnnuler().size(); i++) {
 				PionJoue p = m.getRenjou().getListeAnnuler().get(i); 
 			    if (p.getTypeCase() == TypeCase.PionBlanc) {

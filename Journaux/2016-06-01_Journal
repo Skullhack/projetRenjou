@@ -4,9 +4,16 @@
 PARTIE IHM :
 
 Partie importante :
+- Problème tuto quand on est à la page 4 elle veut pas passer à la 5 alors que le pion blanc est posé sur la droite
+
 - Tester historique comme un bourrin
 - Tester tutoriel sur les machines de la fac
-- Image transparente pour les différents pions
+- Reprendre image tuto pour enlever les onglet //fait
+- Reprendre image tuto pour donner plus d'info sur passer d'une page à une autre
+- Image transparente pour les différents pions //fait
+- Adrien gère les images transparentes pour l'historique à la place des cercles verts
+ elles sont dans chaque thèmes sous le nom de "PionBlancTransparent" et "PionNoirTransparent"
+- Faire un Pion Aide plus jolie pour tout les thèmes (le cercle vert plein est vraiment pas beau)
 - Faire tests sur plateau de jeu
 - Vérifier orthographe sur tuto car alixia n'est pas très douée!
 - Tout tester comme un bourin!!
