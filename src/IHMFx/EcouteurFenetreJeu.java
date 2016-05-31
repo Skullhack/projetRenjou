@@ -672,41 +672,45 @@ public class EcouteurFenetreJeu implements Initializable {
 		if(i != indiceFinTab){
 			if(i == m.getRenjou().getNbDemiTourCourant()){
 				listImage1.setStyle("-fx-background-color:black;");
+				list1.setText("Tour "+i +" En Cours");
 			}else{
 				listImage1.setStyle(null);
+				list1.setText("Tour "+i);
 			}
 			
-			list1.setText("Tour "+i);
 			i++;
 		}
 		if(i != indiceFinTab){
 			if(i == m.getRenjou().getNbDemiTourCourant()){
 				listImage2.setStyle("-fx-background-color:black;");
+				list2.setText("Tour "+i +" En Cours");
 			}else{
 				listImage2.setStyle(null);
+				list2.setText("Tour "+i);
 			}
 			
-			list2.setText("Tour "+i);
 			i++;
 		}
 		if(i != indiceFinTab){
 			if(i == m.getRenjou().getNbDemiTourCourant()){
 				listImage3.setStyle("-fx-background-color:black;");
+				list3.setText("Tour "+i +" En Cours");
 			}else{
 				listImage3.setStyle(null);
+				list3.setText("Tour "+i);
 			}
 			
-			list3.setText("Tour "+i);
 			i++;
 		}
 		if(i != indiceFinTab){
 			if(i == m.getRenjou().getNbDemiTourCourant()){
 				listImage4.setStyle("-fx-background-color:black;");
+				list4.setText("Tour "+i +" En Cours");
 			}else{
 				listImage4.setStyle(null);
+				list4.setText("Tour "+i);
 			}
 			
-			list4.setText("Tour "+i);
 			i++;
 		}
 			
@@ -775,7 +779,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		
 		if(indiceFinTab - i >= 0){
 			ancienPlateau = null;
-			int nbCoupAAnulleeOuRefaire = m.getRenjou().getNbDemiTourCourant() - indiceDebutTab - i;
+			int nbCoupAAnulleeOuRefaire = m.getRenjou().getNbDemiTourCourant() - (indiceDebutTab + i);
 			if(nbCoupAAnulleeOuRefaire < 0){
 				nbCoupAAnulleeOuRefaire = 0 - nbCoupAAnulleeOuRefaire;
 				m.refaireNDemiCoup(nbCoupAAnulleeOuRefaire);
@@ -834,13 +838,15 @@ public class EcouteurFenetreJeu implements Initializable {
 		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
 		
 		if(indiceFinTab - i >= 0){
-			int nbCoupAAnulleeOuRefaire = m.getRenjou().getNbDemiTourCourant() - indiceDebutTab - i;
+			int nbCoupAAnulleeOuRefaire = m.getRenjou().getNbDemiTourCourant() - (indiceDebutTab + i);
 			if(nbCoupAAnulleeOuRefaire < 0){
+				//Refaire
 				//affichage des pions jusqu'a pos courant puis affichage transparent
-				afficherPlateauPionTransparent(m.getRenjou().getNbDemiTourCourant(), true);
+				afficherPlateauPionTransparent(indiceDebutTab+i, true);
 			}else if(nbCoupAAnulleeOuRefaire > 0){
+				//Annuler
 				//affichage des pions jusqu'a clique (indiceFinTab-i) puis affichage transparent
-				afficherPlateauPionTransparent(indiceDebutTab - i, false);
+				afficherPlateauPionTransparent(indiceDebutTab + i, false);
 			}
 		}
 	}
@@ -864,9 +870,11 @@ public class EcouteurFenetreJeu implements Initializable {
 		Image iPionNoir = ihm.i.getPionNoir();
 		//true refaire
 		if (type) {
+					
 			//On dessine l'état actuel
 			for (int i=0;i<m.getRenjou().getListeAnnuler().size();i++) {
 					PionJoue p = m.getRenjou().getListeAnnuler().get(i); 
+					System.out.println("i Annuler : " + i + "borne pion : " + bornePion);
 				    if (p.getTypeCase() == TypeCase.PionBlanc) {
 				        dessinerPion(plat, graphicsContext, iPionBlanc, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
 				    } else if (p.getTypeCase() == TypeCase.PionNoir) {
@@ -876,8 +884,9 @@ public class EcouteurFenetreJeu implements Initializable {
 			//On dessine en transparent ce qui peut être ajouté
 			iPionBlanc = ihm.i.getCercleVertPlein();
 			iPionNoir = ihm.i.getCercleVertPlein();
-			for (int i=0;i<bornePion;i++) {
+			for (int i=0;i<bornePion - m.getRenjou().getListeAnnuler().size();i++) {
 				PionJoue p = m.getRenjou().getListeRefaire().get(i); 
+				System.out.println("i Refaire : " + i);
 			    if (p.getTypeCase() == TypeCase.PionBlanc) {
 			        dessinerPion(plat, graphicsContext, iPionBlanc, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
 			    } else if (p.getTypeCase() == TypeCase.PionNoir) {
@@ -886,7 +895,7 @@ public class EcouteurFenetreJeu implements Initializable {
 			}
 		} else {
 			//On dessine l'état actuel
-			for (int i=0;i<bornePion;i++) {
+			for (int i=0;i<bornePion && i<m.getRenjou().getListeAnnuler().size(); i++) {
 					PionJoue p = m.getRenjou().getListeAnnuler().get(i); 
 				    if (p.getTypeCase() == TypeCase.PionBlanc) {
 				        dessinerPion(plat, graphicsContext, iPionBlanc, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
@@ -897,7 +906,7 @@ public class EcouteurFenetreJeu implements Initializable {
 			//On dessine en transparent ce qui peut être ajouté
 			iPionBlanc = ihm.i.getCercleVertPlein();
 			iPionNoir = ihm.i.getCercleVertPlein();
-			for (int i=bornePion;i<m.getRenjou().getListeAnnuler().size();i++) {
+			for (int i=bornePion; i<m.getRenjou().getListeAnnuler().size(); i++) {
 				PionJoue p = m.getRenjou().getListeAnnuler().get(i); 
 			    if (p.getTypeCase() == TypeCase.PionBlanc) {
 			        dessinerPion(plat, graphicsContext, iPionBlanc, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
@@ -906,6 +915,13 @@ public class EcouteurFenetreJeu implements Initializable {
 			    }     
 			}
 		}
+		
+		//On retransforme en Image
+				WritableImage writableImage = new WritableImage((int)plat.getWidth(), (int)plat.getHeight());
+				canvas.snapshot(null, writableImage);
+				
+				Image i = (Image) writableImage;
+				plateau.setImage(i);
 		
 	}
 	
