@@ -7,6 +7,7 @@ package IHMFx;
 
 import Images.*;
 import Utilitaire.Coordonnees;
+import Utilitaire.Log;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -710,12 +711,14 @@ public class EcouteurFenetreJeu implements Initializable {
 		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
     	int tailleAnulleRefaire = m.getRenjou().getListeAnnuler().size() +  m.getRenjou().getListeRefaire().size();
     	
-    	if(tailleAnulleRefaire <= 4){
-    		m.getRenjou().setIndiceFinHistorique(tailleAnulleRefaire);
+    	Log.print(10, "taiile listes : " + tailleAnulleRefaire);
+    	
+    	if(tailleAnulleRefaire < 4){
+    		m.getRenjou().setIndiceFinHistorique(tailleAnulleRefaire+1);
     		m.getRenjou().setIndiceDebutHistorique(0);
     		
-    		indiceDebutTab = 0;
-    		indiceFinTab = m.getRenjou().getListeAnnuler().size() + m.getRenjou().getListeRefaire().size();
+        	indiceFinTab = m.getRenjou().getIndiceFinHistorique();
+    		indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
     	}
     	
 		int i = indiceDebutTab;
@@ -766,7 +769,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		}
 		
 		//Disable ou non la fleche bas
-		if((m.getRenjou().getIndiceFinHistorique() == m.getRenjou().getListeAnnuler().size() + m.getRenjou().getListeRefaire().size()) || m.getRenjou().getIndiceFinHistorique() - m.getRenjou().getIndiceDebutHistorique() <4){
+		if((m.getRenjou().getIndiceFinHistorique() == m.getRenjou().getListeAnnuler().size() + m.getRenjou().getListeRefaire().size()+1) || m.getRenjou().getIndiceFinHistorique() - m.getRenjou().getIndiceDebutHistorique() <4){
 			flecheBas.setImage(ihm.i.getFlecheBasDisab());
 			flecheBas.setDisable(true);
 		}else{
@@ -788,7 +791,7 @@ public class EcouteurFenetreJeu implements Initializable {
 	private void clickFlecheBas(MouseEvent e){
 
 		int indiceFinTab = m.getRenjou().getIndiceFinHistorique();
-		if(indiceFinTab < m.getRenjou().getListeAnnuler().size() + m.getRenjou().getListeRefaire().size()){
+		if(indiceFinTab <= m.getRenjou().getListeAnnuler().size() + m.getRenjou().getListeRefaire().size()+1){
 			m.getRenjou().setIndiceDebutHistorique(m.getRenjou().getIndiceDebutHistorique() + 1);
 			m.getRenjou().setIndiceFinHistorique(m.getRenjou().getIndiceFinHistorique() + 1);
 		}
@@ -818,7 +821,7 @@ public class EcouteurFenetreJeu implements Initializable {
 	private void clickList(int i){
 		int indiceFinTab = m.getRenjou().getIndiceFinHistorique();
 		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
-		if(indiceFinTab - i >= 0){
+		if(indiceDebutTab + i < indiceFinTab){
 			ancienPlateau = null;
 			int nbCoupAAnulleeOuRefaire = m.getRenjou().getNbDemiTourCourant() - (indiceDebutTab + i);
 			if(nbCoupAAnulleeOuRefaire < 0){
@@ -879,7 +882,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		int indiceFinTab = m.getRenjou().getIndiceFinHistorique();
 		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
 		
-		if(indiceDebutTab + i <= indiceFinTab){
+		if(indiceDebutTab + i < indiceFinTab){
 			int nbCoupAAnulleeOuRefaire = m.getRenjou().getNbDemiTourCourant() - (indiceDebutTab + i);
 			if(nbCoupAAnulleeOuRefaire < 0){
 				//Refaire

@@ -269,8 +269,8 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	}
 
 	public void majAffichageListeTours(Renjou renjou) {
-		if (renjou.getNbDemiTourCourant() > 4) {
-			renjou.setIndiceFinHistorique(renjou.getNbDemiTourCourant());
+		if (renjou.getNbDemiTourCourant()+1 > 4) {
+			renjou.setIndiceFinHistorique(renjou.getNbDemiTourCourant()+1);
 			renjou.setIndiceDebutHistorique(renjou.getIndiceFinHistorique() - 4);
 		} else {
 			renjou.setIndiceFinHistorique(renjou.getIndiceFinHistorique() + 1);
