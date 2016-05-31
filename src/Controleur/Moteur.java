@@ -639,9 +639,9 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		if (this.getRenjou().getJoueurs()[0].getType() == TypeJoueur.Humain
 				&& this.getRenjou().getJoueurs()[1].getType() == TypeJoueur.Humain) {
 			annulerDemiCoup();
-			if (this.getRenjou().getEtatPartie() != EtatPartie.EnCours) {
-				annulerDemiCoup();
-			}
+//			if (this.getRenjou().getEtatPartie() != EtatPartie.EnCours) {
+//				annulerDemiCoup();
+//			}
 		} else {
 			annulerDemiCoup();
 			annulerDemiCoup();
@@ -659,8 +659,8 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 			joueurPrecedent();
 
 			PionJoue dernierPionJoueHistorique = this.getRenjou().getListeAnnuler().get(dernierElementHistorique);
-			this.getRenjou().getPlateauDeJeu().enlever(dernierPionJoueHistorique.c);
-			this.getRenjou().setEtatPartie(dernierPionJoueHistorique.etatPartie);
+			this.getRenjou().getPlateauDeJeu().enlever(dernierPionJoueHistorique.c);			
+			this.getRenjou().setEtatPartie(EtatPartie.EnCours);
 			this.getRenjou().getListeRefaire().add(this.getRenjou().getListeAnnuler().get(dernierElementHistorique));
 			this.getRenjou().getListeAnnuler().remove(dernierElementHistorique);
 			incrementerPionsJoueurCourant(this.getRenjou());
