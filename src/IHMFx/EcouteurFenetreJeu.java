@@ -706,6 +706,10 @@ public class EcouteurFenetreJeu implements Initializable {
     	this.list2.setText("");
     	this.list3.setText("");
     	this.list4.setText("");
+    	listAnchor1.setStyle(null);
+    	listAnchor2.setStyle(null);
+    	listAnchor3.setStyle(null);
+    	listAnchor4.setStyle(null);
 		
     	int indiceFinTab = m.getRenjou().getIndiceFinHistorique();
 		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
