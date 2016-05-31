@@ -67,6 +67,7 @@ public class EcouteurFenetreMenu {
 	public EcouteurFenetreMenu(IHM ihm) {
 		this.ihm = ihm;
 		this.m = ihm.m;
+		this.ancienTheme = m.getRenjou().getEmplacementThemes();
 		this.themeChangement = false;
 		try {
 			ihm.fm = new FenetreMenu(this);
@@ -94,16 +95,15 @@ public class EcouteurFenetreMenu {
 	}
 	
 	public void annuler() {
-		if (ancienTheme != "" && themeChangement) {
+		if (themeChangement) {
 			m.getRenjou().setNouveauTheme(ancienTheme);
 			ihm.i.setImage();
 			ihm.actualiser();
-			setAncienTheme("");
+			themeChangement = false;
 		}	
 		ihm.fj.montrer();
 		ihm.fm.cacher();
 		ihm.efj.setEnabled();
-		themeChangement = false;
 	}
 	
 	@FXML
@@ -151,8 +151,8 @@ public class EcouteurFenetreMenu {
             m.configurerPartie(tab[0], tab[1], tabous, ihm.fm.getNouvellePartie(),modeDebutant.isSelected());
         }
         ancienTheme = m.getRenjou().getEmplacementThemes();
-        
         ihm.efj.update();
+        themeChangement = false;
 		ihm.fj.montrer();
 		ihm.fm.cacher();
 		ihm.efj.setEnabled();
@@ -198,22 +198,25 @@ public class EcouteurFenetreMenu {
 	
 	@FXML
 	private void selectionnerThemeTraditionnel(MouseEvent e) {
-		setAncienTheme(m.getRenjou().getEmplacementThemes());
 		selectionnerTheme("Traditionnel");
 		themeChangement = true;
 	}
 	
 	@FXML
 	private void selectionnerThemeZelda(MouseEvent e) {
-		setAncienTheme(m.getRenjou().getEmplacementThemes());
 		selectionnerTheme("Zelda");
 		themeChangement = true;
 	}
 	
 	@FXML
 	private void selectionnerThemeCage(MouseEvent e) {
-		setAncienTheme(m.getRenjou().getEmplacementThemes());
 		selectionnerTheme("Cage");
+		themeChangement = true;
+	}
+	
+	@FXML
+	private void selectionnerThemeRugby(MouseEvent e) {
+		selectionnerTheme("Rugby");
 		themeChangement = true;
 	}
 	
