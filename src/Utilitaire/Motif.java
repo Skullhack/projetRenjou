@@ -470,6 +470,12 @@ public class Motif {
 		return estQuatreDiagonaleDroite(typeCouleur) || estQuatreDiagonaleGauche(typeCouleur)
 				|| estQuatreHorizontale(typeCouleur) || estQuatreVerticale(typeCouleur);
 	}
+	
+	public boolean estQuatreLibreContinuIAFacile(TypeCouleur typeCouleur){
+		return estQuatreDiagonaleDroiteLibreContinuIAFacile(typeCouleur) || estQuatreDiagonaleGaucheLibreContinuIAFacile(typeCouleur)
+				|| estQuatreHorizontaleLibreContinuIAFacile(typeCouleur) || estQuatreVerticaleLibreContinuIAFacile(typeCouleur);
+
+	}
 
 	public boolean estQuatreLibre(TypeCouleur typeCouleur) {
 		return estQuatreDiagonaleDroiteLibre(typeCouleur) || estQuatreDiagonaleGaucheLibre(typeCouleur)
@@ -550,6 +556,27 @@ public class Motif {
 		return nbPionHorizontale(typeCouleur) == 3;
 	}
 
+	
+	
+	public boolean estQuatreDiagonaleDroiteLibreContinuIAFacile(TypeCouleur typeCouleur) {
+		return ((infoDiagonaleHautGauche.estLibre(typeCouleur) && infoDiagonaleBasDroite.estLibre(typeCouleur))
+				&& (nbPionDiagonaleDroiteContinu(typeCouleur) == 4));
+	}
+
+	public boolean estQuatreDiagonaleGaucheLibreContinuIAFacile(TypeCouleur typeCouleur) {
+		return ((infoDiagonaleHautDroite.estLibre(typeCouleur) && infoDiagonaleBasGauche.estLibre(typeCouleur))
+				&& (nbPionDiagonaleGaucheContinu(typeCouleur) == 4));
+	}
+
+	public boolean estQuatreVerticaleLibreContinuIAFacile(TypeCouleur typeCouleur) {
+		return ((infoHaut.estLibre(typeCouleur) && infoBas.estLibre(typeCouleur))
+				&& (nbPionVerticaleContinu(typeCouleur) == 4));
+	}
+
+	public boolean estQuatreHorizontaleLibreContinuIAFacile(TypeCouleur typeCouleur) {
+		return ((infoDroite.estLibre(typeCouleur) && infoGauche.estLibre(typeCouleur))
+				&& (nbPionHorizontaleContinu(typeCouleur) == 4));
+	}
 	
 
 	public boolean estQuatreDiagonaleDroiteLibre(TypeCouleur typeCouleur) {

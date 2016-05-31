@@ -26,7 +26,7 @@ Partie si temps en plus :
 PARTIE MOTEUR:
 
 - Modif ajout element annuler, quand ia contre ia ça serait bien de le garder en historique, dans la démo on pourra mettre en évidence les coups contrés
-
+- Regarder si on peut lancer des ia contre ia sans appeler l'IHM, si non régler le problème pour pouvoir faire des tests
 
 PARTIE IA  :
 
