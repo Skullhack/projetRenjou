@@ -40,18 +40,15 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 		this.etatPartie = EtatPartie.EnCours;
 		this.joueurCourant = 0;
 		this.tabJoueurs = tabJoueurs;
-		this.setIndiceDebutHistorique(0);
-		this.setIndiceFinHistorique(0);
+		this.nbDemiTourCourant = 0;
+		this.indiceDebutHistorique = 0;
+		this.indiceFinHistorique = 0;
 		
 		ArrayList<TypeTabous> listeTabou = new ArrayList<TypeTabous>();
 		listeTabou.add(TypeTabous.TROIS_TROIS);
 		listeTabou.add(TypeTabous.QUATRE_QUATRE);
 		listeTabou.add(TypeTabous.SIX_SEPT);
 		this.tabousJeu = new Tabou(listeTabou);
-		// ajout des tabous en dur
-		// ArrayList<TypeTabous> listeTabous = new ArrayList<TypeTabous>();
-		// listeTabous.add(TypeTabous.TROIS_TROIS);
-		// fin ajout des tabous en dur
 
 		this.emplacementThemes = "Traditionnel";
 		this.modeDebutant = false;
@@ -64,6 +61,9 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 		this.listeRefaire.clear();
 		setEtatPartie(EtatPartie.EnCours);
 		setJoueurCourant(0);
+		setIndiceDebutHistorique(0);
+		setIndiceFinHistorique(0);
+		setNbDemiTourCourant(0);
 	}
 
 	@Override
