@@ -95,14 +95,12 @@ public class EcouteurFenetreRenjou {
 	
 	@FXML
 	private void partieRapide(MouseEvent e) {
-		//rendre FenetreRenjou inactif : TODO
 		ihm.fr.hide();
 		ihm.fj.montrer();
 	}
 	
 	@FXML
 	private void partiePersonnalisee(MouseEvent e) {
-		//rendre FenetreRenjou inactif : TODO
 		ihm.fr.hide();
 		ihm.fm.setNouvellePartie(true);
 		ihm.fm.montrer();
@@ -127,7 +125,15 @@ public class EcouteurFenetreRenjou {
 	
 	@FXML
 	private void lancerTutoriel(MouseEvent e) {
-		
+		ihm.fr.hide();
+		m.setModeTuto(true);
+		ArrayList<TypeTabous> tabous = new ArrayList<TypeTabous>();
+		tabous.add(TypeTabous.TROIS_TROIS);
+		tabous.add(TypeTabous.QUATRE_QUATRE);
+		tabous.add(TypeTabous.SIX_SEPT);
+        m.configurerPartie(TypeJoueur.Humain, TypeJoueur.Humain, tabous, true, true);
+		ihm.fj.montrer();
+		ihm.efj.update();
 	}
 	
 	@FXML

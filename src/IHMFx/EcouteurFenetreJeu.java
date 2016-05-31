@@ -134,6 +134,8 @@ public class EcouteurFenetreJeu implements Initializable {
     private ImageView flecheHaut;
     @FXML
     private ImageView flecheBas;
+    @FXML
+    private ImageView imageTuto;
 
 
     public EcouteurFenetreJeu(IHM ihm) {
@@ -301,23 +303,29 @@ public class EcouteurFenetreJeu implements Initializable {
 	
 	@FXML
 	private void clickAffichageTabou1(MouseEvent e) {
-		setDisabled();
-		tabousMenu(null);
-		ihm.efm.tabou1DebutDrag(null);
+		if (m.getEtatTuto() != 6) {
+			setDisabled();
+			tabousMenu(null);
+			ihm.efm.tabou1DebutDrag(null);
+		}	
 	}
 	
 	@FXML
 	private void clickAffichageTabou2(MouseEvent e) {
-		setDisabled();
-		tabousMenu(null);
-		ihm.efm.tabou2DebutDrag(null);
+		if (m.getEtatTuto() != 6) {
+			setDisabled();
+			tabousMenu(null);
+			ihm.efm.tabou2DebutDrag(null);
+		}	
 	}
 	
 	@FXML
 	private void clickAffichageTabou3(MouseEvent e) {
-		setDisabled();
-		tabousMenu(null);
-		ihm.efm.tabou3DebutDrag(null);
+		if (m.getEtatTuto() != 6) {
+			setDisabled();
+			tabousMenu(null);
+			ihm.efm.tabou3DebutDrag(null);
+		}	
 	}
 	
 	@FXML
@@ -337,36 +345,43 @@ public class EcouteurFenetreJeu implements Initializable {
 	
 	@FXML
 	private void creerPartieMenu(ActionEvent e) {
-		//rendre FenetreJeu inactif : TODO
+		setDisabled();
 		ihm.fm.setNouvellePartie(true);
 		ihm.fm.montrer();
 		ihm.fm.setAlwaysOnTop(true);
 		ihm.efm.getTabPane().getSelectionModel().select(0);
+		if (m.getEtatTuto() == 8) {
+			imageTuto.setImage(null);
+			ihm.efm.update();
+		}	
 	}
 	
 	@FXML
 	private void sauvegarderMenu(ActionEvent e) {
-		String fichierSauvegarder = null;
-        JFileChooser ouvertureFenetre = new JFileChooser();
-        int checkEtatFenetre = ouvertureFenetre.showSaveDialog(null);
-        if (checkEtatFenetre == ouvertureFenetre.APPROVE_OPTION) {
-            fichierSauvegarder = ouvertureFenetre.getSelectedFile().getAbsolutePath();
-            m.sauvegarder(fichierSauvegarder);
-        }
+		if (m.getEtatTuto() != 8) {
+			String fichierSauvegarder = null;
+	        JFileChooser ouvertureFenetre = new JFileChooser();
+	        int checkEtatFenetre = ouvertureFenetre.showSaveDialog(null);
+	        if (checkEtatFenetre == ouvertureFenetre.APPROVE_OPTION) {
+	            fichierSauvegarder = ouvertureFenetre.getSelectedFile().getAbsolutePath();
+	            m.sauvegarder(fichierSauvegarder);
+	        }
+		}
 	}
 	
 	@FXML
 	private void chargerMenu(ActionEvent e) {
-		String fichierCharger = null;
-        JFileChooser ouvertureFenetre = new JFileChooser();
-        int checkEtatFenetre = ouvertureFenetre.showOpenDialog(null);
-        if (checkEtatFenetre == ouvertureFenetre.APPROVE_OPTION) {
-            fichierCharger = ouvertureFenetre.getSelectedFile().getAbsolutePath();
-            m.charger(fichierCharger);
-            ihm.efm.selectionnerTheme(m.getRenjou().getEmplacementThemes());
-            ihm.efm.setAncienTheme("");
-        }
-        
+		if (m.getEtatTuto() != 8) {
+			String fichierCharger = null;
+	        JFileChooser ouvertureFenetre = new JFileChooser();
+	        int checkEtatFenetre = ouvertureFenetre.showOpenDialog(null);
+	        if (checkEtatFenetre == ouvertureFenetre.APPROVE_OPTION) {
+	            fichierCharger = ouvertureFenetre.getSelectedFile().getAbsolutePath();
+	            m.charger(fichierCharger);
+	            ihm.efm.selectionnerTheme(m.getRenjou().getEmplacementThemes());
+	            ihm.efm.setAncienTheme("");
+	        }
+		}
 	}
 	
 	@FXML
@@ -375,7 +390,7 @@ public class EcouteurFenetreJeu implements Initializable {
 	}
 	
 	@FXML
-	private void clickPlateau(MouseEvent e) {
+	private void clickPlateau(MouseEvent e) {		
 		Coordonnees c;
     	int width =(int) ((plateau.getFitWidth())/16);
     	int height = (int) ((plateau.getFitHeight())/16);
@@ -388,6 +403,10 @@ public class EcouteurFenetreJeu implements Initializable {
     		int colonne = (int) ((e.getX() - width/2) /width %15);
     		c = new Coordonnees(ligne,colonne);
     		m.operationJouer(c, TypeJoueur.Humain);
+    		if (m.getModeTuto() && (m.getEtatTuto()==3 || m.getEtatTuto()==4)) {
+    			m.setEtatTuto(m.getEtatTuto()+1);
+    			imageTuto.setImage(ihm.i.getImagesTuto().get(m.getEtatTuto()-1));
+    		}
     	}
    	}
 	
@@ -443,6 +462,11 @@ public class EcouteurFenetreJeu implements Initializable {
 	}
 	
 	public void update() {
+		//Mode Tuto
+		if (m.getModeTuto()) {
+			imageTuto.setImage(ihm.i.getImagesTuto().get(m.getEtatTuto()-1));
+		}
+		
 		if (m.getRenjou().getEtatPartie() == EtatPartie.EnCours) {
 			seuleFois = false;
 		}
@@ -472,14 +496,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		disabEnabAnnulerRefaire();
 		//Voir si partie gagne
 		partieGagne();
-		//Si c'est au tour de l'IA de jouer on desactive annuler et refaire
-		if (m.getRenjou().getJoueurs()[m.getRenjou().getJoueurCourant()].getType() != TypeJoueur.Humain 
-				&& m.getRenjou().getEtatPartie() == EtatPartie.EnCours) {
-			annuler.setImage(ihm.i.getAnnulerDisab());
-			annuler.setDisable(true);
-			refaire.setImage(ihm.i.getRefaireDisab());
-			refaire.setDisable(true);
-		}
+
 		fond.setImage(ihm.i.getFond());
 		tabou1Image.setImage(ihm.i.getTroisTroisImage());
 		tabou2Image.setImage(ihm.i.getQuatreQuatreImage());
@@ -548,6 +565,15 @@ public class EcouteurFenetreJeu implements Initializable {
 		} else {
 			annuler.setDisable(false);
 			annuler.setImage(ihm.i.getAnnuler());
+		}
+		
+		//Si c'est au tour de l'IA de jouer on desactive annuler et refaire
+		if (m.getRenjou().getJoueurs()[m.getRenjou().getJoueurCourant()].getType() != TypeJoueur.Humain 
+				&& m.getRenjou().getEtatPartie() == EtatPartie.EnCours) {
+			annuler.setImage(ihm.i.getAnnulerDisab());
+			annuler.setDisable(true);
+			refaire.setImage(ihm.i.getRefaireDisab());
+			refaire.setDisable(true);
 		}
 	}
 
@@ -632,6 +658,11 @@ public class EcouteurFenetreJeu implements Initializable {
 	
 	@FXML
 	private void peindreAide() {
+		if (m.getEtatTuto() == 7) {
+			m.setEtatTuto(m.getEtatTuto()+1);
+			imageTuto.setImage(ihm.i.getImagesTuto().get(m.getEtatTuto()-1));
+		}
+		
 		if (m.getRenjou().getJoueurs()[m.getRenjou().getJoueurCourant()].getType() == TypeJoueur.Humain) {
 			this.repeindrePlateau();
 			Coordonnees c = m.aide();
@@ -985,5 +1016,17 @@ public class EcouteurFenetreJeu implements Initializable {
 	    listImage4.setDisable(false);
 	    flecheHaut.setDisable(false);
 	    flecheBas.setDisable(false);
+	}
+	
+	public void Tutoriel() {
+		if (m.getEtatTuto() == 1 || m.getEtatTuto() == 2 || m.getEtatTuto() == 5 || m.getEtatTuto() == 6) {
+			m.setEtatTuto(m.getEtatTuto()+1);
+			imageTuto.setImage(ihm.i.getImagesTuto().get(m.getEtatTuto()-1));
+		}
+	}
+	
+	@FXML
+	private void clicOnTuto() {
+		Tutoriel();
 	}
 }

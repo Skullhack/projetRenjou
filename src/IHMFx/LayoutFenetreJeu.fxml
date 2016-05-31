@@ -310,7 +310,7 @@
         </MenuBar>
       </top>
     </BorderPane>
-      <ImageView fitHeight="650.0" fitWidth="950.0">
+      <ImageView fx:id="imageTuto" fitHeight="650.0" fitWidth="950.0" onMouseClicked="#clicOnTuto">
          <image>
             <Image url="@../Images/PourToutLesThemes/ImageVide.png" />
          </image>

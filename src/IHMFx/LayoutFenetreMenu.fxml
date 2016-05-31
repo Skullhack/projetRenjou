@@ -270,5 +270,10 @@
             </AnchorPane>
          </center>
     </BorderPane>
+      <ImageView fx:id="imageTuto" fitHeight="508.0" fitWidth="700.0" layoutY="-2.0" onMouseClicked="#clickImage">
+         <image>
+            <Image url="@../Images/PourToutLesThemes/ImageVide.png" />
+         </image>
+      </ImageView>
   </children>
 </AnchorPane>

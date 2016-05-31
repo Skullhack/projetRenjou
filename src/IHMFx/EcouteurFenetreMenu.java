@@ -62,6 +62,8 @@ public class EcouteurFenetreMenu {
 	private ImageView tabouExplication;
 	@FXML
 	private CheckBox modeDebutant;
+	@FXML
+	private ImageView imageTuto;
 	
 	
 	public EcouteurFenetreMenu(IHM ihm) {
@@ -104,6 +106,12 @@ public class EcouteurFenetreMenu {
 		ihm.fj.montrer();
 		ihm.fm.cacher();
 		ihm.efj.setEnabled();
+	}
+	
+	@FXML
+	private void clickImage(MouseEvent e) {
+		System.out.println("caca");
+		Tutoriel();
 	}
 	
 	@FXML
@@ -151,11 +159,11 @@ public class EcouteurFenetreMenu {
             m.configurerPartie(tab[0], tab[1], tabous, ihm.fm.getNouvellePartie(),modeDebutant.isSelected());
         }
         ancienTheme = m.getRenjou().getEmplacementThemes();
+		ihm.efj.setEnabled();
         ihm.efj.update();
         themeChangement = false;
 		ihm.fj.montrer();
 		ihm.fm.cacher();
-		ihm.efj.setEnabled();
 	}
 	
 	@FXML
@@ -282,6 +290,29 @@ public class EcouteurFenetreMenu {
 		fond.setImage(ihm.i.getFond());
 		boutonValider.setImage(ihm.i.getBoutonValider());
 		boutonAnnuler.setImage(ihm.i.getBoutonAnnuler());
-		selectionnerBoxJoueur();	
+		selectionnerBoxJoueur();
+		if (m.getEtatTuto() == 8) {
+			Tutoriel();
+		}
+	}
+	
+	private void Tutoriel() {
+		if (m.getEtatTuto() == 8) {
+			m.setEtatTuto(m.getEtatTuto()+1);
+			imageTuto.setImage(ihm.i.getImagesTuto().get(m.getEtatTuto()-1));
+		} else if (m.getEtatTuto() == 9) {
+			m.setEtatTuto(m.getEtatTuto()+1);
+			imageTuto.setImage(ihm.i.getImagesTuto().get(m.getEtatTuto()-1));
+			getTabPane().getSelectionModel().select(1);
+		} else if (m.getEtatTuto() == 10) {
+			m.setEtatTuto(m.getEtatTuto()+1);
+			imageTuto.setImage(ihm.i.getImagesTuto().get(m.getEtatTuto()-1));
+			getTabPane().getSelectionModel().select(2);
+		} else if (m.getEtatTuto() == 11) {
+			imageTuto.setImage(ihm.i.getImageVide());
+			m.setEtatTuto(1);
+		} else {
+			imageTuto.setImage(ihm.i.getImageVide());
+		}	
 	}
 }

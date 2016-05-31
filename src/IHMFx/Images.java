@@ -1,5 +1,7 @@
 package IHMFx;
 
+import java.util.ArrayList;
+
 import Controleur.Moteur;
 import javafx.scene.image.Image;
 
@@ -57,6 +59,7 @@ public class Images {
 	private Image lancerTutorielDrag;
 	private Image quitter;
 	private Image quitterDrag;
+	private ArrayList<Image> imagesTuto;
 	
 	
 	public Images(Moteur m) {
@@ -118,6 +121,10 @@ public class Images {
 		lancerTutorielDrag = new Image("./Images/PourToutLesThemes/LancerTutorielDrag.png");
 		quitter = new Image("./Images/PourToutLesThemes/Quitter.png");
 		quitterDrag = new Image("./Images/PourToutLesThemes/QuitterDrag.png");
+		imagesTuto = new ArrayList<>();
+		for (int i=1;i<12;i++) {
+			imagesTuto.add(new Image("./Images/Tutoriel/Tutoriel"+i+".png"));
+		}
 	}
 	
 	public Image getAmpoule() {
@@ -325,5 +332,8 @@ public class Images {
 	
 	public Image getQuitterDrag() {
 		return quitterDrag;
+	}
+	public ArrayList<Image> getImagesTuto() {
+		return imagesTuto;
 	}
 }
