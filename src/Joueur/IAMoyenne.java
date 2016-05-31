@@ -13,6 +13,7 @@ import Utilitaire.Log;
 import Utilitaire.Motif;
 import Utilitaire.MotifsReconnus;
 import Utilitaire.PlateauDeJeu;
+import Utilitaire.Tabou;
 
 public class IAMoyenne extends IA {
 	ArrayList<Coordonnees> coups;
@@ -25,7 +26,7 @@ public class IAMoyenne extends IA {
 
 	private void init() {
 		coups = new ArrayList<>();
-		profondeurMax = 3;
+		profondeurMax = 1;
 	}
 
 	public Point play(int[][] plateau, int couleurJoueur, boolean tabou3x3, boolean tabou4x4, boolean tabouOverline) {
@@ -58,7 +59,7 @@ public class IAMoyenne extends IA {
 	@Override
 	public Coordonnees jouer(PlateauDeJeu p) {
 		Log.print(66, "Dans Jouer IAMoyenne");
-		Log.setPlage(49, 51);
+		
 		coups.clear();
 		PlateauDeJeu pdj = p.clone();
 		Log.print(50, p.toString() + "\nnbPionNoir= " + p.getNbPionNoir() + "\nnbPionBlanc= " + p.getNbPionBlanc());
@@ -92,10 +93,10 @@ public class IAMoyenne extends IA {
 				Coordonnees c = new Coordonnees(i, j);
 				// Heuristique, on ne cherche pas a jouer a plus de 2 cases d'un
 				// pion existant
-				if (EstJouable(pdj, c)) {
+				if (EstJouable(pdj, c, 2) && Tabou.estValide(pdj, c, true, true, true) ) {
 					pdj.ajouter(c, tc);
 					Log.print(1, pdj.toString());
-					if (PartieFinie(pdj, c, tc)) {
+					if (PartieFinie(pdj, c, tc) && (tc != TypeCase.PionNoir || Tabou.estValide(pdj, c, true, true, true))) {
 						// on peut couper l�, le coup est gagnant.
 						Log.print(1, "dans jouer " + c + " gagnant en profondeur " + (profondeurMax - profondeur));
 						return c;
@@ -166,7 +167,7 @@ public class IAMoyenne extends IA {
 						
 						coupGagnantBlanc = CoupGagnant(presenceMotifBlanc);
 						coupGagnant2CoupsBlanc = CoupGagnant2Coups(presenceMotifBlanc);
-						Log.print(501, "CGB = "+coupGagnantBlanc + " CG2CB = " + coupGagnant2CoupsBlanc );
+						//Log.print(501, "CGB = "+coupGagnantBlanc + " CG2CB = " + coupGagnant2CoupsBlanc );
 					}
 
 					
@@ -182,7 +183,7 @@ public class IAMoyenne extends IA {
 						}
 						coupGagnantNoir = CoupGagnant(presenceMotifNoir);
 						coupGagnant2CoupsNoir = CoupGagnant2Coups(presenceMotifNoir);
-						Log.print(501, "CGN = "+coupGagnantNoir + " CG2CN = " + coupGagnant2CoupsNoir );
+						//Log.print(501, "CGN = "+coupGagnantNoir + " CG2CN = " + coupGagnant2CoupsNoir );
 					}
 
 				}
@@ -197,9 +198,9 @@ public class IAMoyenne extends IA {
 			//si l'ia est blanc
 			if(couleur == TypeCouleur.Blanc){
 				if(coupGagnantBlanc){
-					return 20000;
+					return 30000;
 				}else if(coupGagnantNoir){
-					return -20000;
+					return -30000;
 				}else if(coupGagnant2CoupsBlanc){
 					return 20000;
 				}else if(coupGagnant2CoupsNoir){
@@ -209,9 +210,9 @@ public class IAMoyenne extends IA {
 				}
 			}else{ // si l'ia est noir
 				if(coupGagnantBlanc){
-					return -20000;
+					return -30000;
 				}else if(coupGagnantNoir){
-					return 20000;
+					return 30000;
 				}else if(coupGagnant2CoupsBlanc){
 					return -20000;
 				}else if(coupGagnant2CoupsNoir){
@@ -262,7 +263,8 @@ public class IAMoyenne extends IA {
 				Coordonnees c = new Coordonnees(i, j);
 				// Heuristique, on ne cherche pas a jouer a plus de 2 cases d'un
 				// pion existant
-				if (EstJouable(pdj, c)) {
+				if (EstJouable(pdj, c, 2) && (tc != TypeCase.PionNoir || Tabou.estValide(pdj, c, true, true, true) ) ) {
+					
 					pdj.ajouter(c, tc);
 					// Log.print(695, pdj.toString());
 					if (PartieFinie(pdj, c, tc)) {
@@ -271,7 +273,7 @@ public class IAMoyenne extends IA {
 
 						// Log.print(695, "dans evalCoupAdv " + c + " gagnant en
 						// profondeur " + (profondeurMax -profondeur));
-						return 100000;
+						return -40000;
 					} else {
 						int eval = EvaluerCoupIA(pdj, profondeur - 1, this.autreTypeCase(tc));
 						// Log.print(1, "evalIA: "+eval + " valeur: " + valeur +
@@ -296,14 +298,14 @@ public class IAMoyenne extends IA {
 				Coordonnees c = new Coordonnees(i, j);
 				// Heuristique, on ne cherche pas a jouer a plus de 2 cases d'un
 				// pion existant
-				if (EstJouable(pdj, c)) {
+				if (EstJouable(pdj, c, 2)  && (tc != TypeCase.PionNoir || Tabou.estValide(pdj, c, true, true, true))) {
 					pdj.ajouter(c, tc);
 					if (PartieFinie(pdj, c, tc)) {
 						// on peut couper l�, le coup est gagnant.
 						pdj.enlever(c);
 						// Log.print(695, "dans evalCoupIA " + c + " gagnant en
 						// profondeur " + (profondeurMax -profondeur));
-						return 100000;
+						return 40000;
 					} else {
 						int eval = EvaluerCoupAdversaire(pdj, profondeur - 1, this.autreTypeCase(tc));
 						// Log.print(1, "evalAd: "+eval + " valeur: " + valeur +
@@ -331,76 +333,55 @@ public class IAMoyenne extends IA {
 		int v = 0;
 		
 		if(tab[MotifsReconnus.estTroisFoisDeuxLibreLibre.ordinal()]){
-			Log.print(501, "+5000");
+			//Log.print(501, "+5000");
 			v +=5000;
 		}
 		else if(tab[MotifsReconnus.estTroisFoisDeuxLibre.ordinal()]){
-			Log.print(501, "+600");
+			//Log.print(501, "+600");
 			v +=600;
 		}
 		else if(tab[MotifsReconnus.estDeuxFoisDeuxLibreLibre.ordinal()]){
-			Log.print(501, "+500");
+			//Log.print(501, "+500");
 			v +=500;
 		}
 		else if(tab[MotifsReconnus.estTroisFoisTrois.ordinal()]){
-			Log.print(501, "+100");
+			//Log.print(501, "+100");
 			v +=100;
 		}
 		else if(tab[MotifsReconnus.estTroisFoisDeux.ordinal()]){
-			Log.print(501, "+75");
+			//Log.print(501, "+75");
 			v +=75;
 		}
 		else if(tab[MotifsReconnus.estDeuxFoisDeuxLibre.ordinal()]){
-			Log.print(501, "+50");
+			//Log.print(501, "+50");
 			v +=50;
 		}
 		else if(tab[MotifsReconnus.estTroisLibre.ordinal()]){
-			Log.print(501, "+50");
+			//Log.print(501, "+50");
 			v +=50;
 		}
 		else if(tab[MotifsReconnus.estDeuxLibreLibre.ordinal()]){
-			Log.print(501, "+5");
+			//Log.print(501, "+5");
 			v +=5;
 		}
 		else if(tab[MotifsReconnus.estDeuxFoisDeux.ordinal()]){
-			Log.print(501, "+5");
+			//Log.print(501, "+5");
 			v +=5;
 		}
 		else if(tab[MotifsReconnus.estDeuxLibre.ordinal()]){
-			Log.print(501, "+1");
+			//Log.print(501, "+1");
 			v +=1;
 		}
 		
-		Log.print(501, "valeur= " + v);
+		Log.print(505, "valeur= " + v);
 		return v;
 	}
 	
 	
 
 
-	public boolean EstJouable(PlateauDeJeu pdj, Coordonnees c) {
-		if (EstBlancOuNoir(pdj, c))
-			return false;
 
-		for (int i = c.getLigne() - 2; i <= c.getLigne() + 2; i++) {
-			for (int j = c.getColonne() - 2; j <= c.getColonne() + 2; j++) {
-				if (i >= 0 && i <= nbLigne - 1 && j >= 0 && j <= nbColonne - 1
-						&& (c.getLigne() != i || c.getColonne() != j)) {
-					// Log.print(11, "i=" + i + " j=" +j + " c= " + c );
-					if (EstBlancOuNoir(pdj, new Coordonnees(i, j))) {
-						// Log.print(1, "est un pion!" );
-						return true;
-					}
-				}
-			}
-		}
 
-		return false;
-	}
 
-	public boolean EstBlancOuNoir(PlateauDeJeu pdj, Coordonnees c) {
-		// Log.print(66, "Dans EstBlancOuNoir => " + pdj.getTypeCaseTableau(c));
-		return pdj.getTypeCaseTableau(c) == TypeCase.PionBlanc || pdj.getTypeCaseTableau(c) == TypeCase.PionNoir;
-	}
 
 }
