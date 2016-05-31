@@ -126,7 +126,7 @@ public class EcouteurFenetreRenjou {
 	@FXML
 	private void lancerTutoriel(MouseEvent e) {
 		ihm.fr.hide();
-		m.setModeTuto(true);
+		ihm.modeTuto = true;
 		ArrayList<TypeTabous> tabous = new ArrayList<TypeTabous>();
 		tabous.add(TypeTabous.TROIS_TROIS);
 		tabous.add(TypeTabous.QUATRE_QUATRE);
