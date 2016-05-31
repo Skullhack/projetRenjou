@@ -447,10 +447,13 @@ public class EcouteurFenetreJeu implements Initializable {
 	
 	@FXML
 	private void tutorielMenu(ActionEvent e) {
-		setDisabled();
-		ihm.fa.montrer();
-		ihm.fa.setAlwaysOnTop(true);
-		ihm.efa.getTabPane().getSelectionModel().select(1);
+		ihm.modeTuto = true;
+		ArrayList<TypeTabous> tabous = new ArrayList<TypeTabous>();
+		tabous.add(TypeTabous.TROIS_TROIS);
+		tabous.add(TypeTabous.QUATRE_QUATRE);
+		tabous.add(TypeTabous.SIX_SEPT);
+        m.configurerPartie(TypeJoueur.Humain, TypeJoueur.Humain, tabous, true, true);
+		update();
 	}
 	
 	@FXML
@@ -458,7 +461,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		setDisabled();
 		ihm.fa.montrer();
 		ihm.fa.setAlwaysOnTop(true);
-		ihm.efa.getTabPane().getSelectionModel().select(2);
+		ihm.efa.getTabPane().getSelectionModel().select(1);
 	}
 	
 	public void update() {
@@ -575,6 +578,12 @@ public class EcouteurFenetreJeu implements Initializable {
 			refaire.setImage(ihm.i.getRefaireDisab());
 			refaire.setDisable(true);
 		}
+		
+		//Image pour le panel est
+		listImage1.setImage(ihm.i.getPlateau());
+		listImage2.setImage(ihm.i.getPlateau());
+		listImage3.setImage(ihm.i.getPlateau());
+		listImage4.setImage(ihm.i.getPlateau());
 	}
 
 	private void partieGagne() {
