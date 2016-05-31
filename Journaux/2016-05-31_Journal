@@ -6,16 +6,15 @@ PARTIE IHM :
 Partie importante :
 - Affichage des coups précedent/suivant dans la partie de droite
 - Sur l'historique, les images haut et bas ne sont pas chargées
-- voir pour mode tutoriel //REGLE
-
-- quand on change de thème, les boutons annuler/refaire/flèches historiques ne sont pas disabled //REGLE
-
+- voir pour mode tutoriel
+- quand on change de thème, les boutons annuler/refaire/flèches historiques ne sont pas disabled
 - Thèmes rugby et retro
+
 Partie si temps en plus :
 - Temps restant a implementer
 - Utiliser un système de timer pour que l'IA ne joue pas en INSTANT
 - Améliorer fenêtre de victoire, ça doit être la fête
-- Expliquer le mode débutant (mettre une phrase comme "fait apparaître les coups tabous")  //REGLE
+- Expliquer le mode débutant (mettre une phrase comme "fait apparaître les coups tabous")
 - Rectifier alignements :
     - mode débutant écriture en entier
     - selection des tabous écriture en entier
@@ -27,7 +26,7 @@ PARTIE IA  :
 
 PARTIE MOTEUR :
 
-- voir pour mode tutoriel //REGLE
+- voir pour mode tutoriel
 
 Autre à partir de mercredi:
 
@@ -37,3 +36,10 @@ Autre à partir de mercredi:
 
 #TÂCHES EFFECTUÉES
 
+- Affichage des coups précedent/suivant dans la partie de droite
+- voir pour mode tutoriel
+- Expliquer le mode débutant (mettre une phrase comme "fait apparaître les coups tabous")
+- quand on change de thème, les boutons annuler/refaire/flèches historiques ne sont pas disabled
+- thème rugby ok
+- thème retro en voie de disparition
+- Sur l'historique, les images haut et bas ne sont pas chargées

@@ -1,0 +1,36 @@
+#TÂCHES À FAIRE
+
+
+PARTIE IHM :
+
+Partie importante :
+- Tester historique comme un bourrin
+- Tester tutoriel sur les machines de la fac
+- Image transparente pour les différents pions
+- Faire tests sur plateau de jeu
+- Vérifier orthographe sur tuto car alixia n'est pas très douée!
+- Tout tester comme un bourin!!
+
+Partie si temps en plus :
+- Temps restant a implementer
+- Utiliser un système de timer pour que l'IA ne joue pas en INSTANT
+- Modifier le sablier avec un timer pour afficher les 3 états du sablier
+- Améliorer fenêtre de victoire, ça doit être la fête
+- Changer le message de victoire avec un tabou, mettre par exemple : "Joueur blanc à gagné grâce à un tabous du joueur Noir "
+- Rectifier alignements :
+    - selection des tabous écriture en entier
+- Mettre un lien PDF dans les règles du jeu, pour avoir plus d'informations
+
+PARTIE IA  :
+
+- Faire IA Moyen et difficile
+- Commencer les tests entre elles
+
+Autre à partir de mercredi:
+
+- Préparer soutenance
+- Faire dossier IHM et IA ( Pour IA pensé à faire combattre les différentes IA entre elles)
+
+
+#TÂCHES EFFECTUÉES
+
