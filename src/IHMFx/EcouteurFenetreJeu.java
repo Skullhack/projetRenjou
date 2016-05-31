@@ -586,7 +586,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		    	} else if (m.getRenjou().getEtatPartie() == EtatPartie.BlancGagne) {
 		    		message = "Le joueur blanc a gagne la partie !";
 		    	} else if (m.getRenjou().getEtatPartie() == EtatPartie.BlancGagneParTabou) {
-		    		message = "Le joueur blanc a gagne la partie grace � un tabou !";
+		    		message = "Le joueur blanc a gagne la partie grace a un tabou !";
 		    	}
 		    	else if(m.getRenjou().getEtatPartie() == EtatPartie.PartieNulle) {
 		    		message = "Partie nulle !";
