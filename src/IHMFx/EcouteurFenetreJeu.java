@@ -5,26 +5,14 @@
  */
 package IHMFx;
 
-import Images.*;
 import Utilitaire.Coordonnees;
 import Utilitaire.Log;
-
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import Controleur.Moteur;
 import Controleur.PionJoue;
@@ -33,25 +21,17 @@ import Enum.TypeCase;
 import Enum.TypeJoueur;
 import Enum.TypeTabous;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.paint.Color;
-import javafx.stage.Modality;
-import sun.awt.image.SurfaceManager.FlushableCacheData;
 
 /**
  *
@@ -158,15 +138,15 @@ public class EcouteurFenetreJeu implements Initializable {
 			e.printStackTrace();
 		}
 		Tooltip tooltipTabou1 = new Tooltip();
-		tooltipTabou1.setText("Trois-Trois : Si NOIR aligne trois pions dans deux directions différentes simultanément, il perd. \n Un clic sur l'icone vous renvoie dans la fenêtre de configuration des tabous.");
+		tooltipTabou1.setText("Trois-Trois : Si NOIR aligne trois pions dans deux directions differentes simultanement, il perd. \n Un clic sur l'icone vous renvoie dans la fenetre de configuration des tabous.");
 		tabou1.setTooltip(tooltipTabou1);
 		tabou1.setStyle("-fx-font-size: 20");
 		Tooltip tooltipTabou2 = new Tooltip();
-		tooltipTabou2.setText("Quatre-Quatre : Si NOIR aligne quatre pions dans deux directions différentes simultanément, il perd. \n Un clic sur l'icone vous renvoie dans la fenêtre de configuration des tabous.");
+		tooltipTabou2.setText("Quatre-Quatre : Si NOIR aligne quatre pions dans deux directions differentes simultanement, il perd. \n Un clic sur l'icone vous renvoie dans la fenetre de configuration des tabous.");
 		tabou2.setTooltip(tooltipTabou2);
 		tabou2.setStyle("-fx-font-size: 20");
 		Tooltip tooltipTabou3 = new Tooltip();
-		tooltipTabou3.setText("Six-Sept : Si NOIR aligne plus de cinq pions connexes, il perd. \n Un clic sur l'icone vous renvoie dans la fenêtre de configuration des tabous.");
+		tooltipTabou3.setText("Six-Sept : Si NOIR aligne plus de cinq pions connexes, il perd. \n Un clic sur l'icone vous renvoie dans la fenetre de configuration des tabous.");
 		tabou3.setTooltip(tooltipTabou3);
 		tabou3.setStyle("-fx-font-size: 20");
     }
@@ -411,10 +391,14 @@ public class EcouteurFenetreJeu implements Initializable {
     		int colonne = (int) ((e.getX() - width/2) /width %15);
     		c = new Coordonnees(ligne,colonne);
     		m.operationJouer(c, TypeJoueur.Humain);
-    		if (ihm.modeTuto && (ihm.etatTuto == 3 || ihm.etatTuto ==4)) {
+    		if (ihm.modeTuto && ihm.etatTuto == 3) {
+    			ihm.etatTuto = ihm.etatTuto+1;
+    			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto-1));
+    		} else if (ihm.modeTuto && ihm.etatTuto ==4 && c.getColonne() != 8 && c.getLigne() != 7 ) {
     			ihm.etatTuto = ihm.etatTuto+1;
     			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto-1));
     		}
+
     	}
    	}
 	

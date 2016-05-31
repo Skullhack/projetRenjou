@@ -110,7 +110,6 @@ public class EcouteurFenetreMenu {
 	
 	@FXML
 	private void clickImage(MouseEvent e) {
-		System.out.println("caca");
 		Tutoriel();
 	}
 	
@@ -306,6 +305,7 @@ public class EcouteurFenetreMenu {
 	
 	private void Tutoriel() {
 		if (ihm.etatTuto == 8) {
+			System.out.println(ihm.etatTuto);
 			ihm.etatTuto = ihm.etatTuto+1;
 			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto-1));
 		} else if (ihm.etatTuto == 9) {
