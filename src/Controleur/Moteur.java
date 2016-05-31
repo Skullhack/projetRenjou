@@ -217,7 +217,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		}
 		// notify avec etat de la partie
 		notifierObserveurs();
-		
+
 		// si c'est une IA, on la fait jouer
 		faireJouerIA();
 
@@ -232,6 +232,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 			renjou.getPlateauDeJeu().ajouter(c, typeCaseJoueurCourant);
 			renjou.getListeRefaire().clear();
 			decrementerPionsJoueurCourant(renjou);
+			incrementerDemiTourCourant(renjou);
 
 			int nbPionsRestant = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
 			Log.print(1,
@@ -261,17 +262,19 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		ajouterPionJoueDansListeAnnuler(renjou, c, typeCaseJoueurCourant, renjou.getEtatPartie());
 		majCasesInjouables(renjou);
 		majCasesTabous(renjou);
-		
-		renjou.setNbDemiTourCourant(renjou.getNbDemiTourCourant() + 1);
-		if(renjou.getNbDemiTourCourant() > 4){
-			renjou.setIndiceFinHistorique(renjou.getNbDemiTourCourant());
-			renjou.setIndiceDebutHistorique(renjou.getIndiceFinHistorique() - 4);
-		}else{
-			renjou.setIndiceFinHistorique(renjou.getIndiceFinHistorique()+1);
-		}
+		majAffichageListeTours(renjou);
 
 		// Log.print(1, renjou.getPlateauDeJeu().toString());
 
+	}
+
+	public void majAffichageListeTours(Renjou renjou) {
+		if (renjou.getNbDemiTourCourant() > 4) {
+			renjou.setIndiceFinHistorique(renjou.getNbDemiTourCourant());
+			renjou.setIndiceDebutHistorique(renjou.getIndiceFinHistorique() - 4);
+		} else {
+			renjou.setIndiceFinHistorique(renjou.getIndiceFinHistorique() + 1);
+		}
 	}
 
 	private boolean caseJouable(Renjou renjou, Coordonnees c) {
@@ -290,6 +293,14 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	public void incrementerPionsJoueurCourant(Renjou renjou) {
 		renjou.getJoueurs()[renjou.getJoueurCourant()]
 				.setNbPion(renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion() + 1);
+	}
+
+	public void decrementerDemiTourCourant(Renjou renjou) {
+		renjou.setNbDemiTourCourant(renjou.getNbDemiTourCourant() - 1);
+	}
+
+	public void incrementerDemiTourCourant(Renjou renjou) {
+		renjou.setNbDemiTourCourant(renjou.getNbDemiTourCourant() + 1);
 	}
 
 	public void ajouterPionJoueDansListeAnnuler(Renjou renjou, Coordonnees c, TypeCase typeCaseJoueurCourant,
@@ -344,9 +355,8 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 		renjou.setModeDebutant(modeDebutant);
 		majCasesTabous(renjou);
-		
+
 		Log.print(1, "LE PLATEAU DE JEU APRES CONFIGURER PARTIE : " + renjou.getPlateauDeJeu().toString());
-		
 
 		notifierObserveurs();
 		faireJouerIA();
@@ -656,19 +666,18 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 			incrementerPionsJoueurCourant(this.getRenjou());
 			majCasesInjouables(this.getRenjou());
 			majCasesTabous(this.getRenjou());
-
-			renjou.setNbDemiTourCourant(renjou.getNbDemiTourCourant() - 1);
+			decrementerDemiTourCourant(this.getRenjou());
 		}
 	}
 
-	public void annulerNDemiCoup(int n){
-		for(int i=0; i<n; i++){
+	public void annulerNDemiCoup(int n) {
+		for (int i = 0; i < n; i++) {
 			annulerDemiCoup();
 		}
 		notifierObserveurs();
 		faireJouerIA();
 	}
-	
+
 	@Override
 	public void refaire() {
 		if (this.getRenjou().getJoueurs()[0].getType() == TypeJoueur.Humain
@@ -696,20 +705,19 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 			joueurSuivant();
 			majCasesInjouables(this.getRenjou());
 			majCasesTabous(this.getRenjou());
-			
-			renjou.setNbDemiTourCourant(renjou.getNbDemiTourCourant() +1);
+			incrementerDemiTourCourant(this.getRenjou());
 		}
 
 	}
 
-	public void refaireNDemiCoup(int n){
-		for(int i=0; i<n; i++){
+	public void refaireNDemiCoup(int n) {
+		for (int i = 0; i < n; i++) {
 			refaireDemiCoup();
 		}
 		notifierObserveurs();
 		faireJouerIA();
 	}
-	
+
 	public boolean premierCoup() {
 		return ((renjou.getJoueurs()[0].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase())
 				&& (renjou.getJoueurs()[1].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase()));
