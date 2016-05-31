@@ -60,6 +60,7 @@ public class EcouteurFenetreJeu implements Initializable {
     private Moteur m;
     private IHM ihm;
     private boolean seuleFois;
+    private Image ancienPlateau;
     //Panneau gauche;
     @FXML
     private Label labelNoir;
@@ -122,13 +123,13 @@ public class EcouteurFenetreJeu implements Initializable {
     @FXML
     private Label list4;
     @FXML
-    private AnchorPane listAnchor1;
+    private ImageView listImage1;
     @FXML
-    private AnchorPane listAnchor2;
+    private ImageView listImage2;
     @FXML
-    private AnchorPane listAnchor3;
+    private ImageView listImage3;
     @FXML
-    private AnchorPane listAnchor4;
+    private ImageView listImage4;
     @FXML
     private ImageView flecheHaut;
     @FXML
@@ -162,8 +163,10 @@ public class EcouteurFenetreJeu implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+		flecheHaut.setImage(ihm.i.getFlecheHautDisab());
+		flecheHaut.setDisable(true);
+		flecheBas.setImage(ihm.i.getFlecheBasDisab());
+		flecheBas.setDisable(true);
 	}
 	
 	@FXML
@@ -667,32 +670,73 @@ public class EcouteurFenetreJeu implements Initializable {
     	
 		int i = indiceDebutTab;
 		if(i != indiceFinTab){
-			list1.setText(""+i);
+			if(i == m.getRenjou().getNbDemiTourCourant()){
+				listImage1.setStyle("-fx-background-color:black;");
+			}else{
+				listImage1.setStyle(null);
+			}
+			
+			list1.setText("Tour "+i);
 			i++;
 		}
 		if(i != indiceFinTab){
-			list2.setText(""+i);
+			if(i == m.getRenjou().getNbDemiTourCourant()){
+				listImage2.setStyle("-fx-background-color:black;");
+			}else{
+				listImage2.setStyle(null);
+			}
+			
+			list2.setText("Tour "+i);
 			i++;
 		}
 		if(i != indiceFinTab){
-			list3.setText(""+i);
+			if(i == m.getRenjou().getNbDemiTourCourant()){
+				listImage3.setStyle("-fx-background-color:black;");
+			}else{
+				listImage3.setStyle(null);
+			}
+			
+			list3.setText("Tour "+i);
 			i++;
 		}
 		if(i != indiceFinTab){
-			list4.setText(""+i);
+			if(i == m.getRenjou().getNbDemiTourCourant()){
+				listImage4.setStyle("-fx-background-color:black;");
+			}else{
+				listImage4.setStyle(null);
+			}
+			
+			list4.setText("Tour "+i);
 			i++;
 		}
 			
+		//Disable ou non la fleche haut
+		if(m.getRenjou().getIndiceDebutHistorique() == 0){
+			flecheHaut.setImage(ihm.i.getFlecheHautDisab());
+			flecheHaut.setDisable(true);
+		}else{
+			flecheHaut.setDisable(false);
+			flecheHaut.setImage(ihm.i.getFlecheHaut());
+		}
+		
+		//Disable ou non la fleche bas
+		if(m.getRenjou().getIndiceFinHistorique() == m.getRenjou().getListeAnnuler().size() + m.getRenjou().getListeRefaire().size() || m.getRenjou().getIndiceFinHistorique() - m.getRenjou().getIndiceDebutHistorique() <4){
+			flecheBas.setImage(ihm.i.getFlecheBasDisab());
+			flecheBas.setDisable(true);
+		}else{
+			flecheBas.setDisable(false);
+			flecheBas.setImage(ihm.i.getFlecheBas());
+		}
 		
 	}
 	@FXML
 	private void clickFlecheHaut(MouseEvent e){
-		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
+		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();		
 		if(indiceDebutTab > 0){
 			m.getRenjou().setIndiceDebutHistorique(m.getRenjou().getIndiceDebutHistorique() -1);
-			m.getRenjou().setIndiceFinHistorique(m.getRenjou().getIndiceFinHistorique() -1);
+			m.getRenjou().setIndiceFinHistorique(m.getRenjou().getIndiceFinHistorique() -1);			
 		}
-		update();
+		panelAnnulerRefaire();
 	}
 	@FXML
 	private void clickFlecheBas(MouseEvent e){
@@ -702,7 +746,7 @@ public class EcouteurFenetreJeu implements Initializable {
 			m.getRenjou().setIndiceDebutHistorique(m.getRenjou().getIndiceDebutHistorique() + 1);
 			m.getRenjou().setIndiceFinHistorique(m.getRenjou().getIndiceFinHistorique() + 1);
 		}
-		update();
+		panelAnnulerRefaire();
 	}
 	
 	@FXML
@@ -730,6 +774,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
 		
 		if(indiceFinTab - i >= 0){
+			ancienPlateau = null;
 			int nbCoupAAnulleeOuRefaire = m.getRenjou().getNbDemiTourCourant() - indiceDebutTab - i;
 			if(nbCoupAAnulleeOuRefaire < 0){
 				nbCoupAAnulleeOuRefaire = 0 - nbCoupAAnulleeOuRefaire;
@@ -739,21 +784,48 @@ public class EcouteurFenetreJeu implements Initializable {
 			}
 		}
 	}
+
+	@FXML
+	private void dragFinList1(MouseEvent e){
+		if (ancienPlateau != null) {
+			plateau.setImage(ancienPlateau);
+		}
+		ancienPlateau = null;
+	}
+	@FXML
+	private void dragFinList2(MouseEvent e){
+		if (ancienPlateau != null) {
+			plateau.setImage(ancienPlateau);
+		}
+		ancienPlateau = null;
+	}
+	@FXML
+	private void dragFinList3(MouseEvent e){
+		if (ancienPlateau != null) {
+			plateau.setImage(ancienPlateau);
+		}
+		ancienPlateau = null;	}
+	@FXML
+	private void dragFinList4(MouseEvent e){
+		if (ancienPlateau != null) {
+			plateau.setImage(ancienPlateau);
+		}
+		ancienPlateau = null;	}
 	
 	@FXML
-	private void dragList1(MouseEvent e){
+	private void dragDebutList1(MouseEvent e){
 		dragList(0);
 	}
 	@FXML
-	private void dragList2(MouseEvent e){
+	private void dragDebutList2(MouseEvent e){
 		dragList(1);
 	}
 	@FXML
-	private void dragList3(MouseEvent e){
+	private void dragDebutList3(MouseEvent e){
 		dragList(2);
 	}
 	@FXML
-	private void dragList4(MouseEvent e){
+	private void dragDebutList4(MouseEvent e){
 		dragList(3);
 	}
 	
@@ -765,46 +837,73 @@ public class EcouteurFenetreJeu implements Initializable {
 			int nbCoupAAnulleeOuRefaire = m.getRenjou().getNbDemiTourCourant() - indiceDebutTab - i;
 			if(nbCoupAAnulleeOuRefaire < 0){
 				//affichage des pions jusqu'a pos courant puis affichage transparent
-				afficherPlateauPionTransparent(m.getRenjou().getNbDemiTourCourant(), m.getRenjou().getListeAnnuler().size() + m.getRenjou().getListeRefaire().size());
+				afficherPlateauPionTransparent(m.getRenjou().getNbDemiTourCourant(), true);
 			}else if(nbCoupAAnulleeOuRefaire > 0){
 				//affichage des pions jusqu'a clique (indiceFinTab-i) puis affichage transparent
-				afficherPlateauPionTransparent(indiceDebutTab - i, m.getRenjou().getNbDemiTourCourant());
+				afficherPlateauPionTransparent(indiceDebutTab - i, false);
 			}
 		}
 	}
 
-	private void afficherPlateauPionTransparent(int bornePionVisible, int bornePionTransparent) {
-		int i=0;
-		while((i<bornePionVisible) || (i<m.getRenjou().getListeAnnuler().size())){
-			
-			//affichage du pion dans la liste annuler
-			
-			i++;
-		}
-		if(i<bornePionVisible){
-			int j=0;
-			while((i+j<bornePionVisible) || (j<m.getRenjou().getListeRefaire().size())){
-				//affichage du pion dans la liste refaire
-				j++;
+	private void afficherPlateauPionTransparent(int bornePion, boolean type) {
+		ancienPlateau = plateau.getImage();
+
+		
+		//false annuler
+		Image plat = ihm.i.getPlateau();
+
+		Canvas canvas = new Canvas(plat.getWidth(),plat.getHeight());
+		GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
+		
+		//On dessine l'image dans le canvas
+		graphicsContext.drawImage(plat, 0, 0);
+		
+		//On ajoute les pions
+		PionJoue pion = null;
+		Image iPionBlanc = ihm.i.getPionBlanc();
+		Image iPionNoir = ihm.i.getPionNoir();
+		//true refaire
+		if (type) {
+			//On dessine l'état actuel
+			for (int i=0;i<m.getRenjou().getListeAnnuler().size();i++) {
+					PionJoue p = m.getRenjou().getListeAnnuler().get(i); 
+				    if (p.getTypeCase() == TypeCase.PionBlanc) {
+				        dessinerPion(plat, graphicsContext, iPionBlanc, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
+				    } else if (p.getTypeCase() == TypeCase.PionNoir) {
+				        dessinerPion(plat, graphicsContext, iPionNoir, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
+				    }    
 			}
-			if(i+j<bornePionVisible){
-				while((j<m.getRenjou().getListeRefaire().size())){
-					//affichage du pion transparent dans la liste refaire
-					i++;
-				}
+			//On dessine en transparent ce qui peut être ajouté
+			iPionBlanc = ihm.i.getCercleVertPlein();
+			iPionNoir = ihm.i.getCercleVertPlein();
+			for (int i=0;i<bornePion;i++) {
+				PionJoue p = m.getRenjou().getListeRefaire().get(i); 
+			    if (p.getTypeCase() == TypeCase.PionBlanc) {
+			        dessinerPion(plat, graphicsContext, iPionBlanc, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
+			    } else if (p.getTypeCase() == TypeCase.PionNoir) {
+			        dessinerPion(plat, graphicsContext, iPionNoir, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
+			    }      
 			}
-			
-		}else{
-			while((i<m.getRenjou().getListeAnnuler().size())){
-				
-				//affichage du pion transparent dans la liste annuler
-				
-				i++;
+		} else {
+			//On dessine l'état actuel
+			for (int i=0;i<bornePion;i++) {
+					PionJoue p = m.getRenjou().getListeAnnuler().get(i); 
+				    if (p.getTypeCase() == TypeCase.PionBlanc) {
+				        dessinerPion(plat, graphicsContext, iPionBlanc, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
+				    } else if (p.getTypeCase() == TypeCase.PionNoir) {
+				        dessinerPion(plat, graphicsContext, iPionNoir, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
+				    }    
 			}
-			i=0;
-			while((i<m.getRenjou().getListeRefaire().size())){
-				//affichage du pion transparent dans la liste refaire
-				i++;
+			//On dessine en transparent ce qui peut être ajouté
+			iPionBlanc = ihm.i.getCercleVertPlein();
+			iPionNoir = ihm.i.getCercleVertPlein();
+			for (int i=bornePion;i<m.getRenjou().getListeAnnuler().size();i++) {
+				PionJoue p = m.getRenjou().getListeAnnuler().get(i); 
+			    if (p.getTypeCase() == TypeCase.PionBlanc) {
+			        dessinerPion(plat, graphicsContext, iPionBlanc, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
+			    } else if (p.getTypeCase() == TypeCase.PionNoir) {
+			        dessinerPion(plat, graphicsContext, iPionNoir, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
+			    }     
 			}
 		}
 		
@@ -841,10 +940,10 @@ public class EcouteurFenetreJeu implements Initializable {
 	    list2.setDisable(true);
 	    list3.setDisable(true);
 	    list4.setDisable(true);
-	    listAnchor1.setDisable(true);
-	    listAnchor2.setDisable(true);
-	    listAnchor3.setDisable(true);
-	    listAnchor4.setDisable(true);
+	    listImage1.setDisable(true);
+	    listImage2.setDisable(true);
+	    listImage3.setDisable(true);
+	    listImage4.setDisable(true);
 	    flecheHaut.setDisable(true);
 	    flecheBas.setDisable(true);
 	}
@@ -880,10 +979,10 @@ public class EcouteurFenetreJeu implements Initializable {
 	    list2.setDisable(false);
 	    list3.setDisable(false);
 	    list4.setDisable(false);
-	    listAnchor1.setDisable(false);
-	    listAnchor2.setDisable(false);
-	    listAnchor3.setDisable(false);
-	    listAnchor4.setDisable(false);
+	    listImage1.setDisable(false);
+	    listImage2.setDisable(false);
+	    listImage3.setDisable(false);
+	    listImage4.setDisable(false);
 	    flecheHaut.setDisable(false);
 	    flecheBas.setDisable(false);
 	}
