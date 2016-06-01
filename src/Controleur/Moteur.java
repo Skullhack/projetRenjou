@@ -177,7 +177,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	}
 
 	private void faireJouerIA() {
-		if (renjou.getJoueurs()[renjou.getJoueurCourant()].getType() != TypeJoueur.Humain) {
+		if (renjou.getJoueurs()[renjou.getJoueurCourant()].getType() != TypeJoueur.Humain && renjou.getEtatPartie() == EtatPartie.EnCours) {
 
 			Thread threadIa = new Thread() {
 				public void run() {
