@@ -233,6 +233,12 @@ public class EcouteurFenetreMenu {
 		selectionnerTheme("Rugby");
 	}
 	
+	@FXML
+	private void selectionnerThemeStarWars(MouseEvent e) {
+		themeChangement = true;
+		selectionnerTheme("StarWars");
+	}
+	
 	public void selectionnerTheme(String nouveauTheme) {
 		m.getRenjou().setNouveauTheme(nouveauTheme);
 		ihm.i.setImage();
