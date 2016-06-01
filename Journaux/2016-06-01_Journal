@@ -1,9 +1,5 @@
 PARTIE IHM :
 
-Sur la barre de configuration -> Je passe mon curseur sur Aide
-
-===> Le hover bleu sur le texte est plus long que la chaîne
-
 PARTIE MOTEUR :
 
 PARTIE IA  :
@@ -54,3 +50,6 @@ Le problème est le même pour les joueurs //regle
 
 
 - Faire tests sur plateau de jeu
+
+Sur la barre de configuration -> Je passe mon curseur sur Aide
+===> Le hover bleu sur le texte est plus long que la chaîne

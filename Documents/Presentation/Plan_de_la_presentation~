@@ -1,0 +1,26 @@
+I) Introduction
+	1) Présentation du projet
+	2) Choix du jeu
+		Renjou, choix du modèle MVC. Autre choix : tout mélangé mais pas évolutif et impossibilité de séparer en différentes parties
+
+II) IHM
+	1) Maquette papier/commentaire des genres
+	2) Implémentation suivant le framework Swing avec évolution du projet, des remarques etc...
+	3) Implémentation suivant le framework JavaFX avec évolution du projet, des remarques etc...
+
+III) IA
+	1) Fonctionnement des 3 IA
+		a) Facile
+		b) Moyenne
+		c) Difficile
+	2) Analyse
+
+
+IV) Fonctionnalités
+	1) Gestion de la partie
+	2) Fonctionnalités basiques
+	3) Fonctionnalités avancées
+
+V) Conclusion
+	1) Ce qu'on a fait/ ce que cela nous a apporté
+	2) Ouverture
