@@ -14,35 +14,35 @@
             <Image url="@../Images/Traditionnel/Fond.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="63.0" fitWidth="200.0" layoutX="57.0" layoutY="237.0">
+      <ImageView fx:id="chargerPartie" fitHeight="63.0" fitWidth="200.0" layoutX="57.0" layoutY="237.0" onMouseClicked="#chargerPartie" onMouseEntered="#boutonChargerPartieDebutDrag" onMouseExited="#boutonChargerPartieFinDrag">
          <image>
-            <Image url="@../Images/PourToutLesThemes/Charger.png" />
+            <Image url="@../Images/PourToutLesThemes/ChargerPartie.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="63.0" fitWidth="200.0" layoutX="360.0" layoutY="237.0">
+      <ImageView fx:id="lancerTutoriel" fitHeight="63.0" fitWidth="200.0" layoutX="360.0" layoutY="237.0" onMouseClicked="#lancerTutoriel" onMouseEntered="#boutonLancerTutorielDebutDrag" onMouseExited="#boutonLancerTutorielFinDrag">
          <image>
-            <Image url="@../Images/PourToutLesThemes/Tutoriel.png" />
+            <Image url="@../Images/PourToutLesThemes/LancerTutoriel.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="63.0" fitWidth="200.0" layoutX="57.0" layoutY="146.0">
+      <ImageView fx:id="partieRapide" fitHeight="63.0" fitWidth="200.0" layoutX="57.0" layoutY="146.0" onMouseClicked="#partieRapide" onMouseEntered="#boutonPartieRapideDebutDrag" onMouseExited="#boutonPartieRapideFinDrag">
          <image>
             <Image url="@../Images/PourToutLesThemes/PartieRapide.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="63.0" fitWidth="200.0" layoutX="360.0" layoutY="146.0">
+      <ImageView fx:id="partiePersonnalisee" fitHeight="63.0" fitWidth="200.0" layoutX="360.0" layoutY="146.0" onMouseClicked="#partiePersonnalisee" onMouseEntered="#boutonPartiePersonnaliseeDebutDrag" onMouseExited="#boutonPartiePersonnaliseeFinDrag">
          <image>
             <Image url="@../Images/PourToutLesThemes/PartiePersonnalisee.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="54.0" fitWidth="200.0" layoutX="209.0" layoutY="332.0">
+      <ImageView fx:id="quitter" fitHeight="54.0" fitWidth="200.0" layoutX="200.0" layoutY="338.0" onMouseClicked="#quitter" onMouseEntered="#boutonQuitterDebutDrag" onMouseExited="#boutonQuitterFinDrag">
          <image>
             <Image url="@../Images/PourToutLesThemes/Quitter.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutX="-1.0" layoutY="5.0" prefHeight="98.0" prefWidth="600.0" text="Renjou" textAlignment="CENTER">
-         <font>
-            <Font name="Arial" size="86.0" />
-         </font>
-      </Label>
+      <ImageView fitHeight="160.0" fitWidth="248.0" layoutX="176.0" layoutY="-14.0">
+         <image>
+            <Image url="@../Images/PourToutLesThemes/Renjou.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

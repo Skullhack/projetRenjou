@@ -75,12 +75,15 @@ public class IAFacile extends IA {
 
 	private Coordonnees empecherCoupGagnant(PlateauDeJeu plateau) {
 
+		TypeCase caseAdversaire = TypeCase.PionBlanc;
 		TypeCouleur couleurAdversaire = TypeCouleur.Blanc;
 		switch (couleur) {
 		case Blanc:
+			caseAdversaire = TypeCase.PionNoir;
 			couleurAdversaire = TypeCouleur.Noir;
 			break;
 		case Noir:
+			caseAdversaire = TypeCase.PionBlanc;
 			couleurAdversaire = TypeCouleur.Blanc;
 			break;
 		default:
@@ -92,8 +95,7 @@ public class IAFacile extends IA {
 			for (int j = 0; j < nbColonne; j++) {
 				if(plateau.getPlateau()[i][j] == TypeCase.Jouable){
 					c = new Coordonnees(i, j);
-					Motif m = new Motif(plateau, c);
-					if (m.estQuatreLibre(couleurAdversaire)) {
+					if(PartieFinie(plateau, c, caseAdversaire)){
 						return c;
 					}
 				}
@@ -107,7 +109,7 @@ public class IAFacile extends IA {
 				if(plateau.getPlateau()[i][j] == TypeCase.Jouable){
 					c = new Coordonnees(i, j);
 					Motif m = new Motif(plateau, c);
-					if (m.estTroisLibre(couleurAdversaire)) {
+					if (m.estQuatreLibreContinuIAFacile(couleurAdversaire)) {
 						return c;
 					}
 				}

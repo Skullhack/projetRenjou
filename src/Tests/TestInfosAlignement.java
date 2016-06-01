@@ -11,6 +11,7 @@ import Joueur.*;
 import Utilitaire.Coordonnees;
 import Utilitaire.InfosAlignement;
 import Utilitaire.Log;
+import Utilitaire.Motif;
 import Utilitaire.PlateauDeJeu;
 
 public class TestInfosAlignement {
@@ -243,8 +244,12 @@ public class TestInfosAlignement {
 		Log.print(721, "debut main");
 		pdj = pdj.charger(chemin + "mainTest");
 		Log.print(725, pdj.toString());
-		InfosAlignement infos = new InfosAlignement(pdj, new Coordonnees(7,7), TypeDirection.Gauche);;
-		Log.print(725, infos.toString());
+		InfosAlignement infos = new InfosAlignement(pdj, new Coordonnees(5,7), TypeDirection.Bas);
+		Motif m = new Motif(pdj, new Coordonnees(5,7));
+		Log.print(725, m.toString());
+		
+		Log.print(725, ""+m.estTroisFoisTroisLibre(TypeCouleur.Blanc) );
+		
 		Log.print(721, "fin main");
 
 	}

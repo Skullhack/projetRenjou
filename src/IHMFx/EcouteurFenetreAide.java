@@ -40,6 +40,7 @@ public class EcouteurFenetreAide {
 	@FXML
 	private void boutonRetour() {
 		ihm.fj.montrer();
+		ihm.efj.setEnabled();
 		ihm.fa.cacher();
 	}
 	

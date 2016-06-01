@@ -27,6 +27,9 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 	private Tabou tabousJeu;
 	private String emplacementThemes;
 	private boolean modeDebutant;
+	private int nbDemiTourCourant;
+	private int indiceDebutHistorique;
+	private int indiceFinHistorique;
 
 	// Constructeur
 	public Renjou(Joueur[] tabJoueurs) {
@@ -37,16 +40,15 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 		this.etatPartie = EtatPartie.EnCours;
 		this.joueurCourant = 0;
 		this.tabJoueurs = tabJoueurs;
-
+		this.nbDemiTourCourant = 0;
+		this.indiceDebutHistorique = 0;
+		this.indiceFinHistorique = 0;
+		
 		ArrayList<TypeTabous> listeTabou = new ArrayList<TypeTabous>();
 		listeTabou.add(TypeTabous.TROIS_TROIS);
 		listeTabou.add(TypeTabous.QUATRE_QUATRE);
 		listeTabou.add(TypeTabous.SIX_SEPT);
 		this.tabousJeu = new Tabou(listeTabou);
-		// ajout des tabous en dur
-		// ArrayList<TypeTabous> listeTabous = new ArrayList<TypeTabous>();
-		// listeTabous.add(TypeTabous.TROIS_TROIS);
-		// fin ajout des tabous en dur
 
 		this.emplacementThemes = "Traditionnel";
 		this.modeDebutant = false;
@@ -59,6 +61,9 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 		this.listeRefaire.clear();
 		setEtatPartie(EtatPartie.EnCours);
 		setJoueurCourant(0);
+		setIndiceDebutHistorique(0);
+		setIndiceFinHistorique(0);
+		setNbDemiTourCourant(0);
 	}
 
 	@Override
@@ -96,6 +101,10 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 
 	public String getEmplacementThemes() {
 		return emplacementThemes;
+	}
+	
+	public int getNbDemiTourCourant(){
+		return nbDemiTourCourant ;
 	}
 	
 	public boolean estModeDebutant() {
@@ -138,6 +147,10 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 		this.modeDebutant = modeDebutant;
 	}
 
+	public void setNbDemiTourCourant(int n){
+		nbDemiTourCourant = n;
+	}
+	
 	public int getNbJoueurs() {
 		return tabJoueurs.length;
 	}
@@ -154,6 +167,22 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 
 	public void setNouveauTheme(String theme) {
 		this.emplacementThemes = theme;
+	}
+
+	public int getIndiceDebutHistorique() {
+		return indiceDebutHistorique;
+	}
+
+	public void setIndiceDebutHistorique(int indiceDebutHistorique) {
+		this.indiceDebutHistorique = indiceDebutHistorique;
+	}
+
+	public int getIndiceFinHistorique() {
+		return indiceFinHistorique;
+	}
+
+	public void setIndiceFinHistorique(int indiceFinHistorique) {
+		this.indiceFinHistorique = indiceFinHistorique;
 	}
 
 }

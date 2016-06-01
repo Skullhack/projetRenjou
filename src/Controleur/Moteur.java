@@ -29,9 +29,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	public ArrayList<MoteurObserveur> observeurs;
 
 	// Constructeur
-
 	public Moteur(TypeJoueur typeJoueur1, TypeJoueur typeJoueur2) {
-
 		Log.setNiveau(10);
 		this.observeurs = new ArrayList<>();
 		Joueur[] tableauJoueurs = new Joueur[2];
@@ -179,7 +177,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	}
 
 	private void faireJouerIA() {
-		if (renjou.getJoueurs()[renjou.getJoueurCourant()].getType() != TypeJoueur.Humain) {
+		if (renjou.getJoueurs()[renjou.getJoueurCourant()].getType() != TypeJoueur.Humain && renjou.getEtatPartie() == EtatPartie.EnCours) {
 
 			Thread threadIa = new Thread() {
 				public void run() {
@@ -234,6 +232,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 			renjou.getPlateauDeJeu().ajouter(c, typeCaseJoueurCourant);
 			renjou.getListeRefaire().clear();
 			decrementerPionsJoueurCourant(renjou);
+			incrementerDemiTourCourant(renjou);
 
 			int nbPionsRestant = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
 			Log.print(1,
@@ -263,9 +262,19 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		ajouterPionJoueDansListeAnnuler(renjou, c, typeCaseJoueurCourant, renjou.getEtatPartie());
 		majCasesInjouables(renjou);
 		majCasesTabous(renjou);
+		majAffichageListeTours(renjou);
 
 		// Log.print(1, renjou.getPlateauDeJeu().toString());
 
+	}
+
+	public void majAffichageListeTours(Renjou renjou) {
+		if (renjou.getNbDemiTourCourant()+1 > 4) {
+			renjou.setIndiceFinHistorique(renjou.getNbDemiTourCourant()+1);
+			renjou.setIndiceDebutHistorique(renjou.getIndiceFinHistorique() - 4);
+		} else {
+			renjou.setIndiceFinHistorique(renjou.getIndiceFinHistorique() + 1);
+		}
 	}
 
 	private boolean caseJouable(Renjou renjou, Coordonnees c) {
@@ -286,13 +295,21 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 				.setNbPion(renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion() + 1);
 	}
 
+	public void decrementerDemiTourCourant(Renjou renjou) {
+		renjou.setNbDemiTourCourant(renjou.getNbDemiTourCourant() - 1);
+	}
+
+	public void incrementerDemiTourCourant(Renjou renjou) {
+		renjou.setNbDemiTourCourant(renjou.getNbDemiTourCourant() + 1);
+	}
+
 	public void ajouterPionJoueDansListeAnnuler(Renjou renjou, Coordonnees c, TypeCase typeCaseJoueurCourant,
 			EtatPartie etatPartie) {
 
-		if (!estDeuxJoueursIA(renjou)) {
+		//if (!estDeuxJoueursIA(renjou)) {
 			PionJoue pionJoue = new PionJoue(c, typeCaseJoueurCourant, etatPartie);
 			renjou.getListeAnnuler().add(pionJoue);
-		}
+		//}
 	}
 
 	public boolean estDeuxJoueursIA(Renjou renjou) {
@@ -337,6 +354,9 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		renjou.getTabouJeu().setListeTabous(tabouPartie);
 
 		renjou.setModeDebutant(modeDebutant);
+		majCasesTabous(renjou);
+
+		Log.print(1, "LE PLATEAU DE JEU APRES CONFIGURER PARTIE : " + renjou.getPlateauDeJeu().toString());
 
 		notifierObserveurs();
 		faireJouerIA();
@@ -578,6 +598,11 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 						renjou.getPlateauDeJeu().ajouter(coorParcours, TypeCase.Tabou);
 					}
 				}
+				if (caseTabou(renjou, coorParcours)) {
+					if (renjou.getTabouJeu().estValide(renjou.getPlateauDeJeu(), coorParcours)) {
+						renjou.getPlateauDeJeu().ajouter(coorParcours, TypeCase.Jouable);
+					}
+				}
 			}
 		}
 	}
@@ -614,9 +639,9 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		if (this.getRenjou().getJoueurs()[0].getType() == TypeJoueur.Humain
 				&& this.getRenjou().getJoueurs()[1].getType() == TypeJoueur.Humain) {
 			annulerDemiCoup();
-			if (this.getRenjou().getEtatPartie() != EtatPartie.EnCours) {
-				annulerDemiCoup();
-			}
+//			if (this.getRenjou().getEtatPartie() != EtatPartie.EnCours) {
+//				annulerDemiCoup();
+//			}
 		} else {
 			annulerDemiCoup();
 			annulerDemiCoup();
@@ -634,25 +659,25 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 			joueurPrecedent();
 
 			PionJoue dernierPionJoueHistorique = this.getRenjou().getListeAnnuler().get(dernierElementHistorique);
-			this.getRenjou().getPlateauDeJeu().enlever(dernierPionJoueHistorique.c);
-			this.getRenjou().setEtatPartie(dernierPionJoueHistorique.etatPartie);
+			this.getRenjou().getPlateauDeJeu().enlever(dernierPionJoueHistorique.c);			
+			this.getRenjou().setEtatPartie(EtatPartie.EnCours);
 			this.getRenjou().getListeRefaire().add(this.getRenjou().getListeAnnuler().get(dernierElementHistorique));
 			this.getRenjou().getListeAnnuler().remove(dernierElementHistorique);
 			incrementerPionsJoueurCourant(this.getRenjou());
 			majCasesInjouables(this.getRenjou());
 			majCasesTabous(this.getRenjou());
-
+			decrementerDemiTourCourant(this.getRenjou());
 		}
 	}
 
-	public void annulerNDemiCoup(int n){
-		for(int i=0; i<n; i++){
+	public void annulerNDemiCoup(int n) {
+		for (int i = 0; i < n; i++) {
 			annulerDemiCoup();
 		}
 		notifierObserveurs();
 		faireJouerIA();
 	}
-	
+
 	@Override
 	public void refaire() {
 		if (this.getRenjou().getJoueurs()[0].getType() == TypeJoueur.Humain
@@ -680,8 +705,17 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 			joueurSuivant();
 			majCasesInjouables(this.getRenjou());
 			majCasesTabous(this.getRenjou());
+			incrementerDemiTourCourant(this.getRenjou());
 		}
 
+	}
+
+	public void refaireNDemiCoup(int n) {
+		for (int i = 0; i < n; i++) {
+			refaireDemiCoup();
+		}
+		notifierObserveurs();
+		faireJouerIA();
 	}
 
 	public boolean premierCoup() {

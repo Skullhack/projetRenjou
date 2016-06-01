@@ -182,7 +182,7 @@
       <right>
         <FlowPane maxHeight="650.0" minHeight="626.0" orientation="VERTICAL" prefHeight="626.0" prefWidth="140.0" style="-fx-border-width: 3; -fx-border-color: black;">
           <children>
-            <ImageView fx:id="flecheHaut" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="flecheHaut" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#clickFlecheHaut" onMouseDragEntered="#dragDebutFlecheHaut" onMouseEntered="#dragDebutFlecheHaut" onMouseExited="#dragFinFlecheHaut" pickOnBounds="true" preserveRatio="true">
               <image>
                 <Image url="@../Images/Traditionnel/FlecheHaut.png" />
               </image>
@@ -192,12 +192,12 @@
             </ImageView>
                   <AnchorPane fx:id="listAnchor1" prefHeight="0.0" prefWidth="43.0">
                      <children>
-                        <ImageView fitHeight="123.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0">
+                        <ImageView fx:id="listImage1" fitHeight="123.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0">
                            <image>
                               <Image url="@../Images/Traditionnel/Plateau15x15.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="list1" alignment="CENTER" prefHeight="122.0" prefWidth="128.0" text="1" textAlignment="CENTER">
+                        <Label fx:id="list1" alignment="CENTER" onMouseClicked="#clickList1" onMouseEntered="#dragDebutList1" onMouseExited="#dragFinList1" prefHeight="122.0" prefWidth="128.0" text="1" textAlignment="CENTER">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -207,17 +207,17 @@
                         <Insets />
                      </opaqueInsets>
                      <FlowPane.margin>
-                        <Insets bottom="2.0" top="2.0" />
+                        <Insets />
                      </FlowPane.margin>
                   </AnchorPane>
                   <AnchorPane fx:id="listAnchor2" prefHeight="0.0" prefWidth="43.0">
                      <children>
-                        <ImageView fitHeight="123.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0">
+                        <ImageView fx:id="listImage2" fitHeight="123.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0">
                            <image>
                               <Image url="@../Images/Traditionnel/Plateau15x15.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="list2" alignment="CENTER" prefHeight="122.0" prefWidth="128.0" text="2" textAlignment="CENTER">
+                        <Label fx:id="list2" alignment="CENTER" onMouseClicked="#clickList2" onMouseEntered="#dragDebutList2" onMouseExited="#dragFinList2" prefHeight="122.0" prefWidth="128.0" text="2" textAlignment="CENTER">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -227,17 +227,17 @@
                         <Insets />
                      </opaqueInsets>
                      <FlowPane.margin>
-                        <Insets bottom="2.0" top="2.0" />
+                        <Insets />
                      </FlowPane.margin>
                   </AnchorPane>
                   <AnchorPane fx:id="listAnchor3" prefHeight="0.0" prefWidth="43.0">
                      <children>
-                        <ImageView fitHeight="123.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0">
+                        <ImageView fx:id="listImage3" fitHeight="123.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0">
                            <image>
                               <Image url="@../Images/Traditionnel/Plateau15x15.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="list3" alignment="CENTER" prefHeight="122.0" prefWidth="128.0" text="3" textAlignment="CENTER">
+                        <Label fx:id="list3" alignment="CENTER" onMouseClicked="#clickList3" onMouseEntered="#dragDebutList3" onMouseExited="#dragFinList3" prefHeight="122.0" prefWidth="128.0" text="3" textAlignment="CENTER">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -247,17 +247,17 @@
                         <Insets />
                      </opaqueInsets>
                      <FlowPane.margin>
-                        <Insets bottom="2.0" top="2.0" />
+                        <Insets />
                      </FlowPane.margin>
                   </AnchorPane>
                   <AnchorPane fx:id="listAnchor4" prefHeight="0.0" prefWidth="43.0">
                      <children>
-                        <ImageView fitHeight="123.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0">
+                        <ImageView fx:id="listImage4" fitHeight="123.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0">
                            <image>
                               <Image url="@../Images/Traditionnel/Plateau15x15.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="list4" alignment="CENTER" prefHeight="122.0" prefWidth="128.0" text="4" textAlignment="CENTER">
+                        <Label fx:id="list4" alignment="CENTER" onMouseClicked="#clickList4" onMouseEntered="#dragDebutList4" onMouseExited="#dragFinList4" prefHeight="122.0" prefWidth="128.0" text="4" textAlignment="CENTER">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -267,10 +267,10 @@
                         <Insets />
                      </opaqueInsets>
                      <FlowPane.margin>
-                        <Insets bottom="2.0" top="2.0" />
+                        <Insets />
                      </FlowPane.margin>
                   </AnchorPane>
-            <ImageView fx:id="flecheBas" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" rotate="-0.0">
+            <ImageView fx:id="flecheBas" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#clickFlecheBas" onMouseEntered="#dragDebutFlecheBas" onMouseExited="#dragFinFlecheBas" pickOnBounds="true" preserveRatio="true" rotate="-0.0">
               <image>
                 <Image url="@../Images/Traditionnel/FlecheBas.png" />
               </image>
@@ -301,8 +301,8 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Aide        ">
               <items>
-                <MenuItem fx:id="reglesMenu" mnemonicParsing="false" onAction="#reglesMenu" text="Regles" />
                 <MenuItem fx:id="tutorielMenu" mnemonicParsing="false" onAction="#tutorielMenu" text="Tutoriel" />
+                <MenuItem fx:id="reglesMenu" mnemonicParsing="false" onAction="#reglesMenu" text="Regles" />
                 <MenuItem fx:id="aProposMenu" mnemonicParsing="false" onAction="#aProposMenu" text="A propos de" />
               </items>
             </Menu>
@@ -310,5 +310,10 @@
         </MenuBar>
       </top>
     </BorderPane>
+      <ImageView fx:id="imageTuto" fitHeight="650.0" fitWidth="950.0" onMouseClicked="#clicOnTuto">
+         <image>
+            <Image url="@../Images/PourToutLesThemes/ImageVide.png" />
+         </image>
+      </ImageView>
   </children>
 </AnchorPane>

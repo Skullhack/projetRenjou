@@ -61,6 +61,7 @@ public class TestMoteur {
 
 		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
 		PlateauDeJeu plateauJeuEnCours = donneesJeu.getRenjou().getPlateauDeJeu();
+		donneesJeu.getRenjou().setTabouJeu(new Tabou(false, false, false));
 
 		Log.setNiveau(0);
 
@@ -331,62 +332,69 @@ public class TestMoteur {
 		Log.print(1, "FIN TEST d'une annulation de coup");
 	}
 
-	@Test
-	public void annulerCoupEntreJoueurIA() {
-
-		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
-		PlateauDeJeu plateauJeuEnCours = donneesJeu.getRenjou().getPlateauDeJeu();
-
-		Log.setNiveau(0);
-		Log.print(1, "TEST d'une annulation de coup entre un joueur et une IA");
-		afficherPlateauJeuCourant(plateauJeuEnCours);
-
-		((IAFacile) donneesJeu.getRenjou().getJoueurs()[1]).setSeed(100);
-
-		Coordonnees[] tabCoord = new Coordonnees[4];
-		tabCoord[0] = new Coordonnees(7, 7); // noir coup 1
-		tabCoord[1] = new Coordonnees(1, 1); // noir coup 2
-		tabCoord[2] = new Coordonnees(10, 10); // noir coup 3
-		tabCoord[3] = new Coordonnees(13, 13); // noir coup 4
-
-		for (int i = 0; i < tabCoord.length; i++) {
-
-			operationJouerJoueurCourant(donneesJeu, tabCoord[i]);
-			afficherPlateauJeuCourant(plateauJeuEnCours);
-
-		}
-
-		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauTestAvantAnnulationHumainIA");
-
-		assertEquals(donneesJeu.getRenjou().getJoueurs()[0].getNbPion(),
-				donneesJeu.getRenjou().getJoueurs()[0].getNbPionsBase() - 4);
-		assertEquals(donneesJeu.getRenjou().getJoueurs()[1].getNbPion(),
-				donneesJeu.getRenjou().getJoueurs()[1].getNbPionsBase() - 4);
-
-		Log.print(1, "ANNNULATION D'UN COUP ENTRE JOUEUR ET IA");
-		donneesJeu.annuler();
-		afficherPlateauJeuCourant(plateauJeuEnCours);
-
-		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauTestApresAnnulationHumainIA");
-
-		Log.print(1, "Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
-
-		Log.print(1,
-				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
-
-		assertEquals(donneesJeu.getRenjou().getJoueurs()[0].getNbPion(),
-				donneesJeu.getRenjou().getJoueurs()[0].getNbPionsBase() - 3);
-		assertEquals(donneesJeu.getRenjou().getJoueurs()[1].getNbPion(),
-				donneesJeu.getRenjou().getJoueurs()[1].getNbPionsBase() - 3);
-
-		operationJouerJoueurCourant(donneesJeu, new Coordonnees(2, 2));
-
-		afficherPlateauJeuCourant(plateauJeuEnCours);
-		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauTestApresAnnulationEtUnCoupHumainIA");
-
-		Log.print(1, "FIN TEST d'une annulation de coup ENTRE JOUEUR ET IA");
-
-	}
+	// @Test
+	// public void annulerCoupEntreJoueurIA() {
+	//
+	// Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
+	// PlateauDeJeu plateauJeuEnCours =
+	// donneesJeu.getRenjou().getPlateauDeJeu();
+	//
+	// Log.setNiveau(0);
+	// Log.print(1, "TEST d'une annulation de coup entre un joueur et une IA");
+	// afficherPlateauJeuCourant(plateauJeuEnCours);
+	//
+	// ((IAFacile) donneesJeu.getRenjou().getJoueurs()[1]).setSeed(100);
+	//
+	// Coordonnees[] tabCoord = new Coordonnees[4];
+	// tabCoord[0] = new Coordonnees(7, 7); // noir coup 1
+	// tabCoord[1] = new Coordonnees(1, 1); // noir coup 2
+	// tabCoord[2] = new Coordonnees(10, 10); // noir coup 3
+	// tabCoord[3] = new Coordonnees(13, 13); // noir coup 4
+	//
+	// for (int i = 0; i < tabCoord.length; i++) {
+	//
+	// operationJouerJoueurCourant(donneesJeu, tabCoord[i]);
+	// afficherPlateauJeuCourant(plateauJeuEnCours);
+	//
+	// }
+	//
+	// afficherPlateauJeuCourant(plateauJeuEnCours);
+	// TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin +
+	// "PlateauTestAvantAnnulationHumainIA");
+	//
+	// assertEquals(donneesJeu.getRenjou().getJoueurs()[0].getNbPion(),
+	// donneesJeu.getRenjou().getJoueurs()[0].getNbPionsBase() - 4);
+	// assertEquals(donneesJeu.getRenjou().getJoueurs()[1].getNbPion(),
+	// donneesJeu.getRenjou().getJoueurs()[1].getNbPionsBase() - 4);
+	//
+	// Log.print(1, "ANNNULATION D'UN COUP ENTRE JOUEUR ET IA");
+	// donneesJeu.annuler();
+	// afficherPlateauJeuCourant(plateauJeuEnCours);
+	//
+	// TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin +
+	// "PlateauTestApresAnnulationHumainIA");
+	//
+	// Log.print(1, "Le nombre de pion du joueur noir est de : " +
+	// donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
+	//
+	// Log.print(1,
+	// "Le nombre de pion du joueur blanc est de : " +
+	// donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
+	//
+	// assertEquals(donneesJeu.getRenjou().getJoueurs()[0].getNbPion(),
+	// donneesJeu.getRenjou().getJoueurs()[0].getNbPionsBase() - 3);
+	// assertEquals(donneesJeu.getRenjou().getJoueurs()[1].getNbPion(),
+	// donneesJeu.getRenjou().getJoueurs()[1].getNbPionsBase() - 3);
+	//
+	// operationJouerJoueurCourant(donneesJeu, new Coordonnees(2, 2));
+	//
+	// afficherPlateauJeuCourant(plateauJeuEnCours);
+	// TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin +
+	// "PlateauTestApresAnnulationEtUnCoupHumainIA");
+	//
+	// Log.print(1, "FIN TEST d'une annulation de coup ENTRE JOUEUR ET IA");
+	//
+	// }
 
 	@Test
 	public void annulerRefaireCoupEntreDeuxJoueurs() {
@@ -455,94 +463,203 @@ public class TestMoteur {
 
 	}
 
-	@Test
-	public void annulerRefaireEntreJoueurEtIA() {
+	// @Test
+	// public void annulerRefaireEntreJoueurEtIA() {
+	//
+	// Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
+	// PlateauDeJeu plateauJeuEnCours =
+	// donneesJeu.getRenjou().getPlateauDeJeu();
+	//
+	// Log.setNiveau(0);
+	// Log.print(1, "TEST d'un annuler/refaire de coup entre un joueur et une
+	// IA");
+	// afficherPlateauJeuCourant(plateauJeuEnCours);
+	//
+	// ((IAFacile) donneesJeu.getRenjou().getJoueurs()[1]).setSeed(100);
+	//
+	// Coordonnees[] tabCoord = new Coordonnees[4];
+	// tabCoord[0] = new Coordonnees(7, 7); // noir coup 1
+	// tabCoord[1] = new Coordonnees(1, 1); // noir coup 2
+	// tabCoord[2] = new Coordonnees(10, 10); // noir coup 3
+	// tabCoord[3] = new Coordonnees(13, 13); // noir coup 4
+	//
+	// for (int i = 0; i < tabCoord.length; i++) {
+	//
+	// operationJouerJoueurCourant(donneesJeu, tabCoord[i]);
+	// afficherPlateauJeuCourant(plateauJeuEnCours);
+	//
+	// }
+	//
+	// afficherPlateauJeuCourant(plateauJeuEnCours);
+	//
+	//
+	// TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin +
+	// "PlateauAvantAnnulerRefaireHumainIA");
+	//
+	//
+	// assertEquals(donneesJeu.getRenjou().getJoueurs()[0].getNbPion(),
+	// donneesJeu.getRenjou().getJoueurs()[0].getNbPionsBase() - 4);
+	// assertEquals(donneesJeu.getRenjou().getJoueurs()[1].getNbPion(),
+	// donneesJeu.getRenjou().getJoueurs()[1].getNbPionsBase() - 4);
+	//
+	// Log.print(1, "ANNNULATION D'UN COUP ENTRE JOUEUR ET IA");
+	// donneesJeu.annuler();
+	// afficherPlateauJeuCourant(plateauJeuEnCours);
+	// assertEquals(donneesJeu.getRenjou().getJoueurs()[0].getNbPion(),
+	// donneesJeu.getRenjou().getJoueurs()[0].getNbPionsBase() - 3);
+	// Log.print(1, "Le nombre de pion du joueur noir est de : " +
+	// donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
+	//
+	// Log.print(1,
+	// "Le nombre de pion du joueur blanc est de : " +
+	// donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
+	//
+	// Log.print(1, "REFAIRE UN COUP ENTRE JOUEUR ET IA");
+	// donneesJeu.refaire();
+	//
+	// afficherPlateauJeuCourant(plateauJeuEnCours);
+	// TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin +
+	// "PlateauApresAnnulerRefaireHumainIA");
+	// assertEquals(donneesJeu.getRenjou().getJoueurs()[0].getNbPion(),
+	// donneesJeu.getRenjou().getJoueurs()[0].getNbPionsBase() - 4);
+	//
+	// Log.print(1, "Le nombre de pion du joueur noir est de : " +
+	// donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
+	//
+	// Log.print(1,
+	// "Le nombre de pion du joueur blanc est de : " +
+	// donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
+	//
+	// operationJouerJoueurCourant(donneesJeu, new Coordonnees(0, 14));
+	// afficherPlateauJeuCourant(plateauJeuEnCours);
+	//
+	// TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin +
+	// "PlateauApresAnnulerRefaireEtUnCoupHumainIA");
+	// assertEquals(donneesJeu.getRenjou().getJoueurs()[0].getNbPion(),
+	// donneesJeu.getRenjou().getJoueurs()[0].getNbPionsBase() - 5);
+	// assertEquals(donneesJeu.getRenjou().getJoueurs()[1].getNbPion(),
+	// donneesJeu.getRenjou().getJoueurs()[1].getNbPionsBase() - 5);
+	//
+	// Log.print(1, "Le nombre de pion du joueur noir est de : " +
+	// donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
+	//
+	// Log.print(1,
+	// "Le nombre de pion du joueur blanc est de : " +
+	// donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
+	//
+	// Log.print(1, "FIN TEST d'un annuler/refaire un coup ENTRE JOUEUR ET IA");
+	// }
 
-		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
+	// @Test
+	// public void testSauvegardePartie() {
+	//
+	// Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
+	// PlateauDeJeu plateauJeuEnCours =
+	// donneesJeu.getRenjou().getPlateauDeJeu();
+	//
+	// ((IAFacile) donneesJeu.getRenjou().getJoueurs()[1]).setSeed(100);
+	//
+	// Log.setNiveau(0);
+	// Log.print(1, "TEST PARTIE AVEC SAUVEGARDE");
+	// afficherPlateauJeuCourant(plateauJeuEnCours);
+	//
+	// Coordonnees[] tabCoord = new Coordonnees[4];
+	// tabCoord[0] = new Coordonnees(7, 7); // noir coup 1
+	// tabCoord[1] = new Coordonnees(1, 1); // noir coup 2
+	// tabCoord[2] = new Coordonnees(10, 10); // noir coup 3
+	// tabCoord[3] = new Coordonnees(13, 13); // noir coup 4
+	//
+	// for (int i = 0; i < tabCoord.length; i++) {
+	// operationJouerJoueurCourant(donneesJeu, tabCoord[i]);
+	// afficherPlateauJeuCourant(plateauJeuEnCours);
+	// }
+	//
+	// donneesJeu.sauvegarder("testSaveRenjou.ser");
+	//
+	// TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin +
+	// "PlateauJeuSauvegardeHumainIA");
+	//
+	// Log.print(1, "FIN TEST PARTIE AVEC SAUVEGARDE");
+	//
+	// }
+
+	// @Test
+	// public void testChargementPartie() {
+	//
+	// Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
+	// // vu qu'on va charger un new renjou avec des paramètres humain vs
+	// // IAFacile, la ligne au dessus n'a plus vraiment de sens. C'est
+	// // seulement pour simuler une nouvelle partie
+	//
+	// Log.setNiveau(0);
+	// Log.print(1, "TEST CHARGEMENT DE PARTIE");
+	//
+	// donneesJeu.charger("testSaveRenjou.ser");
+	// PlateauDeJeu plateauJeuEnCours =
+	// donneesJeu.getRenjou().getPlateauDeJeu();
+	//
+	// afficherPlateauJeuCourant(plateauJeuEnCours);
+	//
+	// TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin +
+	// "PlateauJeuSauvegardeHumainIA");
+	//
+	// Log.print(1, "LE JOUEUR NOIR EST DE TYPE : " +
+	// donneesJeu.getRenjou().getJoueurs()[0].getType());
+	// Log.print(1, "LE JOUEUR BLANC EST DE TYPE : " +
+	// donneesJeu.getRenjou().getJoueurs()[1].getType());
+	//
+	// assertEquals(donneesJeu.getRenjou().getJoueurs()[0].getType(),
+	// TypeJoueur.Humain);
+	// assertEquals(donneesJeu.getRenjou().getJoueurs()[1].getType(),
+	// TypeJoueur.IAFacile);
+	//
+	// Log.print(1, "LE JOUEUR NOIR HUMAIN JOUE");
+	//
+	// operationJouerJoueurCourant(donneesJeu, new Coordonnees(0, 0));
+	// afficherPlateauJeuCourant(plateauJeuEnCours);
+	//
+	// Coordonnees[] tabCoord = new Coordonnees[8];
+	// tabCoord[0] = new Coordonnees(11, 9); // noir coup 1
+	// tabCoord[1] = new Coordonnees(13, 9); // noir coup 2
+	// tabCoord[2] = new Coordonnees(12, 8); // noir coup 3
+	// tabCoord[3] = new Coordonnees(11, 7); // noir coup 4
+	// tabCoord[4] = new Coordonnees(10, 6); // noir coup 5
+	// tabCoord[5] = new Coordonnees(9, 5); // noir coup 6
+	// tabCoord[6] = new Coordonnees(14, 10); // noir coup 7
+	// tabCoord[7] = new Coordonnees(3, 3); // noir coup 8 ne sera pas joué car
+	// // gagné avant
+	//
+	// for (int i = 0; i < tabCoord.length; i++) {
+	// operationJouerJoueurCourant(donneesJeu, tabCoord[i]);
+	// afficherPlateauJeuCourant(plateauJeuEnCours);
+	// }
+	//
+	// TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin +
+	// "PlateauJeuSauvegardeVictoireNoireHumainIA");
+	//
+	// Log.print(1, "FIN TEST CHARGEMENT DE PARTIE");
+	//
+	// }
+
+	@Test
+	public void testSauvegarderChargerPartie() {
+
+		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
 		PlateauDeJeu plateauJeuEnCours = donneesJeu.getRenjou().getPlateauDeJeu();
 
-		Log.setNiveau(0);
-		Log.print(1, "TEST d'un annuler/refaire de coup entre un joueur et une IA");
-		afficherPlateauJeuCourant(plateauJeuEnCours);
-
-		((IAFacile) donneesJeu.getRenjou().getJoueurs()[1]).setSeed(100);
-
-		Coordonnees[] tabCoord = new Coordonnees[4];
-		tabCoord[0] = new Coordonnees(7, 7); // noir coup 1
-		tabCoord[1] = new Coordonnees(1, 1); // noir coup 2
-		tabCoord[2] = new Coordonnees(10, 10); // noir coup 3
-		tabCoord[3] = new Coordonnees(13, 13); // noir coup 4
-
-		for (int i = 0; i < tabCoord.length; i++) {
-
-			operationJouerJoueurCourant(donneesJeu, tabCoord[i]);
-			afficherPlateauJeuCourant(plateauJeuEnCours);
-
-		}
-
-		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauAvantAnnulerRefaireHumainIA");
-		assertEquals(donneesJeu.getRenjou().getJoueurs()[0].getNbPion(),
-				donneesJeu.getRenjou().getJoueurs()[0].getNbPionsBase() - 4);
-		assertEquals(donneesJeu.getRenjou().getJoueurs()[1].getNbPion(),
-				donneesJeu.getRenjou().getJoueurs()[1].getNbPionsBase() - 4);
-
-		Log.print(1, "ANNNULATION D'UN COUP ENTRE JOUEUR ET IA");
-		donneesJeu.annuler();
-		afficherPlateauJeuCourant(plateauJeuEnCours);
-		assertEquals(donneesJeu.getRenjou().getJoueurs()[0].getNbPion(),
-				donneesJeu.getRenjou().getJoueurs()[0].getNbPionsBase() - 3);
-		Log.print(1, "Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
-
-		Log.print(1,
-				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
-
-		Log.print(1, "REFAIRE UN COUP ENTRE JOUEUR ET IA");
-		donneesJeu.refaire();
-
-		afficherPlateauJeuCourant(plateauJeuEnCours);
-		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauApresAnnulerRefaireHumainIA");
-		assertEquals(donneesJeu.getRenjou().getJoueurs()[0].getNbPion(),
-				donneesJeu.getRenjou().getJoueurs()[0].getNbPionsBase() - 4);
-
-		Log.print(1, "Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
-
-		Log.print(1,
-				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
-
-		operationJouerJoueurCourant(donneesJeu, new Coordonnees(0, 14));
-		afficherPlateauJeuCourant(plateauJeuEnCours);
-
-		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauApresAnnulerRefaireEtUnCoupHumainIA");
-		assertEquals(donneesJeu.getRenjou().getJoueurs()[0].getNbPion(),
-				donneesJeu.getRenjou().getJoueurs()[0].getNbPionsBase() - 5);
-		assertEquals(donneesJeu.getRenjou().getJoueurs()[1].getNbPion(),
-				donneesJeu.getRenjou().getJoueurs()[1].getNbPionsBase() - 5);
-
-		Log.print(1, "Le nombre de pion du joueur noir est de : " + donneesJeu.getRenjou().getJoueurs()[0].getNbPion());
-
-		Log.print(1,
-				"Le nombre de pion du joueur blanc est de : " + donneesJeu.getRenjou().getJoueurs()[1].getNbPion());
-
-		Log.print(1, "FIN TEST d'un annuler/refaire un coup ENTRE JOUEUR ET IA");
-	}
-
-	@Test
-	public void testSauvegardePartie() {
-
-		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
-		PlateauDeJeu plateauJeuEnCours = donneesJeu.getRenjou().getPlateauDeJeu();
-
-		((IAFacile) donneesJeu.getRenjou().getJoueurs()[1]).setSeed(100);
-
-		Log.setNiveau(0);
+		Log.setNiveau(10);
 		Log.print(1, "TEST PARTIE AVEC SAUVEGARDE");
 		afficherPlateauJeuCourant(plateauJeuEnCours);
 
-		Coordonnees[] tabCoord = new Coordonnees[4];
+		Coordonnees[] tabCoord = new Coordonnees[8];
 		tabCoord[0] = new Coordonnees(7, 7); // noir coup 1
-		tabCoord[1] = new Coordonnees(1, 1); // noir coup 2
-		tabCoord[2] = new Coordonnees(10, 10); // noir coup 3
-		tabCoord[3] = new Coordonnees(13, 13); // noir coup 4
+		tabCoord[1] = new Coordonnees(8, 8); // blanc coup 1
+		tabCoord[2] = new Coordonnees(1, 1); // noir coup 2
+		tabCoord[3] = new Coordonnees(2, 2); // blanc coup 2
+		tabCoord[4] = new Coordonnees(10, 10); // noir coup 3
+		tabCoord[5] = new Coordonnees(5, 5); // blanc coup 3
+		tabCoord[6] = new Coordonnees(13, 13); // noir coup 4
+		tabCoord[7] = new Coordonnees(0, 0); // blanc coup 4
 
 		for (int i = 0; i < tabCoord.length; i++) {
 			operationJouerJoueurCourant(donneesJeu, tabCoord[i]);
@@ -551,58 +668,50 @@ public class TestMoteur {
 
 		donneesJeu.sauvegarder("testSaveRenjou.ser");
 
-		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauJeuSauvegardeHumainIA");
+		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauJeuSauvegardeHumainVsHumain");
 
 		Log.print(1, "FIN TEST PARTIE AVEC SAUVEGARDE");
 
-	}
+		// ------------------------------------------------
+		donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
 
-	@Test
-	public void testChargementPartie() {
-
-		Moteur donneesJeu = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
-		// vu qu'on va charger un new renjou avec des paramètres humain vs
-		// IAFacile, la ligne au dessus n'a plus vraiment de sens. C'est
-		// seulement pour simuler une nouvelle partie
-
-		Log.setNiveau(0);
 		Log.print(1, "TEST CHARGEMENT DE PARTIE");
 
 		donneesJeu.charger("testSaveRenjou.ser");
-		PlateauDeJeu plateauJeuEnCours = donneesJeu.getRenjou().getPlateauDeJeu();
+		plateauJeuEnCours = donneesJeu.getRenjou().getPlateauDeJeu();
 
 		afficherPlateauJeuCourant(plateauJeuEnCours);
 
-		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauJeuSauvegardeHumainIA");
+		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauJeuSauvegardeHumainVsHumain");
 
 		Log.print(1, "LE JOUEUR NOIR EST DE TYPE : " + donneesJeu.getRenjou().getJoueurs()[0].getType());
 		Log.print(1, "LE JOUEUR BLANC EST DE TYPE : " + donneesJeu.getRenjou().getJoueurs()[1].getType());
 
 		assertEquals(donneesJeu.getRenjou().getJoueurs()[0].getType(), TypeJoueur.Humain);
-		assertEquals(donneesJeu.getRenjou().getJoueurs()[1].getType(), TypeJoueur.IAFacile);
+		assertEquals(donneesJeu.getRenjou().getJoueurs()[1].getType(), TypeJoueur.Humain);
 
 		Log.print(1, "LE JOUEUR NOIR HUMAIN JOUE");
 
 		operationJouerJoueurCourant(donneesJeu, new Coordonnees(0, 0));
 		afficherPlateauJeuCourant(plateauJeuEnCours);
 
-		Coordonnees[] tabCoord = new Coordonnees[8];
-		tabCoord[0] = new Coordonnees(11, 9); // noir coup 1
-		tabCoord[1] = new Coordonnees(13, 9); // noir coup 2
-		tabCoord[2] = new Coordonnees(12, 8); // noir coup 3
-		tabCoord[3] = new Coordonnees(11, 7); // noir coup 4
-		tabCoord[4] = new Coordonnees(10, 6); // noir coup 5
-		tabCoord[5] = new Coordonnees(9, 5); // noir coup 6
-		tabCoord[6] = new Coordonnees(14, 10); // noir coup 7
-		tabCoord[7] = new Coordonnees(3, 3); // noir coup 8 ne sera pas joué car
-												// gagné avant
+		tabCoord = new Coordonnees[8];
+		tabCoord[0] = new Coordonnees(12, 13); // noir coup 1
+		tabCoord[1] = new Coordonnees(0, 14); // blanc coup 1
+		tabCoord[2] = new Coordonnees(11, 13); // noir coup 2
+		tabCoord[3] = new Coordonnees(1, 14); // blanc coup 2
+		tabCoord[4] = new Coordonnees(10, 13); // noir coup 3
+		tabCoord[5] = new Coordonnees(2, 14); // blanc coup 3
+		tabCoord[6] = new Coordonnees(9, 13); // noir coup 4
+		tabCoord[7] = new Coordonnees(3, 14); // blanc coup 4 ne sera pas joué car
+		// gagné avant
 
 		for (int i = 0; i < tabCoord.length; i++) {
 			operationJouerJoueurCourant(donneesJeu, tabCoord[i]);
 			afficherPlateauJeuCourant(plateauJeuEnCours);
 		}
 
-		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauJeuSauvegardeVictoireNoireHumainIA");
+		TestPlateauDeJeu.comparer(plateauJeuEnCours, chemin + "PlateauJeuSauvegardeVictoireNoireHumainVsHumain");
 
 		Log.print(1, "FIN TEST CHARGEMENT DE PARTIE");
 

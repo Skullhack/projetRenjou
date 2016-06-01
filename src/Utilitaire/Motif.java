@@ -170,49 +170,59 @@ public class Motif {
 	
 	public boolean estUnDiagonaleDroiteLibre(TypeCouleur typeCouleur) {
 		// Log.print(1010, infoDiagonaleHautGauche.toString());
-		return (infoDiagonaleHautGauche.estLibre(typeCouleur) && infoDiagonaleBasDroite.estLibre(typeCouleur)
-				&& (nbPionDiagonaleDroite(typeCouleur) == 1));
+		return (infoDiagonaleHautGauche.estLibre(typeCouleur) || infoDiagonaleBasDroite.estLibre(typeCouleur))
+				&& (nbPionDiagonaleDroite(typeCouleur) == 1);
 	}
 	public boolean estUnDiagonaleGaucheLibre(TypeCouleur typeCouleur) {
-		return (infoDiagonaleHautDroite.estLibre(typeCouleur) && infoDiagonaleBasGauche.estLibre(typeCouleur)
-				&& (nbPionDiagonaleGauche(typeCouleur) == 1));
+		return (infoDiagonaleHautDroite.estLibre(typeCouleur) || infoDiagonaleBasGauche.estLibre(typeCouleur))
+				&& (nbPionDiagonaleGauche(typeCouleur) == 1);
 	}
 	public boolean estUnVerticaleLibre(TypeCouleur typeCouleur) {
 
-		return (infoHaut.estLibre(typeCouleur) && infoBas.estLibre(typeCouleur)
-				&& (nbPionVerticale(typeCouleur) == 1));
+		return (infoHaut.estLibre(typeCouleur) || infoBas.estLibre(typeCouleur))
+				&& (nbPionVerticale(typeCouleur) == 1);
 	}
 	public boolean estUnHorizontaleLibre(TypeCouleur typeCouleur) {
 
-		return (infoDroite.estLibre(typeCouleur) && infoGauche.estLibre(typeCouleur)
-				&& (nbPionHorizontale(typeCouleur) == 1));
+		return (infoDroite.estLibre(typeCouleur) || infoGauche.estLibre(typeCouleur))
+				&& (nbPionHorizontale(typeCouleur) == 1);
 	}
 
-	
 	public boolean estUnDiagonaleDroiteLibreLibre(TypeCouleur typeCouleur) {
 		// Log.print(1010, infoDiagonaleHautGauche.toString());
-		return (infoDiagonaleHautGauche.estLibre(typeCouleur) && infoDiagonaleBasDroite.estLibre(typeCouleur)
-				&& (infoDiagonaleHautGauche.estLibre2Cases(typeCouleur)
-						|| infoDiagonaleBasDroite.estLibre2Cases(typeCouleur))
-				&& (nbPionDiagonaleDroite(typeCouleur) == 1));
+		return (
+				(infoDiagonaleHautGauche.estLibre(typeCouleur) && infoDiagonaleBasDroite.estLibre2Cases(typeCouleur))
+				|| 
+				(infoDiagonaleBasDroite.estLibre(typeCouleur) && (infoDiagonaleHautGauche.estLibre2Cases(typeCouleur)))
+				)
+				&& (nbPionDiagonaleDroite(typeCouleur) == 1);
 	}
+
 	public boolean estUnDiagonaleGaucheLibreLibre(TypeCouleur typeCouleur) {
-		return (infoDiagonaleHautDroite.estLibre(typeCouleur) && infoDiagonaleBasGauche.estLibre(typeCouleur)
-				&& (infoDiagonaleHautDroite.estLibre2Cases(typeCouleur)
-						|| infoDiagonaleBasGauche.estLibre2Cases(typeCouleur))
-				&& (nbPionDiagonaleGauche(typeCouleur) == 1));
+		return (
+				(infoDiagonaleHautDroite.estLibre(typeCouleur) && infoDiagonaleBasGauche.estLibre2Cases(typeCouleur))
+				|| 
+				(infoDiagonaleBasGauche.estLibre(typeCouleur) && (infoDiagonaleHautDroite.estLibre2Cases(typeCouleur)))
+				)
+				&& (nbPionDiagonaleDroite(typeCouleur) == 1);
 	}
+
 	public boolean estUnVerticaleLibreLibre(TypeCouleur typeCouleur) {
-
-		return (infoHaut.estLibre(typeCouleur) && infoBas.estLibre(typeCouleur)
-				&& (infoHaut.estLibre2Cases(typeCouleur) || infoBas.estLibre2Cases(typeCouleur))
-				&& (nbPionVerticale(typeCouleur) == 1));
+		return (
+				(infoHaut.estLibre(typeCouleur) && infoBas.estLibre2Cases(typeCouleur))
+				|| 
+				(infoBas.estLibre(typeCouleur) && (infoHaut.estLibre2Cases(typeCouleur)))
+				)
+				&& (nbPionDiagonaleDroite(typeCouleur) == 1);
 	}
-	public boolean estUnHorizontaleLibreLibre(TypeCouleur typeCouleur) {
 
-		return (infoDroite.estLibre(typeCouleur) && infoGauche.estLibre(typeCouleur)
-				&& (infoDroite.estLibre2Cases(typeCouleur) || infoGauche.estLibre2Cases(typeCouleur))
-				&& (nbPionHorizontale(typeCouleur) == 1));
+	public boolean estUnHorizontaleLibreLibre(TypeCouleur typeCouleur) {
+		return (
+				(infoDroite.estLibre(typeCouleur) && infoGauche.estLibre2Cases(typeCouleur))
+				|| 
+				(infoGauche.estLibre(typeCouleur) && (infoDroite.estLibre2Cases(typeCouleur)))
+				)
+				&& (nbPionDiagonaleDroite(typeCouleur) == 1);
 	}
 
 	
@@ -323,48 +333,59 @@ public class Motif {
 
 	public boolean estDeuxDiagonaleDroiteLibre(TypeCouleur typeCouleur) {
 		// Log.print(1010, infoDiagonaleHautGauche.toString());
-		return (infoDiagonaleHautGauche.estLibre(typeCouleur) && infoDiagonaleBasDroite.estLibre(typeCouleur)
-				&& (nbPionDiagonaleDroite(typeCouleur) == 2));
+		return (infoDiagonaleHautGauche.estLibre(typeCouleur) || infoDiagonaleBasDroite.estLibre(typeCouleur))
+				&& (nbPionDiagonaleDroite(typeCouleur) == 2);
 	}
 	public boolean estDeuxDiagonaleGaucheLibre(TypeCouleur typeCouleur) {
-		return (infoDiagonaleHautDroite.estLibre(typeCouleur) && infoDiagonaleBasGauche.estLibre(typeCouleur)
-				&& (nbPionDiagonaleGauche(typeCouleur) == 2));
+		return (infoDiagonaleHautDroite.estLibre(typeCouleur) || infoDiagonaleBasGauche.estLibre(typeCouleur))
+				&& (nbPionDiagonaleGauche(typeCouleur) == 2);
 	}
 	public boolean estDeuxVerticaleLibre(TypeCouleur typeCouleur) {
 
-		return (infoHaut.estLibre(typeCouleur) && infoBas.estLibre(typeCouleur)
-				&& (nbPionVerticale(typeCouleur) == 2));
+		return (infoHaut.estLibre(typeCouleur) || infoBas.estLibre(typeCouleur))
+				&& (nbPionVerticale(typeCouleur) == 2);
 	}
 	public boolean estDeuxHorizontaleLibre(TypeCouleur typeCouleur) {
 
-		return (infoDroite.estLibre(typeCouleur) && infoGauche.estLibre(typeCouleur)
-				&& (nbPionHorizontale(typeCouleur) == 2));
+		return (infoDroite.estLibre(typeCouleur) || infoGauche.estLibre(typeCouleur))
+				&& (nbPionHorizontale(typeCouleur) == 2);
 	}
 
 	public boolean estDeuxDiagonaleDroiteLibreLibre(TypeCouleur typeCouleur) {
 		// Log.print(1010, infoDiagonaleHautGauche.toString());
-		return (infoDiagonaleHautGauche.estLibre(typeCouleur) && infoDiagonaleBasDroite.estLibre(typeCouleur)
-				&& (infoDiagonaleHautGauche.estLibre2Cases(typeCouleur)
-						|| infoDiagonaleBasDroite.estLibre2Cases(typeCouleur))
-				&& (nbPionDiagonaleDroite(typeCouleur) == 2));
+		return (
+				(infoDiagonaleHautGauche.estLibre(typeCouleur) && infoDiagonaleBasDroite.estLibre2Cases(typeCouleur))
+				|| 
+				(infoDiagonaleBasDroite.estLibre(typeCouleur) && (infoDiagonaleHautGauche.estLibre2Cases(typeCouleur)))
+				)
+				&& (nbPionDiagonaleDroite(typeCouleur) == 2);
 	}
+
 	public boolean estDeuxDiagonaleGaucheLibreLibre(TypeCouleur typeCouleur) {
-		return (infoDiagonaleHautDroite.estLibre(typeCouleur) && infoDiagonaleBasGauche.estLibre(typeCouleur)
-				&& (infoDiagonaleHautDroite.estLibre2Cases(typeCouleur)
-						|| infoDiagonaleBasGauche.estLibre2Cases(typeCouleur))
-				&& (nbPionDiagonaleGauche(typeCouleur) == 2));
+		return (
+				(infoDiagonaleHautDroite.estLibre(typeCouleur) && infoDiagonaleBasGauche.estLibre2Cases(typeCouleur))
+				|| 
+				(infoDiagonaleBasGauche.estLibre(typeCouleur) && (infoDiagonaleHautDroite.estLibre2Cases(typeCouleur)))
+				)
+				&& (nbPionDiagonaleGauche(typeCouleur) == 2);
 	}
+
 	public boolean estDeuxVerticaleLibreLibre(TypeCouleur typeCouleur) {
-
-		return (infoHaut.estLibre(typeCouleur) && infoBas.estLibre(typeCouleur)
-				&& (infoHaut.estLibre2Cases(typeCouleur) || infoBas.estLibre2Cases(typeCouleur))
-				&& (nbPionVerticale(typeCouleur) == 2));
+		return (
+				(infoHaut.estLibre(typeCouleur) && infoBas.estLibre2Cases(typeCouleur))
+				|| 
+				(infoBas.estLibre(typeCouleur) && (infoHaut.estLibre2Cases(typeCouleur)))
+				)
+				&& (nbPionVerticale(typeCouleur) == 2);
 	}
-	public boolean estDeuxHorizontaleLibreLibre(TypeCouleur typeCouleur) {
 
-		return (infoDroite.estLibre(typeCouleur) && infoGauche.estLibre(typeCouleur)
-				&& (infoDroite.estLibre2Cases(typeCouleur) || infoGauche.estLibre2Cases(typeCouleur))
-				&& (nbPionHorizontale(typeCouleur) == 2));
+	public boolean estDeuxHorizontaleLibreLibre(TypeCouleur typeCouleur) {
+		return (
+				(infoDroite.estLibre(typeCouleur) && infoGauche.estLibre2Cases(typeCouleur))
+				|| 
+				(infoGauche.estLibre(typeCouleur) && (infoDroite.estLibre2Cases(typeCouleur)))
+				)
+				&& (nbPionHorizontale(typeCouleur) == 2);
 	}
 
 	
@@ -413,13 +434,14 @@ public class Motif {
 	}
 	
 	public boolean estTroisFoisTroisLibre(TypeCouleur typeCouleur) {
+		
 		if (estTroisDiagonaleDroiteLibre(typeCouleur)) {
 			if (estTroisDiagonaleGaucheLibre(typeCouleur)) {
 				return true;
-			} else if (estTroisHorizontaleLibre(typeCouleur)) {
+			} else 
+				if (estTroisHorizontaleLibre(typeCouleur)) {
 				return true;
 			} else if (estTroisVerticaleLibre(typeCouleur)) {
-
 				return true;
 			}
 
@@ -445,7 +467,6 @@ public class Motif {
 			} else if (estTroisHorizontaleLibreLibre(typeCouleur)) {
 				return true;
 			} else if (estTroisVerticaleLibreLibre(typeCouleur)) {
-
 				return true;
 			}
 
@@ -470,6 +491,12 @@ public class Motif {
 		return estQuatreDiagonaleDroite(typeCouleur) || estQuatreDiagonaleGauche(typeCouleur)
 				|| estQuatreHorizontale(typeCouleur) || estQuatreVerticale(typeCouleur);
 	}
+	
+	public boolean estQuatreLibreContinuIAFacile(TypeCouleur typeCouleur){
+		return estQuatreDiagonaleDroiteLibreContinuIAFacile(typeCouleur) || estQuatreDiagonaleGaucheLibreContinuIAFacile(typeCouleur)
+				|| estQuatreHorizontaleLibreContinuIAFacile(typeCouleur) || estQuatreVerticaleLibreContinuIAFacile(typeCouleur);
+
+	}
 
 	public boolean estQuatreLibre(TypeCouleur typeCouleur) {
 		return estQuatreDiagonaleDroiteLibre(typeCouleur) || estQuatreDiagonaleGaucheLibre(typeCouleur)
@@ -479,60 +506,71 @@ public class Motif {
 	
 	public boolean estTroisDiagonaleDroiteLibre(TypeCouleur typeCouleur) {
 		// Log.print(1010, infoDiagonaleHautGauche.toString());
-		return (infoDiagonaleHautGauche.estLibre(typeCouleur) && infoDiagonaleBasDroite.estLibre(typeCouleur)
-				&& (nbPionDiagonaleDroite(typeCouleur) == 3));
+		return (infoDiagonaleHautGauche.estLibre(typeCouleur) || infoDiagonaleBasDroite.estLibre(typeCouleur))
+				&& (nbPionDiagonaleDroite(typeCouleur) == 3);
 	}
 
 	public boolean estTroisDiagonaleGaucheLibre(TypeCouleur typeCouleur) {
-		return (infoDiagonaleHautDroite.estLibre(typeCouleur) && infoDiagonaleBasGauche.estLibre(typeCouleur)
-				&& (nbPionDiagonaleGauche(typeCouleur) == 3));
+		return (infoDiagonaleHautDroite.estLibre(typeCouleur) || infoDiagonaleBasGauche.estLibre(typeCouleur))
+				&& (nbPionDiagonaleGauche(typeCouleur) == 3);
 	}
 
 	public boolean estTroisVerticaleLibre(TypeCouleur typeCouleur) {
 
-		return (infoHaut.estLibre(typeCouleur) && infoBas.estLibre(typeCouleur)
-				&& (nbPionVerticale(typeCouleur) == 3));
+		return (infoHaut.estLibre(typeCouleur) || infoBas.estLibre(typeCouleur))
+				&& (nbPionVerticale(typeCouleur) == 3);
 	}
 
 	public boolean estTroisHorizontaleLibre(TypeCouleur typeCouleur) {
 
-		return (infoDroite.estLibre(typeCouleur) && infoGauche.estLibre(typeCouleur)
-				&& (nbPionHorizontale(typeCouleur) == 3));
+		return (infoDroite.estLibre(typeCouleur) || infoGauche.estLibre(typeCouleur))
+				&& (nbPionHorizontale(typeCouleur) == 3);
 	}
 
 	
+	
+	
+	
+	
 	public boolean estTroisDiagonaleDroiteLibreLibre(TypeCouleur typeCouleur) {
-		// Log.print(1010, infoDiagonaleHautGauche.toString());
-		return (infoDiagonaleHautGauche.estLibre(typeCouleur) && infoDiagonaleBasDroite.estLibre(typeCouleur)
-				&& (infoDiagonaleHautGauche.estLibre2Cases(typeCouleur)
-						|| infoDiagonaleBasDroite.estLibre2Cases(typeCouleur))
-				&& (nbPionDiagonaleDroite(typeCouleur) == 3));
+		return (
+				(infoDiagonaleHautGauche.estLibre(typeCouleur) && infoDiagonaleBasDroite.estLibre2Cases(typeCouleur))
+				|| 
+				(infoDiagonaleBasDroite.estLibre(typeCouleur) && (infoDiagonaleHautGauche.estLibre2Cases(typeCouleur)))
+				)
+				&& (nbPionDiagonaleDroite(typeCouleur) == 3);
 	}
 
 	public boolean estTroisDiagonaleGaucheLibreLibre(TypeCouleur typeCouleur) {
-		return (infoDiagonaleHautDroite.estLibre(typeCouleur) && infoDiagonaleBasGauche.estLibre(typeCouleur)
-				&& (infoDiagonaleHautDroite.estLibre2Cases(typeCouleur)
-						|| infoDiagonaleBasGauche.estLibre2Cases(typeCouleur))
-				&& (nbPionDiagonaleGauche(typeCouleur) == 3));
+		return (
+				(infoDiagonaleHautDroite.estLibre(typeCouleur) && infoDiagonaleBasGauche.estLibre2Cases(typeCouleur))
+				|| 
+				(infoDiagonaleBasGauche.estLibre(typeCouleur) && (infoDiagonaleHautDroite.estLibre2Cases(typeCouleur)))
+				)
+				&& (nbPionDiagonaleGauche(typeCouleur) == 3);
+
 	}
 
 	public boolean estTroisVerticaleLibreLibre(TypeCouleur typeCouleur) {
-
-		return (infoHaut.estLibre(typeCouleur) && infoBas.estLibre(typeCouleur)
-				&& (infoHaut.estLibre2Cases(typeCouleur) || infoBas.estLibre2Cases(typeCouleur))
-				&& (nbPionVerticale(typeCouleur) == 3));
+		return (
+				(infoHaut.estLibre(typeCouleur) && infoBas.estLibre2Cases(typeCouleur))
+				|| 
+				(infoBas.estLibre(typeCouleur) && (infoHaut.estLibre2Cases(typeCouleur)))
+				)
+				&& (nbPionVerticale(typeCouleur) == 3);
 	}
 
 	public boolean estTroisHorizontaleLibreLibre(TypeCouleur typeCouleur) {
-
-		return (infoDroite.estLibre(typeCouleur) && infoGauche.estLibre(typeCouleur)
-				&& (infoDroite.estLibre2Cases(typeCouleur) || infoGauche.estLibre2Cases(typeCouleur))
+		return ((
+				(infoDroite.estLibre(typeCouleur) && infoGauche.estLibre2Cases(typeCouleur))
+				|| 
+				(infoGauche.estLibre(typeCouleur) && (infoDroite.estLibre2Cases(typeCouleur)))
+				)
 				&& (nbPionHorizontale(typeCouleur) == 3));
 	}
 
 	
 	public boolean estTroisDiagonaleDroite(TypeCouleur typeCouleur) {
-		// Log.print(1010, infoDiagonaleHautGauche.toString());
 		return nbPionDiagonaleDroite(typeCouleur) == 3;
 	}
 
@@ -549,27 +587,70 @@ public class Motif {
 
 		return nbPionHorizontale(typeCouleur) == 3;
 	}
+	
+	
+	public boolean estQuatreDiagonaleDroiteLibreContinuIAFacile(TypeCouleur typeCouleur) {
+		return ((infoDiagonaleHautGauche.estLibre(typeCouleur) && infoDiagonaleBasDroite.estLibre(typeCouleur))
+				&& (nbPionDiagonaleDroiteContinu(typeCouleur) == 4));
+	}
+
+	public boolean estQuatreDiagonaleGaucheLibreContinuIAFacile(TypeCouleur typeCouleur) {
+		return ((infoDiagonaleHautDroite.estLibre(typeCouleur) && infoDiagonaleBasGauche.estLibre(typeCouleur))
+				&& (nbPionDiagonaleGaucheContinu(typeCouleur) == 4));
+	}
+
+	public boolean estQuatreVerticaleLibreContinuIAFacile(TypeCouleur typeCouleur) {
+		return ((infoHaut.estLibre(typeCouleur) && infoBas.estLibre(typeCouleur))
+				&& (nbPionVerticaleContinu(typeCouleur) == 4));
+	}
+
+	public boolean estQuatreHorizontaleLibreContinuIAFacile(TypeCouleur typeCouleur) {
+		return ((infoDroite.estLibre(typeCouleur) && infoGauche.estLibre(typeCouleur))
+				&& (nbPionHorizontaleContinu(typeCouleur) == 4));
+	}
 
 	
+	
+	public boolean estQuatreDiagonaleDroiteLibreLibree(TypeCouleur typeCouleur) {
+		return (infoDiagonaleHautGauche.estLibre(typeCouleur) && infoDiagonaleBasDroite.estLibre(typeCouleur))
+				&& (nbPionDiagonaleDroite(typeCouleur) == 4);
+	}
+
+	public boolean estQuatreDiagonaleGaucheLibreLibre(TypeCouleur typeCouleur) {
+		return (infoDiagonaleHautDroite.estLibre(typeCouleur) && infoDiagonaleBasGauche.estLibre(typeCouleur))
+				&& (nbPionDiagonaleGauche(typeCouleur) == 4);
+	}
+
+	public boolean estQuatreVerticaleLibreLibre(TypeCouleur typeCouleur) {
+		return (infoHaut.estLibre(typeCouleur) && infoBas.estLibre(typeCouleur))
+				&& (nbPionVerticale(typeCouleur) == 4);
+	}
+
+	public boolean estQuatreHorizontaleLibreLibre(TypeCouleur typeCouleur) {
+		return (infoDroite.estLibre(typeCouleur) && infoGauche.estLibre(typeCouleur))
+				&& (nbPionHorizontale(typeCouleur) == 4);
+	}
+
+
 
 	public boolean estQuatreDiagonaleDroiteLibre(TypeCouleur typeCouleur) {
-		return ((infoDiagonaleHautGauche.estLibre(typeCouleur) || infoDiagonaleBasDroite.estLibre(typeCouleur))
-				&& (nbPionDiagonaleDroite(typeCouleur) == 4));
+		return (infoDiagonaleHautGauche.estLibre(typeCouleur) || infoDiagonaleBasDroite.estLibre(typeCouleur))
+				&& (nbPionDiagonaleDroite(typeCouleur) == 4);
 	}
 
 	public boolean estQuatreDiagonaleGaucheLibre(TypeCouleur typeCouleur) {
-		return ((infoDiagonaleHautDroite.estLibre(typeCouleur) || infoDiagonaleBasGauche.estLibre(typeCouleur))
-				&& (nbPionDiagonaleGauche(typeCouleur) == 4));
+		return (infoDiagonaleHautDroite.estLibre(typeCouleur) || infoDiagonaleBasGauche.estLibre(typeCouleur))
+				&& (nbPionDiagonaleGauche(typeCouleur) == 4);
 	}
 
 	public boolean estQuatreVerticaleLibre(TypeCouleur typeCouleur) {
-		return ((infoHaut.estLibre(typeCouleur) || infoBas.estLibre(typeCouleur))
-				&& (nbPionVerticale(typeCouleur) == 4));
+		return ((infoHaut.estLibre(typeCouleur) || infoBas.estLibre(typeCouleur)))
+				&& (nbPionVerticale(typeCouleur) == 4);
 	}
 
 	public boolean estQuatreHorizontaleLibre(TypeCouleur typeCouleur) {
-		return ((infoDroite.estLibre(typeCouleur) || infoGauche.estLibre(typeCouleur))
-				&& (nbPionHorizontale(typeCouleur) == 4));
+		return (infoDroite.estLibre(typeCouleur) || infoGauche.estLibre(typeCouleur))
+				&& (nbPionHorizontale(typeCouleur) == 4);
 	}
 
 	
@@ -911,6 +992,7 @@ public class Motif {
 
 	public boolean estQuatreFoisTrois(TypeCouleur tc) {
 		if(estQuatreHorizontaleLibre(tc)){
+			Log.print(1010, "estQuatreHorizontaleLibre " + estQuatreHorizontaleLibre(tc));
 			if(estTroisDiagonaleDroiteLibreLibre(tc)||estTroisVerticaleLibreLibre(tc)||estTroisDiagonaleGaucheLibreLibre(tc)){
 				return true;
 			}
@@ -934,5 +1016,19 @@ public class Motif {
 		return false;
 	}
 
+
+	public String toString(){
+		String buffer = "";
+		
+		buffer += infoGauche.toString() + "\n";
+		buffer += infoDiagonaleHautGauche.toString() + "\n";
+		buffer += infoHaut.toString() + "\n";
+		buffer += infoDiagonaleHautDroite.toString() + "\n";
+		buffer += infoDroite.toString() + "\n";
+		buffer += infoDiagonaleBasDroite.toString() + "\n";
+		buffer += infoBas.toString() + "\n";
+		buffer += infoDiagonaleBasGauche.toString() + "\n";
+		return buffer;
+	}
 
 }

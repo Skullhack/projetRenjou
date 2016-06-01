@@ -50,7 +50,6 @@ public class EcouteurFenetreMenu implements ActionListener {
         action = fm.getCouleur()[1].getSelection().getActionCommand();
         tab[1] = TypeJoueur.valueOf(action);
         if (tab[0] != null && tab[1] != null) {
-        	//gerer charger et nouvelle partie : TODO
             m.configurerPartie(tab[0], tab[1], new ArrayList<TypeTabous>(), fm.getNouvellePartie(),false);
         }
         frames[0].setEnabled(true);
