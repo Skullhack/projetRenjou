@@ -11,6 +11,9 @@ Le problème est le même pour les joueurs
 Je vais dans configuration -> thèmes -> je sélectionne un thème -> je clique sur la croix d'exit
 ====> Fatal error avec une exception
 
+Je lance le tutoriel -> J'arrive à la partie ou il faut créer une partie -> Je ferme la fenêtre
+===> Quand je l'a réouvre, le chinois me propose toujours de m'expliquer les règles
+
 
 
 PARTIE IHM :
