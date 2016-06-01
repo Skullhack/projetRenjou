@@ -348,6 +348,7 @@ public class EcouteurFenetreJeu implements Initializable {
 			imageTuto.setImage(null);
 			ihm.efm.update();
 		}	
+		ihm.efm.selectionnerBoxJoueur();
 	}
 	
 	@FXML
