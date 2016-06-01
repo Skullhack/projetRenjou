@@ -8,6 +8,7 @@ package Joueur;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Random;
 
 import Controleur.*;
 import Enum.*;
@@ -15,6 +16,7 @@ import Utilitaire.Coordonnees;
 import Utilitaire.Log;
 import Utilitaire.Motif;
 import Utilitaire.PlateauDeJeu;
+import Utilitaire.Tabou;
 
 public class IAFacile extends IA {
 
@@ -31,6 +33,8 @@ public class IAFacile extends IA {
 	
 	@Override
 	public Coordonnees jouer(PlateauDeJeu p) {
+		Log.setPlage(200, 300);
+		
 		Coordonnees c = estCoupGagnant(p);
 		if (c.getLigne() == -1) {
 			c = empecherCoupGagnant(p);
@@ -62,7 +66,9 @@ public class IAFacile extends IA {
 				if(plateau.getPlateau()[i][j] == TypeCase.Jouable){
 					c = new Coordonnees(i, j);
 					if(PartieFinie(plateau, c, tc)){
-						return c;
+						if(!estCoupTabous(plateau, c)){
+							return c;
+						}
 					}
 				}
 			}
@@ -96,7 +102,9 @@ public class IAFacile extends IA {
 				if(plateau.getPlateau()[i][j] == TypeCase.Jouable){
 					c = new Coordonnees(i, j);
 					if(PartieFinie(plateau, c, caseAdversaire)){
-						return c;
+						if(!estCoupTabous(plateau, c)){
+							return c;
+						}
 					}
 				}
 			}
@@ -110,7 +118,9 @@ public class IAFacile extends IA {
 					c = new Coordonnees(i, j);
 					Motif m = new Motif(plateau, c);
 					if (m.estQuatreLibreContinuIAFacile(couleurAdversaire)) {
-						return c;
+						if(!estCoupTabous(plateau, c)){
+							return c;
+						}
 					}
 				}
 			}
@@ -119,6 +129,20 @@ public class IAFacile extends IA {
 		c = new Coordonnees(-1, -1);
 		
 		return c;
+	}
+	
+	private  boolean estCoupTabous(PlateauDeJeu plateau, Coordonnees c){
+		int proba = r.nextInt(5);
+		if(couleur == TypeCouleur.Noir){
+			if(!Tabou.estValide(plateau, c, true, true, true)){
+				if(proba != 1){
+
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 
 	private Coordonnees pointRandom(PlateauDeJeu plateau) {
@@ -136,7 +160,14 @@ public class IAFacile extends IA {
 		if(listePoint.size() == 0){
 			listePoint = listePointValide(plateau);
 		}
+		
 		int indiceRandom = r.nextInt(listePoint.size());
+		Coordonnees c = listePoint.get(indiceRandom);
+		while(estCoupTabous(plateau, c)){
+			indiceRandom = r.nextInt(listePoint.size());
+			c = listePoint.get(indiceRandom);
+		}
+		
 		return listePoint.get(indiceRandom);
 	}
 

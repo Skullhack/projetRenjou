@@ -156,4 +156,10 @@ public class TestTabou {
 		assertTrue(m4.estQuatreFoisTrois(TypeCouleur.Noir));
 	}
 	
+	@Test
+	public void testIAFacileTabous(){
+		pdj = pdj.charger(chemin + "TestIaFacileTabous");
+		assertFalse(Tabou.estValide(pdj, new Coordonnees(5,8), true, true, true));
+	}
+	
 }

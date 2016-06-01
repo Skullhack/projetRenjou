@@ -138,9 +138,10 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 
 	public static  boolean estValide(PlateauDeJeu r, Coordonnees c, boolean troisFoisTroisAtribut, boolean quatreFoisQuatreAtribut, boolean sixSeptAtribut) {
 		// initialisation des infos selon les directions
+
 		Log.print(1010, "r = " + r + "c" + c);
 		Motif motif = new Motif(r,c);
-
+		
 		Log.print(1010, motif.getInfoDiagonaleHautGauche().toString());
 		Log.print(1010, motif.getInfoDiagonaleHautDroite().toString());
 		Log.print(1010, motif.getInfoDiagonaleBasGauche().toString());
@@ -174,10 +175,12 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 	}
 
 	public static boolean troisFoisTrois(Motif motif, TypeCouleur typeCouleur) {
+
 		return motif.estTroisFoisTroisLibreLibre(typeCouleur);
 	}
 
 	public static boolean quatreFoisQuatre(Motif motif, TypeCouleur typeCouleur) {
+
 		return motif.estQuatreFoisQuatre(typeCouleur);
 	}
 
