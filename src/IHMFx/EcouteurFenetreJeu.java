@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+
+import com.sun.prism.paint.Color;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Text;
+
 import javafx.event.ActionEvent;
 import Controleur.Moteur;
 import Controleur.PionJoue;
@@ -32,6 +36,8 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.paint.*;
+
 
 /**
  *
@@ -714,7 +720,13 @@ public class EcouteurFenetreJeu implements Initializable {
 			}else{
 				listAnchor1.setStyle(null);
 			}
+			
 			list1.setText("Tour "+i);
+			if(i % 2 == 0){
+				list1.setStyle("-fx-text-fill: black;");
+			}else{
+				list1.setStyle("-fx-text-fill: white;");
+			}
 			i++;
 		}
 		if(i != indiceFinTab){
@@ -724,6 +736,11 @@ public class EcouteurFenetreJeu implements Initializable {
 				listAnchor2.setStyle(null);
 			}
 			list2.setText("Tour "+i);
+			if(i % 2 == 0){
+				list2.setStyle("-fx-text-fill: black;");
+			}else{
+				list2.setStyle("-fx-text-fill: white;");
+			}
 			i++;
 		}
 		if(i != indiceFinTab){
@@ -733,6 +750,11 @@ public class EcouteurFenetreJeu implements Initializable {
 				listAnchor3.setStyle(null);
 			}
 			list3.setText("Tour "+i);
+			if(i % 2 == 0){
+				list3.setStyle("-fx-text-fill: black;");
+			}else{
+				list3.setStyle("-fx-text-fill: white;");
+			}
 			i++;
 		}
 		if(i != indiceFinTab){
@@ -742,6 +764,11 @@ public class EcouteurFenetreJeu implements Initializable {
 				listAnchor4.setStyle(null);
 			}
 			list4.setText("Tour "+i);
+			if(i % 2 == 0){
+				list4.setStyle("-fx-text-fill: black;");
+			}else{
+				list4.setStyle("-fx-text-fill: white;");
+			}
 			i++;
 		}
 			
