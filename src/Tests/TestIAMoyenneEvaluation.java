@@ -606,4 +606,14 @@ public class TestIAMoyenneEvaluation {
 		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 	}
 	
+	@Test
+	public void main() {
+		pdj = pdj.charger(chemin + "TroisNoirLibreLibre");
+		Log.print(501, pdj.toString());
+		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
+		
+	}
 }

@@ -10,29 +10,11 @@ public enum MotifsReconnus {
 			return motif.estDeuxFoisDeuxLibreLibre(couleur);
 		}
 	},
-	estDeuxLibreLibre {
-		@Override
-		public boolean verif(Motif motif, TypeCouleur couleur) {
-			return motif.estDeuxLibreLibre(couleur);
-		}
-	},
-	estDeuxLibre {
-		@Override
-		public boolean verif(Motif motif, TypeCouleur couleur) {
-			return motif.estDeuxLibre(couleur);
-		}
-	},
 
 	estTroisFoisTroisLibre {
 		@Override
 		public boolean verif(Motif motif, TypeCouleur couleur) {
 			return motif.estTroisFoisTroisLibre(couleur);
-		}
-	},
-	estTroisFoisTrois {
-		@Override
-		public boolean verif(Motif motif, TypeCouleur couleur) {
-			return motif.estTroisFoisTrois(couleur);
 		}
 	},
 	estTroisFoisDeux {
@@ -59,12 +41,6 @@ public enum MotifsReconnus {
 			return motif.estTroisLibreLibre(couleur);
 		}
 	},
-	estQuatreFoisTrois {
-		@Override
-		public boolean verif(Motif motif, TypeCouleur couleur) {
-			return motif.estQuatreFoisTrois(couleur);
-		}
-	},
 	estQuatreLibre {
 		@Override
 		public boolean verif(Motif motif, TypeCouleur couleur) {
@@ -82,17 +58,11 @@ public enum MotifsReconnus {
 		public boolean verif(Motif motif, TypeCouleur couleur) {
 			return motif.estTroisFoisDeuxLibre(couleur);
 		}
-	},
-	estDeuxFoisDeuxLibre {
+	}, 
+	estQuatreFoisTrois {
 		@Override
 		public boolean verif(Motif motif, TypeCouleur couleur) {
-			return motif.estDeuxFoisDeuxLibre(couleur);
-		}
-	},
-	estDeuxFoisDeux {
-		@Override
-		public boolean verif(Motif motif, TypeCouleur couleur) {
-			return motif.estDeuxFoisDeux(couleur);
+			return motif.estQuatreFoisTrois(couleur);
 		}
 	};
 

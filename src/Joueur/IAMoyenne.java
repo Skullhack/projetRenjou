@@ -26,7 +26,7 @@ public class IAMoyenne extends IA {
 
 	private void init() {
 		coups = new ArrayList<>();
-		profondeurMax = 1;
+		profondeurMax = 3;
 	}
 
 	public Point play(int[][] plateau, int couleurJoueur, boolean tabou3x3, boolean tabou4x4, boolean tabouOverline) {
@@ -59,11 +59,12 @@ public class IAMoyenne extends IA {
 	@Override
 	public Coordonnees jouer(PlateauDeJeu p) {
 		Log.print(66, "Dans Jouer IAMoyenne");
-		
+
 		coups.clear();
 		PlateauDeJeu pdj = p.clone();
 		Log.print(50, p.toString() + "\nnbPionNoir= " + p.getNbPionNoir() + "\nnbPionBlanc= " + p.getNbPionBlanc());
-		Log.print(50, pdj.toString() + "\nnbPionNoir= " + pdj.getNbPionNoir() + "\nnbPionBlanc= " + pdj.getNbPionBlanc());
+		Log.print(50,
+				pdj.toString() + "\nnbPionNoir= " + pdj.getNbPionNoir() + "\nnbPionBlanc= " + pdj.getNbPionBlanc());
 
 		if (premierTour(pdj)) {
 			return new Coordonnees(7, 7);
@@ -93,10 +94,11 @@ public class IAMoyenne extends IA {
 				Coordonnees c = new Coordonnees(i, j);
 				// Heuristique, on ne cherche pas a jouer a plus de 2 cases d'un
 				// pion existant
-				if (EstJouable(pdj, c, 2) && Tabou.estValide(pdj, c, true, true, true) ) {
+				if (EstJouable(pdj, c, 2) && Tabou.estValide(pdj, c, true, true, true)) {
 					pdj.ajouter(c, tc);
 					Log.print(1, pdj.toString());
-					if (PartieFinie(pdj, c, tc) && (tc != TypeCase.PionNoir || Tabou.estValide(pdj, c, true, true, true))) {
+					if (PartieFinie(pdj, c, tc)
+							&& (tc != TypeCase.PionNoir || Tabou.estValide(pdj, c, true, true, true))) {
 						// on peut couper l�, le coup est gagnant.
 						Log.print(1, "dans jouer " + c + " gagnant en profondeur " + (profondeurMax - profondeur));
 						return c;
@@ -134,7 +136,66 @@ public class IAMoyenne extends IA {
 	}
 
 	public int Evaluation(PlateauDeJeu pdj, TypeCase tc) {
+
+		TypeCouleur blanc = TypeCouleur.Blanc;
+		TypeCouleur noir = TypeCouleur.Noir;
+		MotifsReconnus[] mr = MotifsReconnus.values();
+		boolean[] presenceMotifBlanc = new boolean[mr.length];
+		boolean[] presenceMotifNoir = new boolean[mr.length];
+		boolean coupGagnantBlanc = false;
+		boolean coupGagnantNoir = false;
 		
+		for (int i = 0; i < nbLigne; i++) {
+			for (int j = 0; j < nbColonne; j++) {
+				Coordonnees c = new Coordonnees(i, j);
+				if (pdj.getTypeCaseTableauParLigneColonne(i, j) == TypeCase.PionBlanc
+						|| pdj.getTypeCaseTableauParLigneColonne(i, j) == TypeCase.PionNoir) {
+					Motif m = new Motif(pdj, c);
+
+					if (pdj.getTypeCaseTableau(c) == TypeCase.PionBlanc && !coupGagnantBlanc) {
+						// POUR BLANC
+						for (int k = 0; k < mr.length; k++) {
+							if (!presenceMotifBlanc[k]) {
+								if (mr[k].verif(m, blanc)) {
+									Log.print(501, "i= " + i + " j= " + j + " dans Blanc " + mr[k].name());
+									presenceMotifBlanc[k] = true;
+								}
+							}
+						}
+
+						// Log.print(501, "CGB = "+coupGagnantBlanc + " CG2CB =
+						// " + coupGagnant2CoupsBlanc );
+						coupGagnantBlanc = CoupGagnant(presenceMotifBlanc);
+					}
+
+					if (pdj.getTypeCaseTableau(c) == TypeCase.PionNoir && !coupGagnantNoir) {
+						// POUR NOIR
+						for (int k = 0; k < mr.length; k++) {
+							if (!presenceMotifNoir[k]) {
+								if (mr[k].verif(m, noir)) {
+									Log.print(501, "i= " + i + " j= " + j + " dans Noir " + mr[k].name());
+									presenceMotifNoir[k] = true;
+								}
+							}
+						}
+						// Log.print(501, "CGN = "+coupGagnantNoir + " CG2CN = "
+						// + coupGagnant2CoupsNoir );
+						coupGagnantNoir = CoupGagnant(presenceMotifNoir);
+					}
+
+				}
+
+			}
+		}
+		if(couleur == TypeCouleur.Blanc){
+			return Valeur(presenceMotifBlanc) - Valeur(presenceMotifNoir);
+		}else{
+			return Valeur(presenceMotifNoir) - Valeur(presenceMotifBlanc);
+		}
+	}
+
+	public int Evaluation2(PlateauDeJeu pdj, TypeCase tc) {
+
 		TypeCouleur blanc = TypeCouleur.Blanc;
 		TypeCouleur noir = TypeCouleur.Noir;
 		MotifsReconnus[] mr = MotifsReconnus.values();
@@ -144,118 +205,114 @@ public class IAMoyenne extends IA {
 		boolean coupGagnantNoir = false;
 		boolean coupGagnant2CoupsBlanc = false;
 		boolean coupGagnant2CoupsNoir = false;
-		
-		
+
 		for (int i = 0; i < nbLigne; i++) {
 			for (int j = 0; j < nbColonne; j++) {
-				Coordonnees c = new Coordonnees(i,j);
-				if (pdj.getTypeCaseTableauParLigneColonne(i,j) == TypeCase.PionBlanc
-						|| pdj.getTypeCaseTableauParLigneColonne(i,j) == TypeCase.PionNoir) {
+				Coordonnees c = new Coordonnees(i, j);
+				if (pdj.getTypeCaseTableauParLigneColonne(i, j) == TypeCase.PionBlanc
+						|| pdj.getTypeCaseTableauParLigneColonne(i, j) == TypeCase.PionNoir) {
 					Motif m = new Motif(pdj, c);
 
-					
 					if (pdj.getTypeCaseTableau(c) == TypeCase.PionBlanc && !coupGagnantBlanc) {
 						// POUR BLANC
-						for(int k=0;k<mr.length;k++){
-							if(!presenceMotifBlanc[k]){
-								if(mr[k].verif(m, blanc)){
-									Log.print(501, "i= " + i + " j= "+j+ " dans Blanc " + mr[k].name());
+						for (int k = 0; k < mr.length; k++) {
+							if (!presenceMotifBlanc[k]) {
+								if (mr[k].verif(m, blanc)) {
+									Log.print(501, "i= " + i + " j= " + j + " dans Blanc " + mr[k].name());
 									presenceMotifBlanc[k] = true;
 								}
 							}
 						}
-						
+
 						coupGagnantBlanc = CoupGagnant(presenceMotifBlanc);
 						coupGagnant2CoupsBlanc = CoupGagnant2Coups(presenceMotifBlanc);
-						//Log.print(501, "CGB = "+coupGagnantBlanc + " CG2CB = " + coupGagnant2CoupsBlanc );
+						// Log.print(501, "CGB = "+coupGagnantBlanc + " CG2CB =
+						// " + coupGagnant2CoupsBlanc );
 					}
 
-					
 					if (pdj.getTypeCaseTableau(c) == TypeCase.PionNoir && !coupGagnantNoir) {
 						// POUR NOIR
-						for(int k=0;k<mr.length;k++){
-							if(!presenceMotifNoir[k]){
-								if(mr[k].verif(m, noir)){
-									Log.print(501, "i= " + i + " j= "+j+ " dans Noir " + mr[k].name());
+						for (int k = 0; k < mr.length; k++) {
+							if (!presenceMotifNoir[k]) {
+								if (mr[k].verif(m, noir)) {
+									Log.print(501, "i= " + i + " j= " + j + " dans Noir " + mr[k].name());
 									presenceMotifNoir[k] = true;
 								}
 							}
 						}
 						coupGagnantNoir = CoupGagnant(presenceMotifNoir);
 						coupGagnant2CoupsNoir = CoupGagnant2Coups(presenceMotifNoir);
-						//Log.print(501, "CGN = "+coupGagnantNoir + " CG2CN = " + coupGagnant2CoupsNoir );
+						// Log.print(501, "CGN = "+coupGagnantNoir + " CG2CN = "
+						// + coupGagnant2CoupsNoir );
 					}
 
 				}
 
 			}
 		}
-		
-		
-		
-		// si c'est a blanc de jouer 
-		if(tc == TypeCase.PionBlanc){
-			//si l'ia est blanc
-			if(couleur == TypeCouleur.Blanc){
-				if(coupGagnantBlanc){
+
+		// si c'est a blanc de jouer
+		if (tc == TypeCase.PionBlanc) {
+			// si l'ia est blanc
+			if (couleur == TypeCouleur.Blanc) {
+				if (coupGagnantBlanc) {
 					return 30000;
-				}else if(coupGagnantNoir){
+				} else if (coupGagnantNoir) {
 					return -30000;
-				}else if(coupGagnant2CoupsBlanc){
+				} else if (coupGagnant2CoupsBlanc) {
 					return 20000;
-				}else if(coupGagnant2CoupsNoir){
+				} else if (coupGagnant2CoupsNoir) {
 					return -20000;
-				}else{
+				} else {
 					return Valeur(presenceMotifBlanc) - Valeur(presenceMotifNoir);
 				}
-			}else{ // si l'ia est noir
-				if(coupGagnantBlanc){
+			} else { // si l'ia est noir
+				if (coupGagnantBlanc) {
 					return -30000;
-				}else if(coupGagnantNoir){
+				} else if (coupGagnantNoir) {
 					return 30000;
-				}else if(coupGagnant2CoupsBlanc){
+				} else if (coupGagnant2CoupsBlanc) {
 					return -20000;
-				}else if(coupGagnant2CoupsNoir){
+				} else if (coupGagnant2CoupsNoir) {
 					return 20000;
-				}else{
+				} else {
 					return Valeur(presenceMotifNoir) - Valeur(presenceMotifBlanc);
 				}
 			}
-		}else{ // si c'est a noir de jouer
-			// si ia.couleur = noir
-			if(couleur == TypeCouleur.Noir){
-				if(coupGagnantNoir){
+		} else { // si c'est a noir de jouer
+					// si ia.couleur = noir
+			if (couleur == TypeCouleur.Noir) {
+				if (coupGagnantNoir) {
 					return 20000;
-				}else if(coupGagnantBlanc){
+				} else if (coupGagnantBlanc) {
 					return -20000;
-				}else if(coupGagnant2CoupsNoir){
+				} else if (coupGagnant2CoupsNoir) {
 					return 20000;
-				}else if(coupGagnant2CoupsBlanc){
+				} else if (coupGagnant2CoupsBlanc) {
 					return -20000;
-				}else{
+				} else {
 					return Valeur(presenceMotifNoir) - Valeur(presenceMotifBlanc);
 				}
-			}else{ // si l'ia est blanc
-				if(coupGagnantNoir){
+			} else { // si l'ia est blanc
+				if (coupGagnantNoir) {
 					return -20000;
-				}else if(coupGagnantBlanc){
+				} else if (coupGagnantBlanc) {
 					return 20000;
-				}else if(coupGagnant2CoupsNoir){
+				} else if (coupGagnant2CoupsNoir) {
 					return -20000;
-				}else if(coupGagnant2CoupsBlanc){
+				} else if (coupGagnant2CoupsBlanc) {
 					return 20000;
-				}else{
+				} else {
 					return Valeur(presenceMotifBlanc) - Valeur(presenceMotifNoir);
 				}
 			}
 		}
-		
-		
+
 	}
 
 	public int EvaluerCoupAdversaire(PlateauDeJeu pdj, int profondeur, TypeCase tc) {
 		if (profondeur == 0)
-			return Evaluation(pdj,tc);
+			return Evaluation(pdj, tc);
 
 		int valeur = 1000000;
 		for (int i = 0; i < nbLigne; i++) {
@@ -263,8 +320,8 @@ public class IAMoyenne extends IA {
 				Coordonnees c = new Coordonnees(i, j);
 				// Heuristique, on ne cherche pas a jouer a plus de 2 cases d'un
 				// pion existant
-				if (EstJouable(pdj, c, 2) && (tc != TypeCase.PionNoir || Tabou.estValide(pdj, c, true, true, true) ) ) {
-					
+				if (EstJouable(pdj, c, 2) && (tc != TypeCase.PionNoir || Tabou.estValide(pdj, c, true, true, true))) {
+
 					pdj.ajouter(c, tc);
 					// Log.print(695, pdj.toString());
 					if (PartieFinie(pdj, c, tc)) {
@@ -290,7 +347,7 @@ public class IAMoyenne extends IA {
 
 	public int EvaluerCoupIA(PlateauDeJeu pdj, int profondeur, TypeCase tc) {
 		if (profondeur == 0)
-			return Evaluation(pdj,tc);
+			return Evaluation(pdj, tc);
 
 		int valeur = -1000000;
 		for (int i = 0; i < nbLigne; i++) {
@@ -298,7 +355,7 @@ public class IAMoyenne extends IA {
 				Coordonnees c = new Coordonnees(i, j);
 				// Heuristique, on ne cherche pas a jouer a plus de 2 cases d'un
 				// pion existant
-				if (EstJouable(pdj, c, 2)  && (tc != TypeCase.PionNoir || Tabou.estValide(pdj, c, true, true, true))) {
+				if (EstJouable(pdj, c, 2) && (tc != TypeCase.PionNoir || Tabou.estValide(pdj, c, true, true, true))) {
 					pdj.ajouter(c, tc);
 					if (PartieFinie(pdj, c, tc)) {
 						// on peut couper l�, le coup est gagnant.
@@ -318,70 +375,65 @@ public class IAMoyenne extends IA {
 		}
 		return valeur;
 	}
-	
-	private boolean CoupGagnant(boolean[] tab){
-		return 	tab[MotifsReconnus.estQuatreLibre.ordinal()];
+
+	private boolean CoupGagnant(boolean[] tab) {
+		return tab[MotifsReconnus.estQuatreLibre.ordinal()];
 	}
 
-	private boolean CoupGagnant2Coups(boolean[] tab){
-		return 	tab[MotifsReconnus.estTroisFoisTroisLibreLibre.ordinal()] || 
-				tab[MotifsReconnus.estTroisLibreLibre.ordinal()] ||
-				tab[MotifsReconnus.estQuatreFoisTrois.ordinal()];
+	private boolean CoupGagnant2Coups(boolean[] tab) {
+		return tab[MotifsReconnus.estTroisFoisTroisLibreLibre.ordinal()]
+				|| tab[MotifsReconnus.estTroisLibreLibre.ordinal()] || tab[MotifsReconnus.estQuatreFoisTrois.ordinal()];
 	}
-	
-	private int Valeur(boolean[] tab){
+
+	private int Valeur(boolean[] tab) {
 		int v = 0;
-		
-		if(tab[MotifsReconnus.estTroisFoisDeuxLibreLibre.ordinal()]){
-			//Log.print(501, "+5000");
-			v +=5000;
-		}
-		else if(tab[MotifsReconnus.estTroisFoisDeuxLibre.ordinal()]){
-			//Log.print(501, "+600");
-			v +=600;
-		}
-		else if(tab[MotifsReconnus.estDeuxFoisDeuxLibreLibre.ordinal()]){
-			//Log.print(501, "+500");
-			v +=500;
-		}
-		else if(tab[MotifsReconnus.estTroisFoisTrois.ordinal()]){
-			//Log.print(501, "+100");
-			v +=100;
-		}
-		else if(tab[MotifsReconnus.estTroisFoisDeux.ordinal()]){
-			//Log.print(501, "+75");
-			v +=75;
-		}
-		else if(tab[MotifsReconnus.estDeuxFoisDeuxLibre.ordinal()]){
-			//Log.print(501, "+50");
-			v +=50;
-		}
-		else if(tab[MotifsReconnus.estTroisLibre.ordinal()]){
-			//Log.print(501, "+50");
-			v +=50;
-		}
-		else if(tab[MotifsReconnus.estDeuxLibreLibre.ordinal()]){
-			//Log.print(501, "+5");
-			v +=5;
-		}
-		else if(tab[MotifsReconnus.estDeuxFoisDeux.ordinal()]){
-			//Log.print(501, "+5");
-			v +=5;
-		}
-		else if(tab[MotifsReconnus.estDeuxLibre.ordinal()]){
-			//Log.print(501, "+1");
-			v +=1;
-		}
+
+		if (tab[MotifsReconnus.estQuatreLibre.ordinal()]) {
+			v += 20000;
+		} else if (tab[MotifsReconnus.estTroisFoisTroisLibreLibre.ordinal()]) {
+			v += 10000;
+		} else if (tab[MotifsReconnus.estTroisLibreLibre.ordinal()]) {
+			v += 10000;
+		} else if (tab[MotifsReconnus.estQuatreFoisTrois.ordinal()]) {
+			v += 10000;
+		} else if (tab[MotifsReconnus.estTroisFoisDeuxLibreLibre.ordinal()]) {
+			v += 5000;
+		} else if (tab[MotifsReconnus.estTroisFoisDeuxLibre.ordinal()]) {
+			v += 600;
+		} else if (tab[MotifsReconnus.estDeuxFoisDeuxLibreLibre.ordinal()]) {
+			v += 500;
+		} else if (tab[MotifsReconnus.estTroisFoisDeux.ordinal()]) {
+			v += 75;
+		} else if (tab[MotifsReconnus.estTroisLibre.ordinal()]) {
+			v += 50;
+		} 
 		
 		Log.print(505, "valeur= " + v);
 		return v;
 	}
-	
-	
 
+	private int Valeur2(boolean[] tab) {
+		int v = 0;
 
+		if (tab[MotifsReconnus.estTroisFoisDeuxLibreLibre.ordinal()]) {
+			// Log.print(501, "+5000");
+			v += 5000;
+		} else if (tab[MotifsReconnus.estTroisFoisDeuxLibre.ordinal()]) {
+			// Log.print(501, "+600");
+			v += 600;
+		} else if (tab[MotifsReconnus.estDeuxFoisDeuxLibreLibre.ordinal()]) {
+			// Log.print(501, "+500");
+			v += 500;
+		}else if (tab[MotifsReconnus.estTroisFoisDeux.ordinal()]) {
+			// Log.print(501, "+75");
+			v += 75;
+		}else if (tab[MotifsReconnus.estTroisLibre.ordinal()]) {
+			// Log.print(501, "+50");
+			v += 50;
+		} 
 
-
-
+		Log.print(505, "valeur= " + v);
+		return v;
+	}
 
 }

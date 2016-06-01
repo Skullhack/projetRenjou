@@ -306,5 +306,14 @@ public class TestIAMoyenne {
 		
 		Log.print(651, "fin testJouerProfondeur2");
 	}
+	
+	@Test
+	public void main(){
+		Log.setPlage(501, 502);
+		pdj = pdj.charger(chemin + "main");
+		Log.print(501, pdj.toString());
+		
+		new IAMoyenne(TypeJoueur.IAMoyenne, 60, TypeCouleur.Blanc).jouer(pdj);
+	}
 
 }
