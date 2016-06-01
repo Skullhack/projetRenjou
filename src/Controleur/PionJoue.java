@@ -1,10 +1,13 @@
 package Controleur;
 
-import java.awt.Point;
-
 import Enum.EtatPartie;
 import Enum.TypeCase;
 import Utilitaire.Coordonnees;
+
+/*
+ * Cette classe est utilisee dans les listes annuler et refaire pour ne sauvegarder qu'une coordonnee, un typeCase et un etatPartie
+ * Il n'y a que des getters et des setters et une methode toString pour l'affichage
+ */
 
 public class PionJoue implements java.io.Serializable {
 

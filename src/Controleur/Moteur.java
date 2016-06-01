@@ -9,24 +9,18 @@ import Enum.*;
 import Joueur.*;
 import Utilitaire.*;
 import javafx.application.Platform;
-
-import java.awt.Point;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.List;
 
-/**
- *
- * @author michauad
- */
+
 public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	private Renjou renjou;
 	private Log trace;
-	public ArrayList<MoteurObserveur> observeurs;
+	private ArrayList<MoteurObserveur> observeurs;
 
 	// Constructeur
 	public Moteur(TypeJoueur typeJoueur1, TypeJoueur typeJoueur2) {
@@ -39,57 +33,112 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		tableauJoueurs[1] = creerJoueur(typeJoueur2, TypeCouleur.Blanc);
 	}
 	
+
+	//Méthodes public
+	
 	public void commencer(){
 		notifierObserveurs();
 		faireJouerIA();
 	}
-
-	public Joueur creerJoueur(TypeJoueur typeJoueur, TypeCouleur typeCouleur) {
-
-		int nbPionsBase = 60;
-
-		switch (typeJoueur) {
-		case Humain:
-			return (new Humain(TypeJoueur.Humain, nbPionsBase, typeCouleur));
-		case IAFacile:
-			return (new IAFacile(TypeJoueur.IAFacile, nbPionsBase, typeCouleur));
-		case IAMoyenne:
-			return (new IAMoyenne(TypeJoueur.IAMoyenne, nbPionsBase, typeCouleur));
-		case IADifficile:
-			return (new IADifficile(TypeJoueur.IADifficile, nbPionsBase, typeCouleur));
-		case IAExterne:
-			return (new IADifficile(TypeJoueur.IAExterne, nbPionsBase, typeCouleur));
-		default:
-			return (new Humain(TypeJoueur.Humain, nbPionsBase, typeCouleur));
-		}
-
-	}
-
-	private void notifierObserveurs() {
-		Log.print(80, "Dans notifier: moteur = " + Integer.toHexString(System.identityHashCode(this)));
-		Log.print(80, "Dans notifier: " + Integer.toHexString(System.identityHashCode(observeurs)));
-		Log.print(80, "Dans notifier: " + observeurs.toString());
-		for (MoteurObserveur m : observeurs) {
-			Log.print(80, m.getClass().toString());
-			m.actualiser();
-
-		}
-	}
-
 	public void enregistrerObserveur(MoteurObserveur observer) {
 		observeurs.add(observer);
 	}
+	public void operationJouer(Coordonnees c, TypeJoueur j) {
 
-	@Override
-	public Renjou getRenjou() {
-		return this.renjou;
+		Log.print(1, "Je rentre dans operation jouer");
+
+		Log.print(80, "JOUEUR NOIR : " + renjou.getJoueurs()[0].toString() + "JOUEUR BLANC : "
+				+ renjou.getJoueurs()[1].toString());
+
+		if (renjou.getEtatPartie() != EtatPartie.EnCours) {
+			Log.print(1, "La partie n'est plus en cours mais elle est : " + renjou.getEtatPartie());
+			return;
+		}
+
+		if (j != renjou.getJoueurs()[renjou.getJoueurCourant()].getType()) {
+			Log.print(1, "Les types ne correspondent pas");
+			return;
+
+		}
+
+		if (caseJouable(renjou, c) || caseTabou(renjou, c)) {
+			Log.print(1, "Je rentre dans la fonction jouer avec le point " + c.getLigne() + "," + c.getColonne());
+			jouer(renjou, c);
+		}
+		// notify avec etat de la partie
+		notifierObserveurs();
+
+		// si c'est une IA, on la fait jouer
+		faireJouerIA();
+
 	}
+	public boolean partieFinie(Renjou renjou, Coordonnees c) {
 
-	public void setRenjou(Renjou renjou) {
-		this.renjou = renjou;
+		// si 5 pions sont alignes
+		Coordonnees cDecale = coordonneesDecalage(renjou, c, TypeDecalage.Gauche);
+		if (cinqPointsAlignes(renjou, cDecale, TypeDecalage.Gauche)) {
+			return true;
+		}
+
+		cDecale = coordonneesDecalage(renjou, c, TypeDecalage.Haut);
+		if (cinqPointsAlignes(renjou, cDecale, TypeDecalage.Haut)) {
+			return true;
+		}
+
+		cDecale = coordonneesDecalage(renjou, c, TypeDecalage.DiagonaleHautDroite);
+		if (cinqPointsAlignes(renjou, cDecale, TypeDecalage.DiagonaleHautDroite)) {
+			return true;
+		}
+
+		cDecale = coordonneesDecalage(renjou, c, TypeDecalage.DiagonaleHautGauche);
+		if (cinqPointsAlignes(renjou, cDecale, TypeDecalage.DiagonaleHautGauche)) {
+			return true;
+		}
+		return false;
+
 	}
+	public void configurerPartie(TypeJoueur typeJoueur1, TypeJoueur typeJoueur2, ArrayList<TypeTabous> tabouPartie,
+			boolean nouvellePartie, boolean modeDebutant) {
+		if (nouvellePartie) {
+			renjou.initRenjou();
+			renjou.getJoueurs()[0].setNbPion(renjou.getJoueurs()[0].getNbPionsBase());
+			renjou.getJoueurs()[1].setNbPion(renjou.getJoueurs()[1].getNbPionsBase());
+		}
 
-	@Override
+		observeurs.remove(renjou.getJoueurs()[0]);
+		observeurs.remove(renjou.getJoueurs()[1]);
+
+		Joueur[] tableauJoueurs = new Joueur[2];
+		tableauJoueurs[0] = creerJoueur(typeJoueur1, TypeCouleur.Noir);
+		tableauJoueurs[1] = creerJoueur(typeJoueur2, TypeCouleur.Blanc);
+
+		tableauJoueurs[0].setNbPion(renjou.getJoueurs()[0].getNbPion());
+		tableauJoueurs[1].setNbPion(renjou.getJoueurs()[1].getNbPion());
+
+		renjou.setJoueurs(tableauJoueurs);
+
+		// tabouPartie.add(TypeTabous.TROIS_TROIS);
+		// renjou.setModeDebutant(true);
+
+		renjou.getTabouJeu().setListeTabous(tabouPartie);
+
+		renjou.setModeDebutant(modeDebutant);
+		majCasesTabous(renjou);
+
+		Log.print(1, "LE PLATEAU DE JEU APRES CONFIGURER PARTIE : " + renjou.getPlateauDeJeu().toString());
+
+		notifierObserveurs();
+		faireJouerIA();
+	}
+	public void recommencerPartie() {
+
+		renjou.initRenjou();
+		renjou.getJoueurs()[0].setNbPion(renjou.getJoueurs()[0].getNbPionsBase());
+		renjou.getJoueurs()[1].setNbPion(renjou.getJoueurs()[1].getNbPionsBase());
+
+		notifierObserveurs();
+		faireJouerIA();
+	}
 	public void sauvegarder(String nomFichier) {
 		Log.print(80, "DANS SAUVEGARDER");
 		ObjectOutputStream oos = null;
@@ -136,8 +185,6 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		}
 
 	}
-
-	@Override
 	public void charger(String fichierCharger) {
 		Log.print(80, "DANS CHARGER");
 		ObjectInputStream ois = null;
@@ -176,7 +223,142 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		notifierObserveurs();
 		faireJouerIA();
 	}
+	public EtatPartie faireJouerIAVsIAPourTest(){
+		while(renjou.getEtatPartie() == EtatPartie.EnCours){
+			jouer(renjou, renjou.getJoueurs()[renjou.getJoueurCourant()].jouer(renjou.getPlateauDeJeu()));
+		}
+		return renjou.getEtatPartie();
+	}
+	public void annuler() {
 
+		if (this.getRenjou().getJoueurs()[0].getType() == TypeJoueur.Humain
+				&& this.getRenjou().getJoueurs()[1].getType() == TypeJoueur.Humain) {
+			annulerDemiCoup();
+//			if (this.getRenjou().getEtatPartie() != EtatPartie.EnCours) {
+//				annulerDemiCoup();
+//			}
+		} else {
+			annulerDemiCoup();
+			annulerDemiCoup();
+		}
+
+		notifierObserveurs();
+		faireJouerIA();
+	}
+	public void annulerDemiCoup() {
+		int dernierElementHistorique = this.getRenjou().getListeAnnuler().size() - 1;
+		if (dernierElementHistorique >= 0) {
+
+			joueurPrecedent();
+
+			PionJoue dernierPionJoueHistorique = this.getRenjou().getListeAnnuler().get(dernierElementHistorique);
+			this.getRenjou().getPlateauDeJeu().enlever(dernierPionJoueHistorique.c);			
+			this.getRenjou().setEtatPartie(EtatPartie.EnCours);
+			this.getRenjou().getListeRefaire().add(this.getRenjou().getListeAnnuler().get(dernierElementHistorique));
+			this.getRenjou().getListeAnnuler().remove(dernierElementHistorique);
+			incrementerPionsJoueurCourant(this.getRenjou());
+			majCasesInjouables(this.getRenjou());
+			majCasesTabous(this.getRenjou());
+			decrementerDemiTourCourant(this.getRenjou());
+		}
+	}
+	public void annulerNDemiCoup(int n) {
+		for (int i = 0; i < n; i++) {
+			annulerDemiCoup();
+		}
+		notifierObserveurs();
+		faireJouerIA();
+	}
+	@Override
+	public void refaire() {
+		if (this.getRenjou().getJoueurs()[0].getType() == TypeJoueur.Humain
+				&& renjou.getJoueurs()[1].getType() == TypeJoueur.Humain) {
+			refaireDemiCoup();
+		} else {
+			refaireDemiCoup();
+			refaireDemiCoup();
+		}
+
+		notifierObserveurs();
+		faireJouerIA();
+	}
+	public void refaireDemiCoup() {
+		int dernierElementHistorique = this.getRenjou().getListeRefaire().size() - 1;
+
+		if (dernierElementHistorique >= 0) {
+			PionJoue dernierPionJoueHistorique = this.getRenjou().getListeRefaire().get(dernierElementHistorique);
+			this.getRenjou().getPlateauDeJeu().ajouter(dernierPionJoueHistorique.c, dernierPionJoueHistorique.typeCase);
+			this.getRenjou().setEtatPartie(dernierPionJoueHistorique.etatPartie);
+			this.getRenjou().getListeAnnuler().add(this.getRenjou().getListeRefaire().get(dernierElementHistorique));
+			this.getRenjou().getListeRefaire().remove(dernierElementHistorique);
+			decrementerPionsJoueurCourant(this.getRenjou());
+			joueurSuivant();
+			majCasesInjouables(this.getRenjou());
+			majCasesTabous(this.getRenjou());
+			incrementerDemiTourCourant(this.getRenjou());
+		}
+
+	}
+	public void refaireNDemiCoup(int n) {
+		for (int i = 0; i < n; i++) {
+			refaireDemiCoup();
+		}
+		notifierObserveurs();
+		faireJouerIA();
+	}
+	public boolean premierCoup() {
+		return ((renjou.getJoueurs()[0].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase())
+				&& (renjou.getJoueurs()[1].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase()));
+	}
+	public boolean deuxiemeCoup() {
+		return ((renjou.getJoueurs()[0].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase() - 1)
+				&& (renjou.getJoueurs()[1].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase()));
+	}
+	public Coordonnees aide() {
+		Joueur j = new IAFacile(TypeJoueur.IAFacile, 60, TypeCouleur.Blanc);
+		return j.jouer(renjou.getPlateauDeJeu());
+	}
+
+	//getter and setter
+	
+	public void setRenjou(Renjou renjou) {
+		this.renjou = renjou;
+	}
+	public Renjou getRenjou() {
+		return this.renjou;
+	}
+	
+	//Méthodes private
+	private Joueur creerJoueur(TypeJoueur typeJoueur, TypeCouleur typeCouleur) {
+
+		int nbPionsBase = 60;
+
+		switch (typeJoueur) {
+		case Humain:
+			return (new Humain(TypeJoueur.Humain, nbPionsBase, typeCouleur));
+		case IAFacile:
+			return (new IAFacile(TypeJoueur.IAFacile, nbPionsBase, typeCouleur));
+		case IAMoyenne:
+			return (new IAMoyenne(TypeJoueur.IAMoyenne, nbPionsBase, typeCouleur));
+		case IADifficile:
+			return (new IADifficile(TypeJoueur.IADifficile, nbPionsBase, typeCouleur));
+		case IAExterne:
+			return (new IADifficile(TypeJoueur.IAExterne, nbPionsBase, typeCouleur));
+		default:
+			return (new Humain(TypeJoueur.Humain, nbPionsBase, typeCouleur));
+		}
+
+	}
+	private void notifierObserveurs() {
+		Log.print(80, "Dans notifier: moteur = " + Integer.toHexString(System.identityHashCode(this)));
+		Log.print(80, "Dans notifier: " + Integer.toHexString(System.identityHashCode(observeurs)));
+		Log.print(80, "Dans notifier: " + observeurs.toString());
+		for (MoteurObserveur m : observeurs) {
+			Log.print(80, m.getClass().toString());
+			m.actualiser();
+
+		}
+	}
 	private void faireJouerIA() {
 		if (renjou.getJoueurs()[renjou.getJoueurCourant()].getType() != TypeJoueur.Humain && renjou.getEtatPartie() == EtatPartie.EnCours) {
 
@@ -193,46 +375,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 		}
 	}
-	
-	public EtatPartie faireJouerIAVsIAPourTest(){
-		while(renjou.getEtatPartie() == EtatPartie.EnCours){
-			jouer(renjou, renjou.getJoueurs()[renjou.getJoueurCourant()].jouer(renjou.getPlateauDeJeu()));
-		}
-		return renjou.getEtatPartie();
-	}
-
-	@Override
-	public void operationJouer(Coordonnees c, TypeJoueur j) {
-
-		Log.print(1, "Je rentre dans operation jouer");
-
-		Log.print(80, "JOUEUR NOIR : " + renjou.getJoueurs()[0].toString() + "JOUEUR BLANC : "
-				+ renjou.getJoueurs()[1].toString());
-
-		if (renjou.getEtatPartie() != EtatPartie.EnCours) {
-			Log.print(1, "La partie n'est plus en cours mais elle est : " + renjou.getEtatPartie());
-			return;
-		}
-
-		if (j != renjou.getJoueurs()[renjou.getJoueurCourant()].getType()) {
-			Log.print(1, "Les types ne correspondent pas");
-			return;
-
-		}
-
-		if (caseJouable(renjou, c) || caseTabou(renjou, c)) {
-			Log.print(1, "Je rentre dans la fonction jouer avec le point " + c.getLigne() + "," + c.getColonne());
-			jouer(renjou, c);
-		}
-		// notify avec etat de la partie
-		notifierObserveurs();
-
-		// si c'est une IA, on la fait jouer
-		faireJouerIA();
-
-	}
-
-	public void jouer(Renjou renjou, Coordonnees c) {
+	private void jouer(Renjou renjou, Coordonnees c) {
 
 		TypeCase typeCaseJoueurCourant = null;
 
@@ -277,7 +420,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 	}
 
-	public void majAffichageListeTours(Renjou renjou) {
+	private void majAffichageListeTours(Renjou renjou) {
 		if (renjou.getNbDemiTourCourant()+1 > 4) {
 			renjou.setIndiceFinHistorique(renjou.getNbDemiTourCourant()+1);
 			renjou.setIndiceDebutHistorique(renjou.getIndiceFinHistorique() - 4);
@@ -294,25 +437,25 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		return (renjou.getPlateauDeJeu().getPlateau()[c.getLigne()][c.getColonne()] == TypeCase.Tabou);
 	}
 
-	public void decrementerPionsJoueurCourant(Renjou renjou) {
+	private void decrementerPionsJoueurCourant(Renjou renjou) {
 		renjou.getJoueurs()[renjou.getJoueurCourant()]
 				.setNbPion(renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion() - 1);
 	}
 
-	public void incrementerPionsJoueurCourant(Renjou renjou) {
+	private void incrementerPionsJoueurCourant(Renjou renjou) {
 		renjou.getJoueurs()[renjou.getJoueurCourant()]
 				.setNbPion(renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion() + 1);
 	}
 
-	public void decrementerDemiTourCourant(Renjou renjou) {
+	private void decrementerDemiTourCourant(Renjou renjou) {
 		renjou.setNbDemiTourCourant(renjou.getNbDemiTourCourant() - 1);
 	}
 
-	public void incrementerDemiTourCourant(Renjou renjou) {
+	private void incrementerDemiTourCourant(Renjou renjou) {
 		renjou.setNbDemiTourCourant(renjou.getNbDemiTourCourant() + 1);
 	}
 
-	public void ajouterPionJoueDansListeAnnuler(Renjou renjou, Coordonnees c, TypeCase typeCaseJoueurCourant,
+	private void ajouterPionJoueDansListeAnnuler(Renjou renjou, Coordonnees c, TypeCase typeCaseJoueurCourant,
 			EtatPartie etatPartie) {
 
 		//if (!estDeuxJoueursIA(renjou)) {
@@ -321,112 +464,33 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		//}
 	}
 
-	public boolean estDeuxJoueursIA(Renjou renjou) {
-		return (renjou.getJoueurs()[0].getType() != TypeJoueur.Humain
-				&& renjou.getJoueurs()[1].getType() != TypeJoueur.Humain);
-	}
 
-	public TypeCase getTypeCaseJoueurCourant(Renjou renjou) throws Exception {
-		if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Noir) {
-			return TypeCase.PionNoir;
-		} else if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Blanc) {
-			return TypeCase.PionBlanc;
-		} else {
-			throw new Exception("Erreur. Il n'y a pas de correspondance de joueur et de couleur de pion");
-		}
-	}
-
-	@Override
-	public void configurerPartie(TypeJoueur typeJoueur1, TypeJoueur typeJoueur2, ArrayList<TypeTabous> tabouPartie,
-			boolean nouvellePartie, boolean modeDebutant) {
-		if (nouvellePartie) {
-			renjou.initRenjou();
-			renjou.getJoueurs()[0].setNbPion(renjou.getJoueurs()[0].getNbPionsBase());
-			renjou.getJoueurs()[1].setNbPion(renjou.getJoueurs()[1].getNbPionsBase());
-		}
-
-		observeurs.remove(renjou.getJoueurs()[0]);
-		observeurs.remove(renjou.getJoueurs()[1]);
-
-		Joueur[] tableauJoueurs = new Joueur[2];
-		tableauJoueurs[0] = creerJoueur(typeJoueur1, TypeCouleur.Noir);
-		tableauJoueurs[1] = creerJoueur(typeJoueur2, TypeCouleur.Blanc);
-
-		tableauJoueurs[0].setNbPion(renjou.getJoueurs()[0].getNbPion());
-		tableauJoueurs[1].setNbPion(renjou.getJoueurs()[1].getNbPion());
-
-		renjou.setJoueurs(tableauJoueurs);
-
-		// tabouPartie.add(TypeTabous.TROIS_TROIS);
-		// renjou.setModeDebutant(true);
-
-		renjou.getTabouJeu().setListeTabous(tabouPartie);
-
-		renjou.setModeDebutant(modeDebutant);
-		majCasesTabous(renjou);
-
-		Log.print(1, "LE PLATEAU DE JEU APRES CONFIGURER PARTIE : " + renjou.getPlateauDeJeu().toString());
-
-		notifierObserveurs();
-		faireJouerIA();
-	}
-
-	@Override
-	public void recommencerPartie() {
-
-		renjou.initRenjou();
-		renjou.getJoueurs()[0].setNbPion(renjou.getJoueurs()[0].getNbPionsBase());
-		renjou.getJoueurs()[1].setNbPion(renjou.getJoueurs()[1].getNbPionsBase());
-
-		notifierObserveurs();
-		faireJouerIA();
-	}
-
-	@Override
-	public void joueurSuivant() {
+	private void joueurSuivant() {
 		int joueurSuivant = this.renjou.getJoueurCourant() + 1;
 		if (joueurSuivant >= this.renjou.getNbJoueurs()) {
 			joueurSuivant = 0;
 		}
 		this.renjou.setJoueurCourant(joueurSuivant);
 	}
-
-	public void joueurPrecedent() {
+	
+private void joueurPrecedent() {
 		int joueurPrecedent = this.renjou.getJoueurCourant() - 1;
 		if (joueurPrecedent < 0) {
 			joueurPrecedent = 1;
 		}
 		this.renjou.setJoueurCourant(joueurPrecedent);
 	}
-
-	@Override
-	public boolean partieFinie(Renjou renjou, Coordonnees c) {
-
-		// si 5 pions sont alignes
-		Coordonnees cDecale = coordonneesDecalage(renjou, c, TypeDecalage.Gauche);
-		if (cinqPointsAlignes(renjou, cDecale, TypeDecalage.Gauche)) {
-			return true;
-		}
-
-		cDecale = coordonneesDecalage(renjou, c, TypeDecalage.Haut);
-		if (cinqPointsAlignes(renjou, cDecale, TypeDecalage.Haut)) {
-			return true;
-		}
-
-		cDecale = coordonneesDecalage(renjou, c, TypeDecalage.DiagonaleHautDroite);
-		if (cinqPointsAlignes(renjou, cDecale, TypeDecalage.DiagonaleHautDroite)) {
-			return true;
-		}
-
-		cDecale = coordonneesDecalage(renjou, c, TypeDecalage.DiagonaleHautGauche);
-		if (cinqPointsAlignes(renjou, cDecale, TypeDecalage.DiagonaleHautGauche)) {
-			return true;
-		}
-		return false;
-
+	
+private TypeCase getTypeCaseJoueurCourant(Renjou renjou) throws Exception {
+	if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Noir) {
+		return TypeCase.PionNoir;
+	} else if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Blanc) {
+		return TypeCase.PionBlanc;
+	} else {
+		throw new Exception("Erreur. Il n'y a pas de correspondance de joueur et de couleur de pion");
 	}
-
-	public Coordonnees coordonneesDecalage(Renjou renjou, Coordonnees c, TypeDecalage typeDecalage) {
+}
+	private Coordonnees coordonneesDecalage(Renjou renjou, Coordonnees c, TypeDecalage typeDecalage) {
 
 		int ligneCourante = c.getLigne();
 		int colonneCourante = c.getColonne();
@@ -489,7 +553,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		return new Coordonnees(ligneCourante, colonneCourante);
 	}
 
-	public boolean cinqPointsAlignes(Renjou renjou, Coordonnees c, TypeDecalage typeDecalage) {
+	private boolean cinqPointsAlignes(Renjou renjou, Coordonnees c, TypeDecalage typeDecalage) {
 
 		int nbPionsAlignes = 0;
 		int colonneCourante = c.getColonne();
@@ -555,7 +619,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		return (nbPionsAlignes >= 5);
 	}
 
-	public boolean partieNulle(Renjou renjou) {
+	private boolean partieNulle(Renjou renjou) {
 
 		// si les 2 joueurs ont un nombre de pions vide
 		// pions du joueur noir
@@ -567,7 +631,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		return (nbPionsEnCoursJoueurNoir == 0 && nbPionsEnCoursJoueurBlanc == 0);
 	}
 
-	public void setPartieFinie(Renjou renjou) {
+	private void setPartieFinie(Renjou renjou) {
 		if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Noir) {
 			renjou.setEtatPartie(EtatPartie.NoirGagne);
 		} else if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Blanc) {
@@ -575,15 +639,15 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		}
 	}
 
-	public void setPartieNulle(Renjou renjou) {
+	private void setPartieNulle(Renjou renjou) {
 		renjou.setEtatPartie(EtatPartie.PartieNulle);
 	}
 
-	public void setPartieFinieJoueurBlancParTabou(Renjou renjou) {
+	private void setPartieFinieJoueurBlancParTabou(Renjou renjou) {
 		renjou.setEtatPartie(EtatPartie.BlancGagneParTabou);
 	}
 
-	public void majCasesTabous(Renjou renjou) {
+	private void majCasesTabous(Renjou renjou) {
 
 		if (renjou.getJoueurs()[renjou.getJoueurCourant()].getCouleur() == TypeCouleur.Noir) {
 			// mettre les cases tabous pour le joueur noir en mode débutant
@@ -616,7 +680,7 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		}
 	}
 
-	public void majCasesInjouables(Renjou renjou) {
+	private void majCasesInjouables(Renjou renjou) {
 
 		int nbPionsBase = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPionsBase();
 		int nbPionsEnCours = renjou.getJoueurs()[renjou.getJoueurCourant()].getNbPion();
@@ -642,103 +706,4 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 		}
 	}
 
-	@Override
-	public void annuler() {
-
-		if (this.getRenjou().getJoueurs()[0].getType() == TypeJoueur.Humain
-				&& this.getRenjou().getJoueurs()[1].getType() == TypeJoueur.Humain) {
-			annulerDemiCoup();
-//			if (this.getRenjou().getEtatPartie() != EtatPartie.EnCours) {
-//				annulerDemiCoup();
-//			}
-		} else {
-			annulerDemiCoup();
-			annulerDemiCoup();
-		}
-
-		notifierObserveurs();
-		faireJouerIA();
 	}
-
-	@Override
-	public void annulerDemiCoup() {
-		int dernierElementHistorique = this.getRenjou().getListeAnnuler().size() - 1;
-		if (dernierElementHistorique >= 0) {
-
-			joueurPrecedent();
-
-			PionJoue dernierPionJoueHistorique = this.getRenjou().getListeAnnuler().get(dernierElementHistorique);
-			this.getRenjou().getPlateauDeJeu().enlever(dernierPionJoueHistorique.c);			
-			this.getRenjou().setEtatPartie(EtatPartie.EnCours);
-			this.getRenjou().getListeRefaire().add(this.getRenjou().getListeAnnuler().get(dernierElementHistorique));
-			this.getRenjou().getListeAnnuler().remove(dernierElementHistorique);
-			incrementerPionsJoueurCourant(this.getRenjou());
-			majCasesInjouables(this.getRenjou());
-			majCasesTabous(this.getRenjou());
-			decrementerDemiTourCourant(this.getRenjou());
-		}
-	}
-
-	public void annulerNDemiCoup(int n) {
-		for (int i = 0; i < n; i++) {
-			annulerDemiCoup();
-		}
-		notifierObserveurs();
-		faireJouerIA();
-	}
-
-	@Override
-	public void refaire() {
-		if (this.getRenjou().getJoueurs()[0].getType() == TypeJoueur.Humain
-				&& renjou.getJoueurs()[1].getType() == TypeJoueur.Humain) {
-			refaireDemiCoup();
-		} else {
-			refaireDemiCoup();
-			refaireDemiCoup();
-		}
-
-		notifierObserveurs();
-		faireJouerIA();
-	}
-
-	public void refaireDemiCoup() {
-		int dernierElementHistorique = this.getRenjou().getListeRefaire().size() - 1;
-
-		if (dernierElementHistorique >= 0) {
-			PionJoue dernierPionJoueHistorique = this.getRenjou().getListeRefaire().get(dernierElementHistorique);
-			this.getRenjou().getPlateauDeJeu().ajouter(dernierPionJoueHistorique.c, dernierPionJoueHistorique.typeCase);
-			this.getRenjou().setEtatPartie(dernierPionJoueHistorique.etatPartie);
-			this.getRenjou().getListeAnnuler().add(this.getRenjou().getListeRefaire().get(dernierElementHistorique));
-			this.getRenjou().getListeRefaire().remove(dernierElementHistorique);
-			decrementerPionsJoueurCourant(this.getRenjou());
-			joueurSuivant();
-			majCasesInjouables(this.getRenjou());
-			majCasesTabous(this.getRenjou());
-			incrementerDemiTourCourant(this.getRenjou());
-		}
-
-	}
-
-	public void refaireNDemiCoup(int n) {
-		for (int i = 0; i < n; i++) {
-			refaireDemiCoup();
-		}
-		notifierObserveurs();
-		faireJouerIA();
-	}
-
-	public boolean premierCoup() {
-		return ((renjou.getJoueurs()[0].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase())
-				&& (renjou.getJoueurs()[1].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase()));
-	}
-
-	public boolean deuxiemeCoup() {
-		return ((renjou.getJoueurs()[0].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase() - 1)
-				&& (renjou.getJoueurs()[1].getNbPion() == renjou.getJoueurs()[0].getNbPionsBase()));
-	}
-
-	public Coordonnees aide() {
-		Joueur j = new IAFacile(TypeJoueur.IAFacile, 60, TypeCouleur.Blanc);
-		return j.jouer(renjou.getPlateauDeJeu());
-	}
-}

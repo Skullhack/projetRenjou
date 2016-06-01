@@ -55,6 +55,7 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 
 	}
 
+	// Methodes
 	public void initRenjou() {
 		this.plateau.initPlateau();
 		this.listeAnnuler.clear();
@@ -65,96 +66,6 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 		setIndiceFinHistorique(0);
 		setNbDemiTourCourant(0);
 	}
-
-	@Override
-	public PlateauDeJeu getPlateauDeJeu() {
-		return this.plateau;
-	}
-
-	@Override
-	public Joueur[] getJoueurs() {
-		return this.tabJoueurs;
-	}
-
-	@Override
-	public int getJoueurCourant() {
-		return this.joueurCourant;
-	}
-
-	@Override
-	public ArrayList<PionJoue> getListeAnnuler() {
-		return this.listeAnnuler;
-	}
-
-	@Override
-	public ArrayList<PionJoue> getListeRefaire() {
-		return this.listeRefaire;
-	}
-
-	public EtatPartie getEtatPartie() {
-		return etatPartie;
-	}
-
-	public Tabou getTabouJeu() {
-		return tabousJeu;
-	}
-
-	public String getEmplacementThemes() {
-		return emplacementThemes;
-	}
-	
-	public int getNbDemiTourCourant(){
-		return nbDemiTourCourant ;
-	}
-	
-	public boolean estModeDebutant() {
-		return modeDebutant;
-	}
-
-	public void setPlateauDeJeu(PlateauDeJeu plateau) {
-		this.plateau = plateau;
-	}
-
-	public void setJoueurs(Joueur[] tabJoueurs) {
-		this.tabJoueurs = tabJoueurs;
-	}
-
-	public void setJoueurCourant(int joueurCourant) {
-		this.joueurCourant = joueurCourant;
-	}
-
-	public void setListeAnnuler(ArrayList<PionJoue> listeAnnuler) {
-		this.listeAnnuler = listeAnnuler;
-	}
-
-	public void setListeRefaire(ArrayList<PionJoue> listeRefaire) {
-		this.listeRefaire = listeRefaire;
-	}
-
-	public void setEtatPartie(EtatPartie etatPartie) {
-		this.etatPartie = etatPartie;
-	}
-
-	public void setTabouJeu(Tabou tabousJeu) {
-		this.tabousJeu = tabousJeu;
-	}
-
-	public void setEmplacementThemes(String emplacementThemes) {
-		this.emplacementThemes = emplacementThemes;
-	}
-	
-	public void setModeDebutant(boolean modeDebutant) {
-		this.modeDebutant = modeDebutant;
-	}
-
-	public void setNbDemiTourCourant(int n){
-		nbDemiTourCourant = n;
-	}
-	
-	public int getNbJoueurs() {
-		return tabJoueurs.length;
-	}
-
 	public Renjou clone(Renjou renjou) {
 		try {
 			Object renjouClone = this.clone();
@@ -165,22 +76,82 @@ public class Renjou implements InterfaceRenjou, java.io.Serializable {
 		return null;
 	}
 
+	// Getter and setter
+	public PlateauDeJeu getPlateauDeJeu() {
+		return this.plateau;
+	}
+	public Joueur[] getJoueurs() {
+		return this.tabJoueurs;
+	}
+	public int getJoueurCourant() {
+		return this.joueurCourant;
+	}
+	public ArrayList<PionJoue> getListeAnnuler() {
+		return this.listeAnnuler;
+	}
+	public ArrayList<PionJoue> getListeRefaire() {
+		return this.listeRefaire;
+	}
+	public EtatPartie getEtatPartie() {
+		return etatPartie;
+	}
+	public Tabou getTabouJeu() {
+		return tabousJeu;
+	}
+	public String getEmplacementThemes() {
+		return emplacementThemes;
+	}
+	public int getNbDemiTourCourant(){
+		return nbDemiTourCourant ;
+	}
+	public boolean estModeDebutant() {
+		return modeDebutant;
+	}
+	public void setPlateauDeJeu(PlateauDeJeu plateau) {
+		this.plateau = plateau;
+	}
+	public void setJoueurs(Joueur[] tabJoueurs) {
+		this.tabJoueurs = tabJoueurs;
+	}
+	public void setJoueurCourant(int joueurCourant) {
+		this.joueurCourant = joueurCourant;
+	}
+	public void setListeAnnuler(ArrayList<PionJoue> listeAnnuler) {
+		this.listeAnnuler = listeAnnuler;
+	}
+	public void setListeRefaire(ArrayList<PionJoue> listeRefaire) {
+		this.listeRefaire = listeRefaire;
+	}
+	public void setEtatPartie(EtatPartie etatPartie) {
+		this.etatPartie = etatPartie;
+	}
+	public void setTabouJeu(Tabou tabousJeu) {
+		this.tabousJeu = tabousJeu;
+	}
+	public void setEmplacementThemes(String emplacementThemes) {
+		this.emplacementThemes = emplacementThemes;
+	}
+	public void setModeDebutant(boolean modeDebutant) {
+		this.modeDebutant = modeDebutant;
+	}
+	public void setNbDemiTourCourant(int n){
+		nbDemiTourCourant = n;
+	}
+	public int getNbJoueurs() {
+		return tabJoueurs.length;
+	}
 	public void setNouveauTheme(String theme) {
 		this.emplacementThemes = theme;
 	}
-
 	public int getIndiceDebutHistorique() {
 		return indiceDebutHistorique;
 	}
-
 	public void setIndiceDebutHistorique(int indiceDebutHistorique) {
 		this.indiceDebutHistorique = indiceDebutHistorique;
 	}
-
 	public int getIndiceFinHistorique() {
 		return indiceFinHistorique;
 	}
-
 	public void setIndiceFinHistorique(int indiceFinHistorique) {
 		this.indiceFinHistorique = indiceFinHistorique;
 	}
