@@ -1,10 +1,7 @@
 PARTIE IHM :
 
 Partie importante :
-- Tester historique comme un bourrin
-- Tester tutoriel sur les machines de la fac
 - Faire tests sur plateau de jeu
-- Tout tester comme un bourin!!
 
 Partie si temps en plus :
 - Temps restant a implementer
@@ -14,8 +11,6 @@ Partie si temps en plus :
 - Mettre un lien PDF dans les règles du jeu, pour avoir plus d'informations
 
 PARTIE MOTEUR:
-
-- Regarder si on peut lancer des ia contre ia sans appeler l'IHM, si non régler le problème pour pouvoir faire des tests
 
 PARTIE IA  :
 
@@ -55,3 +50,10 @@ Je vais dans la configuration -> tabous -> je déselectionne les cases -> annule
 Je retourne sur la fenêtre
 ==> les cases de tabous sont considérés comme déselectionnées. 
 Le problème est le même pour les joueurs //regle
+
+
+- Tester historique 
+- Tester tutoriel sur les machines de la fac
+- Se balader entre les écrans pour effectuer les tests
+
+- Regarder si on peut lancer des ia contre ia sans appeler l'IHM, si non régler le problème pour pouvoir faire des tests
