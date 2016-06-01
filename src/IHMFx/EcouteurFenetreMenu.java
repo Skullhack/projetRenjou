@@ -97,6 +97,9 @@ public class EcouteurFenetreMenu {
 	}
 	
 	public void annuler() {
+		ihm.etatTuto = 1;
+		ihm.modeTuto = false;
+		imageTuto.setImage(ihm.i.getImageVide());
 		if (themeChangement) {
 			m.getRenjou().setNouveauTheme(ancienTheme);
 			ihm.i.setImage();
@@ -231,6 +234,12 @@ public class EcouteurFenetreMenu {
 	private void selectionnerThemeRugby(MouseEvent e) {
 		themeChangement = true;
 		selectionnerTheme("Rugby");
+	}
+	
+	@FXML
+	private void selectionnerThemeStarWars(MouseEvent e) {
+		themeChangement = true;
+		selectionnerTheme("StarWars");
 	}
 	
 	public void selectionnerTheme(String nouveauTheme) {

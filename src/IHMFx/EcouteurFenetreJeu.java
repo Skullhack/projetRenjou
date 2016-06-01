@@ -348,6 +348,7 @@ public class EcouteurFenetreJeu implements Initializable {
 			imageTuto.setImage(null);
 			ihm.efm.update();
 		}	
+		ihm.efm.selectionnerBoxJoueur();
 	}
 	
 	@FXML
@@ -414,6 +415,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		ihm.fm.montrer();
 		ihm.fm.setAlwaysOnTop(true);
 		ihm.efm.getTabPane().getSelectionModel().select(0);
+		ihm.efm.selectionnerBoxJoueur();
 	}
 	
 	@FXML
@@ -423,6 +425,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		ihm.fm.montrer();
 		ihm.fm.setAlwaysOnTop(true);
 		ihm.efm.getTabPane().getSelectionModel().select(1);
+		ihm.efm.selectionnerBoxJoueur();
 	}
 	
 	@FXML
@@ -432,6 +435,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		ihm.fm.montrer();
 		ihm.fm.setAlwaysOnTop(true);
 		ihm.efm.getTabPane().getSelectionModel().select(2);
+		ihm.efm.selectionnerBoxJoueur();
 	}
 	
 	@FXML

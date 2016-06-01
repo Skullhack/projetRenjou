@@ -1,14 +1,14 @@
-#TÂCHES À FAIRE
+BUGS A REGLER : 
+
+Sur la barre de configuration -> Je passe mon curseur sur Aide
+
+===> Le hover bleu sur le texte est plus long que la chaîne
 
 
 PARTIE IHM :
 
 Partie importante :
-- Tester historique comme un bourrin
-- Tester tutoriel sur les machines de la fac
-- Reprendre image tuto pour donner plus d'info sur passer d'une page à une autre
 - Faire tests sur plateau de jeu
-- Tout tester comme un bourin!!
 
 Partie si temps en plus :
 - Temps restant a implementer
@@ -18,8 +18,6 @@ Partie si temps en plus :
 - Mettre un lien PDF dans les règles du jeu, pour avoir plus d'informations
 
 PARTIE MOTEUR:
-
-- Regarder si on peut lancer des ia contre ia sans appeler l'IHM, si non régler le problème pour pouvoir faire des tests
 
 PARTIE IA  :
 
@@ -46,4 +44,23 @@ Autre à partir de mercredi:
 - Faire un Pion Aide plus jolie pour tout les thèmes (le cercle vert plein est vraiment pas beau)
 
 - Modif ajout element annuler, quand ia contre ia ça serait bien de le garder en historique, dans la démo on pourra mettre en évidence les coups contrés
+- Reprendre image tuto pour donner plus d'info sur passer d'une page à une autre //regle
 
+Je vais dans la configuration -> tabous -> je déselectionne les cases -> annuler ou croix pour quitter
+Je retourne sur la fenêtre
+==> les cases de tabous sont considérés comme déselectionnées //regle
+
+Je vais dans configuration -> thèmes -> je sélectionne un thème -> je clique sur la croix d'exit
+====> Fatal error avec une exception //regle
+
+Je vais dans la configuration -> tabous -> je déselectionne les cases -> annuler ou croix pour quitter
+Je retourne sur la fenêtre
+==> les cases de tabous sont considérés comme déselectionnées. 
+Le problème est le même pour les joueurs //regle
+
+
+- Tester historique 
+- Tester tutoriel sur les machines de la fac
+- Se balader entre les écrans pour effectuer les tests
+
+- Regarder si on peut lancer des ia contre ia sans appeler l'IHM, si non régler le problème pour pouvoir faire des tests
