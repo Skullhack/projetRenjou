@@ -439,13 +439,19 @@ public class EcouteurFenetreJeu implements Initializable {
 	
 	@FXML
 	private void tutorielMenu(ActionEvent e) {
-		ihm.modeTuto = true;
-		ArrayList<TypeTabous> tabous = new ArrayList<TypeTabous>();
-		tabous.add(TypeTabous.TROIS_TROIS);
-		tabous.add(TypeTabous.QUATRE_QUATRE);
-		tabous.add(TypeTabous.SIX_SEPT);
-        m.configurerPartie(TypeJoueur.Humain, TypeJoueur.Humain, tabous, true, true);
-		update();
+		int confirm = JOptionPane.showOptionDialog(
+  	             null, "Etes vous sur de vouloir lancer le tutoriel ? Toute progression seras perdue !", 
+  	             "Lancer le tutoriel", JOptionPane.YES_NO_OPTION, 
+  	             JOptionPane.QUESTION_MESSAGE, null, null, null);
+  	    if (confirm == 0) {
+			ihm.modeTuto = true;
+			ArrayList<TypeTabous> tabous = new ArrayList<TypeTabous>();
+			tabous.add(TypeTabous.TROIS_TROIS);
+			tabous.add(TypeTabous.QUATRE_QUATRE);
+			tabous.add(TypeTabous.SIX_SEPT);
+	        m.configurerPartie(TypeJoueur.Humain, TypeJoueur.Humain, tabous, true, true);
+			update();
+  	    }
 	}
 	
 	@FXML
@@ -946,11 +952,11 @@ public class EcouteurFenetreJeu implements Initializable {
 		}
 		
 		//On retransforme en Image
-				WritableImage writableImage = new WritableImage((int)plat.getWidth(), (int)plat.getHeight());
-				canvas.snapshot(null, writableImage);
+		WritableImage writableImage = new WritableImage((int)plat.getWidth(), (int)plat.getHeight());
+		canvas.snapshot(null, writableImage);
 				
-				Image i = (Image) writableImage;
-				plateau.setImage(i);
+		Image i = (Image) writableImage;
+		plateau.setImage(i);
 		
 	}
 	
