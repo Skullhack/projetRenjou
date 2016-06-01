@@ -45,6 +45,7 @@ public class IHM extends Application implements MoteurObserveur{
     @Override
     public void start(Stage primaryStage) {
     	m = new Moteur(TypeJoueur.Humain, TypeJoueur.IAFacile);
+    	m.commencer();
     	i = new Images(m);	
 		//Premiere Fenetre
 	    efj = new EcouteurFenetreJeu(this);
