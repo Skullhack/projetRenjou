@@ -181,9 +181,10 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 			Thread threadIa = new Thread() {
 				public void run() {
+					TypeJoueur joueurCourant = renjou.getJoueurs()[renjou.getJoueurCourant()].getType();
 					Coordonnees c = renjou.getJoueurs()[renjou.getJoueurCourant()].jouer(renjou.getPlateauDeJeu());
 					Platform.runLater(
-							() -> operationJouer(c, renjou.getJoueurs()[renjou.getJoueurCourant()].getType()));
+							() -> operationJouer(c, joueurCourant));
 				}
 			};
 
