@@ -99,6 +99,7 @@ public class EcouteurFenetreMenu {
 	public void annuler() {
 		ihm.etatTuto = 1;
 		ihm.modeTuto = false;
+		imageTuto.setImage(ihm.i.getImageVide());
 		if (themeChangement) {
 			m.getRenjou().setNouveauTheme(ancienTheme);
 			ihm.i.setImage();
