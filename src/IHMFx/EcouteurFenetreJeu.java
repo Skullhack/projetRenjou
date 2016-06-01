@@ -397,14 +397,13 @@ public class EcouteurFenetreJeu implements Initializable {
     		int colonne = (int) ((e.getX() - width/2) /width %15);
     		c = new Coordonnees(ligne,colonne);
     		m.operationJouer(c, TypeJoueur.Humain);
-    		if (ihm.modeTuto && ihm.etatTuto == 3) {
+    		if (ihm.modeTuto && ihm.etatTuto == 3 && m.getRenjou().getListeAnnuler().size() == 1) {
     			ihm.etatTuto = ihm.etatTuto+1;
     			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto-1));
-    		} else if (ihm.modeTuto && ihm.etatTuto ==4 && !(c.getColonne() == 7 && c.getLigne() == 7) ) {
+    		} else if (ihm.modeTuto && ihm.etatTuto ==4 && m.getRenjou().getListeAnnuler().size() == 2 ) {
     			ihm.etatTuto = ihm.etatTuto+1;
     			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto-1));
     		}
-
     	}
    	}
 	
