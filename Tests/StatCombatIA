@@ -1,0 +1,33 @@
+IA Facile vs IA Facile
+
+il y a eu 10000 parties :
+Partie nulle : 5082
+Blanc a gagné : 4047 dont : 0 par tabous du Noir
+Noir a gagné : 871
+
+
+IA Facile vs IA Facile avec 1 chance sur 5 de faire tabous
+
+il y a eu 10000 parties :
+Partie nulle : 4491
+Blanc a gagné : 4683 dont : 1214 par tabous du Noir
+Noir a gagné : 826
+
+
+IA Facile vs IA Moyenne
+
+il y a eu 10000 parties :
+Partie nulle : 16
+Noir a gagné : 7432
+Blanc a gagné : 2552 dont : 2001 par tabous du Noir
+
+
+IA Moyenne vs IA Facile
+
+il y a eu 10000 parties :
+Partie nulle : 727
+Noir a gagné : 923
+Blanc a gagné : 8350 dont : 0 par tabous du Noir
+
+
+IA Moyenne vs IA Moyenne

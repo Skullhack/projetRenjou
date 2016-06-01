@@ -1,10 +1,8 @@
 package Joueur;
 
+import java.awt.Point;
 import java.util.GregorianCalendar;
 import java.util.Random;
-
-import Controleur.Moteur;
-import Controleur.MoteurObserveur;
 import Enum.TypeCase;
 import Enum.TypeCouleur;
 import Enum.TypeJoueur;
@@ -247,6 +245,20 @@ public class IA extends Joueur {
 			}
 		}
 
+	}
+
+	@Override
+	public Point play(int[][] plateau, int couleurJoueur, boolean tabou3x3, boolean tabou4x4, boolean tabouOverline){
+		initPlateauEtCouleur(plateau, couleurJoueur);
+		Coordonnees c = jouer(pdj);
+		return new Point(c.getColonne(), c.getLigne());
+	}
+	
+
+	@Override
+	public Coordonnees jouer(PlateauDeJeu pdj) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
