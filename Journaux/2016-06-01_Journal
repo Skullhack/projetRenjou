@@ -7,7 +7,6 @@ Partie importante :
 - Tester historique comme un bourrin
 - Tester tutoriel sur les machines de la fac
 - Reprendre image tuto pour donner plus d'info sur passer d'une page à une autre
-- Faire un Pion Aide plus jolie pour tout les thèmes (le cercle vert plein est vraiment pas beau)
 - Faire tests sur plateau de jeu
 - Tout tester comme un bourin!!
 
@@ -45,4 +44,5 @@ Autre à partir de mercredi:
     - selection des tabous écriture en entier //fait
     - Réctifier l'explication du mode débutant, sur machine fac on ne voit pas tout //fait
 - Changer le message de victoire avec un tabou, mettre par exemple : "Joueur blanc à gagné grâce à un tabous du joueur Noir " //fait
+- Faire un Pion Aide plus jolie pour tout les thèmes (le cercle vert plein est vraiment pas beau)
 
