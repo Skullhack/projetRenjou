@@ -4,23 +4,17 @@
 PARTIE IHM :
 
 Partie importante :
-
 - Tester historique comme un bourrin
 - Tester tutoriel sur les machines de la fac
 - Reprendre image tuto pour donner plus d'info sur passer d'une page à une autre
-- Faire un Pion Aide plus jolie pour tout les thèmes (le cercle vert plein est vraiment pas beau)
 - Faire tests sur plateau de jeu
 - Tout tester comme un bourin!!
-- Réctifier l'explication du mode débutant, sur machine fac on ne voit pas tout
-
 
 Partie si temps en plus :
 - Temps restant a implementer
 - Utiliser un système de timer pour que l'IA ne joue pas en INSTANT
 - Modifier le sablier avec un timer pour afficher les 3 états du sablier
 - Améliorer fenêtre de victoire, ça doit être la fête
-- Rectifier alignements :
-    - selection des tabous écriture en entier
 - Mettre un lien PDF dans les règles du jeu, pour avoir plus d'informations
 
 PARTIE MOTEUR:
@@ -39,12 +33,17 @@ Autre à partir de mercredi:
 
 
 #TÂCHES EFFECTUÉES
+- Vérifier orthographe sur tuto car alixia n'est pas très douée! //fait
+- Adrien gère les images transparentes pour l'historique à la place des cercles verts //REGLE
+- Créer les pions de nom "PionBlancTransparent" et "PionNoirTransparent" pour chaque thème
+- Image transparente pour les différents pions //fait
+- Reprendre image tuto pour enlever les onglet //fait
+- Problème tuto quand on est à la page 4 elle veut pas passer à la 5 alors que le pion blanc est posé sur la droite //REGLE
+- Rectifier alignements :
+    - selection des tabous écriture en entier //fait
+    - Réctifier l'explication du mode débutant, sur machine fac on ne voit pas tout //fait
+- Changer le message de victoire avec un tabou, mettre par exemple : "Joueur blanc à gagné grâce à un tabous du joueur Noir " //fait
+- Faire un Pion Aide plus jolie pour tout les thèmes (le cercle vert plein est vraiment pas beau)
 
 - Modif ajout element annuler, quand ia contre ia ça serait bien de le garder en historique, dans la démo on pourra mettre en évidence les coups contrés
-- Créer les pions de nom "PionBlancTransparent" et "PionNoirTransparent" pour chaque thème
-- Problème tuto quand on est à la page 4 elle veut pas passer à la 5 alors que le pion blanc est posé sur la droite //REGLE
-- Reprendre image tuto pour enlever les onglet //fait
-- Image transparente pour les différents pions //fait
-- Adrien gère les images transparentes pour l'historique à la place des cercles verts //REGLE
-- Vérifier orthographe sur tuto car alixia n'est pas très douée! //fait
-- Changer le message de victoire avec un tabou, mettre par exemple : "Joueur blanc à gagné grâce à un tabous du joueur Noir "
+

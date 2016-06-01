@@ -39,10 +39,10 @@
             <Image url="@../Images/PourToutLesThemes/Quitter.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutX="-1.0" layoutY="5.0" prefHeight="98.0" prefWidth="600.0" text="Renjou" textAlignment="CENTER">
-         <font>
-            <Font name="Arial" size="86.0" />
-         </font>
-      </Label>
+      <ImageView fitHeight="160.0" fitWidth="248.0" layoutX="176.0" layoutY="-14.0">
+         <image>
+            <Image url="@../Images/PourToutLesThemes/Renjou.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
