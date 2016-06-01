@@ -30,9 +30,8 @@ public class IHM implements Runnable, MoteurObserveur {
 	public void run() {
 		// Creation d'une fenetre
 		frames = new JFrame[3];
-		this.m = new Moteur(TypeJoueur.Humain, TypeJoueur.IAMoyenne);
+		this.m = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
 		this.m.enregistrerObserveur(this);
-		m.commencer();
 	
 		//Fenetre Jeu
 		frames[0] = new FenetreJeu(this);
@@ -58,6 +57,8 @@ public class IHM implements Runnable, MoteurObserveur {
 		frames[2].setSize(650,500);
         frames[2].setResizable(false);
 		frames[2].setLocationRelativeTo(null);
+		
+		m.commencer();
 }
 
 	public static void main(String[] args) {
