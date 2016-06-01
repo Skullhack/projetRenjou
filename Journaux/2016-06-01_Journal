@@ -1,6 +1,21 @@
 #TÂCHES À FAIRE
 
 
+BUGS A REGLER :
+
+Je vais dans la configuration -> tabous -> je déselectionne les cases -> annuler ou croix pour quitter
+Je retourne sur la fenêtre
+==> les cases de tabous sont considérés comme déselectionnées. 
+Le problème est le même pour les joueurs
+
+Je vais dans configuration -> thèmes -> je sélectionne un thème -> je clique sur la croix d'exit
+====> Fatal error avec une exception
+
+Je lance le tutoriel -> J'arrive à la partie ou il faut créer une partie -> Je ferme la fenêtre
+===> Quand je l'a réouvre, le chinois me propose toujours de m'expliquer les règles
+
+
+
 PARTIE IHM :
 
 Partie importante :
@@ -47,3 +62,9 @@ Autre à partir de mercredi:
 - Modif ajout element annuler, quand ia contre ia ça serait bien de le garder en historique, dans la démo on pourra mettre en évidence les coups contrés
 - Reprendre image tuto pour donner plus d'info sur passer d'une page à une autre //regle
 
+Je vais dans la configuration -> tabous -> je déselectionne les cases -> annuler ou croix pour quitter
+Je retourne sur la fenêtre
+==> les cases de tabous sont considérés comme déselectionnées //regle
+
+Je vais dans configuration -> thèmes -> je sélectionne un thème -> je clique sur la croix d'exit
+====> Fatal error avec une exception //regle
