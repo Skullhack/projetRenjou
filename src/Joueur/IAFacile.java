@@ -5,12 +5,7 @@
  */
 package Joueur;
 
-import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Random;
-
-import Controleur.*;
 import Enum.*;
 import Utilitaire.Coordonnees;
 import Utilitaire.Log;
@@ -22,13 +17,6 @@ public class IAFacile extends IA {
 
 	public IAFacile(TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
 		super(type, nbPion, couleurJoueur);
-	}
-
-
-	public Point play(int[][] plateau, int couleurJoueur, boolean tabou3x3, boolean tabou4x4, boolean tabouOverline){
-		initPlateauEtCouleur(plateau, couleurJoueur);
-		Coordonnees c = jouer(pdj);
-		return new Point(c.getColonne(), c.getLigne());
 	}
 	
 	@Override
@@ -132,7 +120,7 @@ public class IAFacile extends IA {
 	}
 	
 	private  boolean estCoupTabous(PlateauDeJeu plateau, Coordonnees c){
-		int proba = r.nextInt(5);
+		int proba = 0;
 		if(couleur == TypeCouleur.Noir){
 			if(!Tabou.estValide(plateau, c, true, true, true)){
 				if(proba != 1){

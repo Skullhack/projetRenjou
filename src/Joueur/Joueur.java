@@ -10,10 +10,9 @@ import java.awt.Point;
 import Controleur.*;
 import Enum.*;
 import Utilitaire.Coordonnees;
-import Utilitaire.Log;
 import Utilitaire.PlateauDeJeu;
 
-public class Joueur implements InterfaceJoueur, java.io.Serializable {
+public abstract class Joueur implements InterfaceJoueur, java.io.Serializable {
 	protected TypeJoueur type;
 	protected int nbPion;
 	protected Moteur m;
@@ -72,13 +71,12 @@ public class Joueur implements InterfaceJoueur, java.io.Serializable {
 		this.couleur = c;
 	}
 
-	public Point play(int[][] plateau, int couleurJoueur, boolean tabou3x3, boolean tabou4x4, boolean tabouOverline){
-		//0 = Vide
-		//1 = Noir
-		//2 = Blanc
-
-		return new Point(0,0);
-	}
+	
+	//0 = Vide
+	//1 = Noir
+	//2 = Blanc
+	@Override
+	public abstract Point play(int[][] plateau, int couleurJoueur, boolean tabou3x3, boolean tabou4x4, boolean tabouOverline);
 	
 
 	
@@ -111,9 +109,6 @@ public class Joueur implements InterfaceJoueur, java.io.Serializable {
 
 
 	@Override
-	public Coordonnees jouer(PlateauDeJeu pdj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract Coordonnees jouer(PlateauDeJeu pdj) ;
     
 }

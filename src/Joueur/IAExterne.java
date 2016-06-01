@@ -1,6 +1,5 @@
 package Joueur;
 
-import Controleur.Moteur;
 import Enum.TypeCase;
 import Enum.TypeCouleur;
 import Enum.TypeJoueur;

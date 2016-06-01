@@ -5,7 +5,6 @@
  */
 package Joueur;
 
-import Controleur.Moteur;
 import Enum.TypeCouleur;
 import Enum.TypeJoueur;
 
