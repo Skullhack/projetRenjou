@@ -12,7 +12,7 @@ Partie importante :
 - Faire tests sur plateau de jeu
 - Tout tester comme un bourin!!
 - Réctifier l'explication du mode débutant, sur machine fac on ne voit pas tout
-- Changer le message de victoire avec un tabou, mettre par exemple : "Joueur blanc à gagné grâce à un tabous du joueur Noir "
+
 
 Partie si temps en plus :
 - Temps restant a implementer
@@ -47,3 +47,4 @@ Autre à partir de mercredi:
 - Image transparente pour les différents pions //fait
 - Adrien gère les images transparentes pour l'historique à la place des cercles verts //REGLE
 - Vérifier orthographe sur tuto car alixia n'est pas très douée! //fait
+- Changer le message de victoire avec un tabou, mettre par exemple : "Joueur blanc à gagné grâce à un tabous du joueur Noir "
