@@ -306,10 +306,10 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 	public void ajouterPionJoueDansListeAnnuler(Renjou renjou, Coordonnees c, TypeCase typeCaseJoueurCourant,
 			EtatPartie etatPartie) {
 
-		if (!estDeuxJoueursIA(renjou)) {
+		//if (!estDeuxJoueursIA(renjou)) {
 			PionJoue pionJoue = new PionJoue(c, typeCaseJoueurCourant, etatPartie);
 			renjou.getListeAnnuler().add(pionJoue);
-		}
+		//}
 	}
 
 	public boolean estDeuxJoueursIA(Renjou renjou) {

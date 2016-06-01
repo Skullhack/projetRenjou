@@ -4,17 +4,12 @@
 PARTIE IHM :
 
 Partie importante :
-- Problème tuto quand on est à la page 4 elle veut pas passer à la 5 alors que le pion blanc est posé sur la droite //REGLE
+
 - Tester historique comme un bourrin
 - Tester tutoriel sur les machines de la fac
-- Reprendre image tuto pour enlever les onglet //fait
 - Reprendre image tuto pour donner plus d'info sur passer d'une page à une autre
-- Image transparente pour les différents pions //fait
-- Adrien gère les images transparentes pour l'historique à la place des cercles verts //REGLE
- elles sont dans chaque thèmes sous le nom de "PionBlancTransparent" et "PionNoirTransparent"
 - Faire un Pion Aide plus jolie pour tout les thèmes (le cercle vert plein est vraiment pas beau)
 - Faire tests sur plateau de jeu
-- Vérifier orthographe sur tuto car alixia n'est pas très douée! //fait
 - Tout tester comme un bourin!!
 - Réctifier l'explication du mode débutant, sur machine fac on ne voit pas tout
 - Changer le message de victoire avec un tabou, mettre par exemple : "Joueur blanc à gagné grâce à un tabous du joueur Noir "
@@ -30,7 +25,6 @@ Partie si temps en plus :
 
 PARTIE MOTEUR:
 
-- Modif ajout element annuler, quand ia contre ia ça serait bien de le garder en historique, dans la démo on pourra mettre en évidence les coups contrés
 - Regarder si on peut lancer des ia contre ia sans appeler l'IHM, si non régler le problème pour pouvoir faire des tests
 
 PARTIE IA  :
@@ -46,3 +40,10 @@ Autre à partir de mercredi:
 
 #TÂCHES EFFECTUÉES
 
+- Modif ajout element annuler, quand ia contre ia ça serait bien de le garder en historique, dans la démo on pourra mettre en évidence les coups contrés
+- Créer les pions de nom "PionBlancTransparent" et "PionNoirTransparent" pour chaque thème
+- Problème tuto quand on est à la page 4 elle veut pas passer à la 5 alors que le pion blanc est posé sur la droite //REGLE
+- Reprendre image tuto pour enlever les onglet //fait
+- Image transparente pour les différents pions //fait
+- Adrien gère les images transparentes pour l'historique à la place des cercles verts //REGLE
+- Vérifier orthographe sur tuto car alixia n'est pas très douée! //fait
