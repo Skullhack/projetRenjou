@@ -11,6 +11,11 @@ import Enum.TypeTabous;
 import Utilitaire.Coordonnees;
 import java.util.ArrayList;
 
+
+/*
+ * Cette classe permet de faire la liaison entre modele, IHM et IA
+ * Elle fait tout les calculs
+ */
 public interface InterfaceMoteur {
 
 	// Methodes

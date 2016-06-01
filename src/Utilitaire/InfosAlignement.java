@@ -3,6 +3,10 @@ package Utilitaire;
 import Controleur.*;
 import Enum.*;
 
+/*
+ * Cette classe permet d'avoir des informations sur lorganisation des pions autour d'une coordonnee
+ */
+
 public class InfosAlignement implements java.io.Serializable {
 
 	int nbNoir;

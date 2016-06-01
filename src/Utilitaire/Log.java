@@ -3,12 +3,15 @@ package Utilitaire;
 import java.io.File;
 import java.io.FileWriter;
 
+
+/*
+ * Cette classe est notre classe de trace
+ */
 public class Log implements java.io.Serializable {
 
 	static int plageBasse;
 	static int plageHaute;
     static FileWriter fw;
-    private static Log instance = new Log();
 
 	private Log(){
 		plageBasse = 0;

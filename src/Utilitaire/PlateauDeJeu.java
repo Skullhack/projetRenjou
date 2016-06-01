@@ -5,15 +5,10 @@
  */
 package Utilitaire;
 
-import java.awt.Point;
 import java.io.*;
-
 import Enum.TypeCase;
 
-/**
- *
- * @author michauad
- */
+
 public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable {
 	private TypeCase[][] plateau;
 	private final int lignes = 15;
@@ -34,6 +29,7 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable
 
 	}
 
+	// Methode
 	public void initPlateau() {
 
 		int milieuLignes = lignes / 2;
@@ -51,7 +47,6 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable
 			}
 		}
 	}
-
 	public void initPlateauDeuxiemeCoup() {
 		// on met toutes les cases injouables sauf le premier coup du joueur
 		// noir qui n'est pas modifié
@@ -81,32 +76,6 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable
 			}
 		}
 	}
-
-	@Override
-	public TypeCase[][] getPlateau() {
-		return this.plateau;
-	}
-
-	public void setPlateau(TypeCase[][] plateau) {
-		this.plateau = plateau;
-	}
-
-	public int getColonnes() {
-		return colonnes;
-	}
-
-	public int getLignes() {
-		return lignes;
-	}
-
-	public int getNbPionBlanc(){
-		return nbPionBlanc;
-	}
-	
-	public int getNbPionNoir(){
-		return nbPionNoir;
-	}	
-	@Override
 	public void ajouter(Coordonnees c, TypeCase typeCase) {
 		this.plateau[c.getLigne()][c.getColonne()] = typeCase;
 		if(typeCase == TypeCase.PionBlanc){
@@ -116,8 +85,6 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable
 			nbPionNoir++;
 		}		
 	}
-
-	@Override
 	public void enlever(Coordonnees c) {
 		if(this.plateau[c.getLigne()][c.getColonne()] == TypeCase.PionBlanc){
 			nbPionBlanc--;
@@ -127,7 +94,6 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable
 		}	
 		this.plateau[c.getLigne()][c.getColonne()] = TypeCase.Jouable;
 	}
-
 	public void supprimerCasesTabous() {
 		for (int i = 0; i < this.lignes; i++) {
 			for (int j = 0; j < this.colonnes; j++) {
@@ -137,7 +103,6 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable
 			}
 		}
 	}
-
 	public void supprimerCasesInjouables() {
 		for (int i = 0; i < this.lignes; i++) {
 			for (int j = 0; j < this.colonnes; j++) {
@@ -147,62 +112,12 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable
 			}
 		}
 	}
-
-	@Override
-	public PlateauDeJeu clone() {
-		PlateauDeJeu plateauDeJeuClone = new PlateauDeJeu();
-		for (int i = 0; i < this.lignes; i++) {
-			for (int j = 0; j < this.colonnes; j++) {
-				plateauDeJeuClone.ajouter(new Coordonnees(i,j), this.plateau[i][j]);
-			}
-		}
-		
-		return plateauDeJeuClone;
-
-	}
-
 	public TypeCase getTypeCaseTableau(Coordonnees c) {
 		return this.plateau[c.getLigne()][c.getColonne()];
 	}
-
-	public TypeCase getTypeCaseTableauParLigneColonne(int lignes, int colonnes) {
+	public TypeCase getTypeCaseTableau(int lignes, int colonnes) {
 		return this.plateau[lignes][colonnes];
 	}
-
-	public static TypeCase charToTypeCase(char c) {
-		switch (c) {
-		case 'N':
-			return TypeCase.PionNoir;
-		case 'B':
-			return TypeCase.PionBlanc;
-		case 'X':
-			return TypeCase.Tabou;
-		case '.':
-			return TypeCase.Jouable;
-		case 'I':
-			return TypeCase.Injouable;
-		default:
-			return TypeCase.Tabou;
-		}
-	}
-
-	public static String TypeCasetoString(TypeCase tc) {
-		switch (tc) {
-		case PionNoir:
-			return "N";
-		case PionBlanc:
-			return "B";
-		case Tabou:
-			return "X";
-		case Jouable:
-			return ".";
-		case Injouable:
-			return "I";
-		default:
-			return "X";
-		}
-	}
-
 	public PlateauDeJeu charger(String nomFichier) {
 		PlateauDeJeu pdj = new PlateauDeJeu();
 
@@ -225,7 +140,18 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable
 		return pdj;
 
 	}
+	@Override
+	public PlateauDeJeu clone() {
+		PlateauDeJeu plateauDeJeuClone = new PlateauDeJeu();
+		for (int i = 0; i < this.lignes; i++) {
+			for (int j = 0; j < this.colonnes; j++) {
+				plateauDeJeuClone.ajouter(new Coordonnees(i,j), this.plateau[i][j]);
+			}
+		}
+		
+		return plateauDeJeuClone;
 
+	}	
 	public String toString() {
 
 		String buff = new String();
@@ -238,4 +164,59 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable
 		}
 		return buff;
 	}
+
+	// Getter and Setter
+	public TypeCase[][] getPlateau() {
+		return this.plateau;
+	}
+	public void setPlateau(TypeCase[][] plateau) {
+		this.plateau = plateau;
+	}
+	public int getColonnes() {
+		return colonnes;
+	}
+	public int getLignes() {
+		return lignes;
+	}
+	public int getNbPionBlanc(){
+		return nbPionBlanc;
+	}
+	public int getNbPionNoir(){
+		return nbPionNoir;
+	}	
+
+	// Methode private
+	private static TypeCase charToTypeCase(char c) {
+		switch (c) {
+		case 'N':
+			return TypeCase.PionNoir;
+		case 'B':
+			return TypeCase.PionBlanc;
+		case 'X':
+			return TypeCase.Tabou;
+		case '.':
+			return TypeCase.Jouable;
+		case 'I':
+			return TypeCase.Injouable;
+		default:
+			return TypeCase.Tabou;
+		}
+	}
+	private static String TypeCasetoString(TypeCase tc) {
+		switch (tc) {
+		case PionNoir:
+			return "N";
+		case PionBlanc:
+			return "B";
+		case Tabou:
+			return "X";
+		case Jouable:
+			return ".";
+		case Injouable:
+			return "I";
+		default:
+			return "X";
+		}
+	}
+
 }

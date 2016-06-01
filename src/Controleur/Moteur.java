@@ -511,7 +511,7 @@ private TypeCase getTypeCaseJoueurCourant(Renjou renjou) throws Exception {
 		case Gauche:
 			// parcours colonne -1
 			while (colonneCourante >= 0 && (typeCaseJoueurCourant == renjou.getPlateauDeJeu()
-					.getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
+					.getTypeCaseTableau(ligneCourante, colonneCourante))) {
 				colonneCourante--;
 			}
 			colonneCourante++;
@@ -519,7 +519,7 @@ private TypeCase getTypeCaseJoueurCourant(Renjou renjou) throws Exception {
 		case DiagonaleHautGauche:
 			// parcours diagonale ligne -1 colonne -1
 			while (ligneCourante >= 0 && colonneCourante >= 0 && (typeCaseJoueurCourant == renjou.getPlateauDeJeu()
-					.getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
+					.getTypeCaseTableau(ligneCourante, colonneCourante))) {
 				ligneCourante--;
 				colonneCourante--;
 			}
@@ -530,7 +530,7 @@ private TypeCase getTypeCaseJoueurCourant(Renjou renjou) throws Exception {
 		case DiagonaleHautDroite:
 			// parcours diagonale ligne -1 colonne + 1
 			while (ligneCourante >= 0 && colonneCourante < nbColonnesPlateau && (typeCaseJoueurCourant == renjou
-					.getPlateauDeJeu().getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
+					.getPlateauDeJeu().getTypeCaseTableau(ligneCourante, colonneCourante))) {
 				ligneCourante--;
 				colonneCourante++;
 			}
@@ -541,7 +541,7 @@ private TypeCase getTypeCaseJoueurCourant(Renjou renjou) throws Exception {
 		case Haut:
 			// parcours ligne -1
 			while (ligneCourante >= 0 && (typeCaseJoueurCourant == renjou.getPlateauDeJeu()
-					.getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
+					.getTypeCaseTableau(ligneCourante, colonneCourante))) {
 				ligneCourante--;
 			}
 			ligneCourante++;
@@ -575,7 +575,7 @@ private TypeCase getTypeCaseJoueurCourant(Renjou renjou) throws Exception {
 			// parcours colonne +1
 
 			while (colonneCourante < nbColonnesPlateau && (typeCaseJoueurCourant == renjou.getPlateauDeJeu()
-					.getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
+					.getTypeCaseTableau(ligneCourante, colonneCourante))) {
 				colonneCourante++;
 				nbPionsAlignes++;
 			}
@@ -585,7 +585,7 @@ private TypeCase getTypeCaseJoueurCourant(Renjou renjou) throws Exception {
 			// parcours ligne +1 colonne +1
 			while (ligneCourante < nbLignesPlateau && colonneCourante < nbColonnesPlateau
 					&& (typeCaseJoueurCourant == renjou.getPlateauDeJeu()
-							.getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
+							.getTypeCaseTableau(ligneCourante, colonneCourante))) {
 				ligneCourante++;
 				colonneCourante++;
 				nbPionsAlignes++;
@@ -595,7 +595,7 @@ private TypeCase getTypeCaseJoueurCourant(Renjou renjou) throws Exception {
 		case DiagonaleHautDroite:
 			// parcours diagonale ligne +1 colonne -1
 			while (ligneCourante < nbLignesPlateau && colonneCourante >= 0 && (typeCaseJoueurCourant == renjou
-					.getPlateauDeJeu().getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
+					.getPlateauDeJeu().getTypeCaseTableau(ligneCourante, colonneCourante))) {
 				ligneCourante++;
 				colonneCourante--;
 				nbPionsAlignes++;
@@ -606,7 +606,7 @@ private TypeCase getTypeCaseJoueurCourant(Renjou renjou) throws Exception {
 		case Haut:
 			// parcours ligne +1
 			while (ligneCourante < nbLignesPlateau && (typeCaseJoueurCourant == renjou.getPlateauDeJeu()
-					.getTypeCaseTableauParLigneColonne(ligneCourante, colonneCourante))) {
+					.getTypeCaseTableau(ligneCourante, colonneCourante))) {
 				ligneCourante++;
 				nbPionsAlignes++;
 			}

@@ -148,8 +148,8 @@ public class IAMoyenne extends IA {
 		for (int i = 0; i < nbLigne; i++) {
 			for (int j = 0; j < nbColonne; j++) {
 				Coordonnees c = new Coordonnees(i, j);
-				if (pdj.getTypeCaseTableauParLigneColonne(i, j) == TypeCase.PionBlanc
-						|| pdj.getTypeCaseTableauParLigneColonne(i, j) == TypeCase.PionNoir) {
+				if (pdj.getTypeCaseTableau(i, j) == TypeCase.PionBlanc
+						|| pdj.getTypeCaseTableau(i, j) == TypeCase.PionNoir) {
 					Motif m = new Motif(pdj, c);
 
 					if (pdj.getTypeCaseTableau(c) == TypeCase.PionBlanc && !coupGagnantBlanc) {
@@ -209,8 +209,8 @@ public class IAMoyenne extends IA {
 		for (int i = 0; i < nbLigne; i++) {
 			for (int j = 0; j < nbColonne; j++) {
 				Coordonnees c = new Coordonnees(i, j);
-				if (pdj.getTypeCaseTableauParLigneColonne(i, j) == TypeCase.PionBlanc
-						|| pdj.getTypeCaseTableauParLigneColonne(i, j) == TypeCase.PionNoir) {
+				if (pdj.getTypeCaseTableau(i, j) == TypeCase.PionBlanc
+						|| pdj.getTypeCaseTableau(i, j) == TypeCase.PionNoir) {
 					Motif m = new Motif(pdj, c);
 
 					if (pdj.getTypeCaseTableau(c) == TypeCase.PionBlanc && !coupGagnantBlanc) {

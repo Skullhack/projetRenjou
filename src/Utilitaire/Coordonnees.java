@@ -2,6 +2,10 @@ package Utilitaire;
 
 import java.awt.Point;
 
+/*
+ * Cette classe permet davoir des indice lignes et colonnes pour notre plateau de jeu
+ */
+
 public class Coordonnees implements java.io.Serializable{
 
 	private int colonne;

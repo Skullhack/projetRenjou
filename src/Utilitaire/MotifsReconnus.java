@@ -2,6 +2,11 @@ package Utilitaire;
 
 import Enum.TypeCouleur;
 
+
+/*
+ * Cette classe permet de choisir les motifs que l'on veut faire reconnaitre a l'IA
+ * Plus il y en a plus l'IA repondra juste mais avec plus de temps de calcul
+ */
 public enum MotifsReconnus {
 
 	estDeuxFoisDeuxLibreLibre {

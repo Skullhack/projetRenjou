@@ -15,10 +15,6 @@ import Enum.TypeCouleur;
 import Enum.TypeDirection;
 import Enum.TypeTabous;
 
-/**
- *
- * @author michauad
- */
 public class Tabou implements InterfaceTabou, java.io.Serializable {
 	private boolean troisFoistrois;
 	private boolean quatreFoisQuatre;
@@ -54,62 +50,8 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 		this.sixSept = sixSept;
 	}
 	
-
-	public ArrayList<TypeTabous> getListeTabous() {
-		ArrayList<TypeTabous> listeTabous = new ArrayList<TypeTabous>();
-		if (troisFoistrois) {
-			listeTabous.add(TypeTabous.TROIS_TROIS);
-
-		}
-		if (quatreFoisQuatre) {
-			listeTabous.add(TypeTabous.QUATRE_QUATRE);
-
-		}
-		if (sixSept) {
-			listeTabous.add(TypeTabous.SIX_SEPT);
-
-		}
-		return listeTabous;
-	}
-
-	public boolean estDansListeTabous (TypeTabous typeTabou){
-		switch(typeTabou){
-		case TROIS_TROIS:
-			return troisFoistrois;
-		case QUATRE_QUATRE:
-			return quatreFoisQuatre;
-		case SIX_SEPT:
-			return sixSept;
-		default :
-			break;
-		}
-		return true;
-	}
 	
-	public void setListeTabous(ArrayList<TypeTabous> listeTabous) {
-		this.troisFoistrois = false;
-		this.quatreFoisQuatre = false;
-		this.sixSept = false;
-
-		for (TypeTabous typeTabou : listeTabous) {
-			switch (typeTabou) {
-			case TROIS_TROIS:
-				this.troisFoistrois = true;
-				break;
-			case QUATRE_QUATRE:
-				this.quatreFoisQuatre = true;
-				break;
-			case SIX_SEPT:
-				this.sixSept = true;
-				break;
-			default:
-				break;
-
-			}
-		}
-	}
-	
-	// A appliquer que sur noir!!!!
+	// Methode
 	@Override
 	// A appliquer que sur noir!!!!
 	public boolean estValide(PlateauDeJeu r, Coordonnees c) {
@@ -135,7 +77,6 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 		}
 		return estValide;
 	}
-
 	public static  boolean estValide(PlateauDeJeu r, Coordonnees c, boolean troisFoisTroisAtribut, boolean quatreFoisQuatreAtribut, boolean sixSeptAtribut) {
 		// initialisation des infos selon les directions
 
@@ -168,18 +109,70 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 		}
 		return estValide;
 	}
-
+	public boolean estDansListeTabous (TypeTabous typeTabou){
+		switch(typeTabou){
+		case TROIS_TROIS:
+			return troisFoistrois;
+		case QUATRE_QUATRE:
+			return quatreFoisQuatre;
+		case SIX_SEPT:
+			return sixSept;
+		default :
+			break;
+		}
+		return true;
+	}
 	
-	public static boolean sixSept(Motif motif, TypeCouleur typeCouleur) {
-		return motif.estSixSept(typeCouleur);
+	// Getter and Setter
+	public ArrayList<TypeTabous> getListeTabous() {
+		ArrayList<TypeTabous> listeTabous = new ArrayList<TypeTabous>();
+		if (troisFoistrois) {
+			listeTabous.add(TypeTabous.TROIS_TROIS);
+
+		}
+		if (quatreFoisQuatre) {
+			listeTabous.add(TypeTabous.QUATRE_QUATRE);
+
+		}
+		if (sixSept) {
+			listeTabous.add(TypeTabous.SIX_SEPT);
+
+		}
+		return listeTabous;
+	}
+	public void setListeTabous(ArrayList<TypeTabous> listeTabous) {
+		this.troisFoistrois = false;
+		this.quatreFoisQuatre = false;
+		this.sixSept = false;
+
+		for (TypeTabous typeTabou : listeTabous) {
+			switch (typeTabou) {
+			case TROIS_TROIS:
+				this.troisFoistrois = true;
+				break;
+			case QUATRE_QUATRE:
+				this.quatreFoisQuatre = true;
+				break;
+			case SIX_SEPT:
+				this.sixSept = true;
+				break;
+			default:
+				break;
+
+			}
+		}
 	}
 
-	public static boolean troisFoisTrois(Motif motif, TypeCouleur typeCouleur) {
+	
+	// Methode private
+	private static boolean sixSept(Motif motif, TypeCouleur typeCouleur) {
+		return motif.estSixSept(typeCouleur);
+	}
+	private static boolean troisFoisTrois(Motif motif, TypeCouleur typeCouleur) {
 
 		return motif.estTroisFoisTroisLibreLibre(typeCouleur);
 	}
-
-	public static boolean quatreFoisQuatre(Motif motif, TypeCouleur typeCouleur) {
+	private static boolean quatreFoisQuatre(Motif motif, TypeCouleur typeCouleur) {
 
 		return motif.estQuatreFoisQuatre(typeCouleur);
 	}
