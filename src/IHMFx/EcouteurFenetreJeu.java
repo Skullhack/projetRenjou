@@ -394,7 +394,7 @@ public class EcouteurFenetreJeu implements Initializable {
     		if (ihm.modeTuto && ihm.etatTuto == 3) {
     			ihm.etatTuto = ihm.etatTuto+1;
     			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto-1));
-    		} else if (ihm.modeTuto && ihm.etatTuto ==4 && c.getColonne() != 8 && c.getLigne() != 7 ) {
+    		} else if (ihm.modeTuto && ihm.etatTuto ==4 && !(c.getColonne() == 7 && c.getLigne() == 7) ) {
     			ihm.etatTuto = ihm.etatTuto+1;
     			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto-1));
     		}
@@ -489,8 +489,6 @@ public class EcouteurFenetreJeu implements Initializable {
 		//Plateau
 		repeindrePlateau();		
 		disabEnabAnnulerRefaire();
-		//Voir si partie gagne
-		partieGagne();
 
 		fond.setImage(ihm.i.getFond());
 		tabou1Image.setImage(ihm.i.getTroisTroisImage());
@@ -543,6 +541,9 @@ public class EcouteurFenetreJeu implements Initializable {
 		
 		//Gere le panel annuler refaire
 		panelAnnulerRefaire();
+		
+		//Voir si partie gagne
+		partieGagne();
 	}
 	
 	public void disabEnabAnnulerRefaire() {
@@ -903,7 +904,6 @@ public class EcouteurFenetreJeu implements Initializable {
 		Image iPionNoir = ihm.i.getPionNoir();
 		//true refaire
 		if (type) {
-					
 			//On dessine l'état actuel
 			for (int i=0;i<m.getRenjou().getListeAnnuler().size();i++) {
 					PionJoue p = m.getRenjou().getListeAnnuler().get(i); 
@@ -914,8 +914,8 @@ public class EcouteurFenetreJeu implements Initializable {
 				    }    
 			}
 			//On dessine en transparent ce qui peut être ajouté
-			iPionBlanc = ihm.i.getCercleVertPlein();
-			iPionNoir = ihm.i.getCercleVert();
+			iPionBlanc = ihm.i.getPionBlancTransparent();
+			iPionNoir = ihm.i.getPionNoirTransparent();
 			for (int i=0;i<bornePion - m.getRenjou().getListeAnnuler().size();i++) {
 				PionJoue p = m.getRenjou().getListeRefaire().get( m.getRenjou().getListeRefaire().size() -i -1); 
 			    if (p.getTypeCase() == TypeCase.PionBlanc) {
@@ -935,8 +935,8 @@ public class EcouteurFenetreJeu implements Initializable {
 				    }    
 			}
 			//On dessine en transparent ce qui peut être ajouté
-			iPionBlanc = ihm.i.getCercleVertPlein();
-			iPionNoir = ihm.i.getCercleVert();
+			iPionBlanc = ihm.i.getPionBlancTransparent();
+			iPionNoir = ihm.i.getPionNoirTransparent();
 			for (int i=bornePion; i<m.getRenjou().getListeAnnuler().size(); i++) {
 				PionJoue p = m.getRenjou().getListeAnnuler().get(i); 
 			    if (p.getTypeCase() == TypeCase.PionBlanc) {

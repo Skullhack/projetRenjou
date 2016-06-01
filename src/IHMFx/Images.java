@@ -20,7 +20,9 @@ public class Images {
 	private Image refaireDrag;
 	private Image plateau;
 	private Image pionNoir;
+	private Image pionNoirTransparent;
 	private Image pionBlanc;
+	private Image pionBlancTransparent;
 	private Image pionNoirJoue;
 	private Image pionBlancJoue;
 	private Image boutonValider;
@@ -82,7 +84,9 @@ public class Images {
 		refaireDrag = new Image("./Images/"+theme+"/RefaireDrag.png");
 		plateau = new Image("./Images/"+theme+"/Plateau15x15.png");
 		pionNoir = new Image("./Images/"+theme+"/PionNoir.png");
+		pionNoirTransparent = new Image("./Images/"+theme+"/PionNoirTransparent.png");
 		pionBlanc = new Image("./Images/"+theme+"/PionBlanc.png");
+		pionBlancTransparent = new Image("./Images/"+theme+"/PionBlancTransparent.png");
 		pionNoirJoue = new Image("./Images/"+theme+"/PionNoirJoue.png");
 		pionBlancJoue = new Image("./Images/"+theme+"/PionBlancJoue.png");
 		boutonValider = new Image("./Images/"+theme+"/BoutonValider.png");
@@ -179,8 +183,16 @@ public class Images {
 		return pionNoir;
 	}
 	
+	public Image getPionNoirTransparent() {
+		return pionNoirTransparent;
+	}
+	
 	public Image getPionBlanc() {
 		return pionBlanc;
+	}
+	
+	public Image getPionBlancTransparent() {
+		return pionBlancTransparent;
 	}
 	
 	public Image getPionNoirJoue() {
