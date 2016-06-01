@@ -6,7 +6,6 @@ PARTIE IHM :
 Partie importante :
 - Tester historique comme un bourrin
 - Tester tutoriel sur les machines de la fac
-- Reprendre image tuto pour donner plus d'info sur passer d'une page à une autre
 - Faire tests sur plateau de jeu
 - Tout tester comme un bourin!!
 
@@ -46,4 +45,5 @@ Autre à partir de mercredi:
 - Faire un Pion Aide plus jolie pour tout les thèmes (le cercle vert plein est vraiment pas beau)
 
 - Modif ajout element annuler, quand ia contre ia ça serait bien de le garder en historique, dans la démo on pourra mettre en évidence les coups contrés
+- Reprendre image tuto pour donner plus d'info sur passer d'une page à une autre //regle
 

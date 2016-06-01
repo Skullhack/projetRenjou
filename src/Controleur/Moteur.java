@@ -37,10 +37,11 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 		tableauJoueurs[0] = creerJoueur(typeJoueur1, TypeCouleur.Noir);
 		tableauJoueurs[1] = creerJoueur(typeJoueur2, TypeCouleur.Blanc);
-
+	}
+	
+	public void commencer(){
 		notifierObserveurs();
 		faireJouerIA();
-
 	}
 
 	public Joueur creerJoueur(TypeJoueur typeJoueur, TypeCouleur typeCouleur) {
@@ -181,15 +182,23 @@ public class Moteur implements InterfaceMoteur, java.io.Serializable {
 
 			Thread threadIa = new Thread() {
 				public void run() {
+					TypeJoueur joueurCourant = renjou.getJoueurs()[renjou.getJoueurCourant()].getType();
 					Coordonnees c = renjou.getJoueurs()[renjou.getJoueurCourant()].jouer(renjou.getPlateauDeJeu());
 					Platform.runLater(
-							() -> operationJouer(c, renjou.getJoueurs()[renjou.getJoueurCourant()].getType()));
+							() -> operationJouer(c, joueurCourant));
 				}
 			};
 
 			threadIa.start();
 
 		}
+	}
+	
+	public EtatPartie faireJouerIAVsIAPourTest(){
+		while(renjou.getEtatPartie() == EtatPartie.EnCours){
+			jouer(renjou, renjou.getJoueurs()[renjou.getJoueurCourant()].jouer(renjou.getPlateauDeJeu()));
+		}
+		return renjou.getEtatPartie();
 	}
 
 	@Override
