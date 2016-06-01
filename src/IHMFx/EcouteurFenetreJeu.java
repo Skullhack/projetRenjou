@@ -700,8 +700,6 @@ public class EcouteurFenetreJeu implements Initializable {
 		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
     	int tailleAnulleRefaire = m.getRenjou().getListeAnnuler().size() +  m.getRenjou().getListeRefaire().size();
     	
-    	Log.print(10, "taiile listes : " + tailleAnulleRefaire);
-    	
     	if(tailleAnulleRefaire < 4){
     		m.getRenjou().setIndiceFinHistorique(tailleAnulleRefaire+1);
     		m.getRenjou().setIndiceDebutHistorique(0);
