@@ -5,10 +5,6 @@
  */
 package Enum;
 
-/**
- *
- * @author michauad
- */
 public enum TypeTabous {
     TROIS_TROIS,
     QUATRE_QUATRE,

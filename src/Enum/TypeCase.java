@@ -5,10 +5,6 @@
  */
 package Enum;
 
-/**
- *
- * @author michauad
- */
 public enum TypeCase {
     Jouable,
     PionBlanc,

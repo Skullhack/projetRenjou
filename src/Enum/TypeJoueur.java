@@ -5,10 +5,6 @@
  */
 package Enum;
 
-/**
- *
- * @author michauad
- */
 public enum TypeJoueur {
     Humain,
     IAFacile,
