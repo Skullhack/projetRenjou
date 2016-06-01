@@ -1,6 +1,17 @@
 #TÂCHES À FAIRE
 
 
+BUGS A REGLER :
+
+Je vais dans la configuration -> tabous -> je déselectionne les cases -> annuler ou croix pour quitter
+Je retourne sur la fenêtre
+==> les cases de tabous sont considérés comme déselectionnées
+
+Je vais dans configuration -> thèmes -> je sélectionne un thème -> je clique sur la croix d'exit
+====> Fatal error avec une exception
+
+
+
 PARTIE IHM :
 
 Partie importante :
