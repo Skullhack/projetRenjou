@@ -1,23 +1,10 @@
-BUGS A REGLER : 
+PARTIE IHM :
 
 Sur la barre de configuration -> Je passe mon curseur sur Aide
 
 ===> Le hover bleu sur le texte est plus long que la chaîne
 
-
-PARTIE IHM :
-
-Partie importante :
-- Faire tests sur plateau de jeu
-
-Partie si temps en plus :
-- Temps restant a implementer
-- Utiliser un système de timer pour que l'IA ne joue pas en INSTANT
-- Modifier le sablier avec un timer pour afficher les 3 états du sablier
-- Améliorer fenêtre de victoire, ça doit être la fête
-- Mettre un lien PDF dans les règles du jeu, pour avoir plus d'informations
-
-PARTIE MOTEUR:
+PARTIE MOTEUR :
 
 PARTIE IA  :
 
@@ -64,3 +51,6 @@ Le problème est le même pour les joueurs //regle
 - Se balader entre les écrans pour effectuer les tests
 
 - Regarder si on peut lancer des ia contre ia sans appeler l'IHM, si non régler le problème pour pouvoir faire des tests
+
+
+- Faire tests sur plateau de jeu
