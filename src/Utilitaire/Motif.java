@@ -24,6 +24,16 @@ public class Motif {
 	public Motif(PlateauDeJeu pdj, Coordonnees c) {
 		init(pdj, c);
 	}
+	public Motif() {
+		infoGauche = new InfosAlignement(TypeDirection.Gauche);
+		infoDroite = new InfosAlignement(TypeDirection.Droite);
+		infoHaut = new InfosAlignement(TypeDirection.Haut);
+		infoBas = new InfosAlignement(TypeDirection.Bas);
+		infoDiagonaleHautGauche = new InfosAlignement(TypeDirection.DiagonaleHautGauche);
+		infoDiagonaleHautDroite = new InfosAlignement(TypeDirection.DiagonaleHautDroite);
+		infoDiagonaleBasGauche = new InfosAlignement(TypeDirection.DiagonaleBasGauche);
+		infoDiagonaleBasDroite = new InfosAlignement(TypeDirection.DiagonaleBasDroite);
+	}
 	private void init(PlateauDeJeu r, Coordonnees c) {
 		infoGauche = new InfosAlignement(r, c, TypeDirection.Gauche);
 		infoDroite = new InfosAlignement(r, c, TypeDirection.Droite);
@@ -35,6 +45,18 @@ public class Motif {
 		infoDiagonaleBasDroite = new InfosAlignement(r, c, TypeDirection.DiagonaleBasDroite);
 	}
 
+	public void setMotif(PlateauDeJeu pdj, int l, int c){
+		infoGauche.setInfoAlignement(pdj, l, c);
+		infoDroite.setInfoAlignement(pdj, l, c);
+		infoHaut.setInfoAlignement(pdj, l, c);
+		infoBas.setInfoAlignement(pdj, l, c);
+		infoDiagonaleHautGauche.setInfoAlignement(pdj, l, c);
+		infoDiagonaleHautDroite.setInfoAlignement(pdj, l, c);
+		infoDiagonaleBasGauche.setInfoAlignement(pdj, l, c);
+		infoDiagonaleBasDroite.setInfoAlignement(pdj, l, c);
+	}
+	
+	
 	// Getter and Setter
 	public InfosAlignement getInfoGauche() {
 		return infoGauche;

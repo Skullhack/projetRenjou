@@ -64,7 +64,7 @@ public class TestIAMoyenne {
 			for(int j=0;j<pdj.getColonnes();j++){
 				Coordonnees c = new Coordonnees(i,j);
 				if(ia.EstBlancOuNoir(pdj,c)){
-					assertTrue(ia.PartieFinie(pdj,c, pdj.getTypeCaseTableau(c)));
+					assertTrue(ia.PartieFinie(pdj,i,j, pdj.getTypeCaseTableau(c)));
 				}
 			}
 		}
@@ -80,7 +80,7 @@ public class TestIAMoyenne {
 				Coordonnees c = new Coordonnees(i,j);
 				if(ia.EstBlancOuNoir(pdj,c)){
 					Log.print(615, "test Partie Finie en " + c);
-					assertTrue(ia.PartieFinie(pdj,c, pdj.getTypeCaseTableau(c)));
+					assertTrue(ia.PartieFinie(pdj,i,j, pdj.getTypeCaseTableau(c)));
 				}
 			}
 		}
@@ -94,7 +94,7 @@ public class TestIAMoyenne {
 				Coordonnees c = new Coordonnees(i,j);
 				if(ia.EstBlancOuNoir(pdj,c)){
 					Log.print(615, "test Partie Finie en " + c);
-					assertFalse(ia.PartieFinie(pdj,c, pdj.getTypeCaseTableau(c)));
+					assertFalse(ia.PartieFinie(pdj,i,j, pdj.getTypeCaseTableau(c)));
 				}
 			}
 		}
@@ -108,7 +108,7 @@ public class TestIAMoyenne {
 				Coordonnees c = new Coordonnees(i,j);
 				if(ia.EstBlancOuNoir(pdj,c)){
 					Log.print(615, "test Partie Finie en " + c);
-					assertTrue(ia.PartieFinie(pdj,c, pdj.getTypeCaseTableau(c)));
+					assertTrue(ia.PartieFinie(pdj,i,j, pdj.getTypeCaseTableau(c)));
 				}
 			}
 		}

@@ -53,26 +53,26 @@ public class IA extends Joueur {
 		return pdj.getNbPionBlanc() == 0 && pdj.getNbPionNoir() == 1;
 	}
 	
-	public boolean PartieFinie(PlateauDeJeu pdj, Coordonnees c, TypeCase tc) {
+	public boolean PartieFinie(PlateauDeJeu pdj, int l, int c, TypeCase tc) {
 
 
 		// diago hautgauchebasdroit
 		int somme = 0;
-		int i = c.getLigne();
-		int j = c.getColonne();
+		int i = l;
+		int j = c;
 		// Log.print(66, "partiefinie diago i= " + i + " j= " + j + " somme= "
 		// +somme);
-		while (i > 0 && j > 0 && pdj.getTypeCaseTableau(new Coordonnees(--i, --j)) == tc) {
+		while (i > 0 && j > 0 && pdj.getTypeCaseTableau(--i, --j) == tc) {
 			somme++;
 			// Log.print(66, "partiefinie diago i= " + i + " j= " + j + " somme=
 			// " +somme);
 		}
-		i = c.getLigne();
-		j = c.getColonne();
+		i = l;
+		j = c;
 		// Log.print(66, "partiefinie diago i= " + i + " j= " + j + " somme= "
 		// +somme);
 		while (i < pdj.getLignes() - 1 && j < pdj.getColonnes() - 1
-				&& pdj.getTypeCaseTableau(new Coordonnees(++i, ++j)) == tc) {
+				&& pdj.getTypeCaseTableau(++i, ++j) == tc) {
 			somme++;
 			// Log.print(66, "partiefinie diago i= " + i + " j= " + j + " somme=
 			// " +somme);
@@ -83,14 +83,14 @@ public class IA extends Joueur {
 
 		// diago hautdroitbasgauche
 		somme = 0;
-		i = c.getLigne();
-		j = c.getColonne();
-		while (i > 0 && j < pdj.getColonnes() - 1 && pdj.getTypeCaseTableau(new Coordonnees(--i, ++j)) == tc) {
+		i = l;
+		j = c;
+		while (i > 0 && j < pdj.getColonnes() - 1 && pdj.getTypeCaseTableau(--i, ++j) == tc) {
 			somme++;
 		}
-		i = c.getLigne();
-		j = c.getColonne();
-		while (i < pdj.getLignes() - 1 && j > 0 && pdj.getTypeCaseTableau(new Coordonnees(++i, --j)) == tc) {
+		i = l;
+		j = c;
+		while (i < pdj.getLignes() - 1 && j > 0 && pdj.getTypeCaseTableau(++i, --j) == tc) {
 			somme++;
 		}
 
@@ -99,14 +99,14 @@ public class IA extends Joueur {
 
 		// horizontal
 		somme = 0;
-		i = c.getLigne();
-		j = c.getColonne();
-		while (j < pdj.getColonnes() - 1 && pdj.getTypeCaseTableau(new Coordonnees(i, ++j)) == tc) {
+		i = l;
+		j = c;
+		while (j < pdj.getColonnes() - 1 && pdj.getTypeCaseTableau(i, ++j) == tc) {
 			somme++;
 		}
-		i = c.getLigne();
-		j = c.getColonne();
-		while (j > 0 && pdj.getTypeCaseTableau(new Coordonnees(i, --j)) == tc) {
+		i = l;
+		j = c;
+		while (j > 0 && pdj.getTypeCaseTableau(i, --j) == tc) {
 			somme++;
 		}
 
@@ -115,20 +115,20 @@ public class IA extends Joueur {
 
 		// vertical
 		somme = 0;
-		i = c.getLigne();
-		j = c.getColonne();
+		i = l;
+		j = c;
 		// Log.print(66, "partiefinie vertical i= " + i + " j= " + j + " somme=
 		// " +somme);
-		while (i > 0 && pdj.getTypeCaseTableau(new Coordonnees(--i, j)) == tc) {
+		while (i > 0 && pdj.getTypeCaseTableau(--i, j) == tc) {
 			somme++;
 			// Log.print(66, "partiefinie vertical i= " + i + " j= " + j + "
 			// somme= " +somme);
 		}
-		i = c.getLigne();
-		j = c.getColonne();
+		i = l;
+		j = c;
 		// Log.print(66, "partiefinie vertical i= " + i + " j= " + j + " somme=
 		// " +somme);
-		while (i < pdj.getLignes() - 1 && pdj.getTypeCaseTableau(new Coordonnees(++i, j)) == tc) {
+		while (i < pdj.getLignes() - 1 && pdj.getTypeCaseTableau(++i, j) == tc) {
 			somme++;
 			// Log.print(66, "partiefinie vertical i= " + i + " j= " + j + "
 			// somme= " +somme);
@@ -203,15 +203,19 @@ public class IA extends Joueur {
 	}
 	
 	public boolean EstJouable(PlateauDeJeu pdj, Coordonnees c, int distanceMax) {
-		if (EstBlancOuNoir(pdj, c))
+		return EstJouable(pdj, c.getLigne(), c.getColonne(), distanceMax);
+	}
+	
+	public boolean EstJouable(PlateauDeJeu pdj, int l, int c, int distanceMax) {
+		if (EstBlancOuNoir(pdj, l,c))
 			return false;
 
-		for (int i = c.getLigne() - distanceMax; i <= c.getLigne() + distanceMax; i++) {
-			for (int j = c.getColonne() - distanceMax; j <= c.getColonne() + distanceMax; j++) {
+		for (int i = l - distanceMax; i <= l + distanceMax; i++) {
+			for (int j = c - distanceMax; j <= c + distanceMax; j++) {
 				if (i >= 0 && i <= nbLigne - 1 && j >= 0 && j <= nbColonne - 1
-						&& (c.getLigne() != i || c.getColonne() != j)) {
+						&& (l != i || c != j)) {
 					// Log.print(11, "i=" + i + " j=" +j + " c= " + c );
-					if (EstBlancOuNoir(pdj, new Coordonnees(i, j))) {
+					if (EstBlancOuNoir(pdj, i,j)) {
 						// Log.print(1, "est un pion!" );
 						return true;
 					}
@@ -224,7 +228,12 @@ public class IA extends Joueur {
 	
 	public boolean EstBlancOuNoir(PlateauDeJeu pdj, Coordonnees c) {
 		// Log.print(66, "Dans EstBlancOuNoir => " + pdj.getTypeCaseTableau(c));
-		return pdj.getTypeCaseTableau(c) == TypeCase.PionBlanc || pdj.getTypeCaseTableau(c) == TypeCase.PionNoir;
+		return EstBlancOuNoir(pdj, c.getLigne(), c.getColonne());
+	}
+	
+	public boolean EstBlancOuNoir(PlateauDeJeu pdj, int l, int c) {
+		// Log.print(66, "Dans EstBlancOuNoir => " + pdj.getTypeCaseTableau(c));
+		return pdj.getTypeCaseTableau(l,c) == TypeCase.PionBlanc || pdj.getTypeCaseTableau(l,c) == TypeCase.PionNoir;
 	}
 	
 	public void initHeuristique(PlateauDeJeu plateau) {

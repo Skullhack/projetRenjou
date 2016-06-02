@@ -77,23 +77,34 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable
 		}
 	}
 	public void ajouter(Coordonnees c, TypeCase typeCase) {
-		this.plateau[c.getLigne()][c.getColonne()] = typeCase;
-		if(typeCase == TypeCase.PionBlanc){
+		ajouter(c.getLigne(), c.getColonne(), typeCase);
+	}
+	
+	public void ajouter(int l, int c, TypeCase tc) {
+		this.plateau[l][c] = tc;
+		if(tc == TypeCase.PionBlanc){
 			nbPionBlanc++;
 		}
-		if(typeCase == TypeCase.PionNoir){
+		if(tc == TypeCase.PionNoir){
 			nbPionNoir++;
-		}		
+		}	
+		
 	}
 	public void enlever(Coordonnees c) {
-		if(this.plateau[c.getLigne()][c.getColonne()] == TypeCase.PionBlanc){
+		enlever(c.getLigne(), c.getColonne());
+	}
+	
+	public void enlever(int l, int c) {
+		if(this.plateau[l][c] == TypeCase.PionBlanc){
 			nbPionBlanc--;
 		}
-		if(this.plateau[c.getLigne()][c.getColonne()] == TypeCase.PionNoir){
+		if(this.plateau[l][c] == TypeCase.PionNoir){
 			nbPionNoir--;
 		}	
-		this.plateau[c.getLigne()][c.getColonne()] = TypeCase.Jouable;
+		this.plateau[l][c] = TypeCase.Jouable;
+		
 	}
+	
 	public void supprimerCasesTabous() {
 		for (int i = 0; i < this.lignes; i++) {
 			for (int j = 0; j < this.colonnes; j++) {
@@ -218,5 +229,9 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable
 			return "X";
 		}
 	}
+
+
+
+
 
 }

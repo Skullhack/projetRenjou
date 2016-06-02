@@ -53,7 +53,7 @@ public class IAFacile extends IA {
 			for (int j = 0; j < nbColonne; j++) {
 				if(plateau.getPlateau()[i][j] == TypeCase.Jouable){
 					c = new Coordonnees(i, j);
-					if(PartieFinie(plateau, c, tc)){
+					if(PartieFinie(plateau, i,j, tc)){
 						if(!estCoupTabous(plateau, c)){
 							return c;
 						}
@@ -89,7 +89,7 @@ public class IAFacile extends IA {
 			for (int j = 0; j < nbColonne; j++) {
 				if(plateau.getPlateau()[i][j] == TypeCase.Jouable){
 					c = new Coordonnees(i, j);
-					if(PartieFinie(plateau, c, caseAdversaire)){
+					if(PartieFinie(plateau, i,j, caseAdversaire)){
 						if(!estCoupTabous(plateau, c)){
 							return c;
 						}

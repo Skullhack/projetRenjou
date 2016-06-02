@@ -18,6 +18,10 @@ import Utilitaire.Tabou;
 public class IAMoyenne extends IA {
 	ArrayList<Coordonnees> coups;
 	int profondeurMax;
+	Motif motif;
+	MotifsReconnus[] mr;
+	boolean[] presenceMotifBlanc;
+	boolean[] presenceMotifNoir;
 
 	public IAMoyenne(TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
 		super(type, nbPion, couleurJoueur);
@@ -27,6 +31,10 @@ public class IAMoyenne extends IA {
 	private void init() {
 		coups = new ArrayList<>();
 		profondeurMax = 3;
+		motif = new Motif();
+		mr = MotifsReconnus.values();
+		presenceMotifBlanc = new boolean[mr.length];
+		presenceMotifNoir = new boolean[mr.length];
 	}
 
 	public Point play(int[][] plateau, int couleurJoueur, boolean tabou3x3, boolean tabou4x4, boolean tabouOverline) {
@@ -91,32 +99,31 @@ public class IAMoyenne extends IA {
 		// parcours des coups jouable
 		for (int i = 0; i < nbLigne; i++) {
 			for (int j = 0; j < nbColonne; j++) {
-				Coordonnees c = new Coordonnees(i, j);
+
 				// Heuristique, on ne cherche pas a jouer a plus de 2 cases d'un
 				// pion existant
-				if (EstJouable(pdj, c, 2) && Tabou.estValide(pdj, c, true, true, true)) {
-					pdj.ajouter(c, tc);
+				if (EstJouable(pdj, i,j, 2) && (tc != TypeCase.PionNoir || Tabou.estValide(pdj, i, j, true, true, true))) {
+					pdj.ajouter(i,j, tc);
 					Log.print(1, pdj.toString());
-					if (PartieFinie(pdj, c, tc)
-							&& (tc != TypeCase.PionNoir || Tabou.estValide(pdj, c, true, true, true))) {
+					if (PartieFinie(pdj, i,j, tc)) {
 						// on peut couper l�, le coup est gagnant.
-						Log.print(1, "dans jouer " + c + " gagnant en profondeur " + (profondeurMax - profondeur));
-						return c;
+						Log.print(1, "dans jouer " + i + " " + j + " gagnant en profondeur " + (profondeurMax - profondeur));
+						return new Coordonnees(i,j);
 					} else {
 						// valeurtemp = 0;
 						valeurtemp = EvaluerCoupAdversaire(pdj, profondeur - 1, this.autreTypeCase(tc));
-						Log.print(1, "valeurtemp=" + valeurtemp + " " + c);
+						Log.print(1, "valeurtemp=" + valeurtemp + " i= " + i + " j= " + j);
 
 					}
-					pdj.enlever(c);
+					pdj.enlever(i,j);
 					if (valeurtemp == valeur) {
-						Log.print(1, "dans egal valeurtemp=" + valeurtemp + " " + c);
-						coups.add(c);
+						Log.print(1, "dans egal valeurtemp=" + valeurtemp + " i= " + i + " j= " + j);
+						coups.add(new Coordonnees(i,j));
 						Log.print(1, coups.toString());
 					} else if (valeurtemp > valeur) {
-						Log.print(1, "dans sup valeurtemp=" + valeurtemp + " " + c);
+						Log.print(1, "dans sup valeurtemp=" + valeurtemp + " i= " + i + " j= " + j);
 						coups.clear();
-						coups.add(c);
+						coups.add(new Coordonnees(i,j));
 						valeur = valeurtemp;
 						Log.print(1, coups.toString());
 					}
@@ -135,29 +142,26 @@ public class IAMoyenne extends IA {
 
 	}
 
+
 	public int Evaluation(PlateauDeJeu pdj, TypeCase tc) {
 
 		TypeCouleur blanc = TypeCouleur.Blanc;
 		TypeCouleur noir = TypeCouleur.Noir;
-		MotifsReconnus[] mr = MotifsReconnus.values();
-		boolean[] presenceMotifBlanc = new boolean[mr.length];
-		boolean[] presenceMotifNoir = new boolean[mr.length];
+		viderPresenceMotif();
 		boolean coupGagnantBlanc = false;
 		boolean coupGagnantNoir = false;
 		
 		for (int i = 0; i < nbLigne; i++) {
 			for (int j = 0; j < nbColonne; j++) {
-				Coordonnees c = new Coordonnees(i, j);
 				if (pdj.getTypeCaseTableau(i, j) == TypeCase.PionBlanc
 						|| pdj.getTypeCaseTableau(i, j) == TypeCase.PionNoir) {
-					Motif m = new Motif(pdj, c);
-
-					if (pdj.getTypeCaseTableau(c) == TypeCase.PionBlanc && !coupGagnantBlanc) {
+					motif.setMotif(pdj, i,j);
+					if (pdj.getTypeCaseTableau(i,j) == TypeCase.PionBlanc && !coupGagnantBlanc) {
 						// POUR BLANC
 						for (int k = 0; k < mr.length; k++) {
 							if (!presenceMotifBlanc[k]) {
-								if (mr[k].verif(m, blanc)) {
-									Log.print(501, "i= " + i + " j= " + j + " dans Blanc " + mr[k].name());
+								if (mr[k].verif(motif, blanc)) {
+									Log.print(1, "i= " + i + " j= " + j + " dans Blanc " + mr[k].name());
 									presenceMotifBlanc[k] = true;
 								}
 							}
@@ -168,12 +172,12 @@ public class IAMoyenne extends IA {
 						coupGagnantBlanc = CoupGagnant(presenceMotifBlanc);
 					}
 
-					if (pdj.getTypeCaseTableau(c) == TypeCase.PionNoir && !coupGagnantNoir) {
+					if (pdj.getTypeCaseTableau(i,j) == TypeCase.PionNoir && !coupGagnantNoir) {
 						// POUR NOIR
 						for (int k = 0; k < mr.length; k++) {
 							if (!presenceMotifNoir[k]) {
-								if (mr[k].verif(m, noir)) {
-									Log.print(501, "i= " + i + " j= " + j + " dans Noir " + mr[k].name());
+								if (mr[k].verif(motif, noir)) {
+									Log.print(1, "i= " + i + " j= " + j + " dans Noir " + mr[k].name());
 									presenceMotifNoir[k] = true;
 								}
 							}
@@ -192,6 +196,14 @@ public class IAMoyenne extends IA {
 		}else{
 			return Valeur(presenceMotifNoir) - Valeur(presenceMotifBlanc);
 		}
+	}
+
+	private void viderPresenceMotif() {
+		for(int i=0;i<mr.length;i++){
+			presenceMotifBlanc[i] = false;
+			presenceMotifNoir[i] = false;
+		}
+		
 	}
 
 	public int Evaluation2(PlateauDeJeu pdj, TypeCase tc) {
@@ -317,16 +329,16 @@ public class IAMoyenne extends IA {
 		int valeur = 1000000;
 		for (int i = 0; i < nbLigne; i++) {
 			for (int j = 0; j < nbColonne; j++) {
-				Coordonnees c = new Coordonnees(i, j);
+
 				// Heuristique, on ne cherche pas a jouer a plus de 2 cases d'un
 				// pion existant
-				if (EstJouable(pdj, c, 2) && (tc != TypeCase.PionNoir || Tabou.estValide(pdj, c, true, true, true))) {
+				if (EstJouable(pdj, i,j, 2) && (tc != TypeCase.PionNoir || Tabou.estValide(pdj, i,j, true, true, true))) {
 
-					pdj.ajouter(c, tc);
+					pdj.ajouter(i,j, tc);
 					// Log.print(695, pdj.toString());
-					if (PartieFinie(pdj, c, tc)) {
+					if (PartieFinie(pdj, i,j, tc)) {
 						// on peut couper l�, le coup est perdant.
-						pdj.enlever(c);
+						pdj.enlever(i,j);
 
 						// Log.print(695, "dans evalCoupAdv " + c + " gagnant en
 						// profondeur " + (profondeurMax -profondeur));
@@ -335,9 +347,10 @@ public class IAMoyenne extends IA {
 						int eval = EvaluerCoupIA(pdj, profondeur - 1, this.autreTypeCase(tc));
 						// Log.print(1, "evalIA: "+eval + " valeur: " + valeur +
 						// " prend min ");
-						valeur = Math.min(valeur, eval);
+						if(eval < valeur)
+							valeur = eval;
 					}
-					pdj.enlever(c);
+					pdj.enlever(i,j);
 				}
 			}
 		}
@@ -352,14 +365,13 @@ public class IAMoyenne extends IA {
 		int valeur = -1000000;
 		for (int i = 0; i < nbLigne; i++) {
 			for (int j = 0; j < nbColonne; j++) {
-				Coordonnees c = new Coordonnees(i, j);
 				// Heuristique, on ne cherche pas a jouer a plus de 2 cases d'un
 				// pion existant
-				if (EstJouable(pdj, c, 2) && (tc != TypeCase.PionNoir || Tabou.estValide(pdj, c, true, true, true))) {
-					pdj.ajouter(c, tc);
-					if (PartieFinie(pdj, c, tc)) {
+				if (EstJouable(pdj, i,j, 2) && (tc != TypeCase.PionNoir || Tabou.estValide(pdj, i,j, true, true, true))) {
+					pdj.ajouter(i,j, tc);
+					if (PartieFinie(pdj, i,j, tc)) {
 						// on peut couper l�, le coup est gagnant.
-						pdj.enlever(c);
+						pdj.enlever(i,j);
 						// Log.print(695, "dans evalCoupIA " + c + " gagnant en
 						// profondeur " + (profondeurMax -profondeur));
 						return 40000;
@@ -367,9 +379,11 @@ public class IAMoyenne extends IA {
 						int eval = EvaluerCoupAdversaire(pdj, profondeur - 1, this.autreTypeCase(tc));
 						// Log.print(1, "evalAd: "+eval + " valeur: " + valeur +
 						// " prend max ");
-						valeur = Math.max(valeur, eval);
+						
+						if(eval > valeur)
+							valeur = eval;
 					}
-					pdj.enlever(c);
+					pdj.enlever(i,j);
 				}
 			}
 		}
@@ -387,7 +401,7 @@ public class IAMoyenne extends IA {
 
 	private int Valeur(boolean[] tab) {
 		int v = 0;
-
+		
 		if (tab[MotifsReconnus.estQuatreLibre.ordinal()]) {
 			v += 20000;
 		} else if (tab[MotifsReconnus.estTroisFoisTroisLibreLibre.ordinal()]) {
@@ -402,7 +416,9 @@ public class IAMoyenne extends IA {
 			v += 600;
 		} else if (tab[MotifsReconnus.estDeuxFoisDeuxLibreLibre.ordinal()]) {
 			v += 500;
-		} else if (tab[MotifsReconnus.estTroisFoisDeux.ordinal()]) {
+		} else if (tab[MotifsReconnus.estTroisFoisTroisLibre.ordinal()]) {
+			v += 100;
+		}else if (tab[MotifsReconnus.estTroisFoisDeux.ordinal()]) {
 			v += 75;
 		} else if (tab[MotifsReconnus.estTroisLibre.ordinal()]) {
 			v += 50;

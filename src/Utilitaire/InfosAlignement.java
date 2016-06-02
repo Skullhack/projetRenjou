@@ -41,6 +41,16 @@ public class InfosAlignement implements java.io.Serializable {
 		entreeAutomate(pdj);		
 	}
 
+	public InfosAlignement(TypeDirection td) {
+		ligne = 0;
+		colonne = 0;
+		direction = td;
+		nbLignes = 15;
+		nbColonnes = 15;
+	}
+
+	
+	
 	private boolean incremente(){
 		switch(direction){
 		case Gauche:
@@ -75,6 +85,13 @@ public class InfosAlignement implements java.io.Serializable {
 			return false;
 		}
 
+	}
+	
+	public void setInfoAlignement(PlateauDeJeu pdj, int l, int c){
+		ligne = l;
+		colonne = c;
+		entreeAutomate(pdj);
+		
 	}
 
 	public void entreeAutomate(PlateauDeJeu pdj){

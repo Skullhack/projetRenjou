@@ -19,6 +19,7 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 	private boolean troisFoistrois;
 	private boolean quatreFoisQuatre;
 	private boolean sixSept;
+	private static Motif motif = new Motif();
 
 	// Constructeur
 	public Tabou(ArrayList<TypeTabous> listeTabous) {
@@ -59,7 +60,7 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 		Log.print(1010, "r = " + r + "c" + c);
 
 		TypeCouleur typeCouleur = TypeCouleur.Noir;
-		Motif motif = new Motif(r,c);
+		motif.setMotif(r,c.getLigne(), c.getColonne());
 		Log.print(1010, motif.getInfoDiagonaleHautGauche().toString());
 		Log.print(1010, motif.getInfoDiagonaleHautDroite().toString());
 		Log.print(1010, motif.getInfoDiagonaleBasGauche().toString());
@@ -77,20 +78,26 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 		}
 		return estValide;
 	}
+	
 	public static  boolean estValide(PlateauDeJeu r, Coordonnees c, boolean troisFoisTroisAtribut, boolean quatreFoisQuatreAtribut, boolean sixSeptAtribut) {
+		return estValide(r,c.getLigne(), c.getColonne(), troisFoisTroisAtribut, quatreFoisQuatreAtribut, sixSeptAtribut);
+	}
+	
+	
+	public static boolean estValide(PlateauDeJeu r, int l, int c, boolean troisFoisTroisAtribut, boolean quatreFoisQuatreAtribut, boolean sixSeptAtribut) {
 		// initialisation des infos selon les directions
 
-		Log.print(1010, "r = " + r + "c" + c);
-		Motif motif = new Motif(r,c);
+		//Log.print(1010, "r = " + r + " l= " + l + " c= " + c);
 		
-		Log.print(1010, motif.getInfoDiagonaleHautGauche().toString());
-		Log.print(1010, motif.getInfoDiagonaleHautDroite().toString());
-		Log.print(1010, motif.getInfoDiagonaleBasGauche().toString());
-		Log.print(1010, motif.getInfoDiagonaleBasDroite().toString());
-		Log.print(1010, motif.getInfoBas().toString());
-		Log.print(1010, motif.getInfoHaut().toString());
-		Log.print(1010, motif.getInfoDroite().toString());
-		Log.print(1010, motif.getInfoGauche().toString());
+		motif.setMotif(r, l, c);
+//		Log.print(1010, motif.getInfoDiagonaleHautGauche().toString());
+//		Log.print(1010, motif.getInfoDiagonaleHautDroite().toString());
+//		Log.print(1010, motif.getInfoDiagonaleBasGauche().toString());
+//		Log.print(1010, motif.getInfoDiagonaleBasDroite().toString());
+//		Log.print(1010, motif.getInfoBas().toString());
+//		Log.print(1010, motif.getInfoHaut().toString());
+//		Log.print(1010, motif.getInfoDroite().toString());
+//		Log.print(1010, motif.getInfoGauche().toString());
 
 		boolean estValide = true;
 		if (troisFoisTroisAtribut) {
@@ -99,16 +106,17 @@ public class Tabou implements InterfaceTabou, java.io.Serializable {
 		}
 		if (quatreFoisQuatreAtribut) {
 
-			Log.print(1010, "quatrefoisquatre " + quatreFoisQuatre(motif, TypeCouleur.Noir));
+			//Log.print(1010, "quatrefoisquatre " + quatreFoisQuatre(motif, TypeCouleur.Noir));
 			estValide = estValide && !quatreFoisQuatre(motif, TypeCouleur.Noir);
 		}
 		if (sixSeptAtribut) {
 
-			Log.print(1010, "sixSept" + sixSept(motif, TypeCouleur.Noir));
+			//Log.print(1010, "sixSept" + sixSept(motif, TypeCouleur.Noir));
 			estValide = estValide && !sixSept(motif, TypeCouleur.Noir);
 		}
 		return estValide;
 	}
+
 	public boolean estDansListeTabous (TypeTabous typeTabou){
 		switch(typeTabou){
 		case TROIS_TROIS:
