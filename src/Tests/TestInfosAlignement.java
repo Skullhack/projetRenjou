@@ -24,7 +24,7 @@ public class TestInfosAlignement {
 	public void init() {
 		m = new Moteur(TypeJoueur.Humain, TypeJoueur.Humain);
 		pdj = m.getRenjou().getPlateauDeJeu();
-		//plage de trace 700 à 800
+		//plage de trace 700 ï¿½ 800
 		Log.setPlage(720, 730);
 	}
 	
@@ -242,13 +242,13 @@ public class TestInfosAlignement {
 	@Test
 	public void main() {
 		Log.print(721, "debut main");
-		pdj = pdj.charger(chemin + "mainTest");
+		pdj = pdj.charger(chemin + "TestFauxTroisTrois2");
 		Log.print(725, pdj.toString());
-		InfosAlignement infos = new InfosAlignement(pdj, new Coordonnees(5,7), TypeDirection.Bas);
-		Motif m = new Motif(pdj, new Coordonnees(5,7));
+		InfosAlignement infos = new InfosAlignement(pdj, new Coordonnees(9,5), TypeDirection.Haut);
+		Motif m = new Motif(pdj, new Coordonnees(9,5));
 		Log.print(725, m.toString());
 		
-		Log.print(725, ""+m.estTroisFoisTroisLibre(TypeCouleur.Blanc) );
+		Log.print(725, ""+m.estTroisFoisTroisLibreLibre(TypeCouleur.Noir) );
 		
 		Log.print(721, "fin main");
 

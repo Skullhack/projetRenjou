@@ -197,15 +197,15 @@ public class InfosAlignement implements java.io.Serializable {
 			TypeCase tc = pdj.getTypeCaseTableau(ligne,colonne);
 			if(tc == TypeCase.PionNoir){
 				libre2casesBlanc = false;
-				noirBloque2Case(pdj);
+				blancBloque2Case(pdj);
 			}else if( tc == TypeCase.PionBlanc){
 				nbBlancNonContinu++;
 				libreBlanc = false;
 				libre2casesNoir = false;
-				noirNonContinu(pdj);
+				blancNonContinu(pdj);
 			}else if(tc == TypeCase.Jouable){
 				libre2casesBlanc = true;
-				noirLibre2Case(pdj);
+				blancLibre2Case(pdj);
 			}else{
 				Log.print(795, "Dans : Cas impossible?");
 			}
