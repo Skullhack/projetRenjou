@@ -2,13 +2,14 @@ package Utilitaire;
 
 import Enum.TypeCouleur;
 import Enum.TypeDirection;
+import Joueur.InterfaceJoueur;
 
 
 /*
  * Cette classe permet de reconnaître des motif (ex : troisxtrois, qutrextrois...) a partir des info recuperer dans infoAlignement
  * Chaque methodes reconnait un modif qui est son nom
  */
-public class Motif {
+public class Motif  implements java.io.Serializable {
 
 	private InfosAlignement infoGauche;
 	private InfosAlignement infoDroite;
