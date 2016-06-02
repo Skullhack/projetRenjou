@@ -124,7 +124,7 @@ public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable
 		}
 	}
 	public TypeCase getTypeCaseTableau(Coordonnees c) {
-		return this.plateau[c.getLigne()][c.getColonne()];
+		return getTypeCaseTableau(c.getLigne(),c.getColonne());
 	}
 	public TypeCase getTypeCaseTableau(int lignes, int colonnes) {
 		return this.plateau[lignes][colonnes];

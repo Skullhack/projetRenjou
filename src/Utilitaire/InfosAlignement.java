@@ -114,7 +114,7 @@ public class InfosAlignement implements java.io.Serializable {
 			libre2casesBlanc = false;
 			noirEtBlancBloque1Case(pdj);
 		}else{
-			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
+			TypeCase tc = pdj.getTypeCaseTableau(ligne, colonne);
 			if(tc == TypeCase.PionNoir){
 				nbNoir++;
 				libreBlanc = false;
@@ -145,7 +145,7 @@ public class InfosAlignement implements java.io.Serializable {
 			libre2casesBlanc = false;
 			blancBloque1Case(pdj);
 		}else{
-			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
+			TypeCase tc = pdj.getTypeCaseTableau(ligne,colonne);
 			if(tc == TypeCase.PionNoir){
 				libreBlanc = false;
 				libre2casesBlanc = false;
@@ -170,7 +170,7 @@ public class InfosAlignement implements java.io.Serializable {
 			libre2casesNoir = false;
 			noirBloque1Case(pdj);
 		}else{
-			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
+			TypeCase tc = pdj.getTypeCaseTableau(ligne,colonne);
 			if(tc == TypeCase.PionNoir){
 				nbNoir++;
 				noirContinu(pdj);
@@ -194,7 +194,7 @@ public class InfosAlignement implements java.io.Serializable {
 			libre2casesBlanc = false;
 			blancBloque2Case(pdj);
 		}else{
-			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
+			TypeCase tc = pdj.getTypeCaseTableau(ligne,colonne);
 			if(tc == TypeCase.PionNoir){
 				libre2casesBlanc = false;
 				noirBloque2Case(pdj);
@@ -218,7 +218,7 @@ public class InfosAlignement implements java.io.Serializable {
 			libre2casesNoir = false;
 			noirBloque2Case(pdj);
 		}else{
-			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
+			TypeCase tc = pdj.getTypeCaseTableau(ligne,colonne);
 			if(tc == TypeCase.PionNoir){
 				nbNoirNonContinu++;
 				libreNoir = false;
@@ -244,7 +244,7 @@ public class InfosAlignement implements java.io.Serializable {
 			libre2casesBlanc = false;
 			blancBloque1Case(pdj);
 		}else{
-			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
+			TypeCase tc = pdj.getTypeCaseTableau(ligne,colonne);
 			if(tc == TypeCase.PionNoir){
 				libreBlanc = true;
 				libre2casesBlanc = false;
@@ -269,7 +269,7 @@ public class InfosAlignement implements java.io.Serializable {
 			libre2casesNoir = false;
 			noirBloque1Case(pdj);
 		}else{
-			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
+			TypeCase tc = pdj.getTypeCaseTableau(ligne,colonne);
 			if(tc == TypeCase.PionNoir){
 				nbNoirNonContinu++;
 				libreNoir = false;
@@ -295,7 +295,7 @@ public class InfosAlignement implements java.io.Serializable {
 			libre2casesNoir = false;
 			noirBloque1Case(pdj);
 		}else{
-			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
+			TypeCase tc = pdj.getTypeCaseTableau(ligne,colonne);
 			if(tc == TypeCase.PionNoir){
 				libre2casesNoir = true;
 				noirLibre2Case(pdj);
@@ -318,7 +318,7 @@ public class InfosAlignement implements java.io.Serializable {
 			libre2casesBlanc = false;
 			blancBloque1Case(pdj);
 		}else{
-			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
+			TypeCase tc = pdj.getTypeCaseTableau(ligne,colonne);
 			if(tc == TypeCase.PionNoir){
 				libre2casesBlanc = false;
 				blancBloque2Case(pdj);
@@ -375,7 +375,7 @@ public class InfosAlignement implements java.io.Serializable {
 			libre2casesBlanc = false;
 			noirEtBlancBloque1Case(pdj);
 		}else{
-			TypeCase tc = pdj.getTypeCaseTableau(new Coordonnees(ligne,colonne));
+			TypeCase tc = pdj.getTypeCaseTableau(ligne,colonne);
 			if(tc == TypeCase.PionNoir){
 				nbNoirNonContinu++;
 				libreNoir = false;
