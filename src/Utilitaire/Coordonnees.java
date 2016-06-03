@@ -8,6 +8,10 @@ import java.awt.Point;
 
 public class Coordonnees implements java.io.Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int colonne;
 	private int ligne;
 	

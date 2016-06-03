@@ -10,6 +10,10 @@ import Enum.TypeCase;
 
 
 public class PlateauDeJeu implements InterfacePlateauDeJeu, java.io.Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private TypeCase[][] plateau;
 	private final int lignes = 15;
 	private final int colonnes = 15;

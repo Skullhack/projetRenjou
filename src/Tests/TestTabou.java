@@ -9,11 +9,9 @@ import org.junit.Test;
 
 import Controleur.Moteur;
 import Enum.TypeCouleur;
-import Enum.TypeDirection;
 import Enum.TypeJoueur;
 import Enum.TypeTabous;
 import Utilitaire.Coordonnees;
-import Utilitaire.InfosAlignement;
 import Utilitaire.Log;
 import Utilitaire.Motif;
 import Utilitaire.PlateauDeJeu;

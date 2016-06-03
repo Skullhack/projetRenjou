@@ -16,6 +16,10 @@ import Utilitaire.PlateauDeJeu;
 import Utilitaire.Tabou;
 
 public class IADifficile extends IA {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ArrayList<Coordonnees> coups;
 	int profondeurMax;
 	Motif motif;
@@ -428,28 +432,6 @@ public class IADifficile extends IA {
 		return v;
 	}
 
-	private int Valeur2(boolean[] tab) {
-		int v = 0;
 
-		if (tab[MotifsReconnus.estTroisFoisDeuxLibreLibre.ordinal()]) {
-			// Log.print(501, "+5000");
-			v += 5000;
-		} else if (tab[MotifsReconnus.estTroisFoisDeuxLibre.ordinal()]) {
-			// Log.print(501, "+600");
-			v += 600;
-		} else if (tab[MotifsReconnus.estDeuxFoisDeuxLibreLibre.ordinal()]) {
-			// Log.print(501, "+500");
-			v += 500;
-		}else if (tab[MotifsReconnus.estTroisFoisDeux.ordinal()]) {
-			// Log.print(501, "+75");
-			v += 75;
-		}else if (tab[MotifsReconnus.estTroisLibre.ordinal()]) {
-			// Log.print(501, "+50");
-			v += 50;
-		} 
-
-		Log.print(505, "valeur= " + v);
-		return v;
-	}
 
 }

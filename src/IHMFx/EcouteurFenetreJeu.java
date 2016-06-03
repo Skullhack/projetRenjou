@@ -6,16 +6,12 @@
 package IHMFx;
 
 import Utilitaire.Coordonnees;
-import Utilitaire.Log;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
-import com.sun.prism.paint.Color;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Text;
 
 import javafx.event.ActionEvent;
 import Controleur.Moteur;
@@ -36,107 +32,105 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.paint.*;
-
 
 /**
  *
  * @author michauad
  */
 public class EcouteurFenetreJeu implements Initializable {
-    private Moteur m;
-    private IHM ihm;
-    private boolean seuleFois;
-    private Image ancienPlateau;
-    //Panneau gauche;
-    @FXML
-    private Label labelNoir;
-    @FXML
-    private ImageView pionNoir;
-    @FXML
-    private Label nbPieceNoir;
-    @FXML
-    private ImageView iconeNoir; //Sablier ou Aide
-    @FXML
-    private Label tempsNoir;
-    @FXML
-    private ImageView annuler;
-    @FXML
-    private ImageView refaire;
-    @FXML
-    private Label labelBlanc;
-    @FXML
-    private ImageView pionBlanc;
-    @FXML
-    private Label nbPieceBlanc;
-    @FXML
-    private ImageView iconeBlanc; //Sablier ou Aide
-    @FXML
-    private Label tempsBlanc;
-    @FXML
-    private ImageView recommencer;
-    @FXML
-    private ImageView plateau;
-    @FXML
-    private FlowPane panelJ1;
-    @FXML
-    private FlowPane panelJ2;
-    @FXML
-    private ImageView fond;
-    @FXML
-    private ImageView tabou1Image;
-    @FXML
-    private ImageView tabou2Image;
-    @FXML
-    private ImageView tabou3Image;
-    @FXML
-    private Label tabou1;
-    @FXML
-    private Label tabou2;
-    @FXML
-    private Label tabou3;
-    @FXML
-    private AnchorPane tabou1Panel;
-    @FXML
-    private AnchorPane tabou2Panel;
-    @FXML
-    private AnchorPane tabou3Panel;
-    @FXML
-    private Label list1;
-    @FXML
-    private Label list2;
-    @FXML
-    private Label list3;
-    @FXML
-    private Label list4;
-    @FXML
-    private ImageView listImage1;
-    @FXML
-    private ImageView listImage2;
-    @FXML
-    private ImageView listImage3;
-    @FXML
-    private ImageView listImage4;
-    @FXML
-    private ImageView flecheHaut;
-    @FXML
-    private ImageView flecheBas;
-    @FXML
-    private ImageView imageTuto;
-    @FXML
-    private AnchorPane listAnchor1;
-    @FXML
-    private AnchorPane listAnchor2;   
-    @FXML
-    private AnchorPane listAnchor3;
-    @FXML
-    private AnchorPane listAnchor4;
+	private Moteur m;
+	private IHM ihm;
+	private boolean seuleFois;
+	private Image ancienPlateau;
+	// Panneau gauche;
+	@FXML
+	private Label labelNoir;
+	@FXML
+	private ImageView pionNoir;
+	@FXML
+	private Label nbPieceNoir;
+	@FXML
+	private ImageView iconeNoir; // Sablier ou Aide
+	@FXML
+	private Label tempsNoir;
+	@FXML
+	private ImageView annuler;
+	@FXML
+	private ImageView refaire;
+	@FXML
+	private Label labelBlanc;
+	@FXML
+	private ImageView pionBlanc;
+	@FXML
+	private Label nbPieceBlanc;
+	@FXML
+	private ImageView iconeBlanc; // Sablier ou Aide
+	@FXML
+	private Label tempsBlanc;
+	@FXML
+	private ImageView recommencer;
+	@FXML
+	private ImageView plateau;
+	@FXML
+	private FlowPane panelJ1;
+	@FXML
+	private FlowPane panelJ2;
+	@FXML
+	private ImageView fond;
+	@FXML
+	private ImageView tabou1Image;
+	@FXML
+	private ImageView tabou2Image;
+	@FXML
+	private ImageView tabou3Image;
+	@FXML
+	private Label tabou1;
+	@FXML
+	private Label tabou2;
+	@FXML
+	private Label tabou3;
+	@FXML
+	private AnchorPane tabou1Panel;
+	@FXML
+	private AnchorPane tabou2Panel;
+	@FXML
+	private AnchorPane tabou3Panel;
+	@FXML
+	private Label list1;
+	@FXML
+	private Label list2;
+	@FXML
+	private Label list3;
+	@FXML
+	private Label list4;
+	@FXML
+	private ImageView listImage1;
+	@FXML
+	private ImageView listImage2;
+	@FXML
+	private ImageView listImage3;
+	@FXML
+	private ImageView listImage4;
+	@FXML
+	private ImageView flecheHaut;
+	@FXML
+	private ImageView flecheBas;
+	@FXML
+	private ImageView imageTuto;
+	@FXML
+	private AnchorPane listAnchor1;
+	@FXML
+	private AnchorPane listAnchor2;
+	@FXML
+	private AnchorPane listAnchor3;
+	@FXML
+	private AnchorPane listAnchor4;
 
-    public EcouteurFenetreJeu(IHM ihm) {
-        //Variables
-    	this.seuleFois = false;
-    	this.ihm = ihm;
-        this.m = ihm.m;
+	public EcouteurFenetreJeu(IHM ihm) {
+		// Variables
+		this.seuleFois = false;
+		this.ihm = ihm;
+		this.m = ihm.m;
 		try {
 			ihm.fj = new FenetreJeu(this);
 		} catch (IOException e) {
@@ -144,18 +138,21 @@ public class EcouteurFenetreJeu implements Initializable {
 			e.printStackTrace();
 		}
 		Tooltip tooltipTabou1 = new Tooltip();
-		tooltipTabou1.setText("Trois-Trois : Si NOIR aligne trois pions dans deux directions differentes simultanement, il perd. \n Un clic sur l'icone vous renvoie dans la fenetre de configuration des tabous.");
+		tooltipTabou1.setText(
+				"Trois-Trois : Si NOIR aligne trois pions dans deux directions differentes simultanement, il perd. \n Un clic sur l'icone vous renvoie dans la fenetre de configuration des tabous.");
 		tabou1.setTooltip(tooltipTabou1);
 		tabou1.setStyle("-fx-font-size: 20");
 		Tooltip tooltipTabou2 = new Tooltip();
-		tooltipTabou2.setText("Quatre-Quatre : Si NOIR aligne quatre pions dans deux directions differentes simultanement, il perd. \n Un clic sur l'icone vous renvoie dans la fenetre de configuration des tabous.");
+		tooltipTabou2.setText(
+				"Quatre-Quatre : Si NOIR aligne quatre pions dans deux directions differentes simultanement, il perd. \n Un clic sur l'icone vous renvoie dans la fenetre de configuration des tabous.");
 		tabou2.setTooltip(tooltipTabou2);
 		tabou2.setStyle("-fx-font-size: 20");
 		Tooltip tooltipTabou3 = new Tooltip();
-		tooltipTabou3.setText("Six-Sept : Si NOIR aligne plus de cinq pions connexes, il perd. \n Un clic sur l'icone vous renvoie dans la fenetre de configuration des tabous.");
+		tooltipTabou3.setText(
+				"Six-Sept : Si NOIR aligne plus de cinq pions connexes, il perd. \n Un clic sur l'icone vous renvoie dans la fenetre de configuration des tabous.");
 		tabou3.setTooltip(tooltipTabou3);
 		tabou3.setStyle("-fx-font-size: 20");
-    }
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -164,65 +161,65 @@ public class EcouteurFenetreJeu implements Initializable {
 		flecheBas.setImage(ihm.i.getFlecheBasDisab());
 		flecheBas.setDisable(true);
 	}
-	
+
 	@FXML
 	private void dragDebutSablierAmpoule1(MouseEvent e) {
-		String theme=m.getRenjou().getEmplacementThemes();
+		// String theme=m.getRenjou().getEmplacementThemes();
 		if (m.getRenjou().getJoueurs()[0].getType() == TypeJoueur.Humain) {
 			iconeNoir.setImage(ihm.i.getAmpouleDrag());
 		} else {
 			iconeNoir.setImage(ihm.i.getSablier());
 		}
 	}
-	
+
 	@FXML
 	private void dragFinSablierAmpoule1(MouseEvent e) {
-		String theme=m.getRenjou().getEmplacementThemes();
+		// String theme=m.getRenjou().getEmplacementThemes();
 		if (m.getRenjou().getJoueurs()[0].getType() == TypeJoueur.Humain) {
 			iconeNoir.setImage(ihm.i.getAmpoule());
 		} else {
 			iconeNoir.setImage(ihm.i.getSablier());
 		}
 	}
-	
+
 	@FXML
 	private void dragDebutSablierAmpoule2(MouseEvent e) {
-		String theme=m.getRenjou().getEmplacementThemes();
+		// String theme=m.getRenjou().getEmplacementThemes();
 		if (m.getRenjou().getJoueurs()[1].getType() == TypeJoueur.Humain) {
 			iconeBlanc.setImage(ihm.i.getAmpouleDrag());
 		} else {
 			iconeBlanc.setImage(ihm.i.getSablier());
 		}
 	}
-	
+
 	@FXML
 	private void dragFinSablierAmpoule2(MouseEvent e) {
-		String theme=m.getRenjou().getEmplacementThemes();
+		// String theme=m.getRenjou().getEmplacementThemes();
 		if (m.getRenjou().getJoueurs()[1].getType() == TypeJoueur.Humain) {
 			iconeBlanc.setImage(ihm.i.getAmpoule());
 		} else {
 			iconeBlanc.setImage(ihm.i.getSablier());
 		}
 	}
-	
+
 	@FXML
 	private void dragDebutRecommencer(MouseEvent e) {
-		String theme=m.getRenjou().getEmplacementThemes();
+		// String theme=m.getRenjou().getEmplacementThemes();
 		recommencer.setImage(ihm.i.getRecommencerDrag());
 	}
-	
+
 	@FXML
 	private void dragFinRecommencer(MouseEvent e) {
-		String theme=m.getRenjou().getEmplacementThemes();
+		// String theme=m.getRenjou().getEmplacementThemes();
 		recommencer.setImage(ihm.i.getRecommencer());
 	}
-	
+
 	@FXML
-	private void setIconeSablierAmpoule() {		
+	private void setIconeSablierAmpoule() {
 		setIconeSablierAmpouleNoir();
 		setIconeSablierAmpouleBlanc();
 	}
-	
+
 	private void setIconeSablierAmpouleNoir() {
 		if (m.getRenjou().getJoueurs()[0].getType() == TypeJoueur.Humain) {
 			iconeNoir.setImage(ihm.i.getAmpoule());
@@ -230,7 +227,7 @@ public class EcouteurFenetreJeu implements Initializable {
 			iconeNoir.setImage(ihm.i.getSablier());
 		}
 	}
-	
+
 	private void setIconeSablierAmpouleBlanc() {
 		if (m.getRenjou().getJoueurs()[1].getType() == TypeJoueur.Humain) {
 			iconeBlanc.setImage(ihm.i.getAmpoule());
@@ -238,95 +235,95 @@ public class EcouteurFenetreJeu implements Initializable {
 			iconeBlanc.setImage(ihm.i.getSablier());
 		}
 	}
-	
+
 	@FXML
 	private void dragDebutAnnuler() {
-		String theme=m.getRenjou().getEmplacementThemes();
+		// String theme=m.getRenjou().getEmplacementThemes();
 		if (!annuler.isDisabled())
 			annuler.setImage(ihm.i.getAnnulerDrag());
 	}
-	
+
 	@FXML
 	private void dragFinAnnuler() {
-		String theme=m.getRenjou().getEmplacementThemes();
+		// String theme=m.getRenjou().getEmplacementThemes();
 		if (!annuler.isDisabled())
-		annuler.setImage(ihm.i.getAnnuler());
+			annuler.setImage(ihm.i.getAnnuler());
 	}
-	
+
 	@FXML
 	private void dragDebutRefaire() {
-		String theme=m.getRenjou().getEmplacementThemes();
+		// String theme=m.getRenjou().getEmplacementThemes();
 		if (!refaire.isDisabled())
 			refaire.setImage(ihm.i.getRefaireDrag());
 	}
-	
+
 	@FXML
 	private void dragFinRefaire() {
-		String theme=m.getRenjou().getEmplacementThemes();
+		// String theme=m.getRenjou().getEmplacementThemes();
 		if (!refaire.isDisabled())
 			refaire.setImage(ihm.i.getRefaire());
 	}
-	
+
 	@FXML
 	private void dragDebutFlecheHaut() {
-		String theme=m.getRenjou().getEmplacementThemes();
+		// String theme=m.getRenjou().getEmplacementThemes();
 		if (!flecheHaut.isDisabled())
 			flecheHaut.setImage(ihm.i.getFlecheHautDrag());
 	}
-	
+
 	@FXML
 	private void dragFinFlecheHaut() {
-		String theme=m.getRenjou().getEmplacementThemes();
+		// String theme=m.getRenjou().getEmplacementThemes();
 		if (!flecheHaut.isDisabled())
 			flecheHaut.setImage(ihm.i.getFlecheHaut());
 	}
-	
+
 	@FXML
 	private void dragDebutFlecheBas() {
-		String theme=m.getRenjou().getEmplacementThemes();
+		// String theme=m.getRenjou().getEmplacementThemes();
 		if (!flecheBas.isDisabled())
 			flecheBas.setImage(ihm.i.getFlecheBasDrag());
 	}
-	
+
 	@FXML
 	private void dragFinFlecheBas() {
-		String theme=m.getRenjou().getEmplacementThemes();
+		// String theme=m.getRenjou().getEmplacementThemes();
 		if (!flecheBas.isDisabled())
 			flecheBas.setImage(ihm.i.getFlecheBas());
 	}
-	
+
 	@FXML
 	private void clickAffichageTabou1(MouseEvent e) {
 		if (ihm.etatTuto != 6) {
 			setDisabled();
 			tabousMenu(null);
 			ihm.efm.tabou1DebutDrag(null);
-		}	
+		}
 	}
-	
+
 	@FXML
 	private void clickAffichageTabou2(MouseEvent e) {
 		if (ihm.etatTuto != 6) {
 			setDisabled();
 			tabousMenu(null);
 			ihm.efm.tabou2DebutDrag(null);
-		}	
+		}
 	}
-	
+
 	@FXML
 	private void clickAffichageTabou3(MouseEvent e) {
 		if (ihm.etatTuto != 6) {
 			setDisabled();
 			tabousMenu(null);
 			ihm.efm.tabou3DebutDrag(null);
-		}	
+		}
 	}
-	
+
 	@FXML
 	private void annuler(MouseEvent e) {
 		m.annuler();
 	}
-	
+
 	@FXML
 	private void refaire(MouseEvent e) {
 		m.refaire();
@@ -336,7 +333,7 @@ public class EcouteurFenetreJeu implements Initializable {
 	private void recommencerClick(MouseEvent e) {
 		m.recommencerPartie();
 	}
-	
+
 	@FXML
 	private void creerPartieMenu(ActionEvent e) {
 		setDisabled();
@@ -347,67 +344,67 @@ public class EcouteurFenetreJeu implements Initializable {
 		if (ihm.etatTuto == 8) {
 			imageTuto.setImage(null);
 			ihm.efm.update();
-		}	
+		}
 		ihm.efm.selectionnerBoxJoueur();
 	}
-	
+
 	@FXML
 	private void sauvegarderMenu(ActionEvent e) {
 		if (ihm.etatTuto != 8) {
 			String fichierSauvegarder = null;
-	        JFileChooser ouvertureFenetre = new JFileChooser();
-	        int checkEtatFenetre = ouvertureFenetre.showSaveDialog(null);
-	        if (checkEtatFenetre == ouvertureFenetre.APPROVE_OPTION) {
-	            fichierSauvegarder = ouvertureFenetre.getSelectedFile().getAbsolutePath();
-	            m.sauvegarder(fichierSauvegarder);
-	        }
+			JFileChooser ouvertureFenetre = new JFileChooser();
+			int checkEtatFenetre = ouvertureFenetre.showSaveDialog(null);
+			if (checkEtatFenetre == JFileChooser.APPROVE_OPTION) {
+				fichierSauvegarder = ouvertureFenetre.getSelectedFile().getAbsolutePath();
+				m.sauvegarder(fichierSauvegarder);
+			}
 		}
 	}
-	
+
 	@FXML
 	private void chargerMenu(ActionEvent e) {
 		if (ihm.etatTuto != 8) {
 			String fichierCharger = null;
-	        JFileChooser ouvertureFenetre = new JFileChooser();
-	        int checkEtatFenetre = ouvertureFenetre.showOpenDialog(null);
-	        if (checkEtatFenetre == ouvertureFenetre.APPROVE_OPTION) {
-	            fichierCharger = ouvertureFenetre.getSelectedFile().getAbsolutePath();
-	            m.charger(fichierCharger);
-	            ihm.efm.selectionnerTheme(m.getRenjou().getEmplacementThemes());
-	            ihm.efm.setAncienTheme("");
-	        }
+			JFileChooser ouvertureFenetre = new JFileChooser();
+			int checkEtatFenetre = ouvertureFenetre.showOpenDialog(null);
+			if (checkEtatFenetre == JFileChooser.APPROVE_OPTION) {
+				fichierCharger = ouvertureFenetre.getSelectedFile().getAbsolutePath();
+				m.charger(fichierCharger);
+				ihm.efm.selectionnerTheme(m.getRenjou().getEmplacementThemes());
+				ihm.efm.setAncienTheme("");
+			}
 		}
 	}
-	
+
 	@FXML
 	private void quitterMenu(ActionEvent e) {
 		System.exit(0);
 	}
-	
+
 	@FXML
-	private void clickPlateau(MouseEvent e) {		
+	private void clickPlateau(MouseEvent e) {
 		Coordonnees c;
-    	int width =(int) ((plateau.getFitWidth())/16);
-    	int height = (int) ((plateau.getFitHeight())/16);
-    	
-    	double widthMax = plateau.getFitWidth() - width/1.4;
-    	double heightMax = plateau.getFitHeight() - height/1.4;
-    	
-    	if (e.getX()<widthMax && e.getY()<heightMax) {
-    		int ligne = (int) ((e.getY() - height/2) /height %15);
-    		int colonne = (int) ((e.getX() - width/2) /width %15);
-    		c = new Coordonnees(ligne,colonne);
-    		m.operationJouer(c, TypeJoueur.Humain);
-    		if (ihm.modeTuto && ihm.etatTuto == 3 && m.getRenjou().getListeAnnuler().size() == 1) {
-    			ihm.etatTuto = ihm.etatTuto+1;
-    			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto-1));
-    		} else if (ihm.modeTuto && ihm.etatTuto ==4 && m.getRenjou().getListeAnnuler().size() == 2 ) {
-    			ihm.etatTuto = ihm.etatTuto+1;
-    			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto-1));
-    		}
-    	}
-   	}
-	
+		int width = (int) ((plateau.getFitWidth()) / 16);
+		int height = (int) ((plateau.getFitHeight()) / 16);
+
+		double widthMax = plateau.getFitWidth() - width / 1.4;
+		double heightMax = plateau.getFitHeight() - height / 1.4;
+
+		if (e.getX() < widthMax && e.getY() < heightMax) {
+			int ligne = (int) ((e.getY() - height / 2) / height % 15);
+			int colonne = (int) ((e.getX() - width / 2) / width % 15);
+			c = new Coordonnees(ligne, colonne);
+			m.operationJouer(c, TypeJoueur.Humain);
+			if (ihm.modeTuto && ihm.etatTuto == 3 && m.getRenjou().getListeAnnuler().size() == 1) {
+				ihm.etatTuto = ihm.etatTuto + 1;
+				imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto - 1));
+			} else if (ihm.modeTuto && ihm.etatTuto == 4 && m.getRenjou().getListeAnnuler().size() == 2) {
+				ihm.etatTuto = ihm.etatTuto + 1;
+				imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto - 1));
+			}
+		}
+	}
+
 	@FXML
 	private void joueurMenu(ActionEvent e) {
 		setDisabled();
@@ -417,7 +414,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		ihm.efm.getTabPane().getSelectionModel().select(0);
 		ihm.efm.selectionnerBoxJoueur();
 	}
-	
+
 	@FXML
 	private void tabousMenu(ActionEvent e) {
 		setDisabled();
@@ -427,7 +424,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		ihm.efm.getTabPane().getSelectionModel().select(1);
 		ihm.efm.selectionnerBoxJoueur();
 	}
-	
+
 	@FXML
 	private void themeMenu(ActionEvent e) {
 		setDisabled();
@@ -437,7 +434,7 @@ public class EcouteurFenetreJeu implements Initializable {
 		ihm.efm.getTabPane().getSelectionModel().select(2);
 		ihm.efm.selectionnerBoxJoueur();
 	}
-	
+
 	@FXML
 	private void reglesMenu(ActionEvent e) {
 		setDisabled();
@@ -445,24 +442,23 @@ public class EcouteurFenetreJeu implements Initializable {
 		ihm.fa.setAlwaysOnTop(true);
 		ihm.efa.getTabPane().getSelectionModel().select(0);
 	}
-	
+
 	@FXML
 	private void tutorielMenu(ActionEvent e) {
-		int confirm = JOptionPane.showOptionDialog(
-  	             null, "Etes vous sur de vouloir lancer le tutoriel ? Toute progression seras perdue !", 
-  	             "Lancer le tutoriel", JOptionPane.YES_NO_OPTION, 
-  	             JOptionPane.QUESTION_MESSAGE, null, null, null);
-  	    if (confirm == 0) {
+		int confirm = JOptionPane.showOptionDialog(null,
+				"Etes vous sur de vouloir lancer le tutoriel ? Toute progression seras perdue !", "Lancer le tutoriel",
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+		if (confirm == 0) {
 			ihm.modeTuto = true;
 			ArrayList<TypeTabous> tabous = new ArrayList<TypeTabous>();
 			tabous.add(TypeTabous.TROIS_TROIS);
 			tabous.add(TypeTabous.QUATRE_QUATRE);
 			tabous.add(TypeTabous.SIX_SEPT);
-	        m.configurerPartie(TypeJoueur.Humain, TypeJoueur.Humain, tabous, true, true);
+			m.configurerPartie(TypeJoueur.Humain, TypeJoueur.Humain, tabous, true, true);
 			update();
-  	    }
+		}
 	}
-	
+
 	@FXML
 	private void aProposMenu(ActionEvent e) {
 		setDisabled();
@@ -470,25 +466,25 @@ public class EcouteurFenetreJeu implements Initializable {
 		ihm.fa.setAlwaysOnTop(true);
 		ihm.efa.getTabPane().getSelectionModel().select(1);
 	}
-	
+
 	public void update() {
-		//Mode Tuto
+		// Mode Tuto
 		if (ihm.modeTuto && ihm.etatTuto == 1) {
-			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto-1));
+			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto - 1));
 		}
-		
+
 		if (m.getRenjou().getEtatPartie() == EtatPartie.EnCours) {
 			seuleFois = false;
 		}
-		//Panel Gauche
+		// Panel Gauche
 		pionNoir.setImage(ihm.i.getPionNoir());
 		pionBlanc.setImage(ihm.i.getPionBlanc());
 		labelNoir.setText(m.getRenjou().getJoueurs()[0].getType().toString());
 		labelBlanc.setText(m.getRenjou().getJoueurs()[1].getType().toString());
 		nbPieceNoir.setText(Integer.toString(m.getRenjou().getJoueurs()[0].getNbPion()));
 		nbPieceBlanc.setText(Integer.toString(m.getRenjou().getJoueurs()[1].getNbPion()));
-		
-		//Pointille sur joueur en cours
+
+		// Pointille sur joueur en cours
 		if (m.getRenjou().getJoueurCourant() == 0 && m.getRenjou().getEtatPartie() == EtatPartie.EnCours) {
 			panelJ2.setStyle("-fx-border-width : 5;-fx-border-color : gray;");
 			panelJ1.setStyle("-fx-border-width : 5;-fx-border-color : yellow;");
@@ -499,10 +495,10 @@ public class EcouteurFenetreJeu implements Initializable {
 			panelJ1.setStyle("-fx-border-width : 5;-fx-border-color : gray;");
 			panelJ2.setStyle("-fx-border-width : 5;-fx-border-color : gray;");
 		}
-		
+
 		setIconeSablierAmpoule();
-		//Plateau
-		repeindrePlateau();		
+		// Plateau
+		repeindrePlateau();
 		disabEnabAnnulerRefaire();
 
 		fond.setImage(ihm.i.getFond());
@@ -510,8 +506,8 @@ public class EcouteurFenetreJeu implements Initializable {
 		tabou2Image.setImage(ihm.i.getQuatreQuatreImage());
 		tabou3Image.setImage(ihm.i.getSixSeptImage());
 		recommencer.setImage(ihm.i.getRecommencer());
-		
-		//Disable les clic tabou si non actif
+
+		// Disable les clic tabou si non actif
 		boolean troisTroisActif = m.getRenjou().getTabouJeu().estDansListeTabous(TypeTabous.TROIS_TROIS);
 		tabou1.setDisable(!troisTroisActif);
 		tabou1Panel.setDisable(!troisTroisActif);
@@ -536,8 +532,8 @@ public class EcouteurFenetreJeu implements Initializable {
 		} else {
 			tabou3Panel.setStyle(null);
 		}
-		
-		//Desactiver sablier lorsque tour adverse
+
+		// Desactiver sablier lorsque tour adverse
 		if (m.getRenjou().getJoueurCourant() == 0) {
 			iconeNoir.setDisable(false);
 			setIconeSablierAmpouleNoir();
@@ -553,14 +549,14 @@ public class EcouteurFenetreJeu implements Initializable {
 			tempsBlanc.setText("");
 			tempsNoir.setText("");
 		}
-		
-		//Gere le panel annuler refaire
+
+		// Gere le panel annuler refaire
 		panelAnnulerRefaire();
-		
-		//Voir si partie gagne
+
+		// Voir si partie gagne
 		partieGagne();
 	}
-	
+
 	public void disabEnabAnnulerRefaire() {
 		if (m.getRenjou().getListeRefaire().isEmpty()) {
 			refaire.setImage(ihm.i.getRefaireDisab());
@@ -569,7 +565,7 @@ public class EcouteurFenetreJeu implements Initializable {
 			refaire.setDisable(false);
 			refaire.setImage(ihm.i.getRefaire());
 		}
-		
+
 		if (m.getRenjou().getListeAnnuler().isEmpty()) {
 			annuler.setImage(ihm.i.getAnnulerDisab());
 			annuler.setDisable(true);
@@ -577,17 +573,17 @@ public class EcouteurFenetreJeu implements Initializable {
 			annuler.setDisable(false);
 			annuler.setImage(ihm.i.getAnnuler());
 		}
-		
-		//Si c'est au tour de l'IA de jouer on desactive annuler et refaire
-		if (m.getRenjou().getJoueurs()[m.getRenjou().getJoueurCourant()].getType() != TypeJoueur.Humain 
+
+		// Si c'est au tour de l'IA de jouer on desactive annuler et refaire
+		if (m.getRenjou().getJoueurs()[m.getRenjou().getJoueurCourant()].getType() != TypeJoueur.Humain
 				&& m.getRenjou().getEtatPartie() == EtatPartie.EnCours) {
 			annuler.setImage(ihm.i.getAnnulerDisab());
 			annuler.setDisable(true);
 			refaire.setImage(ihm.i.getRefaireDisab());
 			refaire.setDisable(true);
 		}
-		
-		//Image pour le panel est
+
+		// Image pour le panel est
 		listImage1.setImage(ihm.i.getPlateau());
 		listImage2.setImage(ihm.i.getPlateau());
 		listImage3.setImage(ihm.i.getPlateau());
@@ -596,49 +592,46 @@ public class EcouteurFenetreJeu implements Initializable {
 
 	private void partieGagne() {
 		if (!seuleFois) {
-	    	String message;
-	    	if (!(m.getRenjou().getEtatPartie() == EtatPartie.EnCours)) {
-		    	if (m.getRenjou().getEtatPartie() == EtatPartie.NoirGagne) {
-		    		message = "Le joueur noir a gagne la partie !";
-		    	} else if (m.getRenjou().getEtatPartie() == EtatPartie.BlancGagne) {
-		    		message = "Le joueur blanc a gagne la partie !";
-		    	} else if (m.getRenjou().getEtatPartie() == EtatPartie.BlancGagneParTabou) {
-		    		message = "Le joueur blanc a gagne la partie grace a un tabou du joueur noir !";
-		    	}
-		    	else if(m.getRenjou().getEtatPartie() == EtatPartie.PartieNulle) {
-		    		message = "Partie nulle !";
-		    	} else {
-		    		message = "Erreur !";
-		    	}
-		    	int confirm = JOptionPane.showOptionDialog(
-			             null, message, 
-			             "Fin de partie", JOptionPane.CLOSED_OPTION, 
-			             JOptionPane.QUESTION_MESSAGE, null, null, null);
-		    	seuleFois = true;
-	    	}
-		}	
-    }
-	
+			String message;
+			if (!(m.getRenjou().getEtatPartie() == EtatPartie.EnCours)) {
+				if (m.getRenjou().getEtatPartie() == EtatPartie.NoirGagne) {
+					message = "Le joueur noir a gagne la partie !";
+				} else if (m.getRenjou().getEtatPartie() == EtatPartie.BlancGagne) {
+					message = "Le joueur blanc a gagne la partie !";
+				} else if (m.getRenjou().getEtatPartie() == EtatPartie.BlancGagneParTabou) {
+					message = "Le joueur blanc a gagne la partie grace a un tabou du joueur noir !";
+				} else if (m.getRenjou().getEtatPartie() == EtatPartie.PartieNulle) {
+					message = "Partie nulle !";
+				} else {
+					message = "Erreur !";
+				}
+				JOptionPane.showOptionDialog(null, message, "Fin de partie", JOptionPane.CLOSED_OPTION,
+						JOptionPane.QUESTION_MESSAGE, null, null, null);
+				seuleFois = true;
+			}
+		}
+	}
+
 	private void repeindrePlateau() {
 		Image plat = ihm.i.getPlateau();
 
-		Canvas canvas = new Canvas(plat.getWidth(),plat.getHeight());
+		Canvas canvas = new Canvas(plat.getWidth(), plat.getHeight());
 		GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
-		
-		//On dessine l'image dans le canvas
+
+		// On dessine l'image dans le canvas
 		graphicsContext.drawImage(plat, 0, 0);
-		
-		//On ajoute les pions
+
+		// On ajoute les pions
 		PionJoue pion = null;
 		Image iPionBlanc;
 		Image iPionNoir;
 		Image croixRouge = ihm.i.getCroixRouge();
 		Image cercleVert = ihm.i.getCercleVert();
-		for (int i=0;i<m.getRenjou().getPlateauDeJeu().getPlateau().length;i++) {
-			for (int j=0;j<m.getRenjou().getPlateauDeJeu().getPlateau()[i].length;j++) {
-				TypeCase p = m.getRenjou().getPlateauDeJeu().getPlateau()[i][j]; 
+		for (int i = 0; i < m.getRenjou().getPlateauDeJeu().getPlateau().length; i++) {
+			for (int j = 0; j < m.getRenjou().getPlateauDeJeu().getPlateau()[i].length; j++) {
+				TypeCase p = m.getRenjou().getPlateauDeJeu().getPlateau()[i][j];
 				if (m.getRenjou().getListeAnnuler().size() > 0)
-					pion = m.getRenjou().getListeAnnuler().get(m.getRenjou().getListeAnnuler().size()-1);
+					pion = m.getRenjou().getListeAnnuler().get(m.getRenjou().getListeAnnuler().size() - 1);
 				if (pion != null && pion.getCoordonnees().getColonne() == j && pion.getCoordonnees().getLigne() == i) {
 					iPionBlanc = ihm.i.getPionBlancJoue();
 					iPionNoir = ihm.i.getPionNoirJoue();
@@ -646,211 +639,217 @@ public class EcouteurFenetreJeu implements Initializable {
 					iPionBlanc = ihm.i.getPionBlanc();
 					iPionNoir = ihm.i.getPionNoir();
 				}
-			    if (p == TypeCase.PionBlanc) {
-			        dessinerPion(plat, graphicsContext, iPionBlanc, i, j);
-			    } else if (m.getRenjou().estModeDebutant() && p == TypeCase.Tabou) {
-			    	dessinerPion(plat, graphicsContext, croixRouge, i, j);
-			    } else if (m.getRenjou().estModeDebutant() && p == TypeCase.Jouable && (m.premierCoup() || m.deuxiemeCoup())) {
-			        dessinerPion(plat, graphicsContext, cercleVert, i, j);
-			    } else if (p == TypeCase.PionNoir) {
-			        dessinerPion(plat, graphicsContext, iPionNoir, i, j);
-			    }    
+				if (p == TypeCase.PionBlanc) {
+					dessinerPion(plat, graphicsContext, iPionBlanc, i, j);
+				} else if (m.getRenjou().estModeDebutant() && p == TypeCase.Tabou) {
+					dessinerPion(plat, graphicsContext, croixRouge, i, j);
+				} else if (m.getRenjou().estModeDebutant() && p == TypeCase.Jouable
+						&& (m.premierCoup() || m.deuxiemeCoup())) {
+					dessinerPion(plat, graphicsContext, cercleVert, i, j);
+				} else if (p == TypeCase.PionNoir) {
+					dessinerPion(plat, graphicsContext, iPionNoir, i, j);
+				}
 			}
 		}
-		//On retransforme en Image
-		WritableImage writableImage = new WritableImage((int)plat.getWidth(), (int)plat.getHeight());
+		// On retransforme en Image
+		WritableImage writableImage = new WritableImage((int) plat.getWidth(), (int) plat.getHeight());
 		canvas.snapshot(null, writableImage);
-		
+
 		Image i = (Image) writableImage;
 		plateau.setImage(i);
-	}   
-	
-	private void dessinerPion(Image plat, GraphicsContext graphicsContext, Image image,int i, int j) {	
-    	double width = (plat.getWidth())/16;
-    	double height = (plat.getHeight())/16;
-    	double x = (j*width)+(width/2);
-        double y = (i*height)+(height/2);
-        graphicsContext.drawImage(image, x, y, width, height);
 	}
-	
+
+	private void dessinerPion(Image plat, GraphicsContext graphicsContext, Image image, int i, int j) {
+		double width = (plat.getWidth()) / 16;
+		double height = (plat.getHeight()) / 16;
+		double x = (j * width) + (width / 2);
+		double y = (i * height) + (height / 2);
+		graphicsContext.drawImage(image, x, y, width, height);
+	}
+
 	@FXML
 	private void peindreAide() {
 		if (ihm.etatTuto == 7) {
-			ihm.etatTuto = ihm.etatTuto+1;
-			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto-1));
+			ihm.etatTuto = ihm.etatTuto + 1;
+			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto - 1));
 		}
-		
+
 		if (m.getRenjou().getJoueurs()[m.getRenjou().getJoueurCourant()].getType() == TypeJoueur.Humain) {
 			this.repeindrePlateau();
 			Coordonnees c = m.aide();
-			Canvas canvas = new Canvas(plateau.getImage().getWidth(),plateau.getImage().getHeight());
+			Canvas canvas = new Canvas(plateau.getImage().getWidth(), plateau.getImage().getHeight());
 			GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
-			
-			//On dessine l'image dans le canvas
+
+			// On dessine l'image dans le canvas
 			graphicsContext.drawImage(plateau.getImage(), 0, 0);
-			
-			dessinerPion(plateau.getImage(), graphicsContext, ihm.i.getCercleVertPlein() , c.getLigne(), c.getColonne());
-			
-			//On retransforme en Image
-			WritableImage writableImage = new WritableImage((int)plateau.getImage().getWidth(), (int)plateau.getImage().getHeight());
+
+			dessinerPion(plateau.getImage(), graphicsContext, ihm.i.getCercleVertPlein(), c.getLigne(), c.getColonne());
+
+			// On retransforme en Image
+			WritableImage writableImage = new WritableImage((int) plateau.getImage().getWidth(),
+					(int) plateau.getImage().getHeight());
 			canvas.snapshot(null, writableImage);
-			
+
 			Image i = (Image) writableImage;
 			plateau.setImage(i);
-		}	
+		}
 	}
-	
+
 	private void panelAnnulerRefaire() {
-		
-    	this.list1.setText("");
-    	this.list2.setText("");
-    	this.list3.setText("");
-    	this.list4.setText("");
-    	listAnchor1.setStyle(null);
-    	listAnchor2.setStyle(null);
-    	listAnchor3.setStyle(null);
-    	listAnchor4.setStyle(null);
-		
-    	int indiceFinTab = m.getRenjou().getIndiceFinHistorique();
+
+		this.list1.setText("");
+		this.list2.setText("");
+		this.list3.setText("");
+		this.list4.setText("");
+		listAnchor1.setStyle(null);
+		listAnchor2.setStyle(null);
+		listAnchor3.setStyle(null);
+		listAnchor4.setStyle(null);
+
+		int indiceFinTab = m.getRenjou().getIndiceFinHistorique();
 		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
-    	int tailleAnulleRefaire = m.getRenjou().getListeAnnuler().size() +  m.getRenjou().getListeRefaire().size();
-    	
-    	if(tailleAnulleRefaire < 4){
-    		m.getRenjou().setIndiceFinHistorique(tailleAnulleRefaire+1);
-    		m.getRenjou().setIndiceDebutHistorique(0);
-    		
-        	indiceFinTab = m.getRenjou().getIndiceFinHistorique();
-    		indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
-    	}
-    	
+		int tailleAnulleRefaire = m.getRenjou().getListeAnnuler().size() + m.getRenjou().getListeRefaire().size();
+
+		if (tailleAnulleRefaire < 4) {
+			m.getRenjou().setIndiceFinHistorique(tailleAnulleRefaire + 1);
+			m.getRenjou().setIndiceDebutHistorique(0);
+
+			indiceFinTab = m.getRenjou().getIndiceFinHistorique();
+			indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
+		}
+
 		int i = indiceDebutTab;
-		if(i != indiceFinTab){
-			if(i == m.getRenjou().getNbDemiTourCourant()){
+		if (i != indiceFinTab) {
+			if (i == m.getRenjou().getNbDemiTourCourant()) {
 				listAnchor1.setStyle("-fx-background-color:black;");
-			}else{
+			} else {
 				listAnchor1.setStyle(null);
 			}
-			
-			list1.setText("Tour "+i);
-			if(i % 2 == 0){
+
+			list1.setText("Tour " + i);
+			if (i % 2 == 0) {
 				list1.setStyle("-fx-text-fill: black;");
-			}else{
+			} else {
 				list1.setStyle("-fx-text-fill: white;");
 			}
 			i++;
 		}
-		if(i != indiceFinTab){
-			if(i == m.getRenjou().getNbDemiTourCourant()){
+		if (i != indiceFinTab) {
+			if (i == m.getRenjou().getNbDemiTourCourant()) {
 				listAnchor2.setStyle("-fx-background-color:black;");
-			}else{
+			} else {
 				listAnchor2.setStyle(null);
 			}
-			list2.setText("Tour "+i);
-			if(i % 2 == 0){
+			list2.setText("Tour " + i);
+			if (i % 2 == 0) {
 				list2.setStyle("-fx-text-fill: black;");
-			}else{
+			} else {
 				list2.setStyle("-fx-text-fill: white;");
 			}
 			i++;
 		}
-		if(i != indiceFinTab){
-			if(i == m.getRenjou().getNbDemiTourCourant()){
+		if (i != indiceFinTab) {
+			if (i == m.getRenjou().getNbDemiTourCourant()) {
 				listAnchor3.setStyle("-fx-background-color:black;");
-			}else{
+			} else {
 				listAnchor3.setStyle(null);
 			}
-			list3.setText("Tour "+i);
-			if(i % 2 == 0){
+			list3.setText("Tour " + i);
+			if (i % 2 == 0) {
 				list3.setStyle("-fx-text-fill: black;");
-			}else{
+			} else {
 				list3.setStyle("-fx-text-fill: white;");
 			}
 			i++;
 		}
-		if(i != indiceFinTab){
-			if(i == m.getRenjou().getNbDemiTourCourant()){
+		if (i != indiceFinTab) {
+			if (i == m.getRenjou().getNbDemiTourCourant()) {
 				listAnchor4.setStyle("-fx-background-color:black;");
-			}else{
+			} else {
 				listAnchor4.setStyle(null);
 			}
-			list4.setText("Tour "+i);
-			if(i % 2 == 0){
+			list4.setText("Tour " + i);
+			if (i % 2 == 0) {
 				list4.setStyle("-fx-text-fill: black;");
-			}else{
+			} else {
 				list4.setStyle("-fx-text-fill: white;");
 			}
 			i++;
 		}
-			
-		//Disable ou non la fleche haut
-		if(m.getRenjou().getIndiceDebutHistorique() == 0){
+
+		// Disable ou non la fleche haut
+		if (m.getRenjou().getIndiceDebutHistorique() == 0) {
 			flecheHaut.setImage(ihm.i.getFlecheHautDisab());
 			flecheHaut.setDisable(true);
-		}else{
+		} else {
 			flecheHaut.setDisable(false);
 			flecheHaut.setImage(ihm.i.getFlecheHaut());
 		}
-		
-		//Disable ou non la fleche bas
-		if((m.getRenjou().getIndiceFinHistorique() == m.getRenjou().getListeAnnuler().size() + m.getRenjou().getListeRefaire().size()+1) || m.getRenjou().getIndiceFinHistorique() - m.getRenjou().getIndiceDebutHistorique() <4){
+
+		// Disable ou non la fleche bas
+		if ((m.getRenjou().getIndiceFinHistorique() == m.getRenjou().getListeAnnuler().size()
+				+ m.getRenjou().getListeRefaire().size() + 1)
+				|| m.getRenjou().getIndiceFinHistorique() - m.getRenjou().getIndiceDebutHistorique() < 4) {
 			flecheBas.setImage(ihm.i.getFlecheBasDisab());
 			flecheBas.setDisable(true);
-		}else{
+		} else {
 			flecheBas.setDisable(false);
 			flecheBas.setImage(ihm.i.getFlecheBas());
 		}
-		
+
 	}
+
 	@FXML
-	private void clickFlecheHaut(MouseEvent e){
-		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();		
-		if(indiceDebutTab > 0){
-			m.getRenjou().setIndiceDebutHistorique(m.getRenjou().getIndiceDebutHistorique() -1);
-			m.getRenjou().setIndiceFinHistorique(m.getRenjou().getIndiceFinHistorique() -1);			
+	private void clickFlecheHaut(MouseEvent e) {
+		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
+		if (indiceDebutTab > 0) {
+			m.getRenjou().setIndiceDebutHistorique(m.getRenjou().getIndiceDebutHistorique() - 1);
+			m.getRenjou().setIndiceFinHistorique(m.getRenjou().getIndiceFinHistorique() - 1);
 		}
 		panelAnnulerRefaire();
 	}
+
 	@FXML
-	private void clickFlecheBas(MouseEvent e){
+	private void clickFlecheBas(MouseEvent e) {
 
 		int indiceFinTab = m.getRenjou().getIndiceFinHistorique();
-		if(indiceFinTab <= m.getRenjou().getListeAnnuler().size() + m.getRenjou().getListeRefaire().size()+1){
+		if (indiceFinTab <= m.getRenjou().getListeAnnuler().size() + m.getRenjou().getListeRefaire().size() + 1) {
 			m.getRenjou().setIndiceDebutHistorique(m.getRenjou().getIndiceDebutHistorique() + 1);
 			m.getRenjou().setIndiceFinHistorique(m.getRenjou().getIndiceFinHistorique() + 1);
 		}
 		panelAnnulerRefaire();
 	}
-	
+
 	@FXML
-	private void clickList1(MouseEvent e){
+	private void clickList1(MouseEvent e) {
 		clickList(0);
 	}
-	
+
 	@FXML
-	private void clickList2(MouseEvent e){
+	private void clickList2(MouseEvent e) {
 		clickList(1);
 	}
-	
+
 	@FXML
-	private void clickList3(MouseEvent e){
+	private void clickList3(MouseEvent e) {
 		clickList(2);
 	}
-	
+
 	@FXML
-	private void clickList4(MouseEvent e){
+	private void clickList4(MouseEvent e) {
 		clickList(3);
 	}
-	
-	private void clickList(int i){
+
+	private void clickList(int i) {
 		int indiceFinTab = m.getRenjou().getIndiceFinHistorique();
 		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
-		if(indiceDebutTab + i < indiceFinTab){
+		if (indiceDebutTab + i < indiceFinTab) {
 			ancienPlateau = null;
 			int nbCoupAAnulleeOuRefaire = m.getRenjou().getNbDemiTourCourant() - (indiceDebutTab + i);
-			if(nbCoupAAnulleeOuRefaire < 0){
+			if (nbCoupAAnulleeOuRefaire < 0) {
 				nbCoupAAnulleeOuRefaire = 0 - nbCoupAAnulleeOuRefaire;
 				m.refaireNDemiCoup(nbCoupAAnulleeOuRefaire);
-			}else if(nbCoupAAnulleeOuRefaire > 0){
+			} else if (nbCoupAAnulleeOuRefaire > 0) {
 				m.annulerNDemiCoup(nbCoupAAnulleeOuRefaire);
 			}
 		}
@@ -858,62 +857,72 @@ public class EcouteurFenetreJeu implements Initializable {
 	}
 
 	@FXML
-	private void dragFinList1(MouseEvent e){
+	private void dragFinList1(MouseEvent e) {
 		if (ancienPlateau != null) {
 			plateau.setImage(ancienPlateau);
 		}
 		ancienPlateau = null;
 	}
+
 	@FXML
-	private void dragFinList2(MouseEvent e){
+	private void dragFinList2(MouseEvent e) {
 		if (ancienPlateau != null) {
 			plateau.setImage(ancienPlateau);
 		}
 		ancienPlateau = null;
 	}
+
 	@FXML
-	private void dragFinList3(MouseEvent e){
+	private void dragFinList3(MouseEvent e) {
 		if (ancienPlateau != null) {
 			plateau.setImage(ancienPlateau);
 		}
-		ancienPlateau = null;	}
+		ancienPlateau = null;
+	}
+
 	@FXML
-	private void dragFinList4(MouseEvent e){
+	private void dragFinList4(MouseEvent e) {
 		if (ancienPlateau != null) {
 			plateau.setImage(ancienPlateau);
 		}
-		ancienPlateau = null;	}
-	
+		ancienPlateau = null;
+	}
+
 	@FXML
-	private void dragDebutList1(MouseEvent e){
+	private void dragDebutList1(MouseEvent e) {
 		dragList(0);
 	}
+
 	@FXML
-	private void dragDebutList2(MouseEvent e){
+	private void dragDebutList2(MouseEvent e) {
 		dragList(1);
 	}
+
 	@FXML
-	private void dragDebutList3(MouseEvent e){
+	private void dragDebutList3(MouseEvent e) {
 		dragList(2);
 	}
+
 	@FXML
-	private void dragDebutList4(MouseEvent e){
+	private void dragDebutList4(MouseEvent e) {
 		dragList(3);
 	}
-	
-	private void dragList(int i){
+
+	private void dragList(int i) {
 		int indiceFinTab = m.getRenjou().getIndiceFinHistorique();
 		int indiceDebutTab = m.getRenjou().getIndiceDebutHistorique();
-		
-		if(indiceDebutTab + i < indiceFinTab){
+
+		if (indiceDebutTab + i < indiceFinTab) {
 			int nbCoupAAnulleeOuRefaire = m.getRenjou().getNbDemiTourCourant() - (indiceDebutTab + i);
-			if(nbCoupAAnulleeOuRefaire < 0){
-				//Refaire
-				//affichage des pions jusqu'a pos courant puis affichage transparent
-				afficherPlateauPionTransparent(indiceDebutTab+i, true);
-			}else if(nbCoupAAnulleeOuRefaire > 0){
-				//Annuler
-				//affichage des pions jusqu'a clique (indiceFinTab-i) puis affichage transparent
+			if (nbCoupAAnulleeOuRefaire < 0) {
+				// Refaire
+				// affichage des pions jusqu'a pos courant puis affichage
+				// transparent
+				afficherPlateauPionTransparent(indiceDebutTab + i, true);
+			} else if (nbCoupAAnulleeOuRefaire > 0) {
+				// Annuler
+				// affichage des pions jusqu'a clique (indiceFinTab-i) puis
+				// affichage transparent
 				afficherPlateauPionTransparent(indiceDebutTab + i, false);
 			}
 		}
@@ -922,159 +931,166 @@ public class EcouteurFenetreJeu implements Initializable {
 	private void afficherPlateauPionTransparent(int bornePion, boolean type) {
 		ancienPlateau = plateau.getImage();
 
-		
-		//false annuler
+		// false annuler
 		Image plat = ihm.i.getPlateau();
 
-		Canvas canvas = new Canvas(plat.getWidth(),plat.getHeight());
+		Canvas canvas = new Canvas(plat.getWidth(), plat.getHeight());
 		GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
-		
-		//On dessine l'image dans le canvas
+
+		// On dessine l'image dans le canvas
 		graphicsContext.drawImage(plat, 0, 0);
-		
-		//On ajoute les pions
-		PionJoue pion = null;
+
+		// On ajoute les pions
+		//PionJoue pion = null;
 		Image iPionBlanc = ihm.i.getPionBlanc();
 		Image iPionNoir = ihm.i.getPionNoir();
-		//true refaire
+		// true refaire
 		if (type) {
-			//On dessine l'état actuel
-			for (int i=0;i<m.getRenjou().getListeAnnuler().size();i++) {
-					PionJoue p = m.getRenjou().getListeAnnuler().get(i); 
-				    if (p.getTypeCase() == TypeCase.PionBlanc) {
-				        dessinerPion(plat, graphicsContext, iPionBlanc, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
-				    } else if (p.getTypeCase() == TypeCase.PionNoir) {
-				        dessinerPion(plat, graphicsContext, iPionNoir, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
-				    }    
+			// On dessine l'état actuel
+			for (int i = 0; i < m.getRenjou().getListeAnnuler().size(); i++) {
+				PionJoue p = m.getRenjou().getListeAnnuler().get(i);
+				if (p.getTypeCase() == TypeCase.PionBlanc) {
+					dessinerPion(plat, graphicsContext, iPionBlanc, p.getCoordonnees().getLigne(),
+							p.getCoordonnees().getColonne());
+				} else if (p.getTypeCase() == TypeCase.PionNoir) {
+					dessinerPion(plat, graphicsContext, iPionNoir, p.getCoordonnees().getLigne(),
+							p.getCoordonnees().getColonne());
+				}
 			}
-			//On dessine en transparent ce qui peut être ajouté
+			// On dessine en transparent ce qui peut être ajouté
 			iPionBlanc = ihm.i.getPionBlancTransparent();
 			iPionNoir = ihm.i.getPionNoirTransparent();
-			for (int i=0;i<bornePion - m.getRenjou().getListeAnnuler().size();i++) {
-				PionJoue p = m.getRenjou().getListeRefaire().get( m.getRenjou().getListeRefaire().size() -i -1); 
-			    if (p.getTypeCase() == TypeCase.PionBlanc) {
-			        dessinerPion(plat, graphicsContext, iPionBlanc, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
-			    } else if (p.getTypeCase() == TypeCase.PionNoir) {
-			        dessinerPion(plat, graphicsContext, iPionNoir, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
-			    }      
+			for (int i = 0; i < bornePion - m.getRenjou().getListeAnnuler().size(); i++) {
+				PionJoue p = m.getRenjou().getListeRefaire().get(m.getRenjou().getListeRefaire().size() - i - 1);
+				if (p.getTypeCase() == TypeCase.PionBlanc) {
+					dessinerPion(plat, graphicsContext, iPionBlanc, p.getCoordonnees().getLigne(),
+							p.getCoordonnees().getColonne());
+				} else if (p.getTypeCase() == TypeCase.PionNoir) {
+					dessinerPion(plat, graphicsContext, iPionNoir, p.getCoordonnees().getLigne(),
+							p.getCoordonnees().getColonne());
+				}
 			}
 		} else {
-			//On dessine l'état actuel
-			for (int i=0;i<bornePion && i<m.getRenjou().getListeAnnuler().size(); i++) {
-					PionJoue p = m.getRenjou().getListeAnnuler().get(i); 
-				    if (p.getTypeCase() == TypeCase.PionBlanc) {
-				        dessinerPion(plat, graphicsContext, iPionBlanc, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
-				    } else if (p.getTypeCase() == TypeCase.PionNoir) {
-				        dessinerPion(plat, graphicsContext, iPionNoir, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
-				    }    
+			// On dessine l'état actuel
+			for (int i = 0; i < bornePion && i < m.getRenjou().getListeAnnuler().size(); i++) {
+				PionJoue p = m.getRenjou().getListeAnnuler().get(i);
+				if (p.getTypeCase() == TypeCase.PionBlanc) {
+					dessinerPion(plat, graphicsContext, iPionBlanc, p.getCoordonnees().getLigne(),
+							p.getCoordonnees().getColonne());
+				} else if (p.getTypeCase() == TypeCase.PionNoir) {
+					dessinerPion(plat, graphicsContext, iPionNoir, p.getCoordonnees().getLigne(),
+							p.getCoordonnees().getColonne());
+				}
 			}
-			//On dessine en transparent ce qui peut être ajouté
+			// On dessine en transparent ce qui peut être ajouté
 			iPionBlanc = ihm.i.getPionBlancTransparent();
 			iPionNoir = ihm.i.getPionNoirTransparent();
-			for (int i=bornePion; i<m.getRenjou().getListeAnnuler().size(); i++) {
-				PionJoue p = m.getRenjou().getListeAnnuler().get(i); 
-			    if (p.getTypeCase() == TypeCase.PionBlanc) {
-			        dessinerPion(plat, graphicsContext, iPionBlanc, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
-			    } else if (p.getTypeCase() == TypeCase.PionNoir) {
-			        dessinerPion(plat, graphicsContext, iPionNoir, p.getCoordonnees().getLigne(), p.getCoordonnees().getColonne());
-			    }     
+			for (int i = bornePion; i < m.getRenjou().getListeAnnuler().size(); i++) {
+				PionJoue p = m.getRenjou().getListeAnnuler().get(i);
+				if (p.getTypeCase() == TypeCase.PionBlanc) {
+					dessinerPion(plat, graphicsContext, iPionBlanc, p.getCoordonnees().getLigne(),
+							p.getCoordonnees().getColonne());
+				} else if (p.getTypeCase() == TypeCase.PionNoir) {
+					dessinerPion(plat, graphicsContext, iPionNoir, p.getCoordonnees().getLigne(),
+							p.getCoordonnees().getColonne());
+				}
 			}
 		}
-		
-		//On retransforme en Image
-		WritableImage writableImage = new WritableImage((int)plat.getWidth(), (int)plat.getHeight());
+
+		// On retransforme en Image
+		WritableImage writableImage = new WritableImage((int) plat.getWidth(), (int) plat.getHeight());
 		canvas.snapshot(null, writableImage);
-				
+
 		Image i = (Image) writableImage;
 		plateau.setImage(i);
-		
+
 	}
-	
+
 	public void setDisabled() {
 		labelNoir.setDisable(true);
-	    pionNoir.setDisable(true);
-	    nbPieceNoir.setDisable(true);
-	    iconeNoir.setDisable(true);
-	    tempsNoir.setDisable(true);
-	    annuler.setDisable(true);
-	    refaire.setDisable(true);
-	    labelBlanc.setDisable(true);
-	    pionBlanc.setDisable(true);
-	    nbPieceBlanc.setDisable(true);
-	    iconeBlanc.setDisable(true);
-	    tempsBlanc.setDisable(true);
-	    recommencer.setDisable(true);
-	    plateau.setDisable(true);
-	    panelJ1.setDisable(true);
-	    panelJ2.setDisable(true);
-	    fond.setDisable(true);
-	    tabou1Image.setDisable(true);
-	    tabou2Image.setDisable(true);
-	    tabou3Image.setDisable(true);
-	    tabou1.setDisable(true);
-	    tabou2.setDisable(true);
-	    tabou3.setDisable(true);
-	    tabou1Panel.setDisable(true);
-	    tabou2Panel.setDisable(true);
-	    tabou3Panel.setDisable(true);
-	    list1.setDisable(true);
-	    list2.setDisable(true);
-	    list3.setDisable(true);
-	    list4.setDisable(true);
-	    listImage1.setDisable(true);
-	    listImage2.setDisable(true);
-	    listImage3.setDisable(true);
-	    listImage4.setDisable(true);
-	    flecheHaut.setDisable(true);
-	    flecheBas.setDisable(true);
+		pionNoir.setDisable(true);
+		nbPieceNoir.setDisable(true);
+		iconeNoir.setDisable(true);
+		tempsNoir.setDisable(true);
+		annuler.setDisable(true);
+		refaire.setDisable(true);
+		labelBlanc.setDisable(true);
+		pionBlanc.setDisable(true);
+		nbPieceBlanc.setDisable(true);
+		iconeBlanc.setDisable(true);
+		tempsBlanc.setDisable(true);
+		recommencer.setDisable(true);
+		plateau.setDisable(true);
+		panelJ1.setDisable(true);
+		panelJ2.setDisable(true);
+		fond.setDisable(true);
+		tabou1Image.setDisable(true);
+		tabou2Image.setDisable(true);
+		tabou3Image.setDisable(true);
+		tabou1.setDisable(true);
+		tabou2.setDisable(true);
+		tabou3.setDisable(true);
+		tabou1Panel.setDisable(true);
+		tabou2Panel.setDisable(true);
+		tabou3Panel.setDisable(true);
+		list1.setDisable(true);
+		list2.setDisable(true);
+		list3.setDisable(true);
+		list4.setDisable(true);
+		listImage1.setDisable(true);
+		listImage2.setDisable(true);
+		listImage3.setDisable(true);
+		listImage4.setDisable(true);
+		flecheHaut.setDisable(true);
+		flecheBas.setDisable(true);
 	}
-	
+
 	public void setEnabled() {
 		labelNoir.setDisable(false);
-	    pionNoir.setDisable(false);
-	    nbPieceNoir.setDisable(false);
-	    iconeNoir.setDisable(false);
-	    tempsNoir.setDisable(false);
-	    annuler.setDisable(false);
-	    refaire.setDisable(false);
-	    labelBlanc.setDisable(false);
-	    pionBlanc.setDisable(false);
-	    nbPieceBlanc.setDisable(false);
-	    iconeBlanc.setDisable(false);
-	    tempsBlanc.setDisable(false);
-	    recommencer.setDisable(false);
-	    plateau.setDisable(false);
-	    panelJ1.setDisable(false);
-	    panelJ2.setDisable(false);
-	    fond.setDisable(false);
-	    tabou1Image.setDisable(false);
-	    tabou2Image.setDisable(false);
-	    tabou3Image.setDisable(false);
-	    tabou1.setDisable(false);
-	    tabou2.setDisable(false);
-	    tabou3.setDisable(false);
-	    tabou1Panel.setDisable(false);
-	    tabou2Panel.setDisable(false);
-	    tabou3Panel.setDisable(false);
-	    list1.setDisable(false);
-	    list2.setDisable(false);
-	    list3.setDisable(false);
-	    list4.setDisable(false);
-	    listImage1.setDisable(false);
-	    listImage2.setDisable(false);
-	    listImage3.setDisable(false);
-	    listImage4.setDisable(false);
-	    flecheHaut.setDisable(false);
-	    flecheBas.setDisable(false);
+		pionNoir.setDisable(false);
+		nbPieceNoir.setDisable(false);
+		iconeNoir.setDisable(false);
+		tempsNoir.setDisable(false);
+		annuler.setDisable(false);
+		refaire.setDisable(false);
+		labelBlanc.setDisable(false);
+		pionBlanc.setDisable(false);
+		nbPieceBlanc.setDisable(false);
+		iconeBlanc.setDisable(false);
+		tempsBlanc.setDisable(false);
+		recommencer.setDisable(false);
+		plateau.setDisable(false);
+		panelJ1.setDisable(false);
+		panelJ2.setDisable(false);
+		fond.setDisable(false);
+		tabou1Image.setDisable(false);
+		tabou2Image.setDisable(false);
+		tabou3Image.setDisable(false);
+		tabou1.setDisable(false);
+		tabou2.setDisable(false);
+		tabou3.setDisable(false);
+		tabou1Panel.setDisable(false);
+		tabou2Panel.setDisable(false);
+		tabou3Panel.setDisable(false);
+		list1.setDisable(false);
+		list2.setDisable(false);
+		list3.setDisable(false);
+		list4.setDisable(false);
+		listImage1.setDisable(false);
+		listImage2.setDisable(false);
+		listImage3.setDisable(false);
+		listImage4.setDisable(false);
+		flecheHaut.setDisable(false);
+		flecheBas.setDisable(false);
 	}
-	
+
 	public void Tutoriel() {
-		if (ihm.etatTuto== 1 || ihm.etatTuto == 2 || ihm.etatTuto == 5 || ihm.etatTuto == 6) {
-			ihm.etatTuto = (ihm.etatTuto+1);
-			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto-1));
+		if (ihm.etatTuto == 1 || ihm.etatTuto == 2 || ihm.etatTuto == 5 || ihm.etatTuto == 6) {
+			ihm.etatTuto = (ihm.etatTuto + 1);
+			imageTuto.setImage(ihm.i.getImagesTuto().get(ihm.etatTuto - 1));
 		}
 	}
-	
+
 	@FXML
 	private void clicOnTuto() {
 		Tutoriel();

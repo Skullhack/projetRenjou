@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

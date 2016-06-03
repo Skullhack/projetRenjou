@@ -2,25 +2,20 @@ package IHMFx;
 
 import java.io.IOException;
 
-import javax.swing.JOptionPane;
 
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 public class FenetreMenu extends Stage {	
 	private boolean nouvellePartie;
-	private EcouteurFenetreMenu efm;
 	
 	public FenetreMenu(EcouteurFenetreMenu efm) throws IOException {
-        this.efm = efm;
+        //this.efm = efm;
 		FXMLLoader fx = new FXMLLoader(getClass().getResource("LayoutFenetreMenu.fxml"));
 		fx.setController(efm);
 		Parent root = fx.load();

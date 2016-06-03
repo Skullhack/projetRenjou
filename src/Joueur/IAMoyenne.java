@@ -16,6 +16,10 @@ import Utilitaire.PlateauDeJeu;
 import Utilitaire.Tabou;
 
 public class IAMoyenne extends IA {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ArrayList<Coordonnees> coups;
 	int profondeurMax;
 	Motif motif;

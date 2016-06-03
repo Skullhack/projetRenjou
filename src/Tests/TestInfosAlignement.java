@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import Controleur.*;
 import Enum.*;
-import Joueur.*;
 import Utilitaire.Coordonnees;
 import Utilitaire.InfosAlignement;
 import Utilitaire.Log;
@@ -244,7 +243,7 @@ public class TestInfosAlignement {
 		Log.print(721, "debut main");
 		pdj = pdj.charger(chemin + "TestFauxTroisTrois2");
 		Log.print(725, pdj.toString());
-		InfosAlignement infos = new InfosAlignement(pdj, new Coordonnees(9,5), TypeDirection.Haut);
+		//InfosAlignement infos = new InfosAlignement(pdj, new Coordonnees(9,5), TypeDirection.Haut);
 		Motif m = new Motif(pdj, new Coordonnees(9,5));
 		Log.print(725, m.toString());
 		

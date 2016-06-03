@@ -7,12 +7,9 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import Controleur.Moteur;
-import Controleur.MoteurObserveur;
 import Enum.EtatPartie;
-import Enum.TypeCase;
 import Enum.TypeJoueur;
 import Enum.TypeTabous;
-import Joueur.IAFacile;
 import Utilitaire.Coordonnees;
 import Utilitaire.Log;
 import Utilitaire.PlateauDeJeu;

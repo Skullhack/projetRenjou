@@ -8,6 +8,10 @@ import Utilitaire.PlateauDeJeu;
 
 public class IAExterne extends IA {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	IAFacile ia;
 	
 	public IAExterne(TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
