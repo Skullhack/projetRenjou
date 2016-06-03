@@ -31,3 +31,35 @@ Blanc a gagné : 8350 dont : 0 par tabous du Noir
 
 
 IA Moyenne vs IA Moyenne
+
+
+
+
+
+//Resultat en utilisant notre IA Facile comme une IA externe : 
+
+IA facile (notre) vs IA facile (on joue en noir)
+Victoires : 29
+Partie nulle : 102
+Défaite : 39
+NB PARTIES : 170
+
+
+IA facile (notre) vs IA facile (on joue en blanc)
+Victoires : 55
+Partie nulle : 131
+Défaite : 17
+NB PARTIES : 203
+
+IA facile (notre) vs IA moyenne (on joue en noir)
+Victoires : 3
+Partie nulle : 30
+Défaite : 179
+NB PARTIES : 212
+
+IA facile (notre) vs IA moyenne (on joue en blanc)
+Victoires : 15
+Partie nulle : 43
+Défaite : 148
+NB PARTIES : 206
+

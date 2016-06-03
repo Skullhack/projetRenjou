@@ -120,6 +120,7 @@ public class IAFacile extends IA {
 	}
 	
 	private  boolean estCoupTabous(PlateauDeJeu plateau, Coordonnees c){
+		// a remplacer par proba = r.nextInt(10) si on veut faire 1 chance sur 10 de tomber dans un tabou 
 		int proba = 0;
 		if(couleur == TypeCouleur.Noir){
 			if(!Tabou.estValide(plateau, c, true, true, true)){
