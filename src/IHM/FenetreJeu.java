@@ -5,7 +5,6 @@
  */
 package IHM;
 
-import Images.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -15,11 +14,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -39,7 +34,11 @@ import Enum.TypeJoueur;
  * @author michauad
  */
 public class FenetreJeu extends JFrame implements WindowListener{
-    private ComposantAffichageTabou affichageRenjou;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private ComposantAffichageTabou affichageRenjou;
     private Moteur m;
     private JPanel[] panels;
     private JMenuBar barreMenu;
@@ -50,7 +49,7 @@ public class FenetreJeu extends JFrame implements WindowListener{
     private JButton[] aides;
     private JLabel[] sabliers;
     private Plateau p;
-    private EcouteurDeSouris eds;
+    //private EcouteurDeSouris eds;
     private EcouteurFenetreJeu efj;
     private JLabel noir;
     private JLabel blanc;
@@ -64,7 +63,7 @@ public class FenetreJeu extends JFrame implements WindowListener{
         this.m = ihm.m;
         efj = new EcouteurFenetreJeu(ihm);
         p = new Plateau(ihm);
-        eds = new EcouteurDeSouris(m, p);
+        new EcouteurDeSouris(m, p);
         //0:PanelPrincipal 1:PanelBouton 2:PanelSud 3:PanelBoutonDansBouton 4:Panel Centre
         panels = new JPanel[6];
         for (int i = 0; i < panels.length; i++) {
@@ -276,7 +275,7 @@ public class FenetreJeu extends JFrame implements WindowListener{
     	else {
     		message = "Erreur, on ne doit pas rentrer dans le cas la !";
     	}
-    	int confirm = JOptionPane.showOptionDialog(
+    	JOptionPane.showOptionDialog(
 	             null, message, 
 	             "Fin de partie", JOptionPane.CLOSED_OPTION, 
 	             JOptionPane.QUESTION_MESSAGE, null, null, null);

@@ -3,7 +3,6 @@ package IHM;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
 import Controleur.Moteur;
@@ -63,7 +62,7 @@ public class EcouteurFenetreJeu implements ActionListener {
         String fichierSauvegarder = null;
         JFileChooser ouvertureFenetre = new JFileChooser();
         int checkEtatFenetre = ouvertureFenetre.showOpenDialog(null);
-        if (checkEtatFenetre == ouvertureFenetre.APPROVE_OPTION) {
+        if (checkEtatFenetre == JFileChooser.APPROVE_OPTION) {
             fichierSauvegarder = ouvertureFenetre.getSelectedFile().getAbsolutePath();
             m.sauvegarder(fichierSauvegarder);
         }
@@ -74,7 +73,7 @@ public class EcouteurFenetreJeu implements ActionListener {
         String fichierCharger = null;
         JFileChooser ouvertureFenetre = new JFileChooser();
         int checkEtatFenetre = ouvertureFenetre.showOpenDialog(null);
-        if (checkEtatFenetre == ouvertureFenetre.APPROVE_OPTION) {
+        if (checkEtatFenetre == JFileChooser.APPROVE_OPTION) {
             fichierCharger = ouvertureFenetre.getSelectedFile().getAbsolutePath();
             m.charger(fichierCharger);
         }
