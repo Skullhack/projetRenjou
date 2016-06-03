@@ -13,7 +13,7 @@
   <children>
       <ImageView fx:id="fond" fitHeight="476.0" fitWidth="700.0" layoutY="24.0" pickOnBounds="true">
          <image>
-            <Image url="@../Images/Traditionnel/Fond.png" />
+            <Image url="@/Images/Traditionnel/Fond.png" />
          </image>
       </ImageView>
     <BorderPane layoutX="0.0" layoutY="0.0" prefHeight="500.0" prefWidth="700.0">
@@ -22,7 +22,7 @@
           <children>
             <ImageView fx:id="boutonRetour" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#boutonRetour" onMouseEntered="#boutonRetourDebutDrag" onMouseExited="#boutonRetourFinDrag" pickOnBounds="true" preserveRatio="true">
               <image>
-                <Image url="@../Images/Traditionnel/BoutonRetour.png" />
+                <Image url="@/Images/Traditionnel/BoutonRetour.png" />
               </image>
               <FlowPane.margin>
                 <Insets left="250.0" right="250.0" fx:id="x1" />
@@ -40,7 +40,7 @@
                            <children>
                               <ImageView fitHeight="389.0" fitWidth="701.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../Images/PourToutLesThemes/Regles.png" />
+                                    <Image url="@/Images/PourToutLesThemes/Regles.png" />
                                  </image>
                               </ImageView>
                            </children>

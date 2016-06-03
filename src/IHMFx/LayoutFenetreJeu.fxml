@@ -13,7 +13,7 @@
   <children>
       <ImageView fx:id="fond" fitHeight="650.0" fitWidth="950.0" pickOnBounds="true">
          <image>
-            <Image url="@../Images/Traditionnel/Fond.png" />
+            <Image url="@/Images/Traditionnel/Fond.png" />
          </image>
       </ImageView>
     <BorderPane layoutX="0.0" layoutY="0.0" maxHeight="650.0" maxWidth="950.0" minHeight="650.0" minWidth="950.0" prefHeight="650.0" prefWidth="950.0">
@@ -24,7 +24,7 @@
               <children>
                 <ImageView fx:id="recommencer" fitHeight="55.0" fitWidth="190.0" onMouseClicked="#recommencerClick" onMouseEntered="#dragDebutRecommencer" onMouseExited="#dragFinRecommencer" pickOnBounds="true" preserveRatio="true" style="">
                   <image>
-                    <Image url="@../Images/Traditionnel/Recommencer.png" />
+                    <Image url="@/Images/Traditionnel/Recommencer.png" />
                   </image>
                   <FlowPane.margin>
                     <Insets left="10.0" top="10.0" />
@@ -36,7 +36,7 @@
                      <children>
                   <ImageView fx:id="tabou1Image" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0">
                     <image>
-                      <Image url="@../Images/Traditionnel/Plateau15x15.png" />
+                      <Image url="@/Images/Traditionnel/Plateau15x15.png" />
                     </image>
                   </ImageView>
                         <Label fx:id="tabou1" prefHeight="66.0" prefWidth="71.0" textAlignment="CENTER" />
@@ -49,7 +49,7 @@
                      <children>
                         <ImageView fx:id="tabou2Image" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/Traditionnel/Plateau15x15.png" />
+                              <Image url="@/Images/Traditionnel/Plateau15x15.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="tabou2" prefHeight="67.0" prefWidth="67.0" />
@@ -62,7 +62,7 @@
                      <children>
                         <ImageView fx:id="tabou3Image" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/Traditionnel/Plateau15x15.png" />
+                              <Image url="@/Images/Traditionnel/Plateau15x15.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="tabou3" prefHeight="67.0" prefWidth="69.0" />
@@ -77,7 +77,7 @@
       <center>
         <ImageView fx:id="plateau" fitHeight="551.079345703125" fitWidth="551.079345703125" onMouseClicked="#clickPlateau" pickOnBounds="true" preserveRatio="true">
           <image>
-            <Image url="@../Images/Traditionnel/Plateau15x15.png" />
+            <Image url="@/Images/Traditionnel/Plateau15x15.png" />
           </image>
         </ImageView>
       </center>
@@ -103,7 +103,7 @@
                   <children>
                     <ImageView fx:id="pionNoir" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" smooth="true" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0">
                       <image>
-                        <Image url="@../Images/Traditionnel/PionNoir.png" />
+                        <Image url="@/Images/Traditionnel/PionNoir.png" />
                       </image>
                     </ImageView>
                     <Label fx:id="nbPieceNoir" alignment="CENTER" layoutX="70.0" layoutY="11.0" prefHeight="39.0" prefWidth="40.0" text="60" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="11.0">
@@ -115,7 +115,7 @@
                 </AnchorPane>
                 <ImageView fx:id="iconeNoir" fitHeight="58.583099185661105" fitWidth="38.112300872802734" onMouseClicked="#peindreAide" onMouseEntered="#dragDebutSablierAmpoule1" onMouseExited="#dragFinSablierAmpoule1" pickOnBounds="true" preserveRatio="true">
                   <image>
-                    <Image url="@../Images/Traditionnel/Ampoule.png" />
+                    <Image url="@/Images/Traditionnel/Ampoule.png" />
                   </image>
                   <FlowPane.margin>
                     <Insets left="70.0" right="70.0" top="5.0" />
@@ -132,7 +132,7 @@
               <children>
                 <ImageView fx:id="annuler" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#annuler" onMouseEntered="#dragDebutAnnuler" onMouseExited="#dragFinAnnuler" pickOnBounds="true" preserveRatio="true">
                   <image>
-                    <Image url="@../Images/Traditionnel/Annuler.png" />
+                    <Image url="@/Images/Traditionnel/Annuler.png" />
                   </image>
                   <FlowPane.margin>
                     <Insets left="25.0" right="5.0" />
@@ -140,7 +140,7 @@
                 </ImageView>
                 <ImageView fx:id="refaire" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#refaire" onMouseEntered="#dragDebutRefaire" onMouseExited="#dragFinRefaire" pickOnBounds="true" preserveRatio="true">
                   <image>
-                    <Image url="@../Images/Traditionnel/Refaire.png" />
+                    <Image url="@/Images/Traditionnel/Refaire.png" />
                   </image>
                   <FlowPane.margin>
                     <Insets left="5.0" right="18.0" />
@@ -156,7 +156,7 @@
                   <children>
                     <ImageView fx:id="pionBlanc" fitHeight="60.000099999997474" fitWidth="60.000099999997474" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="0.0">
                       <image>
-                        <Image url="@../Images/Traditionnel/PionBlanc.png" />
+                        <Image url="@/Images/Traditionnel/PionBlanc.png" />
                       </image>
                     </ImageView>
                     <Label fx:id="nbPieceBlanc" alignment="CENTER" font="$x5" layoutX="66.0" layoutY="13.0" prefHeight="35.0" prefWidth="48.0" text="60" textAlignment="CENTER" textFill="BLACK" />
@@ -164,7 +164,7 @@
                 </AnchorPane>
                 <ImageView fx:id="iconeBlanc" fitHeight="58.583099185661105" fitWidth="38.112300872802734" onMouseClicked="#peindreAide" onMouseEntered="#dragDebutSablierAmpoule2" onMouseExited="#dragFinSablierAmpoule2" pickOnBounds="true" preserveRatio="true">
                   <image>
-                    <Image url="@../Images/Traditionnel/Ampoule.png" />
+                    <Image url="@/Images/Traditionnel/Ampoule.png" />
                   </image>
                   <FlowPane.margin>
                     <Insets left="70.0" right="70.0" top="5.0" fx:id="x6" />
@@ -184,7 +184,7 @@
           <children>
             <ImageView fx:id="flecheHaut" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#clickFlecheHaut" onMouseDragEntered="#dragDebutFlecheHaut" onMouseEntered="#dragDebutFlecheHaut" onMouseExited="#dragFinFlecheHaut" pickOnBounds="true" preserveRatio="true">
               <image>
-                <Image url="@../Images/Traditionnel/FlecheHaut.png" />
+                <Image url="@/Images/Traditionnel/FlecheHaut.png" />
               </image>
               <FlowPane.margin>
                 <Insets left="40.0" right="30.0" top="3.0" fx:id="x7" />
@@ -194,7 +194,7 @@
                      <children>
                         <ImageView fx:id="listImage1" fitHeight="123.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0">
                            <image>
-                              <Image url="@../Images/Traditionnel/Plateau15x15.png" />
+                              <Image url="@/Images/Traditionnel/Plateau15x15.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="list1" alignment="CENTER" onMouseClicked="#clickList1" onMouseEntered="#dragDebutList1" onMouseExited="#dragFinList1" prefHeight="122.0" prefWidth="128.0" text="1" textAlignment="CENTER">
@@ -214,7 +214,7 @@
                      <children>
                         <ImageView fx:id="listImage2" fitHeight="123.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0">
                            <image>
-                              <Image url="@../Images/Traditionnel/Plateau15x15.png" />
+                              <Image url="@/Images/Traditionnel/Plateau15x15.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="list2" alignment="CENTER" onMouseClicked="#clickList2" onMouseEntered="#dragDebutList2" onMouseExited="#dragFinList2" prefHeight="122.0" prefWidth="128.0" text="2" textAlignment="CENTER">
@@ -234,7 +234,7 @@
                      <children>
                         <ImageView fx:id="listImage3" fitHeight="123.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0">
                            <image>
-                              <Image url="@../Images/Traditionnel/Plateau15x15.png" />
+                              <Image url="@/Images/Traditionnel/Plateau15x15.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="list3" alignment="CENTER" onMouseClicked="#clickList3" onMouseEntered="#dragDebutList3" onMouseExited="#dragFinList3" prefHeight="122.0" prefWidth="128.0" text="3" textAlignment="CENTER">
@@ -254,7 +254,7 @@
                      <children>
                         <ImageView fx:id="listImage4" fitHeight="123.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0">
                            <image>
-                              <Image url="@../Images/Traditionnel/Plateau15x15.png" />
+                              <Image url="@/Images/Traditionnel/Plateau15x15.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="list4" alignment="CENTER" onMouseClicked="#clickList4" onMouseEntered="#dragDebutList4" onMouseExited="#dragFinList4" prefHeight="122.0" prefWidth="128.0" text="4" textAlignment="CENTER">
@@ -272,7 +272,7 @@
                   </AnchorPane>
             <ImageView fx:id="flecheBas" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#clickFlecheBas" onMouseEntered="#dragDebutFlecheBas" onMouseExited="#dragFinFlecheBas" pickOnBounds="true" preserveRatio="true" rotate="-0.0">
               <image>
-                <Image url="@../Images/Traditionnel/FlecheBas.png" />
+                <Image url="@/Images/Traditionnel/FlecheBas.png" />
               </image>
                      <FlowPane.margin>
                         <Insets left="45.0" right="30.0" />
@@ -312,7 +312,7 @@
     </BorderPane>
       <ImageView fx:id="imageTuto" fitHeight="650.0" fitWidth="950.0" onMouseClicked="#clicOnTuto">
          <image>
-            <Image url="@../Images/PourToutLesThemes/ImageVide.png" />
+            <Image url="@/Images/PourToutLesThemes/ImageVide.png" />
          </image>
       </ImageView>
   </children>

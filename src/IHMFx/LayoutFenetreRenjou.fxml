@@ -11,37 +11,37 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0">
          <image>
-            <Image url="@../Images/Traditionnel/Fond.png" />
+            <Image url="@/Images/Traditionnel/Fond.png" />
          </image>
       </ImageView>
       <ImageView fx:id="chargerPartie" fitHeight="63.0" fitWidth="200.0" layoutX="57.0" layoutY="237.0" onMouseClicked="#chargerPartie" onMouseEntered="#boutonChargerPartieDebutDrag" onMouseExited="#boutonChargerPartieFinDrag">
          <image>
-            <Image url="@../Images/PourToutLesThemes/ChargerPartie.png" />
+            <Image url="@/Images/PourToutLesThemes/ChargerPartie.png" />
          </image>
       </ImageView>
       <ImageView fx:id="lancerTutoriel" fitHeight="63.0" fitWidth="200.0" layoutX="360.0" layoutY="237.0" onMouseClicked="#lancerTutoriel" onMouseEntered="#boutonLancerTutorielDebutDrag" onMouseExited="#boutonLancerTutorielFinDrag">
          <image>
-            <Image url="@../Images/PourToutLesThemes/LancerTutoriel.png" />
+            <Image url="@/Images/PourToutLesThemes/LancerTutoriel.png" />
          </image>
       </ImageView>
       <ImageView fx:id="partieRapide" fitHeight="63.0" fitWidth="200.0" layoutX="57.0" layoutY="146.0" onMouseClicked="#partieRapide" onMouseEntered="#boutonPartieRapideDebutDrag" onMouseExited="#boutonPartieRapideFinDrag">
          <image>
-            <Image url="@../Images/PourToutLesThemes/PartieRapide.png" />
+            <Image url="@/Images/PourToutLesThemes/PartieRapide.png" />
          </image>
       </ImageView>
       <ImageView fx:id="partiePersonnalisee" fitHeight="63.0" fitWidth="200.0" layoutX="360.0" layoutY="146.0" onMouseClicked="#partiePersonnalisee" onMouseEntered="#boutonPartiePersonnaliseeDebutDrag" onMouseExited="#boutonPartiePersonnaliseeFinDrag">
          <image>
-            <Image url="@../Images/PourToutLesThemes/PartiePersonnalisee.png" />
+            <Image url="@/Images/PourToutLesThemes/PartiePersonnalisee.png" />
          </image>
       </ImageView>
       <ImageView fx:id="quitter" fitHeight="54.0" fitWidth="200.0" layoutX="200.0" layoutY="338.0" onMouseClicked="#quitter" onMouseEntered="#boutonQuitterDebutDrag" onMouseExited="#boutonQuitterFinDrag">
          <image>
-            <Image url="@../Images/PourToutLesThemes/Quitter.png" />
+            <Image url="@/Images/PourToutLesThemes/Quitter.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="160.0" fitWidth="248.0" layoutX="176.0" layoutY="-14.0">
          <image>
-            <Image url="@../Images/PourToutLesThemes/Renjou.png" />
+            <Image url="@/Images/PourToutLesThemes/Renjou.png" />
          </image>
       </ImageView>
    </children>

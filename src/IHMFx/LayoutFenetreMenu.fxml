@@ -13,7 +13,7 @@
   <children>
       <ImageView fx:id="fond" fitHeight="478.0" fitWidth="700.0" layoutY="28.0" pickOnBounds="true">
          <image>
-            <Image url="@../Images/Traditionnel/Fond.png" />
+            <Image url="@/Images/Traditionnel/Fond.png" />
          </image>
       </ImageView>
     <BorderPane layoutX="0.0" layoutY="0.0" prefHeight="500.0" prefWidth="700.0">
@@ -22,7 +22,7 @@
           <children>
             <ImageView fx:id="boutonValider" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#boutonValider" onMouseEntered="#boutonValiderDebutDrag" onMouseExited="#boutonValiderFinDrag" pickOnBounds="true" preserveRatio="true">
               <image>
-                <Image url="@../Images/Traditionnel/BoutonValider.png" />
+                <Image url="@/Images/Traditionnel/BoutonValider.png" />
               </image>
               <FlowPane.margin>
                 <Insets left="80.0" right="60.0" fx:id="x1" />
@@ -30,7 +30,7 @@
             </ImageView>
             <ImageView fx:id="boutonAnnuler" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#boutonAnnuler" onMouseEntered="#boutonAnnulerDebutDrag" onMouseExited="#boutonAnnulerFinDrag" pickOnBounds="true" preserveRatio="true" FlowPane.margin="$x1">
               <image>
-                <Image url="@../Images/Traditionnel/BoutonAnnuler.png" />
+                <Image url="@/Images/Traditionnel/BoutonAnnuler.png" />
               </image>
             </ImageView>
           </children>
@@ -195,7 +195,7 @@
                                        <children>
                                           <ImageView fx:id="tabouImage" fitHeight="300.0" fitWidth="281.0" pickOnBounds="true">
                                              <image>
-                                                <Image url="@../Images/PourToutLesThemes/QUATRE-QUATREImage.png" />
+                                                <Image url="@/Images/PourToutLesThemes/QUATRE-QUATREImage.png" />
                                              </image>
                                              <FlowPane.margin>
                                                 <Insets />
@@ -203,7 +203,7 @@
                                           </ImageView>
                                           <ImageView fx:id="tabouExplication" fitHeight="255.0" fitWidth="377.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../Images/PourToutLesThemes/QUATRE-QUATREExplication.png" />
+                                                <Image url="@/Images/PourToutLesThemes/QUATRE-QUATREExplication.png" />
                                              </image>
                                              <FlowPane.margin>
                                                 <Insets left="10.0" right="10.0" top="30.0" />
@@ -231,7 +231,7 @@
                                  <children>
                                     <ImageView fitHeight="83.82641876220703" fitWidth="172.0" onMouseClicked="#selectionnerThemeTraditionnel" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
                                        <image>
-                                          <Image url="@../Images/Theme/ThemeTraditionnel.png" />
+                                          <Image url="@/Images/Theme/ThemeTraditionnel.png" />
                                        </image>
                                        <GridPane.margin>
                                           <Insets bottom="30.0" left="20.0" right="20.0" top="20.0" />
@@ -239,7 +239,7 @@
                                     </ImageView>
                                     <ImageView fitHeight="83.82641876220703" fitWidth="172.0" onMouseClicked="#selectionnerThemeZelda" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                                        <image>
-                                          <Image url="@../Images/Theme/ThemeZelda.png" />
+                                          <Image url="@/Images/Theme/ThemeZelda.png" />
                                        </image>
                                        <GridPane.margin>
                                           <Insets bottom="30.0" left="20.0" right="20.0" top="20.0" />
@@ -247,7 +247,7 @@
                                     </ImageView>
                                     <ImageView fitHeight="83.82641876220703" fitWidth="172.0" onMouseClicked="#selectionnerThemeCage" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                                        <image>
-                                          <Image url="@../Images/Theme/ThemeCage.png" />
+                                          <Image url="@/Images/Theme/ThemeCage.png" />
                                        </image>
                                        <GridPane.margin>
                                           <Insets bottom="30.0" left="20.0" right="20.0" top="20.0" />
@@ -255,7 +255,7 @@
                                     </ImageView>
                                     <ImageView fitHeight="83.82641876220703" fitWidth="172.0" onMouseClicked="#selectionnerThemeRugby" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
                                        <image>
-                                          <Image url="@../Images/Theme/ThemeRugby.png" />
+                                          <Image url="@/Images/Theme/ThemeRugby.png" />
                                        </image>
                                        <GridPane.margin>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -263,7 +263,7 @@
                                     </ImageView>
                                     <ImageView fitHeight="83.82641876220703" fitWidth="172.0" onMouseClicked="#selectionnerThemeStarWars" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <image>
-                                          <Image url="@../../bin/Images/Theme/ThemeStarWars.png" />
+                                          <Image url="@/Images/Theme/ThemeStarWars.png" />
                                        </image>
                                        <GridPane.margin>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -294,7 +294,7 @@
     </BorderPane>
       <ImageView fx:id="imageTuto" fitHeight="515.0" fitWidth="716.0" layoutX="-8.0" layoutY="-8.0" onMouseClicked="#clickImage" smooth="false">
          <image>
-            <Image url="@../Images/PourToutLesThemes/ImageVide.png" />
+            <Image url="@/Images/PourToutLesThemes/ImageVide.png" />
          </image>
       </ImageView>
   </children>
