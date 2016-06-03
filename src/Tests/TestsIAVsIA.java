@@ -10,7 +10,7 @@ import Enum.TypeJoueur;
 
 public class TestsIAVsIA {
 
-	int nbPartie = 1000;
+	int nbPartie = 10000;
 	
 	@Test
 	public void FacileVsFacile() {
@@ -34,7 +34,7 @@ public class TestsIAVsIA {
 	
 	@Test
 	public void MoyenneVsMoyenne() {
-		System.out.println("test Moyenne contre Facile");
+		System.out.println("test Moyenne contre Moyenne");
 		jouerIAs(TypeJoueur.IAMoyenne, TypeJoueur.IAMoyenne);
 	}
 	
@@ -44,10 +44,14 @@ public class TestsIAVsIA {
 		int nbBlancGagneTabous = 0;
 		int nbNull = 0;
 		EtatPartie etatPartie;
+		int nbBlancGagneTotal = nbBlancGagne + nbBlancGagneTabous;
 		
 		for(int i = 0; i < nbPartie ; i++){
-			if(i % 100 == 0){
-				System.out.println("nbPartie : " + i);
+			if(i % 50 == 0){
+				System.out.println("il y a eu "+ i + " parties :");
+				System.out.println("Partie nulle : "+ nbNull);
+				System.out.println("Blanc a gagné : "+ nbBlancGagneTotal + " dont : " + nbBlancGagneTabous + " par tabous du Noir");
+				System.out.println("Noir a gagné : "+ nbNoirGagne);
 			}
 			Moteur m = new Moteur(t1, t2);
 			etatPartie = m.faireJouerIAVsIAPourTest();
@@ -68,9 +72,9 @@ public class TestsIAVsIA {
 				System.out.println("erreur une partie est en cours ou rien");
 				break;
 			}
-			
+			nbBlancGagneTotal = nbBlancGagne + nbBlancGagneTabous;
 		}
-		int nbBlancGagneTotal = nbBlancGagne + nbBlancGagneTabous;
+
 		System.out.println("il y a eu "+ nbPartie + " parties :");
 		System.out.println("Partie nulle : "+ nbNull);
 		System.out.println("Blanc a gagné : "+ nbBlancGagneTotal + " dont : " + nbBlancGagneTabous + " par tabous du Noir");

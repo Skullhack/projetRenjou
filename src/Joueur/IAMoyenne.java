@@ -63,10 +63,20 @@ public class IAMoyenne extends IA {
 
 		return TypeCase.PionBlanc;
 	}
+	
+	public TypeCouleur autreTypeCouleur(TypeCouleur c) {
+		if (c == TypeCouleur.Blanc)
+			return TypeCouleur.Noir;
 
+		return TypeCouleur.Blanc;
+	}
+	
+	
+	
 	@Override
 	public Coordonnees jouer(PlateauDeJeu p) {
 		Log.print(66, "Dans Jouer IAMoyenne");
+		ArrayList<Coordonnees> coupsPerdants = new ArrayList<>();
 
 		coups.clear();
 		PlateauDeJeu pdj = p.clone();
@@ -109,30 +119,42 @@ public class IAMoyenne extends IA {
 						// on peut couper l�, le coup est gagnant.
 						Log.print(1, "dans jouer " + i + " " + j + " gagnant en profondeur " + (profondeurMax - profondeur));
 						return new Coordonnees(i,j);
-					} else {
+					}
+					else if (PartieFinie(pdj, i,j, autreTypeCase(tc))) {
+						// on peut couper l�, le coup est gagnant.
+						Log.print(1, "dans jouer " + i + " " + j + " perdant en profondeur " + (profondeurMax - profondeur));
+						coupsPerdants.add(new Coordonnees(i,j));
+					}else {
 						// valeurtemp = 0;
 						valeurtemp = EvaluerCoupAdversaire(pdj, profondeur - 1, this.autreTypeCase(tc));
 						Log.print(1, "valeurtemp=" + valeurtemp + " i= " + i + " j= " + j);
 
+					
+						
+						if (valeurtemp == valeur) {
+							Log.print(1, "dans egal valeurtemp=" + valeurtemp + " i= " + i + " j= " + j);
+							coups.add(new Coordonnees(i,j));
+							Log.print(1, coups.toString());
+						} else if (valeurtemp > valeur) {
+							Log.print(1, "dans sup valeurtemp=" + valeurtemp + " i= " + i + " j= " + j);
+							coups.clear();
+							coups.add(new Coordonnees(i,j));
+							valeur = valeurtemp;
+							Log.print(1, coups.toString());
+						}
 					}
 					pdj.enlever(i,j);
-					if (valeurtemp == valeur) {
-						Log.print(1, "dans egal valeurtemp=" + valeurtemp + " i= " + i + " j= " + j);
-						coups.add(new Coordonnees(i,j));
-						Log.print(1, coups.toString());
-					} else if (valeurtemp > valeur) {
-						Log.print(1, "dans sup valeurtemp=" + valeurtemp + " i= " + i + " j= " + j);
-						coups.clear();
-						coups.add(new Coordonnees(i,j));
-						valeur = valeurtemp;
-						Log.print(1, coups.toString());
-					}
 
 				}
 			}
 		}
-		Log.print(1, coups.toString());
-
+				
+		
+		if (!coupsPerdants.isEmpty()) {
+			r.nextInt(coupsPerdants.size());
+			return coupsPerdants.get(r.nextInt(coupsPerdants.size()));
+		}
+		
 		if (coups.isEmpty()) {
 			return new Coordonnees(-1, -1);
 		}
@@ -189,7 +211,7 @@ public class IAMoyenne extends IA {
 						// Log.print(501, "CGN = "+coupGagnantNoir + " CG2CN = "
 						// + coupGagnant2CoupsNoir );
 						coupGagnantNoir = CoupGagnant(presenceMotifNoir);
-						coupGagnant2CoupsNoir = false;
+						coupGagnant2CoupsNoir = CoupGagnant2Coups(presenceMotifNoir);
 
 					}
 
@@ -234,9 +256,9 @@ public class IAMoyenne extends IA {
 					// si ia.couleur = noir
 			if (couleur == TypeCouleur.Noir) {
 				if (coupGagnantNoir) {
-					return 20000;
+					return 30000;
 				} else if (coupGagnantBlanc) {
-					return -20000;
+					return -30000;
 				} else if (coupGagnant2CoupsNoir) {
 					return 20000;
 				} else if (coupGagnant2CoupsBlanc) {
@@ -246,9 +268,9 @@ public class IAMoyenne extends IA {
 				}
 			} else { // si l'ia est blanc
 				if (coupGagnantNoir) {
-					return -20000;
+					return -30000;
 				} else if (coupGagnantBlanc) {
-					return 20000;
+					return 30000;
 				} else if (coupGagnant2CoupsNoir) {
 					return -20000;
 				} else if (coupGagnant2CoupsBlanc) {
@@ -377,5 +399,4 @@ public class IAMoyenne extends IA {
 		Log.print(505, "valeur= " + v);
 		return v;
 	}
-
 }
