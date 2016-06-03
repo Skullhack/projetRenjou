@@ -30,7 +30,7 @@ public class IAMoyenne extends IA {
 
 	private void init() {
 		coups = new ArrayList<>();
-		profondeurMax = 3;
+		profondeurMax = 1;
 		motif = new Motif();
 		mr = MotifsReconnus.values();
 		presenceMotifBlanc = new boolean[mr.length];
@@ -150,7 +150,9 @@ public class IAMoyenne extends IA {
 		viderPresenceMotif();
 		boolean coupGagnantBlanc = false;
 		boolean coupGagnantNoir = false;
-		
+		boolean coupGagnant2CoupsBlanc = false;
+		boolean coupGagnant2CoupsNoir = false;
+
 		for (int i = 0; i < nbLigne; i++) {
 			for (int j = 0; j < nbColonne; j++) {
 				if (pdj.getTypeCaseTableau(i, j) == TypeCase.PionBlanc
@@ -170,6 +172,8 @@ public class IAMoyenne extends IA {
 						// Log.print(501, "CGB = "+coupGagnantBlanc + " CG2CB =
 						// " + coupGagnant2CoupsBlanc );
 						coupGagnantBlanc = CoupGagnant(presenceMotifBlanc);
+						coupGagnant2CoupsBlanc = CoupGagnant2Coups(presenceMotifBlanc);
+
 					}
 
 					if (pdj.getTypeCaseTableau(i,j) == TypeCase.PionNoir && !coupGagnantNoir) {
@@ -185,84 +189,19 @@ public class IAMoyenne extends IA {
 						// Log.print(501, "CGN = "+coupGagnantNoir + " CG2CN = "
 						// + coupGagnant2CoupsNoir );
 						coupGagnantNoir = CoupGagnant(presenceMotifNoir);
+						coupGagnant2CoupsNoir = false;
+
 					}
 
 				}
 
 			}
 		}
-		if(couleur == TypeCouleur.Blanc){
-			return Valeur(presenceMotifBlanc) - Valeur(presenceMotifNoir);
-		}else{
-			return Valeur(presenceMotifNoir) - Valeur(presenceMotifBlanc);
-		}
-	}
 
-	private void viderPresenceMotif() {
-		for(int i=0;i<mr.length;i++){
-			presenceMotifBlanc[i] = false;
-			presenceMotifNoir[i] = false;
-		}
+
 		
-	}
-
-	public int Evaluation2(PlateauDeJeu pdj, TypeCase tc) {
-
-		TypeCouleur blanc = TypeCouleur.Blanc;
-		TypeCouleur noir = TypeCouleur.Noir;
-		MotifsReconnus[] mr = MotifsReconnus.values();
-		boolean[] presenceMotifBlanc = new boolean[mr.length];
-		boolean[] presenceMotifNoir = new boolean[mr.length];
-		boolean coupGagnantBlanc = false;
-		boolean coupGagnantNoir = false;
-		boolean coupGagnant2CoupsBlanc = false;
-		boolean coupGagnant2CoupsNoir = false;
-
-		for (int i = 0; i < nbLigne; i++) {
-			for (int j = 0; j < nbColonne; j++) {
-				Coordonnees c = new Coordonnees(i, j);
-				if (pdj.getTypeCaseTableau(i, j) == TypeCase.PionBlanc
-						|| pdj.getTypeCaseTableau(i, j) == TypeCase.PionNoir) {
-					Motif m = new Motif(pdj, c);
-
-					if (pdj.getTypeCaseTableau(c) == TypeCase.PionBlanc && !coupGagnantBlanc) {
-						// POUR BLANC
-						for (int k = 0; k < mr.length; k++) {
-							if (!presenceMotifBlanc[k]) {
-								if (mr[k].verif(m, blanc)) {
-									Log.print(501, "i= " + i + " j= " + j + " dans Blanc " + mr[k].name());
-									presenceMotifBlanc[k] = true;
-								}
-							}
-						}
-
-						coupGagnantBlanc = CoupGagnant(presenceMotifBlanc);
-						coupGagnant2CoupsBlanc = CoupGagnant2Coups(presenceMotifBlanc);
-						// Log.print(501, "CGB = "+coupGagnantBlanc + " CG2CB =
-						// " + coupGagnant2CoupsBlanc );
-					}
-
-					if (pdj.getTypeCaseTableau(c) == TypeCase.PionNoir && !coupGagnantNoir) {
-						// POUR NOIR
-						for (int k = 0; k < mr.length; k++) {
-							if (!presenceMotifNoir[k]) {
-								if (mr[k].verif(m, noir)) {
-									Log.print(501, "i= " + i + " j= " + j + " dans Noir " + mr[k].name());
-									presenceMotifNoir[k] = true;
-								}
-							}
-						}
-						coupGagnantNoir = CoupGagnant(presenceMotifNoir);
-						coupGagnant2CoupsNoir = CoupGagnant2Coups(presenceMotifNoir);
-						// Log.print(501, "CGN = "+coupGagnantNoir + " CG2CN = "
-						// + coupGagnant2CoupsNoir );
-					}
-
-				}
-
-			}
-		}
-
+		
+		
 		// si c'est a blanc de jouer
 		if (tc == TypeCase.PionBlanc) {
 			// si l'ia est blanc
@@ -319,8 +258,23 @@ public class IAMoyenne extends IA {
 				}
 			}
 		}
-
+		
+		
+		
+		
+		
+		
 	}
+
+	private void viderPresenceMotif() {
+		for(int i=0;i<mr.length;i++){
+			presenceMotifBlanc[i] = false;
+			presenceMotifNoir[i] = false;
+		}
+		
+	}
+
+
 
 	public int EvaluerCoupAdversaire(PlateauDeJeu pdj, int profondeur, TypeCase tc) {
 		if (profondeur == 0)
@@ -399,36 +353,8 @@ public class IAMoyenne extends IA {
 				|| tab[MotifsReconnus.estTroisLibreLibre.ordinal()] || tab[MotifsReconnus.estQuatreFoisTrois.ordinal()];
 	}
 
-	private int Valeur(boolean[] tab) {
-		int v = 0;
-		
-		if (tab[MotifsReconnus.estQuatreLibre.ordinal()]) {
-			v += 20000;
-		} else if (tab[MotifsReconnus.estTroisFoisTroisLibreLibre.ordinal()]) {
-			v += 10000;
-		} else if (tab[MotifsReconnus.estTroisLibreLibre.ordinal()]) {
-			v += 10000;
-		} else if (tab[MotifsReconnus.estQuatreFoisTrois.ordinal()]) {
-			v += 10000;
-		} else if (tab[MotifsReconnus.estTroisFoisDeuxLibreLibre.ordinal()]) {
-			v += 5000;
-		} else if (tab[MotifsReconnus.estTroisFoisDeuxLibre.ordinal()]) {
-			v += 600;
-		} else if (tab[MotifsReconnus.estDeuxFoisDeuxLibreLibre.ordinal()]) {
-			v += 500;
-		} else if (tab[MotifsReconnus.estTroisFoisTroisLibre.ordinal()]) {
-			v += 100;
-		}else if (tab[MotifsReconnus.estTroisFoisDeux.ordinal()]) {
-			v += 75;
-		} else if (tab[MotifsReconnus.estTroisLibre.ordinal()]) {
-			v += 50;
-		} 
-		
-		Log.print(505, "valeur= " + v);
-		return v;
-	}
 
-	private int Valeur2(boolean[] tab) {
+	private int Valeur(boolean[] tab) {
 		int v = 0;
 
 		if (tab[MotifsReconnus.estTroisFoisDeuxLibreLibre.ordinal()]) {

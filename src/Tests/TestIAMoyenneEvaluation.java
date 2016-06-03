@@ -50,10 +50,10 @@ public class TestIAMoyenneEvaluation {
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-		assertEquals(-1, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		assertEquals(-1, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		assertEquals(1, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		assertEquals(1, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 
 	}
 	
@@ -65,10 +65,10 @@ public class TestIAMoyenneEvaluation {
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-		assertEquals(-5, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		assertEquals(-5, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		assertEquals(5, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		assertEquals(5, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 		
 	}
 	
@@ -95,10 +95,10 @@ public class TestIAMoyenneEvaluation {
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-		assertEquals(-50, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		assertEquals(-50, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		assertEquals(50, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		assertEquals(50, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 	}
 	
 	@Test
@@ -123,10 +123,10 @@ public class TestIAMoyenneEvaluation {
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-		assertEquals(-495, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		assertEquals(-495, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		assertEquals(495, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		assertEquals(495, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(-500, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-500, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(500, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(500, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 
 	}
 	
@@ -138,10 +138,10 @@ public class TestIAMoyenneEvaluation {
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-		assertEquals(50, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		assertEquals(50, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		assertEquals(-50, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		assertEquals(-50, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 	}
 	
 	@Test
@@ -211,10 +211,10 @@ public class TestIAMoyenneEvaluation {
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-		assertEquals(1, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		assertEquals(1, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		assertEquals(-1, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		assertEquals(-1, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(0, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 	}
 	
 	@Test
@@ -227,9 +227,9 @@ public class TestIAMoyenneEvaluation {
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-		assertEquals(-20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-30000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
 		assertEquals(-20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		assertEquals(20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(30000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		assertEquals(20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 
 	}
@@ -242,9 +242,9 @@ public class TestIAMoyenneEvaluation {
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-		assertEquals(-20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-30000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
 		assertEquals(-20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		assertEquals(20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(30000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		assertEquals(20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 
 		
@@ -258,9 +258,9 @@ public class TestIAMoyenneEvaluation {
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-		assertEquals(-20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-30000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
 		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		assertEquals(20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(30000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 
 	}
@@ -273,9 +273,9 @@ public class TestIAMoyenneEvaluation {
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-		assertEquals(-20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-30000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
 		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		assertEquals(20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(30000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 	}
 	
@@ -287,9 +287,9 @@ public class TestIAMoyenneEvaluation {
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(30000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
 		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-30000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 		
 
@@ -303,9 +303,9 @@ public class TestIAMoyenneEvaluation {
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(30000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
 		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-30000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 
 	}
@@ -449,10 +449,10 @@ public class TestIAMoyenneEvaluation {
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-		assertEquals(-100, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		assertEquals(-100, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		assertEquals(100, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		assertEquals(100, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(-50, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-50, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(50, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(50, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 		
 		
 	}
@@ -466,9 +466,9 @@ public class TestIAMoyenneEvaluation {
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
 		assertEquals(-20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(-20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
 		assertEquals(20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 
 	}
 	
@@ -526,10 +526,10 @@ public class TestIAMoyenneEvaluation {
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(5000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(5000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(-5000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-5000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 
 	}
 	
@@ -541,10 +541,10 @@ public class TestIAMoyenneEvaluation {
 		Log.print(501,""+iaNoir.Evaluation(pdj, TypeCase.PionNoir));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
 		Log.print(501,""+iaBlanc.Evaluation(pdj, TypeCase.PionNoir));	
-		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
-		assertEquals(20000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
-		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
-		assertEquals(-20000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(5000, iaNoir.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(5000, iaNoir.Evaluation(pdj, TypeCase.PionNoir));
+		assertEquals(-5000, iaBlanc.Evaluation(pdj, TypeCase.PionBlanc));
+		assertEquals(-5000, iaBlanc.Evaluation(pdj, TypeCase.PionNoir));
 		
 	}
 	
