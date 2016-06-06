@@ -1,28 +1,25 @@
 package IHM;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
+
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 
 import Controleur.Moteur;
-import Enum.TypeJoueur;
 
 public class FenetreAide extends JFrame implements WindowListener{
-	 	private Moteur m;
+	 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+		private Moteur m;
 	    private JTabbedPane tabbedPane;
 	    private JPanel[] panels;
 	    private JButton[] boutons;

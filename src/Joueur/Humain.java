@@ -13,7 +13,12 @@ import Utilitaire.PlateauDeJeu;
 
 public class Humain extends Joueur {
 
-    public Humain(TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public Humain(TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
         super(type,nbPion,couleurJoueur);
 	}
 

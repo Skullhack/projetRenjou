@@ -13,6 +13,10 @@ import Utilitaire.Coordonnees;
 import Utilitaire.PlateauDeJeu;
 
 public abstract class Joueur implements InterfaceJoueur, java.io.Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected TypeJoueur type;
 	protected int nbPion;
 	protected Moteur m;

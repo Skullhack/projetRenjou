@@ -13,6 +13,10 @@ import Utilitaire.PlateauDeJeu;
 
 public class IA extends Joueur {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected Random r;
 	protected int[][] tabHeuristique;
 	protected int nbLigne;

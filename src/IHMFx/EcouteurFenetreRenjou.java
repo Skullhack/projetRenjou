@@ -8,12 +8,7 @@ import javax.swing.JFileChooser;
 import Controleur.Moteur;
 import Enum.TypeJoueur;
 import Enum.TypeTabous;
-import IHMFx.FenetreAide;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -113,7 +108,7 @@ public class EcouteurFenetreRenjou {
 		String fichierCharger = null;
         JFileChooser ouvertureFenetre = new JFileChooser();
         int checkEtatFenetre = ouvertureFenetre.showOpenDialog(null);
-        if (checkEtatFenetre == ouvertureFenetre.APPROVE_OPTION) {
+        if (checkEtatFenetre == JFileChooser.APPROVE_OPTION) {
             fichierCharger = ouvertureFenetre.getSelectedFile().getAbsolutePath();
             m.charger(fichierCharger);
             ihm.efm.selectionnerTheme(m.getRenjou().getEmplacementThemes());

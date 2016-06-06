@@ -1,6 +1,5 @@
 package Utilitaire;
 
-import Controleur.*;
 import Enum.*;
 
 /*
@@ -9,6 +8,10 @@ import Enum.*;
 
 public class InfosAlignement implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int nbNoir;
 	int nbBlanc;	
 	int nbNoirNonContinu;

@@ -9,10 +9,14 @@ import java.io.FileWriter;
  */
 public class Log implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static int plageBasse;
 	static int plageHaute;
     static FileWriter fw;
-    private static Log instance = new Log();
+    //private static Log instance = new Log();
 
 	private Log(){
 		plageBasse = 0;

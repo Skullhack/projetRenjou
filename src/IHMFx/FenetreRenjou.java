@@ -5,20 +5,17 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 public class FenetreRenjou extends Stage{	
-	private EcouteurFenetreRenjou efr;
 	
 	public FenetreRenjou(EcouteurFenetreRenjou efr) throws IOException {
-        this.efr = efr;
+        //this.efr = efr;
 		FXMLLoader fx = new FXMLLoader(getClass().getResource("LayoutFenetreRenjou.fxml"));
 		fx.setController(efr);
 		Parent root = fx.load();

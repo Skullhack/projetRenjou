@@ -5,7 +5,6 @@
  */
 package Utilitaire;
 
-import java.awt.Point;
 
 import Enum.*;
 

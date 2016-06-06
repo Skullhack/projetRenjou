@@ -2,12 +2,10 @@ package IHM;
 
 import java.awt.Dimension;
 
-import Controleur.Moteur;
 import Controleur.PionJoue;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,10 +14,12 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import Enum.TypeCase;
-import Utilitaire.Coordonnees;
-import Utilitaire.PlateauDeJeu;
 
 public class Plateau extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private IHM ihm;
 	private Image imagePlateau;
 	private Image imagePionBlanc;

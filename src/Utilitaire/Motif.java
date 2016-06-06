@@ -2,7 +2,6 @@ package Utilitaire;
 
 import Enum.TypeCouleur;
 import Enum.TypeDirection;
-import Joueur.InterfaceJoueur;
 
 
 /*
@@ -11,6 +10,10 @@ import Joueur.InterfaceJoueur;
  */
 public class Motif  implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private InfosAlignement infoGauche;
 	private InfosAlignement infoDroite;
 	private InfosAlignement infoHaut;

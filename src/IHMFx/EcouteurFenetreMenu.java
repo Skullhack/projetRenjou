@@ -83,12 +83,10 @@ public class EcouteurFenetreMenu {
 		noir2.setToggleGroup(noir);
 		noir3.setToggleGroup(noir);
 		noir4.setToggleGroup(noir);
-		noir5.setToggleGroup(noir);
 		blanc1.setToggleGroup(blanc);
 		blanc2.setToggleGroup(blanc);
 		blanc3.setToggleGroup(blanc);
 		blanc4.setToggleGroup(blanc);
-		blanc5.setToggleGroup(blanc);
 	}
 	
 	@FXML

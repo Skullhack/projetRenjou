@@ -11,6 +11,10 @@ import Utilitaire.Coordonnees;
 
 public class PionJoue implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Coordonnees c;
 	TypeCase typeCase;
 	EtatPartie etatPartie;

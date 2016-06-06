@@ -22,9 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 
-import Controleur.Moteur;
 import Enum.TypeJoueur;
-import sun.awt.WindowClosingListener;
 
 /**
  *
@@ -32,7 +30,11 @@ import sun.awt.WindowClosingListener;
  */
 public class FenetreMenu extends JFrame implements WindowListener {
 
-    private Moteur m;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	//private Moteur m;
     private JTabbedPane tabbedPane;
     private JPanel[] panels;
     private ButtonGroup[] couleur;
@@ -42,12 +44,12 @@ public class FenetreMenu extends JFrame implements WindowListener {
     private JButton[] boutons;
     private JLabel labelNoir;
     private JLabel labelBlanc;
-    private JLabel nom;
+    //private JLabel nom;
     private EcouteurFenetreMenu efm;
     private boolean nouvellePartie;
 
     public FenetreMenu(IHM ihm) {
-        this.m = ihm.m;
+        //this.m = ihm.m;
         efm = new EcouteurFenetreMenu(ihm);
         this.setTitle("Configuration");
         this.addWindowListener(this);

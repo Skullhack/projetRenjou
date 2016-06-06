@@ -1,23 +1,15 @@
 package IHMFx;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-import Controleur.Moteur;
-import Enum.TypeJoueur;
-import Enum.TypeTabous;
 import IHMFx.FenetreAide;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 public class EcouteurFenetreAide {
 	private IHM ihm;
-	private Moteur m;
+	//private Moteur m;
 	@FXML
 	private ImageView fond;
 	@FXML
@@ -28,7 +20,7 @@ public class EcouteurFenetreAide {
 	
 	public EcouteurFenetreAide(IHM ihm) {
 		this.ihm = ihm;
-		this.m = ihm.m;
+		//this.m = ihm.m;
 		try {
 			ihm.fa = new FenetreAide(this);
 		} catch (IOException e) {

@@ -7,15 +7,14 @@ package Utilitaire;
 
 import java.util.ArrayList;
 
-import com.sun.glass.ui.CommonDialogs.Type;
-
-import Controleur.MoteurObserveur;
-import Controleur.Renjou;
 import Enum.TypeCouleur;
-import Enum.TypeDirection;
 import Enum.TypeTabous;
 
 public class Tabou implements InterfaceTabou, java.io.Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private boolean troisFoistrois;
 	private boolean quatreFoisQuatre;
 	private boolean sixSept;

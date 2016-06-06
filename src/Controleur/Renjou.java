@@ -9,7 +9,6 @@ import Joueur.Joueur;
 import Utilitaire.PlateauDeJeu;
 import Utilitaire.Tabou;
 
-import java.awt.Point;
 import java.util.ArrayList;
 import Enum.*;
 
@@ -18,6 +17,10 @@ import Enum.*;
  * @author michauad
  */
 public class Renjou implements InterfaceRenjou, java.io.Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private PlateauDeJeu plateau;
 	private Joueur[] tabJoueurs;
 	private int joueurCourant;

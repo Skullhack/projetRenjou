@@ -15,6 +15,11 @@ import Utilitaire.Tabou;
 
 public class IAFacile extends IA {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public IAFacile(TypeJoueur type, int nbPion, TypeCouleur couleurJoueur) {
 		super(type, nbPion, couleurJoueur);
 	}

@@ -18,8 +18,12 @@ import java.util.ArrayList;
 
 
 public class Moteur implements InterfaceMoteur, java.io.Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Renjou renjou;
-	private Log trace;
+	//private Log trace;
 	private ArrayList<MoteurObserveur> observeurs;
 
 	// Constructeur
@@ -496,7 +500,7 @@ private TypeCase getTypeCaseJoueurCourant(Renjou renjou) throws Exception {
 		int colonneCourante = c.getColonne();
 		TypeCase typeCaseJoueurCourant = null;
 
-		int nbLignesPlateau = renjou.getPlateauDeJeu().getLignes();
+		//int nbLignesPlateau = renjou.getPlateauDeJeu().getLignes();
 		int nbColonnesPlateau = renjou.getPlateauDeJeu().getColonnes();
 
 		try {
